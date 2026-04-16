@@ -1,0 +1,1056 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Microsoft Dynamics 365 Finance OData API",
+    "description": "Microsoft Dynamics 365 Finance and Operations OData REST API for data entities including customers, vendors, products, and financial data.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Microsoft Dynamics 365 Finance Support",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata"
+    }
+  },
+  "servers": [
+    {
+      "url": "{baseUrl}/data",
+      "description": "Microsoft Dynamics 365 Finance OData Endpoint",
+      "variables": {
+        "baseUrl": {
+          "default": "https://your-org.cloud.onebox.dynamics.com",
+          "description": "Your organization's root URL"
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ODataCollection": {
+        "type": "object",
+        "properties": {
+          "@odata.context": {
+            "type": "string",
+            "description": "OData context URL"
+          },
+          "@odata.count": {
+            "type": "integer",
+            "description": "Total count of entities"
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "CustomerV3": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "dataAreaId": {
+            "type": "string",
+            "description": "Legal entity identifier"
+          },
+          "CustomerAccount": {
+            "type": "string",
+            "description": "Customer account number"
+          },
+          "OrganizationName": {
+            "type": "string",
+            "description": "Organization name"
+          },
+          "NameAlias": {
+            "type": "string",
+            "description": "Name alias"
+          },
+          "CustomerGroupId": {
+            "type": "string",
+            "description": "Customer group identifier"
+          },
+          "AddressCountryRegionId": {
+            "type": "string",
+            "description": "Country/region identifier"
+          },
+          "SalesCurrencyCode": {
+            "type": "string",
+            "description": "Sales currency code"
+          },
+          "PersonGender": {
+            "type": "string",
+            "enum": ["Unknown", "Male", "Female"],
+            "description": "Person gender"
+          },
+          "CreditLimit": {
+            "type": "number",
+            "description": "Customer credit limit"
+          },
+          "IsActive": {
+            "type": "boolean",
+            "description": "Whether the customer is active"
+          }
+        }
+      },
+      "CustomersV3Collection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerV3"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "VendorV2": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "dataAreaId": {
+            "type": "string",
+            "description": "Legal entity identifier"
+          },
+          "VendorAccount": {
+            "type": "string",
+            "description": "Vendor account number"
+          },
+          "OrganizationName": {
+            "type": "string",
+            "description": "Organization name"
+          },
+          "VendorGroupId": {
+            "type": "string",
+            "description": "Vendor group identifier"
+          },
+          "AddressCountryRegionId": {
+            "type": "string",
+            "description": "Country/region identifier"
+          },
+          "PurchaseCurrencyCode": {
+            "type": "string",
+            "description": "Purchase currency code"
+          },
+          "IsActive": {
+            "type": "boolean",
+            "description": "Whether the vendor is active"
+          }
+        }
+      },
+      "VendorsV2Collection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/VendorV2"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ReleasedProductV2": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "dataAreaId": {
+            "type": "string",
+            "description": "Legal entity identifier"
+          },
+          "ProductNumber": {
+            "type": "string",
+            "description": "Product number"
+          },
+          "ProductName": {
+            "type": "string",
+            "description": "Product name"
+          },
+          "ProductDescription": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "ProductType": {
+            "type": "integer",
+            "description": "Product type"
+          },
+          "ProductSubtype": {
+            "type": "integer",
+            "description": "Product subtype"
+          },
+          "IsActive": {
+            "type": "boolean",
+            "description": "Whether the product is active"
+          },
+          "BasePrice": {
+            "type": "number",
+            "description": "Base price of the product"
+          },
+          "UnitOfMeasure": {
+            "type": "string",
+            "description": "Unit of measure"
+          }
+        }
+      },
+      "ReleasedProductsV2Collection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ReleasedProductV2"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CustomerGroup": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "dataAreaId": {
+            "type": "string",
+            "description": "Legal entity identifier"
+          },
+          "CustomerGroupId": {
+            "type": "string",
+            "description": "Customer group identifier"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Customer group description"
+          },
+          "PaymentTermsId": {
+            "type": "string",
+            "description": "Payment terms identifier"
+          }
+        }
+      },
+      "CustomerGroupsCollection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerGroup"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "SystemUser": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "UserId": {
+            "type": "string",
+            "description": "User identifier"
+          },
+          "UserName": {
+            "type": "string",
+            "description": "User name"
+          },
+          "Email": {
+            "type": "string",
+            "description": "User email address"
+          },
+          "IsActive": {
+            "type": "boolean",
+            "description": "Whether the user is active"
+          }
+        }
+      },
+      "SystemUsersCollection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SystemUser"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ExchangeRate": {
+        "type": "object",
+        "properties": {
+          "@odata.etag": {
+            "type": "string"
+          },
+          "FromCurrencyCode": {
+            "type": "string",
+            "description": "From currency code"
+          },
+          "ToCurrencyCode": {
+            "type": "string",
+            "description": "To currency code"
+          },
+          "ExchangeRateValue": {
+            "type": "number",
+            "description": "Exchange rate value"
+          },
+          "ValidFromDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid from date"
+          },
+          "RateTypeId": {
+            "type": "string",
+            "description": "Rate type identifier"
+          }
+        }
+      },
+      "ExchangeRatesCollection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ODataCollection"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExchangeRate"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CountResponse": {
+        "type": "integer",
+        "description": "Count of entities"
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/CustomersV3": {
+      "get": {
+        "summary": "Get Customers V3 - Field List Cross Company GBSI USSI",
+        "operationId": "getCustomersV3FieldListCrossCompanyGbsiUssi",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dataAreaId,CustomerAccount",
+            "description": "OData select query option",
+            "x-ballerina-name": "selectFields"
+          },
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "true",
+            "description": "Enable cross-company query",
+            "x-ballerina-name": "crossCompany"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "(dataAreaId eq 'USSI' or dataAreaId eq 'GBSI')",
+            "description": "OData filter query option",
+            "x-ballerina-name": "filter"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 10000
+            },
+            "description": "Number of entities to return",
+            "x-ballerina-name": "top"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of entities to skip",
+            "x-ballerina-name": "skip"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "OData orderby query option",
+            "x-ballerina-name": "orderby"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomersV3Collection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Customer V3",
+        "operationId": "postCustomersV3",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerV3"
+              },
+              "example": {
+                "dataAreaId": "usmf",
+                "CustomerAccount": "PM-001",
+                "OrganizationName": "Postman Customer",
+                "CustomerGroupId": "30",
+                "AddressCountryRegionId": "USA",
+                "SalesCurrencyCode": "USD"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Customer created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerV3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/CustomersV3/$count": {
+      "get": {
+        "summary": "Get Customers V3 Cross Company Count",
+        "operationId": "getCustomersV3CrossCompanyCount",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "true",
+            "x-ballerina-name": "crossCompany"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "OData filter query option",
+            "x-ballerina-name": "filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Count of customers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/CustomersV3(dataAreaId='{dataAreaId}',CustomerAccount='{customerAccount}')": {
+      "patch": {
+        "summary": "Update Customer V3",
+        "operationId": "updateCustomersV3",
+        "parameters": [
+          {
+            "name": "dataAreaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "usmf"
+          },
+          {
+            "name": "customerAccount",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PM-001"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerV3"
+              },
+              "example": {
+                "OrganizationName": "Postman Customer Updated",
+                "NameAlias": "PostmanCustUpdated"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Customer updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerV3"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Customer not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/VendorsV2": {
+      "get": {
+        "summary": "Get Vendors V2 Cross Company All",
+        "operationId": "getVendorsV2CrossCompanyAll",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "true",
+            "x-ballerina-name": "crossCompany"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "selectFields"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "filter"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 10000
+            },
+            "x-ballerina-name": "top"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ballerina-name": "skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorsV2Collection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/VendorsV2/$count": {
+      "get": {
+        "summary": "Get Vendors V2 Cross Company Count",
+        "operationId": "getVendorsV2CrossCompanyCount",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "crossCompany"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Count of vendors",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/ReleasedProductsV2": {
+      "get": {
+        "summary": "Get Released Products Field List Cross Company",
+        "operationId": "getReleasedProductsFieldListCrossCompanyJ00029",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "crossCompany"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "selectFields"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReleasedProductsV2Collection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/ReleasedProductsV2/$count": {
+      "get": {
+        "summary": "Get Released Products Cross Company Count",
+        "operationId": "getReleasedProductsCrossCompanyCount",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "crossCompany"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Count of released products",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/CustomerGroups": {
+      "get": {
+        "summary": "Get Customer Groups Cross Company",
+        "operationId": "getCustomerGroupsCrossCompany",
+        "parameters": [
+          {
+            "name": "cross-company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-ballerina-name": "crossCompany"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerGroupsCollection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/ExchangeRates": {
+      "get": {
+        "summary": "Get Exchange Rates",
+        "operationId": "getExchangeRatesRateType01092023",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "RateTypeId eq 'Default'",
+            "x-ballerina-name": "filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExchangeRatesCollection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/SystemUsers": {
+      "get": {
+        "summary": "Get System Users",
+        "operationId": "getSystemUsers",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemUsersCollection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create System User",
+        "operationId": "postSystemUsers",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemUser"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/data": {
+      "get": {
+        "summary": "Get OData Service Root",
+        "operationId": "getData",
+        "responses": {
+          "200": {
+            "description": "Service root with available entity sets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@odata.context": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/$metadata": {
+      "get": {
+        "summary": "Get OData Metadata",
+        "operationId": "getMetadataAnnotations",
+        "responses": {
+          "200": {
+            "description": "OData metadata document",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[package]
+distribution = "12"
+org = "ballerinax"
+name = "microsoft.dynamics365.finance"
+version = "1.0.0"
+license = ["Apache-2.0"]
+authors = ["Ballerina"]
+keywords = ["Business Management/Finance", "Cost/Paid", "Vendor/Microsoft", "Dynamics365", "Finance"]
+icon = "../icon.png"
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+
+[build-options]
+observabilityIncluded = true
+
+[platform.java21]
+graalvmCompatible = true
