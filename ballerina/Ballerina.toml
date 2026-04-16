@@ -7,7 +7,6 @@ license = ["Apache-2.0"]
 authors = ["Ballerina"]
 keywords = ["Business Management/Finance", "Cost/Paid", "Vendor/Microsoft", "Dynamics365", "Finance"]
 icon = "../icon.png"
-license = ["Apache-2.0"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
 
 [build-options]
