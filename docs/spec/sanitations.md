@@ -34,7 +34,7 @@ Everything else offered by a full D365 F&O tenant (hundreds of additional entity
 4. **OData collection envelope.** Every list response inherits from `ODataCollection` — `@odata.context`, `@odata.count` (returned when `$count=true`), and `@odata.nextLink` (for server-driven paging) — with a `value` array of the entity.
 5. **ETag concurrency.** Every entity schema carries `@odata.etag`, and PATCH/DELETE operations accept `If-Match`.
 6. **OData error payload.** Errors use the standard `{ "error": { "code", "message", "target", "innererror" } }` envelope as the `default` response on every operation.
-7. **Cross-company queries.** List endpoints expose the `cross-company` boolean; omitting it returns only the caller's default company.
+7. **Cross-company queries.** List endpoints expose the `cross-company` boolean; omitting it returns only the caller's default company. The sole exception is `/ExchangeRates`: exchange rates in D365 F&O are system-wide reference data, not scoped to a legal entity (the `ExchangeRate` schema intentionally has no `dataAreaId` field), so `cross-company` would be meaningless there and is omitted.
 8. **Azure AD OAuth 2.0.** The security scheme is a client-credentials flow against `login.microsoftonline.com` with the `https://erp.dynamics.com/.default` scope, which is what a real Azure AD-protected D365 F&O endpoint requires.
 
 ## Parameter-name sanitations
