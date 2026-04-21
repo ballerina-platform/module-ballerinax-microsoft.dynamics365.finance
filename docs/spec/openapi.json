@@ -1,0 +1,1068 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Microsoft Dynamics 365 Finance and Operations",
+    "description": "Ballerina connector for a curated subset of the Microsoft Dynamics 365 Finance and Operations OData REST API. Exposes the master data and transactional entities most commonly used in demo scenarios: customers, vendors, released products, sales and purchase orders, general-ledger journal entries, and reference data.",
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "contact": {
+      "name": "Ballerina",
+      "url": "https://ballerina.io"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{tenant}.operations.dynamics.com/data",
+      "description": "Dynamics 365 Finance and Operations tenant",
+      "variables": {
+        "tenant": {
+          "default": "your-org",
+          "description": "Tenant-specific subdomain (e.g. contoso, contoso-test)"
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "oAuth2": []
+    }
+  ],
+  "tags": [
+    { "name": "Customers", "description": "Customer master data (CustomersV3 entity set)" },
+    { "name": "Vendors", "description": "Vendor master data (VendorsV2 entity set)" },
+    { "name": "Products", "description": "Released product master data (ReleasedProductsV2 entity set)" },
+    { "name": "Sales Orders", "description": "Sales order headers (SalesOrderHeadersV2 entity set)" },
+    { "name": "Purchase Orders", "description": "Purchase order headers (PurchaseOrderHeadersV2 entity set)" },
+    { "name": "General Ledger", "description": "General journal entries and ledger journals" },
+    { "name": "Exchange Rates", "description": "Currency exchange rates" },
+    { "name": "Reference Data", "description": "Lookup data such as customer groups" }
+  ],
+  "paths": {
+    "/CustomersV3": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "List customers",
+        "description": "Returns a page of customer records. Supports standard OData query options and the D365 F&O `cross-company` flag to query across legal entities.",
+        "operationId": "listCustomers",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CustomersV3Collection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Customers"],
+        "summary": "Create customer",
+        "description": "Creates a new customer in the specified legal entity (`dataAreaId`).",
+        "operationId": "createCustomer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CustomerV3" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Customer created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CustomerV3" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/CustomersV3(dataAreaId='{dataAreaId}',CustomerAccount='{customerAccount}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/customerAccount" }
+      ],
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get customer",
+        "description": "Returns a single customer identified by the composite key (`dataAreaId`, `CustomerAccount`).",
+        "operationId": "getCustomer",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CustomerV3" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "patch": {
+        "tags": ["Customers"],
+        "summary": "Update customer",
+        "description": "Partially updates a customer. Only fields supplied in the request body are modified. The `If-Match` header enforces optimistic concurrency when set to the record's `@odata.etag`.",
+        "operationId": "updateCustomer",
+        "parameters": [
+          { "$ref": "#/components/parameters/ifMatch" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CustomerV3" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Customer updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CustomerV3" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "delete": {
+        "tags": ["Customers"],
+        "summary": "Delete customer",
+        "description": "Deletes a customer. `If-Match` is honoured for optimistic concurrency.",
+        "operationId": "deleteCustomer",
+        "parameters": [
+          { "$ref": "#/components/parameters/ifMatch" }
+        ],
+        "responses": {
+          "204": { "description": "Customer deleted" },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/VendorsV2": {
+      "get": {
+        "tags": ["Vendors"],
+        "summary": "List vendors",
+        "description": "Returns a page of vendor records.",
+        "operationId": "listVendors",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VendorsV2Collection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Vendors"],
+        "summary": "Create vendor",
+        "description": "Creates a new vendor in the specified legal entity.",
+        "operationId": "createVendor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/VendorV2" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vendor created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VendorV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/VendorsV2(dataAreaId='{dataAreaId}',VendorAccountNumber='{vendorAccountNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/vendorAccountNumber" }
+      ],
+      "get": {
+        "tags": ["Vendors"],
+        "summary": "Get vendor",
+        "description": "Returns a single vendor identified by the composite key (`dataAreaId`, `VendorAccountNumber`).",
+        "operationId": "getVendor",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VendorV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "patch": {
+        "tags": ["Vendors"],
+        "summary": "Update vendor",
+        "description": "Partially updates a vendor.",
+        "operationId": "updateVendor",
+        "parameters": [
+          { "$ref": "#/components/parameters/ifMatch" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/VendorV2" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vendor updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VendorV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ReleasedProductsV2": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "List released products",
+        "description": "Returns a page of released products (items).",
+        "operationId": "listReleasedProducts",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Released product collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ReleasedProductsV2Collection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ReleasedProductsV2(dataAreaId='{dataAreaId}',ItemNumber='{itemNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/itemNumber" }
+      ],
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get released product",
+        "description": "Returns a single released product identified by the composite key (`dataAreaId`, `ItemNumber`).",
+        "operationId": "getReleasedProduct",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Released product record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ReleasedProductV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/SalesOrderHeadersV2": {
+      "get": {
+        "tags": ["Sales Orders"],
+        "summary": "List sales orders",
+        "description": "Returns a page of sales order headers.",
+        "operationId": "listSalesOrders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sales order header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SalesOrderHeadersV2Collection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      },
+      "post": {
+        "tags": ["Sales Orders"],
+        "summary": "Create sales order",
+        "description": "Creates a new sales order header.",
+        "operationId": "createSalesOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SalesOrderHeaderV2" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sales order created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SalesOrderHeaderV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/SalesOrderHeadersV2(dataAreaId='{dataAreaId}',SalesOrderNumber='{salesOrderNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/salesOrderNumber" }
+      ],
+      "get": {
+        "tags": ["Sales Orders"],
+        "summary": "Get sales order",
+        "description": "Returns a single sales order header identified by the composite key (`dataAreaId`, `SalesOrderNumber`).",
+        "operationId": "getSalesOrder",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sales order record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SalesOrderHeaderV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/PurchaseOrderHeadersV2": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "List purchase orders",
+        "description": "Returns a page of purchase order headers.",
+        "operationId": "listPurchaseOrders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/expand" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase order header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PurchaseOrderHeadersV2Collection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/PurchaseOrderHeadersV2(dataAreaId='{dataAreaId}',PurchaseOrderNumber='{purchaseOrderNumber}')": {
+      "parameters": [
+        { "$ref": "#/components/parameters/dataAreaId" },
+        { "$ref": "#/components/parameters/purchaseOrderNumber" }
+      ],
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get purchase order",
+        "description": "Returns a single purchase order header identified by the composite key (`dataAreaId`, `PurchaseOrderNumber`).",
+        "operationId": "getPurchaseOrder",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/expand" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase order record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PurchaseOrderHeaderV2" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/GeneralJournalAccountEntries": {
+      "get": {
+        "tags": ["General Ledger"],
+        "summary": "List general journal account entries",
+        "description": "Returns a page of posted general-ledger account entries.",
+        "operationId": "listGeneralJournalAccountEntries",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "General journal account entry collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GeneralJournalAccountEntriesCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/LedgerJournalHeaders": {
+      "get": {
+        "tags": ["General Ledger"],
+        "summary": "List ledger journal headers",
+        "description": "Returns a page of ledger journal headers (daily journals).",
+        "operationId": "listLedgerJournalHeaders",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ledger journal header collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LedgerJournalHeadersCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/ExchangeRates": {
+      "get": {
+        "tags": ["Exchange Rates"],
+        "summary": "List exchange rates",
+        "description": "Returns currency exchange rates configured in the system.",
+        "operationId": "listExchangeRates",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exchange rate collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExchangeRatesCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    },
+    "/CustomerGroups": {
+      "get": {
+        "tags": ["Reference Data"],
+        "summary": "List customer groups",
+        "description": "Returns the configured customer groups.",
+        "operationId": "listCustomerGroups",
+        "parameters": [
+          { "$ref": "#/components/parameters/select" },
+          { "$ref": "#/components/parameters/filter" },
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/orderBy" },
+          { "$ref": "#/components/parameters/count" },
+          { "$ref": "#/components/parameters/crossCompany" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer group collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CustomerGroupsCollection" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/ODataError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oAuth2": {
+        "type": "oauth2",
+        "description": "Azure AD OAuth 2.0. Dynamics 365 Finance and Operations accepts Bearer tokens acquired against the tenant resource.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+            "scopes": {
+              "https://erp.dynamics.com/.default": "Access Dynamics 365 Finance and Operations on behalf of the application"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "select": {
+        "name": "$select",
+        "in": "query",
+        "description": "OData `$select` — comma-separated list of properties to include in the response.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "selectFields"
+      },
+      "filter": {
+        "name": "$filter",
+        "in": "query",
+        "description": "OData `$filter` — expression used to restrict the records returned.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "filter"
+      },
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "OData `$top` — maximum number of records to return.",
+        "required": false,
+        "schema": { "type": "integer", "format": "int32", "minimum": 0 },
+        "x-ballerina-name": "top"
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "OData `$skip` — number of records to skip.",
+        "required": false,
+        "schema": { "type": "integer", "format": "int32", "minimum": 0 },
+        "x-ballerina-name": "skip"
+      },
+      "orderBy": {
+        "name": "$orderby",
+        "in": "query",
+        "description": "OData `$orderby` — comma-separated list of properties and directions.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "orderBy"
+      },
+      "expand": {
+        "name": "$expand",
+        "in": "query",
+        "description": "OData `$expand` — comma-separated list of navigation properties to inline.",
+        "required": false,
+        "schema": { "type": "string" },
+        "x-ballerina-name": "expand"
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "OData `$count` — when `true`, the response includes `@odata.count`.",
+        "required": false,
+        "schema": { "type": "boolean" },
+        "x-ballerina-name": "count"
+      },
+      "crossCompany": {
+        "name": "cross-company",
+        "in": "query",
+        "description": "When `true`, queries span all legal entities the caller has access to instead of the default company.",
+        "required": false,
+        "schema": { "type": "boolean" },
+        "x-ballerina-name": "crossCompany"
+      },
+      "ifMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "description": "Optimistic concurrency token. Set to the record's `@odata.etag` to ensure the update or delete only succeeds when the record has not changed.",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      "dataAreaId": {
+        "name": "dataAreaId",
+        "in": "path",
+        "required": true,
+        "description": "Legal entity identifier (company code).",
+        "schema": { "type": "string" }
+      },
+      "customerAccount": {
+        "name": "customerAccount",
+        "in": "path",
+        "required": true,
+        "description": "Customer account number.",
+        "schema": { "type": "string" }
+      },
+      "vendorAccountNumber": {
+        "name": "vendorAccountNumber",
+        "in": "path",
+        "required": true,
+        "description": "Vendor account number.",
+        "schema": { "type": "string" }
+      },
+      "itemNumber": {
+        "name": "itemNumber",
+        "in": "path",
+        "required": true,
+        "description": "Released product item number.",
+        "schema": { "type": "string" }
+      },
+      "salesOrderNumber": {
+        "name": "salesOrderNumber",
+        "in": "path",
+        "required": true,
+        "description": "Sales order number.",
+        "schema": { "type": "string" }
+      },
+      "purchaseOrderNumber": {
+        "name": "purchaseOrderNumber",
+        "in": "path",
+        "required": true,
+        "description": "Purchase order number.",
+        "schema": { "type": "string" }
+      }
+    },
+    "responses": {
+      "ODataError": {
+        "description": "OData error response",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ODataError" }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ODataCollection": {
+        "type": "object",
+        "description": "Common envelope wrapped around every OData collection response.",
+        "properties": {
+          "@odata.context": {
+            "type": "string",
+            "description": "Metadata URL describing the shape of the response."
+          },
+          "@odata.count": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total number of matching records; only returned when `$count=true`."
+          },
+          "@odata.nextLink": {
+            "type": "string",
+            "description": "URL to retrieve the next page of results, if any."
+          }
+        }
+      },
+      "ODataError": {
+        "type": "object",
+        "description": "Standard OData error payload.",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string", "description": "Machine-readable error code." },
+              "message": { "type": "string", "description": "Human-readable error message." },
+              "target": { "type": "string", "description": "Target of the error (optional)." },
+              "innererror": {
+                "type": "object",
+                "description": "Service-specific diagnostic details.",
+                "additionalProperties": true
+              }
+            }
+          }
+        }
+      },
+      "CustomerV3": {
+        "type": "object",
+        "description": "Customer master record as exposed by the `CustomersV3` data entity.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "CustomerAccount": { "type": "string", "description": "Customer account number." },
+          "OrganizationName": { "type": "string", "description": "Registered organization name." },
+          "CustomerGroupId": { "type": "string", "description": "Customer group the record belongs to." },
+          "AddressCountryRegionId": { "type": "string", "description": "Primary address country/region." },
+          "AddressState": { "type": "string", "description": "Primary address state or province." },
+          "AddressCity": { "type": "string", "description": "Primary address city." },
+          "AddressStreet": { "type": "string", "description": "Primary address street." },
+          "AddressZipCode": { "type": "string", "description": "Primary address postal code." },
+          "SalesCurrencyCode": { "type": "string", "description": "Default sales currency." },
+          "PaymentTermsName": { "type": "string", "description": "Payment terms applied to sales to this customer." },
+          "DeliveryModeId": { "type": "string", "description": "Default mode of delivery." },
+          "LineOfBusinessId": { "type": "string", "description": "Line of business classification." },
+          "CreditLimit": { "type": "number", "format": "double", "description": "Configured credit limit." },
+          "CreditRating": { "type": "string", "description": "Credit rating assigned to the customer." },
+          "IsTaxExempt": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the customer is tax-exempt." },
+          "TaxGroup": { "type": "string", "description": "Sales-tax group." },
+          "PrimaryContactEmail": { "type": "string", "description": "Primary contact email address." },
+          "PrimaryContactPhone": { "type": "string", "description": "Primary contact phone number." },
+          "IsInclusiveTaxEnabled": { "type": "string", "enum": ["Yes", "No"], "description": "Whether prices include tax." }
+        }
+      },
+      "CustomersV3Collection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CustomerV3" }
+              }
+            }
+          }
+        ]
+      },
+      "VendorV2": {
+        "type": "object",
+        "description": "Vendor master record as exposed by the `VendorsV2` data entity.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "VendorAccountNumber": { "type": "string", "description": "Vendor account number." },
+          "VendorName": { "type": "string", "description": "Vendor display name." },
+          "VendorOrganizationName": { "type": "string", "description": "Registered organization name." },
+          "VendorGroupId": { "type": "string", "description": "Vendor group the record belongs to." },
+          "AddressCountryRegionId": { "type": "string", "description": "Primary address country/region." },
+          "AddressState": { "type": "string", "description": "Primary address state or province." },
+          "AddressCity": { "type": "string", "description": "Primary address city." },
+          "AddressStreet": { "type": "string", "description": "Primary address street." },
+          "AddressZipCode": { "type": "string", "description": "Primary address postal code." },
+          "VendorCurrencyCode": { "type": "string", "description": "Default purchase currency." },
+          "PaymentTermsName": { "type": "string", "description": "Payment terms applied to purchases from this vendor." },
+          "PaymentMethodName": { "type": "string", "description": "Default payment method." },
+          "PrimaryContactEmail": { "type": "string", "description": "Primary contact email address." },
+          "PrimaryContactPhone": { "type": "string", "description": "Primary contact phone number." },
+          "IsOneTimeVendor": { "type": "string", "enum": ["Yes", "No"], "description": "Whether this is a one-time vendor." },
+          "VendorHoldingStatus": { "type": "string", "description": "On-hold status (No, Invoice, Payment, All)." }
+        }
+      },
+      "VendorsV2Collection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/VendorV2" }
+              }
+            }
+          }
+        ]
+      },
+      "ReleasedProductV2": {
+        "type": "object",
+        "description": "Released product (item) master record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "ItemNumber": { "type": "string", "description": "Item number." },
+          "ProductName": { "type": "string", "description": "Product name." },
+          "ProductDescription": { "type": "string", "description": "Long product description." },
+          "SearchName": { "type": "string", "description": "Search name used in lookups." },
+          "ItemGroupId": { "type": "string", "description": "Item group the product belongs to." },
+          "ProductType": { "type": "string", "enum": ["Item", "Service"], "description": "Product type." },
+          "ProductSubtype": { "type": "string", "description": "Product subtype (e.g. Product, Product master, Product variant)." },
+          "PurchaseUnitSymbol": { "type": "string", "description": "Purchasing unit of measure." },
+          "SalesUnitSymbol": { "type": "string", "description": "Sales unit of measure." },
+          "InventoryUnitSymbol": { "type": "string", "description": "Inventory unit of measure." },
+          "SalesPrice": { "type": "number", "format": "double", "description": "Default sales price." },
+          "PurchasePrice": { "type": "number", "format": "double", "description": "Default purchase price." },
+          "ItemModelGroupId": { "type": "string", "description": "Item model group controlling costing." },
+          "StorageDimensionGroupName": { "type": "string", "description": "Storage dimension group." },
+          "TrackingDimensionGroupName": { "type": "string", "description": "Tracking dimension group." }
+        }
+      },
+      "ReleasedProductsV2Collection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/ReleasedProductV2" }
+              }
+            }
+          }
+        ]
+      },
+      "SalesOrderHeaderV2": {
+        "type": "object",
+        "description": "Sales order header as exposed by the `SalesOrderHeadersV2` data entity.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "SalesOrderNumber": { "type": "string", "description": "Sales order number." },
+          "SalesOrderName": { "type": "string", "description": "Human-readable sales order name." },
+          "OrderingCustomerAccountNumber": { "type": "string", "description": "Customer placing the order." },
+          "InvoiceCustomerAccountNumber": { "type": "string", "description": "Customer to be invoiced." },
+          "SalesOrderStatus": { "type": "string", "description": "Status (Backorder, Delivered, Invoiced, Canceled)." },
+          "SalesOrderProcessingStatus": { "type": "string", "description": "Processing status." },
+          "OrderResponsiblePersonnelNumber": { "type": "string", "description": "Personnel number of the order owner." },
+          "RequestedShippingDate": { "type": "string", "format": "date", "description": "Requested shipping date." },
+          "RequestedReceiptDate": { "type": "string", "format": "date", "description": "Requested receipt date." },
+          "CurrencyCode": { "type": "string", "description": "Sales currency." },
+          "PaymentTermsName": { "type": "string", "description": "Payment terms." },
+          "DeliveryModeCode": { "type": "string", "description": "Mode of delivery." },
+          "DeliveryTermsCode": { "type": "string", "description": "Incoterms / delivery terms." },
+          "CustomerRequisitionNumber": { "type": "string", "description": "Customer reference / PO number." },
+          "IsSalesProcessingStopped": { "type": "string", "enum": ["Yes", "No"], "description": "Whether processing is on hold." }
+        }
+      },
+      "SalesOrderHeadersV2Collection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/SalesOrderHeaderV2" }
+              }
+            }
+          }
+        ]
+      },
+      "PurchaseOrderHeaderV2": {
+        "type": "object",
+        "description": "Purchase order header as exposed by the `PurchaseOrderHeadersV2` data entity.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "PurchaseOrderNumber": { "type": "string", "description": "Purchase order number." },
+          "PurchaseOrderName": { "type": "string", "description": "Human-readable purchase order name." },
+          "VendorAccountNumber": { "type": "string", "description": "Vendor supplying the order." },
+          "InvoiceVendorAccountNumber": { "type": "string", "description": "Vendor to be invoiced." },
+          "PurchaseOrderStatus": { "type": "string", "description": "Status (Open, Received, Invoiced, Canceled)." },
+          "ApprovalStatus": { "type": "string", "description": "Approval status of the order." },
+          "RequestedDeliveryDate": { "type": "string", "format": "date", "description": "Requested delivery date." },
+          "RequestedReceiptDate": { "type": "string", "format": "date", "description": "Requested receipt date." },
+          "OrderResponsiblePersonnelNumber": { "type": "string", "description": "Personnel number of the order owner." },
+          "CurrencyCode": { "type": "string", "description": "Purchase currency." },
+          "PaymentTermsName": { "type": "string", "description": "Payment terms." },
+          "DeliveryModeCode": { "type": "string", "description": "Mode of delivery." },
+          "DeliveryTermsCode": { "type": "string", "description": "Incoterms / delivery terms." },
+          "VendorReferenceNumber": { "type": "string", "description": "Vendor's reference number." },
+          "IsDeliveryAddressPrivate": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the delivery address is private." }
+        }
+      },
+      "PurchaseOrderHeadersV2Collection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/PurchaseOrderHeaderV2" }
+              }
+            }
+          }
+        ]
+      },
+      "GeneralJournalAccountEntry": {
+        "type": "object",
+        "description": "Posted general-ledger account entry.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "JournalNumber": { "type": "string", "description": "Journal number." },
+          "SubledgerVoucher": { "type": "string", "description": "Voucher number of the underlying subledger posting." },
+          "AccountingDate": { "type": "string", "format": "date", "description": "Accounting date of the entry." },
+          "AccountType": { "type": "string", "description": "Account type (Ledger, Customer, Vendor, Bank, FixedAssets, Project)." },
+          "MainAccountId": { "type": "string", "description": "Main account identifier." },
+          "LedgerAccount": { "type": "string", "description": "Fully qualified ledger account string (main + dimensions)." },
+          "TransactionCurrencyCode": { "type": "string", "description": "Transaction currency." },
+          "TransactionCurrencyAmount": { "type": "number", "format": "double", "description": "Amount in transaction currency (signed)." },
+          "AccountingCurrencyAmount": { "type": "number", "format": "double", "description": "Amount in accounting currency (signed)." },
+          "ReportingCurrencyAmount": { "type": "number", "format": "double", "description": "Amount in reporting currency (signed)." },
+          "Text": { "type": "string", "description": "Free-form transaction description." },
+          "PostingType": { "type": "string", "description": "Posting type classification." },
+          "IsCorrection": { "type": "string", "enum": ["Yes", "No"], "description": "Whether this entry is a correction." }
+        }
+      },
+      "GeneralJournalAccountEntriesCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/GeneralJournalAccountEntry" }
+              }
+            }
+          }
+        ]
+      },
+      "LedgerJournalHeader": {
+        "type": "object",
+        "description": "Ledger journal header (daily journal).",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "JournalBatchNumber": { "type": "string", "description": "Journal batch number." },
+          "JournalName": { "type": "string", "description": "Journal name identifier." },
+          "Description": { "type": "string", "description": "Journal description." },
+          "JournalType": { "type": "string", "description": "Journal type." },
+          "IsPosted": { "type": "string", "enum": ["Yes", "No"], "description": "Whether the journal has been posted." },
+          "PostingDate": { "type": "string", "format": "date", "description": "Posting date, when posted." },
+          "PostingRestriction": { "type": "string", "description": "Posting restriction rules." }
+        }
+      },
+      "LedgerJournalHeadersCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/LedgerJournalHeader" }
+              }
+            }
+          }
+        ]
+      },
+      "ExchangeRate": {
+        "type": "object",
+        "description": "Currency exchange rate record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "RateTypeName": { "type": "string", "description": "Exchange rate type (e.g. `Default`)." },
+          "FromCurrencyCode": { "type": "string", "description": "Source currency ISO code." },
+          "ToCurrencyCode": { "type": "string", "description": "Target currency ISO code." },
+          "StartDate": { "type": "string", "format": "date", "description": "First date on which the rate applies." },
+          "Rate": { "type": "number", "format": "double", "description": "Exchange rate value." },
+          "ConversionFactor": { "type": "string", "description": "Conversion factor (One, Hundred, Thousand)." }
+        }
+      },
+      "ExchangeRatesCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/ExchangeRate" }
+              }
+            }
+          }
+        ]
+      },
+      "CustomerGroup": {
+        "type": "object",
+        "description": "Customer group reference record.",
+        "properties": {
+          "@odata.etag": { "type": "string", "description": "Concurrency token." },
+          "dataAreaId": { "type": "string", "description": "Legal entity identifier." },
+          "CustomerGroupId": { "type": "string", "description": "Customer group identifier." },
+          "Description": { "type": "string", "description": "Customer group description." },
+          "PaymentTermsName": { "type": "string", "description": "Default payment terms for the group." },
+          "ClearingPeriodPaymentTerms": { "type": "string", "description": "Clearing-period payment terms." },
+          "DefaultDimensionDisplayValue": { "type": "string", "description": "Default financial dimension display value." }
+        }
+      },
+      "CustomerGroupsCollection": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ODataCollection" },
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CustomerGroup" }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
