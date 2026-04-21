@@ -7,7 +7,7 @@ keywords = ["Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Fin
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
 icon = "icon.png"
 license = ["Apache-2.0"]
-distribution = "2201.12.7"
+distribution = "2201.13.0"
 
 [build-options]
 observabilityIncluded=true
