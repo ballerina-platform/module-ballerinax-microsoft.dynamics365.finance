@@ -294,3 +294,63 @@ function testListCustomerGroups() returns error? {
     CustomerGroup[] groups = <CustomerGroup[]>response.value;
     test:assertTrue(groups.length() >= 5, "cross-company should yield all 5 seeded groups");
 }
+
+// ---- Review-feedback fixes -----------------------------------------------
+
+@test:Config
+function testFilterByNumericEqMatchesDecimalSeed() returns error? {
+    // Seeded CreditLimit for US-001 is 250000.00 (parses as decimal).
+    // Filter `eq 250000` previously took the int branch and returned nothing;
+    // decimal-based comparison should now match.
+    CustomersV3Collection response = check financeClient->listCustomers(
+        queries = {filter: "CreditLimit eq 250000"}
+    );
+    CustomerV3[] rows = <CustomerV3[]>response.value;
+    test:assertEquals(rows.length(), 1, "filter on numeric equality should match the seeded customer");
+    test:assertEquals(rows[0].CustomerAccount, "US-001");
+}
+
+@test:Config
+function testOrderByNumericDescSortsNumerically() returns error? {
+    // Seeded glEntries amounts: 12500, -11500, -1000, -7400, 7400. Lexicographic
+    // sort would produce 7400 > 12500, wrong. Numeric desc must put 12500 first.
+    GeneralJournalAccountEntriesCollection response = check financeClient->listGeneralJournalAccountEntries(
+        queries = {orderBy: "AccountingCurrencyAmount desc"}
+    );
+    GeneralJournalAccountEntry[] rows = <GeneralJournalAccountEntry[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+    decimal first = rows[0].AccountingCurrencyAmount ?: 0d;
+    decimal second = rows[1].AccountingCurrencyAmount ?: 0d;
+    test:assertTrue(first >= second, "numeric desc should put the larger amount first");
+}
+
+@test:Config
+function testUpdateCustomerMissingKeyReturns404() returns error? {
+    CustomerV3 patch = {CreditLimit: 111.00};
+    CustomerV3|error result = financeClient->updateCustomer(
+        dataAreaId = "USMF",
+        customerAccount = "DOES-NOT-EXIST",
+        payload = patch
+    );
+    test:assertTrue(result is error, "PATCH on missing key should surface an error from the 404");
+}
+
+@test:Config
+function testDeleteCustomerMissingKeyReturns404() returns error? {
+    error? result = financeClient->deleteCustomer(
+        dataAreaId = "USMF",
+        customerAccount = "DOES-NOT-EXIST"
+    );
+    test:assertTrue(result is error, "DELETE on missing key should surface an error from the 404");
+}
+
+@test:Config
+function testNegativeTopDoesNotPanic() returns error? {
+    // Previously `filtered.slice(0, -1)` would panic. With the guard, negative
+    // values are ignored and the full page is returned.
+    CustomersV3Collection response = check financeClient->listCustomers(
+        queries = {top: -1}
+    );
+    CustomerV3[] rows = <CustomerV3[]>response.value;
+    test:assertTrue(rows.length() > 0, "negative $top should be ignored, not panic");
+}
