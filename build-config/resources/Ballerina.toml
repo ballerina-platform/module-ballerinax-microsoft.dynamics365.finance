@@ -12,6 +12,3 @@ export = ["microsoft.dynamics365.finance", "microsoft.dynamics365.finance.mock.s
 
 [build-options]
 observabilityIncluded=true
-
-[platform.java21]
-graalvmCompatible = true
