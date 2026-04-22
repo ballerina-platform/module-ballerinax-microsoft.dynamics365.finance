@@ -34,7 +34,6 @@ gradle-app.setting
 # Ballerina
 target/
 .ballerina/
-Dependencies.toml
 Ballerina.lock
 ballerina-internal.log
 
