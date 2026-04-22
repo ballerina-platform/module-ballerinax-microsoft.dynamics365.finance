@@ -36,6 +36,7 @@ target/
 .ballerina/
 Ballerina.lock
 ballerina-internal.log
+examples/**/Dependencies.toml
 
 # IDE
 .idea/
