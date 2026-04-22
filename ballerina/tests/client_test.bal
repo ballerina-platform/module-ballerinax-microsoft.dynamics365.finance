@@ -295,8 +295,6 @@ function testListCustomerGroups() returns error? {
     test:assertTrue(groups.length() >= 5, "cross-company should yield all 5 seeded groups");
 }
 
-// ---- Review-feedback fixes -----------------------------------------------
-
 @test:Config
 function testFilterByNumericEqMatchesDecimalSeed() returns error? {
     // Seeded CreditLimit for US-001 is 250000.00 (parses as decimal).
