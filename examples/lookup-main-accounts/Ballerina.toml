@@ -1,11 +1,11 @@
 [package]
 org = "wso2"
-name = "filter_general_ledger"
+name = "lookup_main_accounts"
 version = "0.1.0"
 distribution = "2201.13.0"
 
 [[dependency]]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance"
-version = "0.1.0"
+version = "0.2.0"
 repository = "local"
