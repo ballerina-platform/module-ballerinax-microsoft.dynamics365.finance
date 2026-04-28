@@ -207,6 +207,88 @@ function testCreateLedgerJournalHeader() returns error? {
     test:assertEquals(created.JournalBatchNumber, "DEMO-001");
 }
 
+// ---- VendorsV3 -----------------------------------------------------------
+
+@test:Config
+function testListVendorsV3() returns error? {
+    VendorsV3Collection response = check financeClient->listVendorsV3();
+    VendorV3[] rows = <VendorV3[]>response.value;
+    test:assertTrue(rows.length() >= 2);
+    foreach VendorV3 v in rows {
+        test:assertEquals(v.dataAreaId, "USMF");
+    }
+}
+
+@test:Config
+function testListVendorsV3FilterContains() returns error? {
+    VendorsV3Collection response = check financeClient->listVendorsV3(
+        queries = {filter: "contains(VendorOrganizationName,'Litware')"}
+    );
+    VendorV3[] rows = <VendorV3[]>response.value;
+    test:assertEquals(rows.length(), 1);
+    test:assertEquals(rows[0].VendorAccountNumber, "V-001");
+}
+
+@test:Config
+function testGetVendorV3() returns error? {
+    VendorV3 v = check financeClient->getVendorsV3(dataAreaId = "USMF", vendorAccountNumber = "V-001");
+    test:assertEquals(v.VendorOrganizationName, "Litware Components, LLC");
+}
+
+// ---- VendorGroups & CustomerGroups --------------------------------------
+
+@test:Config
+function testListVendorGroups() returns error? {
+    VendorGroupsCollection response = check financeClient->listVendorGroups(queries = {crossCompany: true});
+    VendorGroup[] rows = <VendorGroup[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+}
+
+@test:Config
+function testGetCustomerGroup() returns error? {
+    CustomerGroup g = check financeClient->getCustomerGroups(dataAreaId = "USMF", customerGroupId = "10");
+    test:assertEquals(g.Description, "Retail customers");
+}
+
+// ---- PaymentTerms --------------------------------------------------------
+
+@test:Config
+function testListPaymentTerms() returns error? {
+    PaymentTermsCollection response = check financeClient->listPaymentTerms();
+    PaymentTerm[] rows = <PaymentTerm[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+}
+
+// ---- LedgerJournalLines --------------------------------------------------
+
+@test:Config
+function testListLedgerJournalLinesForBatch() returns error? {
+    LedgerJournalLinesCollection response = check financeClient->listLedgerJournalLines(
+        queries = {filter: "JournalBatchNumber eq '000001_012'"}
+    );
+    LedgerJournalLine[] rows = <LedgerJournalLine[]>response.value;
+    test:assertEquals(rows.length(), 2);
+}
+
+// ---- ExchangeRates -------------------------------------------------------
+
+@test:Config
+function testListExchangeRates() returns error? {
+    ExchangeRatesCollection response = check financeClient->listExchangeRates();
+    ExchangeRate[] rows = <ExchangeRate[]>response.value;
+    test:assertTrue(rows.length() >= 3);
+}
+
+@test:Config
+function testListExchangeRatesFilterEq() returns error? {
+    ExchangeRatesCollection response = check financeClient->listExchangeRates(
+        queries = {filter: "ToCurrency eq 'EUR'"}
+    );
+    ExchangeRate[] rows = <ExchangeRate[]>response.value;
+    test:assertEquals(rows.length(), 1);
+    test:assertEquals(rows[0].FromCurrency, "USD");
+}
+
 // ---- Unmapped entities return empty --------------------------------------
 
 @test:Config
