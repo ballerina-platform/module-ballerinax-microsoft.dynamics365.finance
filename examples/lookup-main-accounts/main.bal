@@ -14,7 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// List customers - default-company scoping, cross-company override, filter.
+// Look up main accounts from the chart of accounts, then fetch one by key.
 
 import ballerina/http;
 import ballerina/io;
@@ -29,18 +29,18 @@ public function main() returns error? {
         serviceUrl = "http://localhost:9090/data"
     );
 
-    io:println("Default company (USMF) customers:");
-    finance:CustomersV3Collection page = check fo->listCustomersV3();
-    foreach finance:CustomerV3 c in page.value ?: [] {
-        io:println(string `  ${c.CustomerAccount ?: ""}   ${c.OrganizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
+    io:println("Main accounts in the Shared chart:");
+    finance:MainAccountsCollection page = check fo->listMainAccounts();
+    foreach finance:MainAccount m in page.value ?: [] {
+        io:println(string `  ${m.MainAccountId ?: ""}   ${m.Name ?: ""}   [${m.MainAccountType ?: ""}]`);
     }
 
     io:println("");
-    io:println("All companies:");
-    finance:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
-    foreach finance:CustomerV3 c in all.value ?: [] {
-        io:println(string `  ${c.CustomerAccount ?: ""}   ${c.OrganizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
-    }
+    io:println("Detail for account 401100:");
+    finance:MainAccount revenue = check fo->getMainAccounts(chartOfAccounts = "Shared", mainAccountId = "401100");
+    io:println(string `  id:        ${revenue.MainAccountId ?: ""}`);
+    io:println(string `  name:      ${revenue.Name ?: ""}`);
+    io:println(string `  type:      ${revenue.MainAccountType ?: ""}`);
 
     check mockListener.gracefulStop();
 }

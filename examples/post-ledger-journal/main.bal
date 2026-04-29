@@ -14,8 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// Create a sales order - demonstrates a two-call flow: look up a customer,
-// then POST a new SalesOrderHeader that reuses that customer's defaults.
+// List existing ledger journals, then post a new daily journal header.
 
 import ballerina/http;
 import ballerina/io;
@@ -30,28 +29,23 @@ public function main() returns error? {
         serviceUrl = "http://localhost:9090/data"
     );
 
-    finance:CustomerV3 customer = check fo->getCustomer(dataAreaId = "USMF", customerAccount = "US-001");
-    io:println(string `Customer: ${customer.OrganizationName ?: ""} (${customer.CustomerAccount ?: ""})`);
-    io:println(string `  currency=${customer.SalesCurrencyCode ?: ""}  terms=${customer.PaymentTermsName ?: ""}`);
+    io:println("Existing ledger journals:");
+    finance:LedgerJournalHeadersCollection page = check fo->listLedgerJournalHeaders();
+    foreach finance:LedgerJournalHeader j in page.value ?: [] {
+        io:println(string `  ${j.JournalBatchNumber ?: ""}   ${j.JournalName ?: ""}   posted=${j.IsPosted ?: ""}   ${j.Description ?: ""}`);
+    }
 
-    finance:SalesOrderHeaderV2 draft = {
+    finance:LedgerJournalHeader draft = {
         dataAreaId: "USMF",
-        SalesOrderNumber: "SO-DEMO-001",
-        SalesOrderName: "Demo order via Ballerina",
-        OrderingCustomerAccountNumber: customer.CustomerAccount,
-        InvoiceCustomerAccountNumber: customer.CustomerAccount,
-        RequestedShippingDate: "2026-05-20",
-        CurrencyCode: customer.SalesCurrencyCode,
-        PaymentTermsName: customer.PaymentTermsName,
-        DeliveryModeCode: "Ground",
-        CustomerRequisitionNumber: "REF-DEMO-001"
+        JournalBatchNumber: "DEMO-0001",
+        JournalName: "GenJrn",
+        Description: "Posted via Ballerina",
+        IsPosted: "No"
     };
-
-    finance:SalesOrderHeaderV2 created = check fo->createSalesOrder(payload = draft);
+    finance:LedgerJournalHeader created = check fo->createLedgerJournalHeaders(payload = draft);
     io:println("");
-    io:println(string `Created ${created.SalesOrderNumber ?: ""}`);
+    io:println(string `Created ${created.JournalBatchNumber ?: ""}`);
     io:println(string `  etag:  ${created["@odata.etag"].toString()}`);
-    io:println(string `  name:  ${created.SalesOrderName ?: ""}`);
 
     check mockListener.gracefulStop();
 }

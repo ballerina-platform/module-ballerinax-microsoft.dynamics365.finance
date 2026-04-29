@@ -33,7 +33,7 @@ public function main() returns error? {
         serviceUrl = "https://<tenant>.operations.dynamics.com/data"
     );
 
-    finance:CustomersV3Collection customers = check fo->listCustomers(queries = {top: 5});
+    finance:CustomersV3Collection customers = check fo->listCustomersV3(queries = {top: 5});
     // ...
 }
 ```
