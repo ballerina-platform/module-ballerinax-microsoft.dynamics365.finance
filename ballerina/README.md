@@ -1,12 +1,15 @@
 ## Overview
 
-Microsoft Dynamics 365 Finance is Microsoft's cloud enterprise-resource-planning application for financial management, covering accounts receivable, accounts payable, general ledger, fixed assets, budgeting, cash and bank management, and tax. The Dynamics 365 Finance connector enables integration with the Finance OData REST API, providing programmatic access to master and transactional data including customers, vendors, released products, sales and purchase orders, general-ledger entries, exchange rates, and customer groups.
+Microsoft Dynamics 365 Finance is Microsoft's cloud enterprise-resource-planning application for financial management, covering accounts receivable, accounts payable, general ledger, fixed assets, budgeting, cash and bank management, and tax. The Dynamics 365 Finance connector enables integration with the Finance OData REST API, providing programmatic access to master and transactional data including customers and customer groups, vendors and vendor groups, main accounts, ledger journals, fiscal calendars and periods, budgets and budget plans, fixed assets and lease books, bank accounts, payment terms and methods, exchange rates, and tax setup.
 
 ### Key Features
 
 - Customer and vendor master-data management (list, read, create, update, delete)
-- Sales order and purchase order workflows with OData-based querying
-- General-ledger entry and ledger-journal access for financial reporting
+- Main accounts and ledger-journal access for financial reporting
+- Fiscal calendars, periods, and fiscal-year setup
+- Budgets, budget cycles, and budget plans
+- Fixed assets, fixed-asset value models, and lease books
+- Bank accounts, bank groups, and payment terms / methods
 - Multi-currency support with configurable exchange rates
 - Cross-company queries spanning multiple legal entities (`dataAreaId`)
 - OAuth 2.0 client-credentials and bearer-token authentication against Microsoft Entra ID (Azure AD)
