@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'currency' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List Currencies
@@ -197,6 +196,405 @@ public isolated client class Client {
     # + return - CurrencyISOCode updated 
     remote isolated function updateCurrencyISOCodes(string iSOCurrencyCode, CurrencyISOCode payload, UpdateCurrencyISOCodesHeaders headers = {}) returns CurrencyISOCode|error {
         string resourcePath = string `/CurrencyISOCodes(ISOCurrencyCode='${getEncodedUri(iSOCurrencyCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyIndexTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyIndexTrans 
+    remote isolated function listCurrencyIndexTrans(map<string|string[]> headers = {}, *ListCurrencyIndexTransQueries queries) returns CurrencyIndexTransCollection|error {
+        string resourcePath = string `/CurrencyIndexTrans`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyIndexTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndexTrans created 
+    remote isolated function createCurrencyIndexTrans(CurrencyIndexTrans payload, map<string|string[]> headers = {}) returns CurrencyIndexTrans|error {
+        string resourcePath = string `/CurrencyIndexTrans`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyIndexTrans by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyIndexTrans record 
+    remote isolated function getCurrencyIndexTrans(string dataAreaId, string ruleGroup, string inflationIndex, string fromDate, map<string|string[]> headers = {}, *GetCurrencyIndexTransQueries queries) returns CurrencyIndexTrans|error {
+        string resourcePath = string `/CurrencyIndexTrans(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}',FromDate=${getEncodedUri(fromDate)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyIndexTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndexTrans deleted 
+    remote isolated function deleteCurrencyIndexTrans(string dataAreaId, string ruleGroup, string inflationIndex, string fromDate, DeleteCurrencyIndexTransHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyIndexTrans(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}',FromDate=${getEncodedUri(fromDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyIndexTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndexTrans updated 
+    remote isolated function updateCurrencyIndexTrans(string dataAreaId, string ruleGroup, string inflationIndex, string fromDate, CurrencyIndexTrans payload, UpdateCurrencyIndexTransHeaders headers = {}) returns CurrencyIndexTrans|error {
+        string resourcePath = string `/CurrencyIndexTrans(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}',FromDate=${getEncodedUri(fromDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyIndexes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyIndex 
+    remote isolated function listCurrencyIndexes(map<string|string[]> headers = {}, *ListCurrencyIndexesQueries queries) returns CurrencyIndexesCollection|error {
+        string resourcePath = string `/CurrencyIndexes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyIndex
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndex created 
+    remote isolated function createCurrencyIndexes(CurrencyIndex payload, map<string|string[]> headers = {}) returns CurrencyIndex|error {
+        string resourcePath = string `/CurrencyIndexes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyIndex by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyIndex record 
+    remote isolated function getCurrencyIndexes(string dataAreaId, string ruleGroup, string inflationIndex, map<string|string[]> headers = {}, *GetCurrencyIndexesQueries queries) returns CurrencyIndex|error {
+        string resourcePath = string `/CurrencyIndexes(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyIndex
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndex deleted 
+    remote isolated function deleteCurrencyIndexes(string dataAreaId, string ruleGroup, string inflationIndex, DeleteCurrencyIndexesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyIndexes(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyIndex
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyIndex updated 
+    remote isolated function updateCurrencyIndexes(string dataAreaId, string ruleGroup, string inflationIndex, CurrencyIndex payload, UpdateCurrencyIndexesHeaders headers = {}) returns CurrencyIndex|error {
+        string resourcePath = string `/CurrencyIndexes(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',InflationIndex='${getEncodedUri(inflationIndex)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyParameters
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyParameters 
+    remote isolated function listCurrencyParameters(map<string|string[]> headers = {}, *ListCurrencyParametersQueries queries) returns CurrencyParametersCollection|error {
+        string resourcePath = string `/CurrencyParameters`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyParameters
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyParameters created 
+    remote isolated function createCurrencyParameters(CurrencyParameters payload, map<string|string[]> headers = {}) returns CurrencyParameters|error {
+        string resourcePath = string `/CurrencyParameters`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyParameters by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyParameters record 
+    remote isolated function getCurrencyParameters(string dataAreaId, string ledger_Name, string currency, map<string|string[]> headers = {}, *GetCurrencyParametersQueries queries) returns CurrencyParameters|error {
+        string resourcePath = string `/CurrencyParameters(dataAreaId='${getEncodedUri(dataAreaId)}',Ledger_Name='${getEncodedUri(ledger_Name)}',Currency='${getEncodedUri(currency)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyParameters
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyParameters deleted 
+    remote isolated function deleteCurrencyParameters(string dataAreaId, string ledger_Name, string currency, DeleteCurrencyParametersHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyParameters(dataAreaId='${getEncodedUri(dataAreaId)}',Ledger_Name='${getEncodedUri(ledger_Name)}',Currency='${getEncodedUri(currency)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyParameters
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyParameters updated 
+    remote isolated function updateCurrencyParameters(string dataAreaId, string ledger_Name, string currency, CurrencyParameters payload, UpdateCurrencyParametersHeaders headers = {}) returns CurrencyParameters|error {
+        string resourcePath = string `/CurrencyParameters(dataAreaId='${getEncodedUri(dataAreaId)}',Ledger_Name='${getEncodedUri(ledger_Name)}',Currency='${getEncodedUri(currency)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyRevaluationAccounts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyRevaluationAccount 
+    remote isolated function listCurrencyRevaluationAccounts(map<string|string[]> headers = {}, *ListCurrencyRevaluationAccountsQueries queries) returns CurrencyRevaluationAccountsCollection|error {
+        string resourcePath = string `/CurrencyRevaluationAccounts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyRevaluationAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccount created 
+    remote isolated function createCurrencyRevaluationAccounts(CurrencyRevaluationAccount payload, map<string|string[]> headers = {}) returns CurrencyRevaluationAccount|error {
+        string resourcePath = string `/CurrencyRevaluationAccounts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyRevaluationAccount by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyRevaluationAccount record 
+    remote isolated function getCurrencyRevaluationAccounts(string currencyCode, string legalEntityId, string posting, map<string|string[]> headers = {}, *GetCurrencyRevaluationAccountsQueries queries) returns CurrencyRevaluationAccount|error {
+        string resourcePath = string `/CurrencyRevaluationAccounts(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyRevaluationAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccount deleted 
+    remote isolated function deleteCurrencyRevaluationAccounts(string currencyCode, string legalEntityId, string posting, DeleteCurrencyRevaluationAccountsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyRevaluationAccounts(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyRevaluationAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccount updated 
+    remote isolated function updateCurrencyRevaluationAccounts(string currencyCode, string legalEntityId, string posting, CurrencyRevaluationAccount payload, UpdateCurrencyRevaluationAccountsHeaders headers = {}) returns CurrencyRevaluationAccount|error {
+        string resourcePath = string `/CurrencyRevaluationAccounts(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyRevaluationAccountsV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyRevaluationAccountV2 
+    remote isolated function listCurrencyRevaluationAccountsV2(map<string|string[]> headers = {}, *ListCurrencyRevaluationAccountsV2Queries queries) returns CurrencyRevaluationAccountsV2Collection|error {
+        string resourcePath = string `/CurrencyRevaluationAccountsV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyRevaluationAccountV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccountV2 created 
+    remote isolated function createCurrencyRevaluationAccountsV2(CurrencyRevaluationAccountV2 payload, map<string|string[]> headers = {}) returns CurrencyRevaluationAccountV2|error {
+        string resourcePath = string `/CurrencyRevaluationAccountsV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyRevaluationAccountV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyRevaluationAccountV2 record 
+    remote isolated function getCurrencyRevaluationAccountsV2(string currencyCode, string legalEntityId, string posting, map<string|string[]> headers = {}, *GetCurrencyRevaluationAccountsV2Queries queries) returns CurrencyRevaluationAccountV2|error {
+        string resourcePath = string `/CurrencyRevaluationAccountsV2(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyRevaluationAccountV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccountV2 deleted 
+    remote isolated function deleteCurrencyRevaluationAccountsV2(string currencyCode, string legalEntityId, string posting, DeleteCurrencyRevaluationAccountsV2Headers headers = {}) returns error? {
+        string resourcePath = string `/CurrencyRevaluationAccountsV2(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyRevaluationAccountV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRevaluationAccountV2 updated 
+    remote isolated function updateCurrencyRevaluationAccountsV2(string currencyCode, string legalEntityId, string posting, CurrencyRevaluationAccountV2 payload, UpdateCurrencyRevaluationAccountsV2Headers headers = {}) returns CurrencyRevaluationAccountV2|error {
+        string resourcePath = string `/CurrencyRevaluationAccountsV2(CurrencyCode='${getEncodedUri(currencyCode)}',LegalEntityId='${getEncodedUri(legalEntityId)}',Posting='${getEncodedUri(posting)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyRuleGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyRuleGroup 
+    remote isolated function listCurrencyRuleGroups(map<string|string[]> headers = {}, *ListCurrencyRuleGroupsQueries queries) returns CurrencyRuleGroupsCollection|error {
+        string resourcePath = string `/CurrencyRuleGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyRuleGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRuleGroup created 
+    remote isolated function createCurrencyRuleGroups(CurrencyRuleGroup payload, map<string|string[]> headers = {}) returns CurrencyRuleGroup|error {
+        string resourcePath = string `/CurrencyRuleGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyRuleGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyRuleGroup record 
+    remote isolated function getCurrencyRuleGroups(string dataAreaId, string currencyRuleGroupId, string ruleGroupId, map<string|string[]> headers = {}, *GetCurrencyRuleGroupsQueries queries) returns CurrencyRuleGroup|error {
+        string resourcePath = string `/CurrencyRuleGroups(dataAreaId='${getEncodedUri(dataAreaId)}',CurrencyRuleGroupId='${getEncodedUri(currencyRuleGroupId)}',RuleGroupId='${getEncodedUri(ruleGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyRuleGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRuleGroup deleted 
+    remote isolated function deleteCurrencyRuleGroups(string dataAreaId, string currencyRuleGroupId, string ruleGroupId, DeleteCurrencyRuleGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyRuleGroups(dataAreaId='${getEncodedUri(dataAreaId)}',CurrencyRuleGroupId='${getEncodedUri(currencyRuleGroupId)}',RuleGroupId='${getEncodedUri(ruleGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyRuleGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRuleGroup updated 
+    remote isolated function updateCurrencyRuleGroups(string dataAreaId, string currencyRuleGroupId, string ruleGroupId, CurrencyRuleGroup payload, UpdateCurrencyRuleGroupsHeaders headers = {}) returns CurrencyRuleGroup|error {
+        string resourcePath = string `/CurrencyRuleGroups(dataAreaId='${getEncodedUri(dataAreaId)}',CurrencyRuleGroupId='${getEncodedUri(currencyRuleGroupId)}',RuleGroupId='${getEncodedUri(ruleGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CurrencyRules
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CurrencyRule 
+    remote isolated function listCurrencyRules(map<string|string[]> headers = {}, *ListCurrencyRulesQueries queries) returns CurrencyRulesCollection|error {
+        string resourcePath = string `/CurrencyRules`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CurrencyRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRule created 
+    remote isolated function createCurrencyRules(CurrencyRule payload, map<string|string[]> headers = {}) returns CurrencyRule|error {
+        string resourcePath = string `/CurrencyRules`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CurrencyRule by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CurrencyRule record 
+    remote isolated function getCurrencyRules(string dataAreaId, string ruleGroup, string currencyRuleGroup, string currency, map<string|string[]> headers = {}, *GetCurrencyRulesQueries queries) returns CurrencyRule|error {
+        string resourcePath = string `/CurrencyRules(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',CurrencyRuleGroup='${getEncodedUri(currencyRuleGroup)}',Currency='${getEncodedUri(currency)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CurrencyRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRule deleted 
+    remote isolated function deleteCurrencyRules(string dataAreaId, string ruleGroup, string currencyRuleGroup, string currency, DeleteCurrencyRulesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CurrencyRules(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',CurrencyRuleGroup='${getEncodedUri(currencyRuleGroup)}',Currency='${getEncodedUri(currency)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CurrencyRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CurrencyRule updated 
+    remote isolated function updateCurrencyRules(string dataAreaId, string ruleGroup, string currencyRuleGroup, string currency, CurrencyRule payload, UpdateCurrencyRulesHeaders headers = {}) returns CurrencyRule|error {
+        string resourcePath = string `/CurrencyRules(dataAreaId='${getEncodedUri(dataAreaId)}',RuleGroup='${getEncodedUri(ruleGroup)}',CurrencyRuleGroup='${getEncodedUri(currencyRuleGroup)}',Currency='${getEncodedUri(currency)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

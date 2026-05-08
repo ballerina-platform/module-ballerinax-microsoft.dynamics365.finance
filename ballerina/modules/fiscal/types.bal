@@ -19,12 +19,6 @@
 
 import ballerina/http;
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
 
 public type FiscalCalendarYearEntity record {
     string \@odata\.etag?;
@@ -34,9 +28,35 @@ public type FiscalCalendarYearEntity record {
     string EndDate?;
 };
 
+public type FiscalYearStatus "Open"|"Close";
+
+public type FiscalYear record {
+    string \@odata\.etag?;
+    string LegalEntityId?;
+    string Calendar?;
+    string FiscalYear?;
+    FiscalYearStatus Status?;
+    string LegalEntityName?;
+};
+
 public type FiscalCalendarsEntityCollection record {
     *ODataCollection;
     FiscalCalendarEntity[] value?;
+};
+
+public type FiscalPeriodsCollection record {
+    *ODataCollection;
+    FiscalPeriod[] value?;
+};
+
+# Represents the Queries record for the operation: getFiscalPeriods
+public type GetFiscalPeriodsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateFiscalCalendars
@@ -48,6 +68,12 @@ public type UpdateFiscalCalendarsHeaders record {
 public type FiscalCalendarYearsEntityCollection record {
     *ODataCollection;
     FiscalCalendarYearEntity[] value?;
+};
+
+# Represents the Headers record for the operation: deleteFiscalYears
+public type DeleteFiscalYearsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listFiscalCalendarsEntity
@@ -76,6 +102,11 @@ public type ListFiscalCalendarsEntityQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type FiscalYearsCollection record {
+    *ODataCollection;
+    FiscalYear[] value?;
 };
 
 public type FiscalCalendarEntity record {
@@ -108,6 +139,18 @@ public type DeleteFiscalCalendarYearsEntityHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+# Represents the Queries record for the operation: getFiscalYears
+public type GetFiscalYearsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CalendarType_IN "Standard"|"DayBased";
 
 # Represents the Queries record for the operation: listFiscalCalendarYearsEntity
 public type ListFiscalCalendarYearsEntityQueries record {
@@ -143,49 +186,6 @@ public type UpdateFiscalCalendarsEntityHeaders record {
     string If\-Match?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
 
 # Represents the Queries record for the operation: getFiscalCalendarYears
 public type GetFiscalCalendarYearsQueries record {
@@ -234,9 +234,43 @@ public type FiscalQuarter "Q1"|"Q2"|"Q3"|"Q4";
 
 public type FiscalPeriodMonth "Month1"|"Month2"|"Month3"|"Month4"|"Month5"|"Month6"|"Month7"|"Month8"|"Month9"|"Month10"|"Month11"|"Month12";
 
+# Represents the Queries record for the operation: listFiscalYears
+public type ListFiscalYearsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type FiscalCalendarsCollection record {
     *ODataCollection;
     FiscalCalendar[] value?;
+};
+
+# Represents the Headers record for the operation: updateFiscalPeriods
+public type UpdateFiscalPeriodsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Standard OData collection envelope.
@@ -280,6 +314,8 @@ public type ListFiscalCalendarYearsQueries record {
     string selectFields?;
 };
 
+public type FiscalPeriodType "Opening"|"Operating"|"Closing";
+
 # Represents the Headers record for the operation: deleteFiscalCalendarYears
 public type DeleteFiscalCalendarYearsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -306,6 +342,22 @@ public type GetFiscalCalendarsQueries record {
     string selectFields?;
 };
 
+public type FiscalPeriod record {
+    string \@odata\.etag?;
+    string Calendar?;
+    string FiscalYear?;
+    string StartDate?;
+    string EndDate?;
+    string PeriodName?;
+    FiscalQuarter Quarter?;
+    int:Signed32 Days?;
+    string Comments?;
+    CalendarType_IN CalendarType?;
+    FiscalPeriodMonth Month?;
+    FiscalPeriodType Type?;
+    string ShortName?;
+};
+
 public type FiscalCalendar record {
     string \@odata\.etag?;
     string LedgerGregorianDateId?;
@@ -323,14 +375,54 @@ public type FiscalCalendar record {
     int:Signed32 PeriodOffset?;
 };
 
+# Represents the Headers record for the operation: deleteFiscalPeriods
+public type DeleteFiscalPeriodsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteFiscalCalendars
 public type DeleteFiscalCalendarsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listFiscalPeriods
+public type ListFiscalPeriodsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteFiscalCalendarsEntity
 public type DeleteFiscalCalendarsEntityHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateFiscalYears
+public type UpdateFiscalYearsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };

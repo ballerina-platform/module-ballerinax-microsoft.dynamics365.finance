@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'expense' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List AllowanceRates
@@ -147,56 +146,56 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List CreditCardTransactions
+    # List ExpAttachedDocuments
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - Collection of CreditCardTransaction 
-    remote isolated function listCreditCardTransactions(map<string|string[]> headers = {}, *ListCreditCardTransactionsQueries queries) returns CreditCardTransactionsCollection|error {
-        string resourcePath = string `/CreditCardTransactions`;
+    # + return - Collection of ExpAttachedDocument 
+    remote isolated function listExpAttachedDocuments(map<string|string[]> headers = {}, *ListExpAttachedDocumentsQueries queries) returns ExpAttachedDocumentsCollection|error {
+        string resourcePath = string `/ExpAttachedDocuments`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Create CreditCardTransaction
+    # Create ExpAttachedDocument
     #
     # + headers - Headers to be sent with the request 
-    # + return - CreditCardTransaction created 
-    remote isolated function createCreditCardTransactions(CreditCardTransaction payload, map<string|string[]> headers = {}) returns CreditCardTransaction|error {
-        string resourcePath = string `/CreditCardTransactions`;
+    # + return - ExpAttachedDocument created 
+    remote isolated function createExpAttachedDocuments(ExpAttachedDocument payload, map<string|string[]> headers = {}) returns ExpAttachedDocument|error {
+        string resourcePath = string `/ExpAttachedDocuments`;
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Get CreditCardTransaction by key
+    # Get ExpAttachedDocument by key
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - CreditCardTransaction record 
-    remote isolated function getCreditCardTransactions(string dataAreaId, string cCTransUniqueID, map<string|string[]> headers = {}, *GetCreditCardTransactionsQueries queries) returns CreditCardTransaction|error {
-        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+    # + return - ExpAttachedDocument record 
+    remote isolated function getExpAttachedDocuments(int entRecId, map<string|string[]> headers = {}, *GetExpAttachedDocumentsQueries queries) returns ExpAttachedDocument|error {
+        string resourcePath = string `/ExpAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Delete CreditCardTransaction
+    # Delete ExpAttachedDocument
     #
     # + headers - Headers to be sent with the request 
-    # + return - CreditCardTransaction deleted 
-    remote isolated function deleteCreditCardTransactions(string dataAreaId, string cCTransUniqueID, DeleteCreditCardTransactionsHeaders headers = {}) returns error? {
-        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+    # + return - ExpAttachedDocument deleted 
+    remote isolated function deleteExpAttachedDocuments(int entRecId, DeleteExpAttachedDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Update CreditCardTransaction
+    # Update ExpAttachedDocument
     #
     # + headers - Headers to be sent with the request 
-    # + return - CreditCardTransaction updated 
-    remote isolated function updateCreditCardTransactions(string dataAreaId, string cCTransUniqueID, CreditCardTransaction payload, UpdateCreditCardTransactionsHeaders headers = {}) returns CreditCardTransaction|error {
-        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+    # + return - ExpAttachedDocument updated 
+    remote isolated function updateExpAttachedDocuments(int entRecId, ExpAttachedDocument payload, UpdateExpAttachedDocumentsHeaders headers = {}) returns ExpAttachedDocument|error {
+        string resourcePath = string `/ExpAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -204,56 +203,56 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List DimAttributeTrvTravelTxts
+    # List ExpCopilotAttachedReceipts
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - Collection of DimAttributeTrvTravelTxt 
-    remote isolated function listDimAttributeTrvTravelTxts(map<string|string[]> headers = {}, *ListDimAttributeTrvTravelTxtsQueries queries) returns DimAttributeTrvTravelTxtsCollection|error {
-        string resourcePath = string `/DimAttributeTrvTravelTxts`;
+    # + return - Collection of ExpCopilotAttachedReceipt 
+    remote isolated function listExpCopilotAttachedReceipts(map<string|string[]> headers = {}, *ListExpCopilotAttachedReceiptsQueries queries) returns ExpCopilotAttachedReceiptsCollection|error {
+        string resourcePath = string `/ExpCopilotAttachedReceipts`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Create DimAttributeTrvTravelTxt
+    # Create ExpCopilotAttachedReceipt
     #
     # + headers - Headers to be sent with the request 
-    # + return - DimAttributeTrvTravelTxt created 
-    remote isolated function createDimAttributeTrvTravelTxts(DimAttributeTrvTravelTxt payload, map<string|string[]> headers = {}) returns DimAttributeTrvTravelTxt|error {
-        string resourcePath = string `/DimAttributeTrvTravelTxts`;
+    # + return - ExpCopilotAttachedReceipt created 
+    remote isolated function createExpCopilotAttachedReceipts(ExpCopilotAttachedReceipt payload, map<string|string[]> headers = {}) returns ExpCopilotAttachedReceipt|error {
+        string resourcePath = string `/ExpCopilotAttachedReceipts`;
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Get DimAttributeTrvTravelTxt by key
+    # Get ExpCopilotAttachedReceipt by key
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - DimAttributeTrvTravelTxt record 
-    remote isolated function getDimAttributeTrvTravelTxts(string dataAreaId, string value, map<string|string[]> headers = {}, *GetDimAttributeTrvTravelTxtsQueries queries) returns DimAttributeTrvTravelTxt|error {
-        string resourcePath = string `/DimAttributeTrvTravelTxts(dataAreaId='${getEncodedUri(dataAreaId)}',Value='${getEncodedUri(value)}')`;
+    # + return - ExpCopilotAttachedReceipt record 
+    remote isolated function getExpCopilotAttachedReceipts(int entRecId, map<string|string[]> headers = {}, *GetExpCopilotAttachedReceiptsQueries queries) returns ExpCopilotAttachedReceipt|error {
+        string resourcePath = string `/ExpCopilotAttachedReceipts(EntRecId=${getEncodedUri(entRecId)})`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Delete DimAttributeTrvTravelTxt
+    # Delete ExpCopilotAttachedReceipt
     #
     # + headers - Headers to be sent with the request 
-    # + return - DimAttributeTrvTravelTxt deleted 
-    remote isolated function deleteDimAttributeTrvTravelTxts(string dataAreaId, string value, DeleteDimAttributeTrvTravelTxtsHeaders headers = {}) returns error? {
-        string resourcePath = string `/DimAttributeTrvTravelTxts(dataAreaId='${getEncodedUri(dataAreaId)}',Value='${getEncodedUri(value)}')`;
+    # + return - ExpCopilotAttachedReceipt deleted 
+    remote isolated function deleteExpCopilotAttachedReceipts(int entRecId, DeleteExpCopilotAttachedReceiptsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpCopilotAttachedReceipts(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Update DimAttributeTrvTravelTxt
+    # Update ExpCopilotAttachedReceipt
     #
     # + headers - Headers to be sent with the request 
-    # + return - DimAttributeTrvTravelTxt updated 
-    remote isolated function updateDimAttributeTrvTravelTxts(string dataAreaId, string value, DimAttributeTrvTravelTxt payload, UpdateDimAttributeTrvTravelTxtsHeaders headers = {}) returns DimAttributeTrvTravelTxt|error {
-        string resourcePath = string `/DimAttributeTrvTravelTxts(dataAreaId='${getEncodedUri(dataAreaId)}',Value='${getEncodedUri(value)}')`;
+    # + return - ExpCopilotAttachedReceipt updated 
+    remote isolated function updateExpCopilotAttachedReceipts(int entRecId, ExpCopilotAttachedReceipt payload, UpdateExpCopilotAttachedReceiptsHeaders headers = {}) returns ExpCopilotAttachedReceipt|error {
+        string resourcePath = string `/ExpCopilotAttachedReceipts(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -425,6 +424,120 @@ public isolated client class Client {
     # + return - ExpCopilotConfiguration updated 
     remote isolated function updateExpCopilotConfigurations(string dataAreaId, ExpCopilotConfiguration payload, UpdateExpCopilotConfigurationsHeaders headers = {}) returns ExpCopilotConfiguration|error {
         string resourcePath = string `/ExpCopilotConfigurations(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileAttachedDocuments
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileAttachedDocument 
+    remote isolated function listExpMobileAttachedDocuments(map<string|string[]> headers = {}, *ListExpMobileAttachedDocumentsQueries queries) returns ExpMobileAttachedDocumentsCollection|error {
+        string resourcePath = string `/ExpMobileAttachedDocuments`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileAttachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileAttachedDocument created 
+    remote isolated function createExpMobileAttachedDocuments(ExpMobileAttachedDocument payload, map<string|string[]> headers = {}) returns ExpMobileAttachedDocument|error {
+        string resourcePath = string `/ExpMobileAttachedDocuments`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileAttachedDocument by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileAttachedDocument record 
+    remote isolated function getExpMobileAttachedDocuments(int entRecId, map<string|string[]> headers = {}, *GetExpMobileAttachedDocumentsQueries queries) returns ExpMobileAttachedDocument|error {
+        string resourcePath = string `/ExpMobileAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileAttachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileAttachedDocument deleted 
+    remote isolated function deleteExpMobileAttachedDocuments(int entRecId, DeleteExpMobileAttachedDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileAttachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileAttachedDocument updated 
+    remote isolated function updateExpMobileAttachedDocuments(int entRecId, ExpMobileAttachedDocument payload, UpdateExpMobileAttachedDocumentsHeaders headers = {}) returns ExpMobileAttachedDocument|error {
+        string resourcePath = string `/ExpMobileAttachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileDocuments
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileDocument 
+    remote isolated function listExpMobileDocuments(map<string|string[]> headers = {}, *ListExpMobileDocumentsQueries queries) returns ExpMobileDocumentsCollection|error {
+        string resourcePath = string `/ExpMobileDocuments`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileDocument created 
+    remote isolated function createExpMobileDocuments(ExpMobileDocument payload, map<string|string[]> headers = {}) returns ExpMobileDocument|error {
+        string resourcePath = string `/ExpMobileDocuments`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileDocument by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileDocument record 
+    remote isolated function getExpMobileDocuments(int entRecId, map<string|string[]> headers = {}, *GetExpMobileDocumentsQueries queries) returns ExpMobileDocument|error {
+        string resourcePath = string `/ExpMobileDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileDocument deleted 
+    remote isolated function deleteExpMobileDocuments(int entRecId, DeleteExpMobileDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileDocument updated 
+    remote isolated function updateExpMobileDocuments(int entRecId, ExpMobileDocument payload, UpdateExpMobileDocumentsHeaders headers = {}) returns ExpMobileDocument|error {
+        string resourcePath = string `/ExpMobileDocuments(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -717,6 +830,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ExpMobileItemTaxes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TrvExpMobileItemTax 
+    remote isolated function listExpMobileItemTaxes(map<string|string[]> headers = {}, *ListExpMobileItemTaxesQueries queries) returns ExpMobileItemTaxesCollection|error {
+        string resourcePath = string `/ExpMobileItemTaxes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TrvExpMobileItemTax
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileItemTax created 
+    remote isolated function createExpMobileItemTaxes(TrvExpMobileItemTax payload, map<string|string[]> headers = {}) returns TrvExpMobileItemTax|error {
+        string resourcePath = string `/ExpMobileItemTaxes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TrvExpMobileItemTax by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TrvExpMobileItemTax record 
+    remote isolated function getExpMobileItemTaxes(string dataAreaId, string itemSalesTaxGroup, map<string|string[]> headers = {}, *GetExpMobileItemTaxesQueries queries) returns TrvExpMobileItemTax|error {
+        string resourcePath = string `/ExpMobileItemTaxes(dataAreaId='${getEncodedUri(dataAreaId)}',ItemSalesTaxGroup='${getEncodedUri(itemSalesTaxGroup)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TrvExpMobileItemTax
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileItemTax deleted 
+    remote isolated function deleteExpMobileItemTaxes(string dataAreaId, string itemSalesTaxGroup, DeleteExpMobileItemTaxesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileItemTaxes(dataAreaId='${getEncodedUri(dataAreaId)}',ItemSalesTaxGroup='${getEncodedUri(itemSalesTaxGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TrvExpMobileItemTax
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileItemTax updated 
+    remote isolated function updateExpMobileItemTaxes(string dataAreaId, string itemSalesTaxGroup, TrvExpMobileItemTax payload, UpdateExpMobileItemTaxesHeaders headers = {}) returns TrvExpMobileItemTax|error {
+        string resourcePath = string `/ExpMobileItemTaxes(dataAreaId='${getEncodedUri(dataAreaId)}',ItemSalesTaxGroup='${getEncodedUri(itemSalesTaxGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ExpMobileLineApprovals
     #
     # + headers - Headers to be sent with the request 
@@ -767,6 +937,63 @@ public isolated client class Client {
     # + return - ExpMobileLineApproval updated 
     remote isolated function updateExpMobileLineApprovals(string expTransNumber, string referenceDataAreaId, int workItemRecId, ExpMobileLineApproval payload, UpdateExpMobileLineApprovalsHeaders headers = {}) returns ExpMobileLineApproval|error {
         string resourcePath = string `/ExpMobileLineApprovals(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}',WorkItemRecId=${getEncodedUri(workItemRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileMasterData
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileMasterData 
+    remote isolated function listExpMobileMasterData(map<string|string[]> headers = {}, *ListExpMobileMasterDataQueries queries) returns ExpMobileMasterDataCollection|error {
+        string resourcePath = string `/ExpMobileMasterData`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileMasterData
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileMasterData created 
+    remote isolated function createExpMobileMasterData(ExpMobileMasterData payload, map<string|string[]> headers = {}) returns ExpMobileMasterData|error {
+        string resourcePath = string `/ExpMobileMasterData`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileMasterData by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileMasterData record 
+    remote isolated function getExpMobileMasterData(string userId, map<string|string[]> headers = {}, *GetExpMobileMasterDataQueries queries) returns ExpMobileMasterData|error {
+        string resourcePath = string `/ExpMobileMasterData(UserId='${getEncodedUri(userId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileMasterData
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileMasterData deleted 
+    remote isolated function deleteExpMobileMasterData(string userId, DeleteExpMobileMasterDataHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileMasterData(UserId='${getEncodedUri(userId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileMasterData
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileMasterData updated 
+    remote isolated function updateExpMobileMasterData(string userId, ExpMobileMasterData payload, UpdateExpMobileMasterDataHeaders headers = {}) returns ExpMobileMasterData|error {
+        string resourcePath = string `/ExpMobileMasterData(UserId='${getEncodedUri(userId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1002,6 +1229,234 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ExpMobileReceiptAttachedToExpenseLineForApprovals
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileReceiptAttachedToExpenseLineForApproval 
+    remote isolated function listExpMobileReceiptAttachedToExpenseLineForApprovals(map<string|string[]> headers = {}, *ListExpMobileReceiptAttachedToExpenseLineForApprovalsQueries queries) returns ExpMobileReceiptAttachedToExpenseLineForApprovalsCollection|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLineForApprovals`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileReceiptAttachedToExpenseLineForApproval
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLineForApproval created 
+    remote isolated function createExpMobileReceiptAttachedToExpenseLineForApprovals(ExpMobileReceiptAttachedToExpenseLineForApproval payload, map<string|string[]> headers = {}) returns ExpMobileReceiptAttachedToExpenseLineForApproval|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLineForApprovals`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileReceiptAttachedToExpenseLineForApproval by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLineForApproval record 
+    remote isolated function getExpMobileReceiptAttachedToExpenseLineForApprovals(int entRecId, map<string|string[]> headers = {}, *GetExpMobileReceiptAttachedToExpenseLineForApprovalsQueries queries) returns ExpMobileReceiptAttachedToExpenseLineForApproval|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLineForApprovals(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileReceiptAttachedToExpenseLineForApproval
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLineForApproval deleted 
+    remote isolated function deleteExpMobileReceiptAttachedToExpenseLineForApprovals(int entRecId, DeleteExpMobileReceiptAttachedToExpenseLineForApprovalsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLineForApprovals(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileReceiptAttachedToExpenseLineForApproval
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLineForApproval updated 
+    remote isolated function updateExpMobileReceiptAttachedToExpenseLineForApprovals(int entRecId, ExpMobileReceiptAttachedToExpenseLineForApproval payload, UpdateExpMobileReceiptAttachedToExpenseLineForApprovalsHeaders headers = {}) returns ExpMobileReceiptAttachedToExpenseLineForApproval|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLineForApprovals(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileReceiptAttachedToExpenseLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileReceiptAttachedToExpenseLine 
+    remote isolated function listExpMobileReceiptAttachedToExpenseLines(map<string|string[]> headers = {}, *ListExpMobileReceiptAttachedToExpenseLinesQueries queries) returns ExpMobileReceiptAttachedToExpenseLinesCollection|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileReceiptAttachedToExpenseLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLine created 
+    remote isolated function createExpMobileReceiptAttachedToExpenseLines(ExpMobileReceiptAttachedToExpenseLine payload, map<string|string[]> headers = {}) returns ExpMobileReceiptAttachedToExpenseLine|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileReceiptAttachedToExpenseLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLine record 
+    remote isolated function getExpMobileReceiptAttachedToExpenseLines(int entRecId, map<string|string[]> headers = {}, *GetExpMobileReceiptAttachedToExpenseLinesQueries queries) returns ExpMobileReceiptAttachedToExpenseLine|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLines(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileReceiptAttachedToExpenseLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLine deleted 
+    remote isolated function deleteExpMobileReceiptAttachedToExpenseLines(int entRecId, DeleteExpMobileReceiptAttachedToExpenseLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLines(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileReceiptAttachedToExpenseLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceiptAttachedToExpenseLine updated 
+    remote isolated function updateExpMobileReceiptAttachedToExpenseLines(int entRecId, ExpMobileReceiptAttachedToExpenseLine payload, UpdateExpMobileReceiptAttachedToExpenseLinesHeaders headers = {}) returns ExpMobileReceiptAttachedToExpenseLine|error {
+        string resourcePath = string `/ExpMobileReceiptAttachedToExpenseLines(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileReceipts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileReceipt 
+    remote isolated function listExpMobileReceipts(map<string|string[]> headers = {}, *ListExpMobileReceiptsQueries queries) returns ExpMobileReceiptsCollection|error {
+        string resourcePath = string `/ExpMobileReceipts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileReceipt
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceipt created 
+    remote isolated function createExpMobileReceipts(ExpMobileReceipt payload, map<string|string[]> headers = {}) returns ExpMobileReceipt|error {
+        string resourcePath = string `/ExpMobileReceipts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileReceipt by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileReceipt record 
+    remote isolated function getExpMobileReceipts(int refRecId, map<string|string[]> headers = {}, *GetExpMobileReceiptsQueries queries) returns ExpMobileReceipt|error {
+        string resourcePath = string `/ExpMobileReceipts(RefRecId=${getEncodedUri(refRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileReceipt
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceipt deleted 
+    remote isolated function deleteExpMobileReceipts(int refRecId, DeleteExpMobileReceiptsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileReceipts(RefRecId=${getEncodedUri(refRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileReceipt
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReceipt updated 
+    remote isolated function updateExpMobileReceipts(int refRecId, ExpMobileReceipt payload, UpdateExpMobileReceiptsHeaders headers = {}) returns ExpMobileReceipt|error {
+        string resourcePath = string `/ExpMobileReceipts(RefRecId=${getEncodedUri(refRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileReportAdminCustomFields
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileReportAdminCustomField 
+    remote isolated function listExpMobileReportAdminCustomFields(map<string|string[]> headers = {}, *ListExpMobileReportAdminCustomFieldsQueries queries) returns ExpMobileReportAdminCustomFieldsCollection|error {
+        string resourcePath = string `/ExpMobileReportAdminCustomFields`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileReportAdminCustomField
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReportAdminCustomField created 
+    remote isolated function createExpMobileReportAdminCustomFields(ExpMobileReportAdminCustomField payload, map<string|string[]> headers = {}) returns ExpMobileReportAdminCustomField|error {
+        string resourcePath = string `/ExpMobileReportAdminCustomFields`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileReportAdminCustomField by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileReportAdminCustomField record 
+    remote isolated function getExpMobileReportAdminCustomFields(string dataAreaId, string legalEntityId, int:Signed32 refTableId, int:Signed32 refFieldId, string methodName, map<string|string[]> headers = {}, *GetExpMobileReportAdminCustomFieldsQueries queries) returns ExpMobileReportAdminCustomField|error {
+        string resourcePath = string `/ExpMobileReportAdminCustomFields(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntityId='${getEncodedUri(legalEntityId)}',RefTableId=${getEncodedUri(refTableId)},RefFieldId=${getEncodedUri(refFieldId)},MethodName='${getEncodedUri(methodName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileReportAdminCustomField
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReportAdminCustomField deleted 
+    remote isolated function deleteExpMobileReportAdminCustomFields(string dataAreaId, string legalEntityId, int:Signed32 refTableId, int:Signed32 refFieldId, string methodName, DeleteExpMobileReportAdminCustomFieldsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileReportAdminCustomFields(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntityId='${getEncodedUri(legalEntityId)}',RefTableId=${getEncodedUri(refTableId)},RefFieldId=${getEncodedUri(refFieldId)},MethodName='${getEncodedUri(methodName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileReportAdminCustomField
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileReportAdminCustomField updated 
+    remote isolated function updateExpMobileReportAdminCustomFields(string dataAreaId, string legalEntityId, int:Signed32 refTableId, int:Signed32 refFieldId, string methodName, ExpMobileReportAdminCustomField payload, UpdateExpMobileReportAdminCustomFieldsHeaders headers = {}) returns ExpMobileReportAdminCustomField|error {
+        string resourcePath = string `/ExpMobileReportAdminCustomFields(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntityId='${getEncodedUri(legalEntityId)}',RefTableId=${getEncodedUri(refTableId)},RefFieldId=${getEncodedUri(refFieldId)},MethodName='${getEncodedUri(methodName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ExpMobileReportApprovals
     #
     # + headers - Headers to be sent with the request 
@@ -1116,6 +1571,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ExpMobileTrvCoworkers
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileTrvCoworkers 
+    remote isolated function listExpMobileTrvCoworkers(map<string|string[]> headers = {}, *ListExpMobileTrvCoworkersQueries queries) returns ExpMobileTrvCoworkersCollection|error {
+        string resourcePath = string `/ExpMobileTrvCoworkers`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileTrvCoworkers
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvCoworkers created 
+    remote isolated function createExpMobileTrvCoworkers(ExpMobileTrvCoworkers payload, map<string|string[]> headers = {}) returns ExpMobileTrvCoworkers|error {
+        string resourcePath = string `/ExpMobileTrvCoworkers`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileTrvCoworkers by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileTrvCoworkers record 
+    remote isolated function getExpMobileTrvCoworkers(string company, string name, string title, map<string|string[]> headers = {}, *GetExpMobileTrvCoworkersQueries queries) returns ExpMobileTrvCoworkers|error {
+        string resourcePath = string `/ExpMobileTrvCoworkers(Company='${getEncodedUri(company)}',Name='${getEncodedUri(name)}',Title='${getEncodedUri(title)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileTrvCoworkers
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvCoworkers deleted 
+    remote isolated function deleteExpMobileTrvCoworkers(string company, string name, string title, DeleteExpMobileTrvCoworkersHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileTrvCoworkers(Company='${getEncodedUri(company)}',Name='${getEncodedUri(name)}',Title='${getEncodedUri(title)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileTrvCoworkers
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvCoworkers updated 
+    remote isolated function updateExpMobileTrvCoworkers(string company, string name, string title, ExpMobileTrvCoworkers payload, UpdateExpMobileTrvCoworkersHeaders headers = {}) returns ExpMobileTrvCoworkers|error {
+        string resourcePath = string `/ExpMobileTrvCoworkers(Company='${getEncodedUri(company)}',Name='${getEncodedUri(name)}',Title='${getEncodedUri(title)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ExpMobileTrvExpGuests
     #
     # + headers - Headers to be sent with the request 
@@ -1166,6 +1678,234 @@ public isolated client class Client {
     # + return - ExpMobileTrvExpGuest updated 
     remote isolated function updateExpMobileTrvExpGuests(int entRecId, ExpMobileTrvExpGuest payload, UpdateExpMobileTrvExpGuestsHeaders headers = {}) returns ExpMobileTrvExpGuest|error {
         string resourcePath = string `/ExpMobileTrvExpGuests(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileTrvLocations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileTrvLocation 
+    remote isolated function listExpMobileTrvLocations(map<string|string[]> headers = {}, *ListExpMobileTrvLocationsQueries queries) returns ExpMobileTrvLocationsCollection|error {
+        string resourcePath = string `/ExpMobileTrvLocations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileTrvLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvLocation created 
+    remote isolated function createExpMobileTrvLocations(ExpMobileTrvLocation payload, map<string|string[]> headers = {}) returns ExpMobileTrvLocation|error {
+        string resourcePath = string `/ExpMobileTrvLocations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileTrvLocation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileTrvLocation record 
+    remote isolated function getExpMobileTrvLocations(string dataAreaId, int entRecId, map<string|string[]> headers = {}, *GetExpMobileTrvLocationsQueries queries) returns ExpMobileTrvLocation|error {
+        string resourcePath = string `/ExpMobileTrvLocations(dataAreaId='${getEncodedUri(dataAreaId)}',EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileTrvLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvLocation deleted 
+    remote isolated function deleteExpMobileTrvLocations(string dataAreaId, int entRecId, DeleteExpMobileTrvLocationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileTrvLocations(dataAreaId='${getEncodedUri(dataAreaId)}',EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileTrvLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileTrvLocation updated 
+    remote isolated function updateExpMobileTrvLocations(string dataAreaId, int entRecId, ExpMobileTrvLocation payload, UpdateExpMobileTrvLocationsHeaders headers = {}) returns ExpMobileTrvLocation|error {
+        string resourcePath = string `/ExpMobileTrvLocations(dataAreaId='${getEncodedUri(dataAreaId)}',EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileUnattachedDocuments
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileUnattachedDocument 
+    remote isolated function listExpMobileUnattachedDocuments(map<string|string[]> headers = {}, *ListExpMobileUnattachedDocumentsQueries queries) returns ExpMobileUnattachedDocumentsCollection|error {
+        string resourcePath = string `/ExpMobileUnattachedDocuments`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUnattachedDocument created 
+    remote isolated function createExpMobileUnattachedDocuments(ExpMobileUnattachedDocument payload, map<string|string[]> headers = {}) returns ExpMobileUnattachedDocument|error {
+        string resourcePath = string `/ExpMobileUnattachedDocuments`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileUnattachedDocument by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileUnattachedDocument record 
+    remote isolated function getExpMobileUnattachedDocuments(int entRecId, map<string|string[]> headers = {}, *GetExpMobileUnattachedDocumentsQueries queries) returns ExpMobileUnattachedDocument|error {
+        string resourcePath = string `/ExpMobileUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUnattachedDocument deleted 
+    remote isolated function deleteExpMobileUnattachedDocuments(int entRecId, DeleteExpMobileUnattachedDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUnattachedDocument updated 
+    remote isolated function updateExpMobileUnattachedDocuments(int entRecId, ExpMobileUnattachedDocument payload, UpdateExpMobileUnattachedDocumentsHeaders headers = {}) returns ExpMobileUnattachedDocument|error {
+        string resourcePath = string `/ExpMobileUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpMobileUserDisplayInfoes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpMobileUserDisplayInfo 
+    remote isolated function listExpMobileUserDisplayInfoes(map<string|string[]> headers = {}, *ListExpMobileUserDisplayInfoesQueries queries) returns ExpMobileUserDisplayInfoesCollection|error {
+        string resourcePath = string `/ExpMobileUserDisplayInfoes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpMobileUserDisplayInfo
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUserDisplayInfo created 
+    remote isolated function createExpMobileUserDisplayInfoes(ExpMobileUserDisplayInfo payload, map<string|string[]> headers = {}) returns ExpMobileUserDisplayInfo|error {
+        string resourcePath = string `/ExpMobileUserDisplayInfoes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpMobileUserDisplayInfo by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpMobileUserDisplayInfo record 
+    remote isolated function getExpMobileUserDisplayInfoes(string dirPerson_PartyNumber, map<string|string[]> headers = {}, *GetExpMobileUserDisplayInfoesQueries queries) returns ExpMobileUserDisplayInfo|error {
+        string resourcePath = string `/ExpMobileUserDisplayInfoes(DirPerson_PartyNumber='${getEncodedUri(dirPerson_PartyNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpMobileUserDisplayInfo
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUserDisplayInfo deleted 
+    remote isolated function deleteExpMobileUserDisplayInfoes(string dirPerson_PartyNumber, DeleteExpMobileUserDisplayInfoesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpMobileUserDisplayInfoes(DirPerson_PartyNumber='${getEncodedUri(dirPerson_PartyNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpMobileUserDisplayInfo
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpMobileUserDisplayInfo updated 
+    remote isolated function updateExpMobileUserDisplayInfoes(string dirPerson_PartyNumber, ExpMobileUserDisplayInfo payload, UpdateExpMobileUserDisplayInfoesHeaders headers = {}) returns ExpMobileUserDisplayInfo|error {
+        string resourcePath = string `/ExpMobileUserDisplayInfoes(DirPerson_PartyNumber='${getEncodedUri(dirPerson_PartyNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpUnattachedDocuments
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpUnattachedDocument 
+    remote isolated function listExpUnattachedDocuments(map<string|string[]> headers = {}, *ListExpUnattachedDocumentsQueries queries) returns ExpUnattachedDocumentsCollection|error {
+        string resourcePath = string `/ExpUnattachedDocuments`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpUnattachedDocument created 
+    remote isolated function createExpUnattachedDocuments(ExpUnattachedDocument payload, map<string|string[]> headers = {}) returns ExpUnattachedDocument|error {
+        string resourcePath = string `/ExpUnattachedDocuments`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpUnattachedDocument by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpUnattachedDocument record 
+    remote isolated function getExpUnattachedDocuments(int entRecId, map<string|string[]> headers = {}, *GetExpUnattachedDocumentsQueries queries) returns ExpUnattachedDocument|error {
+        string resourcePath = string `/ExpUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpUnattachedDocument deleted 
+    remote isolated function deleteExpUnattachedDocuments(int entRecId, DeleteExpUnattachedDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpUnattachedDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpUnattachedDocument updated 
+    remote isolated function updateExpUnattachedDocuments(int entRecId, ExpUnattachedDocument payload, UpdateExpUnattachedDocumentsHeaders headers = {}) returns ExpUnattachedDocument|error {
+        string resourcePath = string `/ExpUnattachedDocuments(EntRecId=${getEncodedUri(entRecId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1280,6 +2020,63 @@ public isolated client class Client {
     # + return - ExpenseCategory updated 
     remote isolated function updateExpenseCategories(string dataAreaId, string expenseCategory, ExpenseCategory payload, UpdateExpenseCategoriesHeaders headers = {}) returns ExpenseCategory|error {
         string resourcePath = string `/ExpenseCategories(dataAreaId='${getEncodedUri(dataAreaId)}',ExpenseCategory='${getEncodedUri(expenseCategory)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpenseCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpenseCode 
+    remote isolated function listExpenseCodes(map<string|string[]> headers = {}, *ListExpenseCodesQueries queries) returns ExpenseCodesCollection|error {
+        string resourcePath = string `/ExpenseCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpenseCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseCode created 
+    remote isolated function createExpenseCodes(ExpenseCode payload, map<string|string[]> headers = {}) returns ExpenseCode|error {
+        string resourcePath = string `/ExpenseCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpenseCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpenseCode record 
+    remote isolated function getExpenseCodes(string dataAreaId, string expenseCode, map<string|string[]> headers = {}, *GetExpenseCodesQueries queries) returns ExpenseCode|error {
+        string resourcePath = string `/ExpenseCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ExpenseCode='${getEncodedUri(expenseCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpenseCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseCode deleted 
+    remote isolated function deleteExpenseCodes(string dataAreaId, string expenseCode, DeleteExpenseCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpenseCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ExpenseCode='${getEncodedUri(expenseCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpenseCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseCode updated 
+    remote isolated function updateExpenseCodes(string dataAreaId, string expenseCode, ExpenseCode payload, UpdateExpenseCodesHeaders headers = {}) returns ExpenseCode|error {
+        string resourcePath = string `/ExpenseCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ExpenseCode='${getEncodedUri(expenseCode)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1572,6 +2369,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ExpenseJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpenseJournalLine 
+    remote isolated function listExpenseJournalLines(map<string|string[]> headers = {}, *ListExpenseJournalLinesQueries queries) returns ExpenseJournalLinesCollection|error {
+        string resourcePath = string `/ExpenseJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpenseJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseJournalLine created 
+    remote isolated function createExpenseJournalLines(ExpenseJournalLine payload, map<string|string[]> headers = {}) returns ExpenseJournalLine|error {
+        string resourcePath = string `/ExpenseJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpenseJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpenseJournalLine record 
+    remote isolated function getExpenseJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetExpenseJournalLinesQueries queries) returns ExpenseJournalLine|error {
+        string resourcePath = string `/ExpenseJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpenseJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseJournalLine deleted 
+    remote isolated function deleteExpenseJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteExpenseJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpenseJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpenseJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseJournalLine updated 
+    remote isolated function updateExpenseJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, ExpenseJournalLine payload, UpdateExpenseJournalLinesHeaders headers = {}) returns ExpenseJournalLine|error {
+        string resourcePath = string `/ExpenseJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ExpenseMerchants
     #
     # + headers - Headers to be sent with the request 
@@ -1793,6 +2647,63 @@ public isolated client class Client {
     # + return - ExpensePurpose updated 
     remote isolated function updateExpensePurposes(string dataAreaId, string businessPurpose, string expenseType, ExpensePurpose payload, UpdateExpensePurposesHeaders headers = {}) returns ExpensePurpose|error {
         string resourcePath = string `/ExpensePurposes(dataAreaId='${getEncodedUri(dataAreaId)}',BusinessPurpose='${getEncodedUri(businessPurpose)}',ExpenseType='${getEncodedUri(expenseType)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExpenseRates
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExpenseRate 
+    remote isolated function listExpenseRates(map<string|string[]> headers = {}, *ListExpenseRatesQueries queries) returns ExpenseRatesCollection|error {
+        string resourcePath = string `/ExpenseRates`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExpenseRate
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseRate created 
+    remote isolated function createExpenseRates(ExpenseRate payload, map<string|string[]> headers = {}) returns ExpenseRate|error {
+        string resourcePath = string `/ExpenseRates`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExpenseRate by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExpenseRate record 
+    remote isolated function getExpenseRates(string dataAreaId, string expense, map<string|string[]> headers = {}, *GetExpenseRatesQueries queries) returns ExpenseRate|error {
+        string resourcePath = string `/ExpenseRates(dataAreaId='${getEncodedUri(dataAreaId)}',Expense='${getEncodedUri(expense)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExpenseRate
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseRate deleted 
+    remote isolated function deleteExpenseRates(string dataAreaId, string expense, DeleteExpenseRatesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExpenseRates(dataAreaId='${getEncodedUri(dataAreaId)}',Expense='${getEncodedUri(expense)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExpenseRate
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExpenseRate updated 
+    remote isolated function updateExpenseRates(string dataAreaId, string expense, ExpenseRate payload, UpdateExpenseRatesHeaders headers = {}) returns ExpenseRate|error {
+        string resourcePath = string `/ExpenseRates(dataAreaId='${getEncodedUri(dataAreaId)}',Expense='${getEncodedUri(expense)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2256,6 +3167,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ExportControlItemCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExportControlItemCode 
+    remote isolated function listExportControlItemCodes(map<string|string[]> headers = {}, *ListExportControlItemCodesQueries queries) returns ExportControlItemCodesCollection|error {
+        string resourcePath = string `/ExportControlItemCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExportControlItemCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlItemCode created 
+    remote isolated function createExportControlItemCodes(ExportControlItemCode payload, map<string|string[]> headers = {}) returns ExportControlItemCode|error {
+        string resourcePath = string `/ExportControlItemCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExportControlItemCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExportControlItemCode record 
+    remote isolated function getExportControlItemCodes(string dataAreaId, string jurisdiction, string itemId, map<string|string[]> headers = {}, *GetExportControlItemCodesQueries queries) returns ExportControlItemCode|error {
+        string resourcePath = string `/ExportControlItemCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Jurisdiction='${getEncodedUri(jurisdiction)}',ItemId='${getEncodedUri(itemId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExportControlItemCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlItemCode deleted 
+    remote isolated function deleteExportControlItemCodes(string dataAreaId, string jurisdiction, string itemId, DeleteExportControlItemCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExportControlItemCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Jurisdiction='${getEncodedUri(jurisdiction)}',ItemId='${getEncodedUri(itemId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExportControlItemCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlItemCode updated 
+    remote isolated function updateExportControlItemCodes(string dataAreaId, string jurisdiction, string itemId, ExportControlItemCode payload, UpdateExportControlItemCodesHeaders headers = {}) returns ExportControlItemCode|error {
+        string resourcePath = string `/ExportControlItemCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Jurisdiction='${getEncodedUri(jurisdiction)}',ItemId='${getEncodedUri(itemId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ExportControlProductCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ExportControlProductCode 
+    remote isolated function listExportControlProductCodes(map<string|string[]> headers = {}, *ListExportControlProductCodesQueries queries) returns ExportControlProductCodesCollection|error {
+        string resourcePath = string `/ExportControlProductCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ExportControlProductCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlProductCode created 
+    remote isolated function createExportControlProductCodes(ExportControlProductCode payload, map<string|string[]> headers = {}) returns ExportControlProductCode|error {
+        string resourcePath = string `/ExportControlProductCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ExportControlProductCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ExportControlProductCode record 
+    remote isolated function getExportControlProductCodes(string displayProductNumber, string jurisdiction, map<string|string[]> headers = {}, *GetExportControlProductCodesQueries queries) returns ExportControlProductCode|error {
+        string resourcePath = string `/ExportControlProductCodes(DisplayProductNumber='${getEncodedUri(displayProductNumber)}',Jurisdiction='${getEncodedUri(jurisdiction)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ExportControlProductCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlProductCode deleted 
+    remote isolated function deleteExportControlProductCodes(string displayProductNumber, string jurisdiction, DeleteExportControlProductCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ExportControlProductCodes(DisplayProductNumber='${getEncodedUri(displayProductNumber)}',Jurisdiction='${getEncodedUri(jurisdiction)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ExportControlProductCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ExportControlProductCode updated 
+    remote isolated function updateExportControlProductCodes(string displayProductNumber, string jurisdiction, ExportControlProductCode payload, UpdateExportControlProductCodesHeaders headers = {}) returns ExportControlProductCode|error {
+        string resourcePath = string `/ExportControlProductCodes(DisplayProductNumber='${getEncodedUri(displayProductNumber)}',Jurisdiction='${getEncodedUri(jurisdiction)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List MobileExpReports
     #
     # + headers - Headers to be sent with the request 
@@ -2598,56 +3623,56 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List PolicyViolationJustifications
+    # List PeriodAllocationCategories
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - Collection of PolicyViolationJustification 
-    remote isolated function listPolicyViolationJustifications(map<string|string[]> headers = {}, *ListPolicyViolationJustificationsQueries queries) returns PolicyViolationJustificationsCollection|error {
-        string resourcePath = string `/PolicyViolationJustifications`;
+    # + return - Collection of PeriodAllocationCategory 
+    remote isolated function listPeriodAllocationCategories(map<string|string[]> headers = {}, *ListPeriodAllocationCategoriesQueries queries) returns PeriodAllocationCategoriesCollection|error {
+        string resourcePath = string `/PeriodAllocationCategories`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Create PolicyViolationJustification
+    # Create PeriodAllocationCategory
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationJustification created 
-    remote isolated function createPolicyViolationJustifications(PolicyViolationJustification payload, map<string|string[]> headers = {}) returns PolicyViolationJustification|error {
-        string resourcePath = string `/PolicyViolationJustifications`;
+    # + return - PeriodAllocationCategory created 
+    remote isolated function createPeriodAllocationCategories(PeriodAllocationCategory payload, map<string|string[]> headers = {}) returns PeriodAllocationCategory|error {
+        string resourcePath = string `/PeriodAllocationCategories`;
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Get PolicyViolationJustification by key
+    # Get PeriodAllocationCategory by key
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - PolicyViolationJustification record 
-    remote isolated function getPolicyViolationJustifications(string justificationId, map<string|string[]> headers = {}, *GetPolicyViolationJustificationsQueries queries) returns PolicyViolationJustification|error {
-        string resourcePath = string `/PolicyViolationJustifications(JustificationId=${getEncodedUri(justificationId)})`;
+    # + return - PeriodAllocationCategory record 
+    remote isolated function getPeriodAllocationCategories(string dataAreaId, string periodKey, decimal lineNumber, map<string|string[]> headers = {}, *GetPeriodAllocationCategoriesQueries queries) returns PeriodAllocationCategory|error {
+        string resourcePath = string `/PeriodAllocationCategories(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodKey='${getEncodedUri(periodKey)}',LineNumber=${getEncodedUri(lineNumber)})`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Delete PolicyViolationJustification
+    # Delete PeriodAllocationCategory
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationJustification deleted 
-    remote isolated function deletePolicyViolationJustifications(string justificationId, DeletePolicyViolationJustificationsHeaders headers = {}) returns error? {
-        string resourcePath = string `/PolicyViolationJustifications(JustificationId=${getEncodedUri(justificationId)})`;
+    # + return - PeriodAllocationCategory deleted 
+    remote isolated function deletePeriodAllocationCategories(string dataAreaId, string periodKey, decimal lineNumber, DeletePeriodAllocationCategoriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodAllocationCategories(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodKey='${getEncodedUri(periodKey)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Update PolicyViolationJustification
+    # Update PeriodAllocationCategory
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationJustification updated 
-    remote isolated function updatePolicyViolationJustifications(string justificationId, PolicyViolationJustification payload, UpdatePolicyViolationJustificationsHeaders headers = {}) returns PolicyViolationJustification|error {
-        string resourcePath = string `/PolicyViolationJustifications(JustificationId=${getEncodedUri(justificationId)})`;
+    # + return - PeriodAllocationCategory updated 
+    remote isolated function updatePeriodAllocationCategories(string dataAreaId, string periodKey, decimal lineNumber, PeriodAllocationCategory payload, UpdatePeriodAllocationCategoriesHeaders headers = {}) returns PeriodAllocationCategory|error {
+        string resourcePath = string `/PeriodAllocationCategories(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodKey='${getEncodedUri(periodKey)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2655,56 +3680,56 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List PolicyViolationsCache
+    # List PeriodCloseTemplateTasks
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - Collection of PolicyViolationsCache 
-    remote isolated function listPolicyViolationsCache(map<string|string[]> headers = {}, *ListPolicyViolationsCacheQueries queries) returns PolicyViolationsCacheCollection|error {
-        string resourcePath = string `/PolicyViolationsCache`;
+    # + return - Collection of PeriodCloseTemplateTask 
+    remote isolated function listPeriodCloseTemplateTasks(map<string|string[]> headers = {}, *ListPeriodCloseTemplateTasksQueries queries) returns PeriodCloseTemplateTasksCollection|error {
+        string resourcePath = string `/PeriodCloseTemplateTasks`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Create PolicyViolationsCache
+    # Create PeriodCloseTemplateTask
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationsCache created 
-    remote isolated function createPolicyViolationsCache(PolicyViolationsCache payload, map<string|string[]> headers = {}) returns PolicyViolationsCache|error {
-        string resourcePath = string `/PolicyViolationsCache`;
+    # + return - PeriodCloseTemplateTask created 
+    remote isolated function createPeriodCloseTemplateTasks(PeriodCloseTemplateTask payload, map<string|string[]> headers = {}) returns PeriodCloseTemplateTask|error {
+        string resourcePath = string `/PeriodCloseTemplateTasks`;
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Get PolicyViolationsCache by key
+    # Get PeriodCloseTemplateTask by key
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - PolicyViolationsCache record 
-    remote isolated function getPolicyViolationsCache(string violationsCacheId, map<string|string[]> headers = {}, *GetPolicyViolationsCacheQueries queries) returns PolicyViolationsCache|error {
-        string resourcePath = string `/PolicyViolationsCache(ViolationsCacheId=${getEncodedUri(violationsCacheId)})`;
+    # + return - PeriodCloseTemplateTask record 
+    remote isolated function getPeriodCloseTemplateTasks(string template, decimal lineNumber, map<string|string[]> headers = {}, *GetPeriodCloseTemplateTasksQueries queries) returns PeriodCloseTemplateTask|error {
+        string resourcePath = string `/PeriodCloseTemplateTasks(Template='${getEncodedUri(template)}',LineNumber=${getEncodedUri(lineNumber)})`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Delete PolicyViolationsCache
+    # Delete PeriodCloseTemplateTask
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationsCache deleted 
-    remote isolated function deletePolicyViolationsCache(string violationsCacheId, DeletePolicyViolationsCacheHeaders headers = {}) returns error? {
-        string resourcePath = string `/PolicyViolationsCache(ViolationsCacheId=${getEncodedUri(violationsCacheId)})`;
+    # + return - PeriodCloseTemplateTask deleted 
+    remote isolated function deletePeriodCloseTemplateTasks(string template, decimal lineNumber, DeletePeriodCloseTemplateTasksHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodCloseTemplateTasks(Template='${getEncodedUri(template)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Update PolicyViolationsCache
+    # Update PeriodCloseTemplateTask
     #
     # + headers - Headers to be sent with the request 
-    # + return - PolicyViolationsCache updated 
-    remote isolated function updatePolicyViolationsCache(string violationsCacheId, PolicyViolationsCache payload, UpdatePolicyViolationsCacheHeaders headers = {}) returns PolicyViolationsCache|error {
-        string resourcePath = string `/PolicyViolationsCache(ViolationsCacheId=${getEncodedUri(violationsCacheId)})`;
+    # + return - PeriodCloseTemplateTask updated 
+    remote isolated function updatePeriodCloseTemplateTasks(string template, decimal lineNumber, PeriodCloseTemplateTask payload, UpdatePeriodCloseTemplateTasksHeaders headers = {}) returns PeriodCloseTemplateTask|error {
+        string resourcePath = string `/PeriodCloseTemplateTasks(Template='${getEncodedUri(template)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2712,56 +3737,227 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
-    # List ProjExpensesExport
+    # List PeriodConfirmations
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - Collection of ProjExpenseExport 
-    remote isolated function listProjExpensesExport(map<string|string[]> headers = {}, *ListProjExpensesExportQueries queries) returns ProjExpensesExportCollection|error {
-        string resourcePath = string `/ProjExpensesExport`;
+    # + return - Collection of PeriodConfirmation 
+    remote isolated function listPeriodConfirmations(map<string|string[]> headers = {}, *ListPeriodConfirmationsQueries queries) returns PeriodConfirmationsCollection|error {
+        string resourcePath = string `/PeriodConfirmations`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Create ProjExpenseExport
+    # Create PeriodConfirmation
     #
     # + headers - Headers to be sent with the request 
-    # + return - ProjExpenseExport created 
-    remote isolated function createProjExpensesExport(ProjExpenseExport payload, map<string|string[]> headers = {}) returns ProjExpenseExport|error {
-        string resourcePath = string `/ProjExpensesExport`;
+    # + return - PeriodConfirmation created 
+    remote isolated function createPeriodConfirmations(PeriodConfirmation payload, map<string|string[]> headers = {}) returns PeriodConfirmation|error {
+        string resourcePath = string `/PeriodConfirmations`;
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Get ProjExpenseExport by key
+    # Get PeriodConfirmation by key
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
-    # + return - ProjExpenseExport record 
-    remote isolated function getProjExpensesExport(string expTransNumber, string referenceDataAreaId, map<string|string[]> headers = {}, *GetProjExpensesExportQueries queries) returns ProjExpenseExport|error {
-        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
+    # + return - PeriodConfirmation record 
+    remote isolated function getPeriodConfirmations(string dataAreaId, string fromDate, map<string|string[]> headers = {}, *GetPeriodConfirmationsQueries queries) returns PeriodConfirmation|error {
+        string resourcePath = string `/PeriodConfirmations(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
         resourcePath = resourcePath + check getPathForQueryParam(queries);
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Delete ProjExpenseExport
+    # Delete PeriodConfirmation
     #
     # + headers - Headers to be sent with the request 
-    # + return - ProjExpenseExport deleted 
-    remote isolated function deleteProjExpensesExport(string expTransNumber, string referenceDataAreaId, DeleteProjExpensesExportHeaders headers = {}) returns error? {
-        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
+    # + return - PeriodConfirmation deleted 
+    remote isolated function deletePeriodConfirmations(string dataAreaId, string fromDate, DeletePeriodConfirmationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodConfirmations(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    # Update ProjExpenseExport
+    # Update PeriodConfirmation
     #
     # + headers - Headers to be sent with the request 
-    # + return - ProjExpenseExport updated 
-    remote isolated function updateProjExpensesExport(string expTransNumber, string referenceDataAreaId, ProjExpenseExport payload, UpdateProjExpensesExportHeaders headers = {}) returns ProjExpenseExport|error {
-        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
+    # + return - PeriodConfirmation updated 
+    remote isolated function updatePeriodConfirmations(string dataAreaId, string fromDate, PeriodConfirmation payload, UpdatePeriodConfirmationsHeaders headers = {}) returns PeriodConfirmation|error {
+        string resourcePath = string `/PeriodConfirmations(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List PeriodLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PeriodLine 
+    remote isolated function listPeriodLines(map<string|string[]> headers = {}, *ListPeriodLinesQueries queries) returns PeriodLinesCollection|error {
+        string resourcePath = string `/PeriodLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PeriodLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodLine created 
+    remote isolated function createPeriodLines(PeriodLine payload, map<string|string[]> headers = {}) returns PeriodLine|error {
+        string resourcePath = string `/PeriodLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PeriodLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PeriodLine record 
+    remote isolated function getPeriodLines(string dataAreaId, string periodId, string periodFrom, string periodTo, map<string|string[]> headers = {}, *GetPeriodLinesQueries queries) returns PeriodLine|error {
+        string resourcePath = string `/PeriodLines(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PeriodLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodLine deleted 
+    remote isolated function deletePeriodLines(string dataAreaId, string periodId, string periodFrom, string periodTo, DeletePeriodLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodLines(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PeriodLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodLine updated 
+    remote isolated function updatePeriodLines(string dataAreaId, string periodId, string periodFrom, string periodTo, PeriodLine payload, UpdatePeriodLinesHeaders headers = {}) returns PeriodLine|error {
+        string resourcePath = string `/PeriodLines(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List PeriodOfDocumentCollections
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PeriodOfDocumentCollection 
+    remote isolated function listPeriodOfDocumentCollections(map<string|string[]> headers = {}, *ListPeriodOfDocumentCollectionsQueries queries) returns PeriodOfDocumentCollectionsCollection|error {
+        string resourcePath = string `/PeriodOfDocumentCollections`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PeriodOfDocumentCollection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodOfDocumentCollection created 
+    remote isolated function createPeriodOfDocumentCollections(PeriodOfDocumentCollection payload, map<string|string[]> headers = {}) returns PeriodOfDocumentCollection|error {
+        string resourcePath = string `/PeriodOfDocumentCollections`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PeriodOfDocumentCollection by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PeriodOfDocumentCollection record 
+    remote isolated function getPeriodOfDocumentCollections(string dataAreaId, string fromDate, map<string|string[]> headers = {}, *GetPeriodOfDocumentCollectionsQueries queries) returns PeriodOfDocumentCollection|error {
+        string resourcePath = string `/PeriodOfDocumentCollections(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PeriodOfDocumentCollection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodOfDocumentCollection deleted 
+    remote isolated function deletePeriodOfDocumentCollections(string dataAreaId, string fromDate, DeletePeriodOfDocumentCollectionsHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodOfDocumentCollections(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PeriodOfDocumentCollection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodOfDocumentCollection updated 
+    remote isolated function updatePeriodOfDocumentCollections(string dataAreaId, string fromDate, PeriodOfDocumentCollection payload, UpdatePeriodOfDocumentCollectionsHeaders headers = {}) returns PeriodOfDocumentCollection|error {
+        string resourcePath = string `/PeriodOfDocumentCollections(dataAreaId='${getEncodedUri(dataAreaId)}',FromDate=${getEncodedUri(fromDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List PeriodTimesheetWeeks
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PeriodTimesheetWeek 
+    remote isolated function listPeriodTimesheetWeeks(map<string|string[]> headers = {}, *ListPeriodTimesheetWeeksQueries queries) returns PeriodTimesheetWeeksCollection|error {
+        string resourcePath = string `/PeriodTimesheetWeeks`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PeriodTimesheetWeek
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodTimesheetWeek created 
+    remote isolated function createPeriodTimesheetWeeks(PeriodTimesheetWeek payload, map<string|string[]> headers = {}) returns PeriodTimesheetWeek|error {
+        string resourcePath = string `/PeriodTimesheetWeeks`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PeriodTimesheetWeek by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PeriodTimesheetWeek record 
+    remote isolated function getPeriodTimesheetWeeks(string dataAreaId, string periodId, string periodFrom, string periodTo, map<string|string[]> headers = {}, *GetPeriodTimesheetWeeksQueries queries) returns PeriodTimesheetWeek|error {
+        string resourcePath = string `/PeriodTimesheetWeeks(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PeriodTimesheetWeek
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodTimesheetWeek deleted 
+    remote isolated function deletePeriodTimesheetWeeks(string dataAreaId, string periodId, string periodFrom, string periodTo, DeletePeriodTimesheetWeeksHeaders headers = {}) returns error? {
+        string resourcePath = string `/PeriodTimesheetWeeks(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PeriodTimesheetWeek
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PeriodTimesheetWeek updated 
+    remote isolated function updatePeriodTimesheetWeeks(string dataAreaId, string periodId, string periodFrom, string periodTo, PeriodTimesheetWeek payload, UpdatePeriodTimesheetWeeksHeaders headers = {}) returns PeriodTimesheetWeek|error {
+        string resourcePath = string `/PeriodTimesheetWeeks(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)},PeriodTo=${getEncodedUri(periodTo)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2819,6 +4015,63 @@ public isolated client class Client {
     # + return - TrvExpMobileActivity updated 
     remote isolated function updateTrvExpMobileActivities(string dataAreaId, string activityNumber, TrvExpMobileActivity payload, UpdateTrvExpMobileActivitiesHeaders headers = {}) returns TrvExpMobileActivity|error {
         string resourcePath = string `/TrvExpMobileActivities(dataAreaId='${getEncodedUri(dataAreaId)}',ActivityNumber='${getEncodedUri(activityNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TrvExpMobileAddressCities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TrvExpMobileAddressCity 
+    remote isolated function listTrvExpMobileAddressCities(map<string|string[]> headers = {}, *ListTrvExpMobileAddressCitiesQueries queries) returns TrvExpMobileAddressCitiesCollection|error {
+        string resourcePath = string `/TrvExpMobileAddressCities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TrvExpMobileAddressCity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileAddressCity created 
+    remote isolated function createTrvExpMobileAddressCities(TrvExpMobileAddressCity payload, map<string|string[]> headers = {}) returns TrvExpMobileAddressCity|error {
+        string resourcePath = string `/TrvExpMobileAddressCities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TrvExpMobileAddressCity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TrvExpMobileAddressCity record 
+    remote isolated function getTrvExpMobileAddressCities(string name, map<string|string[]> headers = {}, *GetTrvExpMobileAddressCitiesQueries queries) returns TrvExpMobileAddressCity|error {
+        string resourcePath = string `/TrvExpMobileAddressCities(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TrvExpMobileAddressCity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileAddressCity deleted 
+    remote isolated function deleteTrvExpMobileAddressCities(string name, DeleteTrvExpMobileAddressCitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/TrvExpMobileAddressCities(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TrvExpMobileAddressCity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileAddressCity updated 
+    remote isolated function updateTrvExpMobileAddressCities(string name, TrvExpMobileAddressCity payload, UpdateTrvExpMobileAddressCitiesHeaders headers = {}) returns TrvExpMobileAddressCity|error {
+        string resourcePath = string `/TrvExpMobileAddressCities(Name='${getEncodedUri(name)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -3047,6 +4300,63 @@ public isolated client class Client {
     # + return - TrvExpMobileProject updated 
     remote isolated function updateTrvExpMobileProjects(string dataAreaId, string projectID, TrvExpMobileProject payload, UpdateTrvExpMobileProjectsHeaders headers = {}) returns TrvExpMobileProject|error {
         string resourcePath = string `/TrvExpMobileProjects(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectID='${getEncodedUri(projectID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List TrvExpMobileTaxGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of TrvExpMobileTaxGroup 
+    remote isolated function listTrvExpMobileTaxGroups(map<string|string[]> headers = {}, *ListTrvExpMobileTaxGroupsQueries queries) returns TrvExpMobileTaxGroupsCollection|error {
+        string resourcePath = string `/TrvExpMobileTaxGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create TrvExpMobileTaxGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileTaxGroup created 
+    remote isolated function createTrvExpMobileTaxGroups(TrvExpMobileTaxGroup payload, map<string|string[]> headers = {}) returns TrvExpMobileTaxGroup|error {
+        string resourcePath = string `/TrvExpMobileTaxGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get TrvExpMobileTaxGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - TrvExpMobileTaxGroup record 
+    remote isolated function getTrvExpMobileTaxGroups(string dataAreaId, string salesTaxGroup, map<string|string[]> headers = {}, *GetTrvExpMobileTaxGroupsQueries queries) returns TrvExpMobileTaxGroup|error {
+        string resourcePath = string `/TrvExpMobileTaxGroups(dataAreaId='${getEncodedUri(dataAreaId)}',SalesTaxGroup='${getEncodedUri(salesTaxGroup)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete TrvExpMobileTaxGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileTaxGroup deleted 
+    remote isolated function deleteTrvExpMobileTaxGroups(string dataAreaId, string salesTaxGroup, DeleteTrvExpMobileTaxGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/TrvExpMobileTaxGroups(dataAreaId='${getEncodedUri(dataAreaId)}',SalesTaxGroup='${getEncodedUri(salesTaxGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update TrvExpMobileTaxGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - TrvExpMobileTaxGroup updated 
+    remote isolated function updateTrvExpMobileTaxGroups(string dataAreaId, string salesTaxGroup, TrvExpMobileTaxGroup payload, UpdateTrvExpMobileTaxGroupsHeaders headers = {}) returns TrvExpMobileTaxGroup|error {
+        string resourcePath = string `/TrvExpMobileTaxGroups(dataAreaId='${getEncodedUri(dataAreaId)}',SalesTaxGroup='${getEncodedUri(salesTaxGroup)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

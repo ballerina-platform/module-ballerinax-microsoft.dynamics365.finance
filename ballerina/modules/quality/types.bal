@@ -19,37 +19,8 @@
 
 import ballerina/http;
 
-# Represents the Queries record for the operation: getQualityTestGroupTestAssignmentTestPlans
-public type GetQualityTestGroupTestAssignmentTestPlansQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
-
-public type QualityTestVariableOutcomesCollection record {
-    *ODataCollection;
-    QualityTestVariableOutcome[] value?;
-};
 
 public type DocuRestriction "Internal"|"External";
-
-public type InventTestOutcomeStatus "Fail"|"Pass";
-
-# Represents the Headers record for the operation: updateQualityTestVariableOutcomes
-public type UpdateQualityTestVariableOutcomesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
 
 # Represents the Headers record for the operation: deleteQualityTestGroupTestAssignmentTestPlans
 public type DeleteQualityTestGroupTestAssignmentTestPlansHeaders record {
@@ -85,6 +56,44 @@ public type ListQualityTestGroupsQueries record {
     string selectFields?;
 };
 
+public type QualitySample record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SampleId?;
+    string ProductConfigurationId?;
+    string InventoryStatusId?;
+    string QualityOrderId?;
+    string QualityTestGroupId?;
+    string InventorySiteId?;
+    string ProductSizeId?;
+    string ItemNumber?;
+    string InventoryWarehouseId?;
+    string ProductVersionId?;
+    decimal SampleQuantity?;
+    string SampleTypeId?;
+    string ItemSerialNumber?;
+    string InventoryOwnerId?;
+    string TestedDateTime?;
+    string RegisteredDateTime?;
+    string SampleLabelLayoutId?;
+    string WarehouseLocationId?;
+    string ItemSamplingId?;
+    string RegisteredByWorkerPersonnelNumber?;
+    string ProductionOrderNumber?;
+    string InventoryLotId?;
+    string SampleExpirationDate?;
+    string TestedByWorkerPersonnelNumber?;
+    string SampleUnitId?;
+    string ScrappedByWorkerPersonnelNumber?;
+    string ItemBatchNumber?;
+    string ProductColorId?;
+    string ScrappedDateTime?;
+    QMSSampleInspectionMethod SampleInspectionMethod?;
+    string LicensePlateNumber?;
+    string LifecycleStateId?;
+    string ProductStyleId?;
+};
+
 public type QualityTestGroupTestAssignmentTestPlan record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -101,12 +110,6 @@ public type QualityTestGroupTestAssignmentTestPlan record {
     string FileName?;
     string Attachment?;
     string TestEffectiveDateTime?;
-};
-
-# Represents the Headers record for the operation: deleteQualityGroupItemAssignments
-public type DeleteQualityGroupItemAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listQualityTestVariableOutcomes
@@ -137,14 +140,26 @@ public type ListQualityTestVariableOutcomesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteQualitySampleTrackingEntries
+public type DeleteQualitySampleTrackingEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateQualitySampleTrackingEntries
+public type UpdateQualitySampleTrackingEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteQualityTestVariableOutcomes
 public type DeleteQualityTestVariableOutcomesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentTestPlans
-public type UpdateQualityTestGroupTestAssignmentTestPlansHeaders record {
+# Represents the Headers record for the operation: updateQualitySamples
+public type UpdateQualitySamplesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -177,6 +192,219 @@ public type ListQualityTestGroupTestAssignmentTestPlansQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateQualityGroupItemAssignments
+public type UpdateQualityGroupItemAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualitySampleTrackingEntry record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProductionOrderNumber?;
+    string InventoryLotId?;
+    int:Signed32 CreationSequenceNumber?;
+    string InventorySiteId?;
+    NoYes IsManualSample?;
+    NoYes IsManualQualityOrder?;
+    string ItemBatchNumber?;
+    string ProductConfigurationId?;
+    string LicensePlateNumber?;
+    string SampleId?;
+    string InventoryOwnerId?;
+    string ProductSizeId?;
+    string QualityOrderId?;
+    string ItemNumber?;
+    string ProductColorId?;
+    string ProductVersionId?;
+    string InventoryStatusId?;
+    string ProductStyleId?;
+    string WarehouseLocationId?;
+    string InventoryWarehouseId?;
+    string ItemSerialNumber?;
+};
+
+
+# Represents the Queries record for the operation: listQualitySampleTrackingEntries
+public type ListQualitySampleTrackingEntriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listQualityOrderHeaders
+public type ListQualityOrderHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listQualitySamples
+public type ListQualitySamplesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getQualityGroupItemAssignments
+public type GetQualityGroupItemAssignmentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type NoYes "No"|"Yes";
+
+# Represents the Queries record for the operation: getQualitySampleTrackingEntries
+public type GetQualitySampleTrackingEntriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateQualityTestGroups
+public type UpdateQualityTestGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualityGroupItemAssignmentsCollection record {
+    *ODataCollection;
+    QualityGroupItemAssignment[] value?;
+};
+
+public type QualityTestGroupTestAssignmentTestPlansCollection record {
+    *ODataCollection;
+    QualityTestGroupTestAssignmentTestPlan[] value?;
+};
+
+public type QualitySamplesCollection record {
+    *ODataCollection;
+    QualitySample[] value?;
+};
+
+# Represents the Headers record for the operation: updateQualityOrderHeaders
+public type UpdateQualityOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getQualityTestGroupTestAssignmentTestPlans
+public type GetQualityTestGroupTestAssignmentTestPlansQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type QMSSampleInspectionMethod "None"|"Inline"|"Continuous"|"Both";
+
+public type QualityTestVariableOutcomesCollection record {
+    *ODataCollection;
+    QualityTestVariableOutcome[] value?;
+};
+
+public type InventTestOutcomeStatus "Fail"|"Pass";
+
+# Represents the Headers record for the operation: updateQualityTestVariableOutcomes
+public type UpdateQualityTestVariableOutcomesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualitySampleTrackingEntriesCollection record {
+    *ODataCollection;
+    QualitySampleTrackingEntry[] value?;
+};
+
+# Represents the Headers record for the operation: deleteQualityGroupItemAssignments
+public type DeleteQualityGroupItemAssignmentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type QualityOrderHeadersCollection record {
+    *ODataCollection;
+    QualityOrderHeader[] value?;
+};
+
+# Represents the Headers record for the operation: updateQualityTestGroupTestAssignmentTestPlans
+public type UpdateQualityTestGroupTestAssignmentTestPlansHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listQualityGroupItemAssignments
 public type ListQualityGroupItemAssignmentsQueries record {
     # Number of records to skip.
@@ -205,12 +433,6 @@ public type ListQualityGroupItemAssignmentsQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateQualityGroupItemAssignments
-public type UpdateQualityGroupItemAssignmentsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type QualityTestGroup record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -226,6 +448,18 @@ public type QualityTestGroup record {
     string Description?;
     NoYes IsInventoryStatusDefaultedWithTestMeasurement?;
     NoYes IsDestructiveTest?;
+};
+
+public type InventTestOrderStatus "Open"|"Fail"|"Pass";
+
+# Represents the Queries record for the operation: getQualitySamples
+public type GetQualitySamplesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getQualityTestVariableOutcomes
@@ -245,49 +479,21 @@ public type QualityGroupItemAssignment record {
     string ItemNumber?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
+# Represents the Queries record for the operation: getQualityOrderHeaders
+public type GetQualityOrderHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteQualitySamples
+public type DeleteQualitySamplesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Standard OData collection envelope.
 public type ODataCollection record {
@@ -295,6 +501,14 @@ public type ODataCollection record {
     int \@odata\.count?;
     string \@odata\.nextLink?;
 };
+
+# Represents the Headers record for the operation: deleteQualityOrderHeaders
+public type DeleteQualityOrderHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type InventTestReferenceType "Inventory"|"Sales"|"Purch"|"Production"|"Quarantine"|"RouteOpr"|"PmfProdCoBy"|"ITMGoodsInTransitOrder"|"WHSInboundShipmentOrder"|"QMSReturn"|"QMSTransfer";
 
 public type QualityTestGroupsCollection record {
     *ODataCollection;
@@ -311,20 +525,72 @@ public type GetQualityTestGroupsQueries record {
     string selectFields?;
 };
 
+public type QualityOrderHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string QualityOrderNumber?;
+    string OperationsResourceId?;
+    string PassedBatchDispositionCode?;
+    string RouteOperationId?;
+    string ProductConfigurationId?;
+    string ValidatedDateTime?;
+    string InventoryStatusId?;
+    NoYes IsInventoryStatusDefaultedWithTestMeasurement?;
+    string SalesOrderNumber?;
+    string QualityTestGroupId?;
+    string ReferenceInventoryLotId?;
+    string RouteId?;
+    string InventorySiteId?;
+    string ProductSizeId?;
+    string ItemNumber?;
+    decimal AcceptableQualityLevelPercentage?;
+    string ProductVersionId?;
+    NoYes IsBatchDispositionStatusDefaultedWithTestMeasurement?;
+    string ProductName?;
+    string ItemSerialNumber?;
+    string InventoryOwnerId?;
+    decimal InventoryQuantity?;
+    string FailedOrderInventoryStatusId?;
+    string WarehouseLocationId?;
+    string ProductionOrderNumber?;
+    string ItemSamplingId?;
+    NoYes IsBatchAttributeValueDefaultedWithTestMeasurement?;
+    string CustomerAccountNumber?;
+    string InventoryLotId?;
+    string FailedBatchDispositionCode?;
+    string PurchaseOrderNumber?;
+    string PassedInventoryStatusId?;
+    string ValidatingPersonnelNumber?;
+    InventTestReferenceType QualityOrderPolicyType?;
+    string ItemBatchNumber?;
+    string WarehouseId?;
+    InventTestOrderStatus QualityOrderStatus?;
+    int:Signed32 ProductionOrderRouteOperationNumber?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string VendorAccountNumber?;
+    string ProductColorId?;
+    decimal CatchWeightQuantity?;
+    NoYes IsDestructiveTest?;
+    NoYes IsQualityOrderFailureCreatingQuantineOrder?;
+    string LicensePlateNumber?;
+    string ProductStyleId?;
+    string InboundShipmentOrderNumber?;
+    string QMSSReturnOrderNumber?;
+    NoYes QMSUseForCertificateOfAnalysis?;
+    QMSSampleInspectionMethod QMSSampleInspectionMethod?;
+    string QMSReturnCustomerAccountNumber?;
+    string QMSAssignedToPersonnelNumber?;
+    string QMSTransferOrderNumber?;
+    string QMSFlexibleSamplingPlanCode?;
+    string QMSPriorityId?;
+    decimal QMSAQLOriginalLotQuantity?;
+    string QMSSampleId?;
+};
+
 # Represents the Headers record for the operation: deleteQualityTestGroups
 public type DeleteQualityTestGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-# Represents the Queries record for the operation: getQualityGroupItemAssignments
-public type GetQualityGroupItemAssignmentsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
 };
 
 public type QualityTestVariableOutcome record {
@@ -334,22 +600,4 @@ public type QualityTestVariableOutcome record {
     string OutcomeId?;
     InventTestOutcomeStatus OutcomeStatus?;
     string OutcomeDescription?;
-};
-
-public type NoYes "No"|"Yes";
-
-# Represents the Headers record for the operation: updateQualityTestGroups
-public type UpdateQualityTestGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type QualityGroupItemAssignmentsCollection record {
-    *ODataCollection;
-    QualityGroupItemAssignment[] value?;
-};
-
-public type QualityTestGroupTestAssignmentTestPlansCollection record {
-    *ODataCollection;
-    QualityTestGroupTestAssignmentTestPlan[] value?;
 };

@@ -19,6 +19,36 @@
 
 import ballerina/http;
 
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+
+# Represents the Queries record for the operation: listProjectControls
+public type ListProjectControlsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: listProjGrantFrequencies
 public type ListProjGrantFrequenciesQueries record {
     # Number of records to skip.
@@ -42,6 +72,44 @@ public type ListProjGrantFrequenciesQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listProjTableTransTaxInformations
+public type ListProjTableTransTaxInformationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getProjectContractHeaders
+public type GetProjectContractHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -80,11 +148,15 @@ public type ProjResourceEntity_DataEntity record {
 
 public type ProjLedgerStatusCost "BalanceSheet"|"Operations"|"Deferred";
 
+public type PSAProjTimeMeasure "Hour"|"Unit";
+
 # Represents the Headers record for the operation: deleteProjectReportSortFields
 public type DeleteProjectReportSortFieldsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type ProjCostSales "None"|"Cost"|"Sales";
 
 public type ProjGrantsV2Collection record {
     *ODataCollection;
@@ -225,11 +297,20 @@ public type ListProjAdvancedJournalsQueries record {
     string selectFields?;
 };
 
+public type CreditLineErrorType "Error"|"Warning"|"MCRReview";
+
 # Represents the Headers record for the operation: updateProjectTransactionCategories
 public type UpdateProjectTransactionCategoriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type ProjectContractsCollection record {
+    *ODataCollection;
+    ProjectContract[] value?;
+};
+
+public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
 
 # Represents the Queries record for the operation: getProjCostSalesPrices
 public type GetProjCostSalesPricesQueries record {
@@ -240,8 +321,6 @@ public type GetProjCostSalesPricesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
-
-public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
 
 # Represents the Queries record for the operation: getProjectGrantCustomerTypes
 public type GetProjectGrantCustomerTypesQueries record {
@@ -277,6 +356,16 @@ public type ProjectPostTransView record {
     string TransactionDate?;
     string CurrencyId?;
     decimal Quantity?;
+};
+
+# Represents the Queries record for the operation: getProjects
+public type GetProjectsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type ProjectGrantCustomerTypesCollection record {
@@ -336,6 +425,8 @@ public type ProjPeriodEmplEntity_DataEntity record {
     decimal NormEfficiency?;
     string PostedDate?;
 };
+
+public type NatureOfAssessee_IN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
 
 # Represents the Queries record for the operation: getProjVendInvoicesExport
 public type GetProjVendInvoicesExportQueries record {
@@ -433,6 +524,8 @@ public type GetProjectResourcesQueries record {
     string selectFields?;
 };
 
+public type LineDeliveryType "OrderLine"|"OrderLineWithMultipleDeliveries"|"DeliveryLine";
+
 public type ProjectLineProperty record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -496,6 +589,16 @@ public type ListProjGrantTypesQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getProjTableTransTaxInformations
+public type GetProjTableTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -580,6 +683,233 @@ public type ListProjFeatureManagementsQueries record {
     string selectFields?;
 };
 
+public type ProjectParameterEntity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int:Signed32 ID?;
+    NoYes Invoiced?;
+    TSManualAutomatic ApprovedTimesheetPosting?;
+    NoYes IsBudgetControlOutsideTheProjectHierarchyAllowed?;
+    NoYes NoOneTimeCustomersForProjectContracts?;
+    string UserGroup?;
+    string TermsOfPaymentForHours?;
+    ProjLineTotal Subscription?;
+    NoYes PurchaseRequisition?;
+    NoYes ContractLineBasedRevenueRecognition?;
+    string DefaultCategoryItem?;
+    ProjReduceCostPriority MinimumRequirement?;
+    NoYes PromptForCustomerInformationOnProject?;
+    NoYes IsActive?;
+    NoYes AutomaticallySetAccountingDateToOpenLedgerPeriod?;
+    NoYes HideActivity?;
+    ProjReduceCostPriority ExpenseReduceCostPriority2?;
+    TSFieldVisibility TimeServiceVisibilityCategory?;
+    NoYes VendorInvoice?;
+    NoYes ItemJournal?;
+    ProjReduceCostPriority HourReduceCostPriority2?;
+    ProjReduceCostPriority HourReduceCostPriority3?;
+    string ForecastModel?;
+    ProjReduceCostPriority HourReduceCostPriority1?;
+    int:Signed32 ValueAddedDecimals?;
+    ProjReduceCostPriority HourReduceCostPriority4?;
+    ProjReduceCostPriority HourReduceCostPriority5?;
+    string ExpenseJournalNameId?;
+    string DefaultSubprojectIDFormat?;
+    ProjValParameter ValidationWorkerCategory?;
+    NoYes IsHourQuantityInConsumptionStatementIncluded?;
+    NoYes ExpenseReport?;
+    string DefaultJournalNamesHour?;
+    string InternalCostEfficiency?;
+    ErrorTolerance TotalEstimatePostingTolerance?;
+    string DefaultWorkingCalendar?;
+    string FixedPriceEfficiency?;
+    string BeginningBalances?;
+    TSFieldVisibility TimeServiceVisibilityItemSalesTaxGroup?;
+    ProjProdPostingTypeSetup PostingMethod?;
+    NoYes IsAllocationSettingsLocked?;
+    ProjBudgetaryControlOn TransactionTypesControlled?;
+    NoYes IsActivityExpenseJournalRequired?;
+    NoYes ActualCostAfterEstimateDate?;
+    string FixedPriceBillable?;
+    NoYes IsAutoupdateField?;
+    NoYes HideCategory?;
+    string CFOPIdOtherState?;
+    string TimeMaterialBillable?;
+    ProjReduceCostPriority ItemMinimumRequirement?;
+    string MethodOfPayment?;
+    string IsHourSchedulingEnabled?;
+    ProjReduceCostPriority HourReducedMinimumRequirement?;
+    NoYes GeneralBudgetReservation?;
+    NoYes SetTheCostPriceAsTheSalesPriceByDefault?;
+    ErrorTolerance AllowTimeRangeOverlap?;
+    NoYes TravelRequisition?;
+    NoYes HideLineProperty?;
+    ErrorTolerance CommittedCost?;
+    NoYes Posted?;
+    NoYes HourJournal?;
+    string CategoryHierarchyName?;
+    NoYes EnableCancelSettledProjectInvoice?;
+    string BillingRuleFeeJournal?;
+    int:Signed32 AmountInThousands?;
+    NoYes IsActivityExpenseForecastRequired?;
+    NoYes PromptForCustomerInformation?;
+    WeekDays DayWeekStarts?;
+    DetailSummary DefaultPostingLevel?;
+    NoYes IsEliminationWithoutPostingEstimatesAllowed?;
+    NoYes CheckBudgetOnDocumentLineSave?;
+    TSFieldVisibility TimeServiceVisibilityActivity?;
+    NoYes Estimated?;
+    ProjLineTotal Invoice?;
+    NoYes IsActivityItemJournalRequired?;
+    ProjReduceCostPriority ExpenseReduceCostPriority4?;
+    NoYes IsHourQuantityInProfitLossStatementIncluded?;
+    string ExpenseLumpSumAllocationKey?;
+    string InvestmentBillable?;
+    ErrorTolerance BeforeEliminationDate?;
+    NoYes IsHourCostInConsumptionStatementIncluded?;
+    NoYes SalesOrder?;
+    NoYes CanAlwaysCreateAdjustmentTransaction?;
+    NoYes CommittedCostAfterEstimateDate?;
+    MSPIntegrationType SaveMicrosoftProjectFilesTo?;
+    NoYes UseFavorites?;
+    string CapacityPlanningPlannedOrder?;
+    string TermsOfPaymentForItems?;
+    ProjValParameter ValidationWorkerProject?;
+    NoYes ItemDeleteReducedToZero?;
+    NoYes IsProcessingInvoiceProposalsInWorkflowEnabled?;
+    int:Signed32 UtilizationRate?;
+    int:Signed32 GrossMarginDecimals?;
+    NoYes BlockParentActivitySelection?;
+    NoYes SelectProjectInvoiceProposalByFundingSource?;
+    string TimeProjectsEfficiency?;
+    ProjGrossMarginDisplay GrossMarginRatio?;
+    string ItemLumpSumAllocationKey?;
+    TSFieldVisibility TimeServiceVisibilityInternalComment?;
+    NoYes ItemNeverLedgerConsum?;
+    string CFOPIdOutsideCountryRegion?;
+    string DefaultItemAllocationKey?;
+    string InternalCostBillable?;
+    NoYes IsItemConsumption?;
+    string DefaultCostTemplate?;
+    int:Signed32 HourQtyDecimals?;
+    string InvestmentEfficiency?;
+    NoYes ExpenseDeleteReducedToZero?;
+    string TermsOfPaymentForExpenses?;
+    string DefaultCategoryHour?;
+    NoYes IsActivityHourForecastRequired?;
+    ProjType DefaultProjectType?;
+    NoYes HourDeleteReducedToZero?;
+    string AbsenceProject?;
+    NoYes IsActivityItemForecastRequired?;
+    ProjTaxGroupMethod SalesTaxGroupMethod?;
+    NoYes HasInactiveCategories?;
+    NoYes UseBudgetControl?;
+    TSFieldVisibility TimeServiceVisibilityLineProperty?;
+    NoYes IsInvoicePrintingByInvoiceType?;
+    string FolderForMicrosoftProjectFiles?;
+    int:Signed32 MaximumNumberOfTimesheetsPerPeriod?;
+    NoYes PurchaseOrder?;
+    NoYes UseAdjustmentDateAsNewProjectDate?;
+    NoYes SetSubproductionToConsumed?;
+    NoYes HasFinishedProjects?;
+    ProjBudgetManagement ProjectBudgetManagement?;
+    NoYes IsTimesheetAuditTrailRequired?;
+    CreditLineErrorType CreditLineError?;
+    NoYes CommittedCostUpToEstimateDate?;
+    NoYes HasTimeRegistration?;
+    TSFieldVisibility TimeServiceVisibilityCustomer?;
+    string DefaultJournalNameItem?;
+    string DesignationOfSignatory?;
+    NoYes HideExternalComments?;
+    ProjReduceCostPriority ExpenseReduceCostPriority3?;
+    NoYes HasTerminatedWorkers?;
+    NoYes IsFutureTimesheetEntriesBlocked?;
+    ErrorTolerance AfterEliminationDate?;
+    TSFieldVisibility TimeServiceVisibilityExternalComment?;
+    NoYes IsInvoicePrintingByTransactionText?;
+    NoYes ValidateAbsence?;
+    PriceAmount DisplayTransactions?;
+    string DefaultCategoryExpense?;
+    NoYes IsActivityHourJournalRequired?;
+    int ContractVarianceAccount?;
+    string CategoryName?;
+    NoYes ItemRequirement?;
+    NoYes AllowSalesOrdersForMultipleFundingSources?;
+    NoYes NegativeBudgetsToBeCarriedForwardAllowed?;
+    NoYes IsEnableAlternativeAccountForCancellation?;
+    TSFieldVisibility TimeServiceVisibilitySalesTaxGroup?;
+    ProjBudgetOverrunOption BudgetOverrunDefault?;
+    string CapacityPlanningProduction?;
+    NoYes IsSplitInvoiceBasedOnServiceCode?;
+    NoYes EnableCancelSettledDebitNote?;
+    NoYes IsPaymentCriteria?;
+    NoYes IsItemNeverLedgerPL?;
+    NoYes TimeServiceEnableDefaultLineProperty?;
+    string AuthorizedSignatory?;
+    NoYes IsCarryForwardRemainingBudgets?;
+    string OriginalBudget?;
+    ProjValParameter ValidationProjectCategory?;
+    ProjCostControlMethod CostControlMethods?;
+    string TaxItemGroupOnAcc?;
+    NoYes IsCreateItemRequirement?;
+    string TotalBudget?;
+    NoYes IsInvoicePrintingByCategory?;
+    ProjReduceCostPriority ExpenseReduceCostPriority1?;
+    NoYes AllowTimesheetChangeReason?;
+    NoYes IsDateCorrectionsOnTimesheetsAllowed?;
+    string TimeProjectsBillable?;
+    NoYes SeparateContractValFromBillingMilestones?;
+    NoYes IsInvoicePrintingByLineSpecific?;
+    TaxCalculationProjDateType CalculationDateType?;
+    string TimesheetJournal?;
+    NoYes IsStartStopTimeRequired?;
+    string CFOPIdSameState?;
+    string TimeMaterialEfficiency?;
+    string DefaultCategoryFee?;
+    string RemainingBudget?;
+    ProjReduceCostPriority ExpenseReduceCostPriority5?;
+    int:Signed32 GeneralBufferDays?;
+    string MissingTimesheetsEmailId?;
+    decimal MinimumTimeIncrement?;
+    NoYes RequireTimesheetChangeReason?;
+    NoYes ShowInvoiceSummary?;
+    ProjReduceCostPriority ItemReduceCostPriority3?;
+    ProjReduceCostPriority ItemReduceCostPriority2?;
+    ProjReduceCostPriority ItemReduceCostPriority1?;
+    ProjLineTotal AccrueRevenue?;
+    NoYes InvoiceProposal?;
+    ProjReduceCostPriority ItemReduceCostPriority5?;
+    ProjReduceCostPriority ItemReduceCostPriority4?;
+    NoYes Eliminated?;
+    NoYes EnableContractCurrencyForRevRec?;
+    FirstLast ApplyPrioritySettingsFirstOrLastInFundingAllocationOrder?;
+    NoYes IsIntercompanyResourceSchedulingAndTimesheetsEnabled?;
+    NoYes TimeServiceEnableService?;
+    NoYes Timesheets?;
+    string DefaultJournalNamesFee?;
+    ProjLineTotal PostCosts?;
+    ProjLineTotal Adjustment?;
+    NoYes IsHourCostInProfitLossStatementIncluded?;
+    NoYes IsInvoicePrintingByEmployee?;
+    ProjValueAddedDisplay ValueAddedDisplay?;
+    ProjTaxItemGroupMethod ItemSalesTaxGroupMethod?;
+    ProjBudgetInterval BudgetControlInterval?;
+    int:Signed32 AmountInMillions?;
+    TSVoucherDateChange SetVoucherDateTo?;
+    ProjLineTotal Estimate?;
+    NoYes Production?;
+};
+
+# Represents the Queries record for the operation: getProjectCategoryEntities
+public type GetProjectCategoryEntitiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjectJournalApprovalDetails record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -634,6 +964,34 @@ public type ListProjectPeriodsQueries record {
     string selectFields?;
 };
 
+public type ProjectContract record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectContractID?;
+    string ContractDate?;
+    NoYes LockContractSalesCurrency?;
+    string BankAccount?;
+    string CentralBankPurposeCode?;
+    string InvoicingName?;
+    string SalesTaxGroup?;
+    string SalesResponsiblePersonnelNumber?;
+    string PriceGroup?;
+    string PurposeText?;
+    NoYes NetPrice?;
+    ProjForecastInvoiceFrequency InvoiceFrequency?;
+    string SalesCurrency?;
+    DetailSummary DefaultPostingLevel?;
+    string TransactionCode?;
+    decimal RetainagePercent?;
+    NoYes ContractLines?;
+    decimal MinimumTimeIncrement?;
+    NoYes ServiceOnDeliveryAddress?;
+    string CustomerRetentionTermId?;
+    Listcode ListCodeId?;
+    string Name?;
+    boolean ProgressInvoicing?;
+};
+
 public type ProjInvoiceQRCode record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -652,6 +1010,40 @@ public type GetProjectDefaultDimensionRulesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+# Represents the Queries record for the operation: listProjQuotationLines
+public type ListProjQuotationLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ProjValParameter "None"|"Lookup"|"Mandatory";
+
+public type TaxCalculationProjDateType "InvoiceDate"|"ProjectDate";
+
+public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
 
 public type ProjFeatureManagement record {
     string \@odata\.etag?;
@@ -676,6 +1068,14 @@ public type UpdateProjInvoiceQRCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+# Represents the Headers record for the operation: deletePSAActuals
+public type DeletePSAActualsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PSAProjAmountVsUnit "Amount";
 
 public type ProjGrantTypesCollection record {
     *ODataCollection;
@@ -738,6 +1138,16 @@ public type ListProjGrantTypesV2Queries record {
 
 public type OurYourBoth "Our"|"Your"|"Both";
 
+# Represents the Queries record for the operation: getProjectSalesItemRequirements
+public type GetProjectSalesItemRequirementsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getProjectControlCostGroups
 public type GetProjectControlCostGroupsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -782,11 +1192,22 @@ public type ListProjectFeeForecastsQueries record {
     string selectFields?;
 };
 
+public type ProjAdvancedJournalLineHoursCollection record {
+    *ODataCollection;
+    ProjAdvancedJournalLineHour[] value?;
+};
+
 public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
 
 public type ProjValEmplProjTableEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjValEmplProjTableEntity_DataEntity[] value?;
+};
+
+# Represents the Headers record for the operation: updateProjExpensesExport
+public type UpdateProjExpensesExportHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ProjCFDANumbersCollection record {
@@ -799,12 +1220,96 @@ public type ProjectRevenueSalesPricesCollection record {
     ProjectRevenueSalesPrice[] value?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+# Represents the Queries record for the operation: listProjectParameterV2
+public type ListProjectParameterV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+
+public type ProjAdvancedJournalLineCostTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int ProjAdvancedJournal?;
+    decimal LineNumber?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    NoYes CustomsExportOrder?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
+};
 
 # Represents the Queries record for the operation: getProjInvoiceChorusProDetails
 public type GetProjInvoiceChorusProDetailsQueries record {
@@ -873,11 +1378,19 @@ public type DeleteProjectTransactionCategoriesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateProjects
+public type UpdateProjectsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteProjHourCostPricesV2
 public type DeleteProjHourCostPricesV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type Direction_IN "Import"|"Export";
 
 public type ProjStatusRule "AllowUse"|"CreateForecast"|"CreateQuotation"|"CreateEstimate"|"CreateItemTask"|"CreateJournal"|"CreateInvoiceProposal"|"ReverseEliminate"|"CreateBeginningBalance"|"SubBillCreateBillingSchedule";
 
@@ -931,6 +1444,16 @@ public type UpdateProjGrantMatchingsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getProjectControls
+public type GetProjectControlsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: listProjValEmplProjTableEntityDataEntities
 public type ListProjValEmplProjTableEntityDataEntitiesQueries record {
     # Number of records to skip.
@@ -968,6 +1491,18 @@ public type GetProjCFDAClustersQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+# Represents the Queries record for the operation: getPSAActuals
+public type GetPSAActualsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
 
 # Represents the Queries record for the operation: listProjPeriodEmplEntityDataEntities
 public type ListProjPeriodEmplEntityDataEntitiesQueries record {
@@ -1008,10 +1543,22 @@ public type ProjValEmplCategorySetupEntity_DataEntity record {
     string ResourceLegalEntityDataArea?;
 };
 
+public type ProjectSalesItemRequirementsCollection record {
+    *ODataCollection;
+    ProjectSalesItemRequirement[] value?;
+};
+
+public type ProjAutoManual "Auto"|"Manual";
+
 # Represents the Headers record for the operation: updateProjectExpensePolicyGroups
 public type UpdateProjectExpensePolicyGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type PSAActualsCollection record {
+    *ODataCollection;
+    PSAActual[] value?;
 };
 
 # Represents the Headers record for the operation: updateProjGrantTypesV2
@@ -1026,6 +1573,16 @@ public type TableGroupAll "Table"|"GroupId"|"All";
 public type DeleteProjWBSActivityEstimatesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getProjectLinePropertySetupEntities
+public type GetProjectLinePropertySetupEntitiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getProjectJournalNames
@@ -1044,6 +1601,16 @@ public type DeleteProjectLinePropertiesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getProjJournalTransTransTaxInformations
+public type GetProjJournalTransTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getProjectFeeForecasts
 public type GetProjectFeeForecastsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -1055,6 +1622,8 @@ public type GetProjectFeeForecastsQueries record {
 };
 
 public type ProjJournalVoucherChange "DateChange"|"DateEmplChange";
+
+public type ProjValueAddedDisplay "ValueAddedMarkup"|"ValueAddedRation"|"ValueAddedMarupPct";
 
 # Represents the Headers record for the operation: updateProjValEmplProjTableEntityDataEntities
 public type UpdateProjValEmplProjTableEntityDataEntitiesHeaders record {
@@ -1112,6 +1681,16 @@ public type GetProjActualsImportsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getProjQuotationHeaders
+public type GetProjQuotationHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteProjCostSalesPrices
 public type DeleteProjCostSalesPricesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1126,6 +1705,79 @@ public type GetProjectCostTemplateLineCategoriesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteProjAdvancedJournalLineCostTransTaxInformations
+public type DeleteProjAdvancedJournalLineCostTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjectControlsCollection record {
+    *ODataCollection;
+    ProjectControl[] value?;
+};
+
+public type ProjJournalTransTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalId?;
+    decimal LineNum?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    NoYes CustomsExportOrder?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
 };
 
 # Represents the Headers record for the operation: updateProjValProjCategorySetupEntities
@@ -1276,6 +1928,45 @@ public type ProjGrantTypeV2 record {
     string ManagerPersonnelNumber?;
 };
 
+# Represents the Headers record for the operation: updateProjectContracts
+public type UpdateProjectContractsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjectsV2Collection record {
+    *ODataCollection;
+    ProjectV2[] value?;
+};
+
+# Represents the Queries record for the operation: listPSAActuals
+public type ListPSAActualsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjActualsImportsCollection record {
     *ODataCollection;
     ProjActualsImport[] value?;
@@ -1378,7 +2069,22 @@ public type ListProjectTransactionCategoriesQueries record {
     string selectFields?;
 };
 
+public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
+
+public type ProjectLinePropertySetupEntity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    TableGroupAll ProjectCode?;
+    string ProjectRelation?;
+    TableGroupAll CategoryCode?;
+    string CategoryRelation?;
+    string LinePropertyId?;
+    NoYes IsDebitNoteSetupEnabled?;
+};
+
 public type CollabSiteSharePointType "OnPremise"|"Online";
+
+public type DirectSettlement_IN "None"|"RG23A"|"RG23C"|"PLA";
 
 public type ProjectFormSetup record {
     string \@odata\.etag?;
@@ -1395,6 +2101,12 @@ public type ProjectFormSetup record {
     OurYourBoth ItemNumberInForms?;
     int:Signed32 PackingSlip?;
     int:Signed32 Invoice?;
+};
+
+# Represents the Headers record for the operation: deleteProjectContractLines
+public type DeleteProjectContractLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listProjectStageRuleSettingEntities
@@ -1425,10 +2137,48 @@ public type ListProjectStageRuleSettingEntitiesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getProjAdvancedJournalLineCostTransTaxInformations
+public type GetProjAdvancedJournalLineCostTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateProjectControlCostGroups
 public type UpdateProjectControlCostGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listProjectContracts
+public type ListProjectContractsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type ProjLinePropertySearch "Project"|"Category";
@@ -1468,10 +2218,43 @@ public type ProjectUnpostedTransViewsCollection record {
     ProjectUnpostedTransView[] value?;
 };
 
+# Represents the Queries record for the operation: listProjExpensesExport
+public type ListProjExpensesExportQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteProjGrantMatchings
 public type DeleteProjGrantMatchingsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ProjectsCollection record {
+    *ODataCollection;
+    Project[] value?;
 };
 
 # Represents the Queries record for the operation: listProjValEmplCategorySetupEntityDataEntities
@@ -1603,6 +2386,22 @@ public type ListProjRevenueProfilesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deletePSAForecasts
+public type DeletePSAForecastsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getProjectContracts
+public type GetProjectContractsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteProjectDefaultDimensionRules
 public type DeleteProjectDefaultDimensionRulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1615,7 +2414,125 @@ public type DeleteProjGrantFrequenciesHeaders record {
     string If\-Match?;
 };
 
+public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+
 public type NoYes "No"|"Yes";
+
+public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
+
+public type ProjQuotationLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string InventoryLotId?;
+    string RequestedReceiptDate?;
+    string ShippingWarehouseLocationId?;
+    SalesDeliveryDateControlType SalesQuotationPromisingMethod?;
+    string ItemNumber?;
+    string DeliveryAddressDescription?;
+    decimal MultilineDiscountPercentage?;
+    string ShippingWarehouseId?;
+    int SalesCategory?;
+    SalesQuotationStatus ProjQuotationStatus?;
+    decimal LineDiscountAmount?;
+    string ProductStyleId?;
+    string ProductConfigurationId?;
+    NoYes IsIntrastatTriangularDeal?;
+    decimal MultilineDiscountAmount?;
+    string ItemBatchNumber?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string DeliveryAddressCity?;
+    string RequestingCustomerAccountNumber?;
+    string SalesProductCategoryName?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string SalesUnitSymbol?;
+    string ProductSizeId?;
+    decimal FixedPriceCharges?;
+    string DeliveryAddressZipCode?;
+    string DeliveryAddressDunsNumber?;
+    string DeliveryTermsId?;
+    string DeliveryAddressName?;
+    string PackingUnitSymbol?;
+    string BOMId?;
+    string DeliveryAddressStreetNumber?;
+    string DeliveryAddressStreetInKana?;
+    string ShippingSiteId?;
+    NoYes IsDeliveryAddressPrivate?;
+    int:Signed32 LineCreationSequenceNumber?;
+    string MainAccountIdDisplayValue?;
+    decimal RequestedSalesQuantity?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string IntrastatTransactionCode?;
+    string ProjQuotationNumber?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    string SalesTaxItemGroupCode?;
+    string RouteId?;
+    string CommissionSalesRepresentativeGroupId?;
+    decimal Qty?;
+    string IntrastatStatisticsProcedureCode?;
+    string ProspectId?;
+    NoYes OverrideSalesTax?;
+    string LineDescription?;
+    string SalesUnit?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    decimal LineDiscountPercentage?;
+    decimal SalesPrice?;
+    string RequestedInventoryStatusId?;
+    decimal AllowedUnderdeliveryPercentage?;
+    string DeliveryAddressCityInKana?;
+    decimal AllowedOverdeliveryPercentage?;
+    decimal DeliveryAddressLongitude?;
+    string IntrastatCommodityCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string ProductColorId?;
+    QuotationProjTransType ProjTransType?;
+    string CFOPCode?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    string ProjActivityNumber?;
+    string DeliveryAddressPostBox?;
+    decimal LineAmount?;
+    string IntrastatPortId?;
+    string ProjDescription?;
+    decimal SalesPriceQuantity?;
+    decimal SuframaDiscountPercentage?;
+    string RequestedShippingDate?;
+    string ProjCategoryId?;
+    string ExternalItemNumber?;
+    string FormattedDeliveryAddress?;
+};
+
+public type ProjFundingType "Customer"|"Organization"|"Grant"|"OnHoldFundingSource";
+
+public type ProjExpenseExport record {
+    string \@odata\.etag?;
+    string ExpTransNumber?;
+    string ReferenceDataAreaId?;
+    string ProjTransId?;
+    decimal NetAmount?;
+    string ProjId?;
+    decimal TaxAmount?;
+    string ExchangeCode?;
+    int:Signed32 RetryCount?;
+    int:Signed32 ProjCostTransExists?;
+    string AccountingDate?;
+    decimal Amount?;
+    string TransactionCategoryId?;
+    string TransDate?;
+    string AdditionalInformation?;
+    ProjBillingType BillingType?;
+    string CostType?;
+    string InterCompanyLE?;
+    string ProjActivityNumber?;
+    decimal Quantity?;
+};
 
 public type ProjectItemJournalTablesCollection record {
     *ODataCollection;
@@ -1686,6 +2603,83 @@ public type GetProjectExpensePolicyGroupsQueries record {
     string selectFields?;
 };
 
+public type ProjectV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectId?;
+    string DefaultScheduleDate?;
+    string EstimateProjectId?;
+    NoYes IsActivityRequiredForHourTransaction?;
+    NoYes IsTemplateApplied?;
+    string Email?;
+    string ProjectGroupId?;
+    string DateOfCreation?;
+    string IntegrationSourceDataId?;
+    decimal ZakatProjectValue?;
+    decimal ScheduleDurationInDays?;
+    string ScheduleEndDate?;
+    ProjBudgetaryControlOn TransactionTypesControlled?;
+    NoYes IsActivityRequiredForItemForecast?;
+    NoYes IsActivityRequiredForExpenseTransaction?;
+    string ZakatSubject?;
+    string ProjectControllerPersonnelNumber?;
+    string Description?;
+    string AlternateProjectId?;
+    decimal TotalPlannedEffortInHours?;
+    string ProjectedEndDate?;
+    NoYes CanUseAlternateProjectBudget?;
+    string SalesTaxGroupId?;
+    string DimensionDisplayValue?;
+    string ExtensionDate?;
+    NoYes IsProjectCategoryValidationEnabled?;
+    BankLGDocumentType BankDocumentType?;
+    string ScheduleStartDate?;
+    NoYes IsInvestment?;
+    NoYes IsActivityRequiredForHourForecast?;
+    string SalesPriceGroupId?;
+    string ZakatContractPeriod?;
+    string ZakatContractDate?;
+    string ArchitectPersonnelNumber?;
+    NoYes IsActivityRequiredForExpenseForecast?;
+    NoYes IsActivityRequiredForItemTransaction?;
+    DetailSummary PostingLevel?;
+    string ProjectedStartDate?;
+    string DeliveryAddressLocationId?;
+    NoYes CanVerifyCostAgainstRemainingForecast?;
+    ProjBudgetManagement ProjectBudgetManagement?;
+    NoYes IsResourceCalendarIgnored?;
+    ProjStatus ProjectStage?;
+    NoYes CanCarryForwardRemainingBudgets?;
+    ProjLedgerPosting LedgerPostingSortPriority?;
+    ProjLinePropertySearch LinePropertySearchPriority?;
+    NoYes IsOCIPGeneralLiability?;
+    string ActualStartDate?;
+    string JobIdentification?;
+    string DeliveryName?;
+    NoYes IsCertifiedPayroll?;
+    ProjBudgetOverrunOption BudgetOverrunDefault?;
+    string SubprojectIdFormat?;
+    string ParentProjectId?;
+    NoYes IsHeader?;
+    decimal ZakatContractAmendment?;
+    NoYes IsBudgetControlEnabled?;
+    string ProjectContractId?;
+    NoYes AllowNegativeBudgetsToBeCarriedForward?;
+    string DefaultInvoiceAccount?;
+    string CustomerAccountNumber?;
+    string SalesManagerPersonnelNumber?;
+    string SchedulingCalendarId?;
+    NoYes IsProjectTemplate?;
+    NoYes IsOCIPWorkerCompensation?;
+    string ProjectManagerPersonnelNumber?;
+    string SortingField3?;
+    string SortingField2?;
+    string SortingField1?;
+    string ProjectName?;
+    ProjBudgetInterval BudgetControlInterval?;
+    string ActualEndDate?;
+};
+
 # Represents the Headers record for the operation: updateProjectExpenseForecasts
 public type UpdateProjectExpenseForecastsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1749,6 +2743,8 @@ public type UpdateProjectQuotationWbsTasksHeaders record {
     string If\-Match?;
 };
 
+public type PSAProjTrackCost "Actual"|"Standard";
+
 public type ProjectExpenseForecast record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1801,10 +2797,18 @@ public type ProjectItemJournalTable record {
     ItemReservation Reservation?;
 };
 
+# Represents the Headers record for the operation: updatePSAIndirectComponentGroupEntities
+public type UpdatePSAIndirectComponentGroupEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjHourCostPriceEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjHourCostPriceEntity_DataEntity[] value?;
 };
+
+public type ProjGrossMarginDisplay "MarkupFactor"|"ContributionMargin"|"MarkupPct";
 
 # Represents the Headers record for the operation: deleteProjectJournalApprovals
 public type DeleteProjectJournalApprovalsHeaders record {
@@ -1964,6 +2968,12 @@ public type DeleteProjValProjCategorySetUpEntitiesV2Headers record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateProjectCategoryEntities
+public type UpdateProjectCategoryEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateProjCFDANumbers
 public type UpdateProjCFDANumbersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2071,6 +3081,146 @@ public type ProjectExpensePoliciesCollection record {
     ProjectExpensePolicy[] value?;
 };
 
+public type ProjQuotationHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjQuotationNumber?;
+    string FiscalDocumentOperationTypeId?;
+    string SalesQuotationTemplateName?;
+    string InvoiceAddressStreet?;
+    NoYes IsCustomerFinalUser?;
+    string CampaignId?;
+    string Email?;
+    string DefaultShippingSiteId?;
+    string ProjInvoiceProjId?;
+    string DeliveryAddressDescription?;
+    NoYes IsInvoiceAddressPrivate?;
+    string QuotationDocumentIntroductionName?;
+    string QuotationResponsiblePersonnelNumber?;
+    string GeneratedSalesOrderNumber?;
+    SalesQuotationStatus ProjQuotationStatus?;
+    string TeleMarketingCallListId?;
+    string NumberSequenceGroupId?;
+    string SalesOrderOriginCode?;
+    decimal InvoiceAddressLatitude?;
+    string CustomerPaymentFinancialInterestCode?;
+    string InvoiceAddressStreetInKana?;
+    decimal CashDiscountPercentage?;
+    string SalesOrderPoolId?;
+    string DeliveryAddressCountryRegionId?;
+    decimal DeliveryAddressLatitude?;
+    string TotalDiscountCustomerGroupCode?;
+    string DeliveryAddressCity?;
+    string RequestingCustomerAccountNumber?;
+    SalesDeliveryDateControlType SalesOrderPromisingMethod?;
+    decimal TotalDiscountPercentage?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressZipCode?;
+    string LanguageId?;
+    string DeliveryAddressDunsNumber?;
+    string PSAEstProjStartDate?;
+    string MultilineDiscountCustomerGroupCode?;
+    BankLGDocumentType BankDocumentType?;
+    string ProjQuotationName?;
+    string InvoiceAddressStateId?;
+    string CustomerPaymentMethodSpecificationName?;
+    string CommissionCustomerGroupId?;
+    string DeliveryAddressName?;
+    string QuotationFollowUpActivity?;
+    string QuotationReasonCode?;
+    decimal QuotationTotalTaxAmount?;
+    string InvoiceAddressCountryRegionId?;
+    string DeliveryAddressStreetNumber?;
+    string PSAExternalDescription?;
+    string DeliveryAddressStreetInKana?;
+    string CustAccount?;
+    string QuotationDocumentTitleName?;
+    string ChargeCustomerGroupId?;
+    string InvoiceAddressStreetNumber?;
+    string PSASchedCalendarId?;
+    string TaxExemptNumber?;
+    NoYes IsDeliveryAddressPrivate?;
+    NoYes AreTotalsCalculated?;
+    decimal TotalDiscountAmount?;
+    string FormattedInvoiceAddress?;
+    string ExportReason?;
+    string DeliveryAddressCountryRegionISOCode?;
+    string CashDiscountCode?;
+    string ProjQuotationExpiryDate?;
+    string InvoiceAddressCountryRegionISOCode?;
+    decimal PSAEstdProjDuration?;
+    string IntrastatTransactionCode?;
+    string URL?;
+    string CurrencyCode?;
+    string PSAEstProjEndDate?;
+    string ServiceAgreementId?;
+    NoYes ArePricesIncludingSalesTax?;
+    string InvoiceCustomerAccountNumber?;
+    string DeliveryAddressLocationId?;
+    NoYes PSASchedIgnoreCalendar?;
+    SettlementType CustomerTransactionSettlementType?;
+    string CommissionSalesRepresentativeGroupId?;
+    string InvoiceAddressCityInKana?;
+    decimal QuotationTotalDiscountAmount?;
+    string ReceiptDateRequested?;
+    string ProspectId?;
+    string IntrastatStatisticsProcedureCode?;
+    NoYes OverrideSalesTax?;
+    string DeliveryAddressStreet?;
+    string DeliveryModeCode?;
+    string PSAInternalDescription?;
+    string FixedDueDate?;
+    string SalesTaxGroupCode?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    string CustomerRequisitionNumber?;
+    decimal InvoiceAddressLongitude?;
+    string InvoiceAddressCity?;
+    string InvoiceAddressPostBox?;
+    string ContactPersonId?;
+    Listcode EUSalesListCode?;
+    string InvoiceAddressDistrictName?;
+    decimal QuotationTotalAmount?;
+    decimal QuotationHeaderTaxAmount?;
+    string SalesQuotationTemplateGroupId?;
+    NoYes IsSalesQuotationTemplateActive?;
+    string PaymentTermsName?;
+    string DeliveryAddressCityInKana?;
+    string CustomerPostingProfileId?;
+    decimal DeliveryAddressLongitude?;
+    string QuotationDocumentConclusionName?;
+    string InvoiceAddressZipCode?;
+    string DeliveryTermsCode?;
+    string DefaultLedgerDimensionDisplayValue?;
+    Timezone DeliveryAddressTimeZone?;
+    string DefaultShippingWarehouseId?;
+    string QuotationTakerPersonnelNumber?;
+    string DeliveryAddressStateId?;
+    string DeliveryBuildingCompliment?;
+    string IntrastatTransportModeCode?;
+    string CustomersReference?;
+    string DeliveryAddressPostBox?;
+    Timezone InvoiceAddressTimeZone?;
+    string OpportunityId?;
+    string InvoiceAddressCountyId?;
+    decimal QuotationTotalChargesAmount?;
+    string LineDiscountCustomerGroupCode?;
+    string IntrastatPortId?;
+    string SalesQuotationConfirmationDate?;
+    string CustomerPaymentFineCode?;
+    string InvoiceBuildingCompliment?;
+    string PriceCustomerGroupCode?;
+    string DeliveryReasonCode?;
+    decimal ReportingCurrencyFixedExchangeRate?;
+    string ProjQuotationFollowUpDate?;
+    string RequestedShippingDate?;
+    string CustomerPaymentMethodName?;
+    string SalesUnitId?;
+    string FormattedDeliveryAddress?;
+    string ProjId?;
+    decimal FixedExchangeRate?;
+};
+
 public type ProjGrantStatus "Entered"|"Submitted"|"Approved"|"Awarded"|"Active"|"Closed"|"Rejected";
 
 # Represents the Queries record for the operation: getProjGrantsV2
@@ -2105,6 +3255,54 @@ public type GetProjWBSActivityEstimatesQueries record {
 
 # Represents the Queries record for the operation: listProjectPostTransViews
 public type ListProjectPostTransViewsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getPSAForecasts
+public type GetPSAForecastsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getProjInventoryOnHand
+public type GetProjInventoryOnHandQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listProjAdvancedJournalLineHours
+public type ListProjAdvancedJournalLineHoursQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -2171,10 +3369,19 @@ public type ProjectFundingRule record {
     decimal AllocationPercentage?;
 };
 
+public type TransTaxInformationType_IN "Normal"|"InventTransferFrom"|"InventTransferTo";
+
+public type ProjAdvancedJournalLineCostTransTaxInformationsCollection record {
+    *ODataCollection;
+    ProjAdvancedJournalLineCostTransTaxInformation[] value?;
+};
+
 public type ProjPeriodEmplEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjPeriodEmplEntity_DataEntity[] value?;
 };
+
+public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
 
 # Represents the Headers record for the operation: deleteProjectExpensePolicies
 public type DeleteProjectExpensePoliciesHeaders record {
@@ -2191,6 +3398,46 @@ public type UpdateProjectLedgerPostingDefinitionsHeaders record {
 public type ProjGrantTypeFrequenciesCollection record {
     *ODataCollection;
     ProjGrantTypeFrequency[] value?;
+};
+
+public type ProjectContractLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectContractId?;
+    int:Signed32 LineSequenceNumber?;
+    decimal UnitPrice?;
+    PSAProjAmountVsUnit BudgetMethod?;
+    decimal LineAmount?;
+    string TCSGroupCode?;
+    NoYes AreItemTransactionsIncluded?;
+    string EndDate?;
+    decimal ContractStandaloneSellingPrice?;
+    string SalesTaxGroupCode?;
+    string LineProjectId?;
+    string UnitSymbol?;
+    NoYes AreExpenseTransactionsIncluded?;
+    ProjContractBillingMethod BillingMethod?;
+    string FeeCategoryId?;
+    string Description?;
+    PSAContractLineType LineType?;
+    decimal RetainagePercentage?;
+    decimal FeePercentage?;
+    decimal MaximumRetailPrice?;
+    string TDSGroupCode?;
+    decimal AssessableValue?;
+    decimal PaidAmount?;
+    string CustomerRetentionTermId?;
+    NoYes IsIndirectCostIncluded?;
+    string StartDate?;
+    string VATCommodityCode?;
+    NoYes AreFeeTransactionsIncluded?;
+    string ChangeOrderNumber?;
+    decimal Quantity?;
+    NoYes AreHourTransactionsIncluded?;
+    InvoiceScheduleType InvoiceScheduleType?;
+    string ContractLineId?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string FeeProjectId?;
 };
 
 public type ProjectIntercompanyParameterEntitiesCollection record {
@@ -2333,6 +3580,8 @@ public type DeleteProjectAllocationKeysHeaders record {
     string If\-Match?;
 };
 
+public type ITCCategory_IN "Input"|"CapitalGoods"|"Others";
+
 public type ProjectJournalName record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2374,6 +3623,85 @@ public type DeleteProjCategoryGroupsHeaders record {
     string If\-Match?;
 };
 
+public type ProjectFundingSource record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectContractID?;
+    string FundingSourceId?;
+    string NumberSequenceGroup?;
+    string CustomerReference?;
+    string AddressValidFrom?;
+    string GrantId?;
+    string PaymentSchedule?;
+    string AddressCity?;
+    string AddressState?;
+    string AddressCountry?;
+    NoYes EInvoiceLineSpec?;
+    string CustomerOrOrganization?;
+    string PartyNumber?;
+    string AddressValidTo?;
+    decimal AddressLatitude?;
+    string VATReportDateCode?;
+    string DimensionDisplayValue?;
+    string AddressDescription?;
+    string AddressDistrictName?;
+    NoYes CreateDefaultFundingRule?;
+    string Language?;
+    PaymentStub AssociatedPaymentAttachmentOnTheProjectInvoice?;
+    string InvoiceLocationId?;
+    NoYes IsPrimaryFundingSource?;
+    string AddressCountryISOCode?;
+    PSAInvoiceFormats InvoiceFormat?;
+    string PostingProfile?;
+    string AddressStreet?;
+    string AddressCounty?;
+    string InvoiceName?;
+    string IndividualBufferDays?;
+    Timezone AddressTimeZone?;
+    ProjFundingType FundingType?;
+    decimal AddressLongitude?;
+    string CashDiscount?;
+    string DimensionAccount?;
+    string CustomerRequisition?;
+    string RetentionTermId?;
+    string AddressZipCode?;
+    string ContactID?;
+    string TermsOfPayment?;
+};
+
+# Represents the Queries record for the operation: listProjectParameterEntities
+public type ListProjectParameterEntitiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ProjExpensesExportCollection record {
+    *ODataCollection;
+    ProjExpenseExport[] value?;
+};
+
 public type ProjWBSActivityEstimate record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2394,15 +3722,51 @@ public type ProjWBSActivityEstimate record {
     string TaskName?;
 };
 
+public type SalesStatus "None"|"Backorder"|"Delivered"|"Invoiced"|"Canceled";
+
+# Represents the Headers record for the operation: updateProjInventoryOnHand
+public type UpdateProjInventoryOnHandHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjectJournalApprovalsCollection record {
     *ODataCollection;
     ProjectJournalApproval[] value?;
 };
 
+# Represents the Queries record for the operation: getProjectFundingSources
+public type GetProjectFundingSourcesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteProjectParameterV2
+public type DeleteProjectParameterV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type BudgetAllocateMethod "None"|"Period"|"Key";
+
+# Represents the Headers record for the operation: updateProjQuotationHeaders
+public type UpdateProjQuotationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Headers record for the operation: deleteProjectStages
 public type DeleteProjectStagesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateProjAdvancedJournalLineHours
+public type UpdateProjAdvancedJournalLineHoursHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -2449,10 +3813,56 @@ public type DeleteProjAdvancedJournalsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteProjInventoryOnHand
+public type DeleteProjInventoryOnHandHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjProdPostingTypeSetup "FinishedItemMethod"|"ConsumedMethod";
+
 # Represents the Headers record for the operation: deleteProjectContractLineMilestones
 public type DeleteProjectContractLineMilestonesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getPSAIndirectComponentGroupEntities
+public type GetPSAIndirectComponentGroupEntitiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listProjectContractHeaders
+public type ListProjectContractHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteProjectStageRuleSettingEntities
@@ -2466,6 +3876,8 @@ public type DeleteProjInvoiceChorusProDetailsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type ProjTaxGroupMethod "Project"|"InvoiceProject"|"AccountReceivable"|"Search";
 
 public type ProjInvoice_WCollection record {
     *ODataCollection;
@@ -2527,6 +3939,11 @@ public type DeleteProjectGrantCustomerTypesHeaders record {
     string If\-Match?;
 };
 
+public type ProjectParameterV2Collection record {
+    *ODataCollection;
+    ProjectParameterV2[] value?;
+};
+
 # Represents the Headers record for the operation: deleteProjectRevenueSalesPrices
 public type DeleteProjectRevenueSalesPricesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2537,6 +3954,8 @@ public type ProjectDefaultDimensionRulesCollection record {
     *ODataCollection;
     ProjectDefaultDimensionRule[] value?;
 };
+
+public type ExciseRecordType_IN "None"|"RG23A"|"RG23C"|"RG23D";
 
 public type ProjectLinePropertiesCollection record {
     *ODataCollection;
@@ -2592,6 +4011,26 @@ public type ProjCFDAClustersCollection record {
     ProjCFDACluster[] value?;
 };
 
+public type ProjectControl record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CostTemplateId?;
+    string Name?;
+    AmountUnit CompletionBasedOn?;
+    ProjAutoManual CompletionMethod?;
+    string ItemCostLineId?;
+    string ExpenseCostLineId?;
+    string HourCostLineId?;
+};
+
+public type SalesDeliveryDateControlType "None"|"SalesLeadTime"|"ATP"|"ATPPlusIssueMargin"|"CTP"|"FullRunCTP";
+
+# Represents the Headers record for the operation: updateProjAdvancedJournalLineCostTransTaxInformations
+public type UpdateProjAdvancedJournalLineCostTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjectQuotationWbsTask record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2617,6 +4056,14 @@ public type ProjectQuotationWbsTask record {
     string EndDate?;
 };
 
+public type ProjPaymentStatus "NoPayment"|"ExpectedPayment"|"Paid";
+
+# Represents the Headers record for the operation: deleteProjAdvancedJournalLineHours
+public type DeleteProjAdvancedJournalLineHoursHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type PrePrintLevel "BlankPaper"|"SemiPrePrinted"|"PrePrinted";
 
 # Represents the Headers record for the operation: deleteProjGrantTypeFrequencies
@@ -2625,11 +4072,101 @@ public type DeleteProjGrantTypeFrequenciesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updatePSAForecasts
+public type UpdatePSAForecastsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listProjAdvancedJournalLineCostTransTaxInformations
+public type ListProjAdvancedJournalLineCostTransTaxInformationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjAccountType "StatusAccount"|"OnAccountAccount"|"CostAccount"|"OffsetAccount"|"ExchRateDiff"|"PayrollAllocation"|"RevenueAccount"|"SalesValue"|"SalesOffsetAccount"|"OffsetAccountItem"|"StatusAccountItem"|"AccruedTurnoverProd"|"WIPProduction"|"AccruedTurnoverProfit"|"WIPProfit"|"AccruedCost"|"WIPCostAccruals"|"AccruedRevenueOnAccount"|"WIPInvoicedOnAccount"|"AccruedRevenueSubscription"|"WIPSubscription"|"PSAWriteOffCap"|"IntercompanyCost"|"IntercompanyRevenue"|"DebitNote_BR"|"InvoiceCancelRevenueAccount"|"RevRecDeferredRevenue"|"RevRecDeferredCost";
 
 public type TaxSpecPrintLevel "None"|"Currency"|"CurrencyMST";
 
+# Represents the Queries record for the operation: listProjectFundingSources
+public type ListProjectFundingSourcesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type QuotationProjTransType "None"|"Fee"|"Hour"|"Expense"|"Item";
+
+# Represents the Queries record for the operation: listProjJournalTransTransTaxInformations
+public type ListProjJournalTransTransTaxInformationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 public type ProjectDefaultDimensionRule record {
     string \@odata\.etag?;
@@ -2728,12 +4265,30 @@ public type TSPerWeekMth "Week"|"BiWeekly"|"SemiMonthly"|"Month"|"Period"|"Day"|
 
 public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
 
+# Represents the Queries record for the operation: getProjectParameterV2
+public type GetProjectParameterV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteProjTableTransTaxInformations
+public type DeleteProjTableTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjectAllocationKeyDetailsCollection record {
     *ODataCollection;
     ProjectAllocationKeyDetails[] value?;
 };
 
 public type FirstLast "First"|"Last";
+
+public type ErrorTolerance "Accept"|"Warning"|"Error";
 
 # Represents the Queries record for the operation: getProjResourceEntityDataEntities
 public type GetProjResourceEntityDataEntitiesQueries record {
@@ -2752,49 +4307,6 @@ public type ProjectReportSortFieldsCollection record {
     ProjectReportSortFields[] value?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
 
 # Represents the Headers record for the operation: deleteProjectPostTransViews
 public type DeleteProjectPostTransViewsHeaders record {
@@ -2802,8 +4314,24 @@ public type DeleteProjectPostTransViewsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getProjectsV2
+public type GetProjectsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteProjActualsImports
 public type DeleteProjActualsImportsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjExpensesExport
+public type DeleteProjExpensesExportHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -2900,6 +4428,117 @@ public type ListProjCostPriceExpensesQueries record {
 
 # Represents the Headers record for the operation: updateProjExpenseCategoriesExport
 public type UpdateProjExpenseCategoriesExportHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type Project record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectID?;
+    string ActualStartDate?;
+    NoYes CertifiedPayroll?;
+    NoYes CanVerifyCostAgainstRemainingForecast?;
+    PSAProjTrackCost TrackCost?;
+    NoYes CanCarryForwardRemainingBudgets?;
+    BankLGDocumentType BankDocumentType?;
+    NoYes IsActivityRequiredForHourForecast?;
+    string DimensionDisplayValue?;
+    string SortingId2?;
+    string Calendar?;
+    decimal ZakatContractAmendment?;
+    string LocationID?;
+    NoYes IsActivityRequiredForItemTransaction?;
+    string ZakatContractPeriod?;
+    string ParentProject?;
+    PSAPReqControl RequisitionOrPurchaseOrderControl?;
+    PSAConstraintType ConstraintType?;
+    string CustomerAccount?;
+    int:Signed32 AlertTimeFrameWeeks?;
+    PSAProjStatus Status?;
+    NoYes AllowNegativeBudgetsToBeCarriedForward?;
+    decimal DurationInDays?;
+    ProjStatus ProjectStage?;
+    string SortingId1?;
+    PSAInvoiceMethod InvoicingMethod?;
+    string EndDate1?;
+    string ConstraintDate?;
+    decimal ZakatProjectValue?;
+    ProjBudgetInterval BudgetControlInterval?;
+    string DateOfCreation?;
+    decimal PercentToRetain?;
+    decimal TotalEffortInHours?;
+    string ZakatContractDate?;
+    NoYes IsActivityRequiredForExpenseForecast?;
+    DetailSummary PostingLevel?;
+    NoYes InvoiceCost?;
+    PSAProjTimeMeasure TimeMeasure?;
+    string ExtensionDate?;
+    ProjBudgetOverrunOption BudgetOverrunDefault?;
+    string ProjectName?;
+    string ProjectedStartDate?;
+    string StartDate1?;
+    decimal MinimumTimeIncrement?;
+    ProjType ProjectType?;
+    string ProjectGroup?;
+    string SubprojectIDFormat?;
+    ProjLinePropertySearch SearchPriority?;
+    NoYes CanUseBudgetControl?;
+    PSAPReqValidate ItemValidation?;
+    NoYes TaskCompletelyScheduled?;
+    NoYes DurationDeterminesEndDate?;
+    NoYes IsActivityRequiredForExpenseTransaction?;
+    string Unit?;
+    NoYes IsActivityRequiredForItemForecast?;
+    PSAPReqValidate HourValidation?;
+    string SalesPriceGroup?;
+    string Notes?;
+    string Description?;
+    string WorkerRespFinancialPersonnelNumber?;
+    string ProjectedEndDate?;
+    string FixedAssetNumber?;
+    NoYes DefaultOnSubprojects?;
+    string ActualEndDate?;
+    NoYes CanUseAlternateProjectBudget?;
+    string SalesTaxGroup?;
+    JmgJobPayTypeEnum JobPayType?;
+    ProjBudgetManagement ProjectBudgetManagement?;
+    NoYes IsReadyForInvoicing?;
+    string WorkerArchitectPersonnelNumber?;
+    ProjLedgerPosting LedgerPostingSortPriority?;
+    string Telephone?;
+    string CustomerRetentionTermId?;
+    string DeliveryName?;
+    ProjBudgetaryControlOn TransactionTypesControlled?;
+    NoYes PSASchedIgnoreCalendar?;
+    NoYes ProjectTemplate?;
+    string DefaultInvoiceAccount?;
+    string JobIdentification?;
+    string AlternateProject?;
+    PSAProjTask ProjectOrTask?;
+    NoYes Header?;
+    NoYes IsActivityRequiredForHourTransaction?;
+    PSAResSchedStatus ScheduleStatus?;
+    NoYes Milestone?;
+    string ExternalRevision?;
+    int:Signed32 EndTime?;
+    NoYes Category?;
+    string EstimateProjectID?;
+    int:Signed32 StartTime?;
+    string ProjectContractID?;
+    string WorkerRespSalesPersonnelNumber?;
+    NoYes TemplateApplied?;
+    string Fax?;
+    string Email?;
+    string SortingId3?;
+    string WorkerResponsiblePersonnelNumber?;
+    string ActiveRevision?;
+    string Date?;
+    string ZakatSubject?;
+};
+
+# Represents the Headers record for the operation: deleteProjectsV2
+public type DeleteProjectsV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3088,6 +4727,30 @@ public type UpdateProjectExpensePolicyGroupEmployeesHeaders record {
     string If\-Match?;
 };
 
+public type ProjectParameterV2 record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int:Signed32 Key?;
+    ProjLineTotal LineTotalPostCost?;
+    string TaxItemGroupOnAcc?;
+    string CostCategory?;
+    NoYes ProjectOperationsIntegrationFeatureStatus?;
+    string EmplCategory?;
+    ProjLineTotal LineTotalEstimate?;
+    ProjDefaultInvoiceLayout DefaultInvoiceLayout?;
+    string OnAccountCategory?;
+    string ItemCategory?;
+    string ProjectOperationsForecastModelId?;
+    ProjTaxItemGroupMethod TaxItemGroupMethod?;
+    NoYes IsAccountingDateUpdateAllowed?;
+    string RevenueCategory?;
+    ProjTaxGroupMethod TaxGroupMethod?;
+    ProjLineTotal LineTotalInvoice?;
+    ProjLineTotal LineTotalAccrueRevenue?;
+    string DimensionAttributeValueCombinationDisplayValue?;
+    TaxCalculationProjDateType TaxCalcDateType?;
+};
+
 # Represents the Queries record for the operation: getProjInvoiceW
 public type GetProjInvoiceWQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -3111,6 +4774,34 @@ public type GetProjectFundingRulesQueries record {
 public type ProjInvoiceProposalExportsCollection record {
     *ODataCollection;
     ProjInvoiceProposalExport[] value?;
+};
+
+# Represents the Queries record for the operation: listProjectLinePropertySetupEntities
+public type ListProjectLinePropertySetupEntitiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listProjGrantMatchings
@@ -3152,6 +4843,8 @@ public type UpdateProjectJournalApprovalDetailsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type ProjReduceCostPriority "None"|"Project"|"Category"|"EmployeeItem"|"ParentProject"|"EstimateProject"|"ActivityNum"|"CategoryGroup"|"CostTemplateLine"|"ProjDate";
 
 public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
 
@@ -3201,6 +4894,8 @@ public type ProjectWBSDraft record {
     string EndDate?;
 };
 
+public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+
 # Represents the Headers record for the operation: updateProjectPostTransViews
 public type UpdateProjectPostTransViewsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3213,12 +4908,25 @@ public type UpdateProjResourceEntityDataEntitiesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateProjectContractHeaders
+public type UpdateProjectContractHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjectJournalApproval record {
     string \@odata\.etag?;
     string dataAreaId?;
     string Approve?;
     string Name?;
 };
+
+public type ProjectLinePropertySetupEntitiesCollection record {
+    *ODataCollection;
+    ProjectLinePropertySetupEntity[] value?;
+};
+
+public type ProjTaxItemGroupMethod "ItemNumber"|"Category";
 
 public type ProjVendInvoiceLinesExportEntityCollection record {
     *ODataCollection;
@@ -3242,6 +4950,24 @@ public type ProjCostPriceExpensesCollection record {
 
 # Represents the Headers record for the operation: deleteProjectIntercompanyParameterEntities
 public type DeleteProjectIntercompanyParameterEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateProjectParameterV2
+public type UpdateProjectParameterV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateProjQuotationLines
+public type UpdateProjQuotationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjectLinePropertySetupEntities
+public type DeleteProjectLinePropertySetupEntitiesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3284,6 +5010,52 @@ public type ProjExpenseCategoryExport record {
 
 # Represents the Headers record for the operation: deleteProjectFundingRules
 public type DeleteProjectFundingRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listProjects
+public type ListProjectsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateProjectParameterEntities
+public type UpdateProjectParameterEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjAdvancedJournalLineInvoiceTransTaxInformations
+public type DeleteProjAdvancedJournalLineInvoiceTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjectContractHeaders
+public type DeleteProjectContractHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3342,6 +5114,8 @@ public type GetProjectJournalDescriptionsQueries record {
     string selectFields?;
 };
 
+public type SettlementType "None"|"OpenTransact"|"SelectedTransact";
+
 public type PSAExpenseProjValCategoryType "Standard"|"MaxUnit"|"MaxTotal";
 
 # Represents the Headers record for the operation: deleteProjHourSalesPricesV2
@@ -3383,6 +5157,8 @@ public type ListProjInvoiceQRCodesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ProjDefaultInvoiceLayout "Detail"|"Summary"|"SummaryByCategory";
 
 # Represents the Queries record for the operation: listProjGrants
 public type ListProjGrantsQueries record {
@@ -3448,6 +5224,11 @@ public type ProjCFDANumber record {
     string Description?;
 };
 
+public type ProjectContractHeadersCollection record {
+    *ODataCollection;
+    ProjectContractHeader[] value?;
+};
+
 public type ProjJournalType "Hour"|"Revenue"|"BegBalance";
 
 public type ProjCostPriceExpense record {
@@ -3501,14 +5282,35 @@ public type ListProjectTasksQueries record {
     string selectFields?;
 };
 
+public type ProjTableTransTaxInformationsCollection record {
+    *ODataCollection;
+    ProjTableTransTaxInformation[] value?;
+};
+
+public type PSAForecastsCollection record {
+    *ODataCollection;
+    PSAForecast[] value?;
+};
+
 public type ProjValProjCategorySetupEntitiesCollection record {
     *ODataCollection;
     ProjValProjCategorySetupEntity[] value?;
 };
 
+# Represents the Headers record for the operation: deleteProjectContracts
+public type DeleteProjectContractsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjVendInvoicesExportCollection record {
     *ODataCollection;
     ProjVendInvoiceExport[] value?;
+};
+
+public type ProjAdvancedJournalLineInvoiceTransTaxInformationsCollection record {
+    *ODataCollection;
+    ProjAdvancedJournalLineInvoiceTransTaxInformation[] value?;
 };
 
 # Represents the Headers record for the operation: updateProjectFormSetups
@@ -3517,7 +5319,14 @@ public type UpdateProjectFormSetupsHeaders record {
     string If\-Match?;
 };
 
+public type ProjectCategoryEntitiesCollection record {
+    *ODataCollection;
+    ProjectCategoryEntity[] value?;
+};
+
 public type ProjSortValue "Sorting1"|"Sorting2"|"Sorting3";
+
+public type PriceAmount "Price"|"LedgerUpdate"|"LineAmount";
 
 public type ProjectStage record {
     string \@odata\.etag?;
@@ -3616,6 +5425,12 @@ public type DeleteProjValEmplCategorySetupEntityDataEntitiesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteProjectParameterEntities
+public type DeleteProjectParameterEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjVendInvoiceExport record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -3630,6 +5445,8 @@ public type ProjVendInvoiceExport record {
     NoYes SubcontractInvoice?;
     string PurchId?;
 };
+
+public type PSAContractLineType "LumpSum"|"Progress"|"TAndM"|"Fee"|"UOD";
 
 # Represents the Queries record for the operation: listProjectDefaultDimensionRules
 public type ListProjectDefaultDimensionRulesQueries record {
@@ -3667,6 +5484,11 @@ public type GetProjGrantTypeFrequenciesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type ProjQuotationHeadersCollection record {
+    *ODataCollection;
+    ProjQuotationHeader[] value?;
 };
 
 public type smmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
@@ -3769,6 +5591,124 @@ public type ProjInvoiceProposalExport record {
     string Invoice?;
 };
 
+# Represents the Queries record for the operation: listProjAdvancedJournalLineInvoiceTransTaxInformations
+public type ListProjAdvancedJournalLineInvoiceTransTaxInformationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ProjAdvancedJournalLineInvoiceTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    int ProjAdvancedJournal?;
+    decimal LineNumber?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    NoYes CustomsExportOrder?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
+};
+
+# Represents the Queries record for the operation: listProjectContractLines
+public type ListProjectContractLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjFeatureManagementsCollection record {
     *ODataCollection;
     ProjFeatureManagement[] value?;
@@ -3824,6 +5764,8 @@ public type ProjectResourcesCollection record {
 
 public type ProjTransType "None"|"Revenue"|"Hour"|"Cost"|"Item"|"OnAccount"|"WIP"|"IndirectComponent"|"Retainage";
 
+public type TSVoucherDateChange "ProjPeriodEnd"|"LedgerPeriodEnd"|"ProjTransDate";
+
 # Represents the Queries record for the operation: getProjGrants
 public type GetProjGrantsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -3845,6 +5787,34 @@ public type GetProjectItemJournalTablesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listProjQuotationHeaders
+public type ListProjQuotationHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -3906,10 +5876,19 @@ public type ListProjectItemJournalTablesQueries record {
     string selectFields?;
 };
 
+public type PSAPReqValidate "Amount"|"HoursQty";
+
+public type GTAServiceCategory_IN "Inward"|"OutwardInterUnit"|"Others";
+
 # Represents the Headers record for the operation: updateProjHourSalesPricesV2
 public type UpdateProjHourSalesPricesV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ProjInventoryOnHandCollection record {
+    *ODataCollection;
+    ProjInventoryOnHandEntity[] value?;
 };
 
 public type ProjAdvancedJournalStatus "Draft"|"Posted"|"Processing"|"Error";
@@ -3935,6 +5914,99 @@ public type DeleteProjInvoiceQRCodesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateProjectControls
+public type UpdateProjectControlsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PSAForecast record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransId?;
+    decimal Qty?;
+    decimal AmountMst?;
+    decimal PLaccruedRevenueProduction?;
+    NoYes PSAIndirectComponent?;
+    decimal LaborInvoicedRevenue?;
+    decimal WIPInvoicedOnAccount?;
+    string Voucher?;
+    string PaymentDate?;
+    decimal totalConsumption?;
+    decimal OnAccPrePayment?;
+    string ResourceCompanyId?;
+    int Resource?;
+    decimal LaborInvoicedQty?;
+    decimal ConsumedLaborCost?;
+    ProjPaymentStatus PaymentStatus?;
+    decimal ExpenseInvoicedRevenue?;
+    decimal WIPSalesValue?;
+    decimal WIPProduction?;
+    decimal GrossWIP?;
+    decimal PLMaterialCostWithoutNeverLedger?;
+    decimal FeeInvoicedRevenue?;
+    decimal OnAccBegBal?;
+    decimal WIPTotalCost?;
+    decimal PLaccruedRevenueProfit?;
+    ProjType ProjType?;
+    decimal PLInvoicedRevenueOnAccount?;
+    string ActivityNumber?;
+    decimal totalInvoicedRevenue?;
+    string DefaultDimensionDisplayValue?;
+    decimal MaterialInvoicedRevenue?;
+    decimal ConsumedMaterialCost?;
+    decimal ConsumedLaborCostWithoutNoNeverLedger?;
+    decimal PLaccruedRevenueSalesValue?;
+    ProjTransType ProjTransType?;
+    decimal OnAccTotal?;
+    decimal PLLaborQty?;
+    decimal WIPExpenseCost?;
+    string ProjFundingSource_FundingSourceId?;
+    decimal PLLaborCost?;
+    decimal PLaccruedRevenueSubscription?;
+    decimal ConsumedLaborQtyWithoutNoNeverLedger?;
+    decimal PLAccruedRevenueOnAcc?;
+    decimal PLLaborCostWithoutNoNeverLedger?;
+    decimal NetWIP?;
+    decimal PLMaterialCost?;
+    string ProjTransDate?;
+    string ProjTable_ProjId?;
+    string LedgerDimensionDisplayValue?;
+    ProjCostSales costSales?;
+    decimal ConsumedMaterialCostWithoutNeverLedger?;
+    string SubscriptionId?;
+    decimal PLInvoicedRevenue?;
+    decimal WIPMaterialCost?;
+    string ResourceId?;
+    string ModelId?;
+    decimal PLTotalAccruedRevenue?;
+    string ProjFundingSource_ContractId?;
+    int ResourceCategory?;
+    decimal PLLaborQtyWithoutNoNeverLedger?;
+    decimal ConsumedExpenseCost?;
+    decimal WIPLaborCost?;
+    decimal PLExpenseCost?;
+    decimal ConsumedLaborQty?;
+    string EmplItemId?;
+    decimal WIPCostAccruedLoss?;
+    LedgerPostingType PostingType?;
+    decimal OnAccMilestone?;
+    decimal PLTotalCost?;
+    string LedgerTransDate?;
+    decimal PLCostAccruedLoss?;
+    decimal PayrollAllocation?;
+    decimal WIPProfit?;
+    decimal WIPSubscription?;
+    string ProjId?;
+    decimal WIPSalesTotal?;
+    decimal OnAccDeduction?;
+    string ContractId?;
+    string CategoryId?;
+    NoYes Elimination?;
+};
+
+public type BankLGDocumentType "None"|"LetterOfGuarantee";
+
 # Represents the Queries record for the operation: getProjectDefaultOffsetAccounts
 public type GetProjectDefaultOffsetAccountsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -3945,7 +6017,17 @@ public type GetProjectDefaultOffsetAccountsQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteProjects
+public type DeleteProjectsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjForecastBudgetType "None"|"OriginalBudget"|"RemainingBudget"|"Amendment"|"CarryForward";
+
+public type TradeLineDlvType "None"|"DropShip";
+
+public type InventRefType "None"|"Sales"|"Purch"|"Production"|"ProdLine"|"InventJournal"|"CRMQuotation"|"InventTransfer"|"FixedAsset";
 
 # Represents the Headers record for the operation: updateProjectDefaultOffsetAccounts
 public type UpdateProjectDefaultOffsetAccountsHeaders record {
@@ -4062,6 +6144,8 @@ public type ProjectResource record {
     WrkCtrType Type?;
 };
 
+public type ProjCostControlMethod "RemainingBudget"|"TotalBudget";
+
 # Represents the Queries record for the operation: getProjHourCostPriceEntityDataEntities
 public type GetProjHourCostPriceEntityDataEntitiesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4071,6 +6155,97 @@ public type GetProjHourCostPriceEntityDataEntitiesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ProjectSalesItemRequirement record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectTransactionId?;
+    decimal Underdelivery?;
+    decimal PriceUnit?;
+    string OrderedInventoryStatusId?;
+    string ProductStyleId?;
+    string ShippingSiteId?;
+    SalesDeliveryDateControlType DeliveryDateControl?;
+    string DeliveryAddressLocationId?;
+    string DeliveryAddressCountyId?;
+    string DeliveryAddressCountryRegionISOCode?;
+    decimal RemainInventFinancial?;
+    string InventTransactionReturnId?;
+    string ReceiptDateRequested?;
+    string ModeOfDelivery?;
+    NoYes IsPartialDeliveryPrevented?;
+    string DeliveryCFOPId?;
+    decimal QuantityOrdered?;
+    InventRefType ReferenceType?;
+    string DeliveryAddressZipCode?;
+    string ItemRouteId?;
+    string ActivityNumber?;
+    string ShippingWarehouseId?;
+    NoYes SameBatchSelection?;
+    string ReferenceLot?;
+    string FormattedDelveryAddress?;
+    string DefaultDimensionDisplayValue?;
+    string SalesUnit?;
+    string DeliveryAddressDistrictName?;
+    string DeliveryAddressDunsNumber?;
+    string ProductSizeId?;
+    string DeliveryTerms?;
+    string ServiceOrderId?;
+    string ShippingDateRequested?;
+    string SalesCategoryName?;
+    string TaxItemGroup?;
+    decimal SalesPrice?;
+    string InventTransactionId?;
+    string ReceiptDateConfirmed?;
+    NoYes IsStatusStopped?;
+    string LedgerDimensionDisplayValue?;
+    string ItemBOMId?;
+    decimal NetAmount?;
+    string DeliveryAddressStreet?;
+    NoYes IsDeliveryAddressPrivate?;
+    string DeliveryAddressCity?;
+    decimal RemainInventPhysical?;
+    string ProductConfigurationId?;
+    string DeliveryAddressCountryRegionId?;
+    string DeliveryBuildingCompliment?;
+    string Name?;
+    LineDeliveryType LineDeliveryType?;
+    string TaxGroup?;
+    string DeliveryAddressPostBox?;
+    string DeliveryAddressDescription?;
+    string ProductVersionId?;
+    decimal Overdelivery?;
+    decimal DeliveryAddressLatitude?;
+    string ProjectId?;
+    string DeliveryName?;
+    string ShipDate?;
+    Timezone DeliveryAddressTimeZone?;
+    string ItemId?;
+    string BarCodeType?;
+    string BarCode?;
+    ItemReservation Reservation?;
+    decimal InventDeliverNow?;
+    decimal CostPrice?;
+    SalesStatus SalesStatus?;
+    string ItemBatchNumber?;
+    string ShippingDateConfirmed?;
+    string ProductColorId?;
+    NoYes AutoBatchReservation?;
+    string ProjectCategoryId?;
+    string DeliveryAddressStateId?;
+    string ProjectLinePropertyId?;
+    string ReferenceNumber?;
+    string InvoiceAccount?;
+    string DeliveryAddressStreetNumber?;
+    string CurrencyCode?;
+    decimal DeliveryAddressLongitude?;
+    NoYes IsDeliveryAddressOrderSpecific?;
+    TradeLineDlvType DeliveryType?;
+    NoYes Scrap?;
+    decimal SalesQuantity?;
+};
+
+public type MSPIntegrationType "ArchiveDirectory"|"SharePoint";
 
 # Represents the Headers record for the operation: deleteProjCFDANumbers
 public type DeleteProjCFDANumbersHeaders record {
@@ -4102,6 +6277,8 @@ public type GetProjectFormSetupsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ServiceCategory_IN "Inward"|"InterUnit"|"Others";
 
 # Represents the Headers record for the operation: deleteProjValEmplProjTableEntityDataEntities
 public type DeleteProjValEmplProjTableEntityDataEntitiesHeaders record {
@@ -4164,6 +6341,18 @@ public type ProjectJournalNamesCollection record {
     ProjectJournalName[] value?;
 };
 
+# Represents the Headers record for the operation: updateProjAdvancedJournalLineInvoiceTransTaxInformations
+public type UpdateProjAdvancedJournalLineInvoiceTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjJournalTransTransTaxInformations
+public type DeleteProjJournalTransTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ProjectGroupsCollection record {
     *ODataCollection;
     ProjectGroup[] value?;
@@ -4176,6 +6365,34 @@ public type DeleteProjectUnpostedTransViewsHeaders record {
 };
 
 public type DetailSummary "Detail"|"Summary";
+
+# Represents the Queries record for the operation: listPSAForecasts
+public type ListPSAForecastsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: listProjectJournalDescriptions
 public type ListProjectJournalDescriptionsQueries record {
@@ -4204,6 +6421,8 @@ public type ListProjectJournalDescriptionsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ExciseType_IN "None"|"Manufacturer"|"Trader";
 
 # Represents the Headers record for the operation: deleteProjectExpensePolicyGroups
 public type DeleteProjectExpensePolicyGroupsHeaders record {
@@ -4274,6 +6493,11 @@ public type UpdateProjGrantsHeaders record {
     string If\-Match?;
 };
 
+public type ProjectFundingSourcesCollection record {
+    *ODataCollection;
+    ProjectFundingSource[] value?;
+};
+
 # Represents the Queries record for the operation: getProjectTasks
 public type GetProjectTasksQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4310,6 +6534,12 @@ public type ListProjGrantsV2Queries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteProjQuotationLines
+public type DeleteProjQuotationLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ProjCFDACluster record {
@@ -4352,6 +6582,24 @@ public type UpdateProjectEmplForecastsHeaders record {
     string If\-Match?;
 };
 
+public type VATGoodsType_IN "Input"|"CapitalGoods";
+
+# Represents the Headers record for the operation: deleteProjectCategoryEntities
+public type DeleteProjectCategoryEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getProjectContractLines
+public type GetProjectContractLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjValProjCategorySetUpEntitiesV2Collection record {
     *ODataCollection;
     ProjValProjCategorySetUpEntityV2[] value?;
@@ -4376,6 +6624,11 @@ public type GetProjGrantFrequenciesQueries record {
 public type UpdateProjVendInvoiceLinesExportEntityHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type ProjectParameterEntitiesCollection record {
+    *ODataCollection;
+    ProjectParameterEntity[] value?;
 };
 
 public type ProjectTransactionCategory record {
@@ -4408,6 +6661,34 @@ public type GetProjectJournalApprovalDetailsQueries record {
 
 public type ProjExpPolicyPerUnit "Expense"|"Day"|"Report";
 
+# Represents the Queries record for the operation: listProjInventoryOnHand
+public type ListProjInventoryOnHandQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateProjectOnAccForecasts
 public type UpdateProjectOnAccForecastsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -4430,6 +6711,28 @@ public type GetProjectContractLineMilestonesQueries record {
     string selectFields?;
 };
 
+public type ProjInventoryOnHandEntity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ItemNumber?;
+    string SiteId?;
+    string WarehouseId?;
+    string ProductConfigurationId?;
+    string ProductColorId?;
+    string ProductSizeId?;
+    string ProductStyleId?;
+    string InventoryStatus?;
+    string InventoryStatusId?;
+    decimal CalculatedAvailablePhysical?;
+    string SerialNumber?;
+    string BatchNumber?;
+    NoYes IsWarehouseItem?;
+    decimal AvailPhysical?;
+    string LocationId?;
+    string LicensePlateId?;
+    string Owner?;
+};
+
 # Represents the Headers record for the operation: updateProjInvoiceW
 public type UpdateProjInvoiceWHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -4449,6 +6752,11 @@ public type UpdateProjValEmplCategoryTableEntityDataEntitiesHeaders record {
     string If\-Match?;
 };
 
+public type ProjectContractLinesCollection record {
+    *ODataCollection;
+    ProjectContractLine[] value?;
+};
+
 public type ProjGrantMatchingsCollection record {
     *ODataCollection;
     ProjGrantMatching[] value?;
@@ -4460,9 +6768,78 @@ public type UpdateProjValProjCategorySetUpEntitiesV2Headers record {
     string If\-Match?;
 };
 
+public type InvoiceScheduleType "Blank"|"MilestoneBased"|"ProgressBased";
+
 public type ProjValEmplCategorySetupEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjValEmplCategorySetupEntity_DataEntity[] value?;
+};
+
+public type ProjTableTransTaxInformation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjId?;
+    string ExciseECCRegistrationNumber?;
+    string CustomerLocation?;
+    string ServiceTaxRegistrationNumber?;
+    Direction_IN Direction?;
+    string TaxID?;
+    NoYes CustomsExportOrder?;
+    string GSTINRegistrationNumber?;
+    string BankTaxInformation?;
+    string HSNCode?;
+    NoYes Exempt?;
+    string TANRegistrationNumber?;
+    string VATSchedule?;
+    NoYes TaxWithholdSoftwareDeclReceived?;
+    string BankLocation?;
+    decimal VATNonRecoverablePercent?;
+    string CustomsIECRegistrationNumber?;
+    decimal NonBusinessUsagePercentage?;
+    string CustomsTariffCode?;
+    string ServiceAccountingCode?;
+    NoYes ServiceTaxIsRecoverable?;
+    string SalesTaxRegistrationNumber?;
+    string TaxWithholdNatureOfRemittance?;
+    ExciseRecordType_IN ExciseRecordType?;
+    string TaxRateType?;
+    string VendorTaxInformation?;
+    NoYes ExciseCENVATCreditAvailed?;
+    NatureOfAssessee_IN TaxWithholdNatureOfAssessee?;
+    NoYes ExciseIsScrap?;
+    DirectSettlement_IN ExciseDirectSettlement?;
+    TransTaxInformationType_IN Type?;
+    string ServiceTaxConsignmentNoteNum?;
+    ITCCategory_IN ITCCategory?;
+    NoYes InclTax?;
+    string SalesTaxFormTypes?;
+    string CompanyTaxInformation?;
+    NoYes NonGST?;
+    VATGoodsType_IN VATGoodsType?;
+    NoYes ExciseConsignment?;
+    string CSTSchedule?;
+    string ExciseTariffCodes?;
+    string CompanyLocation?;
+    string TaxWithholdCountryRegionToRemittance?;
+    string CustomerTaxInformation?;
+    ExciseType_IN ExciseType?;
+    string ServiceCode?;
+    string VATCommodityCode?;
+    GTAServiceCategory_IN ServiceTaxGTAServiceCategory?;
+    string VATTINRegistrationNumber?;
+    NoYes ExciseDSA?;
+    DisposalType_IN ExciseDisposalType?;
+    string TaxInventVATItemId?;
+    string VendorLocation?;
+    string TaxWithholdAcknowledgementNumber?;
+    Direction_IN CustomsTariffDirection?;
+    ServiceCategory_IN ServiceCategory?;
+};
+
+# Represents the Headers record for the operation: updateProjectsV2
+public type UpdateProjectsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ProjectLedgerPostingDefinitionsCollection record {
@@ -4532,6 +6909,15 @@ public type UpdateProjectJournalApprovalsHeaders record {
     string If\-Match?;
 };
 
+public type TSFieldVisibility "Display"|"ReadOnly"|"DoNotDisplay";
+
+public type PSAIndirectComponentGroupEntity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string IndirectCostComponentGroup?;
+    string IndirectComponentGroupName?;
+};
+
 public type ProjValEmplCategoryTableEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjValEmplCategoryTableEntity_DataEntity[] value?;
@@ -4597,6 +6983,16 @@ public type GetProjectWBSDraftsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getProjAdvancedJournalLineInvoiceTransTaxInformations
+public type GetProjAdvancedJournalLineInvoiceTransTaxInformationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getProjValEmplCategorySetupEntityDataEntities
 public type GetProjValEmplCategorySetupEntityDataEntitiesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4612,6 +7008,8 @@ public type DeleteProjectFormSetupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type PSAInvoiceFormats "DetailInvoice"|"SummaryInvoice"|"SummaryByCategory"|"ManageInvoice";
 
 # Represents the Queries record for the operation: getProjRevenueProfileRules
 public type GetProjRevenueProfileRulesQueries record {
@@ -4629,11 +7027,70 @@ public type DeleteProjVendInvoiceLinesExportEntityHeaders record {
     string If\-Match?;
 };
 
+public type ProjQuotationLinesCollection record {
+    *ODataCollection;
+    ProjQuotationLine[] value?;
+};
+
+# Represents the Queries record for the operation: listProjectsV2
+public type ListProjectsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Standard OData collection envelope.
 public type ODataCollection record {
     string \@odata\.context?;
     int \@odata\.count?;
     string \@odata\.nextLink?;
+};
+
+# Represents the Headers record for the operation: updateProjJournalTransTransTaxInformations
+public type UpdateProjJournalTransTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjectCategoryEntity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Category?;
+    string FiscalInformationServiceCode?;
+    NoYes Subscription?;
+    NoYes Absence?;
+    string CategoryName?;
+    NoYes IndirectCostComponent?;
+    NoYes Estimate?;
+    NoYes CustomerPaymentRetention?;
+    string ItemSalesTaxGroup?;
+    NoYes ActiveInJournals?;
+    string CategoryGroup?;
+    ProjCategoryType TransactionType?;
+    string ItemWithholdingTaxGroupId?;
+    string TaxRateTypeName?;
+    ProjCategoryEmplOption Worker?;
 };
 
 public type ProjectOnAccForecastsCollection record {
@@ -4673,6 +7130,8 @@ public type UpdateProjectExpensePoliciesHeaders record {
     string If\-Match?;
 };
 
+public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
+
 # Represents the Queries record for the operation: getProjectStages
 public type GetProjectStagesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4703,6 +7162,40 @@ public type GetProjectLinePropertiesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Queries record for the operation: listProjectCategoryEntities
+public type ListProjectCategoryEntitiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteProjectControls
+public type DeleteProjectControlsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ProjExpPolicyType "Empty"|"Client"|"Company";
@@ -4831,6 +7324,8 @@ public type UpdateProjWBSActivityEstimatesHeaders record {
     string If\-Match?;
 };
 
+public type DisposalType_IN "None"|"Loss"|"Scrap"|"Expiry"|"Damage";
+
 public type ProjectGroup record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -4888,6 +7383,34 @@ public type ListProjectIntercompanyParameterEntitiesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listProjectSalesItemRequirements
+public type ListProjectSalesItemRequirementsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjGrantFrequenciesCollection record {
     *ODataCollection;
     ProjGrantFrequency[] value?;
@@ -4899,10 +7422,49 @@ public type UpdateProjGrantFrequenciesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateProjTableTransTaxInformations
+public type UpdateProjTableTransTaxInformationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type ProjBudgetManagement "None"|"Independent";
+
+# Represents the Queries record for the operation: getProjExpensesExport
+public type GetProjExpensesExportQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deletePSAIndirectComponentGroupEntities
+public type DeletePSAIndirectComponentGroupEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PSAIndirectComponentGroupEntitiesCollection record {
+    *ODataCollection;
+    PSAIndirectComponentGroupEntity[] value?;
+};
+
 # Represents the Headers record for the operation: updateProjValEmplCategorySetupEntityDataEntities
 public type UpdateProjValEmplCategorySetupEntityDataEntitiesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getProjAdvancedJournalLineHours
+public type GetProjAdvancedJournalLineHoursQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateProjAdvancedJournals
@@ -5030,6 +7592,100 @@ public type DeleteProjectResourcesHeaders record {
     string If\-Match?;
 };
 
+public type PSAActual record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TransId?;
+    decimal Qty?;
+    decimal AmountMst?;
+    decimal WIPInvoicedOnAccount?;
+    decimal LaborInvoicedRevenue?;
+    decimal PLAccruedRevenueSalesValue?;
+    string Voucher?;
+    string PaymentDate?;
+    decimal totalConsumption?;
+    decimal OnAccPrePayment?;
+    string ResourceCompanyId?;
+    decimal LaborInvoicedQty?;
+    decimal ConsumedLaborCost?;
+    decimal ExpenseInvoicedRevenue?;
+    ProjPaymentStatus PaymentStatus?;
+    decimal WIPSalesValue?;
+    decimal WIPProduction?;
+    decimal GrossWIP?;
+    decimal PLMaterialCostWithoutNeverLedger?;
+    decimal OnAccBegBal?;
+    decimal FeeInvoicedRevenue?;
+    decimal WIPTotalCost?;
+    decimal PLAccruedRevenueSalesValueFee?;
+    ProjType ProjType?;
+    decimal PLInvoicedRevenueOnAccount?;
+    string ActivityNumber?;
+    decimal PLAccruedRevenueProfit?;
+    decimal totalInvoicedRevenue?;
+    decimal PLAccruedRevenueSalesValueMaterial?;
+    decimal PLAccruedRevenueSalesValueExpense?;
+    string DefaultDimensionDisplayValue?;
+    decimal MaterialInvoicedRevenue?;
+    string CompanyInfo_DataArea?;
+    decimal ConsumedMaterialCost?;
+    decimal ConsumedLaborCostWithoutNoNeverLedger?;
+    decimal PLAccruedRevenueSalesValueLabor?;
+    ProjOrigin TransactionOrigin?;
+    ProjTransType ProjTransType?;
+    decimal PLLaborQty?;
+    decimal OnAccTotal?;
+    decimal WIPExpenseCost?;
+    string ProjFundingSource_FundingSourceId?;
+    decimal PLLaborCost?;
+    decimal ConsumedLaborQtyWithoutNoNeverLedger?;
+    ProjOrigin LedgerOrigin?;
+    decimal PLAccruedRevenueOnAcc?;
+    decimal NetWIP?;
+    decimal PLLaborCostWithoutNoNeverLedger?;
+    decimal PLMaterialCost?;
+    string ProjTransDate?;
+    string LedgerDimensionDisplayValue?;
+    ProjCostSales costSales?;
+    decimal ConsumedMaterialCostWithoutNeverLedger?;
+    string SubscriptionId?;
+    decimal PLInvoicedRevenue?;
+    decimal WIPMaterialCost?;
+    string ResourceId?;
+    string ProjAdjustRefId?;
+    decimal PLTotalAccruedRevenue?;
+    string ProjFundingSource_ContractId?;
+    decimal PLLaborQtyWithoutNoNeverLedger?;
+    decimal PLAccruedRevenueProduction?;
+    decimal ConsumedExpenseCost?;
+    decimal WIPLaborCost?;
+    decimal ConsumedLaborQty?;
+    decimal PLExpenseCost?;
+    decimal WIPCostAccruedLoss?;
+    string EmplItemId?;
+    LedgerPostingType PostingType?;
+    decimal OnAccMilestone?;
+    decimal PLTotalCost?;
+    string InventTransId?;
+    string LedgerTransDate?;
+    decimal PLCostAccruedLoss?;
+    decimal PayrollAllocation?;
+    decimal PLAccruedRevenueSubscription?;
+    decimal WIPProfit?;
+    decimal WIPSubscription?;
+    string ProjId?;
+    decimal WIPSalesTotal?;
+    decimal OnAccDeduction?;
+    string ContractId?;
+    string CategoryId?;
+    decimal SubBillDeferralCostItem?;
+    decimal SubBillDeferralSalesItem?;
+    decimal SubBillDeferralCostHour?;
+    decimal SubBillDeferralSalesHour?;
+    decimal SubBillDeferralCostExpense?;
+    decimal SubBillDeferralSalesExpense?;
+};
+
 # Represents the Queries record for the operation: getProjGrantTypesV2
 public type GetProjGrantTypesV2Queries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -5050,6 +7706,12 @@ public type GetProjValProjCategorySetupEntitiesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateProjectSalesItemRequirements
+public type UpdateProjectSalesItemRequirementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateProjRevenueProfileRules
 public type UpdateProjRevenueProfileRulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -5061,6 +7723,64 @@ public type ProjectQuotationWbsTasksCollection record {
     ProjectQuotationWbsTask[] value?;
 };
 
+# Represents the Queries record for the operation: listPSAIndirectComponentGroupEntities
+public type ListPSAIndirectComponentGroupEntitiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type ProjAdvancedJournalLineHour record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    decimal LineNumber?;
+    int ProjAdvancedJournal?;
+    string ActivityNumber?;
+    string ProjCategoryId?;
+    string ProjDataAreaId?;
+    ProjTransType TransType?;
+    string ProjId?;
+    string Voucher?;
+    string TaxGroup?;
+    string ProjectSalesTaxItemGroup?;
+    string AccountingDate?;
+    decimal UnitPrice?;
+    NoYes OverrideSalesTax?;
+    NoYes PostError?;
+    decimal PriceExchangeRate?;
+    string Text?;
+    decimal UnitCost?;
+    string PriceCurrency?;
+    string LinePropertyId?;
+    decimal Quantity?;
+    string ContractLineId?;
+    decimal ExtendedCost?;
+    string TaxItemGroup?;
+    string ProjectSalesTaxGroup?;
+    decimal ExtendedPrice?;
+};
+
 public type ProjectFeeForecastsCollection record {
     *ODataCollection;
     ProjectFeeForecast[] value?;
@@ -5069,6 +7789,12 @@ public type ProjectFeeForecastsCollection record {
 public type ProjResourceEntity_DataEntitiesCollection record {
     *ODataCollection;
     ProjResourceEntity_DataEntity[] value?;
+};
+
+# Represents the Headers record for the operation: deleteProjQuotationHeaders
+public type DeleteProjQuotationHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listProjWBSActivityEstimates
@@ -5165,11 +7891,19 @@ public type ListProjHourCostPriceEntityDataEntitiesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateProjectFundingSources
+public type UpdateProjectFundingSourcesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteProjectLedgerPostingDefinitions
 public type DeleteProjectLedgerPostingDefinitionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type PSAProjTask "Project"|"Task";
 
 # Represents the Headers record for the operation: deleteProjValEmplProjSetupEntityDataEntities
 public type DeleteProjValEmplProjSetupEntityDataEntitiesHeaders record {
@@ -5206,8 +7940,50 @@ public type ProjectCostTemplateLineCategoriesCollection record {
     ProjectCostTemplateLineCategory[] value?;
 };
 
+public type Listcode "IncludeNot"|"EUTrade"|"ProductionOnToll"|"TriangularEUTrade"|"TriangularProductionOnToll"|"PropertyMoving_CZ"|"TriangularIntermediateRole_HU"|"DEL_EUService"|"PurchasedOnBehalf_LV";
+
+# Represents the Queries record for the operation: getProjQuotationLines
+public type GetProjQuotationLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getProjectParameterEntities
+public type GetProjectParameterEntitiesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateProjectContractLines
+public type UpdateProjectContractLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjectFundingSources
+public type DeleteProjectFundingSourcesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteProjectItemJournalTables
 public type DeleteProjectItemJournalTablesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type PSAPReqControl "None"|"Warning"|"Control";
+
+# Represents the Headers record for the operation: updatePSAActuals
+public type UpdatePSAActualsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -5293,6 +8069,8 @@ public type GetProjWBSTemplateTasksQueries record {
     string selectFields?;
 };
 
+public type ProjLineTotal "Total"|"Line";
+
 # Represents the Queries record for the operation: getProjectIntercompanyParameterEntities
 public type GetProjectIntercompanyParameterEntitiesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -5347,6 +8125,8 @@ public type UpdateProjectResourcesHeaders record {
     string If\-Match?;
 };
 
+public type PSAProjStatus "Active"|"OnHold"|"Finished";
+
 # Represents the Queries record for the operation: getProjectQuotationWbsTasks
 public type GetProjectQuotationWbsTasksQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -5384,6 +8164,10 @@ public type ListProjectExpensePolicyGroupsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ProjCategoryEmplOption "Mandatory"|"Optional"|"Never";
+
+public type TSManualAutomatic "Manual"|"Automatic";
 
 public type ProjGrant record {
     string \@odata\.etag?;
@@ -5476,6 +8260,59 @@ public type GetProjHourCostPricesV2Queries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateProjectLinePropertySetupEntities
+public type UpdateProjectLinePropertySetupEntitiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteProjectSalesItemRequirements
+public type DeleteProjectSalesItemRequirementsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type SalesQuotationStatus "Created"|"Sent"|"Confirmed"|"Lost"|"Cancelled"|"Reset"|"Modified"|"Submitted"|"Approved"|"Revised";
+
+public type ProjectContractHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ProjectContractId?;
+    string CashDiscountCode?;
+    string CentralBankPurposeText?;
+    string PriceCustomerGroupCode?;
+    NoYes IsServiceDeliveryAddressBased?;
+    decimal IntrastatAdditionalValue?;
+    string CentralBankPurposeCode?;
+    string IndividualBufferDays?;
+    string PaymentScheduleName?;
+    string DefaultLedgerDimensionDisplayValue?;
+    string SalesResponsiblePersonnelNumber?;
+    NoYes NetPrice?;
+    ProjForecastInvoiceFrequency InvoiceFrequency?;
+    NoYes IsContractSalesCurrencyCodeLocked?;
+    string IntrastatTransactionCode?;
+    string SalesTaxGroupCode?;
+    string EInvoiceDimensionAccountCode?;
+    string BankAccountId?;
+    NoYes IsEInvoiceDimensionAccountCodeSpecifiedPerLine?;
+    string TermsOfPayment?;
+    string Name?;
+    string IntegrationSourceDataId?;
+    string CustomerPostingProfileId?;
+    Listcode ListCode?;
+    string SalesCurrencyCode?;
+    PaymentStub GiroTypeProjInvoice?;
+    string CustomerRequisitionNumber?;
+    string CustomerAccountNumber?;
+    string CustomersOrderReference?;
+};
+
+public type ProjJournalTransTransTaxInformationsCollection record {
+    *ODataCollection;
+    ProjJournalTransTransTaxInformation[] value?;
+};
+
 # Represents the Headers record for the operation: deleteProjGrantTypes
 public type DeleteProjGrantTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -5529,6 +8366,8 @@ public type ProjValProjCategorySetUpEntityV2 record {
     string ProjId?;
     string CategoryId?;
 };
+
+public type AmountUnit "Amount"|"Unit"|"StraightLine"|"WorkProgressPercentage";
 
 # Represents the Queries record for the operation: listProjectExpensePolicyGroupEmployees
 public type ListProjectExpensePolicyGroupEmployeesQueries record {
@@ -5590,3 +8429,5 @@ public type ListProjValProjCategorySetUpEntitiesV2Queries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type ProjForecastInvoiceFrequency "Daily"|"CurrentWeek"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"EOP"|"BiWeekly"|"SemiMonthly";

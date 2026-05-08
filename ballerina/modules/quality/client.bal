@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'quality' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List QualityGroupItemAssignments
@@ -83,6 +82,177 @@ public isolated client class Client {
     # + return - QualityGroupItemAssignment updated 
     remote isolated function updateQualityGroupItemAssignments(string dataAreaId, string qualityGroupId, string itemNumber, QualityGroupItemAssignment payload, UpdateQualityGroupItemAssignmentsHeaders headers = {}) returns QualityGroupItemAssignment|error {
         string resourcePath = string `/QualityGroupItemAssignments(dataAreaId='${getEncodedUri(dataAreaId)}',QualityGroupId='${getEncodedUri(qualityGroupId)}',ItemNumber='${getEncodedUri(itemNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List QualityOrderHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of QualityOrderHeader 
+    remote isolated function listQualityOrderHeaders(map<string|string[]> headers = {}, *ListQualityOrderHeadersQueries queries) returns QualityOrderHeadersCollection|error {
+        string resourcePath = string `/QualityOrderHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create QualityOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualityOrderHeader created 
+    remote isolated function createQualityOrderHeaders(QualityOrderHeader payload, map<string|string[]> headers = {}) returns QualityOrderHeader|error {
+        string resourcePath = string `/QualityOrderHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get QualityOrderHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - QualityOrderHeader record 
+    remote isolated function getQualityOrderHeaders(string dataAreaId, string qualityOrderNumber, map<string|string[]> headers = {}, *GetQualityOrderHeadersQueries queries) returns QualityOrderHeader|error {
+        string resourcePath = string `/QualityOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',QualityOrderNumber='${getEncodedUri(qualityOrderNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete QualityOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualityOrderHeader deleted 
+    remote isolated function deleteQualityOrderHeaders(string dataAreaId, string qualityOrderNumber, DeleteQualityOrderHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/QualityOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',QualityOrderNumber='${getEncodedUri(qualityOrderNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update QualityOrderHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualityOrderHeader updated 
+    remote isolated function updateQualityOrderHeaders(string dataAreaId, string qualityOrderNumber, QualityOrderHeader payload, UpdateQualityOrderHeadersHeaders headers = {}) returns QualityOrderHeader|error {
+        string resourcePath = string `/QualityOrderHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',QualityOrderNumber='${getEncodedUri(qualityOrderNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List QualitySampleTrackingEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of QualitySampleTrackingEntry 
+    remote isolated function listQualitySampleTrackingEntries(map<string|string[]> headers = {}, *ListQualitySampleTrackingEntriesQueries queries) returns QualitySampleTrackingEntriesCollection|error {
+        string resourcePath = string `/QualitySampleTrackingEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create QualitySampleTrackingEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySampleTrackingEntry created 
+    remote isolated function createQualitySampleTrackingEntries(QualitySampleTrackingEntry payload, map<string|string[]> headers = {}) returns QualitySampleTrackingEntry|error {
+        string resourcePath = string `/QualitySampleTrackingEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get QualitySampleTrackingEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - QualitySampleTrackingEntry record 
+    remote isolated function getQualitySampleTrackingEntries(string dataAreaId, string productionOrderNumber, string inventoryLotId, int:Signed32 creationSequenceNumber, map<string|string[]> headers = {}, *GetQualitySampleTrackingEntriesQueries queries) returns QualitySampleTrackingEntry|error {
+        string resourcePath = string `/QualitySampleTrackingEntries(dataAreaId='${getEncodedUri(dataAreaId)}',ProductionOrderNumber='${getEncodedUri(productionOrderNumber)}',InventoryLotId='${getEncodedUri(inventoryLotId)}',CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete QualitySampleTrackingEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySampleTrackingEntry deleted 
+    remote isolated function deleteQualitySampleTrackingEntries(string dataAreaId, string productionOrderNumber, string inventoryLotId, int:Signed32 creationSequenceNumber, DeleteQualitySampleTrackingEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/QualitySampleTrackingEntries(dataAreaId='${getEncodedUri(dataAreaId)}',ProductionOrderNumber='${getEncodedUri(productionOrderNumber)}',InventoryLotId='${getEncodedUri(inventoryLotId)}',CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update QualitySampleTrackingEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySampleTrackingEntry updated 
+    remote isolated function updateQualitySampleTrackingEntries(string dataAreaId, string productionOrderNumber, string inventoryLotId, int:Signed32 creationSequenceNumber, QualitySampleTrackingEntry payload, UpdateQualitySampleTrackingEntriesHeaders headers = {}) returns QualitySampleTrackingEntry|error {
+        string resourcePath = string `/QualitySampleTrackingEntries(dataAreaId='${getEncodedUri(dataAreaId)}',ProductionOrderNumber='${getEncodedUri(productionOrderNumber)}',InventoryLotId='${getEncodedUri(inventoryLotId)}',CreationSequenceNumber=${getEncodedUri(creationSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List QualitySamples
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of QualitySample 
+    remote isolated function listQualitySamples(map<string|string[]> headers = {}, *ListQualitySamplesQueries queries) returns QualitySamplesCollection|error {
+        string resourcePath = string `/QualitySamples`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create QualitySample
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySample created 
+    remote isolated function createQualitySamples(QualitySample payload, map<string|string[]> headers = {}) returns QualitySample|error {
+        string resourcePath = string `/QualitySamples`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get QualitySample by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - QualitySample record 
+    remote isolated function getQualitySamples(string dataAreaId, string sampleId, map<string|string[]> headers = {}, *GetQualitySamplesQueries queries) returns QualitySample|error {
+        string resourcePath = string `/QualitySamples(dataAreaId='${getEncodedUri(dataAreaId)}',SampleId='${getEncodedUri(sampleId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete QualitySample
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySample deleted 
+    remote isolated function deleteQualitySamples(string dataAreaId, string sampleId, DeleteQualitySamplesHeaders headers = {}) returns error? {
+        string resourcePath = string `/QualitySamples(dataAreaId='${getEncodedUri(dataAreaId)}',SampleId='${getEncodedUri(sampleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update QualitySample
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - QualitySample updated 
+    remote isolated function updateQualitySamples(string dataAreaId, string sampleId, QualitySample payload, UpdateQualitySamplesHeaders headers = {}) returns QualitySample|error {
+        string resourcePath = string `/QualitySamples(dataAreaId='${getEncodedUri(dataAreaId)}',SampleId='${getEncodedUri(sampleId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

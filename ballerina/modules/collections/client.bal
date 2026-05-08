@@ -19,18 +19,302 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'collections' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List CollectionAgencyFees
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CollectionAgencyFee 
+    remote isolated function listCollectionAgencyFees(map<string|string[]> headers = {}, *ListCollectionAgencyFeesQueries queries) returns CollectionAgencyFeesCollection|error {
+        string resourcePath = string `/CollectionAgencyFees`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CollectionAgencyFee
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyFee created 
+    remote isolated function createCollectionAgencyFees(CollectionAgencyFee payload, map<string|string[]> headers = {}) returns CollectionAgencyFee|error {
+        string resourcePath = string `/CollectionAgencyFees`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CollectionAgencyFee by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CollectionAgencyFee record 
+    remote isolated function getCollectionAgencyFees(string currencyCode, string validFrom, string validTo, map<string|string[]> headers = {}, *GetCollectionAgencyFeesQueries queries) returns CollectionAgencyFee|error {
+        string resourcePath = string `/CollectionAgencyFees(CurrencyCode='${getEncodedUri(currencyCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CollectionAgencyFee
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyFee deleted 
+    remote isolated function deleteCollectionAgencyFees(string currencyCode, string validFrom, string validTo, DeleteCollectionAgencyFeesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CollectionAgencyFees(CurrencyCode='${getEncodedUri(currencyCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CollectionAgencyFee
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyFee updated 
+    remote isolated function updateCollectionAgencyFees(string currencyCode, string validFrom, string validTo, CollectionAgencyFee payload, UpdateCollectionAgencyFeesHeaders headers = {}) returns CollectionAgencyFee|error {
+        string resourcePath = string `/CollectionAgencyFees(CurrencyCode='${getEncodedUri(currencyCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CollectionAgencyGracePeriodSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CollectionAgencyGracePeriodSetup 
+    remote isolated function listCollectionAgencyGracePeriodSetup(map<string|string[]> headers = {}, *ListCollectionAgencyGracePeriodSetupQueries queries) returns CollectionAgencyGracePeriodSetupCollection|error {
+        string resourcePath = string `/CollectionAgencyGracePeriodSetup`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CollectionAgencyGracePeriodSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyGracePeriodSetup created 
+    remote isolated function createCollectionAgencyGracePeriodSetup(CollectionAgencyGracePeriodSetup payload, map<string|string[]> headers = {}) returns CollectionAgencyGracePeriodSetup|error {
+        string resourcePath = string `/CollectionAgencyGracePeriodSetup`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CollectionAgencyGracePeriodSetup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CollectionAgencyGracePeriodSetup record 
+    remote isolated function getCollectionAgencyGracePeriodSetup(string accountOrGroupNumber, string accountCode, string validFrom, string validTo, map<string|string[]> headers = {}, *GetCollectionAgencyGracePeriodSetupQueries queries) returns CollectionAgencyGracePeriodSetup|error {
+        string resourcePath = string `/CollectionAgencyGracePeriodSetup(AccountOrGroupNumber='${getEncodedUri(accountOrGroupNumber)}',AccountCode='${getEncodedUri(accountCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CollectionAgencyGracePeriodSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyGracePeriodSetup deleted 
+    remote isolated function deleteCollectionAgencyGracePeriodSetup(string accountOrGroupNumber, string accountCode, string validFrom, string validTo, DeleteCollectionAgencyGracePeriodSetupHeaders headers = {}) returns error? {
+        string resourcePath = string `/CollectionAgencyGracePeriodSetup(AccountOrGroupNumber='${getEncodedUri(accountOrGroupNumber)}',AccountCode='${getEncodedUri(accountCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CollectionAgencyGracePeriodSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionAgencyGracePeriodSetup updated 
+    remote isolated function updateCollectionAgencyGracePeriodSetup(string accountOrGroupNumber, string accountCode, string validFrom, string validTo, CollectionAgencyGracePeriodSetup payload, UpdateCollectionAgencyGracePeriodSetupHeaders headers = {}) returns CollectionAgencyGracePeriodSetup|error {
+        string resourcePath = string `/CollectionAgencyGracePeriodSetup(AccountOrGroupNumber='${getEncodedUri(accountOrGroupNumber)}',AccountCode='${getEncodedUri(accountCode)}',ValidFrom=${getEncodedUri(validFrom)},ValidTo=${getEncodedUri(validTo)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CollectionLetterCoursesCds
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CollectionLetterCourseCds 
+    remote isolated function listCollectionLetterCoursesCds(map<string|string[]> headers = {}, *ListCollectionLetterCoursesCdsQueries queries) returns CollectionLetterCoursesCdsCollection|error {
+        string resourcePath = string `/CollectionLetterCoursesCds`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CollectionLetterCourseCds
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionLetterCourseCds created 
+    remote isolated function createCollectionLetterCoursesCds(CollectionLetterCourseCds payload, map<string|string[]> headers = {}) returns CollectionLetterCourseCds|error {
+        string resourcePath = string `/CollectionLetterCoursesCds`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CollectionLetterCourseCds by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CollectionLetterCourseCds record 
+    remote isolated function getCollectionLetterCoursesCds(string dataAreaId, string collectionLetterCourse, map<string|string[]> headers = {}, *GetCollectionLetterCoursesCdsQueries queries) returns CollectionLetterCourseCds|error {
+        string resourcePath = string `/CollectionLetterCoursesCds(dataAreaId='${getEncodedUri(dataAreaId)}',CollectionLetterCourse='${getEncodedUri(collectionLetterCourse)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CollectionLetterCourseCds
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionLetterCourseCds deleted 
+    remote isolated function deleteCollectionLetterCoursesCds(string dataAreaId, string collectionLetterCourse, DeleteCollectionLetterCoursesCdsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CollectionLetterCoursesCds(dataAreaId='${getEncodedUri(dataAreaId)}',CollectionLetterCourse='${getEncodedUri(collectionLetterCourse)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CollectionLetterCourseCds
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CollectionLetterCourseCds updated 
+    remote isolated function updateCollectionLetterCoursesCds(string dataAreaId, string collectionLetterCourse, CollectionLetterCourseCds payload, UpdateCollectionLetterCoursesCdsHeaders headers = {}) returns CollectionLetterCourseCds|error {
+        string resourcePath = string `/CollectionLetterCoursesCds(dataAreaId='${getEncodedUri(dataAreaId)}',CollectionLetterCourse='${getEncodedUri(collectionLetterCourse)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CreditCardCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CreditCardCode 
+    remote isolated function listCreditCardCodes(map<string|string[]> headers = {}, *ListCreditCardCodesQueries queries) returns CreditCardCodesCollection|error {
+        string resourcePath = string `/CreditCardCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CreditCardCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardCode created 
+    remote isolated function createCreditCardCodes(CreditCardCode payload, map<string|string[]> headers = {}) returns CreditCardCode|error {
+        string resourcePath = string `/CreditCardCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CreditCardCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CreditCardCode record 
+    remote isolated function getCreditCardCodes(string dataAreaId, string category, string cardType, map<string|string[]> headers = {}, *GetCreditCardCodesQueries queries) returns CreditCardCode|error {
+        string resourcePath = string `/CreditCardCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}',CardType='${getEncodedUri(cardType)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CreditCardCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardCode deleted 
+    remote isolated function deleteCreditCardCodes(string dataAreaId, string category, string cardType, DeleteCreditCardCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CreditCardCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}',CardType='${getEncodedUri(cardType)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CreditCardCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardCode updated 
+    remote isolated function updateCreditCardCodes(string dataAreaId, string category, string cardType, CreditCardCode payload, UpdateCreditCardCodesHeaders headers = {}) returns CreditCardCode|error {
+        string resourcePath = string `/CreditCardCodes(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}',CardType='${getEncodedUri(cardType)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CreditCardTransactions
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CreditCardTransaction 
+    remote isolated function listCreditCardTransactions(map<string|string[]> headers = {}, *ListCreditCardTransactionsQueries queries) returns CreditCardTransactionsCollection|error {
+        string resourcePath = string `/CreditCardTransactions`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CreditCardTransaction
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardTransaction created 
+    remote isolated function createCreditCardTransactions(CreditCardTransaction payload, map<string|string[]> headers = {}) returns CreditCardTransaction|error {
+        string resourcePath = string `/CreditCardTransactions`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CreditCardTransaction by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CreditCardTransaction record 
+    remote isolated function getCreditCardTransactions(string dataAreaId, string cCTransUniqueID, map<string|string[]> headers = {}, *GetCreditCardTransactionsQueries queries) returns CreditCardTransaction|error {
+        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CreditCardTransaction
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardTransaction deleted 
+    remote isolated function deleteCreditCardTransactions(string dataAreaId, string cCTransUniqueID, DeleteCreditCardTransactionsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CreditCardTransaction
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditCardTransaction updated 
+    remote isolated function updateCreditCardTransactions(string dataAreaId, string cCTransUniqueID, CreditCardTransaction payload, UpdateCreditCardTransactionsHeaders headers = {}) returns CreditCardTransaction|error {
+        string resourcePath = string `/CreditCardTransactions(dataAreaId='${getEncodedUri(dataAreaId)}',CCTransUniqueID='${getEncodedUri(cCTransUniqueID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List CreditLimitRuleLines
@@ -254,6 +538,63 @@ public isolated client class Client {
     # + return - CreditManagementBlockExclusionRule updated 
     remote isolated function updateCreditManagementBlockExclusionRules(string dataAreaId, string ruleId, string ruleType, string tableGroupAll, string custRelation, string riskGroupId, CreditManagementBlockExclusionRule payload, UpdateCreditManagementBlockExclusionRulesHeaders headers = {}) returns CreditManagementBlockExclusionRule|error {
         string resourcePath = string `/CreditManagementBlockExclusionRules(dataAreaId='${getEncodedUri(dataAreaId)}',RuleId='${getEncodedUri(ruleId)}',RuleType='${getEncodedUri(ruleType)}',TableGroupAll='${getEncodedUri(tableGroupAll)}',CustRelation='${getEncodedUri(custRelation)}',RiskGroupId='${getEncodedUri(riskGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CreditManagementCashDiscountRanks
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CreditManagementCashDiscountRank 
+    remote isolated function listCreditManagementCashDiscountRanks(map<string|string[]> headers = {}, *ListCreditManagementCashDiscountRanksQueries queries) returns CreditManagementCashDiscountRanksCollection|error {
+        string resourcePath = string `/CreditManagementCashDiscountRanks`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CreditManagementCashDiscountRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementCashDiscountRank created 
+    remote isolated function createCreditManagementCashDiscountRanks(CreditManagementCashDiscountRank payload, map<string|string[]> headers = {}) returns CreditManagementCashDiscountRank|error {
+        string resourcePath = string `/CreditManagementCashDiscountRanks`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CreditManagementCashDiscountRank by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CreditManagementCashDiscountRank record 
+    remote isolated function getCreditManagementCashDiscountRanks(string dataAreaId, string cashDiscCode, map<string|string[]> headers = {}, *GetCreditManagementCashDiscountRanksQueries queries) returns CreditManagementCashDiscountRank|error {
+        string resourcePath = string `/CreditManagementCashDiscountRanks(dataAreaId='${getEncodedUri(dataAreaId)}',CashDiscCode='${getEncodedUri(cashDiscCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CreditManagementCashDiscountRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementCashDiscountRank deleted 
+    remote isolated function deleteCreditManagementCashDiscountRanks(string dataAreaId, string cashDiscCode, DeleteCreditManagementCashDiscountRanksHeaders headers = {}) returns error? {
+        string resourcePath = string `/CreditManagementCashDiscountRanks(dataAreaId='${getEncodedUri(dataAreaId)}',CashDiscCode='${getEncodedUri(cashDiscCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CreditManagementCashDiscountRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementCashDiscountRank updated 
+    remote isolated function updateCreditManagementCashDiscountRanks(string dataAreaId, string cashDiscCode, CreditManagementCashDiscountRank payload, UpdateCreditManagementCashDiscountRanksHeaders headers = {}) returns CreditManagementCashDiscountRank|error {
+        string resourcePath = string `/CreditManagementCashDiscountRanks(dataAreaId='${getEncodedUri(dataAreaId)}',CashDiscCode='${getEncodedUri(cashDiscCode)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -603,6 +944,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List CreditManagementPaymentTermRanks
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CreditManagementPaymentTermRank 
+    remote isolated function listCreditManagementPaymentTermRanks(map<string|string[]> headers = {}, *ListCreditManagementPaymentTermRanksQueries queries) returns CreditManagementPaymentTermRanksCollection|error {
+        string resourcePath = string `/CreditManagementPaymentTermRanks`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CreditManagementPaymentTermRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementPaymentTermRank created 
+    remote isolated function createCreditManagementPaymentTermRanks(CreditManagementPaymentTermRank payload, map<string|string[]> headers = {}) returns CreditManagementPaymentTermRank|error {
+        string resourcePath = string `/CreditManagementPaymentTermRanks`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CreditManagementPaymentTermRank by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CreditManagementPaymentTermRank record 
+    remote isolated function getCreditManagementPaymentTermRanks(string dataAreaId, string paymentTerms, map<string|string[]> headers = {}, *GetCreditManagementPaymentTermRanksQueries queries) returns CreditManagementPaymentTermRank|error {
+        string resourcePath = string `/CreditManagementPaymentTermRanks(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentTerms='${getEncodedUri(paymentTerms)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CreditManagementPaymentTermRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementPaymentTermRank deleted 
+    remote isolated function deleteCreditManagementPaymentTermRanks(string dataAreaId, string paymentTerms, DeleteCreditManagementPaymentTermRanksHeaders headers = {}) returns error? {
+        string resourcePath = string `/CreditManagementPaymentTermRanks(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentTerms='${getEncodedUri(paymentTerms)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CreditManagementPaymentTermRank
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CreditManagementPaymentTermRank updated 
+    remote isolated function updateCreditManagementPaymentTermRanks(string dataAreaId, string paymentTerms, CreditManagementPaymentTermRank payload, UpdateCreditManagementPaymentTermRanksHeaders headers = {}) returns CreditManagementPaymentTermRank|error {
+        string resourcePath = string `/CreditManagementPaymentTermRanks(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentTerms='${getEncodedUri(paymentTerms)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List CreditManagementReasonTables
     #
     # + headers - Headers to be sent with the request 
@@ -710,234 +1108,6 @@ public isolated client class Client {
     # + return - CreditManagementRiskGroup updated 
     remote isolated function updateCreditManagementRiskGroups(string dataAreaId, string riskGroupId, CreditManagementRiskGroup payload, UpdateCreditManagementRiskGroupsHeaders headers = {}) returns CreditManagementRiskGroup|error {
         string resourcePath = string `/CreditManagementRiskGroups(dataAreaId='${getEncodedUri(dataAreaId)}',RiskGroupId='${getEncodedUri(riskGroupId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List CustBalanceStats
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of CustBalanceStat 
-    remote isolated function listCustBalanceStats(map<string|string[]> headers = {}, *ListCustBalanceStatsQueries queries) returns CustBalanceStatsCollection|error {
-        string resourcePath = string `/CustBalanceStats`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create CustBalanceStat
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustBalanceStat created 
-    remote isolated function createCustBalanceStats(CustBalanceStat payload, map<string|string[]> headers = {}) returns CustBalanceStat|error {
-        string resourcePath = string `/CustBalanceStats`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get CustBalanceStat by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - CustBalanceStat record 
-    remote isolated function getCustBalanceStats(string dataAreaId, string custAccount, string balanceDate, map<string|string[]> headers = {}, *GetCustBalanceStatsQueries queries) returns CustBalanceStat|error {
-        string resourcePath = string `/CustBalanceStats(dataAreaId='${getEncodedUri(dataAreaId)}',CustAccount='${getEncodedUri(custAccount)}',BalanceDate=${getEncodedUri(balanceDate)})`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete CustBalanceStat
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustBalanceStat deleted 
-    remote isolated function deleteCustBalanceStats(string dataAreaId, string custAccount, string balanceDate, DeleteCustBalanceStatsHeaders headers = {}) returns error? {
-        string resourcePath = string `/CustBalanceStats(dataAreaId='${getEncodedUri(dataAreaId)}',CustAccount='${getEncodedUri(custAccount)}',BalanceDate=${getEncodedUri(balanceDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update CustBalanceStat
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustBalanceStat updated 
-    remote isolated function updateCustBalanceStats(string dataAreaId, string custAccount, string balanceDate, CustBalanceStat payload, UpdateCustBalanceStatsHeaders headers = {}) returns CustBalanceStat|error {
-        string resourcePath = string `/CustBalanceStats(dataAreaId='${getEncodedUri(dataAreaId)}',CustAccount='${getEncodedUri(custAccount)}',BalanceDate=${getEncodedUri(balanceDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List CustomerCreditGroupLines
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of CustomerCreditGroupLine 
-    remote isolated function listCustomerCreditGroupLines(map<string|string[]> headers = {}, *ListCustomerCreditGroupLinesQueries queries) returns CustomerCreditGroupLinesCollection|error {
-        string resourcePath = string `/CustomerCreditGroupLines`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create CustomerCreditGroupLine
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroupLine created 
-    remote isolated function createCustomerCreditGroupLines(CustomerCreditGroupLine payload, map<string|string[]> headers = {}) returns CustomerCreditGroupLine|error {
-        string resourcePath = string `/CustomerCreditGroupLines`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get CustomerCreditGroupLine by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - CustomerCreditGroupLine record 
-    remote isolated function getCustomerCreditGroupLines(string company, string custAccount, map<string|string[]> headers = {}, *GetCustomerCreditGroupLinesQueries queries) returns CustomerCreditGroupLine|error {
-        string resourcePath = string `/CustomerCreditGroupLines(Company='${getEncodedUri(company)}',CustAccount='${getEncodedUri(custAccount)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete CustomerCreditGroupLine
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroupLine deleted 
-    remote isolated function deleteCustomerCreditGroupLines(string company, string custAccount, DeleteCustomerCreditGroupLinesHeaders headers = {}) returns error? {
-        string resourcePath = string `/CustomerCreditGroupLines(Company='${getEncodedUri(company)}',CustAccount='${getEncodedUri(custAccount)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update CustomerCreditGroupLine
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroupLine updated 
-    remote isolated function updateCustomerCreditGroupLines(string company, string custAccount, CustomerCreditGroupLine payload, UpdateCustomerCreditGroupLinesHeaders headers = {}) returns CustomerCreditGroupLine|error {
-        string resourcePath = string `/CustomerCreditGroupLines(Company='${getEncodedUri(company)}',CustAccount='${getEncodedUri(custAccount)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List CustomerCreditGroups
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of CustomerCreditGroup 
-    remote isolated function listCustomerCreditGroups(map<string|string[]> headers = {}, *ListCustomerCreditGroupsQueries queries) returns CustomerCreditGroupsCollection|error {
-        string resourcePath = string `/CustomerCreditGroups`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create CustomerCreditGroup
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroup created 
-    remote isolated function createCustomerCreditGroups(CustomerCreditGroup payload, map<string|string[]> headers = {}) returns CustomerCreditGroup|error {
-        string resourcePath = string `/CustomerCreditGroups`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get CustomerCreditGroup by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - CustomerCreditGroup record 
-    remote isolated function getCustomerCreditGroups(string creditLimitId, map<string|string[]> headers = {}, *GetCustomerCreditGroupsQueries queries) returns CustomerCreditGroup|error {
-        string resourcePath = string `/CustomerCreditGroups(CreditLimitId='${getEncodedUri(creditLimitId)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete CustomerCreditGroup
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroup deleted 
-    remote isolated function deleteCustomerCreditGroups(string creditLimitId, DeleteCustomerCreditGroupsHeaders headers = {}) returns error? {
-        string resourcePath = string `/CustomerCreditGroups(CreditLimitId='${getEncodedUri(creditLimitId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update CustomerCreditGroup
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerCreditGroup updated 
-    remote isolated function updateCustomerCreditGroups(string creditLimitId, CustomerCreditGroup payload, UpdateCustomerCreditGroupsHeaders headers = {}) returns CustomerCreditGroup|error {
-        string resourcePath = string `/CustomerCreditGroups(CreditLimitId='${getEncodedUri(creditLimitId)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List CustomersFoundation
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of CustomerFoundation 
-    remote isolated function listCustomersFoundation(map<string|string[]> headers = {}, *ListCustomersFoundationQueries queries) returns CustomersFoundationCollection|error {
-        string resourcePath = string `/CustomersFoundation`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create CustomerFoundation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerFoundation created 
-    remote isolated function createCustomersFoundation(CustomerFoundation payload, map<string|string[]> headers = {}) returns CustomerFoundation|error {
-        string resourcePath = string `/CustomersFoundation`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get CustomerFoundation by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - CustomerFoundation record 
-    remote isolated function getCustomersFoundation(string dataAreaId, string customerAccount, map<string|string[]> headers = {}, *GetCustomersFoundationQueries queries) returns CustomerFoundation|error {
-        string resourcePath = string `/CustomersFoundation(dataAreaId='${getEncodedUri(dataAreaId)}',CustomerAccount='${getEncodedUri(customerAccount)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete CustomerFoundation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerFoundation deleted 
-    remote isolated function deleteCustomersFoundation(string dataAreaId, string customerAccount, DeleteCustomersFoundationHeaders headers = {}) returns error? {
-        string resourcePath = string `/CustomersFoundation(dataAreaId='${getEncodedUri(dataAreaId)}',CustomerAccount='${getEncodedUri(customerAccount)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update CustomerFoundation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - CustomerFoundation updated 
-    remote isolated function updateCustomersFoundation(string dataAreaId, string customerAccount, CustomerFoundation payload, UpdateCustomersFoundationHeaders headers = {}) returns CustomerFoundation|error {
-        string resourcePath = string `/CustomersFoundation(dataAreaId='${getEncodedUri(dataAreaId)}',CustomerAccount='${getEncodedUri(customerAccount)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

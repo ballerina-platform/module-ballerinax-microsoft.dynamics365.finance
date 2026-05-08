@@ -14,31 +14,34 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// List customers - default-company scoping, cross-company override, filter.
+// List customers - default-company scoping, cross-company override.
+// Uses the `customer` submodule via a shared `common:Connection`.
 
 import ballerina/http;
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.finance;
+import ballerinax/microsoft.dynamics365.finance.common;
+import ballerinax/microsoft.dynamics365.finance.customer;
 import ballerinax/microsoft.dynamics365.finance.mock.server;
 
 public function main() returns error? {
     http:Listener mockListener = check server:startMock();
 
-    finance:Client fo = check new (
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9090/data"
     );
+    customer:Client cust = check new (conn);
 
     io:println("Default company (USMF) customers:");
-    finance:CustomersV3Collection page = check fo->listCustomersV3();
-    foreach finance:CustomerV3 c in page.value ?: [] {
+    customer:CustomersV3Collection page = check cust->listCustomersV3();
+    foreach customer:CustomerV3 c in page.value ?: [] {
         io:println(string `  ${c.CustomerAccount ?: ""}   ${c.OrganizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("All companies:");
-    finance:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
-    foreach finance:CustomerV3 c in all.value ?: [] {
+    customer:CustomersV3Collection all = check cust->listCustomersV3(queries = {crossCompany: true});
+    foreach customer:CustomerV3 c in all.value ?: [] {
         io:println(string `  ${c.CustomerAccount ?: ""}   ${c.OrganizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 

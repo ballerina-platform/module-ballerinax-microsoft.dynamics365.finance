@@ -15,21 +15,16 @@
 // under the License.
 
 import ballerina/test;
+import ballerinax/microsoft.dynamics365.finance.common;
 import ballerinax/microsoft.dynamics365.finance.customer;
-import ballerinax/microsoft.dynamics365.finance.ledger_a;
+import ballerinax/microsoft.dynamics365.finance.ledger;
 
 @test:Config
-function testCustomerClientInstantiates() returns error? {
-    customer:Client _ = check new (
+function testSharedConnectionAcrossModules() returns error? {
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9090/data"
     );
-}
-
-@test:Config
-function testLedgerClientInstantiates() returns error? {
-    ledger_a:Client _ = check new (
-        config = {auth: {token: "demo-bearer-token"}},
-        serviceUrl = "http://localhost:9090/data"
-    );
+    customer:Client _ = check new (conn);
+    ledger:Client _ = check new (conn);
 }

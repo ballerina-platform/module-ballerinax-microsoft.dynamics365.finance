@@ -19,8 +19,6 @@
 
 import ballerina/http;
 
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-
 # Represents the Headers record for the operation: deleteTableBlockReasons
 public type DeleteTableBlockReasonsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -33,10 +31,78 @@ public type UpdateTableBlockReasonsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: deleteCustomerCreditGroups
-public type DeleteCustomerCreditGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type CreditCardTransaction record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CCTransUniqueID?;
+    string TravelDate?;
+    int:Signed32 NumberOfLegs?;
+    string ReturnDate?;
+    decimal FareAmount?;
+    TrvCarRentalVehicleClassEnum VehicleClass?;
+    NoYes Transferred?;
+    string IssuingCarrier?;
+    string CarrierCode?;
+    decimal TotalMiles?;
+    string Town?;
+    string TransactionDate?;
+    string PassengerName?;
+    string CardType?;
+    decimal Amount_CreditCardCurrency?;
+    int:Signed32 TripLegNumber?;
+    string CheckOutDate?;
+    TrvAirlineServiceClassEnum ServiceClass?;
+    string TravelAgencyCode?;
+    decimal TotalTaxAmount?;
+    string CarRentalCheckOutDate?;
+    string CategoryCodesDescription?;
+    string ReservationNumber?;
+    string ExchangeTicketNumber?;
+    string TravelAgencyName?;
+    NoYes Posted?;
+    decimal DepartureTax?;
+    string CardNumberNIKS?;
+    string Reference?;
+    string HashedCCNumber?;
+    decimal DaysRented?;
+    string CheckOutLocation?;
+    decimal DailyRentalRate?;
+    string OriginalTicketNumber?;
+    decimal FeeAmount?;
+    string Country?;
+    string ReturnLocation?;
+    string TicketIssueDate?;
+    string RenterName?;
+    decimal TotalRoomRent?;
+    decimal Amount_LocalCurrency?;
+    string Name?;
+    string TravelAgencyInvoiceNumber?;
+    decimal RegularMileageCharges?;
+    string TravelNo?;
+    int:Signed32 TotalRoomNights?;
+    string PaymentMethod?;
+    string MerchantCategoryCode?;
+    string FolioNumber?;
+    string ArrivalDate?;
+    string CheckInDate?;
+    string DepartureDate?;
+    string CostType?;
+    decimal WeeklyRentalRate?;
+    string ExchCode_CreditCardCurrency?;
+    string StopOverCity?;
+    decimal TaxAmount?;
+    decimal MonthlyRentalRate?;
+    int:Signed32 GuestNumber?;
+    string BusinessName?;
+    string FlightNumber?;
+    string GuestName?;
+    NoYes DomesticIndicator?;
+    string DestinationCity?;
+    string ExchCode_LocalCurrency?;
+    string CategoryCode?;
+    string CardNumber?;
+    NoYes NoShowIndicator?;
+    string CityOfOrigin?;
 };
 
 # Represents the Queries record for the operation: getCreditManagementInsuranceCoverageTypes
@@ -59,17 +125,25 @@ public type TemporaryCreditLimit record {
     decimal CreditMax?;
 };
 
-public type MCRSOAllocPriority "AllocationPriority1"|"AllocationPriority2"|"AllocationPriority3"|"AllocationPriority4"|"AllocationPriority5"|"AllocationPriority6"|"AllocationPriority7"|"AllocationPriority8"|"AllocationPriority9"|"AllocationPriority10";
+public type CreditCardCodesCollection record {
+    *ODataCollection;
+    CreditCardCode[] value?;
+};
 
-public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
+public type CollectionAgencyGracePeriodSetup record {
+    string \@odata\.etag?;
+    string AccountOrGroupNumber?;
+    TableGroupAll AccountCode?;
+    string ValidFrom?;
+    string ValidTo?;
+    int:Signed32 GracePeriodInDaysAfterTransactionDate?;
+};
 
 # Represents the Headers record for the operation: deleteCreditLimitRuleLines
 public type DeleteCreditLimitRuleLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type FederalNonFederalIndicatorCode "None"|"Federal"|"NonFederal"|"NonFederalException";
 
 # Represents the Headers record for the operation: deleteCreditManagementParameters
 public type DeleteCreditManagementParametersHeaders record {
@@ -90,10 +164,21 @@ public type CreditManagementGroup record {
     string Name?;
 };
 
+public type CreditCardCode record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Category?;
+    string CardType?;
+    string Description?;
+    string ExpenseCategory?;
+};
+
 public type CreditManagementBlockExclusionRulesCollection record {
     *ODataCollection;
     CreditManagementBlockExclusionRule[] value?;
 };
+
+public type TrvAirlineServiceClassEnum "EconomyClass"|"FirstClass"|"BusinessClass";
 
 # Represents the Queries record for the operation: getCreditManagementBlockExclusionRules
 public type GetCreditManagementBlockExclusionRulesQueries record {
@@ -138,7 +223,21 @@ public type CreditManagementParametersCollection record {
     CreditManagementParameter[] value?;
 };
 
-public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
+# Represents the Headers record for the operation: updateCreditCardCodes
+public type UpdateCreditCardCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCreditManagementPaymentTermRanks
+public type GetCreditManagementPaymentTermRanksQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: listCreditManagementInsuranceCoverageTypes
 public type ListCreditManagementInsuranceCoverageTypesQueries record {
@@ -168,57 +267,6 @@ public type ListCreditManagementInsuranceCoverageTypesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateCustomersFoundation
-public type UpdateCustomersFoundationHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-public type CreditCardAddressVerificationLevel "Accept"|"AccountHolderName"|"BillingPostalCode"|"BillingAddress";
 
 # Represents the Queries record for the operation: getTemporaryCreditLimits
 public type GetTemporaryCreditLimitsQueries record {
@@ -265,41 +313,21 @@ public type DeleteRiskScoreGroupsHeaders record {
 
 public type CredManComparisonOperator "Is"|"IsNot"|"GreaterThan"|"LessThan"|"GreaterThanOrEqualTo"|"LessThanOrEqualTo";
 
+public type CreditManagementPaymentTermRanksCollection record {
+    *ODataCollection;
+    CreditManagementPaymentTermRank[] value?;
+};
+
 # Represents the Headers record for the operation: deleteCreditManagementGroups
 public type DeleteCreditManagementGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type CustomerCreditGroup record {
-    string \@odata\.etag?;
-    string CreditLimitId?;
-    string CurrencyCode?;
-    string ExpiryDate?;
-    string Description?;
-    decimal CreditMax?;
-};
-
-public type CompanyType_MX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
-
-# Represents the Queries record for the operation: getCustomersFoundation
-public type GetCustomersFoundationQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getCustomerCreditGroups
-public type GetCustomerCreditGroupsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: deleteCollectionLetterCoursesCds
+public type DeleteCollectionLetterCoursesCdsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listRiskScoreGroupLines
@@ -349,8 +377,6 @@ public type GetCreditManagementCustomerGuaranteeInsurancesQueries record {
     string selectFields?;
 };
 
-public type PaymentStub "None"|"FIK"|"BBS"|"ESR_blue_PTT"|"ESR_red_bank"|"FIK762"|"ESR_orange"|"BelSMS101"|"BelSMS102"|"Finnish"|"FIK751"|"FIK752"|"QRBill";
-
 # Represents the Headers record for the operation: updateRiskScoreGroups
 public type UpdateRiskScoreGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -384,7 +410,7 @@ public type UpdateCreditManagementRiskGroupsHeaders record {
 
 public type NoYes "No"|"Yes";
 
-public type CustCollectionLetterCode "None"|"CollectionLetter1"|"CollectionLetter2"|"CollectionLetter3"|"CollectionLetter4"|"Collection"|"All"|"CollectionPerCust";
+public type TrvCarRentalVehicleClassEnum "Compact"|"Intermediate"|"Full";
 
 # Represents the Queries record for the operation: getCreditManagementAccountStatuses
 public type GetCreditManagementAccountStatusesQueries record {
@@ -394,207 +420,6 @@ public type GetCreditManagementAccountStatusesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
-};
-
-# Represents the Headers record for the operation: updateCustBalanceStats
-public type UpdateCustBalanceStatsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CustomerFoundation record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CustomerAccount?;
-    string PartyType?;
-    NoYes IsFuelSurchargeApplied?;
-    string SalesTaxGroup?;
-    string ContactPersonId?;
-    string CustomerPaymentFineCode?;
-    string BirthCountyCode?;
-    InvoiceOrderAccount InvoiceAddress?;
-    string PackingMaterialFeeLicenseNumber?;
-    EFDocPresenceType_BR TransactionPresenceType?;
-    NoYes IsFinalUser?;
-    NoYes HasSuframaDiscountPISandCOFINS?;
-    string CURPNumber?;
-    string ItemCustomerGroupId?;
-    string PersonProfessionalTitle?;
-    string SalesSegmentId?;
-    NoYes IsServiceDeliveryAddressBased?;
-    string SalesAccountNumber?;
-    NoYes InterCompanyAutoCreateOrders?;
-    PaymentStub GiroTypeProjInvoice?;
-    string LineOfBusinessId?;
-    string OrganizationPhoneticName?;
-    CreditCardCVC CreditCardCVC?;
-    PaymentStub GiroTypeAccountStatement?;
-    NoYes CalculateWithholdingTax?;
-    string ElectronicInvoiceEAN?;
-    string DeliveryFreightZone?;
-    string TaxExemptNumber?;
-    string BirthPlace?;
-    string PersonInitials?;
-    string CentralBankPurposeCode?;
-    PaymentStub GiroTypeCollectionletter?;
-    string OrderEntryDeadline?;
-    string ForeignerId?;
-    NoYes IsFreightAccrued?;
-    string PartyState?;
-    string PartyNumber?;
-    string CentralBankPurposeNotes?;
-    string CollectionsContactPersonId?;
-    DirPersonMaritalStatus PersonMaritalStatus?;
-    string PaymentSchedule?;
-    PaymentStub GiroType?;
-    string DeliveryTerms?;
-    string NumberSequenceGroup?;
-    string PersonChildrenNames?;
-    string PaymentMethod?;
-    NoYes ForeignResident?;
-    string DeliveryMode?;
-    string PersonProfessionalSuffix?;
-    CustVendorBlocked OnHoldStatus?;
-    string WarehouseId?;
-    CustAccountStatement AccountStatement?;
-    string DestinationCode?;
-    NoYes EInvoiceRegister?;
-    NoYes IRS1099CIndicator?;
-    string FrenchSiret?;
-    string PaymentDay?;
-    string BrazilianNIT?;
-    FederalNonFederalIndicatorCode FederalIndicator?;
-    string EmployeeResponsibleNumber?;
-    int:Signed32 PersonAnniversaryYear?;
-    string DefaultInventoryStatusId?;
-    string SalesCurrencyCode?;
-    MCRSOAllocPriority Priority?;
-    NoYes IsSalesTaxIncludedInPrices?;
-    string BrazilianCNPJOrCPF?;
-    string PersonFirstName?;
-    string BrazilianCCM?;
-    string ReceiptEmail?;
-    string MultiLineDiscountCode?;
-    int:Signed32 PersonAnniversaryDay?;
-    string SupplementaryItemGroupId?;
-    NoYes IsWithholdingTaxCalculated?;
-    string PaymentSpecification?;
-    string AddressBooks?;
-    string SalesDistrict?;
-    int:Signed32 ConsolidationDay?;
-    NoYes IsExpressBillOfLadingAccepted?;
-    CreditCardAddressVerification CreditCardAddressVerification?;
-    NoYes AllowOnAccount?;
-    NoYes IsExcludedFromCollectionFeeCalculation?;
-    string CustomerPaymentFinancialInterestCode?;
-    NoYes IsTransactionPostedAsShipment?;
-    NoYes IsExternallyMaintained?;
-    NoYes CreditLimitIsMandatory?;
-    int:Signed32 PaymentTermsBaseDays?;
-    string FiscalCode?;
-    string KnownAs?;
-    string PaymentBankAccount?;
-    string BrazilianIE?;
-    RetailReceiptOptionBase ReceiptOption?;
-    MonthsOfYear PersonAnniversaryMonth?;
-    NoYes ExportSale?;
-    string OrganizationNumber?;
-    SalesInvoicePostingType_RU InvoicePostingType?;
-    NoYes CreditCardAddressVerificationIsAuthorizationVoidedOnFailure?;
-    string ReceiptCalendar?;
-    string StateInscription?;
-    string PersonLastNamePrefix?;
-    string SalesReturnTaxGroup?;
-    CustWhtContributionType_BR CustomerWithholdingContributionType?;
-    NoYes IsElectronicInvoice?;
-    string FederalAgencyLocationCode?;
-    PaymentStub GiroTypeFreeTextInvoice?;
-    string PersonPhoneticMiddleName?;
-    ABC OrganizationABCCode?;
-    string BrazilianCNAE?;
-    string WithholdingTaxGroupCode?;
-    string NAFCode?;
-    string TotalDiscountCode?;
-    string PaymentCashDiscount?;
-    CustCollectionLetterCode CollectionLetterCode?;
-    NoYes EInvoiceAttachment?;
-    string CreditRating?;
-    string LineDiscountCode?;
-    string PartyCountry?;
-    NoYes IsInSuframaRegion?;
-    NoYes IsIncomingFiscalDocumentGenerated?;
-    string SalesMemo?;
-    NoYes IsExcludedFromInterestChargeCalculation?;
-    string StatisticsGroupId?;
-    string SalesOrderPoolId?;
-    string OrganizationName?;
-    NoYes IsOrderNumberReferenceUsed?;
-    string CustClassificationId?;
-    string FederalComments?;
-    Gender PersonGender?;
-    string PaymentTerms?;
-    string SalesSubsegmentId?;
-    string CustomerRebateGroupId?;
-    NoYes IsICMSContributor?;
-    string PersonPersonalSuffix?;
-    decimal CreditLimit?;
-    CreditCardAddressVerificationLevel CreditCardAddressVerificationLevel?;
-    string PackingDutyLicense?;
-    string NationalRegistryNumber?;
-    string SiteId?;
-    NoYes IsAllowCreateIndirectOrderLines?;
-    string ChargesGroupId?;
-    string CommissionSalesGroupId?;
-    string NameAlias?;
-    string PersonLastName?;
-    string PaymentIdType?;
-    string VendorAccount?;
-    string ResidenceForeignCountryRegionId?;
-    string RFCNumber?;
-    string PersonHobbies?;
-    NoYes IsOneTimeCustomer?;
-    string CustomerTMAGroupId?;
-    int:Signed32 OrganizationNumberOfEmployees?;
-    CompanyType_MX CompanyType?;
-    string PersonPersonalTitle?;
-    string CustomerGroupId?;
-    PaymentStub GiroTypeInterestNote?;
-    string DeliveryReason?;
-    string TaxRegistrationId?;
-    UseCashDisc PaymentUseCashDiscount?;
-    string DiscountPriceGroupId?;
-    string SuframaNumber?;
-    string IdentificationNumber?;
-    string AuthorityOffice?;
-    string PersonPhoneticFirstName?;
-    string CompanyChain?;
-    NoYes OverrideSalesTax?;
-    string BrazilianINSSCEI?;
-    string CommissionCustomerGroupId?;
-    string WriteoffReason?;
-    string PersonMiddleName?;
-    string PersonPhoneticLastName?;
-    string LanguageId?;
-    NoYes IsPurchRequestUsed?;
-    string CredManEligibleCreditLimitCurrency?;
-    decimal CredManCustCreditMaxAlt?;
-    string CredManStatusReasonId?;
-    decimal CredManEligibleCreditMax?;
-    NoYes CredManCustUnlimitedCredit?;
-    string CredManEligibleCreditLimitDate?;
-    NoYes CredManWithAgency?;
-    string CredManCreditLimitDate?;
-    string CredManNextSchedReviewDate?;
-    string CredManLastReviewDate?;
-    string CredManCustomerSince?;
-    NoYes CredManTitleHeld?;
-    NoYes CredManExclude?;
-    string CredManBusinessStarted?;
-    string CredManNotes?;
-    string CredManCollectionGroupId?;
-    string CredManGroupId?;
-    string CredManAccountStatusId?;
-    string CredManCreditLimitExpiryDate?;
 };
 
 public type CredManRiskScoreType "Range"|"UserDefined";
@@ -608,8 +433,6 @@ public type GetCreditManagementGuaranteeInsuranceTypesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
-
-public type ABC "None"|"A"|"B"|"C";
 
 # Represents the Headers record for the operation: updateCreditManagementCustomerRiskScores
 public type UpdateCreditManagementCustomerRiskScoresHeaders record {
@@ -660,7 +483,17 @@ public type GetCreditLimitRulesQueries record {
     string selectFields?;
 };
 
-public type CustAccountStatement "Always"|"Quarter"|"Biannually"|"Yearly"|"Never";
+# Represents the Headers record for the operation: deleteCreditCardCodes
+public type DeleteCreditCardCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCollectionAgencyFees
+public type UpdateCollectionAgencyFeesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 public type RiskScoreGroup record {
     string \@odata\.etag?;
@@ -669,6 +502,12 @@ public type RiskScoreGroup record {
     CredManRiskScoreType RiskScoreType?;
     string Description?;
     CredManRiskGroupType GroupType?;
+};
+
+# Represents the Headers record for the operation: updateCollectionAgencyGracePeriodSetup
+public type UpdateCollectionAgencyGracePeriodSetupHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateTemporaryCreditLimits
@@ -683,8 +522,6 @@ public type CreditManagementGuaranteeInsuranceType record {
     string Type?;
     string Description?;
 };
-
-public type CustWhtContributionType_BR "Other"|"FederalAgencyAutarchyOrFoundation"|"OtherFederalAdministrationEntity"|"PrivateCompany"|"Cooperative"|"MachineOrVehicleManufacturer";
 
 # Represents the Queries record for the operation: getCreditManagementRiskGroups
 public type GetCreditManagementRiskGroupsQueries record {
@@ -732,23 +569,13 @@ public type UpdateCreditManagementGroupsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateCustomerCreditGroupLines
-public type UpdateCustomerCreditGroupLinesHeaders record {
+# Represents the Headers record for the operation: deleteCreditCardTransactions
+public type DeleteCreditCardTransactionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type InvoiceOrderAccount "InvoiceAccount"|"OrderAccount";
 
 public type CredManBlockExclusionRuleType "None"|"Overdue"|"AccountStatus"|"PaymentTerm"|"CreditLimitExpired"|"OverdueAmount"|"SalesOrder"|"ExceedCreditLimit"|"PaymentTermIncrease"|"CashDiscountIncrease";
-
-public type CreditCardCVC "None"|"No"|"Yes";
-
-# Represents the Headers record for the operation: deleteCustomersFoundation
-public type DeleteCustomersFoundationHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
 
 public type CredManAccountHeldType "No"|"Invoice"|"All";
 
@@ -789,29 +616,53 @@ public type GetCreditLimitRuleLinesQueries record {
     string selectFields?;
 };
 
-public type EFDocPresenceType_BR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+# Represents the Queries record for the operation: listCollectionLetterCoursesCds
+public type ListCollectionLetterCoursesCdsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 public type CreditLimitRulesCollection record {
     *ODataCollection;
     CreditLimitRule[] value?;
 };
 
-public type CustBalanceStat record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string CustAccount?;
-    string BalanceDate?;
-    decimal CreditLimit?;
-    decimal Exposure?;
-    decimal Balance?;
+# Represents the Queries record for the operation: getCreditManagementCashDiscountRanks
+public type GetCreditManagementCashDiscountRanksQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
-public type CustomerCreditGroupLinesCollection record {
+public type CollectionAgencyGracePeriodSetupCollection record {
     *ODataCollection;
-    CustomerCreditGroupLine[] value?;
+    CollectionAgencyGracePeriodSetup[] value?;
 };
-
-public type SalesInvoicePostingType_RU "Standard"|"GoodsInRoute";
 
 # Represents the Queries record for the operation: getRiskScoreGroups
 public type GetRiskScoreGroupsQueries record {
@@ -834,6 +685,12 @@ public type TableBlockReason record {
 public type CreditManagementCustomerGuaranteeInsurancesCollection record {
     *ODataCollection;
     CreditManagementCustomerGuaranteeInsurance[] value?;
+};
+
+# Represents the Headers record for the operation: updateCreditCardTransactions
+public type UpdateCreditCardTransactionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteCreditManagementCustomerRiskScores
@@ -866,12 +723,6 @@ public type CreditManagementCustomerRiskScore record {
     string Value?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
 
 # Represents the Headers record for the operation: deleteCreditManagementInsuranceCoverageTypes
 public type DeleteCreditManagementInsuranceCoverageTypesHeaders record {
@@ -924,7 +775,23 @@ public type CreditManagementRiskGroupsCollection record {
     CreditManagementRiskGroup[] value?;
 };
 
+# Represents the Headers record for the operation: updateCreditManagementPaymentTermRanks
+public type UpdateCreditManagementPaymentTermRanksHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CreditCardTransactionsCollection record {
+    *ODataCollection;
+    CreditCardTransaction[] value?;
+};
+
 public type CredManBlockingCalcBase "BalancePositive"|"Overdue"|"OverdueIncludingGrace";
+
+public type CollectionAgencyFeesCollection record {
+    *ODataCollection;
+    CollectionAgencyFee[] value?;
+};
 
 public type CreditManagementRiskGroup record {
     string \@odata\.etag?;
@@ -964,89 +831,13 @@ public type ListCreditManagementGuaranteeInsuranceTypesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getCustomerCreditGroupLines
-public type GetCustomerCreditGroupLinesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type RiskScoreGroupsCollection record {
     *ODataCollection;
     RiskScoreGroup[] value?;
 };
 
-public type CustomerCreditGroupsCollection record {
-    *ODataCollection;
-    CustomerCreditGroup[] value?;
-};
-
-public type DateTransactionDuedate "TransactionDate"|"DueDate"|"DocumentDate";
-
-public type RetailReceiptOptionBase "RetailEx3"|"Email"|"Both";
-
-public type CredManReason "None"|"Blocked"|"CreditExceeded"|"CODPayment"|"OpenTransOverdue"|"ReadyForRelease"|"AccountStatus"|"CreditLimitExpired"|"PaymentTermIncreased"|"CashDiscountIncreased"|"OverdueAmount"|"Margin"|"ForcedHold"|"OpenTransOverdueLinked"|"SalesOrder";
-
-public type CreditManagementReasonTable record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string ReasonId?;
-    string Description?;
-    CredManReasonTableType Type?;
-};
-
-# Represents the Headers record for the operation: deleteCustomerCreditGroupLines
-public type DeleteCustomerCreditGroupLinesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CustBalanceStatsCollection record {
-    *ODataCollection;
-    CustBalanceStat[] value?;
-};
-
-public type CreditLimitRuleLinesCollection record {
-    *ODataCollection;
-    CreditLimitRuleLine[] value?;
-};
-
-# Represents the Headers record for the operation: deleteCreditManagementReasonTables
-public type DeleteCreditManagementReasonTablesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateCreditManagementAccountStatuses
-public type UpdateCreditManagementAccountStatusesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type TableGroupAll "Table"|"GroupId"|"All";
-
-# Represents the Headers record for the operation: updateRiskScoreGroupLines
-public type UpdateRiskScoreGroupLinesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-public type CreditManagementReasonTablesCollection record {
-    *ODataCollection;
-    CreditManagementReasonTable[] value?;
-};
-
-# Represents the Headers record for the operation: updateCustomerCreditGroups
-public type UpdateCustomerCreditGroupsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listCustomerCreditGroupLines
-public type ListCustomerCreditGroupLinesQueries record {
+# Represents the Queries record for the operation: listCreditManagementCashDiscountRanks
+public type ListCreditManagementCashDiscountRanksQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1071,6 +862,107 @@ public type ListCustomerCreditGroupLinesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type DateTransactionDuedate "TransactionDate"|"DueDate"|"DocumentDate";
+
+# Represents the Headers record for the operation: deleteCreditManagementCashDiscountRanks
+public type DeleteCreditManagementCashDiscountRanksHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CredManReason "None"|"Blocked"|"CreditExceeded"|"CODPayment"|"OpenTransOverdue"|"ReadyForRelease"|"AccountStatus"|"CreditLimitExpired"|"PaymentTermIncreased"|"CashDiscountIncreased"|"OverdueAmount"|"Margin"|"ForcedHold"|"OpenTransOverdueLinked"|"SalesOrder";
+
+public type CreditManagementReasonTable record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ReasonId?;
+    string Description?;
+    CredManReasonTableType Type?;
+};
+
+public type CollectionAgencyFee record {
+    string \@odata\.etag?;
+    string CurrencyCode?;
+    string ValidFrom?;
+    string ValidTo?;
+    decimal ToAmount?;
+    decimal FromAmount?;
+    decimal MinimumFee?;
+    decimal Percent?;
+    decimal MaximumFee?;
+};
+
+# Represents the Headers record for the operation: updateCollectionLetterCoursesCds
+public type UpdateCollectionLetterCoursesCdsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CreditManagementCashDiscountRanksCollection record {
+    *ODataCollection;
+    CreditManagementCashDiscountRank[] value?;
+};
+
+# Represents the Queries record for the operation: getCreditCardTransactions
+public type GetCreditCardTransactionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCreditCardCodes
+public type GetCreditCardCodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CreditLimitRuleLinesCollection record {
+    *ODataCollection;
+    CreditLimitRuleLine[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCreditManagementReasonTables
+public type DeleteCreditManagementReasonTablesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCollectionAgencyGracePeriodSetup
+public type GetCollectionAgencyGracePeriodSetupQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type TableGroupAll "Table"|"GroupId"|"All";
+
+# Represents the Headers record for the operation: updateCreditManagementAccountStatuses
+public type UpdateCreditManagementAccountStatusesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateRiskScoreGroupLines
+public type UpdateRiskScoreGroupLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CreditManagementReasonTablesCollection record {
+    *ODataCollection;
+    CreditManagementReasonTable[] value?;
 };
 
 # Represents the Headers record for the operation: deleteCreditManagementRiskGroups
@@ -1110,11 +1002,6 @@ public type ListTableBlockReasonsQueries record {
 public type CreditManagementGuaranteeInsuranceTypesCollection record {
     *ODataCollection;
     CreditManagementGuaranteeInsuranceType[] value?;
-};
-
-public type CustomersFoundationCollection record {
-    *ODataCollection;
-    CustomerFoundation[] value?;
 };
 
 # Represents the Queries record for the operation: listCreditManagementAccountStatuses
@@ -1178,8 +1065,8 @@ public type ListCreditLimitRulesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteCustBalanceStats
-public type DeleteCustBalanceStatsHeaders record {
+# Represents the Headers record for the operation: deleteCreditManagementPaymentTermRanks
+public type DeleteCreditManagementPaymentTermRanksHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1189,45 +1076,35 @@ public type CreditManagementCustomerRiskScoresCollection record {
     CreditManagementCustomerRiskScore[] value?;
 };
 
-public type CustomerCreditGroupLine record {
+# Represents the Queries record for the operation: getCollectionLetterCoursesCds
+public type GetCollectionLetterCoursesCdsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CreditManagementPaymentTermRank record {
     string \@odata\.etag?;
-    string Company?;
-    string CustAccount?;
-    string CreditLimitId?;
+    string dataAreaId?;
+    string PaymentTerms?;
+    int:Signed32 PaymentTermsRanking?;
 };
 
-public type UseCashDisc "Normal"|"Always"|"Never";
-
-public type CredManBlockExclusionValueType "Percent"|"Fixed";
-
-public type CredManGuaranteeInsurance "Guarantee"|"Insurance";
-
-# Represents the Headers record for the operation: deleteCreditManagementBlockExclusionRules
-public type DeleteCreditManagementBlockExclusionRulesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: getCollectionAgencyFees
+public type GetCollectionAgencyFeesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteCreditLimitRules
-public type DeleteCreditLimitRulesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateCreditManagementGuaranteeInsuranceTypes
-public type UpdateCreditManagementGuaranteeInsuranceTypesHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: updateCreditManagementParameters
-public type UpdateCreditManagementParametersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Queries record for the operation: listCustBalanceStats
-public type ListCustBalanceStatsQueries record {
+# Represents the Queries record for the operation: listCollectionAgencyGracePeriodSetup
+public type ListCollectionAgencyGracePeriodSetupQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1254,24 +1131,83 @@ public type ListCustBalanceStatsQueries record {
     string selectFields?;
 };
 
+public type CollectionLetterCourseCds record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CollectionLetterCourse?;
+    string Description?;
+};
+
+public type CredManBlockExclusionValueType "Percent"|"Fixed";
+
+public type CredManGuaranteeInsurance "Guarantee"|"Insurance";
+
+# Represents the Headers record for the operation: deleteCreditManagementBlockExclusionRules
+public type DeleteCreditManagementBlockExclusionRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteCreditLimitRules
+public type DeleteCreditLimitRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCreditManagementCashDiscountRanks
+public type UpdateCreditManagementCashDiscountRanksHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCreditManagementGuaranteeInsuranceTypes
+public type UpdateCreditManagementGuaranteeInsuranceTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCreditManagementParameters
+public type UpdateCreditManagementParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteTemporaryCreditLimits
 public type DeleteTemporaryCreditLimitsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getCustBalanceStats
-public type GetCustBalanceStatsQueries record {
+# Represents the Queries record for the operation: listCreditManagementRiskGroups
+public type ListCreditManagementRiskGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listCreditManagementRiskGroups
-public type ListCreditManagementRiskGroupsQueries record {
+# Represents the Queries record for the operation: listCollectionAgencyFees
+public type ListCollectionAgencyFeesQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1319,6 +1255,41 @@ public type DeleteCreditManagementAccountStatusesHeaders record {
 };
 
 public type CredManReasonTableType "Hold"|"Release"|"Status";
+
+public type CreditManagementCashDiscountRank record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CashDiscCode?;
+    int:Signed32 CashDiscRanking?;
+};
+
+# Represents the Queries record for the operation: listCreditCardCodes
+public type ListCreditCardCodesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: listCreditManagementBlockExclusionRules
 public type ListCreditManagementBlockExclusionRulesQueries record {
@@ -1376,18 +1347,8 @@ public type ListCreditManagementReasonTablesQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getCreditManagementCustomerRiskScores
-public type GetCreditManagementCustomerRiskScoresQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: listCustomersFoundation
-public type ListCustomersFoundationQueries record {
+# Represents the Queries record for the operation: listCreditCardTransactions
+public type ListCreditCardTransactionsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1409,6 +1370,16 @@ public type ListCustomersFoundationQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCreditManagementCustomerRiskScores
+public type GetCreditManagementCustomerRiskScoresQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -1473,13 +1444,17 @@ public type TemporaryCreditLimitsCollection record {
     TemporaryCreditLimit[] value?;
 };
 
+# Represents the Headers record for the operation: deleteCollectionAgencyGracePeriodSetup
+public type DeleteCollectionAgencyGracePeriodSetupHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateCreditManagementCustomerGuaranteeInsurances
 public type UpdateCreditManagementCustomerGuaranteeInsurancesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type CreditCardAddressVerification "None"|"No"|"Yes";
 
 public type CreditManagementAccountStatusesCollection record {
     *ODataCollection;
@@ -1557,16 +1532,19 @@ public type CreditManagementParameter record {
     string PeriodTo?;
 };
 
+public type CollectionLetterCoursesCdsCollection record {
+    *ODataCollection;
+    CollectionLetterCourseCds[] value?;
+};
+
 # Represents the Headers record for the operation: updateCreditManagementReasonTables
 public type UpdateCreditManagementReasonTablesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
-
-# Represents the Queries record for the operation: listRiskScoreGroups
-public type ListRiskScoreGroupsQueries record {
+# Represents the Queries record for the operation: listCreditManagementPaymentTermRanks
+public type ListCreditManagementPaymentTermRanksQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1593,8 +1571,8 @@ public type ListRiskScoreGroupsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listCustomerCreditGroups
-public type ListCustomerCreditGroupsQueries record {
+# Represents the Queries record for the operation: listRiskScoreGroups
+public type ListRiskScoreGroupsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1651,6 +1629,12 @@ public type CreditLimitRule record {
     string dataAreaId?;
     string RiskGroupId?;
     string CurrencyCode?;
+};
+
+# Represents the Headers record for the operation: deleteCollectionAgencyFees
+public type DeleteCollectionAgencyFeesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type CredManAutoPost "OriginalPosting"|"WithoutPosting";

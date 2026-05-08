@@ -29,6 +29,39 @@ public type GetFixedAssetValueModelsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listFixedAssetsV2
+public type ListFixedAssetsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetProvisionTypesCollection record {
+    *ODataCollection;
+    AssetProvisionType[] value?;
+};
+
 # Represents the Queries record for the operation: getLeasePaymentScheduleContracts
 public type GetLeasePaymentScheduleContractsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -37,6 +70,11 @@ public type GetLeasePaymentScheduleContractsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AssetLeaseLedgerJournalHeadersCollection record {
+    *ODataCollection;
+    AssetLeaseLedgerJournalHeader[] value?;
 };
 
 # Represents the Queries record for the operation: getLeasePaymentAmountBreakdownImports
@@ -65,6 +103,99 @@ public type FixedAssetGroupBookSpecialDepreciationAllowance record {
 public type DeleteLeasePaymentSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type FixedAssetV2Entity record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FixedAssetNumber?;
+    string Comments?;
+    string Make?;
+    string LocationMemo?;
+    string PropertyGroupId?;
+    string ExceptionTaxationCode?;
+    FBPISCOFINSFixedAssetCreditGroup_BR FixedAssetCreditGroup?;
+    string Resource?;
+    NoYes TransferredFromInventory?;
+    string ParcelID?;
+    string ModelYear?;
+    NoYes IsRented?;
+    string ResponsibleName?;
+    decimal AcquisitionPrice?;
+    string SearchName?;
+    string NextMaintenance?;
+    string InsuranceDate2?;
+    string GISReferenceNumber?;
+    string TaxationCodeForCOFINS?;
+    AssetType Type?;
+    string LastPeriodicValueCostUpdate?;
+    decimal ReplacementCost?;
+    string FiscalEstablishmentId?;
+    string Model?;
+    decimal PolicyAmount?;
+    string PhysicalInventory?;
+    NoYes InsuredAtFairMarketValue?;
+    string GuaranteeDate?;
+    string MainAssetId?;
+    string TechnicalInformation1?;
+    string TechnicalInformation2?;
+    string TechnicalInformation3?;
+    NoYes IsSecondHand?;
+    string ActivityCode?;
+    string DepartmentOperatingUnitNumber?;
+    string Titleholder?;
+    string SortField2Id?;
+    string Reference?;
+    string DocumentLocation?;
+    string PolicyExpirationDate?;
+    string NameOfTheLender?;
+    AssetDeferredType_JP DeferredType?;
+    string Information1?;
+    decimal InsuredValue?;
+    int:Signed32 ICMSCreditInstallments?;
+    string SourceTypeId?;
+    string ResponsiblePersonnelNumber?;
+    string InsuranceDate1?;
+    AssetClassification_JP AssetClassification?;
+    string DisposalRestrictions?;
+    string PolicyNumber?;
+    string ContactPersonnelNumber?;
+    string SerialNumber?;
+    string LeaseNote?;
+    string AcceleratedDepreciationFixedAssetEquipmentGroupId?;
+    string Name?;
+    string SortField3Id?;
+    string MajorTypeId?;
+    AssetType_JP AssetTypeOfMajorType?;
+    FBPISCOFINSFixedAssetCreditPurpose_BR TaxCreditPurpose?;
+    string AssetConditionId?;
+    string Information2?;
+    string SortField1Id?;
+    AssetPropertyType PropertyType?;
+    string AcquisitionDate?;
+    NoYes OutgoingICMS?;
+    decimal ExceptionTaxationRate?;
+    string DepartmentSearchName?;
+    string Information3?;
+    string BarCode?;
+    string Agent?;
+    NoYes MissingAsset?;
+    decimal ExceptionTaxationRateDenominator?;
+    NoYes LongTermReceivableTax?;
+    string UnitOfMeasure?;
+    FBPISCOFINSFixedAssetAppropMethod_BR AppropriationMethod?;
+    string ContactName?;
+    decimal UnitCost?;
+    string RoomNumber?;
+    string AssetLocationId?;
+    decimal Quantity?;
+    string TaxationCodeForPIS?;
+    string InsuranceVendor?;
+    string FixedAssetGroupId?;
+    string PhysicalAssetNumber?;
+    string LastMaintenance?;
+    int:Signed32 TaxCreditsInstallments?;
+    string AssetLeaseLeaseId?;
 };
 
 public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|"CustomLayer1"|"CustomLayer2"|"CustomLayer3"|"CustomLayer4"|"CustomLayer5"|"CustomLayer6"|"CustomLayer7"|"None";
@@ -136,6 +267,48 @@ public type GetFixedAssetPostingProfilesQueries record {
 
 public type LedgerTransType "None"|"Transfer"|"Sales"|"Purch"|"Invent"|"Production"|"Project"|"Interest"|"Cust"|"ExchAdjustment"|"SummedUp"|"Payroll"|"FixedAssets"|"CollectionLetter"|"Vend"|"Payment"|"Tax"|"Bank"|"Conversion"|"BillOfExchange"|"PromissoryNote"|"Cost"|"Work"|"Fee"|"Settlement"|"Allocation"|"Elimination"|"CashDiscount"|"OverUnder"|"PennyDifference"|"CrossCompanySettlement"|"PurchReq"|"InflationAdjustment_MX"|"PurchAdvanceApplication"|"ConversionReporting"|"FixedAssets_RU"|"RTax25_BadDebtDebitAmortisation"|"RDeferrals"|"RTax25_BadDebtCreditAmortisation"|"AdvanceAdjustment_RU"|"VATTaxAgent_RU"|"GainLossCurrencyDeal_RU"|"PdsRebateCreditNote"|"PdsRebatePassToAP"|"WriteOff"|"GeneralJournal"|"MCRUnderpayWriteOff"|"CustVendNetting"|"SalesPrepayment"|"ReportingCurrencyAdjustment"|"LedgerSettlement"|"LedgerSettlementReversal"|"AssetLeaseLeaseIR"|"AssetLeaseLeaseInterest"|"AssetLeaseLeasePayment"|"AssetLeaseLeaseAdjustment"|"AssetLeaseLeaseIRReversal"|"AssetLeaseLeaseInterestReversal"|"AssetLeaseLeasePaymentReversal"|"AssetLeaseLeaseROUDepreciation"|"AssetLeaseLeaseROUDepreciationReversal"|"AssetLeaseLeaseAdjustmentIncrease"|"AssetLeaseLeaseAdjustmentDecrease"|"AssetLeaseReversePriorLeaseClassification"|"AssetLeaseRecordNewLeaseClassification"|"AssetLeaseLeaseAdjustmentReversal"|"AssetLeaseLeaseAdjustmentIncreaseReversal"|"AssetLeaseLeaseAdjustmentDecreaseReversal"|"AssetLeaseReversePriorLeaseClassificationReversal"|"AssetLeaseRecordNewLeaseClassificationReversal"|"AssetLeaseLeaseExpense"|"AssetLeaseLeaseExpenseReversal"|"AssetLeaseLeaseLiabilityShortTermReclass"|"AssetLeaseLeaseLiabilityShortTermReclassReversal"|"AssetLeaseAssetImpairment"|"AssetLeaseLeaseAssetImpairmentReversal"|"AssetLeaseLeaseTermination"|"AssetLeaseLeaseTerminationReversal"|"LTMInflationAdjustment_AR"|"RevRecSalesOrderRevenueAdjustment";
 
+public type FBPISCOFINSFixedAssetCreditGroup_BR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
+
+# Represents the Queries record for the operation: listFixedAssets
+public type ListFixedAssetsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAcceleratedDepreciationGroups
+public type UpdateAcceleratedDepreciationGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteAssetRetirementObligationDocuments
+public type DeleteAssetRetirementObligationDocumentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listFixedAssetBooksV2
 public type ListFixedAssetBooksV2Queries record {
     # Number of records to skip.
@@ -170,6 +343,34 @@ public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
 public type UpdateValueModelSetupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listAssetSortings
+public type ListAssetSortingsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type FixedAssetPostingProfileDisposal record {
@@ -240,6 +441,18 @@ public type GetIntercompanyTransferWorksheetLinesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteAssetProvisionTypes
+public type DeleteAssetProvisionTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateAssetPropertyGroups
+public type UpdateAssetPropertyGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type IntercompanyTransferWorksheet record {
     string \@odata\.etag?;
     string TransferId?;
@@ -268,6 +481,8 @@ public type GetLeasePaymentAmountTypesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type CarrierType_W "InvoiceAccount"|"Customer"|"Vendor";
 
 # Represents the Queries record for the operation: listLeaseDetailsImportCollection
 public type ListLeaseDetailsImportCollectionQueries record {
@@ -302,6 +517,12 @@ public type ImpairmentIndicatorsCollection record {
     ImpairmentIndicator[] value?;
 };
 
+# Represents the Headers record for the operation: updateAssetConditions
+public type UpdateAssetConditionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateLeasePaymentSchedules
 public type UpdateLeasePaymentSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -310,6 +531,22 @@ public type UpdateLeasePaymentSchedulesHeaders record {
 
 # Represents the Headers record for the operation: updateLeaseBookGroupRelations
 public type UpdateLeaseBookGroupRelationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAssetUndepreciatedBalanceSchedules
+public type GetAssetUndepreciatedBalanceSchedulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteAcceleratedDepreciationGroups
+public type DeleteAcceleratedDepreciationGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -442,6 +679,11 @@ public type DeleteLeaseDepreciationSchedulesHistoryHeaders record {
     string If\-Match?;
 };
 
+public type FixedAssetsV2Collection record {
+    *ODataCollection;
+    FixedAssetV2Entity[] value?;
+};
+
 # Represents the Headers record for the operation: deleteLeaseAmortizationSchedules
 public type DeleteLeaseAmortizationSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -458,6 +700,12 @@ public type AssetLeaseImportProcessType "Insert"|"Update"|"Adjustment";
 
 # Represents the Headers record for the operation: updateFixedAssetPostingProfiles
 public type UpdateFixedAssetPostingProfilesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteAssetConsumptionUnits
+public type DeleteAssetConsumptionUnitsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -524,6 +772,26 @@ public type ListLeaseDimensionAttributesQueries record {
     string selectFields?;
 };
 
+public type AssetMainGroupMember record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FAGroup?;
+    string ValueModel?;
+    string DepreciationGroup?;
+    NoYes ServiceLifeByRate?;
+};
+
+public type AssetLending record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FAInventoryNumber?;
+    string DateOfLease?;
+    string ActualReturnDate?;
+    string Location?;
+    string ExpectedReturnDate?;
+    string Leaseholder?;
+};
+
 # Represents the Queries record for the operation: getLeasePaymentAmountBreakdowns
 public type GetLeasePaymentAmountBreakdownsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -584,12 +852,6 @@ public type DeleteLeaseLiabilityTransactionsHeaders record {
     string If\-Match?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
 
 # Represents the Headers record for the operation: deleteLeaseIndexRates
 public type DeleteLeaseIndexRatesHeaders record {
@@ -664,8 +926,74 @@ public type AssetAllocationRulesCollection record {
     AssetAllocationRule[] value?;
 };
 
+# Represents the Queries record for the operation: listAssetMainGroupMembers
+public type ListAssetMainGroupMembersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listAssetProvisionTypes
+public type ListAssetProvisionTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getLeasePaymentScheduleContractImports
 public type GetLeasePaymentScheduleContractImportsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getAssetPropertyGroups
+public type GetAssetPropertyGroupsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -769,11 +1097,32 @@ public type GetIntercompanyTransferSourcesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteFixedAssets
+public type DeleteFixedAssetsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type LeaseUpdateFieldSelectionsCollection record {
+    *ODataCollection;
+    LeaseUpdateFieldSelection[] value?;
+};
+
 public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
 
 public type LeaseBooksSetupCollection record {
     *ODataCollection;
     LeaseBookSetup[] value?;
+};
+
+# Represents the Queries record for the operation: getAssetSpecialDepreciationAllowances
+public type GetAssetSpecialDepreciationAllowancesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: getLeaseDepreciationSchedules
@@ -805,6 +1154,54 @@ public type GetLeaseAmortizationSchedulesHistoryQueries record {
 public type UpdateLeaseLocationsDetailsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAssetLocations
+public type GetAssetLocationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listFixedAssetGroupValueModelSetups
+public type ListFixedAssetGroupValueModelSetupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getAssetConsumptionUnits
+public type GetAssetConsumptionUnitsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteAssetAllocationRules
@@ -972,6 +1369,8 @@ public type DeleteImpairmentIndicatorsHeaders record {
     string If\-Match?;
 };
 
+public type FBPISCOFINSFixedAssetAppropMethod_BR "None"|"Depreciation"|"Acquisition"|"Amortization";
+
 # Represents the Queries record for the operation: getLeaseDetailsImportCollection
 public type GetLeaseDetailsImportCollectionQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -980,6 +1379,12 @@ public type GetLeaseDetailsImportCollectionQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAssetLeaseLedgerJournalHeaders
+public type UpdateAssetLeaseLedgerJournalHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteLeaseDetailsImportCollection
@@ -1020,6 +1425,34 @@ public type LeasePaymentScheduleContractImport record {
     decimal CostPerUnit?;
     AssetLeasePaymentFrequency Frequency?;
     decimal IndexRate?;
+};
+
+# Represents the Queries record for the operation: listAssetLendings
+public type ListAssetLendingsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type AssetRetirementObligationsCollection record {
@@ -1182,10 +1615,20 @@ public type DeleteLeaseIndexRevaluationsHeaders record {
     string If\-Match?;
 };
 
+public type FixedAssetsCollection record {
+    *ODataCollection;
+    FixedAsset[] value?;
+};
+
 # Represents the Headers record for the operation: updateLeaseDetailsImportCollection
 public type UpdateLeaseDetailsImportCollectionHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type AcceleratedDepreciationGroupsCollection record {
+    *ODataCollection;
+    AcceleratedDepreciationGroup[] value?;
 };
 
 # Represents the Headers record for the operation: updateLeaseBookVersions
@@ -1210,6 +1653,40 @@ public type GetLeaseIndexRevaluationDetailsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listAssetSpecialDepreciationAllowances
+public type ListAssetSpecialDepreciationAllowancesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteAssetPackingSlips
+public type DeleteAssetPackingSlipsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type LeasingGroupsCollection record {
     *ODataCollection;
     LeasingGroup[] value?;
@@ -1219,6 +1696,27 @@ public type LeasingGroupsCollection record {
 public type DeleteLeaseAmortizationSchedulesHistoryHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type FixedAssetGroupValueModelSetupsCollection record {
+    *ODataCollection;
+    FixedAssetGroupValueModelSetup[] value?;
+};
+
+# Represents the Headers record for the operation: updateAssetJournalHeaders
+public type UpdateAssetJournalHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getFixedAssets
+public type GetFixedAssetsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type LeaseExpenseTypesCollection record {
@@ -1260,6 +1758,11 @@ public type ListLeasePaymentScheduleContractsQueries record {
     string selectFields?;
 };
 
+public type AssetSpecialDepreciationAllowancesCollection record {
+    *ODataCollection;
+    AssetSpecialDepreciationAllowance[] value?;
+};
+
 # Represents the Queries record for the operation: listLeaseLiabilityTransactions
 public type ListLeaseLiabilityTransactionsQueries record {
     # Number of records to skip.
@@ -1291,6 +1794,116 @@ public type ListLeaseLiabilityTransactionsQueries record {
 public type LeasePaymentScheduleContractsHistoryCollection record {
     *ODataCollection;
     LeasePaymentScheduleContractHistory[] value?;
+};
+
+public type FixedAsset record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FixedAssetNumber?;
+    string FiscalEstablishmentId?;
+    string TaxationCodeForPIS?;
+    string ModelYear?;
+    string NextMaintenance?;
+    string ActivityCode?;
+    string DocumentLocation?;
+    FBPISCOFINSFixedAssetCreditGroup_BR FixedAssetCreditGroup?;
+    AssetSortValue SortField3Sorting?;
+    string NameOfTheLender?;
+    string Resource?;
+    string ExceptionTaxationCode?;
+    string LastMaintenance?;
+    string Information2?;
+    NoYes MissingAsset?;
+    FBPISCOFINSFixedAssetCreditPurpose_BR TaxCreditPurpose?;
+    string LeaseNote?;
+    AssetSortValue SortField2Sorting?;
+    string SearchName?;
+    FBPISCOFINSFixedAssetAppropMethod_BR AppropriationMethod?;
+    string MajorTypeDescription?;
+    NoYes IsSecondHand?;
+    string GISReferenceNumber?;
+    AssetClassification_JP AssetClassification?;
+    string AcceleratedDepreciationFixedAssetEquipmentGroupId?;
+    int:Signed32 ICMSCreditInstallments?;
+    NoYes TransferredFromInventory?;
+    string Make?;
+    string ContactPersonnelNumber?;
+    string SortField1Description?;
+    decimal AcquisitionPrice?;
+    string ResponsiblePersonnelNumber?;
+    int:Signed32 TaxCreditsInstallments?;
+    string LocationId?;
+    string ActivityCodeDescription?;
+    AssetPropertyType PropertyType?;
+    string DepartmentOperatingUnitNumber?;
+    string Titleholder?;
+    string PhysicalInventory?;
+    decimal InsuredValue?;
+    decimal UnitCost?;
+    string Reference?;
+    string InsuranceVendor?;
+    NoYes InsuredAtFairMarketValue?;
+    string PropertyGroupDescription?;
+    string BarCode?;
+    string PolicyExpirationDate?;
+    string Information3?;
+    string SortField2Id?;
+    string Comments?;
+    string Model?;
+    string ResponsibleName?;
+    string Agent?;
+    AssetType_JP AssetTypeOfMajorType?;
+    decimal ExceptionTaxationRate?;
+    AssetType Type?;
+    NoYes OutgoingICMS?;
+    string Name?;
+    string SourceTypeId?;
+    string TechnicalInformation1?;
+    string TechnicalInformation2?;
+    string AssetConditionId?;
+    string TechnicalInformation3?;
+    string SortField3Description?;
+    AssetSortValue SortField1Sorting?;
+    decimal ReplacementCost?;
+    string UnitOfMeasure?;
+    string InsuranceDate2?;
+    string AssetLocationId?;
+    string ContactName?;
+    string DepartmentSearchName?;
+    string ParcelID?;
+    string RoomNumber?;
+    decimal Quantity?;
+    decimal ExceptionTaxationRateDenominator?;
+    string FixedAssetGroupId?;
+    string LastPeriodicValueCostUpdate?;
+    string DisposalRestrictions?;
+    string TaxationCodeForCOFINS?;
+    NoYes IsRented?;
+    string MajorTypeId?;
+    string GuaranteeDate?;
+    string SortField2Description?;
+    string Information1?;
+    string PropertyGroupId?;
+    AssetDeferredType_JP DeferredType?;
+    decimal PolicyAmount?;
+    string MainAssetId?;
+    string SortField1Id?;
+    string PolicyNumber?;
+    NoYes LongTermReceivableTax?;
+    string PhysicalAssetNumber?;
+    string SerialNumber?;
+    string InsuranceDate1?;
+    string AssetConditionDescription?;
+    string SortField3Id?;
+    string AcquisitionDate?;
+    string AssetLocationName?;
+    string LocationMemo?;
+};
+
+# Represents the Headers record for the operation: updateAssetProvisionTypes
+public type UpdateAssetProvisionTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type AssetLeasePostingAccountCode "Table"|"GroupId"|"All";
@@ -1421,6 +2034,27 @@ public type GetLeaseIndexRatesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getAcquisitionMethods
+public type GetAcquisitionMethodsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetSortingsCollection record {
+    *ODataCollection;
+    AssetSorting[] value?;
+};
+
+# Represents the Headers record for the operation: updateAcquisitionMethods
+public type UpdateAcquisitionMethodsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type AssetLimitForAccumulatedDepType_JP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
 
 public type AssetRetirementObligation record {
@@ -1452,6 +2086,25 @@ public type LeaseLiabilityTransactionsCollection record {
     LeaseLiabilityTransaction[] value?;
 };
 
+public type AssetSpecialDepreciationAllowance record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string SpecialDepreciationAllowanceId?;
+    decimal Percentage?;
+    decimal Amount?;
+    string Description?;
+};
+
+# Represents the Queries record for the operation: getAssetLeaseLedgerJournalHeaders
+public type GetAssetLeaseLedgerJournalHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type LeaseExecutoryCostContractHistory record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1467,6 +2120,34 @@ public type LeaseExecutoryCostContractHistory record {
     int:Signed32 Periods?;
     AssetLeasePaymentFrequency Frequency?;
     LedgerJournalACType OffsetAccountType?;
+};
+
+# Represents the Queries record for the operation: listAssetUndepreciatedBalanceSchedules
+public type ListAssetUndepreciatedBalanceSchedulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type AssetPostType "All"|"Negative"|"Positive";
@@ -1497,6 +2178,11 @@ public type ListFixedAssetValueModelsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AssetLocationsCollection record {
+    *ODataCollection;
+    AssetLocation[] value?;
 };
 
 public type LeaseDetailsImport record {
@@ -1639,6 +2325,16 @@ public type LeaseDetailsImport record {
     int:Signed32 PeriodsRemaining?;
 };
 
+public type AssetMajorType record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string MajorTypeId?;
+    string Description?;
+    AssetType_JP AssetType_JP?;
+};
+
+public type AssetSortValue "Sorting1"|"Sorting2"|"Sorting3";
+
 # Represents the Headers record for the operation: updateLeasePaymentAmountTypes
 public type UpdateLeasePaymentAmountTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1649,6 +2345,44 @@ public type UpdateLeasePaymentAmountTypesHeaders record {
 public type UpdateImpairmentIndicatorsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type AssetJournalHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalBatchNumber?;
+    string ReportingCurrency?;
+    string AccountingCurrency?;
+    string JournalNameId?;
+    string Description?;
+    CurrentOperationsTax PostingLayer?;
+    NoYes IsPosted?;
+};
+
+# Represents the Headers record for the operation: deleteFixedAssetGroups
+public type DeleteFixedAssetGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getFixedAssetGroupValueModelSetups
+public type GetFixedAssetGroupValueModelSetupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getFixedAssetsV2
+public type GetFixedAssetsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteLeaseJournalParameters
@@ -1679,10 +2413,66 @@ public type GetLeaseBooksQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listAssetLeaseLedgerJournalHeaders
+public type ListAssetLeaseLedgerJournalHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateAssetParametersProposalJournalNames
 public type UpdateAssetParametersProposalJournalNamesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listFixedAssetGroups
+public type ListFixedAssetGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteLeasePaymentScheduleContractImports
@@ -1710,6 +2500,16 @@ public type LeasePaymentAmountBreakdown record {
     string StartDate?;
     string PaymentAmountType?;
     decimal Amount?;
+};
+
+# Represents the Queries record for the operation: getAssetProvisionTypes
+public type GetAssetProvisionTypesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteLeaseExecutoryCostsAccountsCollection
@@ -1780,6 +2580,24 @@ public type ListLeasePaymentAmountBreakdownsQueries record {
     string selectFields?;
 };
 
+public type AssetLocation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string LocationId?;
+    string AddressCountryRegionId?;
+    string Name?;
+    string AddressStreet?;
+    string AddressCounty?;
+    string AddressCityInKana?;
+    string AddressValidTo?;
+    string AddressValidFrom?;
+    string AddressStreetInKana?;
+    string AddressState?;
+    string AddressZipCode?;
+    string AddressCity?;
+    string AddressCountryRegionISOCode?;
+};
+
 # Represents the Headers record for the operation: updateLeasePaymentAmountBreakdowns
 public type UpdateLeasePaymentAmountBreakdownsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1812,6 +2630,12 @@ public type ListAssetParametersProposalJournalNamesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAssetUndepreciatedBalanceSchedules
+public type UpdateAssetUndepreciatedBalanceSchedulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listIntercompanyTransferWorksheetLines
@@ -1847,6 +2671,16 @@ public type LeaseExecutoryCostContractsHistoryCollection record {
     LeaseExecutoryCostContractHistory[] value?;
 };
 
+# Represents the Queries record for the operation: getAssetRetirementObligationDocuments
+public type GetAssetRetirementObligationDocumentsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getLeaseBooksSetup
 public type GetLeaseBooksSetupQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -1855,6 +2689,17 @@ public type GetLeaseBooksSetupQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AssetConsumptionUnitsCollection record {
+    *ODataCollection;
+    AssetConsumptionUnit[] value?;
+};
+
+# Represents the Headers record for the operation: deleteAssetLeaseLedgerJournalHeaders
+public type DeleteAssetLeaseLedgerJournalHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateFixedAssetValueModelSetupDerivedValueModels
@@ -1920,6 +2765,20 @@ public type ListLeaseIndexRevaluationsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AssetLeaseLedgerJournalHeader record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalBatchNumber?;
+    string AccountingCurrency?;
+    string JournalName?;
+    string IntegrationKey?;
+    string Description?;
+    CurrentOperationsTax PostingLayer?;
+    NoYes IsPosted?;
+    decimal JournalTotalCredit?;
+    decimal JournalTotalDebit?;
 };
 
 public type AssetIntercompanyTransferStatus "Started"|"Generated"|"JournalCreated"|"JournalPosted";
@@ -2025,6 +2884,12 @@ public type LeaseJournalParametersCollection record {
     LeaseJournalParameter[] value?;
 };
 
+# Represents the Headers record for the operation: updateAssetLendings
+public type UpdateAssetLendingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type AssetSpecialDepAllocationConvention_JP "FollowingFiscalYear"|"FollowingFiscalPeriod";
 
 # Represents the Headers record for the operation: deleteFixedAssetValueModelSetupDerivedValueModels
@@ -2109,7 +2974,22 @@ public type ListAssetStatementRowsQueries record {
 
 public type AssetLeaseAccountingFrameworkType "IFRS16"|"ASC842"|"CashBasis"|"ASC840"|"IAS17";
 
+public type AssetJournalHeadersCollection record {
+    *ODataCollection;
+    AssetJournalHeader[] value?;
+};
+
 public type AssetIntercompanyTransferRateType "AcquistionDate"|"TransferDate"|"MaxDestinationAssetValue";
+
+# Represents the Queries record for the operation: getAssetPackingSlips
+public type GetAssetPackingSlipsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 public type ImpairmentIndicator record {
     string \@odata\.etag?;
@@ -2123,6 +3003,12 @@ public type ImpairmentIndicator record {
     string Description?;
     decimal UndiscountedCashFlow?;
     decimal RecoverableAmount?;
+};
+
+# Represents the Headers record for the operation: updateAssetLeaseLedgerJournalLines
+public type UpdateAssetLeaseLedgerJournalLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type LeaseExpenseType record {
@@ -2161,9 +3047,55 @@ public type ListParentLeasesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listAssetMajorTypes
+public type ListAssetMajorTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type LeasePostingAccountsCollectionCollection record {
     *ODataCollection;
     LeasePostingAccounts[] value?;
+};
+
+# Represents the Headers record for the operation: updateAssetImpairmentCashGeneratingUnitSharedAssetsAllocations
+public type UpdateAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteAcquisitionMethods
+public type DeleteAcquisitionMethodsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateFixedAssets
+public type UpdateFixedAssetsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type LeasePaymentAmountBreakdownsCollection record {
@@ -2177,6 +3109,34 @@ public type UpdateLeasePaymentScheduleContractsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listAssetLeaseLedgerJournalLines
+public type ListAssetLeaseLedgerJournalLinesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type AssetRetirementPostingFrequency_JP "Yearly"|"Quarterly";
 
 public type AssetParametersCollection record {
@@ -2187,6 +3147,12 @@ public type AssetParametersCollection record {
 public type IntercompanyTransferWorksheetLinesCollection record {
     *ODataCollection;
     IntercompanyTransferWorksheetLine[] value?;
+};
+
+# Represents the Headers record for the operation: deleteLeaseUpdateFieldSelections
+public type DeleteLeaseUpdateFieldSelectionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type FixedAssetPostingProfilesCollection record {
@@ -2229,6 +3195,28 @@ public type GetLeaseExecutoryCostContractImportsQueries record {
 public type AssetLeaseLeasingConvention "None"|"FullMonth";
 
 public type AssetTransType "None"|"Acquisition"|"AcquisitionAdj"|"Depreciation"|"DepreciationAdj"|"Revaluation"|"WriteUpAdj"|"WriteDownAdj"|"DisposalSale"|"DisposalScrap"|"NetBookValue"|"ProfitLoss"|"AcqPriorYears"|"AcqThisYear"|"AcqAdjPriorYears"|"AcqAdjThisYear"|"DepPriorYears"|"DepThisYear"|"DepAdjPriorYears"|"DepAdjThisYear"|"RevaluePriorYears"|"RevalueThisYear"|"WriteUpAdjPriorYears"|"WriteUpAdjThisYear"|"WriteDownAdjPriorYears"|"WriteDownAdjThisYear"|"CapitalReserve"|"CapitalReserveTransfer"|"ExtraordinaryDepreciation"|"ExtraDepPriorYears"|"ExtraDepThisYear"|"BonusDepreciation"|"BonusDepPriorYears"|"BonusDepThisYear"|"DerogatoryIncrease"|"DerogatoryDecrease"|"DerogatoryIncreaseAllYears"|"DerogatoryDecreaseAllYears"|"AssetTransfer"|"PreAcquisition_CZ"|"DepreciationNotCost_PL"|"DepNotCostPriorYears_PL"|"DeprNotCostThisYear_PL"|"AccumulatedDepreciation_PL"|"PostOffAccDepreciation_PL"|"PostOffAccDeprPriorYears_PL"|"PostOffAccDeprThisYear_PL"|"AccDepreciationPriorYears_PL"|"AccDepreciationThisYear_PL"|"DEL_Movement_LV"|"AssetRetirementObligationInterest_JP"|"ReductionEntryReserve_JP"|"ReductionEntryReserveAllocation_JP"|"ReductionEntryRepayment_JP"|"SpecialDepReserve_JP"|"SpecialDepReserveAllocation_JP"|"AdditionalDepReserve_JP"|"AdditionalDepReserveAllocation_JP"|"ReductionEntryRepaymentSubsidy_JP"|"ReductionEntryRepaymentProportional_JP"|"MajorRepairs_RU"|"PartialTakeDown_RU"|"Disposal_RU"|"Lending_RU"|"LendingRet_RU"|"CompanyIssue_RU"|"CompanyReceipt_RU"|"Other_RU"|"CurrencyWriteUpAdj_RU"|"CurrencyWriteDownAdj_RU"|"RevAcqTR"|"RevDepTR"|"RevDepPastTR"|"RevAcqPriorTR"|"RevDepPriorTR"|"RevDepPastPriorTR"|"TerminationOffset";
+
+public type AssetUndepreciatedBalanceSchedulesCollection record {
+    *ODataCollection;
+    AssetUndepreciatedBalanceSchedule[] value?;
+};
+
+# Represents the Headers record for the operation: deleteAssetLendings
+public type DeleteAssetLendingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateFixedAssetGroups
+public type UpdateFixedAssetGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type FixedAssetGroupsCollection record {
+    *ODataCollection;
+    FixedAssetGroup[] value?;
+};
 
 public type FixedAssetValueModelsCollection record {
     *ODataCollection;
@@ -2286,6 +3274,8 @@ public type LeaseBookVersionsCollection record {
     LeaseBookVersion[] value?;
 };
 
+public type AssetDepreciationMethod "StraightLine"|"ReducingBalance"|"Manual"|"Factor"|"Consumption"|"RBSL"|"StraightLineLifeRemaining"|"ReducingBalance200"|"ReducingBalance175"|"ReducingBalance150"|"ReducingBalance125"|"LowValuePool"|"StraightLinePercentage_IN"|"SumYearDigits_CN"|"DoubleReduceBalance_CN"|"Regular_CZ"|"Accelerated_CZ"|"Factor_HU"|"ReducingBalance_HU"|"StraightLine_HU"|"MultiplicationFactor_HU"|"ReducingBalance_PL"|"StraightLine_PL"|"StraightLinePercentage_PL"|"OldStraightLine_JP"|"NewStraightLine_JP"|"OldDecliningBalance_JP"|"NewDecliningBalance250_JP"|"NewDecliningBalance200_JP"|"EquallyDivided_JP"|"SpecialDepreciation_JP"|"Accelerated_JP"|"AdditionalDepreciation_JP"|"ElectronicDepreciation_JP"|"SumYears_RU"|"Value_RU"|"TaxNonLinearGroup_RU"|"StraightLine_TR"|"ReducingBalance_TR";
+
 public type LeaseJournalParameter record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -2305,6 +3295,40 @@ public type LeaseJournalParameter record {
 public type AssetIntercompanyTransferValueType "AcquisitionAndDepreciationValue"|"NetBookValue";
 
 public type RowType "Header"|"Total";
+
+# Represents the Headers record for the operation: updateAssetConsumptionUnits
+public type UpdateAssetConsumptionUnitsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listAssetPropertyGroups
+public type ListAssetPropertyGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: listImpairmentIndicators
 public type ListImpairmentIndicatorsQueries record {
@@ -2334,6 +3358,44 @@ public type ListImpairmentIndicatorsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listAssetActivityCodes
+public type ListAssetActivityCodesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getAssetConditions
+public type GetAssetConditionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteLeaseBooks
 public type DeleteLeaseBooksHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2343,6 +3405,36 @@ public type DeleteLeaseBooksHeaders record {
 public type AssetParametersProposalJournalNamesCollection record {
     *ODataCollection;
     AssetParametersProposalJournalName[] value?;
+};
+
+public type FixedAssetGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FixedAssetGroupId?;
+    FBPISCOFINSFixedAssetAppropMethod_BR AppropriationMethodForPISCOFINS?;
+    NoYes OutgoingICMS?;
+    string MajorTypeId?;
+    FBPISCOFINSFixedAssetCreditGroup_BR FixedAssetCreditGroup?;
+    string BarcodeNumberSequenceCode?;
+    string TaxationCodeForPIS?;
+    string GISLayerId?;
+    FBPISCOFINSFixedAssetCreditPurpose_BR FixedAssetCreditPurpose?;
+    string AssetLocationId?;
+    AssetDeferredType_JP DeferredType?;
+    string TaxationCodeForCOFINS?;
+    decimal InsuredValueFactor?;
+    AssetType Type?;
+    string Name?;
+    NoYes AutonumberFixedAssets?;
+    NoYes LongTermReceivablePISCOFINS?;
+    AssetPropertyType PropertyType?;
+    int:Signed32 PISCOFINSCreditsInstallments?;
+    NoYes AutonumberBarCodes?;
+    decimal CapitalizationThreshold?;
+    string NumberSequenceCode?;
+    int:Signed32 ICMSCreditInstallments?;
+    decimal ReplacementCostFactor?;
+    AssetClassification_JP AssetClassification?;
 };
 
 # Represents the Queries record for the operation: listLeasePaymentScheduleContractImports
@@ -2388,6 +3480,18 @@ public type LeasePaymentAmountBreakdownImport record {
     decimal Amount?;
 };
 
+public type AcceleratedDepreciationGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string EquipmentGroup?;
+    int:Signed32 IndustryAnnualWorkingDays?;
+    string EquipmentTypeDivision?;
+    decimal IndustryAverageHoursPerDay?;
+    string Location?;
+    string Description?;
+    string EquipmentType?;
+};
+
 public type LeasePaymentAmountTypesCollection record {
     *ODataCollection;
     LeasePaymentAmountType[] value?;
@@ -2413,6 +3517,26 @@ public type LeasePaymentScheduleHistory record {
     NoYes PaymentConfirmed?;
     string JournalNum?;
     NoYes JournalCreated?;
+};
+
+public type AssetPropertyGroupsCollection record {
+    *ODataCollection;
+    AssetPropertyGroup[] value?;
+};
+
+public type AssetProvisionType record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string TypeId?;
+    int:Signed32 LengthOfOwnership?;
+    int:Signed32 Months?;
+    string Description?;
+};
+
+# Represents the Headers record for the operation: deleteAssetMajorTypes
+public type DeleteAssetMajorTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getFixedAssetValueModelSetupDerivedValueModels
@@ -2454,6 +3578,13 @@ public type AssetLeaseIndexRateMethod "IndexRateValueDifference"|"IndexRateValue
 public type DeleteLeaseExpenseTransactionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type AssetConsumptionUnit record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string UnitId?;
+    string Description?;
 };
 
 public type LeaseDepreciationScheduleHistory record {
@@ -2552,6 +3683,12 @@ public type DeleteLeasePaymentScheduleContractsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteAssetLeaseLedgerJournalLines
+public type DeleteAssetLeaseLedgerJournalLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getLeaseAmortizationSchedules
 public type GetLeaseAmortizationSchedulesQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -2568,52 +3705,30 @@ public type UpdateLeasePaymentSchedulesHistoryHeaders record {
     string If\-Match?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
+# Represents the Queries record for the operation: getAssetMajorTypes
+public type GetAssetMajorTypesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetMainGroupMembersCollection record {
+    *ODataCollection;
+    AssetMainGroupMember[] value?;
+};
+
 
 # Represents the Headers record for the operation: deleteValueModelSetups
 public type DeleteValueModelSetupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteAssetJournalHeaders
+public type DeleteAssetJournalHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -2636,6 +3751,40 @@ public type GetAssetJournalV2Queries record {
 
 public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
 
+# Represents the Queries record for the operation: listAssetRetirementObligationDocuments
+public type ListAssetRetirementObligationDocumentsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAssetSortings
+public type UpdateAssetSortingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteLeasingGroups
 public type DeleteLeasingGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2650,6 +3799,40 @@ public type GetAssetTransReportingCurrencyAmountsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Queries record for the operation: listLeaseUpdateFieldSelections
+public type ListLeaseUpdateFieldSelectionsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateFixedAssetsV2
+public type UpdateFixedAssetsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listLeaseExecutoryCostContractImports
@@ -2699,6 +3882,8 @@ public type LeaseIndexRevaluationDetail record {
     string LiabilityAccountDisplayValue?;
     string AssetAccountDisplayValue?;
 };
+
+public type AssetType_JP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
 
 # Represents the Queries record for the operation: getAssetParameters
 public type GetAssetParametersQueries record {
@@ -2795,9 +3980,59 @@ public type DeleteAssetJournalV2Headers record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteAssetImpairmentCashGeneratingUnitSharedAssetsAllocations
+public type DeleteAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateAssetMainGroupMembers
+public type UpdateAssetMainGroupMembersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateAssetRetirementObligationDocuments
+public type UpdateAssetRetirementObligationDocumentsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type LeaseDepreciationSchedulesCollection record {
     *ODataCollection;
     LeaseDepreciationSchedule[] value?;
+};
+
+public type AssetPackingSlip record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string PackingSlip?;
+    string CreateDate?;
+    int:Signed32 CreateTime?;
+    string FixedAssetNumber?;
+    string LoadingDateAndTime?;
+    string GoodsIssuedBy?;
+    string UnloadAddress?;
+    string UnloadingDateAndTime?;
+    string Description?;
+    string RegistrationNumber?;
+    string Carrier?;
+    string OriginalDepartment?;
+    string TrailerRegistrationNumber?;
+    string NewDepartment?;
+    string LoadingName?;
+    string LoadingAddress?;
+    string Model?;
+    string UnloadingAddress?;
+    string DocumentDateAndTime?;
+    string RiskLevelOfTheLoad?;
+    string Driver?;
+    string Package?;
+    CarrierType_W CarrierType?;
+    string LoadAddress?;
+    NoYes PrintTransportationDetails?;
+    string DriverName?;
+    string UnloadingName?;
 };
 
 public type LeaseExecutoryCostsAccountsCollectionCollection record {
@@ -2838,6 +4073,55 @@ public type LeaseIndexRevaluationDetailsCollection record {
     LeaseIndexRevaluationDetail[] value?;
 };
 
+public type AssetLeaseLedgerJournalLine record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string JournalBatchNumber?;
+    decimal LineNumber?;
+    NoYes ReverseEntry?;
+    string ItemSalesTaxGroup?;
+    string CashDiscountDate?;
+    string Voucher?;
+    string Text?;
+    LedgerJournalACType OffsetAccountType?;
+    NoYes IsWithholdingCalculationEnabled?;
+    string ReverseDate?;
+    string TransDate?;
+    string DefaultDimensionDisplayValue?;
+    string PaymentReference?;
+    string Document?;
+    decimal CashDiscountAmount?;
+    decimal ExchRate?;
+    string ChineseVoucherType?;
+    decimal DebitAmount?;
+    string SalesTaxCode?;
+    string DocumentDate?;
+    string OffsetAccountDisplayValue?;
+    string AccountDisplayValue?;
+    string CashDiscount?;
+    string OffsetDefaultDimensionDisplayValue?;
+    string SalesTaxGroup?;
+    LedgerJournalACType AccountType?;
+    string Invoice?;
+    string DueDate?;
+    decimal ReportingCurrencyExchRate?;
+    string PaymentMethod?;
+    string PaymentId?;
+    string PostingProfile?;
+    decimal ExchRateSecond?;
+    decimal CreditAmount?;
+    string OffsetCompany?;
+    decimal Quantity?;
+    string ItemWithholdingTaxGroupCode?;
+    string TaxExemptNumber?;
+    decimal ReportingCurrencyExchRateSecondary?;
+    string CurrencyCode?;
+    string Company?;
+    string ChineseVoucher?;
+    decimal DiscountPercentage?;
+    string OffsetText?;
+};
+
 # Represents the Headers record for the operation: updateLeaseBooks
 public type UpdateLeaseBooksHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2848,6 +4132,40 @@ public type UpdateLeaseBooksHeaders record {
 public type DeleteLeaseImportHeaderCollectionHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type FixedAssetGroupValueModelSetup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string FixedAssetGroupId?;
+    string ValueModelId?;
+    string AlternativeDepreciationProfileId?;
+    int:Signed32 SpecialDepreciationAllocationPeriods?;
+    int:Signed32 ServiceLifeMonths?;
+    string ExtraordinaryDepreciationProfileId?;
+    AssetSpecialDepAllocationConvention_JP SpecialDepreciationAllocationStartConvention?;
+    string AcceleratedDepreciationProfileId?;
+    AssetAccrualFiscal SpecialDepreciationAllocationUnit?;
+    string DepreciationProfileId?;
+    int:Signed32 DepreciationPeriods?;
+    string DepreciationGroupId?;
+    AssetLimitForAccumulatedDepType_JP AllowableLimitForAccumulatedDepreciation?;
+    NoYes IsAssetGroupDepreciation?;
+    AssetDepreciationConvention DepreciationConvention?;
+    decimal ServiceLife?;
+    NoYes CalculateDepreciation?;
+    int:Signed32 ServiceLifeYears?;
+    NoYes AssetProRataDep_TR?;
+};
+
+# Represents the Queries record for the operation: getAssetImpairmentCashGeneratingUnitSharedAssetsAllocations
+public type GetAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type LeaseDimensionAttributesCollection record {
@@ -2881,6 +4199,17 @@ public type ListAssetRetirementObligationsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type LeaseUpdateFieldSelection record {
+    string \@odata\.etag?;
+    int:Signed32 FieldId?;
+    int:Signed32 RefTableId?;
+    string FieldType?;
+    string FieldName?;
+    string ImportTableName?;
+    int RefRecId?;
+    NoYes SelectForUpdate?;
 };
 
 # Represents the Queries record for the operation: listFixedAssetPostingProfiles
@@ -2958,6 +4287,17 @@ public type AssetStatementRow record {
     string RowName?;
     AssetIntervalRelation AssetIntervalRelation?;
     RowType RowType?;
+};
+
+public type AssetMajorTypesCollection record {
+    *ODataCollection;
+    AssetMajorType[] value?;
+};
+
+# Represents the Headers record for the operation: deleteAssetSortings
+public type DeleteAssetSortingsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type LeaseAmortizationSchedule record {
@@ -3039,6 +4379,16 @@ public type ListLeaseJournalParametersQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getAssetLendings
+public type GetAssetLendingsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateLeaseExecutoryCostContractImports
 public type UpdateLeaseExecutoryCostContractImportsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3104,6 +4454,12 @@ public type ListLeaseIndexRatesQueries record {
 
 public type AssetLeaseAccountingFramework "None"|"IFRS16"|"OperatingASC842"|"FinanceASC842"|"AutomaticASC842"|"CashBasis"|"OperatingASC840"|"FinanceASC840"|"AutomaticASC840"|"OperatingIAS17"|"FinanceIAS17"|"AutomaticIAS17"|"AutomaticIFRS16";
 
+# Represents the Headers record for the operation: updateFixedAssetGroupValueModelSetups
+public type UpdateFixedAssetGroupValueModelSetupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getFixedAssetPostingProfileDisposals
 public type GetFixedAssetPostingProfileDisposalsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -3113,6 +4469,18 @@ public type GetFixedAssetPostingProfileDisposalsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+# Represents the Queries record for the operation: getAssetMainGroupMembers
+public type GetAssetMainGroupMembersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetDeferredType_JP "EquallyDivided"|"OneTime";
 
 # Represents the Headers record for the operation: updateAssetParameters
 public type UpdateAssetParametersHeaders record {
@@ -3316,6 +4684,13 @@ public type LeaseExpenseTransaction record {
     string Company?;
 };
 
+public type AssetCondition record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ConditionCode?;
+    string Description?;
+};
+
 # Represents the Headers record for the operation: deleteLeaseDepreciationSchedules
 public type DeleteLeaseDepreciationSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3349,6 +4724,8 @@ public type ListLeaseExecutoryCostContractsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
 
 public type AssetStatementRowsCollection record {
     *ODataCollection;
@@ -3420,6 +4797,11 @@ public type UpdateLeaseDimensionAttributesHeaders record {
     string If\-Match?;
 };
 
+public type AssetLeaseLedgerJournalLinesCollection record {
+    *ODataCollection;
+    AssetLeaseLedgerJournalLine[] value?;
+};
+
 public type LeaseDimensionAttribute record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -3435,6 +4817,17 @@ public type FixedAssetPostingProfileDisposalsCollection record {
 public type LeaseDepreciationSchedulesHistoryCollection record {
     *ODataCollection;
     LeaseDepreciationScheduleHistory[] value?;
+};
+
+public type AssetRetirementObligationDocumentsCollection record {
+    *ODataCollection;
+    AssetRetirementObligationDocument[] value?;
+};
+
+# Represents the Headers record for the operation: deleteFixedAssetGroupValueModelSetups
+public type DeleteFixedAssetGroupValueModelSetupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteFixedAssetGroupBookSpecialDepreciationAllowances
@@ -3487,6 +4880,12 @@ public type DeleteLeasePaymentAmountTypesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteAssetMainGroupMembers
+public type DeleteAssetMainGroupMembersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateIntercompanyTransferWorksheetLines
 public type UpdateIntercompanyTransferWorksheetLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3525,6 +4924,16 @@ public type ListLeasePaymentSchedulesHistoryQueries record {
 public type UpdateLeaseIndexRevaluationDetailsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAcceleratedDepreciationGroups
+public type GetAcceleratedDepreciationGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type LeaseBookSetup record {
@@ -3571,6 +4980,16 @@ public type GetIntercompanyTransferWorksheetsQueries record {
     string selectFields?;
 };
 
+public type AssetImpairmentCashGeneratingUnitSharedAssetsAllocation record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CGUGroupName?;
+    string SharedAssetId?;
+    string SharedAssetBookId?;
+    string CashGeneratingUnitNumber?;
+    decimal Proportion?;
+};
+
 public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
 
 # Represents the Queries record for the operation: getLeaseExecutoryCostContracts
@@ -3581,6 +5000,12 @@ public type GetLeaseExecutoryCostContractsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteAssetLocations
+public type DeleteAssetLocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateFixedAssetBookSpecialDepreciationAllowances
@@ -3750,6 +5175,34 @@ public type DeleteLeaseIndexRevaluationDetailsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listAssetImpairmentCashGeneratingUnitSharedAssetsAllocations
+public type ListAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type AssetIntercompanyTransferMethod "FullAsset"|"Percent"|"Manual";
 
 # Represents the Headers record for the operation: deleteLeaseBookVersions
@@ -3760,6 +5213,12 @@ public type DeleteLeaseBookVersionsHeaders record {
 
 # Represents the Headers record for the operation: deleteAssetJournalLines
 public type DeleteAssetJournalLinesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateAssetPackingSlips
+public type UpdateAssetPackingSlipsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3809,6 +5268,12 @@ public type IntercompanyTransferSourcesCollection record {
 
 # Represents the Headers record for the operation: deleteLeaseExpenseSchedules
 public type DeleteLeaseExpenseSchedulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteAssetUndepreciatedBalanceSchedules
+public type DeleteAssetUndepreciatedBalanceSchedulesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3865,6 +5330,62 @@ public type GetLeaseDimensionAttributesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AssetPackingSlipsCollection record {
+    *ODataCollection;
+    AssetPackingSlip[] value?;
+};
+
+public type AssetLendingsCollection record {
+    *ODataCollection;
+    AssetLending[] value?;
+};
+
+public type AssetClassification_JP "None"|"LowValue"|"LumpSum";
+
+# Represents the Queries record for the operation: getLeaseUpdateFieldSelections
+public type GetLeaseUpdateFieldSelectionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listAssetLocations
+public type ListAssetLocationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateAssetMajorTypes
+public type UpdateAssetMajorTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type AssetLeaseLeaseStatus "NotYetAcquired"|"Open"|"Closed"|"Terminated";
@@ -3929,6 +5450,34 @@ public type LeaseExpenseTransactionsCollection record {
     LeaseExpenseTransaction[] value?;
 };
 
+# Represents the Queries record for the operation: listAssetConditions
+public type ListAssetConditionsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateFixedAssetGroupBookSpecialDepreciationAllowances
 public type UpdateFixedAssetGroupBookSpecialDepreciationAllowancesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3945,6 +5494,18 @@ public type AssetDocumentType_JP "None"|"AssetRetirementObligation"|"AssetReduct
 public type AssetJournalV2Collection record {
     *ODataCollection;
     AssetJournalV2Entity[] value?;
+};
+
+public type AssetUndepreciatedBalanceSchedule record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    AssetDepreciationMethod FromMethod?;
+    AssetDepreciationMethod ToMethod?;
+    decimal ServiceLife?;
+    decimal YearsPassed?;
+    string ScheduleDescription?;
+    decimal UpperLimitRate?;
+    decimal LowerLimitRate?;
 };
 
 public type FixedAssetValueModel record {
@@ -4049,6 +5610,36 @@ public type ODataCollection record {
     string \@odata\.nextLink?;
 };
 
+# Represents the Queries record for the operation: getAssetActivityCodes
+public type GetAssetActivityCodesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getAssetJournalHeaders
+public type GetAssetJournalHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getFixedAssetGroups
+public type GetFixedAssetGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type LeaseIndexRate record {
     string \@odata\.etag?;
     string IndexRateTypeName?;
@@ -4084,6 +5675,40 @@ public type ListLeaseLocationsDetailsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Queries record for the operation: listAssetJournalHeaders
+public type ListAssetJournalHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteAssetSpecialDepreciationAllowances
+public type DeleteAssetSpecialDepreciationAllowancesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type IntercompanyTransferWorksheetLine record {
@@ -4180,6 +5805,58 @@ public type LeaseImportHeaderCollectionCollection record {
     LeaseImportHeader[] value?;
 };
 
+public type AssetActivityCode record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string ActivityCode?;
+    string Description?;
+};
+
+# Represents the Headers record for the operation: deleteAssetPropertyGroups
+public type DeleteAssetPropertyGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listAssetConsumptionUnits
+public type ListAssetConsumptionUnitsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type AssetImpairmentCashGeneratingUnitSharedAssetsAllocationsCollection record {
+    *ODataCollection;
+    AssetImpairmentCashGeneratingUnitSharedAssetsAllocation[] value?;
+};
+
+# Represents the Headers record for the operation: updateAssetSpecialDepreciationAllowances
+public type UpdateAssetSpecialDepreciationAllowancesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getLeaseLocationsDetails
 public type GetLeaseLocationsDetailsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -4188,6 +5865,13 @@ public type GetLeaseLocationsDetailsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+public type AcquisitionMethod record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string AcquisitionMethod?;
+    string Description?;
 };
 
 # Represents the Queries record for the operation: getAssetAllocationRules
@@ -4200,11 +5884,47 @@ public type GetAssetAllocationRulesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listAcquisitionMethods
+public type ListAcquisitionMethodsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteFixedAssetsV2
+public type DeleteFixedAssetsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateLeaseExpenseTransactions
 public type UpdateLeaseExpenseTransactionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type FBPISCOFINSFixedAssetCreditPurpose_BR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
 
 public type LeasePaymentScheduleContract record {
     string \@odata\.etag?;
@@ -4314,6 +6034,12 @@ public type AssetJournalV2Entity record {
     string JournalNameId?;
 };
 
+# Represents the Headers record for the operation: updateAssetLocations
+public type UpdateAssetLocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type LeaseExpenseSchedulesCollection record {
     *ODataCollection;
     LeaseExpenseSchedule[] value?;
@@ -4323,6 +6049,20 @@ public type LeaseExpenseSchedulesCollection record {
 public type UpdateLeaseImportHeaderCollectionHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type AcquisitionMethodsCollection record {
+    *ODataCollection;
+    AcquisitionMethod[] value?;
+};
+
+public type AssetRetirementObligationDocument record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string DocumentId?;
+    string Description?;
+    string DocumentDate?;
+    AssetRetirementPostingFrequency_JP PostingFrequency?;
 };
 
 # Represents the Headers record for the operation: deleteLeaseAssetTransactions
@@ -4377,6 +6117,27 @@ public type DeleteParentLeasesHeaders record {
 
 public type AssetLeaseCreatedBy "Manual"|"IndexRevaluation";
 
+public type AssetActivityCodesCollection record {
+    *ODataCollection;
+    AssetActivityCode[] value?;
+};
+
+# Represents the Headers record for the operation: deleteAssetConditions
+public type DeleteAssetConditionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getAssetSortings
+public type GetAssetSortingsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type LeasePaymentAmountBreakdownImportsCollection record {
     *ODataCollection;
     LeasePaymentAmountBreakdownImport[] value?;
@@ -4390,8 +6151,46 @@ public type DeleteIntercompanyTransferWorksheetLinesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getAssetLeaseLedgerJournalLines
+public type GetAssetLeaseLedgerJournalLinesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: listAssetAllocationRules
 public type ListAssetAllocationRulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listAssetPackingSlips
+public type ListAssetPackingSlipsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -4475,6 +6274,12 @@ public type LeasePaymentAmountType record {
     NoYes IFRSIndexRevaluation?;
 };
 
+# Represents the Headers record for the operation: deleteAssetActivityCodes
+public type DeleteAssetActivityCodesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listAssetParameters
 public type ListAssetParametersQueries record {
     # Number of records to skip.
@@ -4525,8 +6330,21 @@ public type AssetAllocationRule record {
     string DimensionName?;
 };
 
+public type AssetPropertyGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string AssetPropertyGroupId?;
+    string Description?;
+};
+
 # Represents the Headers record for the operation: deleteLeaseExecutoryCostContracts
 public type DeleteLeaseExecutoryCostContractsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateAssetActivityCodes
+public type UpdateAssetActivityCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -4589,6 +6407,11 @@ public type DeleteAssetStatementRowsHeaders record {
     string If\-Match?;
 };
 
+public type AssetConditionsCollection record {
+    *ODataCollection;
+    AssetCondition[] value?;
+};
+
 public type AssetDepreciationCatchUpInterval_JP "FiscalPeriod"|"FiscalYear";
 
 # Represents the Headers record for the operation: deleteLeaseExpenseCostSchedulesHistory
@@ -4635,10 +6458,44 @@ public type GetLeasePaymentSchedulesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateLeaseUpdateFieldSelections
+public type UpdateLeaseUpdateFieldSelectionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteAssetParameters
 public type DeleteAssetParametersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listAcceleratedDepreciationGroups
+public type ListAcceleratedDepreciationGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listIntercompanyTransferWorksheets
@@ -4691,6 +6548,8 @@ public type UpdateAssetTransReportingCurrencyAmountsHeaders record {
     string If\-Match?;
 };
 
+public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Deferred_JP"|"Other"|"Vehicle_RU"|"Land_RU"|"Cloths_RU"|"Rigging_RU"|"LowCostAssets_RU"|"Vehicle_MX";
+
 # Represents the Headers record for the operation: updateIntercompanyTransferSources
 public type UpdateIntercompanyTransferSourcesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -4702,6 +6561,14 @@ public type LeasingGroup record {
     string dataAreaId?;
     string LeaseGroup?;
     string Company?;
+    string Description?;
+};
+
+public type AssetSorting record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    AssetSortValue Sorting?;
+    string Identification?;
     string Description?;
 };
 

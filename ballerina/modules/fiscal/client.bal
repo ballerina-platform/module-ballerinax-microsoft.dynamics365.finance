@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'fiscal' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List FiscalCalendarYears
@@ -254,6 +253,120 @@ public isolated client class Client {
     # + return - FiscalCalendarEntity updated 
     remote isolated function updateFiscalCalendarsEntity(string calendarId, FiscalCalendarEntity payload, UpdateFiscalCalendarsEntityHeaders headers = {}) returns FiscalCalendarEntity|error {
         string resourcePath = string `/FiscalCalendarsEntity(CalendarId='${getEncodedUri(calendarId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FiscalPeriods
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FiscalPeriod 
+    remote isolated function listFiscalPeriods(map<string|string[]> headers = {}, *ListFiscalPeriodsQueries queries) returns FiscalPeriodsCollection|error {
+        string resourcePath = string `/FiscalPeriods`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FiscalPeriod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalPeriod created 
+    remote isolated function createFiscalPeriods(FiscalPeriod payload, map<string|string[]> headers = {}) returns FiscalPeriod|error {
+        string resourcePath = string `/FiscalPeriods`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FiscalPeriod by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FiscalPeriod record 
+    remote isolated function getFiscalPeriods(string calendar, string fiscalYear, string startDate, string endDate, string periodName, map<string|string[]> headers = {}, *GetFiscalPeriodsQueries queries) returns FiscalPeriod|error {
+        string resourcePath = string `/FiscalPeriods(Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}',StartDate=${getEncodedUri(startDate)},EndDate=${getEncodedUri(endDate)},PeriodName='${getEncodedUri(periodName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FiscalPeriod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalPeriod deleted 
+    remote isolated function deleteFiscalPeriods(string calendar, string fiscalYear, string startDate, string endDate, string periodName, DeleteFiscalPeriodsHeaders headers = {}) returns error? {
+        string resourcePath = string `/FiscalPeriods(Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}',StartDate=${getEncodedUri(startDate)},EndDate=${getEncodedUri(endDate)},PeriodName='${getEncodedUri(periodName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FiscalPeriod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalPeriod updated 
+    remote isolated function updateFiscalPeriods(string calendar, string fiscalYear, string startDate, string endDate, string periodName, FiscalPeriod payload, UpdateFiscalPeriodsHeaders headers = {}) returns FiscalPeriod|error {
+        string resourcePath = string `/FiscalPeriods(Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}',StartDate=${getEncodedUri(startDate)},EndDate=${getEncodedUri(endDate)},PeriodName='${getEncodedUri(periodName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FiscalYears
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FiscalYear 
+    remote isolated function listFiscalYears(map<string|string[]> headers = {}, *ListFiscalYearsQueries queries) returns FiscalYearsCollection|error {
+        string resourcePath = string `/FiscalYears`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FiscalYear
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalYear created 
+    remote isolated function createFiscalYears(FiscalYear payload, map<string|string[]> headers = {}) returns FiscalYear|error {
+        string resourcePath = string `/FiscalYears`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FiscalYear by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FiscalYear record 
+    remote isolated function getFiscalYears(string legalEntityId, string calendar, string fiscalYear, map<string|string[]> headers = {}, *GetFiscalYearsQueries queries) returns FiscalYear|error {
+        string resourcePath = string `/FiscalYears(LegalEntityId='${getEncodedUri(legalEntityId)}',Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FiscalYear
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalYear deleted 
+    remote isolated function deleteFiscalYears(string legalEntityId, string calendar, string fiscalYear, DeleteFiscalYearsHeaders headers = {}) returns error? {
+        string resourcePath = string `/FiscalYears(LegalEntityId='${getEncodedUri(legalEntityId)}',Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FiscalYear
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FiscalYear updated 
+    remote isolated function updateFiscalYears(string legalEntityId, string calendar, string fiscalYear, FiscalYear payload, UpdateFiscalYearsHeaders headers = {}) returns FiscalYear|error {
+        string resourcePath = string `/FiscalYears(LegalEntityId='${getEncodedUri(legalEntityId)}',Calendar='${getEncodedUri(calendar)}',FiscalYear='${getEncodedUri(fiscalYear)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

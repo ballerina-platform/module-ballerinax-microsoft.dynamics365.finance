@@ -19,18 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'budget' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List BudgetActivities
@@ -1287,6 +1286,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List BudgetPlanAllocationSchedules
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanAllocationSchedule 
+    remote isolated function listBudgetPlanAllocationSchedules(map<string|string[]> headers = {}, *ListBudgetPlanAllocationSchedulesQueries queries) returns BudgetPlanAllocationSchedulesCollection|error {
+        string resourcePath = string `/BudgetPlanAllocationSchedules`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanAllocationSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAllocationSchedule created 
+    remote isolated function createBudgetPlanAllocationSchedules(BudgetPlanAllocationSchedule payload, map<string|string[]> headers = {}) returns BudgetPlanAllocationSchedule|error {
+        string resourcePath = string `/BudgetPlanAllocationSchedules`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanAllocationSchedule by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanAllocationSchedule record 
+    remote isolated function getBudgetPlanAllocationSchedules(string allocationSchedule, map<string|string[]> headers = {}, *GetBudgetPlanAllocationSchedulesQueries queries) returns BudgetPlanAllocationSchedule|error {
+        string resourcePath = string `/BudgetPlanAllocationSchedules(AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanAllocationSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAllocationSchedule deleted 
+    remote isolated function deleteBudgetPlanAllocationSchedules(string allocationSchedule, DeleteBudgetPlanAllocationSchedulesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanAllocationSchedules(AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanAllocationSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAllocationSchedule updated 
+    remote isolated function updateBudgetPlanAllocationSchedules(string allocationSchedule, BudgetPlanAllocationSchedule payload, UpdateBudgetPlanAllocationSchedulesHeaders headers = {}) returns BudgetPlanAllocationSchedule|error {
+        string resourcePath = string `/BudgetPlanAllocationSchedules(AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanAlternateLayouts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanAlternateLayout 
+    remote isolated function listBudgetPlanAlternateLayouts(map<string|string[]> headers = {}, *ListBudgetPlanAlternateLayoutsQueries queries) returns BudgetPlanAlternateLayoutsCollection|error {
+        string resourcePath = string `/BudgetPlanAlternateLayouts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanAlternateLayout
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAlternateLayout created 
+    remote isolated function createBudgetPlanAlternateLayouts(BudgetPlanAlternateLayout payload, map<string|string[]> headers = {}) returns BudgetPlanAlternateLayout|error {
+        string resourcePath = string `/BudgetPlanAlternateLayouts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanAlternateLayout by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanAlternateLayout record 
+    remote isolated function getBudgetPlanAlternateLayouts(string budgetPlanLayout, string budgetPlanningProcess, string budgetPlanningWorkflow, string budgetPlanningStage, map<string|string[]> headers = {}, *GetBudgetPlanAlternateLayoutsQueries queries) returns BudgetPlanAlternateLayout|error {
+        string resourcePath = string `/BudgetPlanAlternateLayouts(BudgetPlanLayout='${getEncodedUri(budgetPlanLayout)}',BudgetPlanningProcess='${getEncodedUri(budgetPlanningProcess)}',BudgetPlanningWorkflow='${getEncodedUri(budgetPlanningWorkflow)}',BudgetPlanningStage='${getEncodedUri(budgetPlanningStage)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanAlternateLayout
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAlternateLayout deleted 
+    remote isolated function deleteBudgetPlanAlternateLayouts(string budgetPlanLayout, string budgetPlanningProcess, string budgetPlanningWorkflow, string budgetPlanningStage, DeleteBudgetPlanAlternateLayoutsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanAlternateLayouts(BudgetPlanLayout='${getEncodedUri(budgetPlanLayout)}',BudgetPlanningProcess='${getEncodedUri(budgetPlanningProcess)}',BudgetPlanningWorkflow='${getEncodedUri(budgetPlanningWorkflow)}',BudgetPlanningStage='${getEncodedUri(budgetPlanningStage)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanAlternateLayout
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanAlternateLayout updated 
+    remote isolated function updateBudgetPlanAlternateLayouts(string budgetPlanLayout, string budgetPlanningProcess, string budgetPlanningWorkflow, string budgetPlanningStage, BudgetPlanAlternateLayout payload, UpdateBudgetPlanAlternateLayoutsHeaders headers = {}) returns BudgetPlanAlternateLayout|error {
+        string resourcePath = string `/BudgetPlanAlternateLayouts(BudgetPlanLayout='${getEncodedUri(budgetPlanLayout)}',BudgetPlanningProcess='${getEncodedUri(budgetPlanningProcess)}',BudgetPlanningWorkflow='${getEncodedUri(budgetPlanningWorkflow)}',BudgetPlanningStage='${getEncodedUri(budgetPlanningStage)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List BudgetPlanAssets
     #
     # + headers - Headers to be sent with the request 
@@ -1458,6 +1571,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List BudgetPlanHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanHeader 
+    remote isolated function listBudgetPlanHeaders(map<string|string[]> headers = {}, *ListBudgetPlanHeadersQueries queries) returns BudgetPlanHeadersCollection|error {
+        string resourcePath = string `/BudgetPlanHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanHeader created 
+    remote isolated function createBudgetPlanHeaders(BudgetPlanHeader payload, map<string|string[]> headers = {}) returns BudgetPlanHeader|error {
+        string resourcePath = string `/BudgetPlanHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanHeader record 
+    remote isolated function getBudgetPlanHeaders(string documentNumber, map<string|string[]> headers = {}, *GetBudgetPlanHeadersQueries queries) returns BudgetPlanHeader|error {
+        string resourcePath = string `/BudgetPlanHeaders(DocumentNumber='${getEncodedUri(documentNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanHeader deleted 
+    remote isolated function deleteBudgetPlanHeaders(string documentNumber, DeleteBudgetPlanHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanHeaders(DocumentNumber='${getEncodedUri(documentNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanHeader updated 
+    remote isolated function updateBudgetPlanHeaders(string documentNumber, BudgetPlanHeader payload, UpdateBudgetPlanHeadersHeaders headers = {}) returns BudgetPlanHeader|error {
+        string resourcePath = string `/BudgetPlanHeaders(DocumentNumber='${getEncodedUri(documentNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanJustifications
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanJustification 
+    remote isolated function listBudgetPlanJustifications(map<string|string[]> headers = {}, *ListBudgetPlanJustificationsQueries queries) returns BudgetPlanJustificationsCollection|error {
+        string resourcePath = string `/BudgetPlanJustifications`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanJustification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanJustification created 
+    remote isolated function createBudgetPlanJustifications(BudgetPlanJustification payload, map<string|string[]> headers = {}) returns BudgetPlanJustification|error {
+        string resourcePath = string `/BudgetPlanJustifications`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanJustification by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanJustification record 
+    remote isolated function getBudgetPlanJustifications(string effectiveDate, string documentNumber, string scenarioName, map<string|string[]> headers = {}, *GetBudgetPlanJustificationsQueries queries) returns BudgetPlanJustification|error {
+        string resourcePath = string `/BudgetPlanJustifications(EffectiveDate=${getEncodedUri(effectiveDate)},DocumentNumber='${getEncodedUri(documentNumber)}',ScenarioName='${getEncodedUri(scenarioName)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanJustification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanJustification deleted 
+    remote isolated function deleteBudgetPlanJustifications(string effectiveDate, string documentNumber, string scenarioName, DeleteBudgetPlanJustificationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanJustifications(EffectiveDate=${getEncodedUri(effectiveDate)},DocumentNumber='${getEncodedUri(documentNumber)}',ScenarioName='${getEncodedUri(scenarioName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanJustification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanJustification updated 
+    remote isolated function updateBudgetPlanJustifications(string effectiveDate, string documentNumber, string scenarioName, BudgetPlanJustification payload, UpdateBudgetPlanJustificationsHeaders headers = {}) returns BudgetPlanJustification|error {
+        string resourcePath = string `/BudgetPlanJustifications(EffectiveDate=${getEncodedUri(effectiveDate)},DocumentNumber='${getEncodedUri(documentNumber)}',ScenarioName='${getEncodedUri(scenarioName)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List BudgetPlanLayouts
     #
     # + headers - Headers to be sent with the request 
@@ -1572,6 +1799,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List BudgetPlanPriorities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanPriority 
+    remote isolated function listBudgetPlanPriorities(map<string|string[]> headers = {}, *ListBudgetPlanPrioritiesQueries queries) returns BudgetPlanPrioritiesCollection|error {
+        string resourcePath = string `/BudgetPlanPriorities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanPriority
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriority created 
+    remote isolated function createBudgetPlanPriorities(BudgetPlanPriority payload, map<string|string[]> headers = {}) returns BudgetPlanPriority|error {
+        string resourcePath = string `/BudgetPlanPriorities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanPriority by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanPriority record 
+    remote isolated function getBudgetPlanPriorities(string name, map<string|string[]> headers = {}, *GetBudgetPlanPrioritiesQueries queries) returns BudgetPlanPriority|error {
+        string resourcePath = string `/BudgetPlanPriorities(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanPriority
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriority deleted 
+    remote isolated function deleteBudgetPlanPriorities(string name, DeleteBudgetPlanPrioritiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanPriorities(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanPriority
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriority updated 
+    remote isolated function updateBudgetPlanPriorities(string name, BudgetPlanPriority payload, UpdateBudgetPlanPrioritiesHeaders headers = {}) returns BudgetPlanPriority|error {
+        string resourcePath = string `/BudgetPlanPriorities(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanPriorityConstraints
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanPriorityConstraint 
+    remote isolated function listBudgetPlanPriorityConstraints(map<string|string[]> headers = {}, *ListBudgetPlanPriorityConstraintsQueries queries) returns BudgetPlanPriorityConstraintsCollection|error {
+        string resourcePath = string `/BudgetPlanPriorityConstraints`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanPriorityConstraint
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriorityConstraint created 
+    remote isolated function createBudgetPlanPriorityConstraints(BudgetPlanPriorityConstraint payload, map<string|string[]> headers = {}) returns BudgetPlanPriorityConstraint|error {
+        string resourcePath = string `/BudgetPlanPriorityConstraints`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanPriorityConstraint by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanPriorityConstraint record 
+    remote isolated function getBudgetPlanPriorityConstraints(string process, string priority, map<string|string[]> headers = {}, *GetBudgetPlanPriorityConstraintsQueries queries) returns BudgetPlanPriorityConstraint|error {
+        string resourcePath = string `/BudgetPlanPriorityConstraints(Process='${getEncodedUri(process)}',Priority='${getEncodedUri(priority)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanPriorityConstraint
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriorityConstraint deleted 
+    remote isolated function deleteBudgetPlanPriorityConstraints(string process, string priority, DeleteBudgetPlanPriorityConstraintsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanPriorityConstraints(Process='${getEncodedUri(process)}',Priority='${getEncodedUri(priority)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanPriorityConstraint
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanPriorityConstraint updated 
+    remote isolated function updateBudgetPlanPriorityConstraints(string process, string priority, BudgetPlanPriorityConstraint payload, UpdateBudgetPlanPriorityConstraintsHeaders headers = {}) returns BudgetPlanPriorityConstraint|error {
+        string resourcePath = string `/BudgetPlanPriorityConstraints(Process='${getEncodedUri(process)}',Priority='${getEncodedUri(priority)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanProcessAdministrations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanProcessAdministration 
+    remote isolated function listBudgetPlanProcessAdministrations(map<string|string[]> headers = {}, *ListBudgetPlanProcessAdministrationsQueries queries) returns BudgetPlanProcessAdministrationsCollection|error {
+        string resourcePath = string `/BudgetPlanProcessAdministrations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanProcessAdministration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcessAdministration created 
+    remote isolated function createBudgetPlanProcessAdministrations(BudgetPlanProcessAdministration payload, map<string|string[]> headers = {}) returns BudgetPlanProcessAdministration|error {
+        string resourcePath = string `/BudgetPlanProcessAdministrations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanProcessAdministration by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanProcessAdministration record 
+    remote isolated function getBudgetPlanProcessAdministrations(string process, string partyNumber, map<string|string[]> headers = {}, *GetBudgetPlanProcessAdministrationsQueries queries) returns BudgetPlanProcessAdministration|error {
+        string resourcePath = string `/BudgetPlanProcessAdministrations(Process='${getEncodedUri(process)}',PartyNumber='${getEncodedUri(partyNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanProcessAdministration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcessAdministration deleted 
+    remote isolated function deleteBudgetPlanProcessAdministrations(string process, string partyNumber, DeleteBudgetPlanProcessAdministrationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanProcessAdministrations(Process='${getEncodedUri(process)}',PartyNumber='${getEncodedUri(partyNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanProcessAdministration
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcessAdministration updated 
+    remote isolated function updateBudgetPlanProcessAdministrations(string process, string partyNumber, BudgetPlanProcessAdministration payload, UpdateBudgetPlanProcessAdministrationsHeaders headers = {}) returns BudgetPlanProcessAdministration|error {
+        string resourcePath = string `/BudgetPlanProcessAdministrations(Process='${getEncodedUri(process)}',PartyNumber='${getEncodedUri(partyNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List BudgetPlanProcessMilestones
     #
     # + headers - Headers to be sent with the request 
@@ -1629,6 +2027,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List BudgetPlanProcesses
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanProcess 
+    remote isolated function listBudgetPlanProcesses(map<string|string[]> headers = {}, *ListBudgetPlanProcessesQueries queries) returns BudgetPlanProcessesCollection|error {
+        string resourcePath = string `/BudgetPlanProcesses`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcess created 
+    remote isolated function createBudgetPlanProcesses(BudgetPlanProcess payload, map<string|string[]> headers = {}) returns BudgetPlanProcess|error {
+        string resourcePath = string `/BudgetPlanProcesses`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanProcess by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanProcess record 
+    remote isolated function getBudgetPlanProcesses(string name, map<string|string[]> headers = {}, *GetBudgetPlanProcessesQueries queries) returns BudgetPlanProcess|error {
+        string resourcePath = string `/BudgetPlanProcesses(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcess deleted 
+    remote isolated function deleteBudgetPlanProcesses(string name, DeleteBudgetPlanProcessesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanProcesses(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProcess updated 
+    remote isolated function updateBudgetPlanProcesses(string name, BudgetPlanProcess payload, UpdateBudgetPlanProcessesHeaders headers = {}) returns BudgetPlanProcess|error {
+        string resourcePath = string `/BudgetPlanProcesses(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List BudgetPlanProjects
     #
     # + headers - Headers to be sent with the request 
@@ -1679,6 +2134,348 @@ public isolated client class Client {
     # + return - BudgetPlanProjectLookup updated 
     remote isolated function updateBudgetPlanProjects(string dataAreaId, string projectId, BudgetPlanProjectLookup payload, UpdateBudgetPlanProjectsHeaders headers = {}) returns BudgetPlanProjectLookup|error {
         string resourcePath = string `/BudgetPlanProjects(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectId='${getEncodedUri(projectId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanProposedAssets
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanProposedAsset 
+    remote isolated function listBudgetPlanProposedAssets(map<string|string[]> headers = {}, *ListBudgetPlanProposedAssetsQueries queries) returns BudgetPlanProposedAssetsCollection|error {
+        string resourcePath = string `/BudgetPlanProposedAssets`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanProposedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedAsset created 
+    remote isolated function createBudgetPlanProposedAssets(BudgetPlanProposedAsset payload, map<string|string[]> headers = {}) returns BudgetPlanProposedAsset|error {
+        string resourcePath = string `/BudgetPlanProposedAssets`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanProposedAsset by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanProposedAsset record 
+    remote isolated function getBudgetPlanProposedAssets(string name, map<string|string[]> headers = {}, *GetBudgetPlanProposedAssetsQueries queries) returns BudgetPlanProposedAsset|error {
+        string resourcePath = string `/BudgetPlanProposedAssets(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanProposedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedAsset deleted 
+    remote isolated function deleteBudgetPlanProposedAssets(string name, DeleteBudgetPlanProposedAssetsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanProposedAssets(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanProposedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedAsset updated 
+    remote isolated function updateBudgetPlanProposedAssets(string name, BudgetPlanProposedAsset payload, UpdateBudgetPlanProposedAssetsHeaders headers = {}) returns BudgetPlanProposedAsset|error {
+        string resourcePath = string `/BudgetPlanProposedAssets(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanProposedProjects
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanProposedProject 
+    remote isolated function listBudgetPlanProposedProjects(map<string|string[]> headers = {}, *ListBudgetPlanProposedProjectsQueries queries) returns BudgetPlanProposedProjectsCollection|error {
+        string resourcePath = string `/BudgetPlanProposedProjects`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanProposedProject
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedProject created 
+    remote isolated function createBudgetPlanProposedProjects(BudgetPlanProposedProject payload, map<string|string[]> headers = {}) returns BudgetPlanProposedProject|error {
+        string resourcePath = string `/BudgetPlanProposedProjects`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanProposedProject by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanProposedProject record 
+    remote isolated function getBudgetPlanProposedProjects(string name, map<string|string[]> headers = {}, *GetBudgetPlanProposedProjectsQueries queries) returns BudgetPlanProposedProject|error {
+        string resourcePath = string `/BudgetPlanProposedProjects(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanProposedProject
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedProject deleted 
+    remote isolated function deleteBudgetPlanProposedProjects(string name, DeleteBudgetPlanProposedProjectsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanProposedProjects(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanProposedProject
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanProposedProject updated 
+    remote isolated function updateBudgetPlanProposedProjects(string name, BudgetPlanProposedProject payload, UpdateBudgetPlanProposedProjectsHeaders headers = {}) returns BudgetPlanProposedProject|error {
+        string resourcePath = string `/BudgetPlanProposedProjects(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanScenarios
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanScenario 
+    remote isolated function listBudgetPlanScenarios(map<string|string[]> headers = {}, *ListBudgetPlanScenariosQueries queries) returns BudgetPlanScenariosCollection|error {
+        string resourcePath = string `/BudgetPlanScenarios`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanScenario
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanScenario created 
+    remote isolated function createBudgetPlanScenarios(BudgetPlanScenario payload, map<string|string[]> headers = {}) returns BudgetPlanScenario|error {
+        string resourcePath = string `/BudgetPlanScenarios`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanScenario by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanScenario record 
+    remote isolated function getBudgetPlanScenarios(string name, map<string|string[]> headers = {}, *GetBudgetPlanScenariosQueries queries) returns BudgetPlanScenario|error {
+        string resourcePath = string `/BudgetPlanScenarios(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanScenario
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanScenario deleted 
+    remote isolated function deleteBudgetPlanScenarios(string name, DeleteBudgetPlanScenariosHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanScenarios(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanScenario
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanScenario updated 
+    remote isolated function updateBudgetPlanScenarios(string name, BudgetPlanScenario payload, UpdateBudgetPlanScenariosHeaders headers = {}) returns BudgetPlanScenario|error {
+        string resourcePath = string `/BudgetPlanScenarios(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanStageAllocations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanStageAllocation 
+    remote isolated function listBudgetPlanStageAllocations(map<string|string[]> headers = {}, *ListBudgetPlanStageAllocationsQueries queries) returns BudgetPlanStageAllocationsCollection|error {
+        string resourcePath = string `/BudgetPlanStageAllocations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanStageAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageAllocation created 
+    remote isolated function createBudgetPlanStageAllocations(BudgetPlanStageAllocation payload, map<string|string[]> headers = {}) returns BudgetPlanStageAllocation|error {
+        string resourcePath = string `/BudgetPlanStageAllocations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanStageAllocation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanStageAllocation record 
+    remote isolated function getBudgetPlanStageAllocations(string workflow, string stage, string allocationSchedule, map<string|string[]> headers = {}, *GetBudgetPlanStageAllocationsQueries queries) returns BudgetPlanStageAllocation|error {
+        string resourcePath = string `/BudgetPlanStageAllocations(Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}',AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanStageAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageAllocation deleted 
+    remote isolated function deleteBudgetPlanStageAllocations(string workflow, string stage, string allocationSchedule, DeleteBudgetPlanStageAllocationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanStageAllocations(Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}',AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanStageAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageAllocation updated 
+    remote isolated function updateBudgetPlanStageAllocations(string workflow, string stage, string allocationSchedule, BudgetPlanStageAllocation payload, UpdateBudgetPlanStageAllocationsHeaders headers = {}) returns BudgetPlanStageAllocation|error {
+        string resourcePath = string `/BudgetPlanStageAllocations(Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}',AllocationSchedule='${getEncodedUri(allocationSchedule)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanStageRules
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanStageRule 
+    remote isolated function listBudgetPlanStageRules(map<string|string[]> headers = {}, *ListBudgetPlanStageRulesQueries queries) returns BudgetPlanStageRulesCollection|error {
+        string resourcePath = string `/BudgetPlanStageRules`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanStageRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageRule created 
+    remote isolated function createBudgetPlanStageRules(BudgetPlanStageRule payload, map<string|string[]> headers = {}) returns BudgetPlanStageRule|error {
+        string resourcePath = string `/BudgetPlanStageRules`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanStageRule by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanStageRule record 
+    remote isolated function getBudgetPlanStageRules(string process, string workflow, string stage, map<string|string[]> headers = {}, *GetBudgetPlanStageRulesQueries queries) returns BudgetPlanStageRule|error {
+        string resourcePath = string `/BudgetPlanStageRules(Process='${getEncodedUri(process)}',Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanStageRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageRule deleted 
+    remote isolated function deleteBudgetPlanStageRules(string process, string workflow, string stage, DeleteBudgetPlanStageRulesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanStageRules(Process='${getEncodedUri(process)}',Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanStageRule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStageRule updated 
+    remote isolated function updateBudgetPlanStageRules(string process, string workflow, string stage, BudgetPlanStageRule payload, UpdateBudgetPlanStageRulesHeaders headers = {}) returns BudgetPlanStageRule|error {
+        string resourcePath = string `/BudgetPlanStageRules(Process='${getEncodedUri(process)}',Workflow='${getEncodedUri(workflow)}',Stage='${getEncodedUri(stage)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlanStages
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlanStage 
+    remote isolated function listBudgetPlanStages(map<string|string[]> headers = {}, *ListBudgetPlanStagesQueries queries) returns BudgetPlanStagesCollection|error {
+        string resourcePath = string `/BudgetPlanStages`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlanStage
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStage created 
+    remote isolated function createBudgetPlanStages(BudgetPlanStage payload, map<string|string[]> headers = {}) returns BudgetPlanStage|error {
+        string resourcePath = string `/BudgetPlanStages`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlanStage by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlanStage record 
+    remote isolated function getBudgetPlanStages(string name, map<string|string[]> headers = {}, *GetBudgetPlanStagesQueries queries) returns BudgetPlanStage|error {
+        string resourcePath = string `/BudgetPlanStages(Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlanStage
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStage deleted 
+    remote isolated function deleteBudgetPlanStages(string name, DeleteBudgetPlanStagesHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlanStages(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlanStage
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlanStage updated 
+    remote isolated function updateBudgetPlanStages(string name, BudgetPlanStage payload, UpdateBudgetPlanStagesHeaders headers = {}) returns BudgetPlanStage|error {
+        string resourcePath = string `/BudgetPlanStages(Name='${getEncodedUri(name)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1793,6 +2590,63 @@ public isolated client class Client {
     # + return - BudgetPlanWorksheet updated 
     remote isolated function updateBudgetPlanWorksheets(string documentNumber, decimal lineNumber, string layout, BudgetPlanWorksheet payload, UpdateBudgetPlanWorksheetsHeaders headers = {}) returns BudgetPlanWorksheet|error {
         string resourcePath = string `/BudgetPlanWorksheets(DocumentNumber='${getEncodedUri(documentNumber)}',LineNumber=${getEncodedUri(lineNumber)},Layout='${getEncodedUri(layout)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List BudgetPlans
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of BudgetPlan 
+    remote isolated function listBudgetPlans(map<string|string[]> headers = {}, *ListBudgetPlansQueries queries) returns BudgetPlansCollection|error {
+        string resourcePath = string `/BudgetPlans`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create BudgetPlan
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlan created 
+    remote isolated function createBudgetPlans(BudgetPlan payload, map<string|string[]> headers = {}) returns BudgetPlan|error {
+        string resourcePath = string `/BudgetPlans`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get BudgetPlan by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - BudgetPlan record 
+    remote isolated function getBudgetPlans(string documentNumber, string scenario, string lineReferenceId, map<string|string[]> headers = {}, *GetBudgetPlansQueries queries) returns BudgetPlan|error {
+        string resourcePath = string `/BudgetPlans(DocumentNumber='${getEncodedUri(documentNumber)}',Scenario='${getEncodedUri(scenario)}',LineReferenceId=${getEncodedUri(lineReferenceId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete BudgetPlan
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlan deleted 
+    remote isolated function deleteBudgetPlans(string documentNumber, string scenario, string lineReferenceId, DeleteBudgetPlansHeaders headers = {}) returns error? {
+        string resourcePath = string `/BudgetPlans(DocumentNumber='${getEncodedUri(documentNumber)}',Scenario='${getEncodedUri(scenario)}',LineReferenceId=${getEncodedUri(lineReferenceId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update BudgetPlan
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - BudgetPlan updated 
+    remote isolated function updateBudgetPlans(string documentNumber, string scenario, string lineReferenceId, BudgetPlan payload, UpdateBudgetPlansHeaders headers = {}) returns BudgetPlan|error {
+        string resourcePath = string `/BudgetPlans(DocumentNumber='${getEncodedUri(documentNumber)}',Scenario='${getEncodedUri(scenario)}',LineReferenceId=${getEncodedUri(lineReferenceId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2363,63 +3217,6 @@ public isolated client class Client {
     # + return - PositionForecastV2 updated 
     remote isolated function updatePositionForecastsV2(string forecastPositionId, string budgetPlanningProcessName, string budgetPlanScenarioName, string costElementName, string costElementDataAreaId, string costElementEffectiveDate, string costElementExpirationDate, string costElementLineStartDate, string costElementLineEndDate, PositionForecastV2 payload, UpdatePositionForecastsV2Headers headers = {}) returns PositionForecastV2|error {
         string resourcePath = string `/PositionForecastsV2(ForecastPositionId='${getEncodedUri(forecastPositionId)}',BudgetPlanningProcessName='${getEncodedUri(budgetPlanningProcessName)}',BudgetPlanScenarioName='${getEncodedUri(budgetPlanScenarioName)}',CostElementName='${getEncodedUri(costElementName)}',CostElementDataAreaId='${getEncodedUri(costElementDataAreaId)}',CostElementEffectiveDate=${getEncodedUri(costElementEffectiveDate)},CostElementExpirationDate=${getEncodedUri(costElementExpirationDate)},CostElementLineStartDate=${getEncodedUri(costElementLineStartDate)},CostElementLineEndDate=${getEncodedUri(costElementLineEndDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List TransactionPostingDefinitionBudgetReservations
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of TransactionPostingDefinitionBudgetReservation 
-    remote isolated function listTransactionPostingDefinitionBudgetReservations(map<string|string[]> headers = {}, *ListTransactionPostingDefinitionBudgetReservationsQueries queries) returns TransactionPostingDefinitionBudgetReservationsCollection|error {
-        string resourcePath = string `/TransactionPostingDefinitionBudgetReservations`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create TransactionPostingDefinitionBudgetReservation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - TransactionPostingDefinitionBudgetReservation created 
-    remote isolated function createTransactionPostingDefinitionBudgetReservations(TransactionPostingDefinitionBudgetReservation payload, map<string|string[]> headers = {}) returns TransactionPostingDefinitionBudgetReservation|error {
-        string resourcePath = string `/TransactionPostingDefinitionBudgetReservations`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get TransactionPostingDefinitionBudgetReservation by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - TransactionPostingDefinitionBudgetReservation record 
-    remote isolated function getTransactionPostingDefinitionBudgetReservations(string dataAreaId, string budgetReservationTypeName, string budgetReservationJournalizingType, string budgetReservationTypeCode, map<string|string[]> headers = {}, *GetTransactionPostingDefinitionBudgetReservationsQueries queries) returns TransactionPostingDefinitionBudgetReservation|error {
-        string resourcePath = string `/TransactionPostingDefinitionBudgetReservations(dataAreaId='${getEncodedUri(dataAreaId)}',BudgetReservationTypeName='${getEncodedUri(budgetReservationTypeName)}',BudgetReservationJournalizingType='${getEncodedUri(budgetReservationJournalizingType)}',BudgetReservationTypeCode='${getEncodedUri(budgetReservationTypeCode)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete TransactionPostingDefinitionBudgetReservation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - TransactionPostingDefinitionBudgetReservation deleted 
-    remote isolated function deleteTransactionPostingDefinitionBudgetReservations(string dataAreaId, string budgetReservationTypeName, string budgetReservationJournalizingType, string budgetReservationTypeCode, DeleteTransactionPostingDefinitionBudgetReservationsHeaders headers = {}) returns error? {
-        string resourcePath = string `/TransactionPostingDefinitionBudgetReservations(dataAreaId='${getEncodedUri(dataAreaId)}',BudgetReservationTypeName='${getEncodedUri(budgetReservationTypeName)}',BudgetReservationJournalizingType='${getEncodedUri(budgetReservationJournalizingType)}',BudgetReservationTypeCode='${getEncodedUri(budgetReservationTypeCode)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update TransactionPostingDefinitionBudgetReservation
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - TransactionPostingDefinitionBudgetReservation updated 
-    remote isolated function updateTransactionPostingDefinitionBudgetReservations(string dataAreaId, string budgetReservationTypeName, string budgetReservationJournalizingType, string budgetReservationTypeCode, TransactionPostingDefinitionBudgetReservation payload, UpdateTransactionPostingDefinitionBudgetReservationsHeaders headers = {}) returns TransactionPostingDefinitionBudgetReservation|error {
-        string resourcePath = string `/TransactionPostingDefinitionBudgetReservations(dataAreaId='${getEncodedUri(dataAreaId)}',BudgetReservationTypeName='${getEncodedUri(budgetReservationTypeName)}',BudgetReservationJournalizingType='${getEncodedUri(budgetReservationJournalizingType)}',BudgetReservationTypeCode='${getEncodedUri(budgetReservationTypeCode)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

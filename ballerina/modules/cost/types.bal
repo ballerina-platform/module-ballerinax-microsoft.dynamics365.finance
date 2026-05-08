@@ -25,6 +25,8 @@ public type UpdateCostAccountingDataConnectorDataTransfersHeaders record {
     string If\-Match?;
 };
 
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorBudgetTypes
 public type UpdateCostAccountingDataConnectorBudgetTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -39,6 +41,12 @@ public type GetCostConfigurationConventionsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCostGroups
+public type DeleteCostGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type CostConfigurationCostElementDerivationRuleProduction record {
@@ -86,6 +94,16 @@ public type CostAccountingDataConnectorPostingLayersCollection record {
 public type DeleteCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCostGroups
+public type GetCostGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type CostAccountingDataConnectorBudgetModel record {
@@ -163,12 +181,6 @@ public type UpdateCostAccountingDataConnectorBudgetEntriesHeaders record {
     string If\-Match?;
 };
 
-# Represents the Headers record for the operation: updateAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy
-public type UpdateAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorSystemInstances
 public type UpdateCostAccountingDataConnectorSystemInstancesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -193,58 +205,49 @@ public type UpdateCostAccountingDataConnectorCostObjectDimensionMembersHeaders r
     string If\-Match?;
 };
 
-public type AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy record {
+public type CostFlowAssumptionPolicy record {
     string \@odata\.etag?;
-    string CostAccountingDate?;
-    string CostAccountingLedgerName?;
-    string CostControlUnitName?;
-    int:Signed32 YearOffset?;
-    string StatisticalDimensionMemberDescription?;
-    string StatisticalDimensionHierarchyLevel3?;
-    string StatisticalDimensionHierarchyLevel13?;
-    string StatisticalDimensionHierarchyLevel2?;
-    string StatisticalDimensionHierarchyLevel1?;
-    string PeriodName?;
-    string StatisticalDimensionHierarchyLevel7?;
-    string StatisticalDimensionHierarchyLevel6?;
-    string StatisticalDimensionHierarchyLevel15?;
-    string StatisticalDimensionHierarchyLevel5?;
-    string StatisticalDimensionHierarchyLevel4?;
-    string CostObjectDimensionMemberName?;
-    int:Signed32 PeriodOffset?;
-    string CostObjectDimensionHierarchyLevel2?;
-    string StatisticalDimensionHierarchyLevel9?;
-    string StatisticalDimensionHierarchyLevel8?;
-    string CostObjectDimensionHierarchyLevel9?;
-    string CostObjectDimensionHierarchyLevel6?;
-    FiscalQuarter Quarter?;
-    string StatisticalDimensionMemberName?;
-    string SourceVersionIdentificationName?;
-    string CalendarId?;
-    string CostObjectDimensionHierarchyLevel4?;
-    string StatisticalDimensionHierarchyLevel10?;
-    string CostObjectDimensionMemberDescription?;
-    string StatisticalDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel3?;
-    string StatisticalDimensionHierarchyName?;
-    decimal Magnitude?;
-    int:Signed32 QuarterOffset?;
-    string StatisticalDimensionHierarchyLevel14?;
-    FiscalPeriodMonth Month?;
-    string CostObjectDimensionHierarchyLevel1?;
-    string CostObjectDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel15?;
-    string VersionIdentificationName?;
-    string YearName?;
-    string CostObjectDimensionHierarchyLevel10?;
-    string CostObjectDimensionHierarchyLevel11?;
-    string CostObjectDimensionHierarchyLevel12?;
-    string VersionType?;
-    string CostObjectDimensionHierarchyLevel13?;
-    string CostObjectDimensionHierarchyLevel8?;
-    string StatisticalDimensionHierarchyLevel11?;
-    string CostObjectDimensionHierarchyLevel5?;
+    string dataAreaId?;
+    string PolicyId?;
+    string PolicyName?;
+    NoYes IsFinancialInventoryPosted?;
+    NoYes IsFixedReceiptPriceUsed?;
+    NoYes WillSalesDeliveryProcessPostDeferredRevenue?;
+    NoYes IsPhysicalInventoryPosted?;
+    NoYes WillProductReceiptProcessingAccrueLiability?;
+    NoYes IsStockedProduct?;
+    NoYes IsUnitCostIncludingPhysicallyUpdatedInventory?;
+    InventModel InventoryModel?;
+};
+
+public type BOMCalcFallBack "None"|"CurrentActive"|"Simulated";
+
+# Represents the Queries record for the operation: listCostStatementEntries
+public type ListCostStatementEntriesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type CostConfigurationConvention record {
@@ -264,55 +267,6 @@ public type CostAccountingDataConnectorGeneralLedgerEntryCostObjectDimensionMemb
 
 public type CostConfigurationPriceType "Cost"|"Purchase"|"SalesPrice";
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-
-# Represents the Headers record for the operation: updateAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy
-public type UpdateAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
 
 # Represents the Queries record for the operation: getCostConfigurationInputMeasurementBasisPolicies
 public type GetCostConfigurationInputMeasurementBasisPoliciesQueries record {
@@ -343,6 +297,12 @@ public type GetCostAccountingDataConnectorBudgetEntryTypesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCostCenterTypes
+public type DeleteCostCenterTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type CostConfigurationCostElementDerivationRulePurchasessCollection record {
@@ -383,9 +343,25 @@ public type CostConfigurationPriceListCostingVersionsCollection record {
     CostConfigurationPriceListCostingVersion[] value?;
 };
 
-public type AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyCollection record {
+public type CostingVersionsCollection record {
     *ODataCollection;
-    AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy[] value?;
+    CostingVersion[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCostCenters
+public type DeleteCostCentersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CostStatementEntriesCollection record {
+    *ODataCollection;
+    CostStatementEntry[] value?;
+};
+
+public type CostFlowAssumptionPoliciesCollection record {
+    *ODataCollection;
+    CostFlowAssumptionPolicy[] value?;
 };
 
 # Represents the Queries record for the operation: getCostAccountingDataConnectorCostObjectDimensionMembers
@@ -586,63 +562,17 @@ public type ListCostConfigurationCostElementDerivationRuleProductionsQueries rec
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy
-public type ListAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Headers record for the operation: deleteAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy
-public type DeleteAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyHeaders record {
+# Represents the Headers record for the operation: updateCostSheetNodeCalculationFactors
+public type UpdateCostSheetNodeCalculationFactorsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy
-public type ListAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
+# Represents the Queries record for the operation: getCostFlowAssumptionPolicies
+public type GetCostFlowAssumptionPoliciesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -668,6 +598,12 @@ public type UpdateCostConfigurationCostElementListsHeaders record {
 public type CostAccountingDataConnectorStatisticalMeasureConfigurationsCollection record {
     *ODataCollection;
     CostAccountingDataConnectorStatisticalMeasureConfiguration[] value?;
+};
+
+# Represents the Headers record for the operation: updateCostCenters
+public type UpdateCostCentersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type CostAccountingDataConnectorBudgetEntryCostObjectDimensionMember record {
@@ -713,6 +649,8 @@ public type ListCostAccountingDataConnectorCostObjectDimensionMembersQueries rec
     string selectFields?;
 };
 
+public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
+
 # Represents the Headers record for the operation: deleteCostAccountingDataConnectorGeneralLedgerEntries
 public type DeleteCostAccountingDataConnectorGeneralLedgerEntriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -734,6 +672,8 @@ public type DeleteCostAccountingDataConnectorGeneralLedgersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type ACOCostType_BR "Direct"|"Indirect"|"Idleness"|"HourPriceCorrection";
 
 # Represents the Queries record for the operation: listCostAccountingDataConnectorStatisticalMeasureConfigurations
 public type ListCostAccountingDataConnectorStatisticalMeasureConfigurationsQueries record {
@@ -763,12 +703,6 @@ public type ListCostAccountingDataConnectorStatisticalMeasureConfigurationsQueri
     string selectFields?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
 
 # Represents the Queries record for the operation: listCostConfigurationPriceLists
 public type ListCostConfigurationPriceListsQueries record {
@@ -849,10 +783,14 @@ public type CostAccountingDataConnectorMainAccountTypesCollection record {
     CostAccountingDataConnectorMainAccountType[] value?;
 };
 
-# Represents the Headers record for the operation: deleteConfigurationLedgers
-public type DeleteConfigurationLedgersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type CostGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    NoYes IsDefaultCostGroup?;
+    CostGroupBehavior CostBehaviour?;
+    string GroupName?;
+    CostGroupType CostGroupType?;
 };
 
 # Represents the Queries record for the operation: listCostConfigurationCostElementLists
@@ -921,6 +859,13 @@ public type GetCostAccountingDataConnectorGeneralLedgerEntryCostObjectDimensionM
     string selectFields?;
 };
 
+public type CostCenterType record {
+    string \@odata\.etag?;
+    string Name?;
+    string Value?;
+    ACOCostType_BR CostType?;
+};
+
 public type CostAccountingDataConnectorBudgetModelsCollection record {
     *ODataCollection;
     CostAccountingDataConnectorBudgetModel[] value?;
@@ -929,6 +874,11 @@ public type CostAccountingDataConnectorBudgetModelsCollection record {
 public type CostAccountingDataConnectorFiscalPeriodTypesCollection record {
     *ODataCollection;
     CostAccountingDataConnectorFiscalPeriodType[] value?;
+};
+
+public type CostCenterTypesCollection record {
+    *ODataCollection;
+    CostCenterType[] value?;
 };
 
 # Represents the Headers record for the operation: deleteCostAccountingDataConnectorLegalEntities
@@ -965,6 +915,8 @@ public type ListCostAccountingDataConnectorMainAccountTypesQueries record {
     string selectFields?;
 };
 
+public type CostStatementLineCategoryLevel2 "None"|"Procured"|"Disposed"|"Transferred"|"Sold"|"ConsumedMaterialsCost"|"ConsumedManufacturingCost"|"ConsumedOutsourcingCost"|"ConsumedIndirectCost"|"ManufacturedCost"|"Variances";
+
 public type CostAccountingDataConnectorGeneralLedgerEntry record {
     string \@odata\.etag?;
     string DataConnectorSystemInstanceSurrogateKey?;
@@ -979,10 +931,14 @@ public type CostAccountingDataConnectorGeneralLedgerEntry record {
     string DataConnectorGeneralLedgerName?;
 };
 
+public type CostStatementLineCategoryLevel3 "None"|"Counting"|"ProductionPriceVariance"|"QuantityVariance"|"SubstitutionVariance"|"ScrapVariance"|"LotSizeVariance"|"RevaluationVariance"|"PurchasePriceVariance"|"CostChangeVariance"|"RoundingVariance";
+
 public type CostAccountingDataConnectorSystemInstanceFiscalCalendarPeriodsCollection record {
     *ODataCollection;
     CostAccountingDataConnectorSystemInstanceFiscalCalendarPeriod[] value?;
 };
+
+public type CostStatementLineCategoryLevel1 "None"|"NetSourcing"|"NetUsage"|"NetConversionCost"|"NetCostOfGoodsManufactured"|"BeginningBalance";
 
 public type CostAccountingDataConnectorGeneralLedgerEntriesCollection record {
     *ODataCollection;
@@ -995,72 +951,13 @@ public type CostConfigurationCostElementList record {
     string Description?;
 };
 
-public type AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyCollection record {
-    *ODataCollection;
-    AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy[] value?;
-};
-
 # Represents the Headers record for the operation: deleteCostAccountingTransferStatisticalMeasureBalances
 public type DeleteCostAccountingTransferStatisticalMeasureBalancesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
-public type AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy record {
-    string \@odata\.etag?;
-    string CostControlUnitName?;
-    string CostAccountingLedgerName?;
-    string CostAccountingDate?;
-    string CostElementDimensionMemberName?;
-    string CostObjectDimensionMemberName?;
-    CAMCostBehaviorClassificationType CostBehavior?;
-    int:Signed32 YearOffset?;
-    string CostElementDimensionHierarchyLevel10?;
-    string PeriodName?;
-    int:Signed32 PeriodOffset?;
-    string CostObjectDimensionHierarchyLevel2?;
-    string CostElementDimensionHierarchyName?;
-    string CostObjectDimensionHierarchyName?;
-    string CostObjectDimensionHierarchyLevel9?;
-    string CostElementDimensionHierarchyLevel2?;
-    string CostElementDimensionHierarchyLevel3?;
-    string CostElementDimensionHierarchyLevel1?;
-    string CostElementDimensionHierarchyLevel6?;
-    string CostElementDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel6?;
-    string CostElementDimensionHierarchyLevel4?;
-    string CostElementDimensionHierarchyLevel5?;
-    FiscalQuarter Quarter?;
-    string CostElementDimensionHierarchyLevel8?;
-    string CostElementDimensionHierarchyLevel9?;
-    string CostElementDimensionHierarchyLevel15?;
-    string SourceVersionIdentificationName?;
-    string CostElementDimensionHierarchyLevel13?;
-    string CalendarId?;
-    string CostObjectDimensionHierarchyLevel4?;
-    string CostObjectDimensionMemberDescription?;
-    string CostElementDimensionHierarchyLevel11?;
-    string CostObjectDimensionHierarchyLevel3?;
-    decimal CostAccountingCurrencyAmount?;
-    string CostElementDimensionMemberDescription?;
-    int:Signed32 QuarterOffset?;
-    FiscalPeriodMonth Month?;
-    string CostObjectDimensionHierarchyLevel1?;
-    string CostObjectDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel15?;
-    string VersionIdentificationName?;
-    string YearName?;
-    string CostElementDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel10?;
-    string CostObjectDimensionHierarchyLevel11?;
-    string VersionType?;
-    string CostObjectDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel13?;
-    string CostObjectDimensionHierarchyLevel8?;
-    string CostElementDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel5?;
-};
+public type InventModel "FIFO"|"LIFO"|"LIFODate"|"AverageCost"|"AverageCostDate"|"StdCost"|"MovingAverage"|"MonthlyAverageCost"|"NonValuated";
 
 # Represents the Queries record for the operation: listCostAccountingDataConnectorChartOfAccounts
 public type ListCostAccountingDataConnectorChartOfAccountsQueries record {
@@ -1093,6 +990,45 @@ public type ListCostAccountingDataConnectorChartOfAccountsQueries record {
 public type CostConfigurationConventionsCollection record {
     *ODataCollection;
     CostConfigurationConvention[] value?;
+};
+
+# Represents the Headers record for the operation: updateCostingVersions
+public type UpdateCostingVersionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listCostGroups
+public type ListCostGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CostCentersCollection record {
+    *ODataCollection;
+    CostCenter[] value?;
 };
 
 # Represents the Queries record for the operation: listCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembers
@@ -1135,6 +1071,12 @@ public type UpdateCostAccountingTransferStatisticalMeasureBalancesHeaders record
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteCostCalculationGroups
+public type DeleteCostCalculationGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listCostAccountingDataConnectorMainAccounts
 public type ListCostAccountingDataConnectorMainAccountsQueries record {
     # Number of records to skip.
@@ -1163,16 +1105,6 @@ public type ListCostAccountingDataConnectorMainAccountsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-public type GetAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 # Represents the Headers record for the operation: deleteCostAccountingDataConnectorBudgetModels
 public type DeleteCostAccountingDataConnectorBudgetModelsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1181,16 +1113,6 @@ public type DeleteCostAccountingDataConnectorBudgetModelsHeaders record {
 
 # Represents the Queries record for the operation: getCostConfigurationPriceLists
 public type GetCostConfigurationPriceListsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy
-public type GetAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -1261,13 +1183,13 @@ public type UpdateCostAccountingDataConnectorStatisticalMeasureConfigurationsHea
     string If\-Match?;
 };
 
-public type CostConfigurationLedgerStatus "Prepare"|"LegacyTransactionsPreparation"|"Ready"|"Failed"|"Deactivated";
-
 # Represents the Headers record for the operation: deleteCostConfigurationPriceListCostingVersions
 public type DeleteCostConfigurationPriceListCostingVersionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type InventValueReportResourceType "Undefined"|"Material"|"Labor"|"Indirect"|"DirectOutsourcing";
 
 # Represents the Queries record for the operation: listCostConfigurationCostElements
 public type ListCostConfigurationCostElementsQueries record {
@@ -1305,6 +1227,36 @@ public type DeleteCostConfigurationCostElementListsHeaders record {
 
 # Represents the Queries record for the operation: listCostAccountingDataConnectorSystemInstances
 public type ListCostAccountingDataConnectorSystemInstancesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type BOMCalcSalesPrice "CostGroup"|"SalesPrice";
+
+# Represents the Queries record for the operation: listCostCenters
+public type ListCostCentersQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1398,29 +1350,39 @@ public type ListCostAccountingDataConnectorStatisticalMeasuresQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-public type UpdateAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: listCostCalculationGroups
+public type ListCostCalculationGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
+
+public type BOMCalcCostPrice "CostPrice"|"PurchPrice"|"PriceDisc"|"OnhandPrice";
 
 public type CostConfigurationInputMeasurementBasisRulesCollection record {
     *ODataCollection;
     CostConfigurationInputMeasurementBasisRule[] value?;
-};
-
-public type ConfigurationLedger record {
-    string \@odata\.etag?;
-    string Name?;
-    string FiscalCalendar?;
-    CostConfigurationLedgerStatus Status?;
-    string ExchangeRateType?;
-    string EnabledDate?;
-    string Convention?;
-    string Currency?;
-    string LegalEntity?;
-    NoYes NeedsPriming?;
-    string Description?;
 };
 
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorGeneralLedgers
@@ -1477,14 +1439,16 @@ public type UpdateCostAccountingDataConnectorPostingLayersHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy
-public type GetAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: deleteCostFlowAssumptionPolicies
+public type DeleteCostFlowAssumptionPoliciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCostFlowAssumptionPolicies
+public type UpdateCostFlowAssumptionPoliciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type CostConfigurationInputMeasurementBasisExchangeRate "NotSpecified"|"EventDate"|"PriceDate";
@@ -1502,6 +1466,8 @@ public type CostAccountingDataConnectorPostingLayer record {
     string DataConnectorDataTransferSurrogateKey?;
     string DataConnectorSystemInstanceSurrogateKey?;
 };
+
+public type CostStatementType "Inventory"|"WIP"|"Variance";
 
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorCostObjectDimensions
 public type UpdateCostAccountingDataConnectorCostObjectDimensionsHeaders record {
@@ -1537,29 +1503,13 @@ public type ListCostAccountingDataConnectorGeneralLedgersQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-public type ListAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
+public type BOMCalcExplosionMode "MultiLevel"|"MakeToOrder"|"SingleLevel"|"AccordingBOMLineType";
+
+# Represents the Queries record for the operation: getCostCalculationGroups
+public type GetCostCalculationGroupsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -1594,11 +1544,6 @@ public type GetCostConfigurationPriceListCostingVersionsQueries record {
     string selectFields?;
 };
 
-public type AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyCollection record {
-    *ODataCollection;
-    AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy[] value?;
-};
-
 # Represents the Queries record for the operation: listCostConfigurationConventions
 public type ListCostConfigurationConventionsQueries record {
     # Number of records to skip.
@@ -1627,16 +1572,6 @@ public type ListCostConfigurationConventionsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: getAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy
-public type GetAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
 public type CostAccountingDataConnectorBudgetEntryTypesCollection record {
     *ODataCollection;
     CostAccountingDataConnectorBudgetEntryType[] value?;
@@ -1646,6 +1581,16 @@ public type CostAccountingDataConnectorBudgetEntryTypesCollection record {
 public type DeleteCostAccountingDataConnectorStatisticalMeasuresHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCostSheetNodeCalculationFactors
+public type GetCostSheetNodeCalculationFactorsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteCostAccountingDataConnectorCostObjectDimensionMembers
@@ -1682,32 +1627,10 @@ public type UpdateCostConfigurationPriceListCostingVersionsHeaders record {
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: listAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy
-public type ListAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: deleteCostingVersions
+public type DeleteCostingVersionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getCostAccountingDataConnectorBudgetModels
@@ -1728,12 +1651,6 @@ public type DeleteCostAccountingDataConnectorDataTransfersHeaders record {
 
 # Represents the Headers record for the operation: updateCostConfigurationCostElementDerivationRulePurchasess
 public type UpdateCostConfigurationCostElementDerivationRulePurchasessHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
-# Represents the Headers record for the operation: deleteAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy
-public type DeleteAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1791,6 +1708,12 @@ public type CostAccountingDataConnectorDataTransfersCollection record {
     CostAccountingDataConnectorDataTransfer[] value?;
 };
 
+# Represents the Headers record for the operation: updateCostCalculationGroups
+public type UpdateCostCalculationGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembers
 public type GetCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembersQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -1801,7 +1724,21 @@ public type GetCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionM
     string selectFields?;
 };
 
-public type FiscalQuarter "Q1"|"Q2"|"Q3"|"Q4";
+# Represents the Queries record for the operation: getCostCenters
+public type GetCostCentersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCostStatementEntries
+public type DeleteCostStatementEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Queries record for the operation: getCostAccountingTransferStatisticalMeasureBalances
 public type GetCostAccountingTransferStatisticalMeasureBalancesQueries record {
@@ -1813,16 +1750,16 @@ public type GetCostAccountingTransferStatisticalMeasureBalancesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateCostGroups
+public type UpdateCostGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type CostAccountingDataConnectorSystemInstance record {
     string \@odata\.etag?;
     string SurrogateKey?;
     string Name?;
-};
-
-# Represents the Headers record for the operation: deleteAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy
-public type DeleteAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
 };
 
 public type CostAccountingDataConnectorCostObjectDimensionMember record {
@@ -1842,6 +1779,16 @@ public type DeleteCostConfigurationCostElementsHeaders record {
 };
 
 public type NoYes "No"|"Yes";
+
+# Represents the Queries record for the operation: getCostStatementEntries
+public type GetCostStatementEntriesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Headers record for the operation: updateCostConfigurationConventions
 public type UpdateCostConfigurationConventionsHeaders record {
@@ -1883,12 +1830,24 @@ public type DeleteCostAccountingDataConnectorBudgetEntriesHeaders record {
     string If\-Match?;
 };
 
-public type CAMCostBehaviorClassificationType "Unclassified"|"FixedCost"|"VariableCost";
-
-# Represents the Headers record for the operation: updateAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy
-public type UpdateAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type CostStatementEntry record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    CostStatementType CostStatementType?;
+    string AccountingDate?;
+    CostStatementLineCategoryLevel1 LevelOneCostStatementLineCategoryName?;
+    CostStatementLineCategoryLevel2 LevelTwoCostStatementLineCategoryName?;
+    CostStatementLineCategoryLevel3 LevelThreeCostStatementLineCategoryName?;
+    string OperationalSiteId?;
+    InventValueReportResourceType CostResourceType?;
+    string CostResourceId?;
+    string ProductConfigurationId?;
+    string ProductColorId?;
+    string ProductSizeId?;
+    string ProductStyleId?;
+    string CostResourceGroupId?;
+    decimal CostAmount?;
+    decimal Quantity?;
 };
 
 # Represents the Queries record for the operation: getCostAccountingDataConnectorGeneralLedgers
@@ -1956,12 +1915,6 @@ public type ListCostAccountingDataConnectorLegalEntitiesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateConfigurationLedgers
-public type UpdateConfigurationLedgersHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
-};
-
 public type CostAccountingDataConnectorGeneralLedgerEntryCostObjectDimensionMember record {
     string \@odata\.etag?;
     string DataConnectorSystemInstanceSurrogateKey?;
@@ -1999,6 +1952,16 @@ public type ListCostAccountingDataConnectorGeneralLedgerEntriesQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCostingVersions
+public type GetCostingVersionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -2042,10 +2005,17 @@ public type DeleteCostAccountingDataConnectorSystemInstanceAXesHeaders record {
     string If\-Match?;
 };
 
+public type PurchPriceModel "PriceDisc"|"PurchPrice";
+
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorGeneralLedgerEntries
 public type UpdateCostAccountingDataConnectorGeneralLedgerEntriesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type CostCalculationGroupsCollection record {
+    *ODataCollection;
+    CostCalculationGroup[] value?;
 };
 
 public type CostConfigurationCostElementDerivationRulePurchase record {
@@ -2112,6 +2082,34 @@ public type CostAccountingDataConnectorChartOfAccounts record {
     string DataConnectorDataTransferSurrogateKey?;
 };
 
+# Represents the Queries record for the operation: listCostCenterTypes
+public type ListCostCenterTypesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type CostConfigurationPriceList record {
     string \@odata\.etag?;
     string Name?;
@@ -2147,6 +2145,8 @@ public type ListCostAccountingDataConnectorBudgetEntriesQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type BOMCostPriceModel "BOMCalcGroup"|"ItemCostPrice";
 
 # Represents the Headers record for the operation: updateCostConfigurationInputMeasurementBasisRules
 public type UpdateCostConfigurationInputMeasurementBasisRulesHeaders record {
@@ -2199,11 +2199,6 @@ public type DeleteCostConfigurationConventionsHeaders record {
     string If\-Match?;
 };
 
-public type ConfigurationLedgersCollection record {
-    *ODataCollection;
-    ConfigurationLedger[] value?;
-};
-
 public type CostAccountingDataConnectorLegalEntitiesCollection record {
     *ODataCollection;
     CostAccountingDataConnectorLegalEntity[] value?;
@@ -2228,11 +2223,27 @@ public type GetCostAccountingDataConnectorFiscalPeriodTypesQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: deleteAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-public type DeleteAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+public type CostCalculationGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string GroupId?;
+    NoYes WillCostCalculationIssueZeroConsumptionWarning?;
+    BOMCalcCostPrice AlternativeUnitCostCalculationMethod?;
+    NoYes StopExplosionAtItem?;
+    NoYes WillCostCalculationIssueNoActiveAssignedRouteWarning?;
+    decimal ShowWarningIfContributionMarginPercentageLowerThan?;
+    int:Signed32 ShowWarningIfCostPriceCalculationOlderThanDays?;
+    BOMCalcSalesPrice SalesPriceCalculationMethod?;
+    NoYes WillCostCalulationIssueOperationsResourceRequirementNotMetWarning?;
+    BOMCalcCostPrice UnitCostCalculationMethod?;
+    NoYes WillCostCalculationIssueNoActiveAssignedBOMWarning?;
+    string GroupName?;
+    NoYes WillCostCalulationIssueZeroCostPriceWarning?;
 };
+
+public type CostGroupType "Undefined"|"DirectMaterials"|"DirectManufacturing"|"Indirect"|"DirectOutsourcing";
+
+public type CostingVersionCostingType "Normal"|"Standard"|"Conversion";
 
 public type CostAccountingDataConnectorSystemInstanceFiscalCalendarPeriod record {
     string \@odata\.etag?;
@@ -2292,6 +2303,8 @@ public type GetCostAccountingDataConnectorBudgetEntriesQueries record {
     string selectFields?;
 };
 
+public type NoYesCombo "No"|"Yes";
+
 public type CostAccountingDataConnectorCostObjectDimension record {
     string \@odata\.etag?;
     string DataConnectorSystemInstanceSurrogateKey?;
@@ -2314,61 +2327,6 @@ public type UpdateCostAccountingDataConnectorSystemInstanceAXesHeaders record {
     string If\-Match?;
 };
 
-public type AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy record {
-    string \@odata\.etag?;
-    string CostControlUnitName?;
-    string CostAccountingLedgerName?;
-    string CostAccountingDate?;
-    string CostElementDimensionMemberName?;
-    string CostObjectDimensionMemberName?;
-    CAMCostBehaviorClassificationType CostBehavior?;
-    int:Signed32 YearOffset?;
-    string CostElementDimensionHierarchyLevel10?;
-    string PeriodName?;
-    int:Signed32 PeriodOffset?;
-    string CostObjectDimensionHierarchyLevel2?;
-    string CostElementDimensionHierarchyName?;
-    string CostObjectDimensionHierarchyLevel9?;
-    string CostElementDimensionHierarchyLevel2?;
-    string CostElementDimensionHierarchyLevel3?;
-    string CostElementDimensionHierarchyLevel1?;
-    string CostElementDimensionHierarchyLevel6?;
-    string CostElementDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel6?;
-    string CostElementDimensionHierarchyLevel4?;
-    string CostElementDimensionHierarchyLevel5?;
-    FiscalQuarter Quarter?;
-    string CostElementDimensionHierarchyLevel8?;
-    string CostElementDimensionHierarchyLevel9?;
-    string CostElementDimensionHierarchyLevel15?;
-    string SourceVersionIdentificationName?;
-    string CostElementDimensionHierarchyLevel13?;
-    string CalendarId?;
-    string CostObjectDimensionHierarchyLevel4?;
-    string CostObjectDimensionMemberDescription?;
-    string CostElementDimensionHierarchyLevel11?;
-    string CostObjectDimensionHierarchyLevel3?;
-    decimal CostAccountingCurrencyAmount?;
-    string CostElementDimensionMemberDescription?;
-    int:Signed32 QuarterOffset?;
-    FiscalPeriodMonth Month?;
-    string CostObjectDimensionHierarchyLevel1?;
-    string CostObjectDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel15?;
-    string VersionIdentificationName?;
-    string YearName?;
-    string CostElementDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel10?;
-    string CostObjectDimensionHierarchyLevel11?;
-    string VersionType?;
-    string CostObjectDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel13?;
-    string CostObjectDimensionHierarchyLevel8?;
-    string CostElementDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel5?;
-};
-
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorBudgetModels
 public type UpdateCostAccountingDataConnectorBudgetModelsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2378,6 +2336,40 @@ public type UpdateCostAccountingDataConnectorBudgetModelsHeaders record {
 public type CostConfigurationCostElementDerivationPoliciesCollection record {
     *ODataCollection;
     CostConfigurationCostElementDerivationPolicy[] value?;
+};
+
+# Represents the Queries record for the operation: listCostSheetNodeCalculationFactors
+public type ListCostSheetNodeCalculationFactorsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCostStatementEntries
+public type UpdateCostStatementEntriesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: getCostAccountingDataConnectorMainAccounts
@@ -2392,9 +2384,10 @@ public type GetCostAccountingDataConnectorMainAccountsQueries record {
 
 public type CostConfigurationMeasurementType "ExtendedPrice"|"DiscountPercent"|"DiscountUnitPrice"|"Charge"|"NonRecoverableTax"|"MiscCharges";
 
-public type AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyCollection record {
-    *ODataCollection;
-    AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy[] value?;
+# Represents the Headers record for the operation: updateCostCenterTypes
+public type UpdateCostCenterTypesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteCostAccountingDataConnectorStatisticalMeasureConfigurations
@@ -2484,6 +2477,8 @@ public type GetCostAccountingDataConnectorStatisticalMeasuresQueries record {
     string selectFields?;
 };
 
+public type CostProfitSet "Standard"|"Profit1"|"Profit2"|"Profit3";
+
 public type CostAccountingDataConnectorLegalEntity record {
     string \@odata\.etag?;
     string DataConnectorSystemInstanceSurrogateKey?;
@@ -2505,6 +2500,10 @@ public type GetCostConfigurationCostElementsQueries record {
     string selectFields?;
 };
 
+public type CostingVersionStatus "Pending"|"Current"|"Previous";
+
+public type CostGroupBehavior "Undefined"|"Fixed"|"Variable";
+
 public type CostAccountingDataConnectorBudgetEntry record {
     string \@odata\.etag?;
     string DataConnectorSystemInstanceSurrogateKey?;
@@ -2519,6 +2518,97 @@ public type CostAccountingDataConnectorBudgetEntry record {
     string AccountingDate?;
     decimal Amount?;
     string DataConnectorBudgetTypeName?;
+};
+
+public type CostCenter record {
+    string \@odata\.etag?;
+    string OperatingUnitNumber?;
+    NoYes PrimaryContactFacebookIsPrivate?;
+    string PrimaryContactLinkedInDescription?;
+    string ElectronicLocationId?;
+    string PrimaryContactPhonePurpose?;
+    string PrimaryContactFacebook?;
+    Timezone AddressTimeZone?;
+    string AddressDescription?;
+    string AddressLocationRoles?;
+    string PrimaryContactFaxExtension?;
+    string PrimaryContactPhoneExtension?;
+    decimal AddressLongitude?;
+    OMOperatingUnitType OperatingUnitType?;
+    NoYes PrimaryContactPhoneIsMobile?;
+    string PrimaryContactFaxPurpose?;
+    string AddressValidFrom?;
+    string PrimaryContactTelexDescription?;
+    string PrimaryContactPhoneDescription?;
+    string NameAlias?;
+    string AddressCountryRegionISOCode?;
+    string PrimaryContactEmailDescription?;
+    string PrimaryContactTwitterPurpose?;
+    string AddressLocationId?;
+    string PrimaryContactEmailPurpose?;
+    string PrimaryContactTwitter?;
+    string PrimaryContactTelex?;
+    string PrimaryContactFacebookDescription?;
+    string PartyNumber?;
+    string PrimaryContactPhone?;
+    string AddressState?;
+    string AddressCity?;
+    string AddressZipCode?;
+    string AddressBooks?;
+    string PrimaryContactEmail?;
+    string DunsNumber?;
+    string Name?;
+    string PrimaryContactLinkedIn?;
+    string PrimaryContactFacebookPurpose?;
+    string PrimaryContactURL?;
+    string PrimaryContactURLDescription?;
+    decimal AddressLatitude?;
+    string PrimaryContactTelexPurpose?;
+    NoYes PrimaryContactEmailIsIM?;
+    string AddressStreet?;
+    string PhoneticName?;
+    string FullPrimaryAddress?;
+    NoYes PrimaryContactLinkedInIsPrivate?;
+    NoYes PrimaryContactTwitterIsPrivate?;
+    string PrimaryContactURLPurpose?;
+    string AddressCountryRegionId?;
+    string AddressDistrictName?;
+    string LanguageId?;
+    string PrimaryContactFax?;
+    string PrimaryContactFaxDescription?;
+    string PrimaryContactTwitterDescription?;
+    string AddressCounty?;
+    string PrimaryContactLinkedInPurpose?;
+    string AddressValidTo?;
+};
+
+public type CostingVersion record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string VersionId?;
+    NoYes ArePriceCalculationsUsingPurchaseProcurementModeAllowed?;
+    BOMCalcExplosionMode ExplosionMode?;
+    string LastUpdateDate?;
+    NoYes AreSalesPricesAllowed?;
+    NoYes ArePurchasePricesAllowed?;
+    NoYesCombo IsActivationBlocked?;
+    NoYes IsProductionProcurementModePriceCalculationAllowed?;
+    string FallbackCostingVersionId?;
+    PurchPriceModel PurchasePriceModel?;
+    CostProfitSet ProfitSetting?;
+    BOMCalcFallBack FallbackPrinciple?;
+    NoYes IsUnitPriceIncludingCharge?;
+    NoYes RecordingRestriction?;
+    string RestrictingPriceSiteId?;
+    NoYesCombo IsVersionBlocked?;
+    string LastActivationDate?;
+    string DefaultFromDate?;
+    string VersionName?;
+    CostingVersionCostingType CostingType?;
+    NoYes AreCostPricesAllowed?;
+    BOMCostPriceModel CostPriceModel?;
+    NoYes RestrictCalculation?;
+    NoYes RoundOffCalculation?;
 };
 
 public type CostAccountingDataConnectorBudgetEntryType record {
@@ -2555,13 +2645,29 @@ public type DeleteCostAccountingDataConnectorChartOfAccountsHeaders record {
     string If\-Match?;
 };
 
-public type FiscalPeriodMonth "Month1"|"Month2"|"Month3"|"Month4"|"Month5"|"Month6"|"Month7"|"Month8"|"Month9"|"Month10"|"Month11"|"Month12";
-
-# Represents the Queries record for the operation: getConfigurationLedgers
-public type GetConfigurationLedgersQueries record {
+# Represents the Queries record for the operation: listCostFlowAssumptionPolicies
+public type ListCostFlowAssumptionPoliciesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -2607,43 +2713,29 @@ public type DeleteCostAccountingDataConnectorCostObjectDimensionsHeaders record 
     string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getCostAccountingDataConnectorSystemInstanceFiscalCalendarPeriods
-public type GetCostAccountingDataConnectorSystemInstanceFiscalCalendarPeriodsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: deleteCostSheetNodeCalculationFactors
+public type DeleteCostSheetNodeCalculationFactorsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
-# Represents the Queries record for the operation: getCostConfigurationCostElementDerivationPolicies
-public type GetCostConfigurationCostElementDerivationPoliciesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+public type CostSheetNodeCalculationFactor record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CostSheetNodeName?;
+    string PriceSiteId?;
+    string FromDate?;
+    string CostingVersionId?;
+    string ItemNumber?;
+    string ProductGroupId?;
+    decimal SurchargePercentage?;
+    decimal AccountingCurrencyRateAmount?;
+    decimal AccountingCurrencyUnitBasedAmount?;
+    CostingVersionStatus CostingVersionStatus?;
 };
 
-# Represents the Queries record for the operation: getCostAccountingDataConnectorMainAccountTypes
-public type GetCostAccountingDataConnectorMainAccountTypesQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-public type CostAccountingDataConnectorBudgetEntriesCollection record {
-    *ODataCollection;
-    CostAccountingDataConnectorBudgetEntry[] value?;
-};
-
-# Represents the Queries record for the operation: listConfigurationLedgers
-public type ListConfigurationLedgersQueries record {
+# Represents the Queries record for the operation: listCostingVersions
+public type ListCostingVersionsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -2670,62 +2762,62 @@ public type ListConfigurationLedgersQueries record {
     string selectFields?;
 };
 
-public type CostConfigurationMeasurementTypeProduction "ProdIndirectCost"|"ManufacturingCostSetup"|"ManufacturingCostProcess"|"ManufacturingCostQuantity"|"ProductionMaterial";
-
-public type AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy record {
-    string \@odata\.etag?;
-    string CostControlUnitName?;
-    string CostAccountingLedgerName?;
-    string CostAccountingDate?;
-    int:Signed32 YearOffset?;
-    string StatisticalDimensionMemberDescription?;
-    string StatisticalDimensionHierarchyLevel3?;
-    string StatisticalDimensionHierarchyLevel13?;
-    string StatisticalDimensionHierarchyLevel2?;
-    string StatisticalDimensionHierarchyLevel1?;
-    string PeriodName?;
-    string StatisticalDimensionHierarchyLevel7?;
-    string StatisticalDimensionHierarchyLevel6?;
-    string StatisticalDimensionHierarchyLevel15?;
-    string StatisticalDimensionHierarchyLevel5?;
-    string CostObjectDimensionMemberName?;
-    int:Signed32 PeriodOffset?;
-    string StatisticalDimensionHierarchyLevel4?;
-    string CostObjectDimensionHierarchyLevel2?;
-    string StatisticalDimensionHierarchyLevel9?;
-    string StatisticalDimensionHierarchyLevel8?;
-    string CostObjectDimensionHierarchyName?;
-    string CostObjectDimensionHierarchyLevel9?;
-    string CostObjectDimensionHierarchyLevel6?;
-    FiscalQuarter Quarter?;
-    string StatisticalDimensionMemberName?;
-    string SourceVersionIdentificationName?;
-    string CalendarId?;
-    string CostObjectDimensionHierarchyLevel4?;
-    string StatisticalDimensionHierarchyLevel10?;
-    string CostObjectDimensionMemberDescription?;
-    string StatisticalDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel3?;
-    string StatisticalDimensionHierarchyName?;
-    decimal Magnitude?;
-    int:Signed32 QuarterOffset?;
-    string StatisticalDimensionHierarchyLevel14?;
-    FiscalPeriodMonth Month?;
-    string CostObjectDimensionHierarchyLevel1?;
-    string CostObjectDimensionHierarchyLevel7?;
-    string CostObjectDimensionHierarchyLevel14?;
-    string CostObjectDimensionHierarchyLevel15?;
-    string VersionIdentificationName?;
-    string YearName?;
-    string CostObjectDimensionHierarchyLevel10?;
-    string CostObjectDimensionHierarchyLevel11?;
-    string VersionType?;
-    string CostObjectDimensionHierarchyLevel12?;
-    string CostObjectDimensionHierarchyLevel8?;
-    string CostObjectDimensionHierarchyLevel13?;
-    string StatisticalDimensionHierarchyLevel11?;
-    string CostObjectDimensionHierarchyLevel5?;
+# Represents the Queries record for the operation: getCostAccountingDataConnectorSystemInstanceFiscalCalendarPeriods
+public type GetCostAccountingDataConnectorSystemInstanceFiscalCalendarPeriodsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
+
+# Represents the Queries record for the operation: getCostConfigurationCostElementDerivationPolicies
+public type GetCostConfigurationCostElementDerivationPoliciesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCostCenterTypes
+public type GetCostCenterTypesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CostGroupsCollection record {
+    *ODataCollection;
+    CostGroup[] value?;
+};
+
+# Represents the Queries record for the operation: getCostAccountingDataConnectorMainAccountTypes
+public type GetCostAccountingDataConnectorMainAccountTypesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CostSheetNodeCalculationFactorsCollection record {
+    *ODataCollection;
+    CostSheetNodeCalculationFactor[] value?;
+};
+
+public type CostAccountingDataConnectorBudgetEntriesCollection record {
+    *ODataCollection;
+    CostAccountingDataConnectorBudgetEntry[] value?;
+};
+
+public type CostConfigurationMeasurementTypeProduction "ProdIndirectCost"|"ManufacturingCostSetup"|"ManufacturingCostProcess"|"ManufacturingCostQuantity"|"ProductionMaterial";
 
 # Represents the Headers record for the operation: updateCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembers
 public type UpdateCostAccountingDataConnectorStatisticalMeasureCostObjectDimensionMembersHeaders record {

@@ -19,18 +19,302 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'vendor' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List AgreementLineTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AgreementLineTransTaxInformation 
+    remote isolated function listAgreementLineTransTaxInformations(map<string|string[]> headers = {}, *ListAgreementLineTransTaxInformationsQueries queries) returns AgreementLineTransTaxInformationsCollection|error {
+        string resourcePath = string `/AgreementLineTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AgreementLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementLineTransTaxInformation created 
+    remote isolated function createAgreementLineTransTaxInformations(AgreementLineTransTaxInformation payload, map<string|string[]> headers = {}) returns AgreementLineTransTaxInformation|error {
+        string resourcePath = string `/AgreementLineTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AgreementLineTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AgreementLineTransTaxInformation record 
+    remote isolated function getAgreementLineTransTaxInformations(string dataAreaId, int agreement, decimal lineNumber, map<string|string[]> headers = {}, *GetAgreementLineTransTaxInformationsQueries queries) returns AgreementLineTransTaxInformation|error {
+        string resourcePath = string `/AgreementLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',Agreement=${getEncodedUri(agreement)},LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AgreementLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementLineTransTaxInformation deleted 
+    remote isolated function deleteAgreementLineTransTaxInformations(string dataAreaId, int agreement, decimal lineNumber, DeleteAgreementLineTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AgreementLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',Agreement=${getEncodedUri(agreement)},LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AgreementLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementLineTransTaxInformation updated 
+    remote isolated function updateAgreementLineTransTaxInformations(string dataAreaId, int agreement, decimal lineNumber, AgreementLineTransTaxInformation payload, UpdateAgreementLineTransTaxInformationsHeaders headers = {}) returns AgreementLineTransTaxInformation|error {
+        string resourcePath = string `/AgreementLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',Agreement=${getEncodedUri(agreement)},LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AgreementTerms
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AgreementTerm 
+    remote isolated function listAgreementTerms(map<string|string[]> headers = {}, *ListAgreementTermsQueries queries) returns AgreementTermsCollection|error {
+        string resourcePath = string `/AgreementTerms`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AgreementTerm
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementTerm created 
+    remote isolated function createAgreementTerms(AgreementTerm payload, map<string|string[]> headers = {}) returns AgreementTerm|error {
+        string resourcePath = string `/AgreementTerms`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AgreementTerm by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AgreementTerm record 
+    remote isolated function getAgreementTerms(string termsOfEmployment, map<string|string[]> headers = {}, *GetAgreementTermsQueries queries) returns AgreementTerm|error {
+        string resourcePath = string `/AgreementTerms(TermsOfEmployment='${getEncodedUri(termsOfEmployment)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AgreementTerm
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementTerm deleted 
+    remote isolated function deleteAgreementTerms(string termsOfEmployment, DeleteAgreementTermsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AgreementTerms(TermsOfEmployment='${getEncodedUri(termsOfEmployment)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AgreementTerm
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AgreementTerm updated 
+    remote isolated function updateAgreementTerms(string termsOfEmployment, AgreementTerm payload, UpdateAgreementTermsHeaders headers = {}) returns AgreementTerm|error {
+        string resourcePath = string `/AgreementTerms(TermsOfEmployment='${getEncodedUri(termsOfEmployment)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendAdvancedInvoices
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendAdvancedInvoice 
+    remote isolated function listVendAdvancedInvoices(map<string|string[]> headers = {}, *ListVendAdvancedInvoicesQueries queries) returns VendAdvancedInvoicesCollection|error {
+        string resourcePath = string `/VendAdvancedInvoices`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendAdvancedInvoice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendAdvancedInvoice created 
+    remote isolated function createVendAdvancedInvoices(VendAdvancedInvoice payload, map<string|string[]> headers = {}) returns VendAdvancedInvoice|error {
+        string resourcePath = string `/VendAdvancedInvoices`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendAdvancedInvoice by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendAdvancedInvoice record 
+    remote isolated function getVendAdvancedInvoices(string dataAreaId, string headId, decimal lineNum, map<string|string[]> headers = {}, *GetVendAdvancedInvoicesQueries queries) returns VendAdvancedInvoice|error {
+        string resourcePath = string `/VendAdvancedInvoices(dataAreaId='${getEncodedUri(dataAreaId)}',HeadId=${getEncodedUri(headId)},LineNum=${getEncodedUri(lineNum)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendAdvancedInvoice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendAdvancedInvoice deleted 
+    remote isolated function deleteVendAdvancedInvoices(string dataAreaId, string headId, decimal lineNum, DeleteVendAdvancedInvoicesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendAdvancedInvoices(dataAreaId='${getEncodedUri(dataAreaId)}',HeadId=${getEncodedUri(headId)},LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendAdvancedInvoice
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendAdvancedInvoice updated 
+    remote isolated function updateVendAdvancedInvoices(string dataAreaId, string headId, decimal lineNum, VendAdvancedInvoice payload, UpdateVendAdvancedInvoicesHeaders headers = {}) returns VendAdvancedInvoice|error {
+        string resourcePath = string `/VendAdvancedInvoices(dataAreaId='${getEncodedUri(dataAreaId)}',HeadId=${getEncodedUri(headId)},LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendCorrectionNotes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendCorrectionNotes 
+    remote isolated function listVendCorrectionNotes(map<string|string[]> headers = {}, *ListVendCorrectionNotesQueries queries) returns VendCorrectionNotesCollection|error {
+        string resourcePath = string `/VendCorrectionNotes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendCorrectionNotes
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendCorrectionNotes created 
+    remote isolated function createVendCorrectionNotes(VendCorrectionNotes payload, map<string|string[]> headers = {}) returns VendCorrectionNotes|error {
+        string resourcePath = string `/VendCorrectionNotes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendCorrectionNotes by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendCorrectionNotes record 
+    remote isolated function getVendCorrectionNotes(string dataAreaId, string correctionNoteId, map<string|string[]> headers = {}, *GetVendCorrectionNotesQueries queries) returns VendCorrectionNotes|error {
+        string resourcePath = string `/VendCorrectionNotes(dataAreaId='${getEncodedUri(dataAreaId)}',CorrectionNoteId='${getEncodedUri(correctionNoteId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendCorrectionNotes
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendCorrectionNotes deleted 
+    remote isolated function deleteVendCorrectionNotes(string dataAreaId, string correctionNoteId, DeleteVendCorrectionNotesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendCorrectionNotes(dataAreaId='${getEncodedUri(dataAreaId)}',CorrectionNoteId='${getEncodedUri(correctionNoteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendCorrectionNotes
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendCorrectionNotes updated 
+    remote isolated function updateVendCorrectionNotes(string dataAreaId, string correctionNoteId, VendCorrectionNotes payload, UpdateVendCorrectionNotesHeaders headers = {}) returns VendCorrectionNotes|error {
+        string resourcePath = string `/VendCorrectionNotes(dataAreaId='${getEncodedUri(dataAreaId)}',CorrectionNoteId='${getEncodedUri(correctionNoteId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendDependents
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendDependents 
+    remote isolated function listVendDependents(map<string|string[]> headers = {}, *ListVendDependentsQueries queries) returns VendDependentsCollection|error {
+        string resourcePath = string `/VendDependents`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendDependents
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendDependents created 
+    remote isolated function createVendDependents(VendDependents payload, map<string|string[]> headers = {}) returns VendDependents|error {
+        string resourcePath = string `/VendDependents`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendDependents by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendDependents record 
+    remote isolated function getVendDependents(string dataAreaId, map<string|string[]> headers = {}, *GetVendDependentsQueries queries) returns VendDependents|error {
+        string resourcePath = string `/VendDependents(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendDependents
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendDependents deleted 
+    remote isolated function deleteVendDependents(string dataAreaId, DeleteVendDependentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendDependents(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendDependents
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendDependents updated 
+    remote isolated function updateVendDependents(string dataAreaId, VendDependents payload, UpdateVendDependentsHeaders headers = {}) returns VendDependents|error {
+        string resourcePath = string `/VendDependents(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List VendDlvLeadTimePredictionResults
@@ -90,6 +374,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendInvoiceApprovalAttachedLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceApprovalAttachedLine 
+    remote isolated function listVendInvoiceApprovalAttachedLines(map<string|string[]> headers = {}, *ListVendInvoiceApprovalAttachedLinesQueries queries) returns VendInvoiceApprovalAttachedLinesCollection|error {
+        string resourcePath = string `/VendInvoiceApprovalAttachedLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceApprovalAttachedLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalAttachedLine created 
+    remote isolated function createVendInvoiceApprovalAttachedLines(VendInvoiceApprovalAttachedLine payload, map<string|string[]> headers = {}) returns VendInvoiceApprovalAttachedLine|error {
+        string resourcePath = string `/VendInvoiceApprovalAttachedLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceApprovalAttachedLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceApprovalAttachedLine record 
+    remote isolated function getVendInvoiceApprovalAttachedLines(string dataAreaId, string legalEntity, string headerReference, decimal lineNumber, map<string|string[]> headers = {}, *GetVendInvoiceApprovalAttachedLinesQueries queries) returns VendInvoiceApprovalAttachedLine|error {
+        string resourcePath = string `/VendInvoiceApprovalAttachedLines(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceApprovalAttachedLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalAttachedLine deleted 
+    remote isolated function deleteVendInvoiceApprovalAttachedLines(string dataAreaId, string legalEntity, string headerReference, decimal lineNumber, DeleteVendInvoiceApprovalAttachedLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceApprovalAttachedLines(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceApprovalAttachedLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalAttachedLine updated 
+    remote isolated function updateVendInvoiceApprovalAttachedLines(string dataAreaId, string legalEntity, string headerReference, decimal lineNumber, VendInvoiceApprovalAttachedLine payload, UpdateVendInvoiceApprovalAttachedLinesHeaders headers = {}) returns VendInvoiceApprovalAttachedLine|error {
+        string resourcePath = string `/VendInvoiceApprovalAttachedLines(dataAreaId='${getEncodedUri(dataAreaId)}',LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceApprovalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceApprovalHeader 
+    remote isolated function listVendInvoiceApprovalHeaders(map<string|string[]> headers = {}, *ListVendInvoiceApprovalHeadersQueries queries) returns VendInvoiceApprovalHeadersCollection|error {
+        string resourcePath = string `/VendInvoiceApprovalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceApprovalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalHeader created 
+    remote isolated function createVendInvoiceApprovalHeaders(VendInvoiceApprovalHeader payload, map<string|string[]> headers = {}) returns VendInvoiceApprovalHeader|error {
+        string resourcePath = string `/VendInvoiceApprovalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceApprovalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceApprovalHeader record 
+    remote isolated function getVendInvoiceApprovalHeaders(int workItemRecId, string legalEntity, string headerReference, map<string|string[]> headers = {}, *GetVendInvoiceApprovalHeadersQueries queries) returns VendInvoiceApprovalHeader|error {
+        string resourcePath = string `/VendInvoiceApprovalHeaders(WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceApprovalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalHeader deleted 
+    remote isolated function deleteVendInvoiceApprovalHeaders(int workItemRecId, string legalEntity, string headerReference, DeleteVendInvoiceApprovalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceApprovalHeaders(WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceApprovalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalHeader updated 
+    remote isolated function updateVendInvoiceApprovalHeaders(int workItemRecId, string legalEntity, string headerReference, VendInvoiceApprovalHeader payload, UpdateVendInvoiceApprovalHeadersHeaders headers = {}) returns VendInvoiceApprovalHeader|error {
+        string resourcePath = string `/VendInvoiceApprovalHeaders(WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceApprovalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceApprovalLine 
+    remote isolated function listVendInvoiceApprovalLines(map<string|string[]> headers = {}, *ListVendInvoiceApprovalLinesQueries queries) returns VendInvoiceApprovalLinesCollection|error {
+        string resourcePath = string `/VendInvoiceApprovalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceApprovalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalLine created 
+    remote isolated function createVendInvoiceApprovalLines(VendInvoiceApprovalLine payload, map<string|string[]> headers = {}) returns VendInvoiceApprovalLine|error {
+        string resourcePath = string `/VendInvoiceApprovalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceApprovalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceApprovalLine record 
+    remote isolated function getVendInvoiceApprovalLines(string dataAreaId, int workItemRecId, string legalEntity, string headerReference, decimal lineNumber, map<string|string[]> headers = {}, *GetVendInvoiceApprovalLinesQueries queries) returns VendInvoiceApprovalLine|error {
+        string resourcePath = string `/VendInvoiceApprovalLines(dataAreaId='${getEncodedUri(dataAreaId)}',WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceApprovalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalLine deleted 
+    remote isolated function deleteVendInvoiceApprovalLines(string dataAreaId, int workItemRecId, string legalEntity, string headerReference, decimal lineNumber, DeleteVendInvoiceApprovalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceApprovalLines(dataAreaId='${getEncodedUri(dataAreaId)}',WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceApprovalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceApprovalLine updated 
+    remote isolated function updateVendInvoiceApprovalLines(string dataAreaId, int workItemRecId, string legalEntity, string headerReference, decimal lineNumber, VendInvoiceApprovalLine payload, UpdateVendInvoiceApprovalLinesHeaders headers = {}) returns VendInvoiceApprovalLine|error {
+        string resourcePath = string `/VendInvoiceApprovalLines(dataAreaId='${getEncodedUri(dataAreaId)}',WorkItemRecId=${getEncodedUri(workItemRecId)},LegalEntity='${getEncodedUri(legalEntity)}',HeaderReference='${getEncodedUri(headerReference)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendInvoiceExportsV2
     #
     # + headers - Headers to be sent with the request 
@@ -140,6 +595,177 @@ public isolated client class Client {
     # + return - VendInvoiceExportV2 updated 
     remote isolated function updateVendInvoiceExportsV2(string dataAreaId, string invoiceAccount, string vendorInvoiceNum, VendInvoiceExportV2 payload, UpdateVendInvoiceExportsV2Headers headers = {}) returns VendInvoiceExportV2|error {
         string resourcePath = string `/VendInvoiceExportsV2(dataAreaId='${getEncodedUri(dataAreaId)}',InvoiceAccount='${getEncodedUri(invoiceAccount)}',VendorInvoiceNum='${getEncodedUri(vendorInvoiceNum)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceInfoLineTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceInfoLineTransTaxInformation 
+    remote isolated function listVendInvoiceInfoLineTransTaxInformations(map<string|string[]> headers = {}, *ListVendInvoiceInfoLineTransTaxInformationsQueries queries) returns VendInvoiceInfoLineTransTaxInformationsCollection|error {
+        string resourcePath = string `/VendInvoiceInfoLineTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceInfoLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceInfoLineTransTaxInformation created 
+    remote isolated function createVendInvoiceInfoLineTransTaxInformations(VendInvoiceInfoLineTransTaxInformation payload, map<string|string[]> headers = {}) returns VendInvoiceInfoLineTransTaxInformation|error {
+        string resourcePath = string `/VendInvoiceInfoLineTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceInfoLineTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceInfoLineTransTaxInformation record 
+    remote isolated function getVendInvoiceInfoLineTransTaxInformations(string dataAreaId, int vendInvoiceInfoLineRecId, map<string|string[]> headers = {}, *GetVendInvoiceInfoLineTransTaxInformationsQueries queries) returns VendInvoiceInfoLineTransTaxInformation|error {
+        string resourcePath = string `/VendInvoiceInfoLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',VendInvoiceInfoLineRecId=${getEncodedUri(vendInvoiceInfoLineRecId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceInfoLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceInfoLineTransTaxInformation deleted 
+    remote isolated function deleteVendInvoiceInfoLineTransTaxInformations(string dataAreaId, int vendInvoiceInfoLineRecId, DeleteVendInvoiceInfoLineTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceInfoLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',VendInvoiceInfoLineRecId=${getEncodedUri(vendInvoiceInfoLineRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceInfoLineTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceInfoLineTransTaxInformation updated 
+    remote isolated function updateVendInvoiceInfoLineTransTaxInformations(string dataAreaId, int vendInvoiceInfoLineRecId, VendInvoiceInfoLineTransTaxInformation payload, UpdateVendInvoiceInfoLineTransTaxInformationsHeaders headers = {}) returns VendInvoiceInfoLineTransTaxInformation|error {
+        string resourcePath = string `/VendInvoiceInfoLineTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',VendInvoiceInfoLineRecId=${getEncodedUri(vendInvoiceInfoLineRecId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceJournalHeader 
+    remote isolated function listVendInvoiceJournalHeaders(map<string|string[]> headers = {}, *ListVendInvoiceJournalHeadersQueries queries) returns VendInvoiceJournalHeadersCollection|error {
+        string resourcePath = string `/VendInvoiceJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalHeader created 
+    remote isolated function createVendInvoiceJournalHeaders(VendInvoiceJournalHeader payload, map<string|string[]> headers = {}) returns VendInvoiceJournalHeader|error {
+        string resourcePath = string `/VendInvoiceJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceJournalHeader record 
+    remote isolated function getVendInvoiceJournalHeaders(string dataAreaId, string journalBatchNumber, map<string|string[]> headers = {}, *GetVendInvoiceJournalHeadersQueries queries) returns VendInvoiceJournalHeader|error {
+        string resourcePath = string `/VendInvoiceJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalHeader deleted 
+    remote isolated function deleteVendInvoiceJournalHeaders(string dataAreaId, string journalBatchNumber, DeleteVendInvoiceJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalHeader updated 
+    remote isolated function updateVendInvoiceJournalHeaders(string dataAreaId, string journalBatchNumber, VendInvoiceJournalHeader payload, UpdateVendInvoiceJournalHeadersHeaders headers = {}) returns VendInvoiceJournalHeader|error {
+        string resourcePath = string `/VendInvoiceJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceJournalLine 
+    remote isolated function listVendInvoiceJournalLines(map<string|string[]> headers = {}, *ListVendInvoiceJournalLinesQueries queries) returns VendInvoiceJournalLinesCollection|error {
+        string resourcePath = string `/VendInvoiceJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalLine created 
+    remote isolated function createVendInvoiceJournalLines(VendInvoiceJournalLine payload, map<string|string[]> headers = {}) returns VendInvoiceJournalLine|error {
+        string resourcePath = string `/VendInvoiceJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceJournalLine record 
+    remote isolated function getVendInvoiceJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetVendInvoiceJournalLinesQueries queries) returns VendInvoiceJournalLine|error {
+        string resourcePath = string `/VendInvoiceJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalLine deleted 
+    remote isolated function deleteVendInvoiceJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteVendInvoiceJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceJournalLine updated 
+    remote isolated function updateVendInvoiceJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, VendInvoiceJournalLine payload, UpdateVendInvoiceJournalLinesHeaders headers = {}) returns VendInvoiceJournalLine|error {
+        string resourcePath = string `/VendInvoiceJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -261,6 +887,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendInvoiceRegisterHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceRegisterHeader 
+    remote isolated function listVendInvoiceRegisterHeaders(map<string|string[]> headers = {}, *ListVendInvoiceRegisterHeadersQueries queries) returns VendInvoiceRegisterHeadersCollection|error {
+        string resourcePath = string `/VendInvoiceRegisterHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceRegisterHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterHeader created 
+    remote isolated function createVendInvoiceRegisterHeaders(VendInvoiceRegisterHeader payload, map<string|string[]> headers = {}) returns VendInvoiceRegisterHeader|error {
+        string resourcePath = string `/VendInvoiceRegisterHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceRegisterHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceRegisterHeader record 
+    remote isolated function getVendInvoiceRegisterHeaders(string dataAreaId, string journalBatchNumber, map<string|string[]> headers = {}, *GetVendInvoiceRegisterHeadersQueries queries) returns VendInvoiceRegisterHeader|error {
+        string resourcePath = string `/VendInvoiceRegisterHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceRegisterHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterHeader deleted 
+    remote isolated function deleteVendInvoiceRegisterHeaders(string dataAreaId, string journalBatchNumber, DeleteVendInvoiceRegisterHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceRegisterHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceRegisterHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterHeader updated 
+    remote isolated function updateVendInvoiceRegisterHeaders(string dataAreaId, string journalBatchNumber, VendInvoiceRegisterHeader payload, UpdateVendInvoiceRegisterHeadersHeaders headers = {}) returns VendInvoiceRegisterHeader|error {
+        string resourcePath = string `/VendInvoiceRegisterHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceRegisterLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceRegisterLine 
+    remote isolated function listVendInvoiceRegisterLines(map<string|string[]> headers = {}, *ListVendInvoiceRegisterLinesQueries queries) returns VendInvoiceRegisterLinesCollection|error {
+        string resourcePath = string `/VendInvoiceRegisterLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceRegisterLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLine created 
+    remote isolated function createVendInvoiceRegisterLines(VendInvoiceRegisterLine payload, map<string|string[]> headers = {}) returns VendInvoiceRegisterLine|error {
+        string resourcePath = string `/VendInvoiceRegisterLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceRegisterLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceRegisterLine record 
+    remote isolated function getVendInvoiceRegisterLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetVendInvoiceRegisterLinesQueries queries) returns VendInvoiceRegisterLine|error {
+        string resourcePath = string `/VendInvoiceRegisterLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceRegisterLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLine deleted 
+    remote isolated function deleteVendInvoiceRegisterLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteVendInvoiceRegisterLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceRegisterLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceRegisterLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLine updated 
+    remote isolated function updateVendInvoiceRegisterLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, VendInvoiceRegisterLine payload, UpdateVendInvoiceRegisterLinesHeaders headers = {}) returns VendInvoiceRegisterLine|error {
+        string resourcePath = string `/VendInvoiceRegisterLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendInvoiceRegisterLinesV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendInvoiceRegisterLineV2 
+    remote isolated function listVendInvoiceRegisterLinesV2(map<string|string[]> headers = {}, *ListVendInvoiceRegisterLinesV2Queries queries) returns VendInvoiceRegisterLinesV2Collection|error {
+        string resourcePath = string `/VendInvoiceRegisterLinesV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendInvoiceRegisterLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLineV2 created 
+    remote isolated function createVendInvoiceRegisterLinesV2(VendInvoiceRegisterLineV2 payload, map<string|string[]> headers = {}) returns VendInvoiceRegisterLineV2|error {
+        string resourcePath = string `/VendInvoiceRegisterLinesV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendInvoiceRegisterLineV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendInvoiceRegisterLineV2 record 
+    remote isolated function getVendInvoiceRegisterLinesV2(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetVendInvoiceRegisterLinesV2Queries queries) returns VendInvoiceRegisterLineV2|error {
+        string resourcePath = string `/VendInvoiceRegisterLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendInvoiceRegisterLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLineV2 deleted 
+    remote isolated function deleteVendInvoiceRegisterLinesV2(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteVendInvoiceRegisterLinesV2Headers headers = {}) returns error? {
+        string resourcePath = string `/VendInvoiceRegisterLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendInvoiceRegisterLineV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendInvoiceRegisterLineV2 updated 
+    remote isolated function updateVendInvoiceRegisterLinesV2(string dataAreaId, string journalBatchNumber, decimal lineNumber, VendInvoiceRegisterLineV2 payload, UpdateVendInvoiceRegisterLinesV2Headers headers = {}) returns VendInvoiceRegisterLineV2|error {
+        string resourcePath = string `/VendInvoiceRegisterLinesV2(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendPWPTxts
     #
     # + headers - Headers to be sent with the request 
@@ -368,6 +1165,63 @@ public isolated client class Client {
     # + return - VendPaymModeBankAccounts updated 
     remote isolated function updateVendPaymModeBankAccounts(string dataAreaId, string lineId, VendPaymModeBankAccounts payload, UpdateVendPaymModeBankAccountsHeaders headers = {}) returns VendPaymModeBankAccounts|error {
         string resourcePath = string `/VendPaymModeBankAccounts(dataAreaId='${getEncodedUri(dataAreaId)}',LineId=${getEncodedUri(lineId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendPriceAdmTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendPriceAdmTrans 
+    remote isolated function listVendPriceAdmTrans(map<string|string[]> headers = {}, *ListVendPriceAdmTransQueries queries) returns VendPriceAdmTransCollection|error {
+        string resourcePath = string `/VendPriceAdmTrans`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendPriceAdmTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendPriceAdmTrans created 
+    remote isolated function createVendPriceAdmTrans(VendPriceAdmTrans payload, map<string|string[]> headers = {}) returns VendPriceAdmTrans|error {
+        string resourcePath = string `/VendPriceAdmTrans`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendPriceAdmTrans by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendPriceAdmTrans record 
+    remote isolated function getVendPriceAdmTrans(string dataAreaId, string journalNum, int lineNum, map<string|string[]> headers = {}, *GetVendPriceAdmTransQueries queries) returns VendPriceAdmTrans|error {
+        string resourcePath = string `/VendPriceAdmTrans(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNum='${getEncodedUri(journalNum)}',LineNum=${getEncodedUri(lineNum)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendPriceAdmTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendPriceAdmTrans deleted 
+    remote isolated function deleteVendPriceAdmTrans(string dataAreaId, string journalNum, int lineNum, DeleteVendPriceAdmTransHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendPriceAdmTrans(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNum='${getEncodedUri(journalNum)}',LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendPriceAdmTrans
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendPriceAdmTrans updated 
+    remote isolated function updateVendPriceAdmTrans(string dataAreaId, string journalNum, int lineNum, VendPriceAdmTrans payload, UpdateVendPriceAdmTransHeaders headers = {}) returns VendPriceAdmTrans|error {
+        string resourcePath = string `/VendPriceAdmTrans(dataAreaId='${getEncodedUri(dataAreaId)}',JournalNum='${getEncodedUri(journalNum)}',LineNum=${getEncodedUri(lineNum)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -489,6 +1343,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorBankAccounts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorBankAccount 
+    remote isolated function listVendorBankAccounts(map<string|string[]> headers = {}, *ListVendorBankAccountsQueries queries) returns VendorBankAccountsCollection|error {
+        string resourcePath = string `/VendorBankAccounts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorBankAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorBankAccount created 
+    remote isolated function createVendorBankAccounts(VendorBankAccount payload, map<string|string[]> headers = {}) returns VendorBankAccount|error {
+        string resourcePath = string `/VendorBankAccounts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorBankAccount by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorBankAccount record 
+    remote isolated function getVendorBankAccounts(string dataAreaId, string vendorAccountNumber, string vendorBankAccountId, map<string|string[]> headers = {}, *GetVendorBankAccountsQueries queries) returns VendorBankAccount|error {
+        string resourcePath = string `/VendorBankAccounts(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}',VendorBankAccountId='${getEncodedUri(vendorBankAccountId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorBankAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorBankAccount deleted 
+    remote isolated function deleteVendorBankAccounts(string dataAreaId, string vendorAccountNumber, string vendorBankAccountId, DeleteVendorBankAccountsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorBankAccounts(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}',VendorBankAccountId='${getEncodedUri(vendorBankAccountId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorBankAccount
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorBankAccount updated 
+    remote isolated function updateVendorBankAccounts(string dataAreaId, string vendorAccountNumber, string vendorBankAccountId, VendorBankAccount payload, UpdateVendorBankAccountsHeaders headers = {}) returns VendorBankAccount|error {
+        string resourcePath = string `/VendorBankAccounts(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}',VendorBankAccountId='${getEncodedUri(vendorBankAccountId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorChangeProposalFieldEnablements
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorChangeProposalFieldEnablement 
+    remote isolated function listVendorChangeProposalFieldEnablements(map<string|string[]> headers = {}, *ListVendorChangeProposalFieldEnablementsQueries queries) returns VendorChangeProposalFieldEnablementsCollection|error {
+        string resourcePath = string `/VendorChangeProposalFieldEnablements`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorChangeProposalFieldEnablement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorChangeProposalFieldEnablement created 
+    remote isolated function createVendorChangeProposalFieldEnablements(VendorChangeProposalFieldEnablement payload, map<string|string[]> headers = {}) returns VendorChangeProposalFieldEnablement|error {
+        string resourcePath = string `/VendorChangeProposalFieldEnablements`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorChangeProposalFieldEnablement by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorChangeProposalFieldEnablement record 
+    remote isolated function getVendorChangeProposalFieldEnablements(string dataAreaId, string 'field, map<string|string[]> headers = {}, *GetVendorChangeProposalFieldEnablementsQueries queries) returns VendorChangeProposalFieldEnablement|error {
+        string resourcePath = string `/VendorChangeProposalFieldEnablements(dataAreaId='${getEncodedUri(dataAreaId)}',Field='${getEncodedUri('field)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorChangeProposalFieldEnablement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorChangeProposalFieldEnablement deleted 
+    remote isolated function deleteVendorChangeProposalFieldEnablements(string dataAreaId, string 'field, DeleteVendorChangeProposalFieldEnablementsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorChangeProposalFieldEnablements(dataAreaId='${getEncodedUri(dataAreaId)}',Field='${getEncodedUri('field)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorChangeProposalFieldEnablement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorChangeProposalFieldEnablement updated 
+    remote isolated function updateVendorChangeProposalFieldEnablements(string dataAreaId, string 'field, VendorChangeProposalFieldEnablement payload, UpdateVendorChangeProposalFieldEnablementsHeaders headers = {}) returns VendorChangeProposalFieldEnablement|error {
+        string resourcePath = string `/VendorChangeProposalFieldEnablements(dataAreaId='${getEncodedUri(dataAreaId)}',Field='${getEncodedUri('field)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorDocumentAttachments
     #
     # + headers - Headers to be sent with the request 
@@ -603,6 +1571,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorFiscalDocTextReferencedProcesses
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorFiscalDocTextReferencedProcess 
+    remote isolated function listVendorFiscalDocTextReferencedProcesses(map<string|string[]> headers = {}, *ListVendorFiscalDocTextReferencedProcessesQueries queries) returns VendorFiscalDocTextReferencedProcessesCollection|error {
+        string resourcePath = string `/VendorFiscalDocTextReferencedProcesses`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorFiscalDocTextReferencedProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocTextReferencedProcess created 
+    remote isolated function createVendorFiscalDocTextReferencedProcesses(VendorFiscalDocTextReferencedProcess payload, map<string|string[]> headers = {}) returns VendorFiscalDocTextReferencedProcess|error {
+        string resourcePath = string `/VendorFiscalDocTextReferencedProcesses`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorFiscalDocTextReferencedProcess by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorFiscalDocTextReferencedProcess record 
+    remote isolated function getVendorFiscalDocTextReferencedProcesses(string dataAreaId, string vendor, string fiscalDocumentText, string agency, string processNumber, map<string|string[]> headers = {}, *GetVendorFiscalDocTextReferencedProcessesQueries queries) returns VendorFiscalDocTextReferencedProcess|error {
+        string resourcePath = string `/VendorFiscalDocTextReferencedProcesses(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}',Agency='${getEncodedUri(agency)}',ProcessNumber='${getEncodedUri(processNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorFiscalDocTextReferencedProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocTextReferencedProcess deleted 
+    remote isolated function deleteVendorFiscalDocTextReferencedProcesses(string dataAreaId, string vendor, string fiscalDocumentText, string agency, string processNumber, DeleteVendorFiscalDocTextReferencedProcessesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorFiscalDocTextReferencedProcesses(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}',Agency='${getEncodedUri(agency)}',ProcessNumber='${getEncodedUri(processNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorFiscalDocTextReferencedProcess
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocTextReferencedProcess updated 
+    remote isolated function updateVendorFiscalDocTextReferencedProcesses(string dataAreaId, string vendor, string fiscalDocumentText, string agency, string processNumber, VendorFiscalDocTextReferencedProcess payload, UpdateVendorFiscalDocTextReferencedProcessesHeaders headers = {}) returns VendorFiscalDocTextReferencedProcess|error {
+        string resourcePath = string `/VendorFiscalDocTextReferencedProcesses(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}',Agency='${getEncodedUri(agency)}',ProcessNumber='${getEncodedUri(processNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorFiscalDocumentTexts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorFiscalDocumentText 
+    remote isolated function listVendorFiscalDocumentTexts(map<string|string[]> headers = {}, *ListVendorFiscalDocumentTextsQueries queries) returns VendorFiscalDocumentTextsCollection|error {
+        string resourcePath = string `/VendorFiscalDocumentTexts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorFiscalDocumentText
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocumentText created 
+    remote isolated function createVendorFiscalDocumentTexts(VendorFiscalDocumentText payload, map<string|string[]> headers = {}) returns VendorFiscalDocumentText|error {
+        string resourcePath = string `/VendorFiscalDocumentTexts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorFiscalDocumentText by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorFiscalDocumentText record 
+    remote isolated function getVendorFiscalDocumentTexts(string dataAreaId, string vendor, string fiscalDocumentText, map<string|string[]> headers = {}, *GetVendorFiscalDocumentTextsQueries queries) returns VendorFiscalDocumentText|error {
+        string resourcePath = string `/VendorFiscalDocumentTexts(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorFiscalDocumentText
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocumentText deleted 
+    remote isolated function deleteVendorFiscalDocumentTexts(string dataAreaId, string vendor, string fiscalDocumentText, DeleteVendorFiscalDocumentTextsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorFiscalDocumentTexts(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorFiscalDocumentText
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorFiscalDocumentText updated 
+    remote isolated function updateVendorFiscalDocumentTexts(string dataAreaId, string vendor, string fiscalDocumentText, VendorFiscalDocumentText payload, UpdateVendorFiscalDocumentTextsHeaders headers = {}) returns VendorFiscalDocumentText|error {
+        string resourcePath = string `/VendorFiscalDocumentTexts(dataAreaId='${getEncodedUri(dataAreaId)}',Vendor='${getEncodedUri(vendor)}',FiscalDocumentText='${getEncodedUri(fiscalDocumentText)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorFormSetups
     #
     # + headers - Headers to be sent with the request 
@@ -653,6 +1735,63 @@ public isolated client class Client {
     # + return - VendorFormSetup updated 
     remote isolated function updateVendorFormSetups(string dataAreaId, VendorFormSetup payload, UpdateVendorFormSetupsHeaders headers = {}) returns VendorFormSetup|error {
         string resourcePath = string `/VendorFormSetups(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorGroup 
+    remote isolated function listVendorGroups(map<string|string[]> headers = {}, *ListVendorGroupsQueries queries) returns VendorGroupsCollection|error {
+        string resourcePath = string `/VendorGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorGroup created 
+    remote isolated function createVendorGroups(VendorGroup payload, map<string|string[]> headers = {}) returns VendorGroup|error {
+        string resourcePath = string `/VendorGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorGroup record 
+    remote isolated function getVendorGroups(string dataAreaId, string vendorGroupId, map<string|string[]> headers = {}, *GetVendorGroupsQueries queries) returns VendorGroup|error {
+        string resourcePath = string `/VendorGroups(dataAreaId='${getEncodedUri(dataAreaId)}',VendorGroupId='${getEncodedUri(vendorGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorGroup deleted 
+    remote isolated function deleteVendorGroups(string dataAreaId, string vendorGroupId, DeleteVendorGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorGroups(dataAreaId='${getEncodedUri(dataAreaId)}',VendorGroupId='${getEncodedUri(vendorGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorGroup updated 
+    remote isolated function updateVendorGroups(string dataAreaId, string vendorGroupId, VendorGroup payload, UpdateVendorGroupsHeaders headers = {}) returns VendorGroup|error {
+        string resourcePath = string `/VendorGroups(dataAreaId='${getEncodedUri(dataAreaId)}',VendorGroupId='${getEncodedUri(vendorGroupId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -831,6 +1970,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorInvoiceHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorInvoiceHeader 
+    remote isolated function listVendorInvoiceHeaders(map<string|string[]> headers = {}, *ListVendorInvoiceHeadersQueries queries) returns VendorInvoiceHeadersCollection|error {
+        string resourcePath = string `/VendorInvoiceHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorInvoiceHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceHeader created 
+    remote isolated function createVendorInvoiceHeaders(VendorInvoiceHeader payload, map<string|string[]> headers = {}) returns VendorInvoiceHeader|error {
+        string resourcePath = string `/VendorInvoiceHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorInvoiceHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorInvoiceHeader record 
+    remote isolated function getVendorInvoiceHeaders(string dataAreaId, string headerReference, map<string|string[]> headers = {}, *GetVendorInvoiceHeadersQueries queries) returns VendorInvoiceHeader|error {
+        string resourcePath = string `/VendorInvoiceHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorInvoiceHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceHeader deleted 
+    remote isolated function deleteVendorInvoiceHeaders(string dataAreaId, string headerReference, DeleteVendorInvoiceHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorInvoiceHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorInvoiceHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceHeader updated 
+    remote isolated function updateVendorInvoiceHeaders(string dataAreaId, string headerReference, VendorInvoiceHeader payload, UpdateVendorInvoiceHeadersHeaders headers = {}) returns VendorInvoiceHeader|error {
+        string resourcePath = string `/VendorInvoiceHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorInvoiceLineCharges
     #
     # + headers - Headers to be sent with the request 
@@ -881,6 +2077,63 @@ public isolated client class Client {
     # + return - VendorInvoicelineCharge updated 
     remote isolated function updateVendorInvoiceLineCharges(string dataAreaId, string headerReference, decimal chargeLineNumber, decimal invoiceLineNumber, VendorInvoicelineCharge payload, UpdateVendorInvoiceLineChargesHeaders headers = {}) returns VendorInvoicelineCharge|error {
         string resourcePath = string `/VendorInvoiceLineCharges(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}',ChargeLineNumber=${getEncodedUri(chargeLineNumber)},InvoiceLineNumber=${getEncodedUri(invoiceLineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorInvoiceLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorInvoiceLine 
+    remote isolated function listVendorInvoiceLines(map<string|string[]> headers = {}, *ListVendorInvoiceLinesQueries queries) returns VendorInvoiceLinesCollection|error {
+        string resourcePath = string `/VendorInvoiceLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorInvoiceLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceLine created 
+    remote isolated function createVendorInvoiceLines(VendorInvoiceLine payload, map<string|string[]> headers = {}) returns VendorInvoiceLine|error {
+        string resourcePath = string `/VendorInvoiceLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorInvoiceLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorInvoiceLine record 
+    remote isolated function getVendorInvoiceLines(string dataAreaId, string headerReference, decimal invoiceLineNumber, map<string|string[]> headers = {}, *GetVendorInvoiceLinesQueries queries) returns VendorInvoiceLine|error {
+        string resourcePath = string `/VendorInvoiceLines(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}',InvoiceLineNumber=${getEncodedUri(invoiceLineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorInvoiceLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceLine deleted 
+    remote isolated function deleteVendorInvoiceLines(string dataAreaId, string headerReference, decimal invoiceLineNumber, DeleteVendorInvoiceLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorInvoiceLines(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}',InvoiceLineNumber=${getEncodedUri(invoiceLineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorInvoiceLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorInvoiceLine updated 
+    remote isolated function updateVendorInvoiceLines(string dataAreaId, string headerReference, decimal invoiceLineNumber, VendorInvoiceLine payload, UpdateVendorInvoiceLinesHeaders headers = {}) returns VendorInvoiceLine|error {
+        string resourcePath = string `/VendorInvoiceLines(dataAreaId='${getEncodedUri(dataAreaId)}',HeaderReference='${getEncodedUri(headerReference)}',InvoiceLineNumber=${getEncodedUri(invoiceLineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -945,6 +2198,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorParameters
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorParameter 
+    remote isolated function listVendorParameters(map<string|string[]> headers = {}, *ListVendorParametersQueries queries) returns VendorParametersCollection|error {
+        string resourcePath = string `/VendorParameters`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorParameter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorParameter created 
+    remote isolated function createVendorParameters(VendorParameter payload, map<string|string[]> headers = {}) returns VendorParameter|error {
+        string resourcePath = string `/VendorParameters`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorParameter by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorParameter record 
+    remote isolated function getVendorParameters(string dataAreaId, map<string|string[]> headers = {}, *GetVendorParametersQueries queries) returns VendorParameter|error {
+        string resourcePath = string `/VendorParameters(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorParameter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorParameter deleted 
+    remote isolated function deleteVendorParameters(string dataAreaId, DeleteVendorParametersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorParameters(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorParameter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorParameter updated 
+    remote isolated function updateVendorParameters(string dataAreaId, VendorParameter payload, UpdateVendorParametersHeaders headers = {}) returns VendorParameter|error {
+        string resourcePath = string `/VendorParameters(dataAreaId='${getEncodedUri(dataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymFeeGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymFeeGroup 
+    remote isolated function listVendorPaymFeeGroups(map<string|string[]> headers = {}, *ListVendorPaymFeeGroupsQueries queries) returns VendorPaymFeeGroupsCollection|error {
+        string resourcePath = string `/VendorPaymFeeGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymFeeGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymFeeGroup created 
+    remote isolated function createVendorPaymFeeGroups(VendorPaymFeeGroup payload, map<string|string[]> headers = {}) returns VendorPaymFeeGroup|error {
+        string resourcePath = string `/VendorPaymFeeGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymFeeGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymFeeGroup record 
+    remote isolated function getVendorPaymFeeGroups(string dataAreaId, string groupId, map<string|string[]> headers = {}, *GetVendorPaymFeeGroupsQueries queries) returns VendorPaymFeeGroup|error {
+        string resourcePath = string `/VendorPaymFeeGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymFeeGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymFeeGroup deleted 
+    remote isolated function deleteVendorPaymFeeGroups(string dataAreaId, string groupId, DeleteVendorPaymFeeGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymFeeGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymFeeGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymFeeGroup updated 
+    remote isolated function updateVendorPaymFeeGroups(string dataAreaId, string groupId, VendorPaymFeeGroup payload, UpdateVendorPaymFeeGroupsHeaders headers = {}) returns VendorPaymFeeGroup|error {
+        string resourcePath = string `/VendorPaymFeeGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorPaymentFees
     #
     # + headers - Headers to be sent with the request 
@@ -995,6 +2362,120 @@ public isolated client class Client {
     # + return - VendorPaymentFee updated 
     remote isolated function updateVendorPaymentFees(string dataAreaId, string name, VendorPaymentFee payload, UpdateVendorPaymentFeesHeaders headers = {}) returns VendorPaymentFee|error {
         string resourcePath = string `/VendorPaymentFees(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymentFineCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentFineCode 
+    remote isolated function listVendorPaymentFineCodes(map<string|string[]> headers = {}, *ListVendorPaymentFineCodesQueries queries) returns VendorPaymentFineCodesCollection|error {
+        string resourcePath = string `/VendorPaymentFineCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentFineCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentFineCode created 
+    remote isolated function createVendorPaymentFineCodes(VendorPaymentFineCode payload, map<string|string[]> headers = {}) returns VendorPaymentFineCode|error {
+        string resourcePath = string `/VendorPaymentFineCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentFineCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentFineCode record 
+    remote isolated function getVendorPaymentFineCodes(string dataAreaId, string fineCode, map<string|string[]> headers = {}, *GetVendorPaymentFineCodesQueries queries) returns VendorPaymentFineCode|error {
+        string resourcePath = string `/VendorPaymentFineCodes(dataAreaId='${getEncodedUri(dataAreaId)}',FineCode='${getEncodedUri(fineCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentFineCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentFineCode deleted 
+    remote isolated function deleteVendorPaymentFineCodes(string dataAreaId, string fineCode, DeleteVendorPaymentFineCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentFineCodes(dataAreaId='${getEncodedUri(dataAreaId)}',FineCode='${getEncodedUri(fineCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentFineCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentFineCode updated 
+    remote isolated function updateVendorPaymentFineCodes(string dataAreaId, string fineCode, VendorPaymentFineCode payload, UpdateVendorPaymentFineCodesHeaders headers = {}) returns VendorPaymentFineCode|error {
+        string resourcePath = string `/VendorPaymentFineCodes(dataAreaId='${getEncodedUri(dataAreaId)}',FineCode='${getEncodedUri(fineCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymentInterestCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentInterestCode 
+    remote isolated function listVendorPaymentInterestCodes(map<string|string[]> headers = {}, *ListVendorPaymentInterestCodesQueries queries) returns VendorPaymentInterestCodesCollection|error {
+        string resourcePath = string `/VendorPaymentInterestCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentInterestCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentInterestCode created 
+    remote isolated function createVendorPaymentInterestCodes(VendorPaymentInterestCode payload, map<string|string[]> headers = {}) returns VendorPaymentInterestCode|error {
+        string resourcePath = string `/VendorPaymentInterestCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentInterestCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentInterestCode record 
+    remote isolated function getVendorPaymentInterestCodes(string dataAreaId, string interestCode, map<string|string[]> headers = {}, *GetVendorPaymentInterestCodesQueries queries) returns VendorPaymentInterestCode|error {
+        string resourcePath = string `/VendorPaymentInterestCodes(dataAreaId='${getEncodedUri(dataAreaId)}',InterestCode='${getEncodedUri(interestCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentInterestCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentInterestCode deleted 
+    remote isolated function deleteVendorPaymentInterestCodes(string dataAreaId, string interestCode, DeleteVendorPaymentInterestCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentInterestCodes(dataAreaId='${getEncodedUri(dataAreaId)}',InterestCode='${getEncodedUri(interestCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentInterestCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentInterestCode updated 
+    remote isolated function updateVendorPaymentInterestCodes(string dataAreaId, string interestCode, VendorPaymentInterestCode payload, UpdateVendorPaymentInterestCodesHeaders headers = {}) returns VendorPaymentInterestCode|error {
+        string resourcePath = string `/VendorPaymentInterestCodes(dataAreaId='${getEncodedUri(dataAreaId)}',InterestCode='${getEncodedUri(interestCode)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1059,6 +2540,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorPaymentJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentJournalHeader 
+    remote isolated function listVendorPaymentJournalHeaders(map<string|string[]> headers = {}, *ListVendorPaymentJournalHeadersQueries queries) returns VendorPaymentJournalHeadersCollection|error {
+        string resourcePath = string `/VendorPaymentJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalHeader created 
+    remote isolated function createVendorPaymentJournalHeaders(VendorPaymentJournalHeader payload, map<string|string[]> headers = {}) returns VendorPaymentJournalHeader|error {
+        string resourcePath = string `/VendorPaymentJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentJournalHeader record 
+    remote isolated function getVendorPaymentJournalHeaders(string dataAreaId, string journalBatchNumber, map<string|string[]> headers = {}, *GetVendorPaymentJournalHeadersQueries queries) returns VendorPaymentJournalHeader|error {
+        string resourcePath = string `/VendorPaymentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalHeader deleted 
+    remote isolated function deleteVendorPaymentJournalHeaders(string dataAreaId, string journalBatchNumber, DeleteVendorPaymentJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalHeader updated 
+    remote isolated function updateVendorPaymentJournalHeaders(string dataAreaId, string journalBatchNumber, VendorPaymentJournalHeader payload, UpdateVendorPaymentJournalHeadersHeaders headers = {}) returns VendorPaymentJournalHeader|error {
+        string resourcePath = string `/VendorPaymentJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorPaymentJournalLineSettledInvoices
     #
     # + headers - Headers to be sent with the request 
@@ -1109,6 +2647,177 @@ public isolated client class Client {
     # + return - VendorPaymentJournalLineSettledInvoice updated 
     remote isolated function updateVendorPaymentJournalLineSettledInvoices(string journalLineCompany, string journalBatchNumber, decimal journalLineNumber, string invoiceNumber, string invoiceCompany, string invoiceDueDate, VendorPaymentJournalLineSettledInvoice payload, UpdateVendorPaymentJournalLineSettledInvoicesHeaders headers = {}) returns VendorPaymentJournalLineSettledInvoice|error {
         string resourcePath = string `/VendorPaymentJournalLineSettledInvoices(JournalLineCompany='${getEncodedUri(journalLineCompany)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',JournalLineNumber=${getEncodedUri(journalLineNumber)},InvoiceNumber='${getEncodedUri(invoiceNumber)}',InvoiceCompany='${getEncodedUri(invoiceCompany)}',InvoiceDueDate=${getEncodedUri(invoiceDueDate)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymentJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentJournalLine 
+    remote isolated function listVendorPaymentJournalLines(map<string|string[]> headers = {}, *ListVendorPaymentJournalLinesQueries queries) returns VendorPaymentJournalLinesCollection|error {
+        string resourcePath = string `/VendorPaymentJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalLine created 
+    remote isolated function createVendorPaymentJournalLines(VendorPaymentJournalLine payload, map<string|string[]> headers = {}) returns VendorPaymentJournalLine|error {
+        string resourcePath = string `/VendorPaymentJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentJournalLine record 
+    remote isolated function getVendorPaymentJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetVendorPaymentJournalLinesQueries queries) returns VendorPaymentJournalLine|error {
+        string resourcePath = string `/VendorPaymentJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalLine deleted 
+    remote isolated function deleteVendorPaymentJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteVendorPaymentJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentJournalLine updated 
+    remote isolated function updateVendorPaymentJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, VendorPaymentJournalLine payload, UpdateVendorPaymentJournalLinesHeaders headers = {}) returns VendorPaymentJournalLine|error {
+        string resourcePath = string `/VendorPaymentJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymentMethodSpecifications
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentMethodSpecification 
+    remote isolated function listVendorPaymentMethodSpecifications(map<string|string[]> headers = {}, *ListVendorPaymentMethodSpecificationsQueries queries) returns VendorPaymentMethodSpecificationsCollection|error {
+        string resourcePath = string `/VendorPaymentMethodSpecifications`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentMethodSpecification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethodSpecification created 
+    remote isolated function createVendorPaymentMethodSpecifications(VendorPaymentMethodSpecification payload, map<string|string[]> headers = {}) returns VendorPaymentMethodSpecification|error {
+        string resourcePath = string `/VendorPaymentMethodSpecifications`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentMethodSpecification by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentMethodSpecification record 
+    remote isolated function getVendorPaymentMethodSpecifications(string dataAreaId, string paymentMethodName, string name, map<string|string[]> headers = {}, *GetVendorPaymentMethodSpecificationsQueries queries) returns VendorPaymentMethodSpecification|error {
+        string resourcePath = string `/VendorPaymentMethodSpecifications(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentMethodName='${getEncodedUri(paymentMethodName)}',Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentMethodSpecification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethodSpecification deleted 
+    remote isolated function deleteVendorPaymentMethodSpecifications(string dataAreaId, string paymentMethodName, string name, DeleteVendorPaymentMethodSpecificationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentMethodSpecifications(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentMethodName='${getEncodedUri(paymentMethodName)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentMethodSpecification
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethodSpecification updated 
+    remote isolated function updateVendorPaymentMethodSpecifications(string dataAreaId, string paymentMethodName, string name, VendorPaymentMethodSpecification payload, UpdateVendorPaymentMethodSpecificationsHeaders headers = {}) returns VendorPaymentMethodSpecification|error {
+        string resourcePath = string `/VendorPaymentMethodSpecifications(dataAreaId='${getEncodedUri(dataAreaId)}',PaymentMethodName='${getEncodedUri(paymentMethodName)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorPaymentMethods
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorPaymentMethod 
+    remote isolated function listVendorPaymentMethods(map<string|string[]> headers = {}, *ListVendorPaymentMethodsQueries queries) returns VendorPaymentMethodsCollection|error {
+        string resourcePath = string `/VendorPaymentMethods`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorPaymentMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethod created 
+    remote isolated function createVendorPaymentMethods(VendorPaymentMethod payload, map<string|string[]> headers = {}) returns VendorPaymentMethod|error {
+        string resourcePath = string `/VendorPaymentMethods`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorPaymentMethod by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorPaymentMethod record 
+    remote isolated function getVendorPaymentMethods(string dataAreaId, string name, map<string|string[]> headers = {}, *GetVendorPaymentMethodsQueries queries) returns VendorPaymentMethod|error {
+        string resourcePath = string `/VendorPaymentMethods(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorPaymentMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethod deleted 
+    remote isolated function deleteVendorPaymentMethods(string dataAreaId, string name, DeleteVendorPaymentMethodsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorPaymentMethods(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorPaymentMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorPaymentMethod updated 
+    remote isolated function updateVendorPaymentMethods(string dataAreaId, string name, VendorPaymentMethod payload, UpdateVendorPaymentMethodsHeaders headers = {}) returns VendorPaymentMethod|error {
+        string resourcePath = string `/VendorPaymentMethods(dataAreaId='${getEncodedUri(dataAreaId)}',Name='${getEncodedUri(name)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1287,6 +2996,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List VendorRelationshipManagementVendors
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorRelationshipManagementVendor 
+    remote isolated function listVendorRelationshipManagementVendors(map<string|string[]> headers = {}, *ListVendorRelationshipManagementVendorsQueries queries) returns VendorRelationshipManagementVendorsCollection|error {
+        string resourcePath = string `/VendorRelationshipManagementVendors`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorRelationshipManagementVendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorRelationshipManagementVendor created 
+    remote isolated function createVendorRelationshipManagementVendors(VendorRelationshipManagementVendor payload, map<string|string[]> headers = {}) returns VendorRelationshipManagementVendor|error {
+        string resourcePath = string `/VendorRelationshipManagementVendors`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorRelationshipManagementVendor by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorRelationshipManagementVendor record 
+    remote isolated function getVendorRelationshipManagementVendors(string dataAreaId, string vendorAccountNumber, map<string|string[]> headers = {}, *GetVendorRelationshipManagementVendorsQueries queries) returns VendorRelationshipManagementVendor|error {
+        string resourcePath = string `/VendorRelationshipManagementVendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorRelationshipManagementVendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorRelationshipManagementVendor deleted 
+    remote isolated function deleteVendorRelationshipManagementVendors(string dataAreaId, string vendorAccountNumber, DeleteVendorRelationshipManagementVendorsHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorRelationshipManagementVendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorRelationshipManagementVendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorRelationshipManagementVendor updated 
+    remote isolated function updateVendorRelationshipManagementVendors(string dataAreaId, string vendorAccountNumber, VendorRelationshipManagementVendor payload, UpdateVendorRelationshipManagementVendorsHeaders headers = {}) returns VendorRelationshipManagementVendor|error {
+        string resourcePath = string `/VendorRelationshipManagementVendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List VendorRetentionTermSchedules
     #
     # + headers - Headers to be sent with the request 
@@ -1394,6 +3160,234 @@ public isolated client class Client {
     # + return - VendorRetentionTerm updated 
     remote isolated function updateVendorRetentionTerms(string dataAreaId, string ruleID, VendorRetentionTerm payload, UpdateVendorRetentionTermsHeaders headers = {}) returns VendorRetentionTerm|error {
         string resourcePath = string `/VendorRetentionTerms(dataAreaId='${getEncodedUri(dataAreaId)}',RuleID='${getEncodedUri(ruleID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorSettlementTax1099s
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorSettlementTax1099 
+    remote isolated function listVendorSettlementTax1099s(map<string|string[]> headers = {}, *ListVendorSettlementTax1099sQueries queries) returns VendorSettlementTax1099sCollection|error {
+        string resourcePath = string `/VendorSettlementTax1099s`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorSettlementTax1099
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorSettlementTax1099 created 
+    remote isolated function createVendorSettlementTax1099s(VendorSettlementTax1099 payload, map<string|string[]> headers = {}) returns VendorSettlementTax1099|error {
+        string resourcePath = string `/VendorSettlementTax1099s`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorSettlementTax1099 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorSettlementTax1099 record 
+    remote isolated function getVendorSettlementTax1099s(string dataAreaId, int recordId, map<string|string[]> headers = {}, *GetVendorSettlementTax1099sQueries queries) returns VendorSettlementTax1099|error {
+        string resourcePath = string `/VendorSettlementTax1099s(dataAreaId='${getEncodedUri(dataAreaId)}',RecordId=${getEncodedUri(recordId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorSettlementTax1099
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorSettlementTax1099 deleted 
+    remote isolated function deleteVendorSettlementTax1099s(string dataAreaId, int recordId, DeleteVendorSettlementTax1099sHeaders headers = {}) returns error? {
+        string resourcePath = string `/VendorSettlementTax1099s(dataAreaId='${getEncodedUri(dataAreaId)}',RecordId=${getEncodedUri(recordId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorSettlementTax1099
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorSettlementTax1099 updated 
+    remote isolated function updateVendorSettlementTax1099s(string dataAreaId, int recordId, VendorSettlementTax1099 payload, UpdateVendorSettlementTax1099sHeaders headers = {}) returns VendorSettlementTax1099|error {
+        string resourcePath = string `/VendorSettlementTax1099s(dataAreaId='${getEncodedUri(dataAreaId)}',RecordId=${getEncodedUri(recordId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List Vendors
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of Vendor 
+    remote isolated function listVendors(map<string|string[]> headers = {}, *ListVendorsQueries queries) returns VendorsCollection|error {
+        string resourcePath = string `/Vendors`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create Vendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Vendor created 
+    remote isolated function createVendors(Vendor payload, map<string|string[]> headers = {}) returns Vendor|error {
+        string resourcePath = string `/Vendors`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get Vendor by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Vendor record 
+    remote isolated function getVendors(string dataAreaId, string vendorAccountNumber, map<string|string[]> headers = {}, *GetVendorsQueries queries) returns Vendor|error {
+        string resourcePath = string `/Vendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete Vendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Vendor deleted 
+    remote isolated function deleteVendors(string dataAreaId, string vendorAccountNumber, DeleteVendorsHeaders headers = {}) returns error? {
+        string resourcePath = string `/Vendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update Vendor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Vendor updated 
+    remote isolated function updateVendors(string dataAreaId, string vendorAccountNumber, Vendor payload, UpdateVendorsHeaders headers = {}) returns Vendor|error {
+        string resourcePath = string `/Vendors(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorsV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorV2 
+    remote isolated function listVendorsV2(map<string|string[]> headers = {}, *ListVendorsV2Queries queries) returns VendorsV2Collection|error {
+        string resourcePath = string `/VendorsV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV2 created 
+    remote isolated function createVendorsV2(VendorV2 payload, map<string|string[]> headers = {}) returns VendorV2|error {
+        string resourcePath = string `/VendorsV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorV2 record 
+    remote isolated function getVendorsV2(string dataAreaId, string vendorAccountNumber, map<string|string[]> headers = {}, *GetVendorsV2Queries queries) returns VendorV2|error {
+        string resourcePath = string `/VendorsV2(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV2 deleted 
+    remote isolated function deleteVendorsV2(string dataAreaId, string vendorAccountNumber, DeleteVendorsV2Headers headers = {}) returns error? {
+        string resourcePath = string `/VendorsV2(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV2 updated 
+    remote isolated function updateVendorsV2(string dataAreaId, string vendorAccountNumber, VendorV2 payload, UpdateVendorsV2Headers headers = {}) returns VendorV2|error {
+        string resourcePath = string `/VendorsV2(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List VendorsV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of VendorV3 
+    remote isolated function listVendorsV3(map<string|string[]> headers = {}, *ListVendorsV3Queries queries) returns VendorsV3Collection|error {
+        string resourcePath = string `/VendorsV3`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create VendorV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV3 created 
+    remote isolated function createVendorsV3(VendorV3 payload, map<string|string[]> headers = {}) returns VendorV3|error {
+        string resourcePath = string `/VendorsV3`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get VendorV3 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - VendorV3 record 
+    remote isolated function getVendorsV3(string dataAreaId, string vendorAccountNumber, map<string|string[]> headers = {}, *GetVendorsV3Queries queries) returns VendorV3|error {
+        string resourcePath = string `/VendorsV3(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete VendorV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV3 deleted 
+    remote isolated function deleteVendorsV3(string dataAreaId, string vendorAccountNumber, DeleteVendorsV3Headers headers = {}) returns error? {
+        string resourcePath = string `/VendorsV3(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update VendorV3
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - VendorV3 updated 
+    remote isolated function updateVendorsV3(string dataAreaId, string vendorAccountNumber, VendorV3 payload, UpdateVendorsV3Headers headers = {}) returns VendorV3|error {
+        string resourcePath = string `/VendorsV3(dataAreaId='${getEncodedUri(dataAreaId)}',VendorAccountNumber='${getEncodedUri(vendorAccountNumber)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

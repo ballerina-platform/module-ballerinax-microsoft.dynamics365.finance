@@ -19,18 +19,188 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'asset' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List AcceleratedDepreciationGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AcceleratedDepreciationGroup 
+    remote isolated function listAcceleratedDepreciationGroups(map<string|string[]> headers = {}, *ListAcceleratedDepreciationGroupsQueries queries) returns AcceleratedDepreciationGroupsCollection|error {
+        string resourcePath = string `/AcceleratedDepreciationGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AcceleratedDepreciationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcceleratedDepreciationGroup created 
+    remote isolated function createAcceleratedDepreciationGroups(AcceleratedDepreciationGroup payload, map<string|string[]> headers = {}) returns AcceleratedDepreciationGroup|error {
+        string resourcePath = string `/AcceleratedDepreciationGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AcceleratedDepreciationGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AcceleratedDepreciationGroup record 
+    remote isolated function getAcceleratedDepreciationGroups(string dataAreaId, string equipmentGroup, map<string|string[]> headers = {}, *GetAcceleratedDepreciationGroupsQueries queries) returns AcceleratedDepreciationGroup|error {
+        string resourcePath = string `/AcceleratedDepreciationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',EquipmentGroup='${getEncodedUri(equipmentGroup)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AcceleratedDepreciationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcceleratedDepreciationGroup deleted 
+    remote isolated function deleteAcceleratedDepreciationGroups(string dataAreaId, string equipmentGroup, DeleteAcceleratedDepreciationGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AcceleratedDepreciationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',EquipmentGroup='${getEncodedUri(equipmentGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AcceleratedDepreciationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcceleratedDepreciationGroup updated 
+    remote isolated function updateAcceleratedDepreciationGroups(string dataAreaId, string equipmentGroup, AcceleratedDepreciationGroup payload, UpdateAcceleratedDepreciationGroupsHeaders headers = {}) returns AcceleratedDepreciationGroup|error {
+        string resourcePath = string `/AcceleratedDepreciationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',EquipmentGroup='${getEncodedUri(equipmentGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AcquisitionMethods
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AcquisitionMethod 
+    remote isolated function listAcquisitionMethods(map<string|string[]> headers = {}, *ListAcquisitionMethodsQueries queries) returns AcquisitionMethodsCollection|error {
+        string resourcePath = string `/AcquisitionMethods`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AcquisitionMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcquisitionMethod created 
+    remote isolated function createAcquisitionMethods(AcquisitionMethod payload, map<string|string[]> headers = {}) returns AcquisitionMethod|error {
+        string resourcePath = string `/AcquisitionMethods`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AcquisitionMethod by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AcquisitionMethod record 
+    remote isolated function getAcquisitionMethods(string dataAreaId, string acquisitionMethod, map<string|string[]> headers = {}, *GetAcquisitionMethodsQueries queries) returns AcquisitionMethod|error {
+        string resourcePath = string `/AcquisitionMethods(dataAreaId='${getEncodedUri(dataAreaId)}',AcquisitionMethod='${getEncodedUri(acquisitionMethod)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AcquisitionMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcquisitionMethod deleted 
+    remote isolated function deleteAcquisitionMethods(string dataAreaId, string acquisitionMethod, DeleteAcquisitionMethodsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AcquisitionMethods(dataAreaId='${getEncodedUri(dataAreaId)}',AcquisitionMethod='${getEncodedUri(acquisitionMethod)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AcquisitionMethod
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AcquisitionMethod updated 
+    remote isolated function updateAcquisitionMethods(string dataAreaId, string acquisitionMethod, AcquisitionMethod payload, UpdateAcquisitionMethodsHeaders headers = {}) returns AcquisitionMethod|error {
+        string resourcePath = string `/AcquisitionMethods(dataAreaId='${getEncodedUri(dataAreaId)}',AcquisitionMethod='${getEncodedUri(acquisitionMethod)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetActivityCodes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetActivityCode 
+    remote isolated function listAssetActivityCodes(map<string|string[]> headers = {}, *ListAssetActivityCodesQueries queries) returns AssetActivityCodesCollection|error {
+        string resourcePath = string `/AssetActivityCodes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetActivityCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetActivityCode created 
+    remote isolated function createAssetActivityCodes(AssetActivityCode payload, map<string|string[]> headers = {}) returns AssetActivityCode|error {
+        string resourcePath = string `/AssetActivityCodes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetActivityCode by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetActivityCode record 
+    remote isolated function getAssetActivityCodes(string dataAreaId, string activityCode, map<string|string[]> headers = {}, *GetAssetActivityCodesQueries queries) returns AssetActivityCode|error {
+        string resourcePath = string `/AssetActivityCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ActivityCode='${getEncodedUri(activityCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetActivityCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetActivityCode deleted 
+    remote isolated function deleteAssetActivityCodes(string dataAreaId, string activityCode, DeleteAssetActivityCodesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetActivityCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ActivityCode='${getEncodedUri(activityCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetActivityCode
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetActivityCode updated 
+    remote isolated function updateAssetActivityCodes(string dataAreaId, string activityCode, AssetActivityCode payload, UpdateAssetActivityCodesHeaders headers = {}) returns AssetActivityCode|error {
+        string resourcePath = string `/AssetActivityCodes(dataAreaId='${getEncodedUri(dataAreaId)}',ActivityCode='${getEncodedUri(activityCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List AssetAllocationRules
@@ -83,6 +253,234 @@ public isolated client class Client {
     # + return - AssetAllocationRule updated 
     remote isolated function updateAssetAllocationRules(string dataAreaId, string ruleId, AssetAllocationRule payload, UpdateAssetAllocationRulesHeaders headers = {}) returns AssetAllocationRule|error {
         string resourcePath = string `/AssetAllocationRules(dataAreaId='${getEncodedUri(dataAreaId)}',RuleId='${getEncodedUri(ruleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetConditions
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetCondition 
+    remote isolated function listAssetConditions(map<string|string[]> headers = {}, *ListAssetConditionsQueries queries) returns AssetConditionsCollection|error {
+        string resourcePath = string `/AssetConditions`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetCondition
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetCondition created 
+    remote isolated function createAssetConditions(AssetCondition payload, map<string|string[]> headers = {}) returns AssetCondition|error {
+        string resourcePath = string `/AssetConditions`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetCondition by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetCondition record 
+    remote isolated function getAssetConditions(string dataAreaId, string conditionCode, map<string|string[]> headers = {}, *GetAssetConditionsQueries queries) returns AssetCondition|error {
+        string resourcePath = string `/AssetConditions(dataAreaId='${getEncodedUri(dataAreaId)}',ConditionCode='${getEncodedUri(conditionCode)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetCondition
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetCondition deleted 
+    remote isolated function deleteAssetConditions(string dataAreaId, string conditionCode, DeleteAssetConditionsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetConditions(dataAreaId='${getEncodedUri(dataAreaId)}',ConditionCode='${getEncodedUri(conditionCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetCondition
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetCondition updated 
+    remote isolated function updateAssetConditions(string dataAreaId, string conditionCode, AssetCondition payload, UpdateAssetConditionsHeaders headers = {}) returns AssetCondition|error {
+        string resourcePath = string `/AssetConditions(dataAreaId='${getEncodedUri(dataAreaId)}',ConditionCode='${getEncodedUri(conditionCode)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetConsumptionUnits
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetConsumptionUnit 
+    remote isolated function listAssetConsumptionUnits(map<string|string[]> headers = {}, *ListAssetConsumptionUnitsQueries queries) returns AssetConsumptionUnitsCollection|error {
+        string resourcePath = string `/AssetConsumptionUnits`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetConsumptionUnit
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetConsumptionUnit created 
+    remote isolated function createAssetConsumptionUnits(AssetConsumptionUnit payload, map<string|string[]> headers = {}) returns AssetConsumptionUnit|error {
+        string resourcePath = string `/AssetConsumptionUnits`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetConsumptionUnit by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetConsumptionUnit record 
+    remote isolated function getAssetConsumptionUnits(string dataAreaId, string unitId, map<string|string[]> headers = {}, *GetAssetConsumptionUnitsQueries queries) returns AssetConsumptionUnit|error {
+        string resourcePath = string `/AssetConsumptionUnits(dataAreaId='${getEncodedUri(dataAreaId)}',UnitId='${getEncodedUri(unitId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetConsumptionUnit
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetConsumptionUnit deleted 
+    remote isolated function deleteAssetConsumptionUnits(string dataAreaId, string unitId, DeleteAssetConsumptionUnitsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetConsumptionUnits(dataAreaId='${getEncodedUri(dataAreaId)}',UnitId='${getEncodedUri(unitId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetConsumptionUnit
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetConsumptionUnit updated 
+    remote isolated function updateAssetConsumptionUnits(string dataAreaId, string unitId, AssetConsumptionUnit payload, UpdateAssetConsumptionUnitsHeaders headers = {}) returns AssetConsumptionUnit|error {
+        string resourcePath = string `/AssetConsumptionUnits(dataAreaId='${getEncodedUri(dataAreaId)}',UnitId='${getEncodedUri(unitId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetImpairmentCashGeneratingUnitSharedAssetsAllocations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetImpairmentCashGeneratingUnitSharedAssetsAllocation 
+    remote isolated function listAssetImpairmentCashGeneratingUnitSharedAssetsAllocations(map<string|string[]> headers = {}, *ListAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsQueries queries) returns AssetImpairmentCashGeneratingUnitSharedAssetsAllocationsCollection|error {
+        string resourcePath = string `/AssetImpairmentCashGeneratingUnitSharedAssetsAllocations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetImpairmentCashGeneratingUnitSharedAssetsAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetImpairmentCashGeneratingUnitSharedAssetsAllocation created 
+    remote isolated function createAssetImpairmentCashGeneratingUnitSharedAssetsAllocations(AssetImpairmentCashGeneratingUnitSharedAssetsAllocation payload, map<string|string[]> headers = {}) returns AssetImpairmentCashGeneratingUnitSharedAssetsAllocation|error {
+        string resourcePath = string `/AssetImpairmentCashGeneratingUnitSharedAssetsAllocations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetImpairmentCashGeneratingUnitSharedAssetsAllocation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetImpairmentCashGeneratingUnitSharedAssetsAllocation record 
+    remote isolated function getAssetImpairmentCashGeneratingUnitSharedAssetsAllocations(string dataAreaId, string cGUGroupName, string sharedAssetId, string sharedAssetBookId, string cashGeneratingUnitNumber, map<string|string[]> headers = {}, *GetAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsQueries queries) returns AssetImpairmentCashGeneratingUnitSharedAssetsAllocation|error {
+        string resourcePath = string `/AssetImpairmentCashGeneratingUnitSharedAssetsAllocations(dataAreaId='${getEncodedUri(dataAreaId)}',CGUGroupName='${getEncodedUri(cGUGroupName)}',SharedAssetId='${getEncodedUri(sharedAssetId)}',SharedAssetBookId='${getEncodedUri(sharedAssetBookId)}',CashGeneratingUnitNumber='${getEncodedUri(cashGeneratingUnitNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetImpairmentCashGeneratingUnitSharedAssetsAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetImpairmentCashGeneratingUnitSharedAssetsAllocation deleted 
+    remote isolated function deleteAssetImpairmentCashGeneratingUnitSharedAssetsAllocations(string dataAreaId, string cGUGroupName, string sharedAssetId, string sharedAssetBookId, string cashGeneratingUnitNumber, DeleteAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetImpairmentCashGeneratingUnitSharedAssetsAllocations(dataAreaId='${getEncodedUri(dataAreaId)}',CGUGroupName='${getEncodedUri(cGUGroupName)}',SharedAssetId='${getEncodedUri(sharedAssetId)}',SharedAssetBookId='${getEncodedUri(sharedAssetBookId)}',CashGeneratingUnitNumber='${getEncodedUri(cashGeneratingUnitNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetImpairmentCashGeneratingUnitSharedAssetsAllocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetImpairmentCashGeneratingUnitSharedAssetsAllocation updated 
+    remote isolated function updateAssetImpairmentCashGeneratingUnitSharedAssetsAllocations(string dataAreaId, string cGUGroupName, string sharedAssetId, string sharedAssetBookId, string cashGeneratingUnitNumber, AssetImpairmentCashGeneratingUnitSharedAssetsAllocation payload, UpdateAssetImpairmentCashGeneratingUnitSharedAssetsAllocationsHeaders headers = {}) returns AssetImpairmentCashGeneratingUnitSharedAssetsAllocation|error {
+        string resourcePath = string `/AssetImpairmentCashGeneratingUnitSharedAssetsAllocations(dataAreaId='${getEncodedUri(dataAreaId)}',CGUGroupName='${getEncodedUri(cGUGroupName)}',SharedAssetId='${getEncodedUri(sharedAssetId)}',SharedAssetBookId='${getEncodedUri(sharedAssetBookId)}',CashGeneratingUnitNumber='${getEncodedUri(cashGeneratingUnitNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetJournalHeader 
+    remote isolated function listAssetJournalHeaders(map<string|string[]> headers = {}, *ListAssetJournalHeadersQueries queries) returns AssetJournalHeadersCollection|error {
+        string resourcePath = string `/AssetJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetJournalHeader created 
+    remote isolated function createAssetJournalHeaders(AssetJournalHeader payload, map<string|string[]> headers = {}) returns AssetJournalHeader|error {
+        string resourcePath = string `/AssetJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetJournalHeader record 
+    remote isolated function getAssetJournalHeaders(string dataAreaId, string journalBatchNumber, map<string|string[]> headers = {}, *GetAssetJournalHeadersQueries queries) returns AssetJournalHeader|error {
+        string resourcePath = string `/AssetJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetJournalHeader deleted 
+    remote isolated function deleteAssetJournalHeaders(string dataAreaId, string journalBatchNumber, DeleteAssetJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetJournalHeader updated 
+    remote isolated function updateAssetJournalHeaders(string dataAreaId, string journalBatchNumber, AssetJournalHeader payload, UpdateAssetJournalHeadersHeaders headers = {}) returns AssetJournalHeader|error {
+        string resourcePath = string `/AssetJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -204,6 +602,405 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List AssetLeaseLedgerJournalHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetLeaseLedgerJournalHeader 
+    remote isolated function listAssetLeaseLedgerJournalHeaders(map<string|string[]> headers = {}, *ListAssetLeaseLedgerJournalHeadersQueries queries) returns AssetLeaseLedgerJournalHeadersCollection|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetLeaseLedgerJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalHeader created 
+    remote isolated function createAssetLeaseLedgerJournalHeaders(AssetLeaseLedgerJournalHeader payload, map<string|string[]> headers = {}) returns AssetLeaseLedgerJournalHeader|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetLeaseLedgerJournalHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetLeaseLedgerJournalHeader record 
+    remote isolated function getAssetLeaseLedgerJournalHeaders(string dataAreaId, string journalBatchNumber, map<string|string[]> headers = {}, *GetAssetLeaseLedgerJournalHeadersQueries queries) returns AssetLeaseLedgerJournalHeader|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetLeaseLedgerJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalHeader deleted 
+    remote isolated function deleteAssetLeaseLedgerJournalHeaders(string dataAreaId, string journalBatchNumber, DeleteAssetLeaseLedgerJournalHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetLeaseLedgerJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetLeaseLedgerJournalHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalHeader updated 
+    remote isolated function updateAssetLeaseLedgerJournalHeaders(string dataAreaId, string journalBatchNumber, AssetLeaseLedgerJournalHeader payload, UpdateAssetLeaseLedgerJournalHeadersHeaders headers = {}) returns AssetLeaseLedgerJournalHeader|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetLeaseLedgerJournalLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetLeaseLedgerJournalLine 
+    remote isolated function listAssetLeaseLedgerJournalLines(map<string|string[]> headers = {}, *ListAssetLeaseLedgerJournalLinesQueries queries) returns AssetLeaseLedgerJournalLinesCollection|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetLeaseLedgerJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalLine created 
+    remote isolated function createAssetLeaseLedgerJournalLines(AssetLeaseLedgerJournalLine payload, map<string|string[]> headers = {}) returns AssetLeaseLedgerJournalLine|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetLeaseLedgerJournalLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetLeaseLedgerJournalLine record 
+    remote isolated function getAssetLeaseLedgerJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, map<string|string[]> headers = {}, *GetAssetLeaseLedgerJournalLinesQueries queries) returns AssetLeaseLedgerJournalLine|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetLeaseLedgerJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalLine deleted 
+    remote isolated function deleteAssetLeaseLedgerJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteAssetLeaseLedgerJournalLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetLeaseLedgerJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetLeaseLedgerJournalLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLeaseLedgerJournalLine updated 
+    remote isolated function updateAssetLeaseLedgerJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, AssetLeaseLedgerJournalLine payload, UpdateAssetLeaseLedgerJournalLinesHeaders headers = {}) returns AssetLeaseLedgerJournalLine|error {
+        string resourcePath = string `/AssetLeaseLedgerJournalLines(dataAreaId='${getEncodedUri(dataAreaId)}',JournalBatchNumber='${getEncodedUri(journalBatchNumber)}',LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetLendings
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetLending 
+    remote isolated function listAssetLendings(map<string|string[]> headers = {}, *ListAssetLendingsQueries queries) returns AssetLendingsCollection|error {
+        string resourcePath = string `/AssetLendings`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetLending
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLending created 
+    remote isolated function createAssetLendings(AssetLending payload, map<string|string[]> headers = {}) returns AssetLending|error {
+        string resourcePath = string `/AssetLendings`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetLending by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetLending record 
+    remote isolated function getAssetLendings(string dataAreaId, string fAInventoryNumber, string dateOfLease, map<string|string[]> headers = {}, *GetAssetLendingsQueries queries) returns AssetLending|error {
+        string resourcePath = string `/AssetLendings(dataAreaId='${getEncodedUri(dataAreaId)}',FAInventoryNumber='${getEncodedUri(fAInventoryNumber)}',DateOfLease=${getEncodedUri(dateOfLease)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetLending
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLending deleted 
+    remote isolated function deleteAssetLendings(string dataAreaId, string fAInventoryNumber, string dateOfLease, DeleteAssetLendingsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetLendings(dataAreaId='${getEncodedUri(dataAreaId)}',FAInventoryNumber='${getEncodedUri(fAInventoryNumber)}',DateOfLease=${getEncodedUri(dateOfLease)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetLending
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLending updated 
+    remote isolated function updateAssetLendings(string dataAreaId, string fAInventoryNumber, string dateOfLease, AssetLending payload, UpdateAssetLendingsHeaders headers = {}) returns AssetLending|error {
+        string resourcePath = string `/AssetLendings(dataAreaId='${getEncodedUri(dataAreaId)}',FAInventoryNumber='${getEncodedUri(fAInventoryNumber)}',DateOfLease=${getEncodedUri(dateOfLease)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetLocations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetLocation 
+    remote isolated function listAssetLocations(map<string|string[]> headers = {}, *ListAssetLocationsQueries queries) returns AssetLocationsCollection|error {
+        string resourcePath = string `/AssetLocations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLocation created 
+    remote isolated function createAssetLocations(AssetLocation payload, map<string|string[]> headers = {}) returns AssetLocation|error {
+        string resourcePath = string `/AssetLocations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetLocation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetLocation record 
+    remote isolated function getAssetLocations(string dataAreaId, string locationId, map<string|string[]> headers = {}, *GetAssetLocationsQueries queries) returns AssetLocation|error {
+        string resourcePath = string `/AssetLocations(dataAreaId='${getEncodedUri(dataAreaId)}',LocationId='${getEncodedUri(locationId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLocation deleted 
+    remote isolated function deleteAssetLocations(string dataAreaId, string locationId, DeleteAssetLocationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetLocations(dataAreaId='${getEncodedUri(dataAreaId)}',LocationId='${getEncodedUri(locationId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetLocation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetLocation updated 
+    remote isolated function updateAssetLocations(string dataAreaId, string locationId, AssetLocation payload, UpdateAssetLocationsHeaders headers = {}) returns AssetLocation|error {
+        string resourcePath = string `/AssetLocations(dataAreaId='${getEncodedUri(dataAreaId)}',LocationId='${getEncodedUri(locationId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetMainGroupMembers
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetMainGroupMember 
+    remote isolated function listAssetMainGroupMembers(map<string|string[]> headers = {}, *ListAssetMainGroupMembersQueries queries) returns AssetMainGroupMembersCollection|error {
+        string resourcePath = string `/AssetMainGroupMembers`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetMainGroupMember
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMainGroupMember created 
+    remote isolated function createAssetMainGroupMembers(AssetMainGroupMember payload, map<string|string[]> headers = {}) returns AssetMainGroupMember|error {
+        string resourcePath = string `/AssetMainGroupMembers`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetMainGroupMember by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetMainGroupMember record 
+    remote isolated function getAssetMainGroupMembers(string dataAreaId, string fAGroup, string valueModel, map<string|string[]> headers = {}, *GetAssetMainGroupMembersQueries queries) returns AssetMainGroupMember|error {
+        string resourcePath = string `/AssetMainGroupMembers(dataAreaId='${getEncodedUri(dataAreaId)}',FAGroup='${getEncodedUri(fAGroup)}',ValueModel='${getEncodedUri(valueModel)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetMainGroupMember
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMainGroupMember deleted 
+    remote isolated function deleteAssetMainGroupMembers(string dataAreaId, string fAGroup, string valueModel, DeleteAssetMainGroupMembersHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetMainGroupMembers(dataAreaId='${getEncodedUri(dataAreaId)}',FAGroup='${getEncodedUri(fAGroup)}',ValueModel='${getEncodedUri(valueModel)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetMainGroupMember
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMainGroupMember updated 
+    remote isolated function updateAssetMainGroupMembers(string dataAreaId, string fAGroup, string valueModel, AssetMainGroupMember payload, UpdateAssetMainGroupMembersHeaders headers = {}) returns AssetMainGroupMember|error {
+        string resourcePath = string `/AssetMainGroupMembers(dataAreaId='${getEncodedUri(dataAreaId)}',FAGroup='${getEncodedUri(fAGroup)}',ValueModel='${getEncodedUri(valueModel)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetMajorTypes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetMajorType 
+    remote isolated function listAssetMajorTypes(map<string|string[]> headers = {}, *ListAssetMajorTypesQueries queries) returns AssetMajorTypesCollection|error {
+        string resourcePath = string `/AssetMajorTypes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetMajorType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMajorType created 
+    remote isolated function createAssetMajorTypes(AssetMajorType payload, map<string|string[]> headers = {}) returns AssetMajorType|error {
+        string resourcePath = string `/AssetMajorTypes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetMajorType by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetMajorType record 
+    remote isolated function getAssetMajorTypes(string dataAreaId, string majorTypeId, map<string|string[]> headers = {}, *GetAssetMajorTypesQueries queries) returns AssetMajorType|error {
+        string resourcePath = string `/AssetMajorTypes(dataAreaId='${getEncodedUri(dataAreaId)}',MajorTypeId='${getEncodedUri(majorTypeId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetMajorType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMajorType deleted 
+    remote isolated function deleteAssetMajorTypes(string dataAreaId, string majorTypeId, DeleteAssetMajorTypesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetMajorTypes(dataAreaId='${getEncodedUri(dataAreaId)}',MajorTypeId='${getEncodedUri(majorTypeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetMajorType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetMajorType updated 
+    remote isolated function updateAssetMajorTypes(string dataAreaId, string majorTypeId, AssetMajorType payload, UpdateAssetMajorTypesHeaders headers = {}) returns AssetMajorType|error {
+        string resourcePath = string `/AssetMajorTypes(dataAreaId='${getEncodedUri(dataAreaId)}',MajorTypeId='${getEncodedUri(majorTypeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetPackingSlips
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetPackingSlip 
+    remote isolated function listAssetPackingSlips(map<string|string[]> headers = {}, *ListAssetPackingSlipsQueries queries) returns AssetPackingSlipsCollection|error {
+        string resourcePath = string `/AssetPackingSlips`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetPackingSlip
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPackingSlip created 
+    remote isolated function createAssetPackingSlips(AssetPackingSlip payload, map<string|string[]> headers = {}) returns AssetPackingSlip|error {
+        string resourcePath = string `/AssetPackingSlips`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetPackingSlip by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetPackingSlip record 
+    remote isolated function getAssetPackingSlips(string dataAreaId, string packingSlip, string createDate, int:Signed32 createTime, string fixedAssetNumber, map<string|string[]> headers = {}, *GetAssetPackingSlipsQueries queries) returns AssetPackingSlip|error {
+        string resourcePath = string `/AssetPackingSlips(dataAreaId='${getEncodedUri(dataAreaId)}',PackingSlip='${getEncodedUri(packingSlip)}',CreateDate=${getEncodedUri(createDate)},CreateTime=${getEncodedUri(createTime)},FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetPackingSlip
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPackingSlip deleted 
+    remote isolated function deleteAssetPackingSlips(string dataAreaId, string packingSlip, string createDate, int:Signed32 createTime, string fixedAssetNumber, DeleteAssetPackingSlipsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetPackingSlips(dataAreaId='${getEncodedUri(dataAreaId)}',PackingSlip='${getEncodedUri(packingSlip)}',CreateDate=${getEncodedUri(createDate)},CreateTime=${getEncodedUri(createTime)},FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetPackingSlip
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPackingSlip updated 
+    remote isolated function updateAssetPackingSlips(string dataAreaId, string packingSlip, string createDate, int:Signed32 createTime, string fixedAssetNumber, AssetPackingSlip payload, UpdateAssetPackingSlipsHeaders headers = {}) returns AssetPackingSlip|error {
+        string resourcePath = string `/AssetPackingSlips(dataAreaId='${getEncodedUri(dataAreaId)}',PackingSlip='${getEncodedUri(packingSlip)}',CreateDate=${getEncodedUri(createDate)},CreateTime=${getEncodedUri(createTime)},FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List AssetParameters
     #
     # + headers - Headers to be sent with the request 
@@ -318,6 +1115,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List AssetPropertyGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetPropertyGroup 
+    remote isolated function listAssetPropertyGroups(map<string|string[]> headers = {}, *ListAssetPropertyGroupsQueries queries) returns AssetPropertyGroupsCollection|error {
+        string resourcePath = string `/AssetPropertyGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetPropertyGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPropertyGroup created 
+    remote isolated function createAssetPropertyGroups(AssetPropertyGroup payload, map<string|string[]> headers = {}) returns AssetPropertyGroup|error {
+        string resourcePath = string `/AssetPropertyGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetPropertyGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetPropertyGroup record 
+    remote isolated function getAssetPropertyGroups(string dataAreaId, string assetPropertyGroupId, map<string|string[]> headers = {}, *GetAssetPropertyGroupsQueries queries) returns AssetPropertyGroup|error {
+        string resourcePath = string `/AssetPropertyGroups(dataAreaId='${getEncodedUri(dataAreaId)}',AssetPropertyGroupId='${getEncodedUri(assetPropertyGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetPropertyGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPropertyGroup deleted 
+    remote isolated function deleteAssetPropertyGroups(string dataAreaId, string assetPropertyGroupId, DeleteAssetPropertyGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetPropertyGroups(dataAreaId='${getEncodedUri(dataAreaId)}',AssetPropertyGroupId='${getEncodedUri(assetPropertyGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetPropertyGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetPropertyGroup updated 
+    remote isolated function updateAssetPropertyGroups(string dataAreaId, string assetPropertyGroupId, AssetPropertyGroup payload, UpdateAssetPropertyGroupsHeaders headers = {}) returns AssetPropertyGroup|error {
+        string resourcePath = string `/AssetPropertyGroups(dataAreaId='${getEncodedUri(dataAreaId)}',AssetPropertyGroupId='${getEncodedUri(assetPropertyGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetProvisionTypes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetProvisionType 
+    remote isolated function listAssetProvisionTypes(map<string|string[]> headers = {}, *ListAssetProvisionTypesQueries queries) returns AssetProvisionTypesCollection|error {
+        string resourcePath = string `/AssetProvisionTypes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetProvisionType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetProvisionType created 
+    remote isolated function createAssetProvisionTypes(AssetProvisionType payload, map<string|string[]> headers = {}) returns AssetProvisionType|error {
+        string resourcePath = string `/AssetProvisionTypes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetProvisionType by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetProvisionType record 
+    remote isolated function getAssetProvisionTypes(string dataAreaId, string typeId, map<string|string[]> headers = {}, *GetAssetProvisionTypesQueries queries) returns AssetProvisionType|error {
+        string resourcePath = string `/AssetProvisionTypes(dataAreaId='${getEncodedUri(dataAreaId)}',TypeId='${getEncodedUri(typeId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetProvisionType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetProvisionType deleted 
+    remote isolated function deleteAssetProvisionTypes(string dataAreaId, string typeId, DeleteAssetProvisionTypesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetProvisionTypes(dataAreaId='${getEncodedUri(dataAreaId)}',TypeId='${getEncodedUri(typeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetProvisionType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetProvisionType updated 
+    remote isolated function updateAssetProvisionTypes(string dataAreaId, string typeId, AssetProvisionType payload, UpdateAssetProvisionTypesHeaders headers = {}) returns AssetProvisionType|error {
+        string resourcePath = string `/AssetProvisionTypes(dataAreaId='${getEncodedUri(dataAreaId)}',TypeId='${getEncodedUri(typeId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetRetirementObligationDocuments
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetRetirementObligationDocument 
+    remote isolated function listAssetRetirementObligationDocuments(map<string|string[]> headers = {}, *ListAssetRetirementObligationDocumentsQueries queries) returns AssetRetirementObligationDocumentsCollection|error {
+        string resourcePath = string `/AssetRetirementObligationDocuments`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetRetirementObligationDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetRetirementObligationDocument created 
+    remote isolated function createAssetRetirementObligationDocuments(AssetRetirementObligationDocument payload, map<string|string[]> headers = {}) returns AssetRetirementObligationDocument|error {
+        string resourcePath = string `/AssetRetirementObligationDocuments`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetRetirementObligationDocument by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetRetirementObligationDocument record 
+    remote isolated function getAssetRetirementObligationDocuments(string dataAreaId, string documentId, map<string|string[]> headers = {}, *GetAssetRetirementObligationDocumentsQueries queries) returns AssetRetirementObligationDocument|error {
+        string resourcePath = string `/AssetRetirementObligationDocuments(dataAreaId='${getEncodedUri(dataAreaId)}',DocumentId='${getEncodedUri(documentId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetRetirementObligationDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetRetirementObligationDocument deleted 
+    remote isolated function deleteAssetRetirementObligationDocuments(string dataAreaId, string documentId, DeleteAssetRetirementObligationDocumentsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetRetirementObligationDocuments(dataAreaId='${getEncodedUri(dataAreaId)}',DocumentId='${getEncodedUri(documentId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetRetirementObligationDocument
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetRetirementObligationDocument updated 
+    remote isolated function updateAssetRetirementObligationDocuments(string dataAreaId, string documentId, AssetRetirementObligationDocument payload, UpdateAssetRetirementObligationDocumentsHeaders headers = {}) returns AssetRetirementObligationDocument|error {
+        string resourcePath = string `/AssetRetirementObligationDocuments(dataAreaId='${getEncodedUri(dataAreaId)}',DocumentId='${getEncodedUri(documentId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List AssetRetirementObligations
     #
     # + headers - Headers to be sent with the request 
@@ -368,6 +1336,120 @@ public isolated client class Client {
     # + return - AssetRetirementObligation updated 
     remote isolated function updateAssetRetirementObligations(string dataAreaId, string assetNumber, string book, string documentId, AssetRetirementObligation payload, UpdateAssetRetirementObligationsHeaders headers = {}) returns AssetRetirementObligation|error {
         string resourcePath = string `/AssetRetirementObligations(dataAreaId='${getEncodedUri(dataAreaId)}',AssetNumber='${getEncodedUri(assetNumber)}',Book='${getEncodedUri(book)}',DocumentId='${getEncodedUri(documentId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetSortings
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetSorting 
+    remote isolated function listAssetSortings(map<string|string[]> headers = {}, *ListAssetSortingsQueries queries) returns AssetSortingsCollection|error {
+        string resourcePath = string `/AssetSortings`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetSorting
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSorting created 
+    remote isolated function createAssetSortings(AssetSorting payload, map<string|string[]> headers = {}) returns AssetSorting|error {
+        string resourcePath = string `/AssetSortings`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetSorting by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetSorting record 
+    remote isolated function getAssetSortings(string dataAreaId, string sorting, string identification, map<string|string[]> headers = {}, *GetAssetSortingsQueries queries) returns AssetSorting|error {
+        string resourcePath = string `/AssetSortings(dataAreaId='${getEncodedUri(dataAreaId)}',Sorting='${getEncodedUri(sorting)}',Identification='${getEncodedUri(identification)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetSorting
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSorting deleted 
+    remote isolated function deleteAssetSortings(string dataAreaId, string sorting, string identification, DeleteAssetSortingsHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetSortings(dataAreaId='${getEncodedUri(dataAreaId)}',Sorting='${getEncodedUri(sorting)}',Identification='${getEncodedUri(identification)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetSorting
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSorting updated 
+    remote isolated function updateAssetSortings(string dataAreaId, string sorting, string identification, AssetSorting payload, UpdateAssetSortingsHeaders headers = {}) returns AssetSorting|error {
+        string resourcePath = string `/AssetSortings(dataAreaId='${getEncodedUri(dataAreaId)}',Sorting='${getEncodedUri(sorting)}',Identification='${getEncodedUri(identification)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetSpecialDepreciationAllowances
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetSpecialDepreciationAllowance 
+    remote isolated function listAssetSpecialDepreciationAllowances(map<string|string[]> headers = {}, *ListAssetSpecialDepreciationAllowancesQueries queries) returns AssetSpecialDepreciationAllowancesCollection|error {
+        string resourcePath = string `/AssetSpecialDepreciationAllowances`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetSpecialDepreciationAllowance
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSpecialDepreciationAllowance created 
+    remote isolated function createAssetSpecialDepreciationAllowances(AssetSpecialDepreciationAllowance payload, map<string|string[]> headers = {}) returns AssetSpecialDepreciationAllowance|error {
+        string resourcePath = string `/AssetSpecialDepreciationAllowances`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetSpecialDepreciationAllowance by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetSpecialDepreciationAllowance record 
+    remote isolated function getAssetSpecialDepreciationAllowances(string dataAreaId, string specialDepreciationAllowanceId, map<string|string[]> headers = {}, *GetAssetSpecialDepreciationAllowancesQueries queries) returns AssetSpecialDepreciationAllowance|error {
+        string resourcePath = string `/AssetSpecialDepreciationAllowances(dataAreaId='${getEncodedUri(dataAreaId)}',SpecialDepreciationAllowanceId='${getEncodedUri(specialDepreciationAllowanceId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetSpecialDepreciationAllowance
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSpecialDepreciationAllowance deleted 
+    remote isolated function deleteAssetSpecialDepreciationAllowances(string dataAreaId, string specialDepreciationAllowanceId, DeleteAssetSpecialDepreciationAllowancesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetSpecialDepreciationAllowances(dataAreaId='${getEncodedUri(dataAreaId)}',SpecialDepreciationAllowanceId='${getEncodedUri(specialDepreciationAllowanceId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetSpecialDepreciationAllowance
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetSpecialDepreciationAllowance updated 
+    remote isolated function updateAssetSpecialDepreciationAllowances(string dataAreaId, string specialDepreciationAllowanceId, AssetSpecialDepreciationAllowance payload, UpdateAssetSpecialDepreciationAllowancesHeaders headers = {}) returns AssetSpecialDepreciationAllowance|error {
+        string resourcePath = string `/AssetSpecialDepreciationAllowances(dataAreaId='${getEncodedUri(dataAreaId)}',SpecialDepreciationAllowanceId='${getEncodedUri(specialDepreciationAllowanceId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -482,6 +1564,63 @@ public isolated client class Client {
     # + return - AssetTransReportingCurrencyAmounts updated 
     remote isolated function updateAssetTransReportingCurrencyAmounts(string dataAreaId, int assetTrans, AssetTransReportingCurrencyAmounts payload, UpdateAssetTransReportingCurrencyAmountsHeaders headers = {}) returns AssetTransReportingCurrencyAmounts|error {
         string resourcePath = string `/AssetTransReportingCurrencyAmounts(dataAreaId='${getEncodedUri(dataAreaId)}',AssetTrans=${getEncodedUri(assetTrans)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List AssetUndepreciatedBalanceSchedules
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of AssetUndepreciatedBalanceSchedule 
+    remote isolated function listAssetUndepreciatedBalanceSchedules(map<string|string[]> headers = {}, *ListAssetUndepreciatedBalanceSchedulesQueries queries) returns AssetUndepreciatedBalanceSchedulesCollection|error {
+        string resourcePath = string `/AssetUndepreciatedBalanceSchedules`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create AssetUndepreciatedBalanceSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetUndepreciatedBalanceSchedule created 
+    remote isolated function createAssetUndepreciatedBalanceSchedules(AssetUndepreciatedBalanceSchedule payload, map<string|string[]> headers = {}) returns AssetUndepreciatedBalanceSchedule|error {
+        string resourcePath = string `/AssetUndepreciatedBalanceSchedules`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get AssetUndepreciatedBalanceSchedule by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - AssetUndepreciatedBalanceSchedule record 
+    remote isolated function getAssetUndepreciatedBalanceSchedules(string dataAreaId, string fromMethod, string toMethod, decimal serviceLife, decimal yearsPassed, map<string|string[]> headers = {}, *GetAssetUndepreciatedBalanceSchedulesQueries queries) returns AssetUndepreciatedBalanceSchedule|error {
+        string resourcePath = string `/AssetUndepreciatedBalanceSchedules(dataAreaId='${getEncodedUri(dataAreaId)}',FromMethod='${getEncodedUri(fromMethod)}',ToMethod='${getEncodedUri(toMethod)}',ServiceLife=${getEncodedUri(serviceLife)},YearsPassed=${getEncodedUri(yearsPassed)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete AssetUndepreciatedBalanceSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetUndepreciatedBalanceSchedule deleted 
+    remote isolated function deleteAssetUndepreciatedBalanceSchedules(string dataAreaId, string fromMethod, string toMethod, decimal serviceLife, decimal yearsPassed, DeleteAssetUndepreciatedBalanceSchedulesHeaders headers = {}) returns error? {
+        string resourcePath = string `/AssetUndepreciatedBalanceSchedules(dataAreaId='${getEncodedUri(dataAreaId)}',FromMethod='${getEncodedUri(fromMethod)}',ToMethod='${getEncodedUri(toMethod)}',ServiceLife=${getEncodedUri(serviceLife)},YearsPassed=${getEncodedUri(yearsPassed)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update AssetUndepreciatedBalanceSchedule
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - AssetUndepreciatedBalanceSchedule updated 
+    remote isolated function updateAssetUndepreciatedBalanceSchedules(string dataAreaId, string fromMethod, string toMethod, decimal serviceLife, decimal yearsPassed, AssetUndepreciatedBalanceSchedule payload, UpdateAssetUndepreciatedBalanceSchedulesHeaders headers = {}) returns AssetUndepreciatedBalanceSchedule|error {
+        string resourcePath = string `/AssetUndepreciatedBalanceSchedules(dataAreaId='${getEncodedUri(dataAreaId)}',FromMethod='${getEncodedUri(fromMethod)}',ToMethod='${getEncodedUri(toMethod)}',ServiceLife=${getEncodedUri(serviceLife)},YearsPassed=${getEncodedUri(yearsPassed)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -653,6 +1792,120 @@ public isolated client class Client {
     # + return - FixedAssetGroupBookSpecialDepreciationAllowance updated 
     remote isolated function updateFixedAssetGroupBookSpecialDepreciationAllowances(string dataAreaId, string groupId, string bookId, string specialDepreciationAllowanceId, FixedAssetGroupBookSpecialDepreciationAllowance payload, UpdateFixedAssetGroupBookSpecialDepreciationAllowancesHeaders headers = {}) returns FixedAssetGroupBookSpecialDepreciationAllowance|error {
         string resourcePath = string `/FixedAssetGroupBookSpecialDepreciationAllowances(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}',BookId='${getEncodedUri(bookId)}',SpecialDepreciationAllowanceId='${getEncodedUri(specialDepreciationAllowanceId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FixedAssetGroupValueModelSetups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FixedAssetGroupValueModelSetup 
+    remote isolated function listFixedAssetGroupValueModelSetups(map<string|string[]> headers = {}, *ListFixedAssetGroupValueModelSetupsQueries queries) returns FixedAssetGroupValueModelSetupsCollection|error {
+        string resourcePath = string `/FixedAssetGroupValueModelSetups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FixedAssetGroupValueModelSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroupValueModelSetup created 
+    remote isolated function createFixedAssetGroupValueModelSetups(FixedAssetGroupValueModelSetup payload, map<string|string[]> headers = {}) returns FixedAssetGroupValueModelSetup|error {
+        string resourcePath = string `/FixedAssetGroupValueModelSetups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FixedAssetGroupValueModelSetup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FixedAssetGroupValueModelSetup record 
+    remote isolated function getFixedAssetGroupValueModelSetups(string dataAreaId, string fixedAssetGroupId, string valueModelId, map<string|string[]> headers = {}, *GetFixedAssetGroupValueModelSetupsQueries queries) returns FixedAssetGroupValueModelSetup|error {
+        string resourcePath = string `/FixedAssetGroupValueModelSetups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}',ValueModelId='${getEncodedUri(valueModelId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FixedAssetGroupValueModelSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroupValueModelSetup deleted 
+    remote isolated function deleteFixedAssetGroupValueModelSetups(string dataAreaId, string fixedAssetGroupId, string valueModelId, DeleteFixedAssetGroupValueModelSetupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/FixedAssetGroupValueModelSetups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}',ValueModelId='${getEncodedUri(valueModelId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FixedAssetGroupValueModelSetup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroupValueModelSetup updated 
+    remote isolated function updateFixedAssetGroupValueModelSetups(string dataAreaId, string fixedAssetGroupId, string valueModelId, FixedAssetGroupValueModelSetup payload, UpdateFixedAssetGroupValueModelSetupsHeaders headers = {}) returns FixedAssetGroupValueModelSetup|error {
+        string resourcePath = string `/FixedAssetGroupValueModelSetups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}',ValueModelId='${getEncodedUri(valueModelId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FixedAssetGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FixedAssetGroup 
+    remote isolated function listFixedAssetGroups(map<string|string[]> headers = {}, *ListFixedAssetGroupsQueries queries) returns FixedAssetGroupsCollection|error {
+        string resourcePath = string `/FixedAssetGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FixedAssetGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroup created 
+    remote isolated function createFixedAssetGroups(FixedAssetGroup payload, map<string|string[]> headers = {}) returns FixedAssetGroup|error {
+        string resourcePath = string `/FixedAssetGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FixedAssetGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FixedAssetGroup record 
+    remote isolated function getFixedAssetGroups(string dataAreaId, string fixedAssetGroupId, map<string|string[]> headers = {}, *GetFixedAssetGroupsQueries queries) returns FixedAssetGroup|error {
+        string resourcePath = string `/FixedAssetGroups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FixedAssetGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroup deleted 
+    remote isolated function deleteFixedAssetGroups(string dataAreaId, string fixedAssetGroupId, DeleteFixedAssetGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/FixedAssetGroups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FixedAssetGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetGroup updated 
+    remote isolated function updateFixedAssetGroups(string dataAreaId, string fixedAssetGroupId, FixedAssetGroup payload, UpdateFixedAssetGroupsHeaders headers = {}) returns FixedAssetGroup|error {
+        string resourcePath = string `/FixedAssetGroups(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetGroupId='${getEncodedUri(fixedAssetGroupId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -881,6 +2134,120 @@ public isolated client class Client {
     # + return - FixedAssetValueModel updated 
     remote isolated function updateFixedAssetValueModels(string dataAreaId, string fixedAssetNumber, string valueModelId, FixedAssetValueModel payload, UpdateFixedAssetValueModelsHeaders headers = {}) returns FixedAssetValueModel|error {
         string resourcePath = string `/FixedAssetValueModels(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}',ValueModelId='${getEncodedUri(valueModelId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FixedAssets
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FixedAsset 
+    remote isolated function listFixedAssets(map<string|string[]> headers = {}, *ListFixedAssetsQueries queries) returns FixedAssetsCollection|error {
+        string resourcePath = string `/FixedAssets`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FixedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAsset created 
+    remote isolated function createFixedAssets(FixedAsset payload, map<string|string[]> headers = {}) returns FixedAsset|error {
+        string resourcePath = string `/FixedAssets`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FixedAsset by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FixedAsset record 
+    remote isolated function getFixedAssets(string dataAreaId, string fixedAssetNumber, map<string|string[]> headers = {}, *GetFixedAssetsQueries queries) returns FixedAsset|error {
+        string resourcePath = string `/FixedAssets(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FixedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAsset deleted 
+    remote isolated function deleteFixedAssets(string dataAreaId, string fixedAssetNumber, DeleteFixedAssetsHeaders headers = {}) returns error? {
+        string resourcePath = string `/FixedAssets(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FixedAsset
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAsset updated 
+    remote isolated function updateFixedAssets(string dataAreaId, string fixedAssetNumber, FixedAsset payload, UpdateFixedAssetsHeaders headers = {}) returns FixedAsset|error {
+        string resourcePath = string `/FixedAssets(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List FixedAssetsV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of FixedAssetV2Entity 
+    remote isolated function listFixedAssetsV2(map<string|string[]> headers = {}, *ListFixedAssetsV2Queries queries) returns FixedAssetsV2Collection|error {
+        string resourcePath = string `/FixedAssetsV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create FixedAssetV2Entity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetV2Entity created 
+    remote isolated function createFixedAssetsV2(FixedAssetV2Entity payload, map<string|string[]> headers = {}) returns FixedAssetV2Entity|error {
+        string resourcePath = string `/FixedAssetsV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get FixedAssetV2Entity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - FixedAssetV2Entity record 
+    remote isolated function getFixedAssetsV2(string dataAreaId, string fixedAssetNumber, map<string|string[]> headers = {}, *GetFixedAssetsV2Queries queries) returns FixedAssetV2Entity|error {
+        string resourcePath = string `/FixedAssetsV2(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete FixedAssetV2Entity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetV2Entity deleted 
+    remote isolated function deleteFixedAssetsV2(string dataAreaId, string fixedAssetNumber, DeleteFixedAssetsV2Headers headers = {}) returns error? {
+        string resourcePath = string `/FixedAssetsV2(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update FixedAssetV2Entity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - FixedAssetV2Entity updated 
+    remote isolated function updateFixedAssetsV2(string dataAreaId, string fixedAssetNumber, FixedAssetV2Entity payload, UpdateFixedAssetsV2Headers headers = {}) returns FixedAssetV2Entity|error {
+        string resourcePath = string `/FixedAssetsV2(dataAreaId='${getEncodedUri(dataAreaId)}',FixedAssetNumber='${getEncodedUri(fixedAssetNumber)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -3104,6 +4471,63 @@ public isolated client class Client {
     # + return - LeasePostingAccounts updated 
     remote isolated function updateLeasePostingAccountsCollection(string dataAreaId, int:Signed32 lineNum, LeasePostingAccounts payload, UpdateLeasePostingAccountsCollectionHeaders headers = {}) returns LeasePostingAccounts|error {
         string resourcePath = string `/LeasePostingAccountsCollection(dataAreaId='${getEncodedUri(dataAreaId)}',LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List LeaseUpdateFieldSelections
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of LeaseUpdateFieldSelection 
+    remote isolated function listLeaseUpdateFieldSelections(map<string|string[]> headers = {}, *ListLeaseUpdateFieldSelectionsQueries queries) returns LeaseUpdateFieldSelectionsCollection|error {
+        string resourcePath = string `/LeaseUpdateFieldSelections`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create LeaseUpdateFieldSelection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - LeaseUpdateFieldSelection created 
+    remote isolated function createLeaseUpdateFieldSelections(LeaseUpdateFieldSelection payload, map<string|string[]> headers = {}) returns LeaseUpdateFieldSelection|error {
+        string resourcePath = string `/LeaseUpdateFieldSelections`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get LeaseUpdateFieldSelection by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - LeaseUpdateFieldSelection record 
+    remote isolated function getLeaseUpdateFieldSelections(int:Signed32 fieldId, int:Signed32 refTableId, map<string|string[]> headers = {}, *GetLeaseUpdateFieldSelectionsQueries queries) returns LeaseUpdateFieldSelection|error {
+        string resourcePath = string `/LeaseUpdateFieldSelections(FieldId=${getEncodedUri(fieldId)},RefTableId=${getEncodedUri(refTableId)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete LeaseUpdateFieldSelection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - LeaseUpdateFieldSelection deleted 
+    remote isolated function deleteLeaseUpdateFieldSelections(int:Signed32 fieldId, int:Signed32 refTableId, DeleteLeaseUpdateFieldSelectionsHeaders headers = {}) returns error? {
+        string resourcePath = string `/LeaseUpdateFieldSelections(FieldId=${getEncodedUri(fieldId)},RefTableId=${getEncodedUri(refTableId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update LeaseUpdateFieldSelection
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - LeaseUpdateFieldSelection updated 
+    remote isolated function updateLeaseUpdateFieldSelections(int:Signed32 fieldId, int:Signed32 refTableId, LeaseUpdateFieldSelection payload, UpdateLeaseUpdateFieldSelectionsHeaders headers = {}) returns LeaseUpdateFieldSelection|error {
+        string resourcePath = string `/LeaseUpdateFieldSelections(FieldId=${getEncodedUri(fieldId)},RefTableId=${getEncodedUri(refTableId)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

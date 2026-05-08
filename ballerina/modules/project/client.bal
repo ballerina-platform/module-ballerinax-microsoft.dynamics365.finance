@@ -19,18 +19,188 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'project' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
+    }
+
+    # List PSAActuals
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PSAActual 
+    remote isolated function listPSAActuals(map<string|string[]> headers = {}, *ListPSAActualsQueries queries) returns PSAActualsCollection|error {
+        string resourcePath = string `/PSAActuals`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PSAActual
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAActual created 
+    remote isolated function createPSAActuals(PSAActual payload, map<string|string[]> headers = {}) returns PSAActual|error {
+        string resourcePath = string `/PSAActuals`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PSAActual by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PSAActual record 
+    remote isolated function getPSAActuals(string dataAreaId, string transId, map<string|string[]> headers = {}, *GetPSAActualsQueries queries) returns PSAActual|error {
+        string resourcePath = string `/PSAActuals(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PSAActual
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAActual deleted 
+    remote isolated function deletePSAActuals(string dataAreaId, string transId, DeletePSAActualsHeaders headers = {}) returns error? {
+        string resourcePath = string `/PSAActuals(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PSAActual
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAActual updated 
+    remote isolated function updatePSAActuals(string dataAreaId, string transId, PSAActual payload, UpdatePSAActualsHeaders headers = {}) returns PSAActual|error {
+        string resourcePath = string `/PSAActuals(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List PSAForecasts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PSAForecast 
+    remote isolated function listPSAForecasts(map<string|string[]> headers = {}, *ListPSAForecastsQueries queries) returns PSAForecastsCollection|error {
+        string resourcePath = string `/PSAForecasts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PSAForecast
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAForecast created 
+    remote isolated function createPSAForecasts(PSAForecast payload, map<string|string[]> headers = {}) returns PSAForecast|error {
+        string resourcePath = string `/PSAForecasts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PSAForecast by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PSAForecast record 
+    remote isolated function getPSAForecasts(string dataAreaId, string transId, map<string|string[]> headers = {}, *GetPSAForecastsQueries queries) returns PSAForecast|error {
+        string resourcePath = string `/PSAForecasts(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PSAForecast
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAForecast deleted 
+    remote isolated function deletePSAForecasts(string dataAreaId, string transId, DeletePSAForecastsHeaders headers = {}) returns error? {
+        string resourcePath = string `/PSAForecasts(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PSAForecast
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAForecast updated 
+    remote isolated function updatePSAForecasts(string dataAreaId, string transId, PSAForecast payload, UpdatePSAForecastsHeaders headers = {}) returns PSAForecast|error {
+        string resourcePath = string `/PSAForecasts(dataAreaId='${getEncodedUri(dataAreaId)}',TransId='${getEncodedUri(transId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List PSAIndirectComponentGroupEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of PSAIndirectComponentGroupEntity 
+    remote isolated function listPSAIndirectComponentGroupEntities(map<string|string[]> headers = {}, *ListPSAIndirectComponentGroupEntitiesQueries queries) returns PSAIndirectComponentGroupEntitiesCollection|error {
+        string resourcePath = string `/PSAIndirectComponentGroupEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create PSAIndirectComponentGroupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAIndirectComponentGroupEntity created 
+    remote isolated function createPSAIndirectComponentGroupEntities(PSAIndirectComponentGroupEntity payload, map<string|string[]> headers = {}) returns PSAIndirectComponentGroupEntity|error {
+        string resourcePath = string `/PSAIndirectComponentGroupEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get PSAIndirectComponentGroupEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - PSAIndirectComponentGroupEntity record 
+    remote isolated function getPSAIndirectComponentGroupEntities(string dataAreaId, string indirectCostComponentGroup, map<string|string[]> headers = {}, *GetPSAIndirectComponentGroupEntitiesQueries queries) returns PSAIndirectComponentGroupEntity|error {
+        string resourcePath = string `/PSAIndirectComponentGroupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IndirectCostComponentGroup='${getEncodedUri(indirectCostComponentGroup)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete PSAIndirectComponentGroupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAIndirectComponentGroupEntity deleted 
+    remote isolated function deletePSAIndirectComponentGroupEntities(string dataAreaId, string indirectCostComponentGroup, DeletePSAIndirectComponentGroupEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/PSAIndirectComponentGroupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IndirectCostComponentGroup='${getEncodedUri(indirectCostComponentGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update PSAIndirectComponentGroupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - PSAIndirectComponentGroupEntity updated 
+    remote isolated function updatePSAIndirectComponentGroupEntities(string dataAreaId, string indirectCostComponentGroup, PSAIndirectComponentGroupEntity payload, UpdatePSAIndirectComponentGroupEntitiesHeaders headers = {}) returns PSAIndirectComponentGroupEntity|error {
+        string resourcePath = string `/PSAIndirectComponentGroupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',IndirectCostComponentGroup='${getEncodedUri(indirectCostComponentGroup)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
     # List ProjActualsImports
@@ -83,6 +253,177 @@ public isolated client class Client {
     # + return - ProjActualsImport updated 
     remote isolated function updateProjActualsImports(string dataAreaId, string actualsImportId, ProjActualsImport payload, UpdateProjActualsImportsHeaders headers = {}) returns ProjActualsImport|error {
         string resourcePath = string `/ProjActualsImports(dataAreaId='${getEncodedUri(dataAreaId)}',ActualsImportId=${getEncodedUri(actualsImportId)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjAdvancedJournalLineCostTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjAdvancedJournalLineCostTransTaxInformation 
+    remote isolated function listProjAdvancedJournalLineCostTransTaxInformations(map<string|string[]> headers = {}, *ListProjAdvancedJournalLineCostTransTaxInformationsQueries queries) returns ProjAdvancedJournalLineCostTransTaxInformationsCollection|error {
+        string resourcePath = string `/ProjAdvancedJournalLineCostTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjAdvancedJournalLineCostTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineCostTransTaxInformation created 
+    remote isolated function createProjAdvancedJournalLineCostTransTaxInformations(ProjAdvancedJournalLineCostTransTaxInformation payload, map<string|string[]> headers = {}) returns ProjAdvancedJournalLineCostTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineCostTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjAdvancedJournalLineCostTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjAdvancedJournalLineCostTransTaxInformation record 
+    remote isolated function getProjAdvancedJournalLineCostTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, map<string|string[]> headers = {}, *GetProjAdvancedJournalLineCostTransTaxInformationsQueries queries) returns ProjAdvancedJournalLineCostTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineCostTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjAdvancedJournalLineCostTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineCostTransTaxInformation deleted 
+    remote isolated function deleteProjAdvancedJournalLineCostTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, DeleteProjAdvancedJournalLineCostTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjAdvancedJournalLineCostTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjAdvancedJournalLineCostTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineCostTransTaxInformation updated 
+    remote isolated function updateProjAdvancedJournalLineCostTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, ProjAdvancedJournalLineCostTransTaxInformation payload, UpdateProjAdvancedJournalLineCostTransTaxInformationsHeaders headers = {}) returns ProjAdvancedJournalLineCostTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineCostTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjAdvancedJournalLineHours
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjAdvancedJournalLineHour 
+    remote isolated function listProjAdvancedJournalLineHours(map<string|string[]> headers = {}, *ListProjAdvancedJournalLineHoursQueries queries) returns ProjAdvancedJournalLineHoursCollection|error {
+        string resourcePath = string `/ProjAdvancedJournalLineHours`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjAdvancedJournalLineHour
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineHour created 
+    remote isolated function createProjAdvancedJournalLineHours(ProjAdvancedJournalLineHour payload, map<string|string[]> headers = {}) returns ProjAdvancedJournalLineHour|error {
+        string resourcePath = string `/ProjAdvancedJournalLineHours`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjAdvancedJournalLineHour by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjAdvancedJournalLineHour record 
+    remote isolated function getProjAdvancedJournalLineHours(string dataAreaId, decimal lineNumber, int projAdvancedJournal, map<string|string[]> headers = {}, *GetProjAdvancedJournalLineHoursQueries queries) returns ProjAdvancedJournalLineHour|error {
+        string resourcePath = string `/ProjAdvancedJournalLineHours(dataAreaId='${getEncodedUri(dataAreaId)}',LineNumber=${getEncodedUri(lineNumber)},ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjAdvancedJournalLineHour
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineHour deleted 
+    remote isolated function deleteProjAdvancedJournalLineHours(string dataAreaId, decimal lineNumber, int projAdvancedJournal, DeleteProjAdvancedJournalLineHoursHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjAdvancedJournalLineHours(dataAreaId='${getEncodedUri(dataAreaId)}',LineNumber=${getEncodedUri(lineNumber)},ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjAdvancedJournalLineHour
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineHour updated 
+    remote isolated function updateProjAdvancedJournalLineHours(string dataAreaId, decimal lineNumber, int projAdvancedJournal, ProjAdvancedJournalLineHour payload, UpdateProjAdvancedJournalLineHoursHeaders headers = {}) returns ProjAdvancedJournalLineHour|error {
+        string resourcePath = string `/ProjAdvancedJournalLineHours(dataAreaId='${getEncodedUri(dataAreaId)}',LineNumber=${getEncodedUri(lineNumber)},ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjAdvancedJournalLineInvoiceTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjAdvancedJournalLineInvoiceTransTaxInformation 
+    remote isolated function listProjAdvancedJournalLineInvoiceTransTaxInformations(map<string|string[]> headers = {}, *ListProjAdvancedJournalLineInvoiceTransTaxInformationsQueries queries) returns ProjAdvancedJournalLineInvoiceTransTaxInformationsCollection|error {
+        string resourcePath = string `/ProjAdvancedJournalLineInvoiceTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjAdvancedJournalLineInvoiceTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineInvoiceTransTaxInformation created 
+    remote isolated function createProjAdvancedJournalLineInvoiceTransTaxInformations(ProjAdvancedJournalLineInvoiceTransTaxInformation payload, map<string|string[]> headers = {}) returns ProjAdvancedJournalLineInvoiceTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineInvoiceTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjAdvancedJournalLineInvoiceTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjAdvancedJournalLineInvoiceTransTaxInformation record 
+    remote isolated function getProjAdvancedJournalLineInvoiceTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, map<string|string[]> headers = {}, *GetProjAdvancedJournalLineInvoiceTransTaxInformationsQueries queries) returns ProjAdvancedJournalLineInvoiceTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineInvoiceTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjAdvancedJournalLineInvoiceTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineInvoiceTransTaxInformation deleted 
+    remote isolated function deleteProjAdvancedJournalLineInvoiceTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, DeleteProjAdvancedJournalLineInvoiceTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjAdvancedJournalLineInvoiceTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjAdvancedJournalLineInvoiceTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjAdvancedJournalLineInvoiceTransTaxInformation updated 
+    remote isolated function updateProjAdvancedJournalLineInvoiceTransTaxInformations(string dataAreaId, int projAdvancedJournal, decimal lineNumber, ProjAdvancedJournalLineInvoiceTransTaxInformation payload, UpdateProjAdvancedJournalLineInvoiceTransTaxInformationsHeaders headers = {}) returns ProjAdvancedJournalLineInvoiceTransTaxInformation|error {
+        string resourcePath = string `/ProjAdvancedJournalLineInvoiceTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjAdvancedJournal=${getEncodedUri(projAdvancedJournal)},LineNumber=${getEncodedUri(lineNumber)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -482,6 +823,63 @@ public isolated client class Client {
     # + return - ProjExpenseCategoryExport updated 
     remote isolated function updateProjExpenseCategoriesExport(string dataAreaId, string costType, ProjExpenseCategoryExport payload, UpdateProjExpenseCategoriesExportHeaders headers = {}) returns ProjExpenseCategoryExport|error {
         string resourcePath = string `/ProjExpenseCategoriesExport(dataAreaId='${getEncodedUri(dataAreaId)}',CostType='${getEncodedUri(costType)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjExpensesExport
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjExpenseExport 
+    remote isolated function listProjExpensesExport(map<string|string[]> headers = {}, *ListProjExpensesExportQueries queries) returns ProjExpensesExportCollection|error {
+        string resourcePath = string `/ProjExpensesExport`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjExpenseExport
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjExpenseExport created 
+    remote isolated function createProjExpensesExport(ProjExpenseExport payload, map<string|string[]> headers = {}) returns ProjExpenseExport|error {
+        string resourcePath = string `/ProjExpensesExport`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjExpenseExport by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjExpenseExport record 
+    remote isolated function getProjExpensesExport(string expTransNumber, string referenceDataAreaId, map<string|string[]> headers = {}, *GetProjExpensesExportQueries queries) returns ProjExpenseExport|error {
+        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjExpenseExport
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjExpenseExport deleted 
+    remote isolated function deleteProjExpensesExport(string expTransNumber, string referenceDataAreaId, DeleteProjExpensesExportHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjExpenseExport
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjExpenseExport updated 
+    remote isolated function updateProjExpensesExport(string expTransNumber, string referenceDataAreaId, ProjExpenseExport payload, UpdateProjExpensesExportHeaders headers = {}) returns ProjExpenseExport|error {
+        string resourcePath = string `/ProjExpensesExport(ExpTransNumber='${getEncodedUri(expTransNumber)}',ReferenceDataAreaId='${getEncodedUri(referenceDataAreaId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1116,6 +1514,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjInventoryOnHand
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjInventoryOnHandEntity 
+    remote isolated function listProjInventoryOnHand(map<string|string[]> headers = {}, *ListProjInventoryOnHandQueries queries) returns ProjInventoryOnHandCollection|error {
+        string resourcePath = string `/ProjInventoryOnHand`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjInventoryOnHandEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjInventoryOnHandEntity created 
+    remote isolated function createProjInventoryOnHand(ProjInventoryOnHandEntity payload, map<string|string[]> headers = {}) returns ProjInventoryOnHandEntity|error {
+        string resourcePath = string `/ProjInventoryOnHand`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjInventoryOnHandEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjInventoryOnHandEntity record 
+    remote isolated function getProjInventoryOnHand(string dataAreaId, string itemNumber, string siteId, string warehouseId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventoryStatus, map<string|string[]> headers = {}, *GetProjInventoryOnHandQueries queries) returns ProjInventoryOnHandEntity|error {
+        string resourcePath = string `/ProjInventoryOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',SiteId='${getEncodedUri(siteId)}',WarehouseId='${getEncodedUri(warehouseId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventoryStatus='${getEncodedUri(inventoryStatus)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjInventoryOnHandEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjInventoryOnHandEntity deleted 
+    remote isolated function deleteProjInventoryOnHand(string dataAreaId, string itemNumber, string siteId, string warehouseId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventoryStatus, DeleteProjInventoryOnHandHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjInventoryOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',SiteId='${getEncodedUri(siteId)}',WarehouseId='${getEncodedUri(warehouseId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventoryStatus='${getEncodedUri(inventoryStatus)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjInventoryOnHandEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjInventoryOnHandEntity updated 
+    remote isolated function updateProjInventoryOnHand(string dataAreaId, string itemNumber, string siteId, string warehouseId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, string inventoryStatus, ProjInventoryOnHandEntity payload, UpdateProjInventoryOnHandHeaders headers = {}) returns ProjInventoryOnHandEntity|error {
+        string resourcePath = string `/ProjInventoryOnHand(dataAreaId='${getEncodedUri(dataAreaId)}',ItemNumber='${getEncodedUri(itemNumber)}',SiteId='${getEncodedUri(siteId)}',WarehouseId='${getEncodedUri(warehouseId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}',InventoryStatus='${getEncodedUri(inventoryStatus)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjInvoiceChorusProDetails
     #
     # + headers - Headers to be sent with the request 
@@ -1344,6 +1799,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjJournalTransTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjJournalTransTransTaxInformation 
+    remote isolated function listProjJournalTransTransTaxInformations(map<string|string[]> headers = {}, *ListProjJournalTransTransTaxInformationsQueries queries) returns ProjJournalTransTransTaxInformationsCollection|error {
+        string resourcePath = string `/ProjJournalTransTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjJournalTransTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjJournalTransTransTaxInformation created 
+    remote isolated function createProjJournalTransTransTaxInformations(ProjJournalTransTransTaxInformation payload, map<string|string[]> headers = {}) returns ProjJournalTransTransTaxInformation|error {
+        string resourcePath = string `/ProjJournalTransTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjJournalTransTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjJournalTransTransTaxInformation record 
+    remote isolated function getProjJournalTransTransTaxInformations(string dataAreaId, string journalId, decimal lineNum, map<string|string[]> headers = {}, *GetProjJournalTransTransTaxInformationsQueries queries) returns ProjJournalTransTransTaxInformation|error {
+        string resourcePath = string `/ProjJournalTransTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',JournalId='${getEncodedUri(journalId)}',LineNum=${getEncodedUri(lineNum)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjJournalTransTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjJournalTransTransTaxInformation deleted 
+    remote isolated function deleteProjJournalTransTransTaxInformations(string dataAreaId, string journalId, decimal lineNum, DeleteProjJournalTransTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjJournalTransTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',JournalId='${getEncodedUri(journalId)}',LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjJournalTransTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjJournalTransTransTaxInformation updated 
+    remote isolated function updateProjJournalTransTransTaxInformations(string dataAreaId, string journalId, decimal lineNum, ProjJournalTransTransTaxInformation payload, UpdateProjJournalTransTransTaxInformationsHeaders headers = {}) returns ProjJournalTransTransTaxInformation|error {
+        string resourcePath = string `/ProjJournalTransTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',JournalId='${getEncodedUri(journalId)}',LineNum=${getEncodedUri(lineNum)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjPeriodEmplEntity_DataEntities
     #
     # + headers - Headers to be sent with the request 
@@ -1394,6 +1906,120 @@ public isolated client class Client {
     # + return - ProjPeriodEmplEntity_DataEntity updated 
     remote isolated function updateProjPeriodEmplEntityDataEntities(string dataAreaId, string periodId, string periodFrom, ProjPeriodEmplEntity_DataEntity payload, UpdateProjPeriodEmplEntityDataEntitiesHeaders headers = {}) returns ProjPeriodEmplEntity_DataEntity|error {
         string resourcePath = string `/ProjPeriodEmplEntity_DataEntities(dataAreaId='${getEncodedUri(dataAreaId)}',PeriodId='${getEncodedUri(periodId)}',PeriodFrom=${getEncodedUri(periodFrom)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjQuotationHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjQuotationHeader 
+    remote isolated function listProjQuotationHeaders(map<string|string[]> headers = {}, *ListProjQuotationHeadersQueries queries) returns ProjQuotationHeadersCollection|error {
+        string resourcePath = string `/ProjQuotationHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjQuotationHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationHeader created 
+    remote isolated function createProjQuotationHeaders(ProjQuotationHeader payload, map<string|string[]> headers = {}) returns ProjQuotationHeader|error {
+        string resourcePath = string `/ProjQuotationHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjQuotationHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjQuotationHeader record 
+    remote isolated function getProjQuotationHeaders(string dataAreaId, string projQuotationNumber, map<string|string[]> headers = {}, *GetProjQuotationHeadersQueries queries) returns ProjQuotationHeader|error {
+        string resourcePath = string `/ProjQuotationHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjQuotationNumber='${getEncodedUri(projQuotationNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjQuotationHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationHeader deleted 
+    remote isolated function deleteProjQuotationHeaders(string dataAreaId, string projQuotationNumber, DeleteProjQuotationHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjQuotationHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjQuotationNumber='${getEncodedUri(projQuotationNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjQuotationHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationHeader updated 
+    remote isolated function updateProjQuotationHeaders(string dataAreaId, string projQuotationNumber, ProjQuotationHeader payload, UpdateProjQuotationHeadersHeaders headers = {}) returns ProjQuotationHeader|error {
+        string resourcePath = string `/ProjQuotationHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjQuotationNumber='${getEncodedUri(projQuotationNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjQuotationLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjQuotationLine 
+    remote isolated function listProjQuotationLines(map<string|string[]> headers = {}, *ListProjQuotationLinesQueries queries) returns ProjQuotationLinesCollection|error {
+        string resourcePath = string `/ProjQuotationLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjQuotationLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationLine created 
+    remote isolated function createProjQuotationLines(ProjQuotationLine payload, map<string|string[]> headers = {}) returns ProjQuotationLine|error {
+        string resourcePath = string `/ProjQuotationLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjQuotationLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjQuotationLine record 
+    remote isolated function getProjQuotationLines(string dataAreaId, string inventoryLotId, map<string|string[]> headers = {}, *GetProjQuotationLinesQueries queries) returns ProjQuotationLine|error {
+        string resourcePath = string `/ProjQuotationLines(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryLotId='${getEncodedUri(inventoryLotId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjQuotationLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationLine deleted 
+    remote isolated function deleteProjQuotationLines(string dataAreaId, string inventoryLotId, DeleteProjQuotationLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjQuotationLines(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryLotId='${getEncodedUri(inventoryLotId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjQuotationLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjQuotationLine updated 
+    remote isolated function updateProjQuotationLines(string dataAreaId, string inventoryLotId, ProjQuotationLine payload, UpdateProjQuotationLinesHeaders headers = {}) returns ProjQuotationLine|error {
+        string resourcePath = string `/ProjQuotationLines(dataAreaId='${getEncodedUri(dataAreaId)}',InventoryLotId='${getEncodedUri(inventoryLotId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -1565,6 +2191,63 @@ public isolated client class Client {
     # + return - ProjRevenueProfileEntity updated 
     remote isolated function updateProjRevenueProfiles(string dataAreaId, string profileId, ProjRevenueProfileEntity payload, UpdateProjRevenueProfilesHeaders headers = {}) returns ProjRevenueProfileEntity|error {
         string resourcePath = string `/ProjRevenueProfiles(dataAreaId='${getEncodedUri(dataAreaId)}',ProfileId='${getEncodedUri(profileId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjTableTransTaxInformations
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjTableTransTaxInformation 
+    remote isolated function listProjTableTransTaxInformations(map<string|string[]> headers = {}, *ListProjTableTransTaxInformationsQueries queries) returns ProjTableTransTaxInformationsCollection|error {
+        string resourcePath = string `/ProjTableTransTaxInformations`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjTableTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjTableTransTaxInformation created 
+    remote isolated function createProjTableTransTaxInformations(ProjTableTransTaxInformation payload, map<string|string[]> headers = {}) returns ProjTableTransTaxInformation|error {
+        string resourcePath = string `/ProjTableTransTaxInformations`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjTableTransTaxInformation by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjTableTransTaxInformation record 
+    remote isolated function getProjTableTransTaxInformations(string dataAreaId, string projId, map<string|string[]> headers = {}, *GetProjTableTransTaxInformationsQueries queries) returns ProjTableTransTaxInformation|error {
+        string resourcePath = string `/ProjTableTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjId='${getEncodedUri(projId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjTableTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjTableTransTaxInformation deleted 
+    remote isolated function deleteProjTableTransTaxInformations(string dataAreaId, string projId, DeleteProjTableTransTaxInformationsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjTableTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjId='${getEncodedUri(projId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjTableTransTaxInformation
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjTableTransTaxInformation updated 
+    remote isolated function updateProjTableTransTaxInformations(string dataAreaId, string projId, ProjTableTransTaxInformation payload, UpdateProjTableTransTaxInformationsHeaders headers = {}) returns ProjTableTransTaxInformation|error {
+        string resourcePath = string `/ProjTableTransTaxInformations(dataAreaId='${getEncodedUri(dataAreaId)}',ProjId='${getEncodedUri(projId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2256,6 +2939,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjectCategoryEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectCategoryEntity 
+    remote isolated function listProjectCategoryEntities(map<string|string[]> headers = {}, *ListProjectCategoryEntitiesQueries queries) returns ProjectCategoryEntitiesCollection|error {
+        string resourcePath = string `/ProjectCategoryEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectCategoryEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectCategoryEntity created 
+    remote isolated function createProjectCategoryEntities(ProjectCategoryEntity payload, map<string|string[]> headers = {}) returns ProjectCategoryEntity|error {
+        string resourcePath = string `/ProjectCategoryEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectCategoryEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectCategoryEntity record 
+    remote isolated function getProjectCategoryEntities(string dataAreaId, string category, map<string|string[]> headers = {}, *GetProjectCategoryEntitiesQueries queries) returns ProjectCategoryEntity|error {
+        string resourcePath = string `/ProjectCategoryEntities(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectCategoryEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectCategoryEntity deleted 
+    remote isolated function deleteProjectCategoryEntities(string dataAreaId, string category, DeleteProjectCategoryEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectCategoryEntities(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectCategoryEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectCategoryEntity updated 
+    remote isolated function updateProjectCategoryEntities(string dataAreaId, string category, ProjectCategoryEntity payload, UpdateProjectCategoryEntitiesHeaders headers = {}) returns ProjectCategoryEntity|error {
+        string resourcePath = string `/ProjectCategoryEntities(dataAreaId='${getEncodedUri(dataAreaId)}',Category='${getEncodedUri(category)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjectCollaborationWorkspaceSettings
     #
     # + headers - Headers to be sent with the request 
@@ -2306,6 +3046,63 @@ public isolated client class Client {
     # + return - ProjectCollaborationWorkspaceSettings updated 
     remote isolated function updateProjectCollaborationWorkspaceSettings(string dataAreaId, string businessArea, ProjectCollaborationWorkspaceSettings payload, UpdateProjectCollaborationWorkspaceSettingsHeaders headers = {}) returns ProjectCollaborationWorkspaceSettings|error {
         string resourcePath = string `/ProjectCollaborationWorkspaceSettings(dataAreaId='${getEncodedUri(dataAreaId)}',BusinessArea='${getEncodedUri(businessArea)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectContractHeaders
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectContractHeader 
+    remote isolated function listProjectContractHeaders(map<string|string[]> headers = {}, *ListProjectContractHeadersQueries queries) returns ProjectContractHeadersCollection|error {
+        string resourcePath = string `/ProjectContractHeaders`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectContractHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractHeader created 
+    remote isolated function createProjectContractHeaders(ProjectContractHeader payload, map<string|string[]> headers = {}) returns ProjectContractHeader|error {
+        string resourcePath = string `/ProjectContractHeaders`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectContractHeader by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectContractHeader record 
+    remote isolated function getProjectContractHeaders(string dataAreaId, string projectContractId, map<string|string[]> headers = {}, *GetProjectContractHeadersQueries queries) returns ProjectContractHeader|error {
+        string resourcePath = string `/ProjectContractHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectContractHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractHeader deleted 
+    remote isolated function deleteProjectContractHeaders(string dataAreaId, string projectContractId, DeleteProjectContractHeadersHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectContractHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectContractHeader
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractHeader updated 
+    remote isolated function updateProjectContractHeaders(string dataAreaId, string projectContractId, ProjectContractHeader payload, UpdateProjectContractHeadersHeaders headers = {}) returns ProjectContractHeader|error {
+        string resourcePath = string `/ProjectContractHeaders(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -2370,6 +3167,120 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjectContractLines
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectContractLine 
+    remote isolated function listProjectContractLines(map<string|string[]> headers = {}, *ListProjectContractLinesQueries queries) returns ProjectContractLinesCollection|error {
+        string resourcePath = string `/ProjectContractLines`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectContractLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractLine created 
+    remote isolated function createProjectContractLines(ProjectContractLine payload, map<string|string[]> headers = {}) returns ProjectContractLine|error {
+        string resourcePath = string `/ProjectContractLines`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectContractLine by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectContractLine record 
+    remote isolated function getProjectContractLines(string dataAreaId, string projectContractId, int:Signed32 lineSequenceNumber, map<string|string[]> headers = {}, *GetProjectContractLinesQueries queries) returns ProjectContractLine|error {
+        string resourcePath = string `/ProjectContractLines(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}',LineSequenceNumber=${getEncodedUri(lineSequenceNumber)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectContractLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractLine deleted 
+    remote isolated function deleteProjectContractLines(string dataAreaId, string projectContractId, int:Signed32 lineSequenceNumber, DeleteProjectContractLinesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectContractLines(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}',LineSequenceNumber=${getEncodedUri(lineSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectContractLine
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContractLine updated 
+    remote isolated function updateProjectContractLines(string dataAreaId, string projectContractId, int:Signed32 lineSequenceNumber, ProjectContractLine payload, UpdateProjectContractLinesHeaders headers = {}) returns ProjectContractLine|error {
+        string resourcePath = string `/ProjectContractLines(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractId='${getEncodedUri(projectContractId)}',LineSequenceNumber=${getEncodedUri(lineSequenceNumber)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectContracts
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectContract 
+    remote isolated function listProjectContracts(map<string|string[]> headers = {}, *ListProjectContractsQueries queries) returns ProjectContractsCollection|error {
+        string resourcePath = string `/ProjectContracts`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectContract
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContract created 
+    remote isolated function createProjectContracts(ProjectContract payload, map<string|string[]> headers = {}) returns ProjectContract|error {
+        string resourcePath = string `/ProjectContracts`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectContract by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectContract record 
+    remote isolated function getProjectContracts(string dataAreaId, string projectContractID, map<string|string[]> headers = {}, *GetProjectContractsQueries queries) returns ProjectContract|error {
+        string resourcePath = string `/ProjectContracts(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectContract
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContract deleted 
+    remote isolated function deleteProjectContracts(string dataAreaId, string projectContractID, DeleteProjectContractsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectContracts(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectContract
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectContract updated 
+    remote isolated function updateProjectContracts(string dataAreaId, string projectContractID, ProjectContract payload, UpdateProjectContractsHeaders headers = {}) returns ProjectContract|error {
+        string resourcePath = string `/ProjectContracts(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjectControlCostGroups
     #
     # + headers - Headers to be sent with the request 
@@ -2420,6 +3331,63 @@ public isolated client class Client {
     # + return - ProjectControlCostGroup updated 
     remote isolated function updateProjectControlCostGroups(string dataAreaId, string costTemplateId, string costLineId, ProjectControlCostGroup payload, UpdateProjectControlCostGroupsHeaders headers = {}) returns ProjectControlCostGroup|error {
         string resourcePath = string `/ProjectControlCostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',CostTemplateId='${getEncodedUri(costTemplateId)}',CostLineId='${getEncodedUri(costLineId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectControls
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectControl 
+    remote isolated function listProjectControls(map<string|string[]> headers = {}, *ListProjectControlsQueries queries) returns ProjectControlsCollection|error {
+        string resourcePath = string `/ProjectControls`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectControl
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectControl created 
+    remote isolated function createProjectControls(ProjectControl payload, map<string|string[]> headers = {}) returns ProjectControl|error {
+        string resourcePath = string `/ProjectControls`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectControl by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectControl record 
+    remote isolated function getProjectControls(string dataAreaId, string costTemplateId, map<string|string[]> headers = {}, *GetProjectControlsQueries queries) returns ProjectControl|error {
+        string resourcePath = string `/ProjectControls(dataAreaId='${getEncodedUri(dataAreaId)}',CostTemplateId='${getEncodedUri(costTemplateId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectControl
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectControl deleted 
+    remote isolated function deleteProjectControls(string dataAreaId, string costTemplateId, DeleteProjectControlsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectControls(dataAreaId='${getEncodedUri(dataAreaId)}',CostTemplateId='${getEncodedUri(costTemplateId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectControl
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectControl updated 
+    remote isolated function updateProjectControls(string dataAreaId, string costTemplateId, ProjectControl payload, UpdateProjectControlsHeaders headers = {}) returns ProjectControl|error {
+        string resourcePath = string `/ProjectControls(dataAreaId='${getEncodedUri(dataAreaId)}',CostTemplateId='${getEncodedUri(costTemplateId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -3054,6 +4022,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjectFundingSources
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectFundingSource 
+    remote isolated function listProjectFundingSources(map<string|string[]> headers = {}, *ListProjectFundingSourcesQueries queries) returns ProjectFundingSourcesCollection|error {
+        string resourcePath = string `/ProjectFundingSources`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectFundingSource
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectFundingSource created 
+    remote isolated function createProjectFundingSources(ProjectFundingSource payload, map<string|string[]> headers = {}) returns ProjectFundingSource|error {
+        string resourcePath = string `/ProjectFundingSources`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectFundingSource by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectFundingSource record 
+    remote isolated function getProjectFundingSources(string dataAreaId, string projectContractID, string fundingSourceId, map<string|string[]> headers = {}, *GetProjectFundingSourcesQueries queries) returns ProjectFundingSource|error {
+        string resourcePath = string `/ProjectFundingSources(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}',FundingSourceId='${getEncodedUri(fundingSourceId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectFundingSource
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectFundingSource deleted 
+    remote isolated function deleteProjectFundingSources(string dataAreaId, string projectContractID, string fundingSourceId, DeleteProjectFundingSourcesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectFundingSources(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}',FundingSourceId='${getEncodedUri(fundingSourceId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectFundingSource
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectFundingSource updated 
+    remote isolated function updateProjectFundingSources(string dataAreaId, string projectContractID, string fundingSourceId, ProjectFundingSource payload, UpdateProjectFundingSourcesHeaders headers = {}) returns ProjectFundingSource|error {
+        string resourcePath = string `/ProjectFundingSources(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectContractID='${getEncodedUri(projectContractID)}',FundingSourceId='${getEncodedUri(fundingSourceId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjectGrantCustomerTypes
     #
     # + headers - Headers to be sent with the request 
@@ -3624,6 +4649,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjectLinePropertySetupEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectLinePropertySetupEntity 
+    remote isolated function listProjectLinePropertySetupEntities(map<string|string[]> headers = {}, *ListProjectLinePropertySetupEntitiesQueries queries) returns ProjectLinePropertySetupEntitiesCollection|error {
+        string resourcePath = string `/ProjectLinePropertySetupEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectLinePropertySetupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectLinePropertySetupEntity created 
+    remote isolated function createProjectLinePropertySetupEntities(ProjectLinePropertySetupEntity payload, map<string|string[]> headers = {}) returns ProjectLinePropertySetupEntity|error {
+        string resourcePath = string `/ProjectLinePropertySetupEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectLinePropertySetupEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectLinePropertySetupEntity record 
+    remote isolated function getProjectLinePropertySetupEntities(string dataAreaId, string projectCode, string projectRelation, string categoryCode, string categoryRelation, map<string|string[]> headers = {}, *GetProjectLinePropertySetupEntitiesQueries queries) returns ProjectLinePropertySetupEntity|error {
+        string resourcePath = string `/ProjectLinePropertySetupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectCode='${getEncodedUri(projectCode)}',ProjectRelation='${getEncodedUri(projectRelation)}',CategoryCode='${getEncodedUri(categoryCode)}',CategoryRelation='${getEncodedUri(categoryRelation)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectLinePropertySetupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectLinePropertySetupEntity deleted 
+    remote isolated function deleteProjectLinePropertySetupEntities(string dataAreaId, string projectCode, string projectRelation, string categoryCode, string categoryRelation, DeleteProjectLinePropertySetupEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectLinePropertySetupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectCode='${getEncodedUri(projectCode)}',ProjectRelation='${getEncodedUri(projectRelation)}',CategoryCode='${getEncodedUri(categoryCode)}',CategoryRelation='${getEncodedUri(categoryRelation)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectLinePropertySetupEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectLinePropertySetupEntity updated 
+    remote isolated function updateProjectLinePropertySetupEntities(string dataAreaId, string projectCode, string projectRelation, string categoryCode, string categoryRelation, ProjectLinePropertySetupEntity payload, UpdateProjectLinePropertySetupEntitiesHeaders headers = {}) returns ProjectLinePropertySetupEntity|error {
+        string resourcePath = string `/ProjectLinePropertySetupEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectCode='${getEncodedUri(projectCode)}',ProjectRelation='${getEncodedUri(projectRelation)}',CategoryCode='${getEncodedUri(categoryCode)}',CategoryRelation='${getEncodedUri(categoryRelation)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjectOnAccForecasts
     #
     # + headers - Headers to be sent with the request 
@@ -3674,6 +4756,120 @@ public isolated client class Client {
     # + return - ProjectOnAccForecast updated 
     remote isolated function updateProjectOnAccForecasts(string dataAreaId, string transactionID, ProjectOnAccForecast payload, UpdateProjectOnAccForecastsHeaders headers = {}) returns ProjectOnAccForecast|error {
         string resourcePath = string `/ProjectOnAccForecasts(dataAreaId='${getEncodedUri(dataAreaId)}',TransactionID='${getEncodedUri(transactionID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectParameterEntities
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectParameterEntity 
+    remote isolated function listProjectParameterEntities(map<string|string[]> headers = {}, *ListProjectParameterEntitiesQueries queries) returns ProjectParameterEntitiesCollection|error {
+        string resourcePath = string `/ProjectParameterEntities`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectParameterEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterEntity created 
+    remote isolated function createProjectParameterEntities(ProjectParameterEntity payload, map<string|string[]> headers = {}) returns ProjectParameterEntity|error {
+        string resourcePath = string `/ProjectParameterEntities`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectParameterEntity by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectParameterEntity record 
+    remote isolated function getProjectParameterEntities(string dataAreaId, int:Signed32 iD, map<string|string[]> headers = {}, *GetProjectParameterEntitiesQueries queries) returns ProjectParameterEntity|error {
+        string resourcePath = string `/ProjectParameterEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ID=${getEncodedUri(iD)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectParameterEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterEntity deleted 
+    remote isolated function deleteProjectParameterEntities(string dataAreaId, int:Signed32 iD, DeleteProjectParameterEntitiesHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectParameterEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ID=${getEncodedUri(iD)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectParameterEntity
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterEntity updated 
+    remote isolated function updateProjectParameterEntities(string dataAreaId, int:Signed32 iD, ProjectParameterEntity payload, UpdateProjectParameterEntitiesHeaders headers = {}) returns ProjectParameterEntity|error {
+        string resourcePath = string `/ProjectParameterEntities(dataAreaId='${getEncodedUri(dataAreaId)}',ID=${getEncodedUri(iD)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectParameterV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectParameterV2 
+    remote isolated function listProjectParameterV2(map<string|string[]> headers = {}, *ListProjectParameterV2Queries queries) returns ProjectParameterV2Collection|error {
+        string resourcePath = string `/ProjectParameterV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectParameterV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterV2 created 
+    remote isolated function createProjectParameterV2(ProjectParameterV2 payload, map<string|string[]> headers = {}) returns ProjectParameterV2|error {
+        string resourcePath = string `/ProjectParameterV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectParameterV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectParameterV2 record 
+    remote isolated function getProjectParameterV2(string dataAreaId, int:Signed32 'key, map<string|string[]> headers = {}, *GetProjectParameterV2Queries queries) returns ProjectParameterV2|error {
+        string resourcePath = string `/ProjectParameterV2(dataAreaId='${getEncodedUri(dataAreaId)}',Key=${getEncodedUri('key)})`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectParameterV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterV2 deleted 
+    remote isolated function deleteProjectParameterV2(string dataAreaId, int:Signed32 'key, DeleteProjectParameterV2Headers headers = {}) returns error? {
+        string resourcePath = string `/ProjectParameterV2(dataAreaId='${getEncodedUri(dataAreaId)}',Key=${getEncodedUri('key)})`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectParameterV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectParameterV2 updated 
+    remote isolated function updateProjectParameterV2(string dataAreaId, int:Signed32 'key, ProjectParameterV2 payload, UpdateProjectParameterV2Headers headers = {}) returns ProjectParameterV2|error {
+        string resourcePath = string `/ProjectParameterV2(dataAreaId='${getEncodedUri(dataAreaId)}',Key=${getEncodedUri('key)})`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);
@@ -4023,6 +5219,63 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List ProjectSalesItemRequirements
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectSalesItemRequirement 
+    remote isolated function listProjectSalesItemRequirements(map<string|string[]> headers = {}, *ListProjectSalesItemRequirementsQueries queries) returns ProjectSalesItemRequirementsCollection|error {
+        string resourcePath = string `/ProjectSalesItemRequirements`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectSalesItemRequirement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectSalesItemRequirement created 
+    remote isolated function createProjectSalesItemRequirements(ProjectSalesItemRequirement payload, map<string|string[]> headers = {}) returns ProjectSalesItemRequirement|error {
+        string resourcePath = string `/ProjectSalesItemRequirements`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectSalesItemRequirement by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectSalesItemRequirement record 
+    remote isolated function getProjectSalesItemRequirements(string dataAreaId, string projectTransactionId, map<string|string[]> headers = {}, *GetProjectSalesItemRequirementsQueries queries) returns ProjectSalesItemRequirement|error {
+        string resourcePath = string `/ProjectSalesItemRequirements(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectTransactionId='${getEncodedUri(projectTransactionId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectSalesItemRequirement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectSalesItemRequirement deleted 
+    remote isolated function deleteProjectSalesItemRequirements(string dataAreaId, string projectTransactionId, DeleteProjectSalesItemRequirementsHeaders headers = {}) returns error? {
+        string resourcePath = string `/ProjectSalesItemRequirements(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectTransactionId='${getEncodedUri(projectTransactionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectSalesItemRequirement
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectSalesItemRequirement updated 
+    remote isolated function updateProjectSalesItemRequirements(string dataAreaId, string projectTransactionId, ProjectSalesItemRequirement payload, UpdateProjectSalesItemRequirementsHeaders headers = {}) returns ProjectSalesItemRequirement|error {
+        string resourcePath = string `/ProjectSalesItemRequirements(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectTransactionId='${getEncodedUri(projectTransactionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List ProjectStageRuleSettingEntities
     #
     # + headers - Headers to be sent with the request 
@@ -4358,6 +5611,120 @@ public isolated client class Client {
     # + return - ProjectWBSDraft updated 
     remote isolated function updateProjectWBSDrafts(string dataAreaId, string projectId, string wBSId, ProjectWBSDraft payload, UpdateProjectWBSDraftsHeaders headers = {}) returns ProjectWBSDraft|error {
         string resourcePath = string `/ProjectWBSDrafts(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectId='${getEncodedUri(projectId)}',WBSId='${getEncodedUri(wBSId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List Projects
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of Project 
+    remote isolated function listProjects(map<string|string[]> headers = {}, *ListProjectsQueries queries) returns ProjectsCollection|error {
+        string resourcePath = string `/Projects`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create Project
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Project created 
+    remote isolated function createProjects(Project payload, map<string|string[]> headers = {}) returns Project|error {
+        string resourcePath = string `/Projects`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get Project by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Project record 
+    remote isolated function getProjects(string dataAreaId, string projectID, map<string|string[]> headers = {}, *GetProjectsQueries queries) returns Project|error {
+        string resourcePath = string `/Projects(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectID='${getEncodedUri(projectID)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete Project
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Project deleted 
+    remote isolated function deleteProjects(string dataAreaId, string projectID, DeleteProjectsHeaders headers = {}) returns error? {
+        string resourcePath = string `/Projects(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectID='${getEncodedUri(projectID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update Project
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - Project updated 
+    remote isolated function updateProjects(string dataAreaId, string projectID, Project payload, UpdateProjectsHeaders headers = {}) returns Project|error {
+        string resourcePath = string `/Projects(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectID='${getEncodedUri(projectID)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List ProjectsV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of ProjectV2 
+    remote isolated function listProjectsV2(map<string|string[]> headers = {}, *ListProjectsV2Queries queries) returns ProjectsV2Collection|error {
+        string resourcePath = string `/ProjectsV2`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create ProjectV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectV2 created 
+    remote isolated function createProjectsV2(ProjectV2 payload, map<string|string[]> headers = {}) returns ProjectV2|error {
+        string resourcePath = string `/ProjectsV2`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get ProjectV2 by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - ProjectV2 record 
+    remote isolated function getProjectsV2(string dataAreaId, string projectId, map<string|string[]> headers = {}, *GetProjectsV2Queries queries) returns ProjectV2|error {
+        string resourcePath = string `/ProjectsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectId='${getEncodedUri(projectId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete ProjectV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectV2 deleted 
+    remote isolated function deleteProjectsV2(string dataAreaId, string projectId, DeleteProjectsV2Headers headers = {}) returns error? {
+        string resourcePath = string `/ProjectsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectId='${getEncodedUri(projectId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update ProjectV2
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - ProjectV2 updated 
+    remote isolated function updateProjectsV2(string dataAreaId, string projectId, ProjectV2 payload, UpdateProjectsV2Headers headers = {}) returns ProjectV2|error {
+        string resourcePath = string `/ProjectsV2(dataAreaId='${getEncodedUri(dataAreaId)}',ProjectId='${getEncodedUri(projectId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

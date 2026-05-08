@@ -19,303 +19,17 @@
 
 import ballerina/data.jsondata;
 import ballerina/http;
+import ballerinax/microsoft.dynamics365.finance.common as d365;
 
 # Ballerina connector module for the 'cost' slice of the Microsoft Dynamics 365 Finance OData REST API.
 public isolated client class Client {
     final http:Client clientEp;
     # Gets invoked to initialize the `connector`.
     #
-    # + config - The configurations to be used when initializing the `connector` 
-    # + serviceUrl - URL of the target service 
-    # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://your-org.operations.dynamics.com/data") returns error? {
-        http:ClientConfiguration httpClientConfig = {auth: config.auth, httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
-        self.clientEp = check new (serviceUrl, httpClientConfig);
-    }
-
-    # List AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy 
-    remote isolated function listAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(map<string|string[]> headers = {}, *ListAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyQueries queries) returns AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyCollection|error {
-        string resourcePath = string `/AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy created 
-    remote isolated function createAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy payload, map<string|string[]> headers = {}) returns AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy record 
-    remote isolated function getAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, map<string|string[]> headers = {}, *GetAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyQueries queries) returns AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy deleted 
-    remote isolated function deleteAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, DeleteAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyHeaders headers = {}) returns error? {
-        string resourcePath = string `/AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy updated 
-    remote isolated function updateAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy payload, UpdateAggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchyHeaders headers = {}) returns AggregatedCostEntryWithCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy 
-    remote isolated function listAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(map<string|string[]> headers = {}, *ListAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyQueries queries) returns AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyCollection|error {
-        string resourcePath = string `/AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy created 
-    remote isolated function createAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy payload, map<string|string[]> headers = {}) returns AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy record 
-    remote isolated function getAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, map<string|string[]> headers = {}, *GetAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyQueries queries) returns AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy deleted 
-    remote isolated function deleteAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, DeleteAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyHeaders headers = {}) returns error? {
-        string resourcePath = string `/AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy updated 
-    remote isolated function updateAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, string costElementDimensionMemberName, string costObjectDimensionMemberName, string costBehavior, AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy payload, UpdateAggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchyHeaders headers = {}) returns AggregatedCostEntryWithDefaultCostObjectHierarchyAndCostElementHierarchy|error {
-        string resourcePath = string `/AggregatedCostEntriesWithDefaultCostObjectHierarchyAndCostElementHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)},CostElementDimensionMemberName='${getEncodedUri(costElementDimensionMemberName)}',CostObjectDimensionMemberName='${getEncodedUri(costObjectDimensionMemberName)}',CostBehavior='${getEncodedUri(costBehavior)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy 
-    remote isolated function listAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(map<string|string[]> headers = {}, *ListAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyQueries queries) returns AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyCollection|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy created 
-    remote isolated function createAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy payload, map<string|string[]> headers = {}) returns AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy record 
-    remote isolated function getAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, map<string|string[]> headers = {}, *GetAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyQueries queries) returns AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)})`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy deleted 
-    remote isolated function deleteAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, DeleteAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyHeaders headers = {}) returns error? {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy updated 
-    remote isolated function updateAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(string costControlUnitName, string costAccountingLedgerName, string costAccountingDate, AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy payload, UpdateAggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchyHeaders headers = {}) returns AggregatedStatisticalEntryWithCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithCostObjectHierarchyAndStatisticalHierarchy(CostControlUnitName='${getEncodedUri(costControlUnitName)}',CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostAccountingDate=${getEncodedUri(costAccountingDate)})`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy 
-    remote isolated function listAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(map<string|string[]> headers = {}, *ListAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyQueries queries) returns AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyCollection|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy created 
-    remote isolated function createAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy payload, map<string|string[]> headers = {}) returns AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy record 
-    remote isolated function getAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(string costAccountingDate, string costAccountingLedgerName, string costControlUnitName, map<string|string[]> headers = {}, *GetAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyQueries queries) returns AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(CostAccountingDate=${getEncodedUri(costAccountingDate)},CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostControlUnitName='${getEncodedUri(costControlUnitName)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy deleted 
-    remote isolated function deleteAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(string costAccountingDate, string costAccountingLedgerName, string costControlUnitName, DeleteAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyHeaders headers = {}) returns error? {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(CostAccountingDate=${getEncodedUri(costAccountingDate)},CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostControlUnitName='${getEncodedUri(costControlUnitName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy updated 
-    remote isolated function updateAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(string costAccountingDate, string costAccountingLedgerName, string costControlUnitName, AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy payload, UpdateAggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchyHeaders headers = {}) returns AggregatedStatisticalEntryWithDefaultCostObjectHierarchyAndStatisticalHierarchy|error {
-        string resourcePath = string `/AggregatedStatisticalEntriesWithDefaultCostObjectHierarchyAndStatisticalHierarchy(CostAccountingDate=${getEncodedUri(costAccountingDate)},CostAccountingLedgerName='${getEncodedUri(costAccountingLedgerName)}',CostControlUnitName='${getEncodedUri(costControlUnitName)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
-    }
-
-    # List ConfigurationLedgers
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - Collection of ConfigurationLedger 
-    remote isolated function listConfigurationLedgers(map<string|string[]> headers = {}, *ListConfigurationLedgersQueries queries) returns ConfigurationLedgersCollection|error {
-        string resourcePath = string `/ConfigurationLedgers`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Create ConfigurationLedger
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ConfigurationLedger created 
-    remote isolated function createConfigurationLedgers(ConfigurationLedger payload, map<string|string[]> headers = {}) returns ConfigurationLedger|error {
-        string resourcePath = string `/ConfigurationLedgers`;
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Get ConfigurationLedger by key
-    #
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - ConfigurationLedger record 
-    remote isolated function getConfigurationLedgers(string name, map<string|string[]> headers = {}, *GetConfigurationLedgersQueries queries) returns ConfigurationLedger|error {
-        string resourcePath = string `/ConfigurationLedgers(Name='${getEncodedUri(name)}')`;
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Delete ConfigurationLedger
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ConfigurationLedger deleted 
-    remote isolated function deleteConfigurationLedgers(string name, DeleteConfigurationLedgersHeaders headers = {}) returns error? {
-        string resourcePath = string `/ConfigurationLedgers(Name='${getEncodedUri(name)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        return self.clientEp->delete(resourcePath, headers = httpHeaders);
-    }
-
-    # Update ConfigurationLedger
-    #
-    # + headers - Headers to be sent with the request 
-    # + return - ConfigurationLedger updated 
-    remote isolated function updateConfigurationLedgers(string name, ConfigurationLedger payload, UpdateConfigurationLedgersHeaders headers = {}) returns ConfigurationLedger|error {
-        string resourcePath = string `/ConfigurationLedgers(Name='${getEncodedUri(name)}')`;
-        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
-        http:Request request = new;
-        json jsonBody = jsondata:toJson(payload);
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    # + conn - The shared D365 connection (built once at the top level)
+    # + return - An error if connector initialization failed
+    public isolated function init(d365:Connection conn) returns error? {
+        self.clientEp = conn.getHttpClient();
     }
 
     # List CostAccountingDataConnectorBudgetEntries
@@ -1686,6 +1400,177 @@ public isolated client class Client {
         return self.clientEp->patch(resourcePath, request, httpHeaders);
     }
 
+    # List CostCalculationGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostCalculationGroup 
+    remote isolated function listCostCalculationGroups(map<string|string[]> headers = {}, *ListCostCalculationGroupsQueries queries) returns CostCalculationGroupsCollection|error {
+        string resourcePath = string `/CostCalculationGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostCalculationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCalculationGroup created 
+    remote isolated function createCostCalculationGroups(CostCalculationGroup payload, map<string|string[]> headers = {}) returns CostCalculationGroup|error {
+        string resourcePath = string `/CostCalculationGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostCalculationGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostCalculationGroup record 
+    remote isolated function getCostCalculationGroups(string dataAreaId, string groupId, map<string|string[]> headers = {}, *GetCostCalculationGroupsQueries queries) returns CostCalculationGroup|error {
+        string resourcePath = string `/CostCalculationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostCalculationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCalculationGroup deleted 
+    remote isolated function deleteCostCalculationGroups(string dataAreaId, string groupId, DeleteCostCalculationGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostCalculationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostCalculationGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCalculationGroup updated 
+    remote isolated function updateCostCalculationGroups(string dataAreaId, string groupId, CostCalculationGroup payload, UpdateCostCalculationGroupsHeaders headers = {}) returns CostCalculationGroup|error {
+        string resourcePath = string `/CostCalculationGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostCenterTypes
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostCenterType 
+    remote isolated function listCostCenterTypes(map<string|string[]> headers = {}, *ListCostCenterTypesQueries queries) returns CostCenterTypesCollection|error {
+        string resourcePath = string `/CostCenterTypes`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostCenterType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenterType created 
+    remote isolated function createCostCenterTypes(CostCenterType payload, map<string|string[]> headers = {}) returns CostCenterType|error {
+        string resourcePath = string `/CostCenterTypes`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostCenterType by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostCenterType record 
+    remote isolated function getCostCenterTypes(string name, string value, map<string|string[]> headers = {}, *GetCostCenterTypesQueries queries) returns CostCenterType|error {
+        string resourcePath = string `/CostCenterTypes(Name='${getEncodedUri(name)}',Value='${getEncodedUri(value)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostCenterType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenterType deleted 
+    remote isolated function deleteCostCenterTypes(string name, string value, DeleteCostCenterTypesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostCenterTypes(Name='${getEncodedUri(name)}',Value='${getEncodedUri(value)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostCenterType
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenterType updated 
+    remote isolated function updateCostCenterTypes(string name, string value, CostCenterType payload, UpdateCostCenterTypesHeaders headers = {}) returns CostCenterType|error {
+        string resourcePath = string `/CostCenterTypes(Name='${getEncodedUri(name)}',Value='${getEncodedUri(value)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostCenters
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostCenter 
+    remote isolated function listCostCenters(map<string|string[]> headers = {}, *ListCostCentersQueries queries) returns CostCentersCollection|error {
+        string resourcePath = string `/CostCenters`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostCenter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenter created 
+    remote isolated function createCostCenters(CostCenter payload, map<string|string[]> headers = {}) returns CostCenter|error {
+        string resourcePath = string `/CostCenters`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostCenter by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostCenter record 
+    remote isolated function getCostCenters(string operatingUnitNumber, map<string|string[]> headers = {}, *GetCostCentersQueries queries) returns CostCenter|error {
+        string resourcePath = string `/CostCenters(OperatingUnitNumber='${getEncodedUri(operatingUnitNumber)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostCenter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenter deleted 
+    remote isolated function deleteCostCenters(string operatingUnitNumber, DeleteCostCentersHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostCenters(OperatingUnitNumber='${getEncodedUri(operatingUnitNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostCenter
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostCenter updated 
+    remote isolated function updateCostCenters(string operatingUnitNumber, CostCenter payload, UpdateCostCentersHeaders headers = {}) returns CostCenter|error {
+        string resourcePath = string `/CostCenters(OperatingUnitNumber='${getEncodedUri(operatingUnitNumber)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
     # List CostConfigurationConventions
     #
     # + headers - Headers to be sent with the request 
@@ -2249,6 +2134,291 @@ public isolated client class Client {
     # + return - CostConfigurationPriceList updated 
     remote isolated function updateCostConfigurationPriceLists(string name, CostConfigurationPriceList payload, UpdateCostConfigurationPriceListsHeaders headers = {}) returns CostConfigurationPriceList|error {
         string resourcePath = string `/CostConfigurationPriceLists(Name='${getEncodedUri(name)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostFlowAssumptionPolicies
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostFlowAssumptionPolicy 
+    remote isolated function listCostFlowAssumptionPolicies(map<string|string[]> headers = {}, *ListCostFlowAssumptionPoliciesQueries queries) returns CostFlowAssumptionPoliciesCollection|error {
+        string resourcePath = string `/CostFlowAssumptionPolicies`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostFlowAssumptionPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostFlowAssumptionPolicy created 
+    remote isolated function createCostFlowAssumptionPolicies(CostFlowAssumptionPolicy payload, map<string|string[]> headers = {}) returns CostFlowAssumptionPolicy|error {
+        string resourcePath = string `/CostFlowAssumptionPolicies`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostFlowAssumptionPolicy by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostFlowAssumptionPolicy record 
+    remote isolated function getCostFlowAssumptionPolicies(string dataAreaId, string policyId, map<string|string[]> headers = {}, *GetCostFlowAssumptionPoliciesQueries queries) returns CostFlowAssumptionPolicy|error {
+        string resourcePath = string `/CostFlowAssumptionPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostFlowAssumptionPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostFlowAssumptionPolicy deleted 
+    remote isolated function deleteCostFlowAssumptionPolicies(string dataAreaId, string policyId, DeleteCostFlowAssumptionPoliciesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostFlowAssumptionPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostFlowAssumptionPolicy
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostFlowAssumptionPolicy updated 
+    remote isolated function updateCostFlowAssumptionPolicies(string dataAreaId, string policyId, CostFlowAssumptionPolicy payload, UpdateCostFlowAssumptionPoliciesHeaders headers = {}) returns CostFlowAssumptionPolicy|error {
+        string resourcePath = string `/CostFlowAssumptionPolicies(dataAreaId='${getEncodedUri(dataAreaId)}',PolicyId='${getEncodedUri(policyId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostGroups
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostGroup 
+    remote isolated function listCostGroups(map<string|string[]> headers = {}, *ListCostGroupsQueries queries) returns CostGroupsCollection|error {
+        string resourcePath = string `/CostGroups`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostGroup created 
+    remote isolated function createCostGroups(CostGroup payload, map<string|string[]> headers = {}) returns CostGroup|error {
+        string resourcePath = string `/CostGroups`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostGroup by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostGroup record 
+    remote isolated function getCostGroups(string dataAreaId, string groupId, map<string|string[]> headers = {}, *GetCostGroupsQueries queries) returns CostGroup|error {
+        string resourcePath = string `/CostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostGroup deleted 
+    remote isolated function deleteCostGroups(string dataAreaId, string groupId, DeleteCostGroupsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostGroup
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostGroup updated 
+    remote isolated function updateCostGroups(string dataAreaId, string groupId, CostGroup payload, UpdateCostGroupsHeaders headers = {}) returns CostGroup|error {
+        string resourcePath = string `/CostGroups(dataAreaId='${getEncodedUri(dataAreaId)}',GroupId='${getEncodedUri(groupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostSheetNodeCalculationFactors
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostSheetNodeCalculationFactor 
+    remote isolated function listCostSheetNodeCalculationFactors(map<string|string[]> headers = {}, *ListCostSheetNodeCalculationFactorsQueries queries) returns CostSheetNodeCalculationFactorsCollection|error {
+        string resourcePath = string `/CostSheetNodeCalculationFactors`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostSheetNodeCalculationFactor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostSheetNodeCalculationFactor created 
+    remote isolated function createCostSheetNodeCalculationFactors(CostSheetNodeCalculationFactor payload, map<string|string[]> headers = {}) returns CostSheetNodeCalculationFactor|error {
+        string resourcePath = string `/CostSheetNodeCalculationFactors`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostSheetNodeCalculationFactor by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostSheetNodeCalculationFactor record 
+    remote isolated function getCostSheetNodeCalculationFactors(string dataAreaId, string costSheetNodeName, string priceSiteId, string fromDate, string costingVersionId, string itemNumber, string productGroupId, map<string|string[]> headers = {}, *GetCostSheetNodeCalculationFactorsQueries queries) returns CostSheetNodeCalculationFactor|error {
+        string resourcePath = string `/CostSheetNodeCalculationFactors(dataAreaId='${getEncodedUri(dataAreaId)}',CostSheetNodeName='${getEncodedUri(costSheetNodeName)}',PriceSiteId='${getEncodedUri(priceSiteId)}',FromDate=${getEncodedUri(fromDate)},CostingVersionId='${getEncodedUri(costingVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostSheetNodeCalculationFactor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostSheetNodeCalculationFactor deleted 
+    remote isolated function deleteCostSheetNodeCalculationFactors(string dataAreaId, string costSheetNodeName, string priceSiteId, string fromDate, string costingVersionId, string itemNumber, string productGroupId, DeleteCostSheetNodeCalculationFactorsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostSheetNodeCalculationFactors(dataAreaId='${getEncodedUri(dataAreaId)}',CostSheetNodeName='${getEncodedUri(costSheetNodeName)}',PriceSiteId='${getEncodedUri(priceSiteId)}',FromDate=${getEncodedUri(fromDate)},CostingVersionId='${getEncodedUri(costingVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostSheetNodeCalculationFactor
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostSheetNodeCalculationFactor updated 
+    remote isolated function updateCostSheetNodeCalculationFactors(string dataAreaId, string costSheetNodeName, string priceSiteId, string fromDate, string costingVersionId, string itemNumber, string productGroupId, CostSheetNodeCalculationFactor payload, UpdateCostSheetNodeCalculationFactorsHeaders headers = {}) returns CostSheetNodeCalculationFactor|error {
+        string resourcePath = string `/CostSheetNodeCalculationFactors(dataAreaId='${getEncodedUri(dataAreaId)}',CostSheetNodeName='${getEncodedUri(costSheetNodeName)}',PriceSiteId='${getEncodedUri(priceSiteId)}',FromDate=${getEncodedUri(fromDate)},CostingVersionId='${getEncodedUri(costingVersionId)}',ItemNumber='${getEncodedUri(itemNumber)}',ProductGroupId='${getEncodedUri(productGroupId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostStatementEntries
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostStatementEntry 
+    remote isolated function listCostStatementEntries(map<string|string[]> headers = {}, *ListCostStatementEntriesQueries queries) returns CostStatementEntriesCollection|error {
+        string resourcePath = string `/CostStatementEntries`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostStatementEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostStatementEntry created 
+    remote isolated function createCostStatementEntries(CostStatementEntry payload, map<string|string[]> headers = {}) returns CostStatementEntry|error {
+        string resourcePath = string `/CostStatementEntries`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostStatementEntry by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostStatementEntry record 
+    remote isolated function getCostStatementEntries(string dataAreaId, string costStatementType, string accountingDate, string levelOneCostStatementLineCategoryName, string levelTwoCostStatementLineCategoryName, string levelThreeCostStatementLineCategoryName, string operationalSiteId, string costResourceType, string costResourceId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, map<string|string[]> headers = {}, *GetCostStatementEntriesQueries queries) returns CostStatementEntry|error {
+        string resourcePath = string `/CostStatementEntries(dataAreaId='${getEncodedUri(dataAreaId)}',CostStatementType='${getEncodedUri(costStatementType)}',AccountingDate=${getEncodedUri(accountingDate)},LevelOneCostStatementLineCategoryName='${getEncodedUri(levelOneCostStatementLineCategoryName)}',LevelTwoCostStatementLineCategoryName='${getEncodedUri(levelTwoCostStatementLineCategoryName)}',LevelThreeCostStatementLineCategoryName='${getEncodedUri(levelThreeCostStatementLineCategoryName)}',OperationalSiteId='${getEncodedUri(operationalSiteId)}',CostResourceType='${getEncodedUri(costResourceType)}',CostResourceId='${getEncodedUri(costResourceId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostStatementEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostStatementEntry deleted 
+    remote isolated function deleteCostStatementEntries(string dataAreaId, string costStatementType, string accountingDate, string levelOneCostStatementLineCategoryName, string levelTwoCostStatementLineCategoryName, string levelThreeCostStatementLineCategoryName, string operationalSiteId, string costResourceType, string costResourceId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, DeleteCostStatementEntriesHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostStatementEntries(dataAreaId='${getEncodedUri(dataAreaId)}',CostStatementType='${getEncodedUri(costStatementType)}',AccountingDate=${getEncodedUri(accountingDate)},LevelOneCostStatementLineCategoryName='${getEncodedUri(levelOneCostStatementLineCategoryName)}',LevelTwoCostStatementLineCategoryName='${getEncodedUri(levelTwoCostStatementLineCategoryName)}',LevelThreeCostStatementLineCategoryName='${getEncodedUri(levelThreeCostStatementLineCategoryName)}',OperationalSiteId='${getEncodedUri(operationalSiteId)}',CostResourceType='${getEncodedUri(costResourceType)}',CostResourceId='${getEncodedUri(costResourceId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostStatementEntry
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostStatementEntry updated 
+    remote isolated function updateCostStatementEntries(string dataAreaId, string costStatementType, string accountingDate, string levelOneCostStatementLineCategoryName, string levelTwoCostStatementLineCategoryName, string levelThreeCostStatementLineCategoryName, string operationalSiteId, string costResourceType, string costResourceId, string productConfigurationId, string productColorId, string productSizeId, string productStyleId, CostStatementEntry payload, UpdateCostStatementEntriesHeaders headers = {}) returns CostStatementEntry|error {
+        string resourcePath = string `/CostStatementEntries(dataAreaId='${getEncodedUri(dataAreaId)}',CostStatementType='${getEncodedUri(costStatementType)}',AccountingDate=${getEncodedUri(accountingDate)},LevelOneCostStatementLineCategoryName='${getEncodedUri(levelOneCostStatementLineCategoryName)}',LevelTwoCostStatementLineCategoryName='${getEncodedUri(levelTwoCostStatementLineCategoryName)}',LevelThreeCostStatementLineCategoryName='${getEncodedUri(levelThreeCostStatementLineCategoryName)}',OperationalSiteId='${getEncodedUri(operationalSiteId)}',CostResourceType='${getEncodedUri(costResourceType)}',CostResourceId='${getEncodedUri(costResourceId)}',ProductConfigurationId='${getEncodedUri(productConfigurationId)}',ProductColorId='${getEncodedUri(productColorId)}',ProductSizeId='${getEncodedUri(productSizeId)}',ProductStyleId='${getEncodedUri(productStyleId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->patch(resourcePath, request, httpHeaders);
+    }
+
+    # List CostingVersions
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Collection of CostingVersion 
+    remote isolated function listCostingVersions(map<string|string[]> headers = {}, *ListCostingVersionsQueries queries) returns CostingVersionsCollection|error {
+        string resourcePath = string `/CostingVersions`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Create CostingVersion
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostingVersion created 
+    remote isolated function createCostingVersions(CostingVersion payload, map<string|string[]> headers = {}) returns CostingVersion|error {
+        string resourcePath = string `/CostingVersions`;
+        http:Request request = new;
+        json jsonBody = jsondata:toJson(payload);
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get CostingVersion by key
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - CostingVersion record 
+    remote isolated function getCostingVersions(string dataAreaId, string versionId, map<string|string[]> headers = {}, *GetCostingVersionsQueries queries) returns CostingVersion|error {
+        string resourcePath = string `/CostingVersions(dataAreaId='${getEncodedUri(dataAreaId)}',VersionId='${getEncodedUri(versionId)}')`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
+    # Delete CostingVersion
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostingVersion deleted 
+    remote isolated function deleteCostingVersions(string dataAreaId, string versionId, DeleteCostingVersionsHeaders headers = {}) returns error? {
+        string resourcePath = string `/CostingVersions(dataAreaId='${getEncodedUri(dataAreaId)}',VersionId='${getEncodedUri(versionId)}')`;
+        map<string|string[]> httpHeaders = http:getHeaderMap(headers);
+        return self.clientEp->delete(resourcePath, headers = httpHeaders);
+    }
+
+    # Update CostingVersion
+    #
+    # + headers - Headers to be sent with the request 
+    # + return - CostingVersion updated 
+    remote isolated function updateCostingVersions(string dataAreaId, string versionId, CostingVersion payload, UpdateCostingVersionsHeaders headers = {}) returns CostingVersion|error {
+        string resourcePath = string `/CostingVersions(dataAreaId='${getEncodedUri(dataAreaId)}',VersionId='${getEncodedUri(versionId)}')`;
         map<string|string[]> httpHeaders = http:getHeaderMap(headers);
         http:Request request = new;
         json jsonBody = jsondata:toJson(payload);

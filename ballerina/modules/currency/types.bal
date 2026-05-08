@@ -19,12 +19,8 @@
 
 import ballerina/http;
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+public type RTSLCurrencyAction "None"|"Zero"|"AmountCur"|"AmountMST"|"AmountMSTSecond"|"One";
+
 
 # Represents the Queries record for the operation: getCurrenciesNonISO
 public type GetCurrenciesNonISOQueries record {
@@ -38,6 +34,12 @@ public type GetCurrenciesNonISOQueries record {
 
 # Represents the Headers record for the operation: deleteCurrencies
 public type DeleteCurrenciesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCurrencyRuleGroups
+public type UpdateCurrencyRuleGroupsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -70,6 +72,26 @@ public type ListExchangeRatesNonISOQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateCurrencyParameters
+public type UpdateCurrencyParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CurrencyRuleGroup record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string CurrencyRuleGroupId?;
+    string RuleGroupId?;
+    string Description?;
+};
+
+# Represents the Headers record for the operation: deleteCurrencyRuleGroups
+public type DeleteCurrencyRuleGroupsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getExchangeRateCurrencyPairs
 public type GetExchangeRateCurrencyPairsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -81,6 +103,12 @@ public type GetExchangeRateCurrencyPairsQueries record {
 };
 
 public type GenderMaleFemale "Male"|"Female";
+
+# Represents the Headers record for the operation: deleteCurrencyParameters
+public type DeleteCurrencyParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 # Represents the Headers record for the operation: deleteCurrenciesNonISO
 public type DeleteCurrenciesNonISOHeaders record {
@@ -127,12 +155,57 @@ public type ListCurrencyISOCodesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getCurrencyIndexes
+public type GetCurrencyIndexesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CurrencyRuleGroupsCollection record {
+    *ODataCollection;
+    CurrencyRuleGroup[] value?;
+};
+
 public type CurrencyISOCode record {
     string \@odata\.etag?;
     string ISOCurrencyCode?;
     int:Signed32 ISOCurrencyCodeNum?;
     string ISOCurrencyName?;
 };
+
+# Represents the Queries record for the operation: listCurrencyIndexes
+public type ListCurrencyIndexesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CustVendAmountDiffPostingMode_RU "InvoicePosting"|"SpecialPosting";
 
 # Represents the Headers record for the operation: deleteExchangeRateCurrencyPairs
 public type DeleteExchangeRateCurrencyPairsHeaders record {
@@ -174,6 +247,12 @@ public type Currency record {
     int:Signed32 DecimalsCount_MX?;
 };
 
+# Represents the Headers record for the operation: updateCurrencyIndexes
+public type UpdateCurrencyIndexesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type CurrencyNonISO record {
     string \@odata\.etag?;
     string CurrencyCode?;
@@ -212,9 +291,42 @@ public type GetCurrencyISOCodesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listCurrencyRuleGroups
+public type ListCurrencyRuleGroupsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type CurrenciesNonISOCollection record {
     *ODataCollection;
     CurrencyNonISO[] value?;
+};
+
+public type CurrencyRulesCollection record {
+    *ODataCollection;
+    CurrencyRule[] value?;
 };
 
 # Represents the Headers record for the operation: updateExchangeRates
@@ -251,49 +363,62 @@ public type ListCurrenciesNonISOQueries record {
     string selectFields?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
+# Represents the Queries record for the operation: listCurrencyRules
+public type ListCurrencyRulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+
+# Represents the Queries record for the operation: listCurrencyRevaluationAccountsV2
+public type ListCurrencyRevaluationAccountsV2Queries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: listExchangeRates
 public type ListExchangeRatesQueries record {
@@ -323,7 +448,35 @@ public type ListExchangeRatesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteCurrencyIndexTrans
+public type DeleteCurrencyIndexTransHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CurrencyIndex record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RuleGroup?;
+    string InflationIndex?;
+    string Description?;
+};
+
+# Represents the Headers record for the operation: updateCurrencyRevaluationAccountsV2
+public type UpdateCurrencyRevaluationAccountsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateCurrencyRevaluationAccounts
+public type UpdateCurrencyRevaluationAccountsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
+
+public type ExchAdjTaxableType_W "No"|"Tax"|"Expense";
 
 # Represents the Queries record for the operation: getCurrencies
 public type GetCurrenciesQueries record {
@@ -343,9 +496,30 @@ public type UpdateExchangeRatesNonISOHeaders record {
 
 public type NoYes "No"|"Yes";
 
+public type CurrencyGainLossAccountType "RealizedGain"|"RealizedLoss"|"UnrealizedGain"|"UnrealizedLoss"|"ConversionGain_RU"|"ConversionLoss_RU"|"TaxAmountDiffGain_RU"|"TaxAmountDiffLoss_RU"|"TaxAmountDiffOffset_RU"|"FinancialGain"|"FinancialLoss";
+
 public type ExchangeRateTypesCollection record {
     *ODataCollection;
     ExchangeRateType[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCurrencyRevaluationAccounts
+public type DeleteCurrencyRevaluationAccountsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type CurrencyIndexTransCollection record {
+    *ODataCollection;
+    CurrencyIndexTrans[] value?;
+};
+
+public type CurrencyRevaluationAccount record {
+    string \@odata\.etag?;
+    string CurrencyCode?;
+    string LegalEntityId?;
+    CurrencyGainLossAccountType Posting?;
+    string MainAccountIdDisplayValue?;
 };
 
 public type ExchangeRate record {
@@ -388,6 +562,70 @@ public type ListExchangeRateCurrencyPairsQueries record {
     string selectFields?;
 };
 
+public type CurrencyParameters record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string Ledger_Name?;
+    string Currency?;
+    string VendRelizedLossTaxPostingAccount?;
+    string CustUnrealizedGainMainAccount?;
+    string VendRelizedGainTaxPostingAccount?;
+    string VendTaxDimensionPrepaymentsExpenseCode?;
+    string VendTaxDimensionConversionExpenseCode?;
+    string CustTaxDimensionExpenseCode?;
+    CustVendAmountDiffPostingMode_RU CustTaxPrimaryPostingLedger?;
+    string EmplUnrealizedGainMainAccount?;
+    string VendTaxDimensionPrepaymentsRevenueCode?;
+    string VendConversionGain?;
+    string CustRealizedLossTaxPostingAccount?;
+    NoYes AmountDifferenceInTaxAccounting?;
+    ExchAdjTaxableType_W CustRealizedLossSalesTaxes?;
+    NoYes TakeVATIntoAccountForExpenses?;
+    string VendUnrealizedLossMainAccount?;
+    string CustRealizedGainMainAccount?;
+    string GeneralTaxDimensionRevenueCode?;
+    string CustRealizedLossMainAccount?;
+    string CustRealizedGainTaxPostingAccount?;
+    string EmplTaxDimensionRevenueCode?;
+    string CustTaxDimensionRevenueCode?;
+    string EmplRealizedGain?;
+    string CustTaxDimensionPrepaymentsRevenueCode?;
+    string EmplTaxDimensionExpenseCode?;
+    string VendTaxDimensionRevenueCode?;
+    CustVendAmountDiffPostingMode_RU VendPrimaryPostingLedger?;
+    string VendUnrealizedGainMainAccount?;
+    string VendRealizedGainMainAccount?;
+    string VendTaxDImensionExpenseCode?;
+    string VendTaxDimensionConversionRevenueCode?;
+    string EmplUnrealizedLossMainAccount?;
+    string CustUnrealizedLossMainAccount?;
+    string VendRealizedLossMainAccount?;
+    CustVendAmountDiffPostingMode_RU CustPrimaryPostingLedger?;
+    string GeneralTaxDimensionExpenseCode?;
+    string CustTaxDimensionPrepaymentsExpenseCode?;
+    ExchAdjTaxableType_W CustRealizedGainSalesTaxes?;
+    CustVendAmountDiffPostingMode_RU VendTaxPrimaryPostingLedger?;
+    string VendConversionLoss?;
+    ExchAdjTaxableType_W VendRealizedGainSalesTaxes?;
+    string EmplRealizedLossMainAccount?;
+    ExchAdjTaxableType_W VendRealizedLossSalesTaxes?;
+};
+
+# Represents the Queries record for the operation: getCurrencyIndexTrans
+public type GetCurrencyIndexTransQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type CurrencyRevaluationAccountsCollection record {
+    *ODataCollection;
+    CurrencyRevaluationAccount[] value?;
+};
+
 # Represents the Headers record for the operation: deleteExchangeRateTypes
 public type DeleteExchangeRateTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -398,6 +636,21 @@ public type DeleteExchangeRateTypesHeaders record {
 public type UpdateCurrenciesNonISOHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type CurrencyRevaluationAccountV2 record {
+    string \@odata\.etag?;
+    string CurrencyCode?;
+    string LegalEntityId?;
+    CurrencyGainLossAccountType Posting?;
+    string MainAccountIdDisplayValue?;
+    string RealizedTaxMainAccountIdDisplayValue?;
+    ExchAdjTaxableType_W ExchAdjTaxableType?;
+};
+
+public type CurrencyRevaluationAccountsV2Collection record {
+    *ODataCollection;
+    CurrencyRevaluationAccountV2[] value?;
 };
 
 public type ExchangeRateType record {
@@ -439,6 +692,17 @@ public type ListCurrenciesQueries record {
     string selectFields?;
 };
 
+public type CurrencyParametersCollection record {
+    *ODataCollection;
+    CurrencyParameters[] value?;
+};
+
+# Represents the Headers record for the operation: deleteCurrencyRules
+public type DeleteCurrencyRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type ExchangeRateDisplayFactor "One"|"Ten"|"Hundred"|"Thousand"|"TenThousand";
 
 # Represents the Headers record for the operation: updateExchangeRateTypes
@@ -453,6 +717,15 @@ public type DeleteExchangeRatesHeaders record {
     string If\-Match?;
 };
 
+public type CurrencyIndexTrans record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RuleGroup?;
+    string InflationIndex?;
+    string FromDate?;
+    decimal ExchangeRate?;
+};
+
 public type ExchangeRateNonISO record {
     string \@odata\.etag?;
     string RateTypeName?;
@@ -463,6 +736,11 @@ public type ExchangeRateNonISO record {
     string EndDate?;
     ExchangeRateDisplayFactor ConversionFactor?;
     string RateTypeDescription?;
+};
+
+public type CurrencyIndexesCollection record {
+    *ODataCollection;
+    CurrencyIndex[] value?;
 };
 
 # Represents the Queries record for the operation: listExchangeRateTypes
@@ -509,11 +787,105 @@ public type GetExchangeRatesNonISOQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getCurrencyRevaluationAccountsV2
+public type GetCurrencyRevaluationAccountsV2Queries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Standard OData collection envelope.
 public type ODataCollection record {
     string \@odata\.context?;
     int \@odata\.count?;
     string \@odata\.nextLink?;
+};
+
+# Represents the Headers record for the operation: deleteCurrencyIndexes
+public type DeleteCurrencyIndexesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listCurrencyParameters
+public type ListCurrencyParametersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCurrencyIndexTrans
+public type UpdateCurrencyIndexTransHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listCurrencyRevaluationAccounts
+public type ListCurrencyRevaluationAccountsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getCurrencyRevaluationAccounts
+public type GetCurrencyRevaluationAccountsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateCurrencyRules
+public type UpdateCurrencyRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type ExchangeRateCurrencyPair record {
@@ -530,6 +902,16 @@ public type UpdateCurrenciesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getCurrencyParameters
+public type GetCurrencyParametersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ExchangeRatesCollection record {
     *ODataCollection;
     ExchangeRate[] value?;
@@ -541,9 +923,80 @@ public type DeleteCurrencyISOCodesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getCurrencyRules
+public type GetCurrencyRulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type RTSLCurrencyRate "NoChange"|"Indexes"|"ExchRates";
+
 public type ExchangeRateCurrencyPairsCollection record {
     *ODataCollection;
     ExchangeRateCurrencyPair[] value?;
+};
+
+public type CurrencyRule record {
+    string \@odata\.etag?;
+    string dataAreaId?;
+    string RuleGroup?;
+    string CurrencyRuleGroup?;
+    string Currency?;
+    RTSLCurrencyAction MSTAction?;
+    string CurrencyIndexId?;
+    RTSLCurrencyAction CurrencyAction?;
+    RTSLCurrencyRate RateMethod?;
+    RTSLCurrencyAction SecondaryAction?;
+    string MSTIndexId?;
+    string SecondaryIndexId?;
+};
+
+# Represents the Queries record for the operation: listCurrencyIndexTrans
+public type ListCurrencyIndexTransQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteCurrencyRevaluationAccountsV2
+public type DeleteCurrencyRevaluationAccountsV2Headers record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getCurrencyRuleGroups
+public type GetCurrencyRuleGroupsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateCurrencyISOCodes

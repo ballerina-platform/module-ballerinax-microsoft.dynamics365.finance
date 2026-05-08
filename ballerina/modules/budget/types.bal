@@ -19,6 +19,24 @@
 
 import ballerina/http;
 
+# Represents the Headers record for the operation: deleteBudgetPlanAlternateLayouts
+public type DeleteBudgetPlanAlternateLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanHeaders
+public type DeleteBudgetPlanHeadersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanJustifications
+public type UpdateBudgetPlanJustificationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getBudgetPlanProjects
 public type GetBudgetPlanProjectsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -32,6 +50,16 @@ public type GetBudgetPlanProjectsQueries record {
 public type BudgetControlRuleCriteriaCollection record {
     *ODataCollection;
     BudgetControlRuleCriterion[] value?;
+};
+
+public type BudgetPlanAllocateType "AllocateByPeriod"|"AllocateByDimension"|"AllocateByChildren"|"AllocateByParent"|"AllocateByLedgerRule"|"AllocateByAncestor";
+
+public type BudgetPlanProcessAdministration record {
+    string \@odata\.etag?;
+    string Process?;
+    string PartyNumber?;
+    string PartyName?;
+    string Workflow?;
 };
 
 public type BudgetControlDimensionAttribute record {
@@ -152,49 +180,12 @@ public type BudgetSubModel record {
     string Submodel?;
 };
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
-@display {label: "Connection Config"}
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig|http:BearerTokenConfig auth;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
+# Represents the Headers record for the operation: updateBudgetPlanProcesses
+public type UpdateBudgetPlanProcessesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 
 public type BudgetRegisterEntry record {
     string \@odata\.etag?;
@@ -234,6 +225,12 @@ public type BudgetPlanColumnRule record {
     BudgetPlanExpressionOperator Operator?;
 };
 
+# Represents the Headers record for the operation: updateBudgetPlanStageAllocations
+public type UpdateBudgetPlanStageAllocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updatePositionForecastsV2
 public type UpdatePositionForecastsV2Headers record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -269,16 +266,6 @@ public type ListBudgetRegisterEntryLinesQueries record {
     # When true, the response includes `@odata.count`.
     @http:Query {name: "$count"}
     boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
-};
-
-# Represents the Queries record for the operation: getTransactionPostingDefinitionBudgetReservations
-public type GetTransactionPostingDefinitionBudgetReservationsQueries record {
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -326,6 +313,16 @@ public type BudgetCyclesCollection record {
 
 public type BudgetCheckRevenueBalanceOption "None"|"Warn"|"PreventUpdate";
 
+# Represents the Queries record for the operation: getBudgetPlanScenarios
+public type GetBudgetPlanScenariosQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getBudgetControlOverBudgetPermissions
 public type GetBudgetControlOverBudgetPermissionsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -336,10 +333,25 @@ public type GetBudgetControlOverBudgetPermissionsQueries record {
     string selectFields?;
 };
 
+public type BudgetPlansCollection record {
+    *ODataCollection;
+    BudgetPlan[] value?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetRegisterEntryLines
 public type DeleteBudgetRegisterEntryLinesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanAlternateLayouts
+public type GetBudgetPlanAlternateLayoutsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type BudgetControlOverBudgetPermission record {
@@ -429,6 +441,11 @@ public type ListBudgetControlRuleOverBudgetPermissionsQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanProcessAdministrationsCollection record {
+    *ODataCollection;
+    BudgetPlanProcessAdministration[] value?;
+};
+
 public type BudgetParameters record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -450,6 +467,11 @@ public type BudgetParameters record {
 public type BudgetControlCycleModelsCollection record {
     *ODataCollection;
     BudgetControlCycleModel[] value?;
+};
+
+public type BudgetPlanAllocationSchedulesCollection record {
+    *ODataCollection;
+    BudgetPlanAllocationSchedule[] value?;
 };
 
 # Represents the Headers record for the operation: updateBudgetPlanWorksheets
@@ -587,6 +609,8 @@ public type BudgetReservationType record {
     BudgetReservationRelievingDocument_PSN RelievingDocument?;
 };
 
+public type BudgetPlanEstimateType "Monetary"|"Quantity";
+
 public type BudgetControlMessageLevel record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -642,6 +666,25 @@ public type BudgetControlGroup record {
     string ParentMemberName?;
 };
 
+public type BudgetPlanStageRulesCollection record {
+    *ODataCollection;
+    BudgetPlanStageRule[] value?;
+};
+
+public type BudgetPlanAlternateLayout record {
+    string \@odata\.etag?;
+    string BudgetPlanLayout?;
+    string BudgetPlanningProcess?;
+    string BudgetPlanningWorkflow?;
+    string BudgetPlanningStage?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanProposedAssets
+public type UpdateBudgetPlanProposedAssetsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listBudgetControlMessageLevels
 public type ListBudgetControlMessageLevelsQueries record {
     # Number of records to skip.
@@ -669,6 +712,8 @@ public type ListBudgetControlMessageLevelsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type BudgetPlanningApprovalProcessState "Draft"|"InProcess"|"Completed";
 
 public type BudgetTrackingWorkspaceParametersCollection record {
     *ODataCollection;
@@ -771,8 +816,39 @@ public type GetBudgetReservationTypesQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanProcessesCollection record {
+    *ODataCollection;
+    BudgetPlanProcess[] value?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetPlanParameters
 public type DeleteBudgetPlanParametersHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanProcesses
+public type GetBudgetPlanProcessesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanHeaders
+public type GetBudgetPlanHeadersQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanStages
+public type UpdateBudgetPlanStagesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -799,6 +875,16 @@ public type UpdateBudgetControlRuleOverBudgetPermissionsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: getBudgetPlanStageRules
+public type GetBudgetPlanStageRulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateBudgetRegisterEntryHeaders
 public type UpdateBudgetRegisterEntryHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -815,8 +901,42 @@ public type GetBudgetCyclesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanStageAllocations
+public type ListBudgetPlanStageAllocationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateBudgetControlConfigurations
 public type UpdateBudgetControlConfigurationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanScenarios
+public type UpdateBudgetPlanScenariosHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -885,15 +1005,48 @@ public type ListBudgetRegisterEntryHeadersQueries record {
     string selectFields?;
 };
 
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-|};
+public type BudgetPlanPrioritiesCollection record {
+    *ODataCollection;
+    BudgetPlanPriority[] value?;
+};
+
 
 # Represents the Queries record for the operation: listBudgetControlDocumentsAndJournals
 public type ListBudgetControlDocumentsAndJournalsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanStageRules
+public type DeleteBudgetPlanStageRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlans
+public type ListBudgetPlansQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1008,7 +1161,63 @@ public type ListBudgetControlRulesQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanHeaders
+public type ListBudgetPlanHeadersQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type ProjStatusRule "AllowUse"|"CreateForecast"|"CreateQuotation"|"CreateEstimate"|"CreateItemTask"|"CreateJournal"|"CreateInvoiceProposal"|"ReverseEliminate"|"CreateBeginningBalance"|"SubBillCreateBillingSchedule";
+
+# Represents the Queries record for the operation: listBudgetPlanProposedAssets
+public type ListBudgetPlanProposedAssetsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
 
 # Represents the Queries record for the operation: getBudgetCycleTimeSpans
 public type GetBudgetCycleTimeSpansQueries record {
@@ -1064,6 +1273,12 @@ public type BudgetControlRuleCriterion record {
     string InUseBy?;
 };
 
+public type BudgetPlanPriorityConstraint record {
+    string \@odata\.etag?;
+    string Process?;
+    string Priority?;
+};
+
 public type BudgetClass "Expense"|"Revenue";
 
 # Represents the Headers record for the operation: deleteBudgetControlRules
@@ -1074,6 +1289,12 @@ public type DeleteBudgetControlRulesHeaders record {
 
 # Represents the Headers record for the operation: deleteBudgetControlDocumentsAndJournals
 public type DeleteBudgetControlDocumentsAndJournalsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanJustifications
+public type DeleteBudgetPlanJustificationsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1266,6 +1487,34 @@ public type GetBudgetControlDocumentsAndJournalsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanProcesses
+public type ListBudgetPlanProcessesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetTrackingWorkspaceParameters
 public type DeleteBudgetTrackingWorkspaceParametersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1281,6 +1530,12 @@ public type UpdateBudgetPlanLayoutsHeaders record {
 public type BudgetControlConfigurationActivationsCollection record {
     *ODataCollection;
     BudgetControlConfigurationActivation[] value?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanAllocationSchedules
+public type DeleteBudgetPlanAllocationSchedulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: updateBudgetPlanColumnRules
@@ -1311,12 +1566,66 @@ public type GetBudgetPlanAssetsQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: updateBudgetPlanAlternateLayouts
+public type UpdateBudgetPlanAlternateLayoutsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanProposedAssets
+public type GetBudgetPlanProposedAssetsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type BudgetParametersCollection record {
     *ODataCollection;
     BudgetParameters[] value?;
 };
 
+# Represents the Queries record for the operation: getBudgetPlanAllocationSchedules
+public type GetBudgetPlanAllocationSchedulesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type BudgetPlanExpressionOperator "Equals"|"Between"|"LessThan"|"LessThanEqual"|"GreaterThan"|"GreaterThanEqual";
+
+# Represents the Headers record for the operation: updateBudgetPlanAllocationSchedules
+public type UpdateBudgetPlanAllocationSchedulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type BudgetPlanHeader record {
+    string \@odata\.etag?;
+    string DocumentNumber?;
+    BudgetPlanWorkflowStatus WorkflowStatus?;
+    string ParentBudgetPlan?;
+    string Layout?;
+    string Currency?;
+    BudgetPlanStatus DocumentStatus?;
+    string Stage?;
+    string PreparerPersonnelNumber?;
+    string ResponsibilityCenterPartyNumber?;
+    NoYes IsHistorical?;
+    string InUseBy?;
+    string BudgetingOrganizationName?;
+    string PersonnelName?;
+    string Priority?;
+    string Name?;
+    string Process?;
+    int:Signed32 Rank?;
+    string UserGroup?;
+};
 
 # Represents the Queries record for the operation: getBudgetPlanLayouts
 public type GetBudgetPlanLayoutsQueries record {
@@ -1327,6 +1636,8 @@ public type GetBudgetPlanLayoutsQueries record {
     @http:Query {name: "$select"}
     string selectFields?;
 };
+
+public type BudgetPlanWorkflowStatus "NotSubmitted"|"InReview"|"Approved"|"Rejected"|"Canceled"|"PendingRejection";
 
 # Represents the Queries record for the operation: listBudgetAllocationTerms
 public type ListBudgetAllocationTermsQueries record {
@@ -1354,6 +1665,12 @@ public type ListBudgetAllocationTermsQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanPriorities
+public type DeleteBudgetPlanPrioritiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Queries record for the operation: listPositionForecastsV2
@@ -1384,6 +1701,11 @@ public type ListPositionForecastsV2Queries record {
     string selectFields?;
 };
 
+public type BudgetPlanProposedAssetsCollection record {
+    *ODataCollection;
+    BudgetPlanProposedAsset[] value?;
+};
+
 # Represents the Queries record for the operation: getBudgetControlRuleCriteria
 public type GetBudgetControlRuleCriteriaQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -1394,6 +1716,11 @@ public type GetBudgetControlRuleCriteriaQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanAlternateLayoutsCollection record {
+    *ODataCollection;
+    BudgetPlanAlternateLayout[] value?;
+};
+
 public type BudgetModel record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1401,6 +1728,16 @@ public type BudgetModel record {
     string Name?;
     NoYes Stopped?;
     NoYes CashFlowForecasts?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlans
+public type GetBudgetPlansQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listBudgetCodes
@@ -1467,24 +1804,48 @@ public type UpdateBudgetRegisterEntriesHeaders record {
 
 public type HcmBudgetPositionOverride "AllowOverride"|"DisallowOverride";
 
+# Represents the Queries record for the operation: listBudgetPlanScenarios
+public type ListBudgetPlanScenariosQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 public type BudgetControlDimensionAttributesCollection record {
     *ODataCollection;
     BudgetControlDimensionAttribute[] value?;
+};
+
+public type BudgetPlanScenariosCollection record {
+    *ODataCollection;
+    BudgetPlanScenario[] value?;
 };
 
 # Represents the Headers record for the operation: deleteBudgetReservationTypes
 public type DeleteBudgetReservationTypesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
-};
-
-public type TransactionPostingDefinitionBudgetReservation record {
-    string \@odata\.etag?;
-    string dataAreaId?;
-    string BudgetReservationTypeName?;
-    BudgetReservationJournalizingType_PSN BudgetReservationJournalizingType?;
-    TableAll BudgetReservationTypeCode?;
-    string PostingDefinition?;
 };
 
 # Represents the Queries record for the operation: listBudgetCycleTimeSpans
@@ -1515,11 +1876,45 @@ public type ListBudgetCycleTimeSpansQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlanStages
+public type DeleteBudgetPlanStagesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getBudgetPlanWorkflowStages
 public type GetBudgetPlanWorkflowStagesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlanProcessAdministrations
+public type ListBudgetPlanProcessAdministrationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -1538,6 +1933,11 @@ public type UpdateBudgetSubModelsHeaders record {
 };
 
 public type BudgetCheckResult "NoCheck"|"Passed"|"PassedWithWarnings"|"Failed";
+
+public type BudgetPlanHeadersCollection record {
+    *ODataCollection;
+    BudgetPlanHeader[] value?;
+};
 
 # Represents the Queries record for the operation: listBudgetTrackingWorkspaceParameters
 public type ListBudgetTrackingWorkspaceParametersQueries record {
@@ -1583,32 +1983,10 @@ public type GetBudgetPlanColumnsQueries record {
     string selectFields?;
 };
 
-# Represents the Queries record for the operation: listTransactionPostingDefinitionBudgetReservations
-public type ListTransactionPostingDefinitionBudgetReservationsQueries record {
-    # Number of records to skip.
-    @http:Query {name: "$skip"}
-    int:Signed32 skip?;
-    # Maximum number of records to return.
-    @http:Query {name: "$top"}
-    int:Signed32 top?;
-    # OData `$filter` expression.
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData `$orderby` expression.
-    @http:Query {name: "$orderby"}
-    string orderBy?;
-    # OData `$expand`: comma-separated navigation properties.
-    @http:Query {name: "$expand"}
-    string expand?;
-    # Query across legal entities instead of the caller's default.
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes `@odata.count`.
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData `$select`: comma-separated list of properties to return.
-    @http:Query {name: "$select"}
-    string selectFields?;
+# Represents the Headers record for the operation: updateBudgetPlanStageRules
+public type UpdateBudgetPlanStageRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deleteBudgetAllocationTerms
@@ -1637,8 +2015,19 @@ public type BudgetControlGroupOverBudgetPermissionsCollection record {
     BudgetControlGroupOverBudgetPermission[] value?;
 };
 
+public type BudgetPlanProposedProjectsCollection record {
+    *ODataCollection;
+    BudgetPlanProposedProject[] value?;
+};
+
 # Represents the Headers record for the operation: updateBudgetControlOverBudgetPermissions
 public type UpdateBudgetControlOverBudgetPermissionsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanHeaders
+public type UpdateBudgetPlanHeadersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -1695,6 +2084,12 @@ public type BudgetCycle record {
     string EndDate?;
 };
 
+public type BudgetPlanProposedAsset record {
+    string \@odata\.etag?;
+    string Name?;
+    string Description?;
+};
+
 # Represents the Queries record for the operation: listBudgetPlanLayouts
 public type ListBudgetPlanLayoutsQueries record {
     # Number of records to skip.
@@ -1733,8 +2128,42 @@ public type GetBudgetControlRulesQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanPriority record {
+    string \@odata\.etag?;
+    string Name?;
+    string Description?;
+};
+
 # Represents the Queries record for the operation: listBudgetPlanWorkflowStages
 public type ListBudgetPlanWorkflowStagesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlanProposedProjects
+public type ListBudgetPlanProposedProjectsQueries record {
     # Number of records to skip.
     @http:Query {name: "$skip"}
     int:Signed32 skip?;
@@ -1767,9 +2196,14 @@ public type DeleteBudgetPlanColumnsHeaders record {
     string If\-Match?;
 };
 
-public type TransactionPostingDefinitionBudgetReservationsCollection record {
-    *ODataCollection;
-    TransactionPostingDefinitionBudgetReservation[] value?;
+# Represents the Queries record for the operation: getBudgetPlanStageAllocations
+public type GetBudgetPlanStageAllocationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: updateBudgetControlGroups
@@ -1824,6 +2258,12 @@ public type DeleteBudgetCyclesHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlanStageAllocations
+public type DeleteBudgetPlanStageAllocationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetParameters
 public type DeleteBudgetParametersHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1868,6 +2308,16 @@ public type ListBudgetPlanParametersQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: getBudgetPlanStages
+public type GetBudgetPlanStagesQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateBudgetCycleTimeSpans
 public type UpdateBudgetCycleTimeSpansHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -1880,7 +2330,19 @@ public type UpdateBudgetParametersHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlanProcesses
+public type DeleteBudgetPlanProcessesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type BudgetPlanningSecurityModel "Position"|"SecurityRole";
+
+# Represents the Headers record for the operation: updateBudgetPlanPriorities
+public type UpdateBudgetPlanPrioritiesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
 
 public type PositionForecast record {
     string \@odata\.etag?;
@@ -1926,6 +2388,23 @@ public type DeleteForecastPositionCostElementsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Headers record for the operation: updateBudgetPlanPriorityConstraints
+public type UpdateBudgetPlanPriorityConstraintsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+public type BudgetPlanStageRule record {
+    string \@odata\.etag?;
+    string Process?;
+    string Workflow?;
+    string Stage?;
+    NoYes CanAddBudgetPlanLines?;
+    string Layout?;
+    NoYes CanAddChildBudgetPlans?;
+    NoYes CanModifyBudgetPlanLines?;
+};
+
 public type BudgetAllocationTerm record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1944,6 +2423,12 @@ public type BudgetCycleTimeSpan record {
     BudgetCycleLengthOption BudgetCycleLengthOption?;
 };
 
+# Represents the Headers record for the operation: updateBudgetPlans
+public type UpdateBudgetPlansHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 public type BudgetPlanAssetLookupEntity record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -1959,6 +2444,12 @@ public type GetBudgetPlanProcessMilestonesQueries record {
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanProposedProjects
+public type UpdateBudgetPlanProposedProjectsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 # Represents the Headers record for the operation: deletePositionForecasts
@@ -2019,6 +2510,34 @@ public type BudgetAllocationTermsCollection record {
     BudgetAllocationTerm[] value?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanStages
+public type ListBudgetPlanStagesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetPlanWorkflowStages
 public type DeleteBudgetPlanWorkflowStagesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2054,6 +2573,12 @@ public type ForecastPositionCostElement record {
 };
 
 public type HcmPositionForecastBudgetAcctLineSource "OriginalAssignment"|"Manual"|"RateChange"|"StepIncrease";
+
+public type BudgetPlanStage record {
+    string \@odata\.etag?;
+    string Name?;
+    string Description?;
+};
 
 # Represents the Headers record for the operation: updateBudgetControlDocumentsAndJournals
 public type UpdateBudgetControlDocumentsAndJournalsHeaders record {
@@ -2100,6 +2625,40 @@ public type BudgetPlanProjectLookup record {
     string ProjectId?;
     ProjStatusRule ProjectStatusRule?;
     string Name?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlanStageRules
+public type ListBudgetPlanStageRulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanProcessAdministrations
+public type DeleteBudgetPlanProcessAdministrationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
 };
 
 public type BudgetRegisterEntryHeader record {
@@ -2187,6 +2746,40 @@ public type ListBudgetControlGroupOverBudgetPermissionsQueries record {
     string selectFields?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanPriorityConstraints
+public type ListBudgetPlanPriorityConstraintsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Headers record for the operation: updateBudgetPlanProcessAdministrations
+public type UpdateBudgetPlanProcessAdministrationsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: listBudgetActivities
 public type ListBudgetActivitiesQueries record {
     # Number of records to skip.
@@ -2219,6 +2812,17 @@ public type ListBudgetActivitiesQueries record {
 public type UpdateBudgetCodesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type BudgetPlanPriorityConstraintsCollection record {
+    *ODataCollection;
+    BudgetPlanPriorityConstraint[] value?;
+};
+
+public type BudgetPlanProposedProject record {
+    string \@odata\.etag?;
+    string Name?;
+    string Description?;
 };
 
 # Represents the Queries record for the operation: getBudgetControlConfigurations
@@ -2285,6 +2889,12 @@ public type GetBudgetControlCycleModelsQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlans
+public type DeleteBudgetPlansHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Standard OData collection envelope.
 public type ODataCollection record {
     string \@odata\.context?;
@@ -2297,8 +2907,6 @@ public type UpdateBudgetDimensionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
-
-public type TableAll "All"|"Table";
 
 public type BudgetPlanAssetsCollection record {
     *ODataCollection;
@@ -2319,8 +2927,6 @@ public type BudgetControlGroupsCollection record {
 public type BudgetPlanColumnPeriodLength "All"|"Period"|"Month"|"Quarter"|"Year";
 
 public type HcmBudgetCostElementType "Earning"|"Benefit"|"Tax"|"Other";
-
-public type BudgetReservationJournalizingType_PSN "BudgetReservation"|"BudgetReservationYearEndProcess";
 
 # Represents the Queries record for the operation: getBudgetDimensions
 public type GetBudgetDimensionsQueries record {
@@ -2371,6 +2977,16 @@ public type DeletePositionForecastsV2Headers record {
 public type BudgetPlanColumnsCollection record {
     *ODataCollection;
     BudgetPlanColumn[] value?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanPriorityConstraints
+public type GetBudgetPlanPriorityConstraintsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Queries record for the operation: listBudgetControlOverBudgetPermissions
@@ -2429,6 +3045,76 @@ public type DeleteBudgetSubModelsHeaders record {
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanJustifications
+public type ListBudgetPlanJustificationsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type BudgetPlan record {
+    string \@odata\.etag?;
+    string DocumentNumber?;
+    string Scenario?;
+    string LineReferenceId?;
+    NoYes IsRecurring?;
+    string Priority?;
+    string PreparerPersonnelNumber?;
+    string PersonnelName?;
+    string Name?;
+    string ProposedProject?;
+    string Currency?;
+    string BudgetingOrganizationName?;
+    string Stage?;
+    string Process?;
+    string UserGroup?;
+    string LedgerAccountAccountStructure?;
+    string AssetId?;
+    string Comment?;
+    decimal TransactionCurrencyAmount?;
+    BudgetPlanStatus DocumentStatus?;
+    BudgetPlanWorkflowStatus WorkflowStatus?;
+    string PositionId?;
+    string TransactionCurrencyCode?;
+    decimal TransactionUnitPrice?;
+    string EffectiveDate?;
+    string LedgerAccountDisplayValue?;
+    string ResponsibilityCenterPartyNumber?;
+    string ProposedAsset?;
+    string ParentBudgetPlan?;
+    decimal UnitPrice?;
+    int:Signed32 Rank?;
+    string Layout?;
+    string SourceDataAreaId?;
+    BudgetPlanEstimateType EstimateType?;
+    string ProjectId?;
+    NoYes IsHistorical?;
+    NoYes IsNewRequest?;
+    BudgetClass BudgetClass?;
+    decimal Quantity?;
+};
+
 # Represents the Queries record for the operation: getBudgetPlanWorksheets
 public type GetBudgetPlanWorksheetsQueries record {
     # OData `$expand`: comma-separated navigation properties.
@@ -2477,16 +3163,67 @@ public type BudgetControlConfiguration record {
     string DefaultBudgetCycleTimeSpanName?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlanProposedAssets
+public type DeleteBudgetPlanProposedAssetsHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Headers record for the operation: updateBudgetPlanWorkflowStages
 public type UpdateBudgetPlanWorkflowStagesHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
 
+# Represents the Queries record for the operation: listBudgetPlanAlternateLayouts
+public type ListBudgetPlanAlternateLayoutsQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Headers record for the operation: updateBudgetControlCycleModels
 public type UpdateBudgetControlCycleModelsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+public type BudgetPlanJustification record {
+    string \@odata\.etag?;
+    string EffectiveDate?;
+    string DocumentNumber?;
+    string ScenarioName?;
+    string BudgetPlanName?;
+    decimal AccountingCurrencyRevenueAmount?;
+    decimal TransactionCurrencyRevenueAmount?;
+    decimal AccountingCurrencyExpenseAmount?;
+    string Comment?;
+    string ResponsibilityCenter?;
+    decimal TransactionCurrencyExpenseAmount?;
+    decimal Quantity?;
+    string AccountDisplayValue?;
+    string BudgetPlanPreparer?;
 };
 
 public type BudgetDimensionsCollection record {
@@ -2569,6 +3306,11 @@ public type ListBudgetPlanWorksheetsQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanJustificationsCollection record {
+    *ODataCollection;
+    BudgetPlanJustification[] value?;
+};
+
 # Represents the Headers record for the operation: deleteBudgetPlanLayouts
 public type DeleteBudgetPlanLayoutsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2649,6 +3391,16 @@ public type DeleteBudgetCycleTimeSpansHeaders record {
 public type BudgetPlanParametersCollection record {
     *ODataCollection;
     BudgetPlanParameter[] value?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanJustifications
+public type GetBudgetPlanJustificationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 public type BudgetControlConfigurationStatus "Draft"|"Active";
@@ -2782,8 +3534,40 @@ public type GetBudgetControlDimensionAttributesQueries record {
     string selectFields?;
 };
 
+# Represents the Headers record for the operation: deleteBudgetPlanScenarios
+public type DeleteBudgetPlanScenariosHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
 # Represents the Queries record for the operation: getBudgetControlGroupOverBudgetPermissions
 public type GetBudgetControlGroupOverBudgetPermissionsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+public type BudgetPlanAllocationSchedule record {
+    string \@odata\.etag?;
+    string AllocationSchedule?;
+    decimal Factor?;
+    string DestinationScenario?;
+    string AllocationRule?;
+    string SourceScenario?;
+    string BudgetAllocationTerm?;
+    BudgetPlanAllocateType AllocationMethod?;
+    string BasisScenario?;
+    string PeriodKey?;
+    NoYes UseSourceEffectiveDate?;
+    NoYes AppendLines?;
+    string Ledger?;
+};
+
+# Represents the Queries record for the operation: getBudgetPlanPriorities
+public type GetBudgetPlanPrioritiesQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
@@ -2869,13 +3653,13 @@ public type DeleteBudgetPlansActivityHeaders record {
     string If\-Match?;
 };
 
-public type BudgetTransactionWorkflowStatus "None"|"NotSubmitted"|"Submitted"|"Approved"|"Rejected";
-
-# Represents the Headers record for the operation: deleteTransactionPostingDefinitionBudgetReservations
-public type DeleteTransactionPostingDefinitionBudgetReservationsHeaders record {
+# Represents the Headers record for the operation: deleteBudgetPlanProposedProjects
+public type DeleteBudgetPlanProposedProjectsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
+
+public type BudgetTransactionWorkflowStatus "None"|"NotSubmitted"|"Submitted"|"Approved"|"Rejected";
 
 public type BudgetPlanLayout record {
     string \@odata\.etag?;
@@ -2888,11 +3672,49 @@ public type BudgetPlanLayout record {
     NoYes InWorksheet?;
 };
 
+# Represents the Queries record for the operation: getBudgetPlanProcessAdministrations
+public type GetBudgetPlanProcessAdministrationsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
 # Represents the Queries record for the operation: getBudgetModels
 public type GetBudgetModelsQueries record {
     # OData `$expand`: comma-separated navigation properties.
     @http:Query {name: "$expand"}
     string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlanAllocationSchedules
+public type ListBudgetPlanAllocationSchedulesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData `$select`: comma-separated list of properties to return.
     @http:Query {name: "$select"}
     string selectFields?;
@@ -2964,6 +3786,11 @@ public type UpdateBudgetReservationTypesHeaders record {
     string If\-Match?;
 };
 
+public type BudgetPlanStagesCollection record {
+    *ODataCollection;
+    BudgetPlanStage[] value?;
+};
+
 # Represents the Headers record for the operation: updateBudgetModels
 public type UpdateBudgetModelsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -2982,8 +3809,16 @@ public type DeleteBudgetModelsHeaders record {
     string If\-Match?;
 };
 
+public type UnitOfMeasureClass "Quantity"|"Length"|"Area"|"LiquidVolume"|"DryVolume"|"Mass"|"Time"|"Monetary"|"Temperature"|"InformationEntropy"|"Luminance"|"Speed"|"Acceleration"|"Angle"|"SolidAngle"|"Force"|"Pressure"|"Torque"|"Energy"|"Power"|"AngularMomentum"|"Capacitance"|"Density"|"ElectricCurrent"|"MagneticField"|"MagneticFlux"|"ElectricCharge"|"ElectricDipole"|"ElectricPotential"|"ElectricalResistance"|"Inductance"|"DynamicViscosity"|"KinematicViscosity"|"Radioactivity"|"Undefined";
+
 # Represents the Headers record for the operation: deleteBudgetAllowTransferRules
 public type DeleteBudgetAllowTransferRulesHeaders record {
+    # Optimistic concurrency token (matches `@odata.etag`).
+    string If\-Match?;
+};
+
+# Represents the Headers record for the operation: deleteBudgetPlanPriorityConstraints
+public type DeleteBudgetPlanPriorityConstraintsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
 };
@@ -3026,10 +3861,14 @@ public type GetBudgetControlGroupCriteriaQueries record {
     string selectFields?;
 };
 
-# Represents the Headers record for the operation: updateTransactionPostingDefinitionBudgetReservations
-public type UpdateTransactionPostingDefinitionBudgetReservationsHeaders record {
-    # Optimistic concurrency token (matches `@odata.etag`).
-    string If\-Match?;
+# Represents the Queries record for the operation: getBudgetPlanProposedProjects
+public type GetBudgetPlanProposedProjectsQueries record {
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteBudgetControlConfigurationActivations
@@ -3044,6 +3883,14 @@ public type UpdateBudgetPlanAssetsHeaders record {
     string If\-Match?;
 };
 
+public type BudgetPlanStageAllocation record {
+    string \@odata\.etag?;
+    string Workflow?;
+    string Stage?;
+    string AllocationSchedule?;
+    int:Signed32 Ordinal?;
+};
+
 public type BudgetPlanWorkflowStage record {
     string \@odata\.etag?;
     string WorkflowName?;
@@ -3054,6 +3901,19 @@ public type BudgetPlanWorkflowStage record {
     NoYes RestrictDeleteBudgetPlan?;
     string PriorBudgetPlanningStageName?;
     NoYes IsParentBudgetPlanRequired?;
+};
+
+public type BudgetPlanProcess record {
+    string \@odata\.etag?;
+    string Name?;
+    string Description?;
+    BudgetPlanningApprovalProcessState ApprovalProcessState?;
+    string OrganizationtHierarchyType?;
+    string BudgetCycleTimeSpan?;
+    string AccountStructure?;
+    string FiscalCalendarId?;
+    string Ledger?;
+    string BudgetCycle?;
 };
 
 public type BudgetControlGroupOverBudgetPermission record {
@@ -3096,6 +3956,14 @@ public type ListBudgetModelsQueries record {
     string selectFields?;
 };
 
+public type BudgetPlanScenario record {
+    string \@odata\.etag?;
+    string Name?;
+    string UnitOfMeasureSymbol?;
+    string Description?;
+    UnitOfMeasureClass UnitOfMeasureClass?;
+};
+
 public type BudgetAllowTransferRule record {
     string \@odata\.etag?;
     string dataAreaId?;
@@ -3112,6 +3980,34 @@ public type BudgetAllowTransferRule record {
 public type DeleteBudgetControlOverBudgetPermissionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
     string If\-Match?;
+};
+
+# Represents the Queries record for the operation: listBudgetPlanPriorities
+public type ListBudgetPlanPrioritiesQueries record {
+    # Number of records to skip.
+    @http:Query {name: "$skip"}
+    int:Signed32 skip?;
+    # Maximum number of records to return.
+    @http:Query {name: "$top"}
+    int:Signed32 top?;
+    # OData `$filter` expression.
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData `$orderby` expression.
+    @http:Query {name: "$orderby"}
+    string orderBy?;
+    # OData `$expand`: comma-separated navigation properties.
+    @http:Query {name: "$expand"}
+    string expand?;
+    # Query across legal entities instead of the caller's default.
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes `@odata.count`.
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData `$select`: comma-separated list of properties to return.
+    @http:Query {name: "$select"}
+    string selectFields?;
 };
 
 # Represents the Headers record for the operation: deleteBudgetPlanProcessMilestones
@@ -3144,6 +4040,11 @@ public type UpdatePositionForecastsHeaders record {
     string If\-Match?;
 };
 
+public type BudgetPlanStageAllocationsCollection record {
+    *ODataCollection;
+    BudgetPlanStageAllocation[] value?;
+};
+
 # Represents the Headers record for the operation: updateBudgetControlGroupOverBudgetPermissions
 public type UpdateBudgetControlGroupOverBudgetPermissionsHeaders record {
     # Optimistic concurrency token (matches `@odata.etag`).
@@ -3172,3 +4073,5 @@ public type BudgetControlRuleOverBudgetPermission record {
     string InUseBy?;
     string UserGroupName?;
 };
+
+public type BudgetPlanStatus "Draft"|"Finalized";
