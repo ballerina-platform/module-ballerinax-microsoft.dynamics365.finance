@@ -8,7 +8,35 @@ repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.
 icon = "icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
-export = ["microsoft.dynamics365.finance", "microsoft.dynamics365.finance.mock.server"]
+export = [
+    "microsoft.dynamics365.finance",
+    "microsoft.dynamics365.finance.asset",
+    "microsoft.dynamics365.finance.bank",
+    "microsoft.dynamics365.finance.budget",
+    "microsoft.dynamics365.finance.collections",
+    "microsoft.dynamics365.finance.core",
+    "microsoft.dynamics365.finance.cost",
+    "microsoft.dynamics365.finance.currency",
+    "microsoft.dynamics365.finance.customer",
+    "microsoft.dynamics365.finance.expense",
+    "microsoft.dynamics365.finance.fiscal",
+    "microsoft.dynamics365.finance.ledger_a",
+    "microsoft.dynamics365.finance.ledger_b",
+    "microsoft.dynamics365.finance.misc_a",
+    "microsoft.dynamics365.finance.misc_b",
+    "microsoft.dynamics365.finance.misc_c",
+    "microsoft.dynamics365.finance.payable",
+    "microsoft.dynamics365.finance.payment",
+    "microsoft.dynamics365.finance.project",
+    "microsoft.dynamics365.finance.publicsector",
+    "microsoft.dynamics365.finance.purchase",
+    "microsoft.dynamics365.finance.quality",
+    "microsoft.dynamics365.finance.receivable",
+    "microsoft.dynamics365.finance.sales",
+    "microsoft.dynamics365.finance.tax",
+    "microsoft.dynamics365.finance.vendor",
+    "microsoft.dynamics365.finance.mock.server",
+]
 
 [build-options]
 observabilityIncluded=true

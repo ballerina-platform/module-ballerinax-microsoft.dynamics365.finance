@@ -73,7 +73,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "http"
-version = "2.16.1"
+version = "2.16.2"
 dependencies = [
 	{org = "ballerina", name = "auth"},
 	{org = "ballerina", name = "cache"},
@@ -350,6 +350,31 @@ dependencies = [
 ]
 modules = [
 	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance"},
-	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.mock.server"}
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.asset"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.bank"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.budget"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.collections"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.core"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.cost"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.currency"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.customer"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.expense"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.fiscal"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.ledger_a"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.ledger_b"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.misc_a"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.misc_b"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.misc_c"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.mock.server"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.payable"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.payment"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.project"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.publicsector"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.purchase"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.quality"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.receivable"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.sales"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.tax"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance", moduleName = "microsoft.dynamics365.finance.vendor"}
 ]
 
