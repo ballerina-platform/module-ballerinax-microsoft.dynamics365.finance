@@ -14,35 +14,38 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// List existing ledger journals, then post a new daily journal header.
+// List existing ledger journals, then create a new daily journal header.
+// LedgerJournal* lives in the `ledger` submodule.
 
 import ballerina/http;
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.finance;
+import ballerinax/microsoft.dynamics365.finance.common;
+import ballerinax/microsoft.dynamics365.finance.ledger;
 import ballerinax/microsoft.dynamics365.finance.mock.server;
 
 public function main() returns error? {
     http:Listener mockListener = check server:startMock();
 
-    finance:Client fo = check new (
+    common:Connection conn = check new (
         config = {auth: {token: "demo-bearer-token"}},
         serviceUrl = "http://localhost:9090/data"
     );
+    ledger:Client led = check new (conn);
 
     io:println("Existing ledger journals:");
-    finance:LedgerJournalHeadersCollection page = check fo->listLedgerJournalHeaders();
-    foreach finance:LedgerJournalHeader j in page.value ?: [] {
+    ledger:LedgerJournalHeadersCollection page = check led->listLedgerJournalHeaders();
+    foreach ledger:LedgerJournalHeader j in page.value ?: [] {
         io:println(string `  ${j.JournalBatchNumber ?: ""}   ${j.JournalName ?: ""}   posted=${j.IsPosted ?: ""}   ${j.Description ?: ""}`);
     }
 
-    finance:LedgerJournalHeader draft = {
+    ledger:LedgerJournalHeader draft = {
         dataAreaId: "USMF",
         JournalBatchNumber: "DEMO-0001",
         JournalName: "GenJrn",
         Description: "Posted via Ballerina",
         IsPosted: "No"
     };
-    finance:LedgerJournalHeader created = check fo->createLedgerJournalHeaders(payload = draft);
+    ledger:LedgerJournalHeader created = check led->createLedgerJournalHeaders(payload = draft);
     io:println("");
     io:println(string `Created ${created.JournalBatchNumber ?: ""}`);
     io:println(string `  etag:  ${created["@odata.etag"].toString()}`);
