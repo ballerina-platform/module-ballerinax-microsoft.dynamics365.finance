@@ -1,0 +1,14 @@
+{
+  "description": "The `microsoft.dynamics365.finance.receivable` connector provides APIs for accounts-receivable operations in Microsoft Dynamics 365 Finance. It covers customer master data, customer groups, collection letters and cases, dunning setup, credit limits, and carrier configuration.",
+  "key-features": [
+    "Create, read, update, and delete customer master records (V2 and V3)",
+    "Customer groups and customer account statements",
+    "Collection letters, collection cases, and collection activity management",
+    "Dunning note creation and write-off journal management",
+    "Credit limit and credit-management configuration"
+  ],
+  "communication-scenario": "Accounts Receivable Integration",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.receivable as finReceivable;",
+  "client-init": "finReceivable:Client finReceivableClient = check new (",
+  "api-invocation": "finReceivable:CustomersV3Collection customers = check finReceivableClient->listCustomersV3();"
+}

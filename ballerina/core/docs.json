@@ -1,0 +1,14 @@
+{
+  "description": "The `microsoft.dynamics365.finance.core` connector provides APIs for core reference data in Microsoft Dynamics 365 Finance. It covers currencies, exchange rates, payment terms and methods, legal entities, global address book entries, salutation codes, denomination codes, and warehouse management.",
+  "key-features": [
+    "Currency management and exchange rate configuration",
+    "Payment terms, payment day lines, and payment method setup",
+    "Legal entity and company master data access",
+    "Global address book \u2014 postal addresses and contact information",
+    "Cash discount configuration and denomination setup"
+  ],
+  "communication-scenario": "Core Reference Data Integration",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.core as finCore;",
+  "client-init": "finCore:Client finCoreClient = check new (",
+  "api-invocation": "finCore:ExchangeRatesCollection rates = check finCoreClient->listExchangeRates();"
+}

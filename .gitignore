@@ -60,3 +60,6 @@ Thumbs.db
 
 .claude/
 *.ctx
+
+# D365 CSDL metadata XML — never commit; only derived OAS specs are stored in docs/spec/
+*.xml

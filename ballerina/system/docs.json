@@ -1,0 +1,14 @@
+{
+  "description": "The `microsoft.dynamics365.finance.system` connector provides APIs for system administration in Microsoft Dynamics 365 Finance. It covers workflow configuration and assignments, security roles, batch job monitoring, document management, system parameters, approval users, and work calendars.",
+  "key-features": [
+    "Workflow setup, delegation, and approval management",
+    "Security role and user security role assignment",
+    "Batch job groups and batch job history monitoring",
+    "Document types and document routing setup",
+    "System parameters, number sequences, and work calendar configuration"
+  ],
+  "communication-scenario": "System Administration Integration",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.system as finSystem;",
+  "client-init": "finSystem:Client finSystemClient = check new (",
+  "api-invocation": "finSystem:WorkflowsCollection workflows = check finSystemClient->listWorkflows();"
+}

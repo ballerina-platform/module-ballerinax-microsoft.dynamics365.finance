@@ -1,0 +1,6209 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Microsoft Dynamics 365 Finance — HR",
+    "version" : "0.1.0"
+  },
+  "servers" : [ {
+    "url" : "https://{tenant}.operations.dynamics.com/data",
+    "variables" : {
+      "tenant" : {
+        "default" : "your-org"
+      }
+    }
+  } ],
+  "security" : [ {
+    "oAuth2" : [ ]
+  } ],
+  "paths" : {
+    "/AbsenceCodes" : {
+      "get" : {
+        "tags" : [ "AbsenceCodes" ],
+        "summary" : "List AbsenceCodes",
+        "operationId" : "listAbsenceCodes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of AbsenceCode",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceCodesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "AbsenceCodes" ],
+        "summary" : "Create AbsenceCode",
+        "operationId" : "createAbsenceCodes",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AbsenceCode"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "AbsenceCode created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceCode"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/AbsenceCodes(dataAreaId={dataAreaId},AbsenceCode={absenceCode})" : {
+      "get" : {
+        "tags" : [ "AbsenceCodes" ],
+        "summary" : "Get AbsenceCode by key",
+        "operationId" : "getAbsenceCodes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "AbsenceCode",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceCode"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "AbsenceCodes" ],
+        "summary" : "Delete AbsenceCode",
+        "operationId" : "deleteAbsenceCodes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "AbsenceCode deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "AbsenceCodes" ],
+        "summary" : "Update AbsenceCode",
+        "operationId" : "updateAbsenceCodes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AbsenceCode"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "AbsenceCode updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceCode"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "dataAreaId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "absenceCode",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/AbsenceReasons" : {
+      "get" : {
+        "tags" : [ "AbsenceReasons" ],
+        "summary" : "List AbsenceReasons",
+        "operationId" : "listAbsenceReasons",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of AbsenceReason",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceReasonsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "AbsenceReasons" ],
+        "summary" : "Create AbsenceReason",
+        "operationId" : "createAbsenceReasons",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AbsenceReason"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "AbsenceReason created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceReason"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/AbsenceReasons(dataAreaId={dataAreaId},AbsenceCode={absenceCode},ReasonCodeId={reasonCodeId})" : {
+      "get" : {
+        "tags" : [ "AbsenceReasons" ],
+        "summary" : "Get AbsenceReason by key",
+        "operationId" : "getAbsenceReasons",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "AbsenceReason",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceReason"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "AbsenceReasons" ],
+        "summary" : "Delete AbsenceReason",
+        "operationId" : "deleteAbsenceReasons",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "AbsenceReason deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "AbsenceReasons" ],
+        "summary" : "Update AbsenceReason",
+        "operationId" : "updateAbsenceReasons",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AbsenceReason"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "AbsenceReason updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AbsenceReason"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "dataAreaId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "absenceCode",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "reasonCodeId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/CityHolidays" : {
+      "get" : {
+        "tags" : [ "CityHolidays" ],
+        "summary" : "List CityHolidays",
+        "operationId" : "listCityHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of CityHoliday",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CityHolidaysCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "CityHolidays" ],
+        "summary" : "Create CityHoliday",
+        "operationId" : "createCityHolidays",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CityHoliday"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "CityHoliday created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CityHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/CityHolidays(CountryRegionId={countryRegionId},StateId={stateId},CityName={cityName},HolidayDate={holidayDate})" : {
+      "get" : {
+        "tags" : [ "CityHolidays" ],
+        "summary" : "Get CityHoliday by key",
+        "operationId" : "getCityHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CityHoliday",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CityHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "CityHolidays" ],
+        "summary" : "Delete CityHoliday",
+        "operationId" : "deleteCityHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "CityHoliday deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "CityHolidays" ],
+        "summary" : "Update CityHoliday",
+        "operationId" : "updateCityHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CityHoliday"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "CityHoliday updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CityHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "countryRegionId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "stateId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "cityName",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "holidayDate",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/CourseGroups" : {
+      "get" : {
+        "tags" : [ "CourseGroups" ],
+        "summary" : "List CourseGroups",
+        "operationId" : "listCourseGroups",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of CourseGroup",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CourseGroupsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "CourseGroups" ],
+        "summary" : "Create CourseGroup",
+        "operationId" : "createCourseGroups",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CourseGroup"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "CourseGroup created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CourseGroup"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/CourseGroups({group})" : {
+      "get" : {
+        "tags" : [ "CourseGroups" ],
+        "summary" : "Get CourseGroup by key",
+        "operationId" : "getCourseGroups",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CourseGroup",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CourseGroup"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "CourseGroups" ],
+        "summary" : "Delete CourseGroup",
+        "operationId" : "deleteCourseGroups",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "CourseGroup deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "CourseGroups" ],
+        "summary" : "Update CourseGroup",
+        "operationId" : "updateCourseGroups",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CourseGroup"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "CourseGroup updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CourseGroup"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "group",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/Employments" : {
+      "get" : {
+        "tags" : [ "Employments" ],
+        "summary" : "List Employments",
+        "operationId" : "listEmployments",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of Employment",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmploymentsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Employments" ],
+        "summary" : "Create Employment",
+        "operationId" : "createEmployments",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Employment"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Employment created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Employment"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/Employments(PersonnelNumber={personnelNumber},LegalEntityId={legalEntityId},EmploymentStartDate={employmentStartDate},EmploymentEndDate={employmentEndDate})" : {
+      "get" : {
+        "tags" : [ "Employments" ],
+        "summary" : "Get Employment by key",
+        "operationId" : "getEmployments",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Employment",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Employment"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Employments" ],
+        "summary" : "Delete Employment",
+        "operationId" : "deleteEmployments",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Employment deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Employments" ],
+        "summary" : "Update Employment",
+        "operationId" : "updateEmployments",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Employment"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Employment updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Employment"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "personnelNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "legalEntityId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "employmentStartDate",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "employmentEndDate",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/EssWorkers" : {
+      "get" : {
+        "tags" : [ "EssWorkers" ],
+        "summary" : "List EssWorkers",
+        "operationId" : "listEssWorkers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of EssWorker",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EssWorkersCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "EssWorkers" ],
+        "summary" : "Create EssWorker",
+        "operationId" : "createEssWorkers",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EssWorker"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "EssWorker created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EssWorker"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/EssWorkers({personnelNumber})" : {
+      "get" : {
+        "tags" : [ "EssWorkers" ],
+        "summary" : "Get EssWorker by key",
+        "operationId" : "getEssWorkers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "EssWorker",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EssWorker"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "EssWorkers" ],
+        "summary" : "Delete EssWorker",
+        "operationId" : "deleteEssWorkers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "EssWorker deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "EssWorkers" ],
+        "summary" : "Update EssWorker",
+        "operationId" : "updateEssWorkers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EssWorker"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "EssWorker updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EssWorker"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "personnelNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/InjuryTypes" : {
+      "get" : {
+        "tags" : [ "InjuryTypes" ],
+        "summary" : "List InjuryTypes",
+        "operationId" : "listInjuryTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of InjuryType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InjuryTypesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "InjuryTypes" ],
+        "summary" : "Create InjuryType",
+        "operationId" : "createInjuryTypes",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InjuryType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "InjuryType created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InjuryType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/InjuryTypes({injuryTypeId})" : {
+      "get" : {
+        "tags" : [ "InjuryTypes" ],
+        "summary" : "Get InjuryType by key",
+        "operationId" : "getInjuryTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "InjuryType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InjuryType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "InjuryTypes" ],
+        "summary" : "Delete InjuryType",
+        "operationId" : "deleteInjuryTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "InjuryType deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "InjuryTypes" ],
+        "summary" : "Update InjuryType",
+        "operationId" : "updateInjuryTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InjuryType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "InjuryType updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InjuryType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "injuryTypeId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/JobTasks" : {
+      "get" : {
+        "tags" : [ "JobTasks" ],
+        "summary" : "List JobTasks",
+        "operationId" : "listJobTasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of JobTask",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTasksCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "JobTasks" ],
+        "summary" : "Create JobTask",
+        "operationId" : "createJobTasks",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/JobTask"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "JobTask created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTask"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/JobTasks({jobTaskId})" : {
+      "get" : {
+        "tags" : [ "JobTasks" ],
+        "summary" : "Get JobTask by key",
+        "operationId" : "getJobTasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "JobTask",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTask"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "JobTasks" ],
+        "summary" : "Delete JobTask",
+        "operationId" : "deleteJobTasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "JobTask deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "JobTasks" ],
+        "summary" : "Update JobTask",
+        "operationId" : "updateJobTasks",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/JobTask"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "JobTask updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTask"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "jobTaskId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/JobTemplates" : {
+      "get" : {
+        "tags" : [ "JobTemplates" ],
+        "summary" : "List JobTemplates",
+        "operationId" : "listJobTemplates",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of JobTemplate",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTemplatesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "JobTemplates" ],
+        "summary" : "Create JobTemplate",
+        "operationId" : "createJobTemplates",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/JobTemplate"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "JobTemplate created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTemplate"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/JobTemplates({jobTemplate})" : {
+      "get" : {
+        "tags" : [ "JobTemplates" ],
+        "summary" : "Get JobTemplate by key",
+        "operationId" : "getJobTemplates",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "JobTemplate",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTemplate"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "JobTemplates" ],
+        "summary" : "Delete JobTemplate",
+        "operationId" : "deleteJobTemplates",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "JobTemplate deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "JobTemplates" ],
+        "summary" : "Update JobTemplate",
+        "operationId" : "updateJobTemplates",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/JobTemplate"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "JobTemplate updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/JobTemplate"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "jobTemplate",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/LaborUnions" : {
+      "get" : {
+        "tags" : [ "LaborUnions" ],
+        "summary" : "List LaborUnions",
+        "operationId" : "listLaborUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of LaborUnions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LaborUnionsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "LaborUnions" ],
+        "summary" : "Create LaborUnions",
+        "operationId" : "createLaborUnions",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LaborUnions"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "LaborUnions created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LaborUnions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/LaborUnions({unionID})" : {
+      "get" : {
+        "tags" : [ "LaborUnions" ],
+        "summary" : "Get LaborUnions by key",
+        "operationId" : "getLaborUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "LaborUnions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LaborUnions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "LaborUnions" ],
+        "summary" : "Delete LaborUnions",
+        "operationId" : "deleteLaborUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "LaborUnions deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "LaborUnions" ],
+        "summary" : "Update LaborUnions",
+        "operationId" : "updateLaborUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LaborUnions"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "LaborUnions updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LaborUnions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "unionID",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/LoanItems" : {
+      "get" : {
+        "tags" : [ "LoanItems" ],
+        "summary" : "List LoanItems",
+        "operationId" : "listLoanItems",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of LoanItem",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanItemsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "LoanItems" ],
+        "summary" : "Create LoanItem",
+        "operationId" : "createLoanItems",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoanItem"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "LoanItem created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanItem"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/LoanItems({loanItemId})" : {
+      "get" : {
+        "tags" : [ "LoanItems" ],
+        "summary" : "Get LoanItem by key",
+        "operationId" : "getLoanItems",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "LoanItem",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanItem"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "LoanItems" ],
+        "summary" : "Delete LoanItem",
+        "operationId" : "deleteLoanItems",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "LoanItem deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "LoanItems" ],
+        "summary" : "Update LoanItem",
+        "operationId" : "updateLoanItems",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoanItem"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "LoanItem updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanItem"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "loanItemId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/LoanTypes" : {
+      "get" : {
+        "tags" : [ "LoanTypes" ],
+        "summary" : "List LoanTypes",
+        "operationId" : "listLoanTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of LoanType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanTypesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "LoanTypes" ],
+        "summary" : "Create LoanType",
+        "operationId" : "createLoanTypes",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoanType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "LoanType created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/LoanTypes({loanTypeId})" : {
+      "get" : {
+        "tags" : [ "LoanTypes" ],
+        "summary" : "Get LoanType by key",
+        "operationId" : "getLoanTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "LoanType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "LoanTypes" ],
+        "summary" : "Delete LoanType",
+        "operationId" : "deleteLoanTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "LoanType deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "LoanTypes" ],
+        "summary" : "Update LoanType",
+        "operationId" : "updateLoanTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoanType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "LoanType updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoanType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "loanTypeId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/People" : {
+      "get" : {
+        "tags" : [ "People" ],
+        "summary" : "List People",
+        "operationId" : "listPeople",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of Person",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PeopleCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "People" ],
+        "summary" : "Create Person",
+        "operationId" : "createPeople",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Person"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Person created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/People({partyNumber})" : {
+      "get" : {
+        "tags" : [ "People" ],
+        "summary" : "Get Person by key",
+        "operationId" : "getPeople",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Person",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "People" ],
+        "summary" : "Delete Person",
+        "operationId" : "deletePeople",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Person deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "People" ],
+        "summary" : "Update Person",
+        "operationId" : "updatePeople",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Person"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Person updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "partyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/PersonImages" : {
+      "get" : {
+        "tags" : [ "PersonImages" ],
+        "summary" : "List PersonImages",
+        "operationId" : "listPersonImages",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of PersonImage",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonImagesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "PersonImages" ],
+        "summary" : "Create PersonImage",
+        "operationId" : "createPersonImages",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonImage"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "PersonImage created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonImage"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/PersonImages({partyNumber})" : {
+      "get" : {
+        "tags" : [ "PersonImages" ],
+        "summary" : "Get PersonImage by key",
+        "operationId" : "getPersonImages",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PersonImage",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonImage"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "PersonImages" ],
+        "summary" : "Delete PersonImage",
+        "operationId" : "deletePersonImages",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "PersonImage deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "PersonImages" ],
+        "summary" : "Update PersonImage",
+        "operationId" : "updatePersonImages",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonImage"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "PersonImage updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonImage"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "partyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/PersonUsers" : {
+      "get" : {
+        "tags" : [ "PersonUsers" ],
+        "summary" : "List PersonUsers",
+        "operationId" : "listPersonUsers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of PersonUser",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonUsersCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "PersonUsers" ],
+        "summary" : "Create PersonUser",
+        "operationId" : "createPersonUsers",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonUser"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "PersonUser created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonUser"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/PersonUsers(UserId={userId},PartyNumber={partyNumber},ValidFrom={validFrom})" : {
+      "get" : {
+        "tags" : [ "PersonUsers" ],
+        "summary" : "Get PersonUser by key",
+        "operationId" : "getPersonUsers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PersonUser",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonUser"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "PersonUsers" ],
+        "summary" : "Delete PersonUser",
+        "operationId" : "deletePersonUsers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "PersonUser deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "PersonUsers" ],
+        "summary" : "Update PersonUser",
+        "operationId" : "updatePersonUsers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonUser"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "PersonUser updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PersonUser"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "userId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "partyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "validFrom",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/PositionTypes" : {
+      "get" : {
+        "tags" : [ "PositionTypes" ],
+        "summary" : "List PositionTypes",
+        "operationId" : "listPositionTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of PositionType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionTypesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "PositionTypes" ],
+        "summary" : "Create PositionType",
+        "operationId" : "createPositionTypes",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PositionType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "PositionType created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/PositionTypes({positionTypeId})" : {
+      "get" : {
+        "tags" : [ "PositionTypes" ],
+        "summary" : "Get PositionType by key",
+        "operationId" : "getPositionTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PositionType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "PositionTypes" ],
+        "summary" : "Delete PositionType",
+        "operationId" : "deletePositionTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "PositionType deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "PositionTypes" ],
+        "summary" : "Update PositionType",
+        "operationId" : "updatePositionTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PositionType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "PositionType updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "positionTypeId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/RatingLevels" : {
+      "get" : {
+        "tags" : [ "RatingLevels" ],
+        "summary" : "List RatingLevels",
+        "operationId" : "listRatingLevels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of RatingLevel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingLevelsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "RatingLevels" ],
+        "summary" : "Create RatingLevel",
+        "operationId" : "createRatingLevels",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RatingLevel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "RatingLevel created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingLevel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/RatingLevels(RatingLevelId={ratingLevelId},RatingModelId={ratingModelId})" : {
+      "get" : {
+        "tags" : [ "RatingLevels" ],
+        "summary" : "Get RatingLevel by key",
+        "operationId" : "getRatingLevels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "RatingLevel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingLevel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "RatingLevels" ],
+        "summary" : "Delete RatingLevel",
+        "operationId" : "deleteRatingLevels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "RatingLevel deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "RatingLevels" ],
+        "summary" : "Update RatingLevel",
+        "operationId" : "updateRatingLevels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RatingLevel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "RatingLevel updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingLevel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "ratingLevelId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "ratingModelId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/RatingModels" : {
+      "get" : {
+        "tags" : [ "RatingModels" ],
+        "summary" : "List RatingModels",
+        "operationId" : "listRatingModels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of RatingModel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingModelsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "RatingModels" ],
+        "summary" : "Create RatingModel",
+        "operationId" : "createRatingModels",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RatingModel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "RatingModel created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingModel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/RatingModels({ratingModelId})" : {
+      "get" : {
+        "tags" : [ "RatingModels" ],
+        "summary" : "Get RatingModel by key",
+        "operationId" : "getRatingModels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "RatingModel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingModel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "RatingModels" ],
+        "summary" : "Delete RatingModel",
+        "operationId" : "deleteRatingModels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "RatingModel deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "RatingModels" ],
+        "summary" : "Update RatingModel",
+        "operationId" : "updateRatingModels",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RatingModel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "RatingModel updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RatingModel"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "ratingModelId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/SkillTypes" : {
+      "get" : {
+        "tags" : [ "SkillTypes" ],
+        "summary" : "List SkillTypes",
+        "operationId" : "listSkillTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of SkillType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SkillTypesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "SkillTypes" ],
+        "summary" : "Create SkillType",
+        "operationId" : "createSkillTypes",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SkillType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "SkillType created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SkillType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/SkillTypes({skillType})" : {
+      "get" : {
+        "tags" : [ "SkillTypes" ],
+        "summary" : "Get SkillType by key",
+        "operationId" : "getSkillTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SkillType",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SkillType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "SkillTypes" ],
+        "summary" : "Delete SkillType",
+        "operationId" : "deleteSkillTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "SkillType deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "SkillTypes" ],
+        "summary" : "Update SkillType",
+        "operationId" : "updateSkillTypes",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SkillType"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "SkillType updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SkillType"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "skillType",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/Skills" : {
+      "get" : {
+        "tags" : [ "Skills" ],
+        "summary" : "List Skills",
+        "operationId" : "listSkills",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of Skill",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SkillsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Skills" ],
+        "summary" : "Create Skill",
+        "operationId" : "createSkills",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Skill"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Skill created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Skill"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/Skills({skill})" : {
+      "get" : {
+        "tags" : [ "Skills" ],
+        "summary" : "Get Skill by key",
+        "operationId" : "getSkills",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Skill",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Skill"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Skills" ],
+        "summary" : "Delete Skill",
+        "operationId" : "deleteSkills",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Skill deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Skills" ],
+        "summary" : "Update Skill",
+        "operationId" : "updateSkills",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Skill"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Skill updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Skill"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "skill",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/StateHolidays" : {
+      "get" : {
+        "tags" : [ "StateHolidays" ],
+        "summary" : "List StateHolidays",
+        "operationId" : "listStateHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of StateHoliday",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StateHolidaysCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "StateHolidays" ],
+        "summary" : "Create StateHoliday",
+        "operationId" : "createStateHolidays",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StateHoliday"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "StateHoliday created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StateHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/StateHolidays(HolidayDate={holidayDate},CountryRegionId={countryRegionId},StateId={stateId})" : {
+      "get" : {
+        "tags" : [ "StateHolidays" ],
+        "summary" : "Get StateHoliday by key",
+        "operationId" : "getStateHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "StateHoliday",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StateHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "StateHolidays" ],
+        "summary" : "Delete StateHoliday",
+        "operationId" : "deleteStateHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "StateHoliday deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "StateHolidays" ],
+        "summary" : "Update StateHoliday",
+        "operationId" : "updateStateHolidays",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StateHoliday"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "StateHoliday updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StateHoliday"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "holidayDate",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "countryRegionId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "stateId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/TeamMembers" : {
+      "get" : {
+        "tags" : [ "TeamMembers" ],
+        "summary" : "List TeamMembers",
+        "operationId" : "listTeamMembers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of TeamMember",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMembersCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "TeamMembers" ],
+        "summary" : "Create TeamMember",
+        "operationId" : "createTeamMembers",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamMember"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "TeamMember created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMember"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/TeamMembers(RelationshipTypeId={relationshipTypeId},TeamMemberPartyNumber={teamMemberPartyNumber},TeamPartyNumber={teamPartyNumber},ValidTo={validTo},ValidFrom={validFrom})" : {
+      "get" : {
+        "tags" : [ "TeamMembers" ],
+        "summary" : "Get TeamMember by key",
+        "operationId" : "getTeamMembers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TeamMember",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMember"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "TeamMembers" ],
+        "summary" : "Delete TeamMember",
+        "operationId" : "deleteTeamMembers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "TeamMember deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "TeamMembers" ],
+        "summary" : "Update TeamMember",
+        "operationId" : "updateTeamMembers",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamMember"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "TeamMember updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMember"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "relationshipTypeId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "teamMemberPartyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "teamPartyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "validTo",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "validFrom",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/TeamMembersV2" : {
+      "get" : {
+        "tags" : [ "TeamMembersV2" ],
+        "summary" : "List TeamMembersV2",
+        "operationId" : "listTeamMembersV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of TeamMemberV2",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMembersV2Collection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "TeamMembersV2" ],
+        "summary" : "Create TeamMemberV2",
+        "operationId" : "createTeamMembersV2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamMemberV2"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "TeamMemberV2 created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMemberV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/TeamMembersV2(TeamMemberPartyNumber={teamMemberPartyNumber},TeamName={teamName},ValidFrom={validFrom})" : {
+      "get" : {
+        "tags" : [ "TeamMembersV2" ],
+        "summary" : "Get TeamMemberV2 by key",
+        "operationId" : "getTeamMembersV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TeamMemberV2",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMemberV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "TeamMembersV2" ],
+        "summary" : "Delete TeamMemberV2",
+        "operationId" : "deleteTeamMembersV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "TeamMemberV2 deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "TeamMembersV2" ],
+        "summary" : "Update TeamMemberV2",
+        "operationId" : "updateTeamMembersV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamMemberV2"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "TeamMemberV2 updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamMemberV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "teamMemberPartyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "teamName",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "validFrom",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/Teams" : {
+      "get" : {
+        "tags" : [ "Teams" ],
+        "summary" : "List Teams",
+        "operationId" : "listTeams",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of Team",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Teams" ],
+        "summary" : "Create Team",
+        "operationId" : "createTeams",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Team"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Team created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/Teams({partyNumber})" : {
+      "get" : {
+        "tags" : [ "Teams" ],
+        "summary" : "Get Team by key",
+        "operationId" : "getTeams",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Team",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Teams" ],
+        "summary" : "Delete Team",
+        "operationId" : "deleteTeams",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Team deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Teams" ],
+        "summary" : "Update Team",
+        "operationId" : "updateTeams",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Team"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Team updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "partyNumber",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/TeamsV2" : {
+      "get" : {
+        "tags" : [ "TeamsV2" ],
+        "summary" : "List TeamsV2",
+        "operationId" : "listTeamsV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of TeamV2",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamsV2Collection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "TeamsV2" ],
+        "summary" : "Create TeamV2",
+        "operationId" : "createTeamsV2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamV2"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "TeamV2 created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/TeamsV2({name})" : {
+      "get" : {
+        "tags" : [ "TeamsV2" ],
+        "summary" : "Get TeamV2 by key",
+        "operationId" : "getTeamsV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TeamV2",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "TeamsV2" ],
+        "summary" : "Delete TeamV2",
+        "operationId" : "deleteTeamsV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "TeamV2 deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "TeamsV2" ],
+        "summary" : "Update TeamV2",
+        "operationId" : "updateTeamsV2",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TeamV2"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "TeamV2 updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TeamV2"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "name",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/Unions" : {
+      "get" : {
+        "tags" : [ "Unions" ],
+        "summary" : "List Unions",
+        "operationId" : "listUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of Unions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UnionsCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Unions" ],
+        "summary" : "Create Unions",
+        "operationId" : "createUnions",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Unions"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Unions created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Unions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/Unions({unionId})" : {
+      "get" : {
+        "tags" : [ "Unions" ],
+        "summary" : "Get Unions by key",
+        "operationId" : "getUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Unions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Unions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Unions" ],
+        "summary" : "Delete Unions",
+        "operationId" : "deleteUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Unions deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Unions" ],
+        "summary" : "Update Unions",
+        "operationId" : "updateUnions",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Unions"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Unions updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Unions"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "unionId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/VestingRules" : {
+      "get" : {
+        "tags" : [ "VestingRules" ],
+        "summary" : "List VestingRules",
+        "operationId" : "listVestingRules",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/filter"
+        }, {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/top"
+        }, {
+          "$ref" : "#/components/parameters/skip"
+        }, {
+          "$ref" : "#/components/parameters/orderBy"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        }, {
+          "$ref" : "#/components/parameters/count"
+        }, {
+          "$ref" : "#/components/parameters/crossCompany"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Collection of VestingRule",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VestingRulesCollection"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "VestingRules" ],
+        "summary" : "Create VestingRule",
+        "operationId" : "createVestingRules",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VestingRule"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "VestingRule created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VestingRule"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      }
+    },
+    "/VestingRules(dataAreaId={dataAreaId},VestingRule={vestingRule})" : {
+      "get" : {
+        "tags" : [ "VestingRules" ],
+        "summary" : "Get VestingRule by key",
+        "operationId" : "getVestingRules",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/select"
+        }, {
+          "$ref" : "#/components/parameters/expand"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "VestingRule",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VestingRule"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "VestingRules" ],
+        "summary" : "Delete VestingRule",
+        "operationId" : "deleteVestingRules",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "VestingRule deleted"
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "VestingRules" ],
+        "summary" : "Update VestingRule",
+        "operationId" : "updateVestingRules",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ifMatch"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VestingRule"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "VestingRule updated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VestingRule"
+                }
+              }
+            }
+          },
+          "default" : {
+            "$ref" : "#/components/responses/ODataError"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "dataAreaId",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "vestingRule",
+        "in" : "path",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Timezone" : {
+        "type" : "string",
+        "enum" : [ "GMTMINUS1200INTERNATIONALDATELINEWEST", "GMTMINUS1100COORDINATEDUNIVERSALTIME", "GMTMINUS1100MIDWAYISLAND_SAMOA", "GMTMINUS1000HAWAII", "GMTMINUS0900ALASKA", "GMTMINUS0800PACIFICTIME", "GMTMINUS0800TIJUANA_BAJACALIFORNIA", "GMTMINUS0700ARIZONA", "GMTMINUS0700MOUNTAINTIME", "GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN", "GMTMINUS0600CENTRALAMERICA", "GMTMINUS0600CENTRALTIME", "GMTMINUS0600GUADALAJARA_MEXICOCITY", "GMTMINUS0600SASKATCHEWAN", "GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO", "GMTMINUS0500EASTERNTIME", "GMTMINUS0500INDIANA", "GMTMINUS0500CHETUMAL", "GMTMINUS0400ASUNCION", "GMTMINUS0400ATLANTICTIME", "GMTMINUS0400LAPAZ", "GMTMINUS0400MANAUS", "GMTMINUS0300SANTIAGO", "GMTMINUS0430CARACAS", "GMTMINUS0330NEWFOUNDLAND", "GMTMINUS0300_SALVADOR", "GMTMINUS0300BRASILIA", "GMTMINUS0300BUENOSAIRES", "GMTMINUS0300BUENOSAIRES_GEORGETOWN", "GMTMINUS0300GREENLAND", "GMTMINUS0300MONTEVIDEO", "GMTMINUS0200MIDATLANTIC", "GMTMINUS0100AZORES", "GMTMINUS0100CAPEVERDIS", "GMT_CASABLANCA", "GMT_CASABLANCA_MONTROVIA_REYKJAVIK", "GMT_COORDINATEDUNIVERSALTIME", "GMT_DUBLIN_EDINBURGH_LISBON_LONDON", "GMT_PLUS0300KALININGRAD_MINSK", "GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME", "GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST", "GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID", "GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB", "GMTPLUS0100TRIPOLI", "GMTPLUS0100WESTCENTRALAFRICA", "GMTPLUS0200_DAMASCUS", "GMTPLUS0200AMMAN", "GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL", "GMTPLUS0200BEIRUT", "GMTPLUS0200MINSK", "GMTPLUS0200CAIRO", "GMTPLUS0200HARARE_PRETORIA", "GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS", "GMTPLUS0300ISTANBUL", "GMTPLUS0200JERUSALEM", "GMTPLUS0200WINDHOEK", "GMTPLUS0300BAGHDAD", "GMTPLUS0300KUWAIT_RIYADH", "GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD", "GMTPLUS0300NAIROBI", "GMTPLUS0300TBILISI", "GMTPLUS0330TEHRAN", "GMTPLUS0400ABUDHABI_MUSCAT", "GMTPLUS0400BAKU", "GMTPLUS0400IZHEVSK_SAMARA", "GMTPLUS0400CAUCASUSSTANDARDTIME", "GMTPLUS0400PORTLOUIS", "GMTPLUS0400YEREVAN", "GMTPLUS0430KABUL", "GMTPLUS0500EKATERINBURG", "GMTPLUS0500ISLAMABAD_KARACHI", "GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT", "GMTPLUS0530CHENNAI_KOLKATA_MUMBAI", "GMTPLUS0530SRIJAYAWARDENEPURA", "GMTPLUS0545KATHMANDU", "GMTPLUS0600ALMATY_NOVOSIBIRSK", "GMTPLUS0600ASTANA_DHAKA", "GMTPLUS0600DHAKA", "GMTPLUS0600MAGADAN", "GMTPLUS0630_YANGON", "GMTPLUS0700_BANGKOK_HANOI_JAKARTA", "GMTPLUS0700KRASNOYARSK", "GMTPLUS0800_ULAANBAATAR", "GMTPLUS0800BEIJING_CHONGQING_HONGKONG", "GMTPLUS0800IRKUTSK_ULAANBATAAR", "GMTPLUS0800KUALALUMPUR_SINGAPORE", "GMTPLUS0800PERTH", "GMTPLUS0800TAIPEI", "GMTPLUS0900OSAKA_SAPPORO_TOKYO", "GMTPLUS0900SEOUL", "GMTPLUS0900YAKUTSK", "GMTPLUS0930ADELAIDE", "GMTPLUS0930DARWIN", "GMTPLUS1000BRISBANE", "GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY", "GMTPLUS1000GUAM_PORTMORESBY", "GMTPLUS1000HOBART", "GMTPLUS1000VLADIVOSTOK", "GMTPLUS1100CHOKURDAKH", "GMTPLUS1100MAGADAN_SOLOMONIS", "GMTPLUS1200ANADYR_PETRO_KAMCHATSKY", "GMTPLUS1200AUCKLAND_WELLINGTON", "GMTPLUS1200COORDINATEDUNIVERSALTIME", "GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS", "GMTPLUS1300NUKU_ALOFA" ]
+      },
+      "StateHolidaysCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/StateHolidaysCollectionAllOf2"
+        } ]
+      },
+      "MonthsOfYear" : {
+        "type" : "string",
+        "enum" : [ "None", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+      },
+      "LoanType" : {
+        "required" : [ "GracePeriodDays", "LoanTypeId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "GracePeriodDays" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "gracePeriodDays"
+          },
+          "LoanTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "loanTypeId"
+          }
+        }
+      },
+      "LaborUnionsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/LaborUnionsCollectionAllOf2"
+        } ]
+      },
+      "LoanTypesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/LoanType"
+            }
+          }
+        }
+      },
+      "CourseGroupsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/CourseGroupsCollectionAllOf2"
+        } ]
+      },
+      "JobTemplatesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/JobTemplatesCollectionAllOf2"
+        } ]
+      },
+      "VestingRule" : {
+        "required" : [ "VestingRule", "dataAreaId" ],
+        "type" : "object",
+        "properties" : {
+          "dataAreaId" : {
+            "type" : "string"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "VestingRule" : {
+            "type" : "string",
+            "x-ballerina-name" : "vestingRule"
+          },
+          "Note" : {
+            "type" : "string",
+            "x-ballerina-name" : "note"
+          }
+        }
+      },
+      "Gender" : {
+        "type" : "string",
+        "enum" : [ "Unknown", "Male", "Female", "NonSpecific" ]
+      },
+      "JobTasksCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/JobTask"
+            }
+          }
+        }
+      },
+      "PositionTypesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PositionType"
+            }
+          }
+        }
+      },
+      "JobTemplate" : {
+        "required" : [ "JobTemplate" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Note" : {
+            "type" : "string",
+            "x-ballerina-name" : "note"
+          },
+          "JobTemplate" : {
+            "type" : "string",
+            "x-ballerina-name" : "jobTemplate"
+          }
+        }
+      },
+      "ODataErrorError" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
+      },
+      "VestingRulesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VestingRule"
+            }
+          }
+        }
+      },
+      "EssWorker" : {
+        "required" : [ "AadUserObjectId", "PersonnelNumber" ],
+        "type" : "object",
+        "properties" : {
+          "PersonnelNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "personnelNumber"
+          },
+          "FirstName" : {
+            "type" : "string",
+            "x-ballerina-name" : "firstName"
+          },
+          "KnownAs" : {
+            "type" : "string",
+            "x-ballerina-name" : "knownAs"
+          },
+          "NameSequenceDisplayAs" : {
+            "type" : "string",
+            "x-ballerina-name" : "nameSequenceDisplayAs"
+          },
+          "ProfessionalSuffix" : {
+            "type" : "string",
+            "x-ballerina-name" : "professionalSuffix"
+          },
+          "MiddleName" : {
+            "type" : "string",
+            "x-ballerina-name" : "middleName"
+          },
+          "Name" : {
+            "type" : "string",
+            "x-ballerina-name" : "name"
+          },
+          "AadUserObjectId" : {
+            "type" : "string",
+            "format" : "uuid",
+            "x-ballerina-name" : "aadUserObjectId"
+          },
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "PhoneticFirstName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticFirstName"
+          },
+          "PhoneticLastName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticLastName"
+          },
+          "NameAlias" : {
+            "type" : "string",
+            "x-ballerina-name" : "nameAlias"
+          },
+          "UserId" : {
+            "type" : "string",
+            "x-ballerina-name" : "userId"
+          },
+          "PhoneticMiddleName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticMiddleName"
+          },
+          "LastNamePrefix" : {
+            "type" : "string",
+            "x-ballerina-name" : "lastNamePrefix"
+          },
+          "LastName" : {
+            "type" : "string",
+            "x-ballerina-name" : "lastName"
+          },
+          "PersonalTitle" : {
+            "type" : "string",
+            "x-ballerina-name" : "personalTitle"
+          },
+          "AadUserPrincipalName" : {
+            "type" : "string",
+            "x-ballerina-name" : "aadUserPrincipalName"
+          },
+          "ProfessionalTitle" : {
+            "type" : "string",
+            "x-ballerina-name" : "professionalTitle"
+          },
+          "PartyType" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyType"
+          },
+          "LanguageId" : {
+            "type" : "string",
+            "x-ballerina-name" : "languageId"
+          },
+          "PersonalSuffix" : {
+            "type" : "string",
+            "x-ballerina-name" : "personalSuffix"
+          }
+        }
+      },
+      "StateHoliday" : {
+        "required" : [ "CountryRegionId", "HolidayDate", "StateId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "HolidayDate" : {
+            "type" : "string",
+            "x-ballerina-name" : "holidayDate"
+          },
+          "CountryRegionId" : {
+            "type" : "string",
+            "x-ballerina-name" : "countryRegionId"
+          },
+          "StateId" : {
+            "type" : "string",
+            "x-ballerina-name" : "stateId"
+          }
+        }
+      },
+      "RatingModelsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/RatingModelsCollectionAllOf2"
+        } ]
+      },
+      "DirPersonMaritalStatus" : {
+        "type" : "string",
+        "enum" : [ "None", "Single", "Married", "Divorced", "Widowhood" ]
+      },
+      "InjuryTypesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/InjuryTypesCollectionAllOf2"
+        } ]
+      },
+      "SkillsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Skill"
+            }
+          }
+        }
+      },
+      "TeamMembersV2CollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TeamMemberV2"
+            }
+          }
+        }
+      },
+      "HcmEmploymentType" : {
+        "type" : "string",
+        "enum" : [ "Employee", "Contractor" ]
+      },
+      "PositionTypesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/PositionTypesCollectionAllOf2"
+        } ]
+      },
+      "HrmLoanItemTax" : {
+        "type" : "string",
+        "enum" : [ "Blank", "Taxable", "TaxReportingRequired" ]
+      },
+      "TeamMembersCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TeamMember"
+            }
+          }
+        }
+      },
+      "TeamMembersCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/TeamMembersCollectionAllOf2"
+        } ]
+      },
+      "PersonUser" : {
+        "required" : [ "PartyNumber", "UserId", "ValidFrom", "ValidTo" ],
+        "type" : "object",
+        "properties" : {
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "PersonName" : {
+            "type" : "string",
+            "x-ballerina-name" : "personName"
+          },
+          "PersonNameAlias" : {
+            "type" : "string",
+            "x-ballerina-name" : "personNameAlias"
+          },
+          "UserId" : {
+            "type" : "string",
+            "x-ballerina-name" : "userId"
+          },
+          "ValidTo" : {
+            "type" : "string",
+            "x-ballerina-name" : "validTo"
+          },
+          "PersonPrimaryEmail" : {
+            "type" : "string",
+            "x-ballerina-name" : "personPrimaryEmail"
+          },
+          "ValidFrom" : {
+            "type" : "string",
+            "x-ballerina-name" : "validFrom"
+          },
+          "UserEmail" : {
+            "type" : "string",
+            "x-ballerina-name" : "userEmail"
+          }
+        }
+      },
+      "LoanItem" : {
+        "required" : [ "GracePeriodDays", "LoanDays", "LoanItemId" ],
+        "type" : "object",
+        "properties" : {
+          "TaxReporting" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HrmLoanItemTax"
+            } ],
+            "x-ballerina-name" : "taxReporting"
+          },
+          "LoanItemId" : {
+            "type" : "string",
+            "x-ballerina-name" : "loanItemId"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "GracePeriodDays" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "gracePeriodDays"
+          },
+          "SerialNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "serialNumber"
+          },
+          "LoanDays" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "loanDays"
+          },
+          "LoanTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "loanTypeId"
+          },
+          "PersonInCharge" : {
+            "type" : "string",
+            "x-ballerina-name" : "personInCharge"
+          }
+        }
+      },
+      "CourseGroup" : {
+        "required" : [ "Group" ],
+        "type" : "object",
+        "properties" : {
+          "Group" : {
+            "type" : "string",
+            "x-ballerina-name" : "group"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          }
+        }
+      },
+      "LoanTypesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/LoanTypesCollectionAllOf2"
+        } ]
+      },
+      "PersonUsersCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PersonUser"
+            }
+          }
+        }
+      },
+      "SkillType" : {
+        "required" : [ "Color", "SkillType" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Color" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "color"
+          },
+          "SkillType" : {
+            "type" : "string",
+            "x-ballerina-name" : "skillType"
+          }
+        }
+      },
+      "EmploymentsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/EmploymentsCollectionAllOf2"
+        } ]
+      },
+      "TeamsV2CollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TeamV2"
+            }
+          }
+        }
+      },
+      "RatingModelsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RatingModel"
+            }
+          }
+        }
+      },
+      "HcmEmploymentStatus" : {
+        "type" : "string",
+        "enum" : [ "None", "FullTime", "PartTime" ]
+      },
+      "RatingLevelsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RatingLevel"
+            }
+          }
+        }
+      },
+      "PersonImage" : {
+        "required" : [ "PartyNumber" ],
+        "type" : "object",
+        "properties" : {
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "Image" : {
+            "type" : "string",
+            "format" : "binary",
+            "x-ballerina-name" : "image"
+          }
+        }
+      },
+      "AbsenceReason" : {
+        "required" : [ "AbsenceCode", "ReasonCodeId", "dataAreaId" ],
+        "type" : "object",
+        "properties" : {
+          "dataAreaId" : {
+            "type" : "string"
+          },
+          "AbsenceCode" : {
+            "type" : "string",
+            "x-ballerina-name" : "absenceCode"
+          },
+          "ReasonCodeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "reasonCodeId"
+          }
+        }
+      },
+      "NoYes" : {
+        "type" : "string",
+        "enum" : [ "No", "Yes" ]
+      },
+      "JobTemplatesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/JobTemplate"
+            }
+          }
+        }
+      },
+      "EmploymentsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Employment"
+            }
+          }
+        }
+      },
+      "Person" : {
+        "required" : [ "AddressLatitude", "AddressLongitude", "AddressValidFrom", "AddressValidTo", "AnniversaryDay", "AnniversaryYear", "BirthDay", "BirthYear", "PartyNumber" ],
+        "type" : "object",
+        "properties" : {
+          "PrimaryContactEmailPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactEmailPurpose"
+          },
+          "AnniversaryYear" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "anniversaryYear"
+          },
+          "PrimaryContactEmail" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactEmail"
+          },
+          "Gender" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Gender"
+            } ],
+            "x-ballerina-name" : "gender"
+          },
+          "PrimaryContactPhonePurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactPhonePurpose"
+          },
+          "Name" : {
+            "type" : "string",
+            "x-ballerina-name" : "name"
+          },
+          "PrimaryContactPhoneDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactPhoneDescription"
+          },
+          "AddressCity" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressCity"
+          },
+          "PrimaryContactTwitterDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTwitterDescription"
+          },
+          "AddressLongitude" : {
+            "type" : "number",
+            "format" : "decimal",
+            "x-ballerina-name" : "addressLongitude"
+          },
+          "PrimaryContactTwitter" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTwitter"
+          },
+          "AddressValidFrom" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressValidFrom"
+          },
+          "PrimaryContactPhoneExtension" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactPhoneExtension"
+          },
+          "PrimaryContactEmailIsIM" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "primaryContactEmailIsIM"
+          },
+          "PersonalSuffix" : {
+            "type" : "string",
+            "x-ballerina-name" : "personalSuffix"
+          },
+          "BirthYear" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "birthYear"
+          },
+          "BirthMonth" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MonthsOfYear"
+            } ],
+            "x-ballerina-name" : "birthMonth"
+          },
+          "PrimaryContactFax" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFax"
+          },
+          "AddressTimeZone" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timezone"
+            } ],
+            "x-ballerina-name" : "addressTimeZone"
+          },
+          "PrimaryContactLinkedIn" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactLinkedIn"
+          },
+          "ChildrenNames" : {
+            "type" : "string",
+            "x-ballerina-name" : "childrenNames"
+          },
+          "AddressIsPrivate" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "addressIsPrivate"
+          },
+          "ProfessionalSuffix" : {
+            "type" : "string",
+            "x-ballerina-name" : "professionalSuffix"
+          },
+          "Initials" : {
+            "type" : "string",
+            "x-ballerina-name" : "initials"
+          },
+          "AddressLocationId" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressLocationId"
+          },
+          "AddressCountryRegionId" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressCountryRegionId"
+          },
+          "PrimaryContactTwitterPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTwitterPurpose"
+          },
+          "AddressCountryRegionISOCode" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressCountryRegionISOCode"
+          },
+          "FullPrimaryAddress" : {
+            "type" : "string",
+            "x-ballerina-name" : "fullPrimaryAddress"
+          },
+          "PrimaryContactLinkedInPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactLinkedInPurpose"
+          },
+          "MaritalStatus" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DirPersonMaritalStatus"
+            } ],
+            "x-ballerina-name" : "maritalStatus"
+          },
+          "PhoneticFirstName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticFirstName"
+          },
+          "NameAlias" : {
+            "type" : "string",
+            "x-ballerina-name" : "nameAlias"
+          },
+          "PhoneticLastName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticLastName"
+          },
+          "PhoneticMiddleName" : {
+            "type" : "string",
+            "x-ballerina-name" : "phoneticMiddleName"
+          },
+          "AddressValidTo" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressValidTo"
+          },
+          "LastNamePrefix" : {
+            "type" : "string",
+            "x-ballerina-name" : "lastNamePrefix"
+          },
+          "PrimaryContactURLDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactURLDescription"
+          },
+          "LastName" : {
+            "type" : "string",
+            "x-ballerina-name" : "lastName"
+          },
+          "PrimaryContactFacebookDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFacebookDescription"
+          },
+          "AddressZipCode" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressZipCode"
+          },
+          "AddressLocationRoles" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressLocationRoles"
+          },
+          "AddressBooks" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressBooks"
+          },
+          "PrimaryContactURL" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactURL"
+          },
+          "KnownAs" : {
+            "type" : "string",
+            "x-ballerina-name" : "knownAs"
+          },
+          "PrimaryContactFacebookPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFacebookPurpose"
+          },
+          "PrimaryContactLinkedInIsPrivate" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "primaryContactLinkedInIsPrivate"
+          },
+          "PrimaryContactURLPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactURLPurpose"
+          },
+          "AddressCounty" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressCounty"
+          },
+          "PrimaryContactEmailDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactEmailDescription"
+          },
+          "PrimaryContactLinkedInDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactLinkedInDescription"
+          },
+          "AddressDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressDescription"
+          },
+          "PrimaryContactTwitterIsPrivate" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "primaryContactTwitterIsPrivate"
+          },
+          "AnniversaryDay" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "anniversaryDay"
+          },
+          "AnniversaryMonth" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MonthsOfYear"
+            } ],
+            "x-ballerina-name" : "anniversaryMonth"
+          },
+          "PrimaryContactPhoneIsMobile" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "primaryContactPhoneIsMobile"
+          },
+          "PartyType" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyType"
+          },
+          "PrimaryContactPhone" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactPhone"
+          },
+          "PrimaryContactTelexDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTelexDescription"
+          },
+          "PrimaryContactFaxExtension" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFaxExtension"
+          },
+          "PrimaryContactTelexPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTelexPurpose"
+          },
+          "PrimaryContactFacebook" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFacebook"
+          },
+          "ElectronicLocationId" : {
+            "type" : "string",
+            "x-ballerina-name" : "electronicLocationId"
+          },
+          "FirstName" : {
+            "type" : "string",
+            "x-ballerina-name" : "firstName"
+          },
+          "PrimaryContactFacebookIsPrivate" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "primaryContactFacebookIsPrivate"
+          },
+          "BirthDay" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "birthDay"
+          },
+          "NameSequenceDisplayAs" : {
+            "type" : "string",
+            "x-ballerina-name" : "nameSequenceDisplayAs"
+          },
+          "AddressDistrictName" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressDistrictName"
+          },
+          "MiddleName" : {
+            "type" : "string",
+            "x-ballerina-name" : "middleName"
+          },
+          "Hobbies" : {
+            "type" : "string",
+            "x-ballerina-name" : "hobbies"
+          },
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "PrimaryContactFaxPurpose" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFaxPurpose"
+          },
+          "PrimaryContactFaxDescription" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactFaxDescription"
+          },
+          "PrimaryContactTelex" : {
+            "type" : "string",
+            "x-ballerina-name" : "primaryContactTelex"
+          },
+          "AddressStreet" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressStreet"
+          },
+          "PersonalTitle" : {
+            "type" : "string",
+            "x-ballerina-name" : "personalTitle"
+          },
+          "ProfessionalTitle" : {
+            "type" : "string",
+            "x-ballerina-name" : "professionalTitle"
+          },
+          "LanguageId" : {
+            "type" : "string",
+            "x-ballerina-name" : "languageId"
+          },
+          "AddressState" : {
+            "type" : "string",
+            "x-ballerina-name" : "addressState"
+          },
+          "AddressLatitude" : {
+            "type" : "number",
+            "format" : "decimal",
+            "x-ballerina-name" : "addressLatitude"
+          }
+        }
+      },
+      "SkillTypesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/SkillTypesCollectionAllOf2"
+        } ]
+      },
+      "RatingLevelsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/RatingLevelsCollectionAllOf2"
+        } ]
+      },
+      "JobTask" : {
+        "required" : [ "JobTaskId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Note" : {
+            "type" : "string",
+            "x-ballerina-name" : "note"
+          },
+          "JobTaskId" : {
+            "type" : "string",
+            "x-ballerina-name" : "jobTaskId"
+          }
+        }
+      },
+      "StateHolidaysCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/StateHoliday"
+            }
+          }
+        }
+      },
+      "RatingLevel" : {
+        "required" : [ "Factor", "RatingLevelId", "RatingModelId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "RatingModelId" : {
+            "type" : "string",
+            "x-ballerina-name" : "ratingModelId"
+          },
+          "Factor" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "factor"
+          },
+          "Note" : {
+            "type" : "string",
+            "x-ballerina-name" : "note"
+          },
+          "RatingLevelId" : {
+            "type" : "string",
+            "x-ballerina-name" : "ratingLevelId"
+          }
+        }
+      },
+      "AbsenceReasonsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AbsenceReason"
+            }
+          }
+        }
+      },
+      "LoanItemsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/LoanItemsCollectionAllOf2"
+        } ]
+      },
+      "LoanItemsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/LoanItem"
+            }
+          }
+        }
+      },
+      "TeamV2" : {
+        "required" : [ "Name" ],
+        "type" : "object",
+        "properties" : {
+          "TeamTypeName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamTypeName"
+          },
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Administrator" : {
+            "type" : "string",
+            "x-ballerina-name" : "administrator"
+          },
+          "IsActive" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "isActive"
+          },
+          "Name" : {
+            "type" : "string",
+            "x-ballerina-name" : "name"
+          }
+        }
+      },
+      "CityHolidaysCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/CityHolidaysCollectionAllOf2"
+        } ]
+      },
+      "SkillsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/SkillsCollectionAllOf2"
+        } ]
+      },
+      "Employment" : {
+        "required" : [ "EmploymentEndDate", "EmploymentStartDate", "LegalEntityId", "PersonnelNumber" ],
+        "type" : "object",
+        "properties" : {
+          "WorkerType" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HcmEmploymentType"
+            } ],
+            "x-ballerina-name" : "workerType"
+          },
+          "CalendarLegalEntityId" : {
+            "type" : "string",
+            "x-ballerina-name" : "calendarLegalEntityId"
+          },
+          "PersonnelNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "personnelNumber"
+          },
+          "EmploymentEndDate" : {
+            "type" : "string",
+            "x-ballerina-name" : "employmentEndDate"
+          },
+          "RegulatoryEstablishmentId" : {
+            "type" : "string",
+            "x-ballerina-name" : "regulatoryEstablishmentId"
+          },
+          "DimensionDisplayValue" : {
+            "type" : "string",
+            "x-ballerina-name" : "dimensionDisplayValue"
+          },
+          "LegalEntityId" : {
+            "type" : "string",
+            "x-ballerina-name" : "legalEntityId"
+          },
+          "CalendarId" : {
+            "type" : "string",
+            "x-ballerina-name" : "calendarId"
+          },
+          "EmploymentStartDate" : {
+            "type" : "string",
+            "x-ballerina-name" : "employmentStartDate"
+          }
+        }
+      },
+      "VestingRulesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/VestingRulesCollectionAllOf2"
+        } ]
+      },
+      "PersonImagesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/PersonImagesCollectionAllOf2"
+        } ]
+      },
+      "TeamMembersV2Collection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/TeamMembersV2CollectionAllOf2"
+        } ]
+      },
+      "TeamsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/TeamsCollectionAllOf2"
+        } ]
+      },
+      "InjuryType" : {
+        "required" : [ "InjuryTypeId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "InjuryTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "injuryTypeId"
+          }
+        }
+      },
+      "Team" : {
+        "required" : [ "PartyNumber" ],
+        "type" : "object",
+        "properties" : {
+          "TeamTypeName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamTypeName"
+          },
+          "PartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "partyNumber"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Administrator" : {
+            "type" : "string",
+            "x-ballerina-name" : "administrator"
+          },
+          "IsActive" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "isActive"
+          },
+          "Name" : {
+            "type" : "string",
+            "x-ballerina-name" : "name"
+          }
+        }
+      },
+      "UnionsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Unions"
+            }
+          }
+        }
+      },
+      "CourseGroupsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CourseGroup"
+            }
+          }
+        }
+      },
+      "LaborUnionsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/LaborUnions"
+            }
+          }
+        }
+      },
+      "SkillTypesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SkillType"
+            }
+          }
+        }
+      },
+      "TeamsCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Team"
+            }
+          }
+        }
+      },
+      "ODataCollection" : {
+        "type" : "object",
+        "properties" : {
+          "@odata.nextLink" : {
+            "type" : "string",
+            "x-ballerina-name" : "odataNextLink"
+          },
+          "@odata.count" : {
+            "type" : "integer",
+            "x-ballerina-name" : "odataCount"
+          },
+          "@odata.context" : {
+            "type" : "string",
+            "x-ballerina-name" : "odataContext"
+          },
+          "value" : {
+            "type" : "array",
+            "items" : { }
+          }
+        }
+      },
+      "InjuryTypesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InjuryType"
+            }
+          }
+        }
+      },
+      "AbsenceCode" : {
+        "required" : [ "AbsenceCode", "BackgroundColor", "Column", "Days", "Icon", "TextColor", "dataAreaId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "AbsenceGroup" : {
+            "type" : "string",
+            "x-ballerina-name" : "absenceGroup"
+          },
+          "IncludeInReport" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "includeInReport"
+          },
+          "AbsenceCode" : {
+            "type" : "string",
+            "x-ballerina-name" : "absenceCode"
+          },
+          "ContinueAbsence" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "continueAbsence"
+          },
+          "PayType" : {
+            "type" : "string",
+            "x-ballerina-name" : "payType"
+          },
+          "Method" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/JmgAbsenceMethodEnum"
+            } ],
+            "x-ballerina-name" : "method"
+          },
+          "OffsetAccountDisplayValue" : {
+            "type" : "string",
+            "x-ballerina-name" : "offsetAccountDisplayValue"
+          },
+          "dataAreaId" : {
+            "type" : "string"
+          },
+          "Column" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "column"
+          },
+          "DimensionDisplayValue" : {
+            "type" : "string",
+            "x-ballerina-name" : "dimensionDisplayValue"
+          },
+          "Registration" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "registration"
+          },
+          "JobIdentification" : {
+            "type" : "string",
+            "x-ballerina-name" : "jobIdentification"
+          },
+          "Days" : {
+            "type" : "number",
+            "format" : "decimal",
+            "x-ballerina-name" : "days"
+          },
+          "MainAccountDisplayValue" : {
+            "type" : "string",
+            "x-ballerina-name" : "mainAccountDisplayValue"
+          },
+          "TextColor" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "textColor"
+          },
+          "Icon" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "icon"
+          },
+          "LetterCode" : {
+            "type" : "string",
+            "x-ballerina-name" : "letterCode"
+          },
+          "BackgroundColor" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-ballerina-name" : "backgroundColor"
+          }
+        }
+      },
+      "JmgAbsenceMethodEnum" : {
+        "type" : "string",
+        "enum" : [ "Hours", "Qty" ]
+      },
+      "TeamsV2Collection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/TeamsV2CollectionAllOf2"
+        } ]
+      },
+      "EssWorkersCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/EssWorkersCollectionAllOf2"
+        } ]
+      },
+      "ODataError" : {
+        "type" : "object",
+        "properties" : {
+          "error" : {
+            "$ref" : "#/components/schemas/ODataErrorError"
+          }
+        }
+      },
+      "LaborUnions" : {
+        "required" : [ "UnionID" ],
+        "type" : "object",
+        "properties" : {
+          "UnionID" : {
+            "type" : "string",
+            "x-ballerina-name" : "unionID"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "negotiator" : {
+            "$ref" : "#/components/schemas/NoYes"
+          }
+        }
+      },
+      "AbsenceCodesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AbsenceCode"
+            }
+          }
+        }
+      },
+      "TeamMember" : {
+        "required" : [ "RelationshipTypeId", "TeamMemberPartyNumber", "TeamPartyNumber", "ValidFrom", "ValidTo" ],
+        "type" : "object",
+        "properties" : {
+          "TeamMemberPartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamMemberPartyNumber"
+          },
+          "RelationshipTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "relationshipTypeId"
+          },
+          "ValidTo" : {
+            "type" : "string",
+            "x-ballerina-name" : "validTo"
+          },
+          "TeamPartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamPartyNumber"
+          },
+          "TeamMemberName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamMemberName"
+          },
+          "ValidFrom" : {
+            "type" : "string",
+            "x-ballerina-name" : "validFrom"
+          },
+          "TeamName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamName"
+          }
+        }
+      },
+      "Unions" : {
+        "required" : [ "UnionId" ],
+        "type" : "object",
+        "properties" : {
+          "EntitledToNegotiate" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "entitledToNegotiate"
+          },
+          "UnionId" : {
+            "type" : "string",
+            "x-ballerina-name" : "unionId"
+          },
+          "Name" : {
+            "type" : "string",
+            "x-ballerina-name" : "name"
+          }
+        }
+      },
+      "PersonImagesCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PersonImage"
+            }
+          }
+        }
+      },
+      "PositionType" : {
+        "required" : [ "PositionTypeId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Classification" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HcmEmploymentStatus"
+            } ],
+            "x-ballerina-name" : "classification"
+          },
+          "PositionTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "positionTypeId"
+          }
+        }
+      },
+      "Skill" : {
+        "required" : [ "Skill" ],
+        "type" : "object",
+        "properties" : {
+          "Skill" : {
+            "type" : "string",
+            "x-ballerina-name" : "skill"
+          },
+          "RatingId" : {
+            "type" : "string",
+            "x-ballerina-name" : "ratingId"
+          },
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "Note" : {
+            "type" : "string",
+            "x-ballerina-name" : "note"
+          },
+          "SkillTypeId" : {
+            "type" : "string",
+            "x-ballerina-name" : "skillTypeId"
+          }
+        }
+      },
+      "CityHolidaysCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CityHoliday"
+            }
+          }
+        }
+      },
+      "TeamMemberV2" : {
+        "required" : [ "TeamMemberPartyNumber", "TeamName", "ValidFrom", "ValidTo" ],
+        "type" : "object",
+        "properties" : {
+          "TeamMemberPartyNumber" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamMemberPartyNumber"
+          },
+          "IsTeamLead" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NoYes"
+            } ],
+            "x-ballerina-name" : "isTeamLead"
+          },
+          "ValidTo" : {
+            "type" : "string",
+            "x-ballerina-name" : "validTo"
+          },
+          "TeamMemberName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamMemberName"
+          },
+          "ValidFrom" : {
+            "type" : "string",
+            "x-ballerina-name" : "validFrom"
+          },
+          "TeamName" : {
+            "type" : "string",
+            "x-ballerina-name" : "teamName"
+          }
+        }
+      },
+      "UnionsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/UnionsCollectionAllOf2"
+        } ]
+      },
+      "CityHoliday" : {
+        "required" : [ "CityName", "CountryRegionId", "HolidayDate", "StateId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "CountryRegionId" : {
+            "type" : "string",
+            "x-ballerina-name" : "countryRegionId"
+          },
+          "HolidayDate" : {
+            "type" : "string",
+            "x-ballerina-name" : "holidayDate"
+          },
+          "StateId" : {
+            "type" : "string",
+            "x-ballerina-name" : "stateId"
+          },
+          "CityName" : {
+            "type" : "string",
+            "x-ballerina-name" : "cityName"
+          }
+        }
+      },
+      "PeopleCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Person"
+            }
+          }
+        }
+      },
+      "RatingModel" : {
+        "required" : [ "RatingModelId" ],
+        "type" : "object",
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "x-ballerina-name" : "description"
+          },
+          "RatingModelId" : {
+            "type" : "string",
+            "x-ballerina-name" : "ratingModelId"
+          }
+        }
+      },
+      "PeopleCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/PeopleCollectionAllOf2"
+        } ]
+      },
+      "AbsenceReasonsCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/AbsenceReasonsCollectionAllOf2"
+        } ]
+      },
+      "AbsenceCodesCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/AbsenceCodesCollectionAllOf2"
+        } ]
+      },
+      "JobTasksCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/JobTasksCollectionAllOf2"
+        } ]
+      },
+      "PersonUsersCollection" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ODataCollection"
+        }, {
+          "$ref" : "#/components/schemas/PersonUsersCollectionAllOf2"
+        } ]
+      },
+      "EssWorkersCollectionAllOf2" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EssWorker"
+            }
+          }
+        }
+      }
+    },
+    "responses" : {
+      "ODataError" : {
+        "description" : "OData error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ODataError"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "filter" : {
+        "name" : "$filter",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string"
+        },
+        "x-ballerina-name" : "filter"
+      },
+      "select" : {
+        "name" : "$select",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string"
+        },
+        "x-ballerina-name" : "select"
+      },
+      "top" : {
+        "name" : "$top",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "integer"
+        },
+        "x-ballerina-name" : "top"
+      },
+      "skip" : {
+        "name" : "$skip",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "integer"
+        },
+        "x-ballerina-name" : "skip"
+      },
+      "orderBy" : {
+        "name" : "$orderby",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string"
+        },
+        "x-ballerina-name" : "orderby"
+      },
+      "expand" : {
+        "name" : "$expand",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string"
+        },
+        "x-ballerina-name" : "expand"
+      },
+      "count" : {
+        "name" : "$count",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "boolean"
+        },
+        "x-ballerina-name" : "count"
+      },
+      "crossCompany" : {
+        "name" : "cross-company",
+        "in" : "query",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "boolean"
+        },
+        "x-ballerina-name" : "crossCompany"
+      },
+      "ifMatch" : {
+        "name" : "If-Match",
+        "in" : "header",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "x-ballerina-name" : "ifMatch"
+      }
+    },
+    "securitySchemes" : {
+      "oAuth2" : {
+        "type" : "oauth2",
+        "flows" : {
+          "clientCredentials" : {
+            "tokenUrl" : "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+            "scopes" : {
+              "https://your-org.operations.dynamics.com/.default" : "D365 F&O API access"
+            }
+          }
+        }
+      }
+    }
+  }
+}
