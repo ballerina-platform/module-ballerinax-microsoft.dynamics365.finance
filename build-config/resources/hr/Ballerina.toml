@@ -1,0 +1,13 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.hr"
+version = "@toml.version@"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance HR", "Area/Human Resources", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "HR", "HumanResources", "Employee", "Type/Connector"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.13.0"
+
+[build-options]
+observabilityIncluded = true

@@ -41,9 +41,12 @@ plugins {
 def projectName = 'microsoft.dynamics365.finance'
 rootProject.name = "module-ballerinax-${projectName}"
 
-include ":${projectName}-ballerina"
-
-project(":${projectName}-ballerina").projectDir = file('ballerina')
+// Sub-module packages — each is an independently publishable Ballerina connector
+def ballerinaBuckets = ['ledger', 'receivable', 'payable', 'tax', 'asset', 'core', 'hr', 'system']
+ballerinaBuckets.each { bucket ->
+    include ":${projectName}-ballerina-${bucket}"
+    project(":${projectName}-ballerina-${bucket}").projectDir = file("ballerina/${bucket}")
+}
 
 gradleEnterprise {
     buildScan {

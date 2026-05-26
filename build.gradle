@@ -22,6 +22,9 @@ plugins {
 
 description = 'Ballerina - Microsoft Dynamics 365 Finance and Operations'
 
+def ballerinaBuckets = ['ledger', 'receivable', 'payable', 'tax', 'asset', 'core', 'hr', 'system']
+def projectName = 'microsoft.dynamics365.finance'
+
 allprojects {
     group = project.group
     version = project.version
@@ -55,10 +58,22 @@ allprojects {
 }
 
 task build {
-    dependsOn(":microsoft.dynamics365.finance-ballerina:build")
+    ballerinaBuckets.each { bucket ->
+        dependsOn(":${projectName}-ballerina-${bucket}:build")
+    }
 }
 
-def moduleVersion = project.version.replace("-SNAPSHOT", "")
+task publish {
+    ballerinaBuckets.each { bucket ->
+        dependsOn(":${projectName}-ballerina-${bucket}:publish")
+    }
+}
+
+task publishToMavenLocal {
+    ballerinaBuckets.each { bucket ->
+        dependsOn(":${projectName}-ballerina-${bucket}:publishToMavenLocal")
+    }
+}
 
 release {
     buildTasks = ['build']
@@ -66,7 +81,7 @@ release {
     versionPropertyFile = 'gradle.properties'
     tagTemplate = 'v${version}'
     git {
-        requireBranch = "release-${moduleVersion}"
+        requireBranch = "release-${project.version.replace("-SNAPSHOT", "")}"
         pushToRemote = 'origin'
     }
 }

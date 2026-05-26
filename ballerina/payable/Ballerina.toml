@@ -1,0 +1,13 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.payable"
+version = "0.1.0"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance Payable", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Payable", "Vendor", "Type/Connector"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.12.9"
+
+[build-options]
+observabilityIncluded = true

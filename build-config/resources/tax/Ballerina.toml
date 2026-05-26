@@ -1,0 +1,13 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.tax"
+version = "@toml.version@"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance Tax", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Tax", "Compliance", "Type/Connector"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.13.0"
+
+[build-options]
+observabilityIncluded = true
