@@ -1,21 +1,16 @@
-// Copyright (c) 2026 WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2026, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
-// in compliance with the License.
-// You may obtain a copy of the License at
+// in compliance with the License. You may obtain a copy of the License at
 //
 // http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
-
-// Minimal OData query application for the mock: $top, $skip, $count, $select,
-// cross-company, and a small subset of $filter (eq, contains, startswith).
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 import ballerina/lang.regexp;
 
@@ -63,13 +58,14 @@ isolated function parseBool(string? s) returns boolean? {
     return s.toLowerAscii() == "true";
 }
 
-isolated function buildCollection(string contextBase, string entitySet, json[] data, ODataQueries q,
-        string defaultCompany) returns map<json> {
+isolated function buildCollection(string contextBase, string entitySet, json[] data,
+        ODataQueries q, string defaultCompany) returns map<json> {
     json[] filtered = data;
 
     if !(q.crossCompany ?: false) {
         filtered = from json row in filtered
-            where !(row is map<json>) || lookupString(row, "dataAreaId") is () || lookupString(row, "dataAreaId") == defaultCompany
+            where !(row is map<json>) || lookupString(row, "dataAreaId") is ()
+                || lookupString(row, "dataAreaId") == defaultCompany
             select row;
     }
 
@@ -186,4 +182,48 @@ isolated function rowEquals(json row, string fieldName, string rhs) returns bool
         return val is string && val == literal;
     }
     return false;
+}
+
+isolated function findByKey(json[] data, map<string> key) returns json? {
+    foreach json row in data {
+        if !(row is map<json>) {
+            continue;
+        }
+        boolean matches = true;
+        foreach [string, string] [k, v] in key.entries() {
+            json? rowVal = row[k];
+            if !(rowVal is string) || rowVal != v {
+                matches = false;
+                break;
+            }
+        }
+        if matches {
+            return row;
+        }
+    }
+    return ();
+}
+
+isolated function parseEntitySetAndKey(string segment) returns [string, map<string>] {
+    int? open = segment.indexOf("(");
+    if open is () {
+        return [segment, {}];
+    }
+    string entitySet = segment.substring(0, open);
+    int closeIdx = segment.endsWith(")") ? segment.length() - 1 : segment.length();
+    string keyExpr = segment.substring(open + 1, closeIdx);
+
+    map<string> key = {};
+    regexp:RegExp kvRe = re `(\w+)\s*=\s*'([^']*)'`;
+    regexp:Groups[] all = kvRe.findAllGroups(keyExpr);
+    foreach regexp:Groups g in all {
+        if g.length() >= 3 {
+            regexp:Span? n = g[1];
+            regexp:Span? v = g[2];
+            if n is regexp:Span && v is regexp:Span {
+                key[n.substring()] = v.substring();
+            }
+        }
+    }
+    return [entitySet, key];
 }

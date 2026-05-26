@@ -189,6 +189,9 @@ version = "0.0.0"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"}
 ]
+modules = [
+	{org = "ballerina", packageName = "lang.regexp", moduleName = "lang.regexp"}
+]
 
 [[package]]
 org = "ballerina"
@@ -340,11 +343,13 @@ version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "data.jsondata"},
 	{org = "ballerina", name = "http"},
+	{org = "ballerina", name = "lang.regexp"},
 	{org = "ballerina", name = "test"},
 	{org = "ballerina", name = "url"},
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "ballerinax", packageName = "microsoft.dynamics365.finance.payable", moduleName = "microsoft.dynamics365.finance.payable"}
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance.payable", moduleName = "microsoft.dynamics365.finance.payable"},
+	{org = "ballerinax", packageName = "microsoft.dynamics365.finance.payable", moduleName = "microsoft.dynamics365.finance.payable.mock"}
 ]
 

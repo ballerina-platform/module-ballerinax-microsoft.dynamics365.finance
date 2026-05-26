@@ -7,7 +7,9 @@ keywords = ["Name/Microsoft Dynamics 365 Finance HR", "Area/Human Resources", "V
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
 icon = "../icon.png"
 license = ["Apache-2.0"]
-distribution = "2201.12.9"
+distribution = "2201.13.0"
+
+export = ["microsoft.dynamics365.finance.hr", "microsoft.dynamics365.finance.hr.mock"]
 
 [build-options]
 observabilityIncluded = true
