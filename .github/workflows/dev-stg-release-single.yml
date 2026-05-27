@@ -1,4 +1,4 @@
-name: Publish All Connectors to the Ballerina Dev/Stage Central
+name: Publish Single Connector to the Ballerina Dev/Stage Central
 
 on:
   workflow_dispatch:
@@ -10,35 +10,25 @@ on:
         options:
           - DEV CENTRAL
           - STAGE CENTRAL
+      connector:
+        type: choice
+        description: Select Connector
+        required: true
+        options:
+          - ledger
+          - receivable
+          - payable
+          - tax
+          - asset
+          - core
+          - hr
+          - system
 
 jobs:
-  generate-matrix:
-    name: Generate Matrix
-    runs-on: ubuntu-latest
-    outputs:
-      directories: ${{ steps.set-matrix.outputs.directories }}
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Set matrix for build
-        id: set-matrix
-        run: |
-          folders=()
-          cd ballerina
-          for dir in $(find . -type d -maxdepth 1 -mindepth 1 | cut -c3-); do
-            folders+=("$dir")
-          done
-          echo "directories=$(jq -nc --args '$ARGS.positional' ${folders[@]})" >> $GITHUB_OUTPUT
-
   publish:
-    name: Publish Connectors
+    name: Publish Connector
     runs-on: ubuntu-latest
-    needs: generate-matrix
     if: ${{ github.repository_owner == 'ballerina-platform' }}
-    strategy:
-      fail-fast: false
-      matrix:
-        directory: ${{ fromJSON(needs.generate-matrix.outputs.directories) }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -58,7 +48,7 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build \
+          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:build \
             -PpublishToCentral=true
 
       - name: Publish to Stage Central
@@ -70,5 +60,5 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build \
+          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:build \
             -PpublishToCentral=true
