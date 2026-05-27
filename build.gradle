@@ -57,19 +57,19 @@ allprojects {
     }
 }
 
-task build {
+tasks.register("build") {
     ballerinaBuckets.each { bucket ->
         dependsOn(":${projectName}-ballerina-${bucket}:build")
     }
 }
 
-task publish {
+tasks.named("publish") {
     ballerinaBuckets.each { bucket ->
         dependsOn(":${projectName}-ballerina-${bucket}:publish")
     }
 }
 
-task publishToMavenLocal {
+tasks.named("publishToMavenLocal") {
     ballerinaBuckets.each { bucket ->
         dependsOn(":${projectName}-ballerina-${bucket}:publishToMavenLocal")
     }
