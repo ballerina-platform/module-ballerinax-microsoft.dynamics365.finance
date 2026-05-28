@@ -49,7 +49,7 @@ jobs:
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
           ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:build \
-            -PpublishToCentral=true
+            -PbuildUsingDocker=nightly -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -61,4 +61,4 @@ jobs:
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
           ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:build \
-            -PpublishToCentral=true
+            -PbuildUsingDocker=nightly -PpublishToCentral=true

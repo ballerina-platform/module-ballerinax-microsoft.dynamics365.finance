@@ -51,8 +51,8 @@ jobs:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build -x test
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:test
+          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build -x test -PbuildUsingDocker=nightly
+          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:test -PbuildUsingDocker=nightly
 
   send-notification:
     name: Send Failure Notification
