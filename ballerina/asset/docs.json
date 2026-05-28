@@ -1,0 +1,14 @@
+{
+  "description": "The `microsoft.dynamics365.finance.asset` connector provides APIs for fixed assets, bank management, cash management, project accounting, and expense management in Microsoft Dynamics 365 Finance. It covers asset books, bank accounts, bank transactions, project categories, and expense policies.",
+  "key-features": [
+    "Fixed asset CRUD and asset value model management",
+    "Bank account, bank group, and bank transaction management",
+    "Asset lending and leasing group configuration",
+    "Project accounting categories and cost price configuration",
+    "Expense reports, per-diem policies, and travel categories"
+  ],
+  "communication-scenario": "Asset and Bank Integration",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.asset as finAsset;",
+  "client-init": "finAsset:Client finAssetClient = check new (",
+  "api-invocation": "finAsset:FixedAssetsCollection assets = check finAssetClient->listFixedAssets();"
+}

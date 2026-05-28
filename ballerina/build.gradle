@@ -1,101 +1,57 @@
 /*
  * Copyright (c) 2026, WSO2 LLC. (http://www.wso2.com)
- *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Apache License 2.0
  */
-
+import groovy.json.JsonSlurper
 import org.apache.tools.ant.taskdefs.condition.Os
 
-plugins {
-    id 'io.ballerina.plugin'
+description = 'Ballerina - Microsoft Dynamics 365 Finance and Operations'
+
+def ballerinaBuckets = ['ledger', 'receivable', 'payable', 'tax', 'asset', 'core', 'hr', 'system']
+def projectName = 'microsoft.dynamics365.finance'
+
+subprojects {
+    ext {
+        packageOrg = "ballerinax"
+    }
 }
 
-description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations Ballerina'
+def readmeMdPlaceholder = new File("${project.rootDir}/build-config/resources/README.md")
 
-def packageName = "microsoft.dynamics365.finance"
-def packageOrg = "ballerinax"
-def tomlVersion = stripBallerinaExtensionVersion("${project.version}")
-def ballerinaTomlFilePlaceHolder = new File("${project.rootDir}/build-config/resources/Ballerina.toml")
-def ballerinaTomlFile = new File("$project.projectDir/Ballerina.toml")
-
-def stripBallerinaExtensionVersion(String extVersion) {
-    if (extVersion.matches(project.ext.timestampedVersionRegex)) {
-        def splitVersion = extVersion.split('-')
-        if (splitVersion.length > 3) {
-            def strippedValues = splitVersion[0..-4]
-            return strippedValues.join('-')
-        } else {
-            return extVersion
+task updateDocumentationFiles {
+    doLast {
+        ballerinaBuckets.each { bucket ->
+            def packageProperties = new File("${project.rootDir}/ballerina/${bucket}/docs.json")
+            if (!packageProperties.exists()) return
+            def parsedJson = new JsonSlurper().parseText(packageProperties.text)
+            def readmeMdFile = new File("${project.rootDir}/ballerina/${bucket}/README.md")
+            def newReadmeMdFile = readmeMdPlaceholder.text
+            newReadmeMdFile = newReadmeMdFile.replace("@package-name@", "${projectName}.${bucket}")
+            newReadmeMdFile = newReadmeMdFile.replace("@description@", parsedJson.description ?: "")
+            newReadmeMdFile = newReadmeMdFile.replace("@key-features@", (parsedJson."key-features" ?: []).collect { "- ${it}" }.join("\n"))
+            newReadmeMdFile = newReadmeMdFile.replace("@communication-scenario@", parsedJson."communication-scenario" ?: "")
+            newReadmeMdFile = newReadmeMdFile.replace("@import-statement@", parsedJson."import-statement" ?: "")
+            newReadmeMdFile = newReadmeMdFile.replace("@client-init@", parsedJson."client-init" ?: "")
+            newReadmeMdFile = newReadmeMdFile.replace("@api-invocation@", parsedJson."api-invocation" ?: "")
+            readmeMdFile.text = newReadmeMdFile
         }
-    } else {
-        return extVersion.replace("${project.ext.snapshotVersion}", "")
-    }
-}
-
-ballerina {
-    packageOrganization = packageOrg
-    module = packageName
-    langVersion = ballerinaLangVersion
-    testCoverageParam = "--code-coverage --coverage-format=xml"
-    isConnector = true
-    platform = "any"
-}
-
-task updateTomlFiles {
-    doLast {
-        def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
-        newConfig = newConfig.replace("@toml.version@", tomlVersion)
-        ballerinaTomlFile.text = newConfig
-    }
-}
-
-task commitTomlFiles {
-    doLast {
         project.exec {
             ignoreExitValue true
-            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                commandLine 'cmd', '/c', "git commit -m '[Automated] Update the toml files' Ballerina.toml Dependencies.toml"
+            if (org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)) {
+                commandLine 'cmd', '/c', "git commit -m \"[Automated] Update the documentation file\" */README.md"
             } else {
-                commandLine 'sh', '-c', "git commit -m '[Automated] Update the toml files' Ballerina.toml Dependencies.toml"
+                commandLine 'sh', '-c', "git commit -m '[Automated] Update the documentation file' */README.md"
             }
         }
     }
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact source: createArtifactZip, extension: 'zip'
-        }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/ballerina-platform/module-${packageOrg}-${packageName}")
-            credentials {
-                username = System.getenv("publishUser")
-                password = System.getenv("publishPAT")
-            }
-        }
+task build {
+    dependsOn(updateDocumentationFiles)
+    ballerinaBuckets.each { bucket ->
+        dependsOn(":microsoft.dynamics365.finance-ballerina:${bucket}:build")
     }
 }
 
-clean {
-    delete 'build'
-}
-
-build.dependsOn generatePomFileForMavenPublication
-publish.dependsOn build
 publishToMavenLocal.dependsOn build
+publish.dependsOn build

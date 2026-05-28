@@ -20,6 +20,7 @@ pluginManagement {
     plugins {
         id "net.researchgate.release" version "${releasePluginVersion}"
         id "io.ballerina.plugin" version "${ballerinaGradlePluginVersion}"
+        id "de.undercouch.download" version "${downloadPluginVersion}"
     }
 
     repositories {
@@ -42,8 +43,13 @@ def projectName = 'microsoft.dynamics365.finance'
 rootProject.name = "module-ballerinax-${projectName}"
 
 include ":${projectName}-ballerina"
+project(":${projectName}-ballerina").projectDir = file("ballerina")
 
-project(":${projectName}-ballerina").projectDir = file('ballerina')
+def ballerinaBuckets = ['ledger', 'receivable', 'payable', 'tax', 'asset', 'core', 'hr', 'system']
+ballerinaBuckets.each { bucket ->
+    include ":${projectName}-ballerina:${bucket}"
+    project(":${projectName}-ballerina:${bucket}").projectDir = file("ballerina/${bucket}")
+}
 
 gradleEnterprise {
     buildScan {

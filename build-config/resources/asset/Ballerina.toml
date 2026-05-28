@@ -1,0 +1,15 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.asset"
+version = "@toml.version@"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance Asset", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Asset", "FixedAsset", "Banking", "Type/Connector"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.13.0"
+
+export = ["microsoft.dynamics365.finance.asset", "microsoft.dynamics365.finance.asset.mock"]
+
+[build-options]
+observabilityIncluded = true

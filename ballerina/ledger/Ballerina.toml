@@ -1,0 +1,15 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.ledger"
+version = "0.1.0"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance Ledger", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Ledger", "Type/Connector"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.13.0"
+
+export = ["microsoft.dynamics365.finance.ledger", "microsoft.dynamics365.finance.ledger.mock"]
+
+[build-options]
+observabilityIncluded = true
