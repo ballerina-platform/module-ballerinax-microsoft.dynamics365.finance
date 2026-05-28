@@ -58,7 +58,7 @@ jobs:
         env:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:build -x test -PbuildUsingDocker=nightly
+        run: ./gradlew :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build -x test -PbuildUsingDocker=nightly
 
       - name: Run Trivy Vulnerability Scanner
         uses: aquasecurity/trivy-action@master
@@ -92,9 +92,9 @@ jobs:
           publishUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           publishPAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:release \
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:release \
             -Prelease.useAutomaticVersion=true
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ inputs.connector }}:publish \
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:publish \
             -Pversion=${VERSION} -P${{ inputs.connector }}Version=${VERSION} \
             -x test -PpublishToCentral=true
 

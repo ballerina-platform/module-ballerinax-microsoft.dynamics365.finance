@@ -58,7 +58,7 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build \
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
             -PbuildUsingDocker=nightly -PpublishToCentral=true
 
       - name: Publish to Stage Central
@@ -70,5 +70,5 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build \
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
             -PbuildUsingDocker=nightly -PpublishToCentral=true
