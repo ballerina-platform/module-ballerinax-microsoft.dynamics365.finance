@@ -100,13 +100,10 @@ jobs:
           distribution: temurin
           java-version: 21.0.3
 
-      - name: Build packages and push to local repository
-        env:
-          packageUser: ${{ github.actor }}
-          packagePAT: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pack and push packages to local repository
         run: |
-          ./gradlew build -x test
           for bucket in ledger receivable payable tax asset core hr system; do
+            (cd ballerina/${bucket} && bal pack)
             bal push --repository local ballerina/${bucket}/target/bala/ballerinax-microsoft.dynamics365.finance.${bucket}-any-*.bala
           done
 
