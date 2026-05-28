@@ -35,7 +35,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "AddressCity"}
     string addressCity?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -57,7 +57,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "CompanyType"}
     CompanyTypeMX companyType?;
     @jsondata:Name {value: "StartDateOfBusiness"}
-    string startDateOfBusiness;
+    string startDateOfBusiness?;
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
@@ -99,7 +99,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "DNBRoutingNumber"}
     string dNBRoutingNumber?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "ProfitMarginScheme"}
@@ -145,11 +145,11 @@ public type LegalEntity record {
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "InitialCapitalInvestment"}
-    decimal initialCapitalInvestment;
+    decimal initialCapitalInvestment?;
     @jsondata:Name {value: "LegalForm"}
     string legalForm?;
     @jsondata:Name {value: "PrintEnterpriseRegister"}
@@ -165,7 +165,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "PersonInCharge"}
     string personInCharge?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "BusinessItem"}
     string businessItem?;
     @jsondata:Name {value: "VATNum"}
@@ -183,7 +183,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "AddressCounty"}
     string addressCounty?;
     @jsondata:Name {value: "PrintCorrectiveInvoiceStartingDate"}
-    string printCorrectiveInvoiceStartingDate;
+    string printCorrectiveInvoiceStartingDate?;
     @jsondata:Name {value: "PrimaryContactEmailDescription"}
     string primaryContactEmailDescription?;
     @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
@@ -221,7 +221,7 @@ public type LegalEntity record {
     @jsondata:Name {value: "CompanyCountry"}
     string companyCountry?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 # Represents the Queries record for the operation: getBusinessUnits
@@ -357,7 +357,7 @@ public type Department record {
     @jsondata:Name {value: "OrganizationType"}
     OMInternalOrganizationType organizationType?;
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "PrimaryContactFaxPurpose"}
     string primaryContactFaxPurpose?;
     @jsondata:Name {value: "PrimaryContactFaxDescription"}
@@ -367,9 +367,9 @@ public type Department record {
     @jsondata:Name {value: "PrimaryContactTelex"}
     string primaryContactTelex?;
     @jsondata:Name {value: "PrimaryAddressValidFrom"}
-    string primaryAddressValidFrom;
+    string primaryAddressValidFrom?;
     @jsondata:Name {value: "PrimaryAddressValidTo"}
-    string primaryAddressValidTo;
+    string primaryAddressValidTo?;
     @jsondata:Name {value: "PrimaryAddressZipCode"}
     string primaryAddressZipCode?;
     @jsondata:Name {value: "Memo"}
@@ -407,7 +407,7 @@ public type AddressCity record {
     @jsondata:Name {value: "ItalyCityCode"}
     string italyCityCode?;
     @jsondata:Name {value: "CityKey"}
-    string cityKey;
+    string cityKey?;
     @jsondata:Name {value: "ItalyMunicipalityCode"}
     string italyMunicipalityCode?;
     @jsondata:Name {value: "CityInKana"}
@@ -424,33 +424,33 @@ public type Currency record {
     @jsondata:Name {value: "CurrencyGender"}
     GenderMaleFemale currencyGender?;
     @jsondata:Name {value: "RoundingRuleSalesOrders"}
-    decimal roundingRuleSalesOrders;
+    decimal roundingRuleSalesOrders?;
     @jsondata:Name {value: "RoundingMethodPurchaseOrders"}
     RoundOffType roundingMethodPurchaseOrders?;
     @jsondata:Name {value: "Symbol"}
     string symbol?;
     @jsondata:Name {value: "RoundingRuleFixedAssetDepreciation"}
-    decimal roundingRuleFixedAssetDepreciation;
+    decimal roundingRuleFixedAssetDepreciation?;
     @jsondata:Name {value: "RoundingRulePurchaseOrders"}
-    decimal roundingRulePurchaseOrders;
+    decimal roundingRulePurchaseOrders?;
     @jsondata:Name {value: "GeneralRoundingRule"}
-    decimal generalRoundingRule;
+    decimal generalRoundingRule?;
     @jsondata:Name {value: "RoundingMethodFixedAssetDepreciation"}
     RoundOffType roundingMethodFixedAssetDepreciation?;
     @jsondata:Name {value: "Name"}
     string name?;
     @jsondata:Name {value: "CurrencyCode"}
-    string currencyCode;
+    string currencyCode?;
     @jsondata:Name {value: "RoundingMethodSalesOrders"}
     RoundOffType roundingMethodSalesOrders?;
     @jsondata:Name {value: "RoundingRulePrices"}
-    decimal roundingRulePrices;
+    decimal roundingRulePrices?;
     @jsondata:Name {value: "ReferenceCurrencyForTriangulation"}
     NoYes referenceCurrencyForTriangulation?;
     @jsondata:Name {value: "RoundingMethodPrices"}
     RoundOffType roundingMethodPrices?;
     @jsondata:Name {value: "DecimalsCount_MX"}
-    int:Signed32 decimalsCountMX;
+    int:Signed32 decimalsCountMX?;
 };
 
 # Represents the Headers record for the operation: updateVRMTaxGroups
@@ -480,13 +480,13 @@ public type ListCardTypesQueries record {
 };
 
 public type EmplPosting record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "SummaryLedgerDimensionDisplayValue"}
     string summaryLedgerDimensionDisplayValue?;
     @jsondata:Name {value: "PostingProfile"}
-    string postingProfile;
+    string postingProfile?;
     @jsondata:Name {value: "Num"}
-    string num;
+    string num?;
     @jsondata:Name {value: "AccountCode"}
     TableGroupAll accountCode?;
     @jsondata:Name {value: "SettlementByDimension"}
@@ -503,7 +503,7 @@ public type VoucherTypesCollectionAllOf2 record {
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -613,11 +613,11 @@ public type BusinessUnit record {
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -649,7 +649,7 @@ public type BusinessUnit record {
     @jsondata:Name {value: "NameAlias"}
     string nameAlias?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "PrimaryContactFacebookDescription"}
@@ -657,7 +657,7 @@ public type BusinessUnit record {
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "OperatingUnitNumber"}
-    string operatingUnitNumber;
+    string operatingUnitNumber?;
     @jsondata:Name {value: "AddressLocationRoles"}
     string addressLocationRoles?;
     @jsondata:Name {value: "AddressBooks"}
@@ -713,7 +713,7 @@ public type BusinessUnit record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 # Represents the Queries record for the operation: getCDSParties
@@ -876,7 +876,7 @@ public type DepartmentV2 record {
     @jsondata:Name {value: "PrimaryContactFacebookDescription"}
     string primaryContactFacebookDescription?;
     @jsondata:Name {value: "OperatingUnitNumber"}
-    string operatingUnitNumber;
+    string operatingUnitNumber?;
     @jsondata:Name {value: "PrimaryAddressStreet"}
     string primaryAddressStreet?;
     @jsondata:Name {value: "AddressLocationRoles"}
@@ -936,9 +936,9 @@ public type DepartmentV2 record {
     @jsondata:Name {value: "PrimaryContactTelex"}
     string primaryContactTelex?;
     @jsondata:Name {value: "PrimaryAddressValidFrom"}
-    string primaryAddressValidFrom;
+    string primaryAddressValidFrom?;
     @jsondata:Name {value: "PrimaryAddressValidTo"}
-    string primaryAddressValidTo;
+    string primaryAddressValidTo?;
     @jsondata:Name {value: "PrimaryAddressZipCode"}
     string primaryAddressZipCode?;
     @jsondata:Name {value: "Memo"}
@@ -1068,11 +1068,11 @@ public type OAuth2ClientCredentialsGrantConfig record {|
 |};
 
 public type VATNumTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VATNum"}
-    string vATNum;
+    string vATNum?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -1095,28 +1095,28 @@ public type PaymentCalendarRule record {
     @jsondata:Name {value: "SpecificCustomerPaymentMethod"}
     string specificCustomerPaymentMethod?;
     @jsondata:Name {value: "ThirdPartyPrimaryAddressPriority"}
-    int:Signed32 thirdPartyPrimaryAddressPriority;
+    int:Signed32 thirdPartyPrimaryAddressPriority?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "SpecificPaymentTerms"}
     string specificPaymentTerms?;
     @jsondata:Name {value: "Priority"}
-    int:Signed32 priority;
+    int:Signed32 priority?;
     @jsondata:Name {value: "IsActive"}
     NoYes isActive?;
     @jsondata:Name {value: "ThirdPartyDocumentAddressPriority"}
-    int:Signed32 thirdPartyDocumentAddressPriority;
+    int:Signed32 thirdPartyDocumentAddressPriority?;
     @jsondata:Name {value: "RuleType"}
     PaymCalendarRuleType ruleType?;
     @jsondata:Name {value: "SpecificVendorPaymentMethod"}
     string specificVendorPaymentMethod?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ModuleType"}
     PaymCalendarModuleType moduleType?;
     @jsondata:Name {value: "ThirdPartyDocumentBankAddressPriority"}
-    int:Signed32 thirdPartyDocumentBankAddressPriority;
+    int:Signed32 thirdPartyDocumentBankAddressPriority?;
     @jsondata:Name {value: "SpecificPaymentCalendarName"}
     string specificPaymentCalendarName?;
 };
@@ -1133,7 +1133,7 @@ public type UpdateAddressObjectsHeaders record {
 
 public type LanguageCode record {
     @jsondata:Name {value: "LanguageCodeId"}
-    string languageCodeId;
+    string languageCodeId?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -1191,7 +1191,7 @@ public type DirParameters record {
     @jsondata:Name {value: "NameSequence"}
     string nameSequence?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
 };
 
 # Represents the Headers record for the operation: updateNameAffixes
@@ -1233,11 +1233,11 @@ public type UpdateLanguageCodesHeaders record {
 };
 
 public type ELCOA record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "GroupCodeDescription"}
     string groupCodeDescription?;
     @jsondata:Name {value: "DimensionAttributeValueDisplayValue"}
-    string dimensionAttributeValueDisplayValue;
+    string dimensionAttributeValueDisplayValue?;
     @jsondata:Name {value: "GroupCode"}
     string groupCode?;
     @jsondata:Name {value: "MainAccountDescription"}
@@ -1310,7 +1310,7 @@ public type NameAffix record {
     @jsondata:Name {value: "Type"}
     DirNameAffixType 'type?;
     @jsondata:Name {value: "Affix"}
-    string affix;
+    string affix?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -1347,11 +1347,11 @@ public type CDSParty record {
     @jsondata:Name {value: "PersonPersonalTitle"}
     string personPersonalTitle?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "PersonBirthDay"}
-    int:Signed32 personBirthDay;
+    int:Signed32 personBirthDay?;
     @jsondata:Name {value: "PartyType"}
     string partyType?;
     @jsondata:Name {value: "PersonPersonalSuffix"}
@@ -1361,21 +1361,21 @@ public type CDSParty record {
     @jsondata:Name {value: "OrganizationABCCode"}
     ABC organizationABCCode?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
     string personProfessionalSuffix?;
     @jsondata:Name {value: "PersonBirthYear"}
-    int:Signed32 personBirthYear;
+    int:Signed32 personBirthYear?;
     @jsondata:Name {value: "PersonFirstName"}
     string personFirstName?;
     @jsondata:Name {value: "PersonMaritalStatus"}
     DirPersonMaritalStatus personMaritalStatus?;
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "OrganizationPhoneticName"}
     string organizationPhoneticName?;
     @jsondata:Name {value: "OrganizationNumOfEmployees"}
-    int:Signed32 organizationNumOfEmployees;
+    int:Signed32 organizationNumOfEmployees?;
     @jsondata:Name {value: "PersonProfessionalTitle"}
     string personProfessionalTitle?;
     @jsondata:Name {value: "PersonHobbies"}
@@ -1426,7 +1426,7 @@ public type NameAffixesCollection record {
 };
 
 public type VoucherType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DefaultApprovedBy"}
     string defaultApprovedBy?;
     @jsondata:Name {value: "Description"}
@@ -1434,7 +1434,7 @@ public type VoucherType record {
     @jsondata:Name {value: "DefaultedPreparedBy"}
     string defaultedPreparedBy?;
     @jsondata:Name {value: "Priority"}
-    int:Signed32 priority;
+    int:Signed32 priority?;
     @jsondata:Name {value: "NumberSequenceCode"}
     string numberSequenceCode?;
     @jsondata:Name {value: "JournalName"}
@@ -1446,7 +1446,7 @@ public type VoucherType record {
     @jsondata:Name {value: "LedgerPrintLayoutGroup"}
     string ledgerPrintLayoutGroup?;
     @jsondata:Name {value: "VoucherType"}
-    string voucherType;
+    string voucherType?;
 };
 
 public type CategoriesCollection record {
@@ -1456,21 +1456,21 @@ public type CategoriesCollection record {
 
 public type ExchangeRate record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "ConversionFactor"}
     ExchangeRateDisplayFactor conversionFactor?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "FromCurrency"}
-    string fromCurrency;
+    string fromCurrency?;
     @jsondata:Name {value: "ToCurrency"}
-    string toCurrency;
+    string toCurrency?;
     @jsondata:Name {value: "RateTypeName"}
-    string rateTypeName;
+    string rateTypeName?;
     @jsondata:Name {value: "RateTypeDescription"}
     string rateTypeDescription?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
 };
 
 public type Warehouse record {
@@ -1502,7 +1502,7 @@ public type Warehouse record {
     string underdeliveryWarehouseId?;
     @jsondata:Name {value: "DefaultContainerTypeId"}
     string defaultContainerTypeId?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IsWarehouseExternallyManaged"}
     NoYes isWarehouseExternallyManaged?;
     @jsondata:Name {value: "PrimaryAddressLocationSalesTaxGroupCode"}
@@ -1512,7 +1512,7 @@ public type Warehouse record {
     @jsondata:Name {value: "ShouldWarehouseLocationIdIncludeAisleId"}
     NoYes shouldWarehouseLocationIdIncludeAisleId?;
     @jsondata:Name {value: "MaximumPickingListLineQuantity"}
-    int:Signed32 maximumPickingListLineQuantity;
+    int:Signed32 maximumPickingListLineQuantity?;
     @jsondata:Name {value: "PrimaryAddressDescription"}
     string primaryAddressDescription?;
     @jsondata:Name {value: "WillWarehouseLocationIdIncludeBinIdByDefault"}
@@ -1522,7 +1522,7 @@ public type Warehouse record {
     @jsondata:Name {value: "PrimaryAddressStreetNumber"}
     string primaryAddressStreetNumber?;
     @jsondata:Name {value: "RetailStoreQuantityAllocationReplenismentRuleWeight"}
-    decimal retailStoreQuantityAllocationReplenismentRuleWeight;
+    decimal retailStoreQuantityAllocationReplenismentRuleWeight?;
     @jsondata:Name {value: "WillAutomaticLoadReleaseReserveInventory"}
     NoYes willAutomaticLoadReleaseReserveInventory?;
     @jsondata:Name {value: "PrimaryAddressPostBox"}
@@ -1556,7 +1556,7 @@ public type Warehouse record {
     @jsondata:Name {value: "ExternalWarehouseId"}
     string externalWarehouseId?;
     @jsondata:Name {value: "PrimaryAddressLongitude"}
-    decimal primaryAddressLongitude;
+    decimal primaryAddressLongitude?;
     @jsondata:Name {value: "IsPhysicalNegativeRetailStoreInventoryAllowed"}
     NoYes isPhysicalNegativeRetailStoreInventoryAllowed?;
     @jsondata:Name {value: "InventoryStatusChangeReservationRemovalLevel"}
@@ -1610,7 +1610,7 @@ public type Warehouse record {
     @jsondata:Name {value: "MainRefillingWarehouseId"}
     string mainRefillingWarehouseId?;
     @jsondata:Name {value: "MaximumBatchPickingListQuantity"}
-    int:Signed32 maximumBatchPickingListQuantity;
+    int:Signed32 maximumBatchPickingListQuantity?;
     @jsondata:Name {value: "PrimaryAddressStateId"}
     string primaryAddressStateId?;
     @jsondata:Name {value: "VendAccountCustom_RU"}
@@ -1630,13 +1630,13 @@ public type Warehouse record {
     @jsondata:Name {value: "AutoUpdateShipmentRule"}
     WHSAutoUpdateShipment autoUpdateShipmentRule?;
     @jsondata:Name {value: "WarehouseId"}
-    string warehouseId;
+    string warehouseId?;
     @jsondata:Name {value: "IsRetailStoreWarehouse"}
     NoYes isRetailStoreWarehouse?;
     @jsondata:Name {value: "ExternalWarehouseDefaultLocationId"}
     string externalWarehouseDefaultLocationId?;
     @jsondata:Name {value: "PrimaryAddressLatitude"}
-    decimal primaryAddressLatitude;
+    decimal primaryAddressLatitude?;
     @jsondata:Name {value: "WarehouseSpecificDefaultInventoryStatusId"}
     string warehouseSpecificDefaultInventoryStatusId?;
     @jsondata:Name {value: "PrimaryAddressStreetInKana"}
@@ -1669,7 +1669,7 @@ public type AddressBooks record {
     @jsondata:Name {value: "System"}
     NoYes system?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 # Represents the Headers record for the operation: deleteBusinessUnits
@@ -1757,7 +1757,7 @@ public type DeleteAddressBooksHeaders record {
 public type InventProfileTypeRU "NotSpecified"|"General"|"CommissionAgent"|"CommissionPrincipalAgent"|"Bailee";
 
 public type Branch record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Address"}
     string address?;
     @jsondata:Name {value: "LogisticsLocation_LocationId"}
@@ -1765,7 +1765,7 @@ public type Branch record {
     @jsondata:Name {value: "HeadOffice"}
     NoYes headOffice?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -1784,9 +1784,9 @@ public type NameSequence record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Separator3Spaces"}
-    int:Signed32 separator3Spaces;
+    int:Signed32 separator3Spaces?;
     @jsondata:Name {value: "Separator1Spaces"}
-    int:Signed32 separator1Spaces;
+    int:Signed32 separator1Spaces?;
     @jsondata:Name {value: "Separator2"}
     string separator2?;
     @jsondata:Name {value: "Separator1"}
@@ -1796,15 +1796,15 @@ public type NameSequence record {
     @jsondata:Name {value: "FirstPosition"}
     DirSubNameSequenceType firstPosition?;
     @jsondata:Name {value: "Separator2Spaces"}
-    int:Signed32 separator2Spaces;
+    int:Signed32 separator2Spaces?;
     @jsondata:Name {value: "LastPosition"}
     DirSubNameSequenceType lastPosition?;
     @jsondata:Name {value: "SecondPosition"}
     DirSubNameSequenceType secondPosition?;
     @jsondata:Name {value: "NameSequence"}
-    string nameSequence;
+    string nameSequence?;
     @jsondata:Name {value: "LanguageId"}
-    string languageId;
+    string languageId?;
 };
 
 # Represents the Queries record for the operation: listAddressFormats
@@ -1899,7 +1899,7 @@ public type PaymentTerm record {
     @jsondata:Name {value: "PaymentMethodType"}
     NetCurrent paymentMethodType?;
     @jsondata:Name {value: "AdditionalMonthsForCutoffDate"}
-    int:Signed32 additionalMonthsForCutoffDate;
+    int:Signed32 additionalMonthsForCutoffDate?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "CreditCardCreditCheckType"}
@@ -1911,22 +1911,22 @@ public type PaymentTerm record {
     @jsondata:Name {value: "IsCashPayment"}
     NoYes isCashPayment?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
     @jsondata:Name {value: "CutoffDayOfMonth"}
-    int:Signed32 cutoffDayOfMonth;
+    int:Signed32 cutoffDayOfMonth?;
     @jsondata:Name {value: "NumberOfDays"}
-    int:Signed32 numberOfDays;
+    int:Signed32 numberOfDays?;
     @jsondata:Name {value: "PaymentDayName"}
     string paymentDayName?;
     @jsondata:Name {value: "PostOffsettingAR"}
     NoYes postOffsettingAR?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CustomerDueDateUpdatePolicy"}
     PaymentDueDateUpdatePolicy customerDueDateUpdatePolicy?;
     @jsondata:Name {value: "VendorDueDateUpdatePolicy"}
     PaymentDueDateUpdatePolicy vendorDueDateUpdatePolicy?;
     @jsondata:Name {value: "NumberOfMonths"}
-    int:Signed32 numberOfMonths;
+    int:Signed32 numberOfMonths?;
     @jsondata:Name {value: "CreditCardPaymentType"}
     CreditCardPaymentType creditCardPaymentType?;
     @jsondata:Name {value: "PaymentScheduleName"}
@@ -2133,13 +2133,13 @@ public type VRMLanguage record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "LanguageId"}
-    string languageId;
+    string languageId?;
 };
 
 public type CardTypes record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TrvCreditCardType"}
-    string trvCreditCardType;
+    string trvCreditCardType?;
     @jsondata:Name {value: "TrvCreditCardDesc"}
     string trvCreditCardDesc?;
 };
@@ -2222,17 +2222,17 @@ public type UpdateBranchesHeaders record {
 };
 
 public type PaymentDay record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DayOfWeek"}
     WeekDays dayOfWeek?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "DayOfMonth"}
-    int:Signed32 dayOfMonth;
+    int:Signed32 dayOfMonth?;
     @jsondata:Name {value: "Frequency"}
     WeekMonth frequency?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 public type CompaniesCollectionAllOf2 record {
@@ -2267,13 +2267,13 @@ public type ListDepartmentsQueries record {
 };
 
 public type Denomination record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "Value"}
-    decimal value;
+    decimal value?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
     @jsondata:Name {value: "CurrencyName"}
     string currencyName?;
 };
@@ -2307,11 +2307,11 @@ public type DeleteEmplPostingsHeaders record {
 public type CreditCardPaymentType "NA"|"CreditCard";
 
 public type VRMTaxGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TaxGroupCode"}
-    string taxGroupCode;
+    string taxGroupCode?;
 };
 
 public type NoYes "No"|"Yes";
@@ -2424,9 +2424,9 @@ public type UpdatePaymentTermsHeaders record {
 };
 
 public type Salutation record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "SalutationPhrase"}
-    string salutationPhrase;
+    string salutationPhrase?;
 };
 
 # Represents the Queries record for the operation: getAddressObjects
@@ -2445,7 +2445,7 @@ public type DeleteAddressStatesHeaders record {
 
 public type VRMCurrency record {
     @jsondata:Name {value: "CurrencyCode"}
-    string currencyCode;
+    string currencyCode?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -2454,21 +2454,21 @@ public type ExchangeRateDisplayFactor "One"|"Ten"|"Hundred"|"Thousand"|"TenThous
 
 public type ExchangeRateNonISO record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "ConversionFactor"}
     ExchangeRateDisplayFactor conversionFactor?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "FromCurrency"}
-    string fromCurrency;
+    string fromCurrency?;
     @jsondata:Name {value: "ToCurrency"}
-    string toCurrency;
+    string toCurrency?;
     @jsondata:Name {value: "RateTypeName"}
-    string rateTypeName;
+    string rateTypeName?;
     @jsondata:Name {value: "RateTypeDescription"}
     string rateTypeDescription?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
 };
 
 public type VRMPeopleCollection record {
@@ -2527,11 +2527,11 @@ public type VRMPerson record {
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -2557,7 +2557,7 @@ public type VRMPerson record {
     @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
     string primaryContactLinkedInPurpose?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "LastName"}
@@ -2569,7 +2569,7 @@ public type VRMPerson record {
     @jsondata:Name {value: "AddressLocationRoles"}
     string addressLocationRoles?;
     @jsondata:Name {value: "PrimaryContactEmailRecordId"}
-    int primaryContactEmailRecordId;
+    int primaryContactEmailRecordId?;
     @jsondata:Name {value: "PrimaryContactURL"}
     string primaryContactURL?;
     @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
@@ -2593,7 +2593,7 @@ public type VRMPerson record {
     @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
     NoYes primaryContactTwitterIsPrivate?;
     @jsondata:Name {value: "PrimaryContactPhoneRecordId"}
-    int primaryContactPhoneRecordId;
+    int primaryContactPhoneRecordId?;
     @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
     NoYes primaryContactPhoneIsMobile?;
     @jsondata:Name {value: "PartyType"}
@@ -2619,7 +2619,7 @@ public type VRMPerson record {
     @jsondata:Name {value: "MiddleName"}
     string middleName?;
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "PrimaryContactFaxPurpose"}
     string primaryContactFaxPurpose?;
     @jsondata:Name {value: "PrimaryContactFaxDescription"}
@@ -2637,7 +2637,7 @@ public type VRMPerson record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type EmplPostingsCollectionAllOf2 record {
@@ -2685,7 +2685,7 @@ public type PaymentMethodsCollectionAllOf2 record {
 public type PaymCalendarModuleType "Customer"|"Vendor";
 
 public type VRMParameter record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VendorAccountNumberSequenceCode"}
     string vendorAccountNumberSequenceCode?;
     @jsondata:Name {value: "IsVendorAccountNumberSequenceManual"}
@@ -2695,7 +2695,7 @@ public type VRMParameter record {
     @jsondata:Name {value: "SysDataAreaId"}
     string sysDataAreaId?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
 };
 
 # Represents the Queries record for the operation: getVRMPeople
@@ -2765,15 +2765,15 @@ public type CategoriesCollectionAllOf2 record {
 };
 
 public type CurrencyRule record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MSTAction"}
     RTSLCurrencyAction mSTAction?;
     @jsondata:Name {value: "CurrencyIndexId"}
     string currencyIndexId?;
     @jsondata:Name {value: "CurrencyRuleGroup"}
-    string currencyRuleGroup;
+    string currencyRuleGroup?;
     @jsondata:Name {value: "Currency"}
-    string currency;
+    string currency?;
     @jsondata:Name {value: "MSTIndexId"}
     string mSTIndexId?;
     @jsondata:Name {value: "CurrencyAction"}
@@ -2783,7 +2783,7 @@ public type CurrencyRule record {
     @jsondata:Name {value: "RateMethod"}
     RTSLCurrencyRate rateMethod?;
     @jsondata:Name {value: "RuleGroup"}
-    string ruleGroup;
+    string ruleGroup?;
     @jsondata:Name {value: "SecondaryAction"}
     RTSLCurrencyAction secondaryAction?;
 };
@@ -2826,7 +2826,7 @@ public type Company record {
     @jsondata:Name {value: "PartyNumber"}
     string partyNumber?;
     @jsondata:Name {value: "DataArea"}
-    string dataArea;
+    string dataArea?;
     @jsondata:Name {value: "KnownAs"}
     string knownAs?;
     @jsondata:Name {value: "LanguageId"}
@@ -3008,7 +3008,7 @@ public type AddressObject record {
     string shortName?;
     @jsondata:Name {value: "TerrIFNSFL"}
     string terrIFNSFL?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AOLevel"}
     string aOLevel?;
     @jsondata:Name {value: "OKATO"}
@@ -3030,7 +3030,7 @@ public type AddressObject record {
     @jsondata:Name {value: "AOGuid"}
     string aOGuid?;
     @jsondata:Name {value: "AOId"}
-    string aOId;
+    string aOId?;
     @jsondata:Name {value: "PrevId"}
     string prevId?;
     @jsondata:Name {value: "IFNSFL"}
@@ -3169,7 +3169,7 @@ public type ListCategoriesQueries record {
 };
 
 public type PaymentMethod record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PayedByTxt"}
     string payedByTxt?;
     @jsondata:Name {value: "PostMethod"}
@@ -3177,7 +3177,7 @@ public type PaymentMethod record {
     @jsondata:Name {value: "AutomaticPayment"}
     NoYes automaticPayment?;
     @jsondata:Name {value: "PayMethod"}
-    string payMethod;
+    string payMethod?;
     @jsondata:Name {value: "CostOwner"}
     TrvCostOwner costOwner?;
     @jsondata:Name {value: "OffsetLedgerDimensionDisplayValue"}
@@ -3222,8 +3222,8 @@ public type UpdateCardTypesHeaders record {
 
 public type Category record {
     @jsondata:Name {value: "CategoryId"}
-    string categoryId;
-    string dataAreaId;
+    string categoryId?;
+    string dataAreaId?;
     @jsondata:Name {value: "UseInProject"}
     NoYes useInProject?;
     @jsondata:Name {value: "UseInExpense"}
@@ -3262,9 +3262,9 @@ public type AddressObjectsCollection record {
 };
 
 public type PaymentInstruction record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PaymentInstructionCode"}
-    string paymentInstructionCode;
+    string paymentInstructionCode?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Name"}
@@ -3388,7 +3388,7 @@ public type UpdatePaymentCalendarRulesHeaders record {
 
 public type AddressFormat record {
     @jsondata:Name {value: "AddressFormat"}
-    string addressFormat;
+    string addressFormat?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -3524,9 +3524,9 @@ public type AddressState record {
     @jsondata:Name {value: "DefaultStateForCountryRegion"}
     NoYes defaultStateForCountryRegion?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "State"}
-    string state;
+    string state?;
     @jsondata:Name {value: "IntrastatCode"}
     string intrastatCode?;
     @jsondata:Name {value: "Name"}

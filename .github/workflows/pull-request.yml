@@ -43,11 +43,22 @@ jobs:
           distribution: temurin
           java-version: 21.0.3
 
+      - name: Cache Ballerina packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.ballerina
+          key: ${{ runner.os }}-ballerina-${{ matrix.directory }}-${{ hashFiles(format('ballerina/{0}/Dependencies.toml', matrix.directory)) }}
+          restore-keys: |
+            ${{ runner.os }}-ballerina-${{ matrix.directory }}-
+            ${{ runner.os }}-ballerina-
+
       - name: Build
         env:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build -x test -PbuildUsingDocker=nightly
           ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:test -PbuildUsingDocker=nightly
 

@@ -48,7 +48,7 @@ jobs:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build -x test
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build -x test -PbuildUsingDocker=nightly
 
       - name: Run Trivy Vulnerability Scanner
         uses: aquasecurity/trivy-action@master

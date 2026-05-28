@@ -210,7 +210,7 @@ public type Parameters record {
     string changesOfOwnersEquity?;
     @jsondata:Name {value: "Industry"}
     string industry?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DepreciationLedgerDimensionDisplayValue"}
     string depreciationLedgerDimensionDisplayValue?;
     @jsondata:Name {value: "IncomeSheet"}
@@ -248,33 +248,33 @@ public type ListTransDatasQueries record {
 
 public type AgentFeed record {
     @jsondata:Name {value: "BaseRank"}
-    decimal baseRank;
+    decimal baseRank?;
     @jsondata:Name {value: "Status"}
     AgentFeedItemStatus status?;
     @jsondata:Name {value: "AIContext"}
     string aIContext?;
     @jsondata:Name {value: "TimeToLive"}
-    string timeToLive;
+    string timeToLive?;
     @jsondata:Name {value: "ModifiedOn"}
-    string modifiedOn;
+    string modifiedOn?;
     @jsondata:Name {value: "Title"}
     string title?;
     @jsondata:Name {value: "PermissionsCheck"}
     string permissionsCheck?;
     @jsondata:Name {value: "FeedItemId"}
-    string feedItemId;
+    string feedItemId?;
     @jsondata:Name {value: "FeedItemRecId"}
-    int feedItemRecId;
+    int feedItemRecId?;
     @jsondata:Name {value: "CardProvider"}
     string cardProvider?;
     @jsondata:Name {value: "Summary"}
     string summary?;
     @jsondata:Name {value: "CorrelationId"}
-    string correlationId;
+    string correlationId?;
     @jsondata:Name {value: "CreatedOn"}
-    string createdOn;
+    string createdOn?;
     @jsondata:Name {value: "DueDate"}
-    string dueDate;
+    string dueDate?;
     @jsondata:Name {value: "SubTitle"}
     string subTitle?;
 };
@@ -302,34 +302,34 @@ public type UpdateSourceSystemsHeaders record {
 
 public type LoadTemplate record {
     @jsondata:Name {value: "MaximumLoadWeight"}
-    decimal maximumLoadWeight;
+    decimal maximumLoadWeight?;
     @jsondata:Name {value: "IsLoadSplitShipConfirmAllowed"}
     NoYes isLoadSplitShipConfirmAllowed?;
     @jsondata:Name {value: "LoadSplitShipmentConfirmationPolicy"}
     WHSLoadSplitShipConfirmPolicy loadSplitShipmentConfirmationPolicy?;
     @jsondata:Name {value: "MaximumQuantity"}
-    decimal maximumQuantity;
+    decimal maximumQuantity?;
     @jsondata:Name {value: "IsLoadFloorStacked"}
     NoYes isLoadFloorStacked?;
     @jsondata:Name {value: "WarehouseEquipmentCode"}
     string warehouseEquipmentCode?;
     @jsondata:Name {value: "LoadWidth"}
-    decimal loadWidth;
-    string dataAreaId;
+    decimal loadWidth?;
+    string dataAreaId?;
     @jsondata:Name {value: "MaximumLoadVolume"}
-    decimal maximumLoadVolume;
+    decimal maximumLoadVolume?;
     @jsondata:Name {value: "MaximumGrossWeight"}
-    decimal maximumGrossWeight;
+    decimal maximumGrossWeight?;
     @jsondata:Name {value: "LoadHeight"}
-    decimal loadHeight;
+    decimal loadHeight?;
     @jsondata:Name {value: "MaximumQuantityUnitSymbol"}
     string maximumQuantityUnitSymbol?;
     @jsondata:Name {value: "TemplateId"}
-    string templateId;
+    string templateId?;
     @jsondata:Name {value: "MaximumFreightPieces"}
-    int:Signed32 maximumFreightPieces;
+    int:Signed32 maximumFreightPieces?;
     @jsondata:Name {value: "LoadDepth"}
-    decimal loadDepth;
+    decimal loadDepth?;
 };
 
 public type MessageStatusCollectionAllOf2 record {
@@ -346,18 +346,18 @@ public type ReasonsCollection record {
 };
 
 public type RecSetupBasis record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ItemGroup"}
-    string itemGroup;
+    string itemGroup?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "ItemId"}
-    string itemId;
+    string itemId?;
 };
 
 public type ExternalRole record {
     @jsondata:Name {value: "Role"}
-    string role;
+    string role?;
     @jsondata:Name {value: "Type"}
     UserExternalPartyEntityType 'type?;
 };
@@ -461,11 +461,11 @@ public type UpdateSystemUsersHeaders record {
 };
 
 public type LoyaltyLevel record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "LevelDescription"}
     string levelDescription?;
     @jsondata:Name {value: "LevelPhrase"}
-    string levelPhrase;
+    string levelPhrase?;
 };
 
 # Represents the Queries record for the operation: listProductTypes
@@ -600,9 +600,9 @@ public type GetActionClassesQueries record {
 };
 
 public type MessageStatus record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MessageStatus"}
-    string messageStatus;
+    string messageStatus?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "MessageItemStatus"}
@@ -626,25 +626,25 @@ public type DeleteDocumentTypesHeaders record {
 };
 
 public type TransData record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Warehouse"}
-    string warehouse;
+    string warehouse?;
     @jsondata:Name {value: "AssociationWithWarehouse"}
     OffInvRelationTypeAllTableRU associationWithWarehouse?;
     @jsondata:Name {value: "Position"}
     OffPositionRU position?;
     @jsondata:Name {value: "OfficialSession"}
-    string officialSession;
+    string officialSession?;
     @jsondata:Name {value: "AccountCode"}
     OffTableAllRU accountCode?;
     @jsondata:Name {value: "Title"}
-    string title;
+    string title?;
     @jsondata:Name {value: "AccountRelation"}
-    string accountRelation;
+    string accountRelation?;
     @jsondata:Name {value: "Module"}
     ModuleCustVend 'module?;
     @jsondata:Name {value: "EmployeeName"}
-    string employeeName;
+    string employeeName?;
     @jsondata:Name {value: "ReportType"}
     OffReportTypeRU reportType?;
 };
@@ -694,11 +694,11 @@ public type TableMappingsCollectionAllOf2 record {
 };
 
 public type State11 record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "SequenceNumber"}
     string sequenceNumber?;
     @jsondata:Name {value: "BankAccount"}
-    string bankAccount;
+    string bankAccount?;
     @jsondata:Name {value: "ReportOnState11"}
     NoYes reportOnState11?;
 };
@@ -786,13 +786,13 @@ public type State11Collection record {
 };
 
 public type ActionClass record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "ActionType"}
     EMActionType actionType?;
     @jsondata:Name {value: "ExecutableClass"}
-    string executableClass;
+    string executableClass?;
     @jsondata:Name {value: "ClassName"}
     string className?;
 };
@@ -801,28 +801,28 @@ public type BLWI record {
     @jsondata:Name {value: "BLWITransaction"}
     TradeBLWICustVend bLWITransaction?;
     @jsondata:Name {value: "Company"}
-    string company;
+    string company?;
     @jsondata:Name {value: "Invoice"}
-    string invoice;
+    string invoice?;
     @jsondata:Name {value: "AmountInTransactionCurrency"}
-    decimal amountInTransactionCurrency;
+    decimal amountInTransactionCurrency?;
     @jsondata:Name {value: "Included"}
     NoYes included?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "CountryRegionGroupId"}
     string countryRegionGroupId?;
     @jsondata:Name {value: "OriginalAmount"}
-    decimal originalAmount;
+    decimal originalAmount?;
     @jsondata:Name {value: "PurposeCode"}
     string purposeCode?;
     @jsondata:Name {value: "AccountNumber"}
-    string accountNumber;
+    string accountNumber?;
     @jsondata:Name {value: "Voucher"}
-    string voucher;
+    string voucher?;
     @jsondata:Name {value: "CountryRegionName"}
     string countryRegionName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CountryRegionGroupBLWIReporting"}
     NoYes countryRegionGroupBLWIReporting?;
     @jsondata:Name {value: "CountryRegionId"}
@@ -830,17 +830,17 @@ public type BLWI record {
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "ReportingDate"}
-    string reportingDate;
+    string reportingDate?;
     @jsondata:Name {value: "SurveyCode"}
-    int surveyCode;
+    int surveyCode?;
     @jsondata:Name {value: "AutoGenerated"}
     NoYes autoGenerated?;
     @jsondata:Name {value: "CountryRegionGroupRowNumber"}
-    int:Signed32 countryRegionGroupRowNumber;
+    int:Signed32 countryRegionGroupRowNumber?;
     @jsondata:Name {value: "CountryRegionGroupDescription"}
     string countryRegionGroupDescription?;
     @jsondata:Name {value: "TransactionDate"}
-    string transactionDate;
+    string transactionDate?;
 };
 
 # Represents the Queries record for the operation: getMedia
@@ -876,7 +876,7 @@ public type EveryProduct record {
     @jsondata:Name {value: "ProductName"}
     string productName?;
     @jsondata:Name {value: "ProductNumber"}
-    string productNumber;
+    string productNumber?;
     @jsondata:Name {value: "ProductDescription"}
     string productDescription?;
     @jsondata:Name {value: "ProductSearchName"}
@@ -896,11 +896,11 @@ public type UpdateChannelUsersHeaders record {
 };
 
 public type NAFCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "NAFCode"}
-    string nAFCode;
+    string nAFCode?;
 };
 
 # Represents the Headers record for the operation: deleteSADGroups
@@ -970,11 +970,11 @@ public type ListMediaQueries record {
 };
 
 public type ChannelUser record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "User"}
-    string user;
+    string user?;
     @jsondata:Name {value: "OperatingUnitNumber"}
-    string operatingUnitNumber;
+    string operatingUnitNumber?;
 };
 
 # Represents the Queries record for the operation: listServiceCodes
@@ -1006,13 +1006,13 @@ public type GetRoomsQueries record {
 };
 
 public type Test record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Number"}
-    int number;
+    int number?;
     @jsondata:Name {value: "ID"}
-    int iD;
+    int iD?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -1071,35 +1071,35 @@ public type BatchJob record {
     @jsondata:Name {value: "CompanyAccounts"}
     string companyAccounts?;
     @jsondata:Name {value: "StartTime"}
-    int:Signed32 startTime;
+    int:Signed32 startTime?;
     @jsondata:Name {value: "BatchJobRecId"}
-    int batchJobRecId;
+    int batchJobRecId?;
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "SaveJobToHistory"}
     BatchLogLevel saveJobToHistory?;
     @jsondata:Name {value: "StartDateTime"}
-    string startDateTime;
+    string startDateTime?;
     @jsondata:Name {value: "JobDescription"}
     string jobDescription?;
     @jsondata:Name {value: "OrigStartDateTime"}
-    string origStartDateTime;
+    string origStartDateTime?;
     @jsondata:Name {value: "EndDateTime"}
-    string endDateTime;
+    string endDateTime?;
     @jsondata:Name {value: "RuntimeJob"}
-    boolean runtimeJob;
+    boolean runtimeJob?;
     @jsondata:Name {value: "PartitionKey"}
     string partitionKey?;
     @jsondata:Name {value: "CanceledBy"}
     string canceledBy?;
     @jsondata:Name {value: "Finishing"}
-    int:Signed32 finishing;
+    int:Signed32 finishing?;
 };
 
 public type TableData record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Warehouse"}
-    string warehouse;
+    string warehouse?;
     @jsondata:Name {value: "ReprReason"}
     string reprReason?;
     @jsondata:Name {value: "AssociationWithWarehouse"}
@@ -1109,15 +1109,15 @@ public type TableData record {
     @jsondata:Name {value: "AccountCode"}
     OffTableAllRU accountCode?;
     @jsondata:Name {value: "AccountRelation"}
-    string accountRelation;
+    string accountRelation?;
     @jsondata:Name {value: "JobTitle"}
-    string jobTitle;
+    string jobTitle?;
     @jsondata:Name {value: "ReprTitleName"}
     string reprTitleName?;
     @jsondata:Name {value: "ReportType"}
     OffReportTypeRU reportType?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 # Represents the Headers record for the operation: deleteEstateStatus
@@ -1187,13 +1187,13 @@ public type DimensionHierarchyConstraintStatus "Draft"|"Active"|"Activating";
 public type EInvoiceExtCodeTypeMX "TaxRegime"|"ProductOrService"|"UnitOfMeasure"|"Purpose"|"PaymentMethod"|"IncotermCode"|"TariffFraction"|"CustomUnitOfMeasure"|"ShippingReason"|"PermissionType"|"TransConf"|"TrailerType"|"SpotType"|"ActorRole"|"WeightUnit"|"DocumentType"|"CustomsRegime"|"CustomsMaterialType";
 
 public type FormatCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Type"}
     PaymentFormatCodeTypeW 'type?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
 };
 
 public type UserGroupsCollection record {
@@ -1284,13 +1284,13 @@ public type TableMappingsCollection record {
 };
 
 public type SiteGate record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Type"}
     InventSiteGateTypeIN 'type?;
     @jsondata:Name {value: "SiteId"}
-    string siteId;
+    string siteId?;
     @jsondata:Name {value: "GateId"}
-    string gateId;
+    string gateId?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -1414,11 +1414,11 @@ public type WorkflowsCollection record {
 };
 
 public type Component record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxType"}
     TaxTypeIN taxType?;
     @jsondata:Name {value: "TaxComponent"}
-    string taxComponent;
+    string taxComponent?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -1468,7 +1468,7 @@ public type EDParameter record {
     NoYes custGroupingByTax?;
     @jsondata:Name {value: "CustSingleInvoice"}
     NoYes custSingleInvoice?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VendExchangeDifferenceTransDescription"}
     NoYes vendExchangeDifferenceTransDescription?;
     @jsondata:Name {value: "VendSingleInvoice"}
@@ -1482,17 +1482,17 @@ public type EDParameter record {
     @jsondata:Name {value: "CustGroupingByDimension"}
     NoYes custGroupingByDimension?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
     @jsondata:Name {value: "VendFillInvoiceNum"}
     NoYes vendFillInvoiceNum?;
 };
 
 public type Room record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "HouseGuid"}
     string houseGuid?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "RegionCode"}
     string regionCode?;
     @jsondata:Name {value: "RoomGuid"}
@@ -1504,9 +1504,9 @@ public type Room record {
     @jsondata:Name {value: "PostalCode"}
     string postalCode?;
     @jsondata:Name {value: "RoomId"}
-    string roomId;
+    string roomId?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
 };
 
 # Represents the Queries record for the operation: listTests
@@ -1599,19 +1599,19 @@ public type GetTestsQueries record {
 public type SysUserInfoDensity "Density30"|"Density21";
 
 public type SADGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Excise"}
-    decimal excise;
+    decimal excise?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "VATCode"}
     string vATCode?;
     @jsondata:Name {value: "Duty"}
-    decimal duty;
+    decimal duty?;
     @jsondata:Name {value: "TaxGroup"}
     string taxGroup?;
     @jsondata:Name {value: "SADGroup"}
-    string sADGroup;
+    string sADGroup?;
     @jsondata:Name {value: "TaxItemGroup"}
     string taxItemGroup?;
 };
@@ -1777,13 +1777,13 @@ public type SADGroupsCollectionAllOf2 record {
 };
 
 public type Agent record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PartyNumber"}
     string partyNumber?;
     @jsondata:Name {value: "TaxRegNum"}
     string taxRegNum?;
     @jsondata:Name {value: "AgentId"}
-    string agentId;
+    string agentId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -1813,11 +1813,11 @@ public type GetParametersQueries record {
 public type Reasons record {
     @jsondata:Name {value: "FixedAssets"}
     NoYes fixedAssets?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Ledger"}
     NoYes ledger?;
     @jsondata:Name {value: "ReasonCode"}
-    string reasonCode;
+    string reasonCode?;
     @jsondata:Name {value: "DefaultComment"}
     string defaultComment?;
 };
@@ -1928,11 +1928,11 @@ public type RoomsCollection record {
 public type SADParameters record {
     @jsondata:Name {value: "InsuranceAccountDisplayValue"}
     string insuranceAccountDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MiscPaymentsAccountDisplayValue"}
     string miscPaymentsAccountDisplayValue?;
     @jsondata:Name {value: "ExciseTaxRounding"}
-    decimal exciseTaxRounding;
+    decimal exciseTaxRounding?;
     @jsondata:Name {value: "AdditionalCostsFormInvoice"}
     PlSADPostingRule additionalCostsFormInvoice?;
     @jsondata:Name {value: "MiscellaneousChargesFromTheSADDocumentAccountDisplayValue"}
@@ -1940,11 +1940,11 @@ public type SADParameters record {
     @jsondata:Name {value: "TransportOnSADDocumentAccountDisplayValue"}
     string transportOnSADDocumentAccountDisplayValue?;
     @jsondata:Name {value: "DutyRounding"}
-    decimal dutyRounding;
+    decimal dutyRounding?;
     @jsondata:Name {value: "TransportAccountDisplayValue"}
     string transportAccountDisplayValue?;
     @jsondata:Name {value: "VATRounding"}
-    decimal vATRounding;
+    decimal vATRounding?;
     @jsondata:Name {value: "MiscPayments"}
     PlSADPostingRule miscPayments?;
 };
@@ -1961,7 +1961,7 @@ public type WebService record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "WebService"}
-    string webService;
+    string webService?;
     @jsondata:Name {value: "SignXMLUriFormat"}
     string signXMLUriFormat?;
     @jsondata:Name {value: "SOAPPathResponse"}
@@ -1981,10 +1981,10 @@ public type WebService record {
     @jsondata:Name {value: "SignXMLUriPath"}
     string signXMLUriPath?;
     @jsondata:Name {value: "RequestHeadersFormatMappingGUID"}
-    string requestHeadersFormatMappingGUID;
+    string requestHeadersFormatMappingGUID?;
     @jsondata:Name {value: "RequestAccept"}
     string requestAccept?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "SignXMLPath"}
     string signXMLPath?;
     @jsondata:Name {value: "SOAPPathRequest"}
@@ -1992,7 +1992,7 @@ public type WebService record {
     @jsondata:Name {value: "UseAdvancedParameters"}
     NoYes useAdvancedParameters?;
     @jsondata:Name {value: "SuccessfulResponseCode"}
-    int:Signed32 successfulResponseCode;
+    int:Signed32 successfulResponseCode?;
     @jsondata:Name {value: "RequestContentType"}
     string requestContentType?;
     @jsondata:Name {value: "RequestHeaders"}
@@ -2005,15 +2005,15 @@ public type DateInterval record {
     @jsondata:Name {value: "EndPeriodType"}
     LedgerPeriodType endPeriodType?;
     @jsondata:Name {value: "LockedStartDate"}
-    string lockedStartDate;
+    string lockedStartDate?;
     @jsondata:Name {value: "StartChange"}
-    int:Signed32 startChange;
+    int:Signed32 startChange?;
     @jsondata:Name {value: "StartPeriodType"}
     LedgerPeriodType startPeriodType?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "DateIntervalCode"}
-    string dateIntervalCode;
+    string dateIntervalCode?;
     @jsondata:Name {value: "EndFunction"}
     StartEnd endFunction?;
     @jsondata:Name {value: "EndPeriodTypeAdjustment"}
@@ -2022,15 +2022,15 @@ public type DateInterval record {
     PeriodUnitCalc startAdjustmentUnit?;
     @jsondata:Name {value: "StartFunctionAdjustment"}
     StartEnd startFunctionAdjustment?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "EndFunctionAdjustment"}
     StartEnd endFunctionAdjustment?;
     @jsondata:Name {value: "StartPeriodTypeAdjustment"}
     LedgerPeriodType startPeriodTypeAdjustment?;
     @jsondata:Name {value: "EndChange"}
-    int:Signed32 endChange;
+    int:Signed32 endChange?;
     @jsondata:Name {value: "LockedEndDate"}
-    string lockedEndDate;
+    string lockedEndDate?;
     @jsondata:Name {value: "StartFunction"}
     StartEnd startFunction?;
     @jsondata:Name {value: "EndAdjustmentUnit"}
@@ -2091,9 +2091,9 @@ public type ListActionClassesQueries record {
 public type MessagesLog record {
     @jsondata:Name {value: "MessageStatusIdFrom"}
     string messageStatusIdFrom?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ActionId"}
-    string actionId;
+    string actionId?;
     @jsondata:Name {value: "MessageStatusIdTo"}
     string messageStatusIdTo?;
     @jsondata:Name {value: "ProcessingDescription"}
@@ -2101,7 +2101,7 @@ public type MessagesLog record {
     @jsondata:Name {value: "ProcessingCode"}
     string processingCode?;
     @jsondata:Name {value: "MessageId"}
-    string messageId;
+    string messageId?;
 };
 
 # Represents the Headers record for the operation: deleteParameters
@@ -2131,22 +2131,22 @@ public type ListStdSeqsQueries record {
 };
 
 public type TypeTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "VehicleType"}
-    string vehicleType;
+    string vehicleType?;
 };
 
 public type AdvancedRule record {
     @jsondata:Name {value: "Status"}
     DimensionHierarchyConstraintStatus status?;
     @jsondata:Name {value: "AccountStructure"}
-    string accountStructure;
+    string accountStructure?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "AdvancedRuleName"}
-    string advancedRuleName;
+    string advancedRuleName?;
     @jsondata:Name {value: "RuleType"}
     DimensionRuleType ruleType?;
     @jsondata:Name {value: "AdvancedRuleStructure2"}
@@ -2322,13 +2322,13 @@ public type UpdateActionsHeaders record {
 };
 
 public type SADItemCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ProductName"}
     string productName?;
     @jsondata:Name {value: "MainAccountDisplayValue"}
     string mainAccountDisplayValue?;
     @jsondata:Name {value: "ItemCommodityCode"}
-    string itemCommodityCode;
+    string itemCommodityCode?;
 };
 
 # Represents the Headers record for the operation: updateIntrastats
@@ -2374,23 +2374,23 @@ public type LoadTemplatesCollectionAllOf2 record {
 
 public type Registration record {
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "Issuer"}
     string issuer?;
     @jsondata:Name {value: "TaxRegstrationType"}
     string taxRegstrationType?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "LocationId"}
-    string locationId;
+    string locationId?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "IssueDate"}
-    string issueDate;
+    string issueDate?;
     @jsondata:Name {value: "RegistrationNumber"}
     string registrationNumber?;
     @jsondata:Name {value: "Section"}
@@ -2570,11 +2570,11 @@ public type UpdateItemGTDsHeaders record {
 };
 
 public type ItemGTD record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ItemNumber"}
-    string itemNumber;
+    string itemNumber?;
     @jsondata:Name {value: "GTDNumber"}
-    string gTDNumber;
+    string gTDNumber?;
     @jsondata:Name {value: "ItemOriginCountryRegionId"}
     string itemOriginCountryRegionId?;
 };
@@ -2756,18 +2756,18 @@ public type Stead record {
     @jsondata:Name {value: "PostalCode"}
     string postalCode?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "TerrIFNSFL"}
     string terrIFNSFL?;
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "DivType"}
     string divType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Number"}
     string number?;
     @jsondata:Name {value: "SteadId"}
-    string steadId;
+    string steadId?;
     @jsondata:Name {value: "IFNSFL"}
     string iFNSFL?;
     @jsondata:Name {value: "OKATO"}
@@ -2790,11 +2790,11 @@ public type AllProductsCollectionAllOf2 record {
 };
 
 public type ModelTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Model"}
-    string model;
+    string model?;
 };
 
 # Represents the Queries record for the operation: getTransDatas
@@ -2837,7 +2837,7 @@ public type OtherClients record {
     @jsondata:Name {value: "Bank"}
     string bank?;
     @jsondata:Name {value: "Organization"}
-    int organization;
+    int organization?;
     @jsondata:Name {value: "Address"}
     string address?;
     @jsondata:Name {value: "TaxExemptNumber"}
@@ -2848,15 +2848,15 @@ public type OtherClients record {
     string sWIFTCode?;
     @jsondata:Name {value: "AddressCounty"}
     string addressCounty?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AddressCity"}
     string addressCity?;
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "Resident"}
     NoYes resident?;
     @jsondata:Name {value: "RegistrationNumber"}
@@ -2864,7 +2864,7 @@ public type OtherClients record {
     @jsondata:Name {value: "PartyType"}
     string partyType?;
     @jsondata:Name {value: "PaymentTransactionCode"}
-    int paymentTransactionCode;
+    int paymentTransactionCode?;
     @jsondata:Name {value: "BankAddress"}
     string bankAddress?;
     @jsondata:Name {value: "LocationId"}
@@ -2872,7 +2872,7 @@ public type OtherClients record {
     @jsondata:Name {value: "AddressTimeZone"}
     Timezone addressTimeZone?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "AddressCountryRegionISOCode"}
@@ -2888,15 +2888,15 @@ public type OtherClients record {
     @jsondata:Name {value: "SubAccount"}
     string subAccount?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "LvPaymTransCodes"}
-    int lvPaymTransCodes;
+    int lvPaymTransCodes?;
     @jsondata:Name {value: "BankAccountNumber"}
     string bankAccountNumber?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
     @jsondata:Name {value: "AddressState"}
     string addressState?;
 };
@@ -2984,20 +2984,20 @@ public type GetImportModesQueries record {
 
 public type BatchGroup record {
     @jsondata:Name {value: "ServerId"}
-    string serverId;
+    string serverId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "GroupId"}
-    string groupId;
+    string groupId?;
 };
 
 public type SecurityRole record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "SecurityRoleIdentifier"}
-    string securityRoleIdentifier;
+    string securityRoleIdentifier?;
     @jsondata:Name {value: "AccessToSensitiveData"}
-    boolean accessToSensitiveData;
+    boolean accessToSensitiveData?;
     @jsondata:Name {value: "ContextString"}
     string contextString?;
     @jsondata:Name {value: "UserLicenseType"}
@@ -3081,18 +3081,18 @@ public type Document record {
     @jsondata:Name {value: "UnloadingStreetNumber"}
     string unloadingStreetNumber?;
     @jsondata:Name {value: "LoadingLongitude"}
-    decimal loadingLongitude;
+    decimal loadingLongitude?;
     @jsondata:Name {value: "LoadingDescription"}
     string loadingDescription?;
     @jsondata:Name {value: "UnloadingZipCode"}
     string unloadingZipCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "LoadingTimeZone"}
     Timezone loadingTimeZone?;
     @jsondata:Name {value: "UnloadingCity"}
     string unloadingCity?;
     @jsondata:Name {value: "LoadingDateAndTime"}
-    string loadingDateAndTime;
+    string loadingDateAndTime?;
     @jsondata:Name {value: "UnloadingBuildingCompliment"}
     string unloadingBuildingCompliment?;
     @jsondata:Name {value: "CarrierType"}
@@ -3104,7 +3104,7 @@ public type Document record {
     @jsondata:Name {value: "Carrier"}
     string carrier?;
     @jsondata:Name {value: "LoadingValidFrom"}
-    string loadingValidFrom;
+    string loadingValidFrom?;
     @jsondata:Name {value: "LoadingState"}
     string loadingState?;
     @jsondata:Name {value: "TrailerRegistrationNumber"}
@@ -3116,11 +3116,11 @@ public type Document record {
     @jsondata:Name {value: "LoadingCity"}
     string loadingCity?;
     @jsondata:Name {value: "UnloadingLatitude"}
-    decimal unloadingLatitude;
+    decimal unloadingLatitude?;
     @jsondata:Name {value: "LoadingDistrictName"}
     string loadingDistrictName?;
     @jsondata:Name {value: "UnloadingLongitude"}
-    decimal unloadingLongitude;
+    decimal unloadingLongitude?;
     @jsondata:Name {value: "LoadingLocationId"}
     string loadingLocationId?;
     @jsondata:Name {value: "LoadingCountryRegionISOCode"}
@@ -3130,7 +3130,7 @@ public type Document record {
     @jsondata:Name {value: "LoadingCountryRegionId"}
     string loadingCountryRegionId?;
     @jsondata:Name {value: "LoadingValidTo"}
-    string loadingValidTo;
+    string loadingValidTo?;
     @jsondata:Name {value: "Package"}
     string package?;
     @jsondata:Name {value: "LoadingBuildingCompliment"}
@@ -3154,17 +3154,17 @@ public type Document record {
     @jsondata:Name {value: "UnloadingLocationId"}
     string unloadingLocationId?;
     @jsondata:Name {value: "UnloadingDateAndTime"}
-    string unloadingDateAndTime;
+    string unloadingDateAndTime?;
     @jsondata:Name {value: "UnloadingTimeZone"}
     Timezone unloadingTimeZone?;
     @jsondata:Name {value: "RegistrationNumber"}
     string registrationNumber?;
     @jsondata:Name {value: "DocumentDateTime"}
-    string documentDateTime;
+    string documentDateTime?;
     @jsondata:Name {value: "UnloadingValidFrom"}
-    string unloadingValidFrom;
+    string unloadingValidFrom?;
     @jsondata:Name {value: "LineId"}
-    string lineId;
+    string lineId?;
     @jsondata:Name {value: "UnloadingCounty"}
     string unloadingCounty?;
     @jsondata:Name {value: "UnloadingDescription"}
@@ -3172,9 +3172,9 @@ public type Document record {
     @jsondata:Name {value: "LoadingCounty"}
     string loadingCounty?;
     @jsondata:Name {value: "UnloadingValidTo"}
-    string unloadingValidTo;
+    string unloadingValidTo?;
     @jsondata:Name {value: "LoadingLatitude"}
-    decimal loadingLatitude;
+    decimal loadingLatitude?;
     @jsondata:Name {value: "UnloadingPostBox"}
     string unloadingPostBox?;
     @jsondata:Name {value: "LoadingStreetNumber"}
@@ -3230,13 +3230,13 @@ public type DeleteBatchGroupsHeaders record {
 };
 
 public type CFPSTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TransactionType"}
     SalesPurchBothBR transactionType?;
     @jsondata:Name {value: "SearchName"}
     string searchName?;
     @jsondata:Name {value: "CFPSCode"}
-    string cFPSCode;
+    string cFPSCode?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -3249,34 +3249,34 @@ public type DemoDataPostsCollection record {
 public type RDeferralsVATRefundingMethod "Standard"|"Proportional";
 
 public type MediaType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MediaTypeId"}
-    string mediaTypeId;
+    string mediaTypeId?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
 
 public type Abbreviations record {
     @jsondata:Name {value: "AddrTypeLevel"}
-    int:Signed32 addrTypeLevel;
+    int:Signed32 addrTypeLevel?;
     @jsondata:Name {value: "AddrTypeName"}
     string addrTypeName?;
     @jsondata:Name {value: "AddrTypeCode"}
-    string addrTypeCode;
+    string addrTypeCode?;
     @jsondata:Name {value: "AddrTypeFullName"}
     string addrTypeFullName?;
 };
 
 public type ProcessStage record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ProcessType"}
     BusinessProcessType processType?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "SequenceNumber"}
-    decimal sequenceNumber;
+    decimal sequenceNumber?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 # Represents the Queries record for the operation: listSteads
@@ -3300,24 +3300,24 @@ public type ListSteadsQueries record {
 };
 
 public type ExtCodeTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Version"}
-    string version;
+    string version?;
     @jsondata:Name {value: "CodeId"}
-    string codeId;
+    string codeId?;
     @jsondata:Name {value: "CodeType"}
     EInvoiceExtCodeTypeMX codeType?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
 };
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -3416,9 +3416,9 @@ public type ListOtherClientsQueries record {
 };
 
 public type ProductType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ProductType"}
-    string productType;
+    string productType?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -3435,7 +3435,7 @@ public type Workflow record {
     @jsondata:Name {value: "DocumentTableName"}
     string documentTableName?;
     @jsondata:Name {value: "SequenceNumber"}
-    string sequenceNumber;
+    string sequenceNumber?;
     @jsondata:Name {value: "CategoryName"}
     string categoryName?;
     @jsondata:Name {value: "TemplateName"}
@@ -3538,13 +3538,13 @@ public type UpdateDocumentsHeaders record {
 public type Report347 record {
     @jsondata:Name {value: "CountyTrans"}
     string countyTrans?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AmountQuarter4"}
-    decimal amountQuarter4;
+    decimal amountQuarter4?;
     @jsondata:Name {value: "ZipPostalCode"}
     string zipPostalCode?;
     @jsondata:Name {value: "NumberOfPurchaseFromPublicEntity"}
-    int:Signed32 numberOfPurchaseFromPublicEntity;
+    int:Signed32 numberOfPurchaseFromPublicEntity?;
     @jsondata:Name {value: "Reported"}
     NoYes reported?;
     @jsondata:Name {value: "TransName"}
@@ -3552,7 +3552,7 @@ public type Report347 record {
     @jsondata:Name {value: "Street"}
     string street?;
     @jsondata:Name {value: "CreatedDateAndTime"}
-    string createdDateAndTime;
+    string createdDateAndTime?;
     @jsondata:Name {value: "SpecialRegimeForCashAccountingMethod"}
     NoYes specialRegimeForCashAccountingMethod?;
     @jsondata:Name {value: "InsuranceProcess"}
@@ -3564,19 +3564,19 @@ public type Report347 record {
     @jsondata:Name {value: "City"}
     string city?;
     @jsondata:Name {value: "AmountQuarter2"}
-    decimal amountQuarter2;
+    decimal amountQuarter2?;
     @jsondata:Name {value: "CountryRegionTrans"}
-    string countryRegionTrans;
+    string countryRegionTrans?;
     @jsondata:Name {value: "AmountQuarter3"}
-    decimal amountQuarter3;
+    decimal amountQuarter3?;
     @jsondata:Name {value: "NumberOfPurchase"}
-    int:Signed32 numberOfPurchase;
+    int:Signed32 numberOfPurchase?;
     @jsondata:Name {value: "AmountQuarter1"}
-    decimal amountQuarter1;
+    decimal amountQuarter1?;
     @jsondata:Name {value: "ReferenceOfEstate"}
-    string referenceOfEstate;
+    string referenceOfEstate?;
     @jsondata:Name {value: "AmountOfSales"}
-    decimal amountOfSales;
+    decimal amountOfSales?;
     @jsondata:Name {value: "TableName"}
     string tableName?;
     @jsondata:Name {value: "ReverseCharge"}
@@ -3584,29 +3584,29 @@ public type Report347 record {
     @jsondata:Name {value: "LocationCodeForTheBuildingProperty"}
     TaxReportSituationCodeES locationCodeForTheBuildingProperty?;
     @jsondata:Name {value: "AmountOfPurchase"}
-    decimal amountOfPurchase;
+    decimal amountOfPurchase?;
     @jsondata:Name {value: "MinimumAmount"}
-    decimal minimumAmount;
+    decimal minimumAmount?;
     @jsondata:Name {value: "PresentaitionDate"}
-    string presentaitionDate;
+    string presentaitionDate?;
     @jsondata:Name {value: "NumberOfSubventions"}
-    int:Signed32 numberOfSubventions;
+    int:Signed32 numberOfSubventions?;
     @jsondata:Name {value: "Tenancy"}
     NoYes tenancy?;
     @jsondata:Name {value: "AmountTenants"}
-    decimal amountTenants;
+    decimal amountTenants?;
     @jsondata:Name {value: "FiscalYear"}
-    int:Signed32 fiscalYear;
+    int:Signed32 fiscalYear?;
     @jsondata:Name {value: "NameTenants"}
     string nameTenants?;
     @jsondata:Name {value: "AmountSettled"}
-    decimal amountSettled;
+    decimal amountSettled?;
     @jsondata:Name {value: "AddressAbbreviation"}
-    int addressAbbreviation;
+    int addressAbbreviation?;
     @jsondata:Name {value: "CountyTenants"}
     string countyTenants?;
     @jsondata:Name {value: "AmountOfPayment"}
-    decimal amountOfPayment;
+    decimal amountOfPayment?;
     @jsondata:Name {value: "TaskCode"}
     TaxRep347OperationKey taskCode?;
     @jsondata:Name {value: "Entrance"}
@@ -3616,43 +3616,43 @@ public type Report347 record {
     @jsondata:Name {value: "CountryRegionTenants"}
     string countryRegionTenants?;
     @jsondata:Name {value: "NumberOfPayment"}
-    int:Signed32 numberOfPayment;
+    int:Signed32 numberOfPayment?;
     @jsondata:Name {value: "PresentationType"}
     TaxRep347Presentation presentationType?;
     @jsondata:Name {value: "ReportedBy"}
     string reportedBy?;
     @jsondata:Name {value: "StreetNo"}
-    int:Signed32 streetNo;
+    int:Signed32 streetNo?;
     @jsondata:Name {value: "Floor"}
     string floor?;
     @jsondata:Name {value: "DocumentNumOfTheDeclaration"}
     string documentNumOfTheDeclaration?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "Replacement"}
     NoYes replacement?;
     @jsondata:Name {value: "AmountOfPurchaseFromPublicEntity"}
-    decimal amountOfPurchaseFromPublicEntity;
+    decimal amountOfPurchaseFromPublicEntity?;
     @jsondata:Name {value: "Door"}
     string door?;
     @jsondata:Name {value: "Contact"}
     string contact?;
     @jsondata:Name {value: "AmountOfSubventions"}
-    decimal amountOfSubventions;
+    decimal amountOfSubventions?;
     @jsondata:Name {value: "NumberOfSales"}
-    int:Signed32 numberOfSales;
+    int:Signed32 numberOfSales?;
     @jsondata:Name {value: "InvoiceYearForCash"}
-    int:Signed32 invoiceYearForCash;
+    int:Signed32 invoiceYearForCash?;
     @jsondata:Name {value: "MinimumAmountOfPaymentsInCash"}
-    decimal minimumAmountOfPaymentsInCash;
+    decimal minimumAmountOfPaymentsInCash?;
     @jsondata:Name {value: "PreviousDeclarationNumber"}
     string previousDeclarationNumber?;
     @jsondata:Name {value: "Representative"}
     NoYes representative?;
     @jsondata:Name {value: "TaxExemptNumberTrans"}
-    string taxExemptNumberTrans;
+    string taxExemptNumberTrans?;
     @jsondata:Name {value: "AmountInCash"}
-    decimal amountInCash;
+    decimal amountInCash?;
 };
 
 # Represents the Headers record for the operation: deleteSADItemCodes
@@ -3672,7 +3672,7 @@ public type GetApprovalUsersQueries record {
 public type Group record {
     @jsondata:Name {value: "ModelNumber"}
     string modelNumber?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VATOffsetMethodForDeferrals"}
     RDeferralsVATRefundingMethod vATOffsetMethodForDeferrals?;
     @jsondata:Name {value: "PostingProfile"}
@@ -3680,7 +3680,7 @@ public type Group record {
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "WritingOffTime"}
-    int:Signed32 writingOffTime;
+    int:Signed32 writingOffTime?;
     @jsondata:Name {value: "WritingOffMethod"}
     string writingOffMethod?;
     @jsondata:Name {value: "BeginningDateOfWritingOff"}
@@ -3688,7 +3688,7 @@ public type Group record {
     @jsondata:Name {value: "DisposalDate"}
     RDeferralsInitRetirementDate disposalDate?;
     @jsondata:Name {value: "DeferralsGroup"}
-    string deferralsGroup;
+    string deferralsGroup?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -3739,7 +3739,7 @@ public type ListRBSLFactorsQueries record {
 
 public type SysMonData record {
     @jsondata:Name {value: "Description"}
-    string description;
+    string description?;
 };
 
 # Represents the Queries record for the operation: getPolicyRules
@@ -3780,10 +3780,10 @@ public type GetIntrastatsQueries record {
 
 public type DemoDataPost record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "LineNum"}
-    decimal lineNum;
+    decimal lineNum?;
     @jsondata:Name {value: "DocumentTarget"}
     DemoDataPostDocumentTarget documentTarget?;
     @jsondata:Name {value: "DataProjectId"}
@@ -3795,11 +3795,11 @@ public type DemoDataPost record {
     @jsondata:Name {value: "ToDocument"}
     string toDocument?;
     @jsondata:Name {value: "DemoDataJob"}
-    string demoDataJob;
+    string demoDataJob?;
     @jsondata:Name {value: "Document"}
     DemoDataPostDocument document?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "ProcessOnImport"}
     NoYes processOnImport?;
 };
@@ -3923,17 +3923,17 @@ public type GetCFPSTableQueries record {
 };
 
 public type ImportMode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "ClassName"}
     string className?;
     @jsondata:Name {value: "ClassID"}
-    int:Signed32 classID;
+    int:Signed32 classID?;
     @jsondata:Name {value: "BankAccount"}
     string bankAccount?;
     @jsondata:Name {value: "MethodOfImport"}
-    string methodOfImport;
+    string methodOfImport?;
     @jsondata:Name {value: "BridgingAccountDisplayValue"}
     string bridgingAccountDisplayValue?;
 };
@@ -4070,9 +4070,9 @@ public type DeleteDatabaseLogsHeaders record {
 public type PrintLayout record {
     @jsondata:Name {value: "GroupDescription"}
     string groupDescription?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PrintLayoutGroup"}
-    string printLayoutGroup;
+    string printLayoutGroup?;
     @jsondata:Name {value: "PrintLayoutCode"}
     LedgerPreprintVoucherCN printLayoutCode?;
     @jsondata:Name {value: "CodeDescription"}
@@ -4080,11 +4080,11 @@ public type PrintLayout record {
 };
 
 public type SourceType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "SourceTypeId"}
-    string sourceTypeId;
+    string sourceTypeId?;
     @jsondata:Name {value: "Direction"}
     AssetSourceDirectionCN direction?;
 };
@@ -4121,9 +4121,9 @@ public type UpdateSysAADClientsHeaders record {
 
 public type WorkCalendar record {
     @jsondata:Name {value: "DefaultEndingTime"}
-    int:Signed32 defaultEndingTime;
+    int:Signed32 defaultEndingTime?;
     @jsondata:Name {value: "CalendarId"}
-    string calendarId;
+    string calendarId?;
     @jsondata:Name {value: "BaseWorkCalendarId"}
     string baseWorkCalendarId?;
     @jsondata:Name {value: "CalendarName"}
@@ -4133,16 +4133,16 @@ public type WorkCalendar record {
     @jsondata:Name {value: "IsFridayWorkingDay"}
     NoYes isFridayWorkingDay?;
     @jsondata:Name {value: "DefaultStartingTime"}
-    int:Signed32 defaultStartingTime;
+    int:Signed32 defaultStartingTime?;
     @jsondata:Name {value: "IsSaturdayWorkingDay"}
     NoYes isSaturdayWorkingDay?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IsWednesdayWorkingDay"}
     NoYes isWednesdayWorkingDay?;
     @jsondata:Name {value: "IsTuesdayWorkingDay"}
     NoYes isTuesdayWorkingDay?;
     @jsondata:Name {value: "WorkHours"}
-    decimal workHours;
+    decimal workHours?;
     @jsondata:Name {value: "IsThursdayWorkingDay"}
     NoYes isThursdayWorkingDay?;
     @jsondata:Name {value: "WorkCalendarHolidayId"}
@@ -4172,13 +4172,13 @@ public type ListComponentsQueries record {
 };
 
 public type PSSerialLine record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "RefTableId"}
-    int:Signed32 refTableId;
+    int:Signed32 refTableId?;
     @jsondata:Name {value: "Prefix"}
-    string prefix;
+    string prefix?;
     @jsondata:Name {value: "InvoiceNumber"}
-    string invoiceNumber;
+    string invoiceNumber?;
     @jsondata:Name {value: "SerialType"}
     PSSerialTypeTR serialType?;
 };
@@ -4189,17 +4189,17 @@ public type PolicyRule record {
     @jsondata:Name {value: "Action"}
     TrvPolicyViolationLevel action?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "PolicyName"}
-    string policyName;
+    string policyName?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "IncludeParentRule"}
     NoYes includeParentRule?;
     @jsondata:Name {value: "PolicyRuleName"}
-    string policyRuleName;
+    string policyRuleName?;
     @jsondata:Name {value: "ExpressionId"}
-    string expressionId;
+    string expressionId?;
 };
 
 public type SADItemCodesCollection record {
@@ -4380,9 +4380,9 @@ public type MediaCollectionAllOf2 record {
 
 public type Action record {
     @jsondata:Name {value: "NumberOfMessageItemsPerExport"}
-    int:Signed32 numberOfMessageItemsPerExport;
+    int:Signed32 numberOfMessageItemsPerExport?;
     @jsondata:Name {value: "Action"}
-    string action;
+    string action?;
     @jsondata:Name {value: "SplitEROutputByItems"}
     NoYes splitEROutputByItems?;
     @jsondata:Name {value: "Description"}
@@ -4406,8 +4406,8 @@ public type Action record {
     @jsondata:Name {value: "ConfirmationText"}
     string confirmationText?;
     @jsondata:Name {value: "ERFormatMappingGUID"}
-    string eRFormatMappingGUID;
-    string dataAreaId;
+    string eRFormatMappingGUID?;
+    string dataAreaId?;
     @jsondata:Name {value: "MessageItemType"}
     string messageItemType?;
     @jsondata:Name {value: "ERShowDialog"}
@@ -4417,20 +4417,20 @@ public type Action record {
     @jsondata:Name {value: "UseERSource"}
     NoYes useERSource?;
     @jsondata:Name {value: "ERModelMappingGUID"}
-    string eRModelMappingGUID;
+    string eRModelMappingGUID?;
 };
 
 public type Guide record {
     @jsondata:Name {value: "IntegrationKey"}
-    string integrationKey;
+    string integrationKey?;
     @jsondata:Name {value: "SchemaVersion"}
-    int:Signed32 schemaVersion;
+    int:Signed32 schemaVersion?;
     @jsondata:Name {value: "LastModifiedOn"}
-    string lastModifiedOn;
+    string lastModifiedOn?;
     @jsondata:Name {value: "CreatedOn"}
-    string createdOn;
+    string createdOn?;
     @jsondata:Name {value: "GuideID"}
-    string guideID;
+    string guideID?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -4707,11 +4707,11 @@ public type DocumentType record {
     DocuFilePlace filePlace?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TypeGroup"}
     DocuTypeGroup typeGroup?;
     @jsondata:Name {value: "ID"}
-    string iD;
+    string iD?;
     @jsondata:Name {value: "RemoveOption"}
     DocuRemoveOption removeOption?;
     @jsondata:Name {value: "FileRemovalConfirmation"}
@@ -4853,7 +4853,7 @@ public type GetModelTablesQueries record {
 public type UserGroup record {
     string name?;
     @jsondata:Name {value: "GroupId"}
-    string groupId;
+    string groupId?;
 };
 
 public type RDeferralsInitWriteStartDate "NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"CreatedDate";
@@ -4953,9 +4953,9 @@ public type SADParametersCollection record {
 };
 
 public type ServiceCodes record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ServiceCode"}
-    string serviceCode;
+    string serviceCode?;
     @jsondata:Name {value: "MinorHead"}
     string minorHead?;
     @jsondata:Name {value: "ServiceAccountingCode"}
@@ -4980,18 +4980,18 @@ public type House record {
     @jsondata:Name {value: "PostalCode"}
     string postalCode?;
     @jsondata:Name {value: "HouseId"}
-    string houseId;
+    string houseId?;
     @jsondata:Name {value: "BuildNum"}
     string buildNum?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "TerrIFNSFL"}
     string terrIFNSFL?;
     @jsondata:Name {value: "DivType"}
     string divType?;
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "AOGuid"}
     string aOGuid?;
     @jsondata:Name {value: "StrStatus"}
@@ -5064,7 +5064,7 @@ public type Intrastat record {
     @jsondata:Name {value: "Invoice"}
     string invoice?;
     @jsondata:Name {value: "CorrectionYear"}
-    int:Signed32 correctionYear;
+    int:Signed32 correctionYear?;
     @jsondata:Name {value: "CategoryHierarchyName"}
     string categoryHierarchyName?;
     @jsondata:Name {value: "Port"}
@@ -5076,25 +5076,25 @@ public type Intrastat record {
     @jsondata:Name {value: "StateOfOrigin"}
     string stateOfOrigin?;
     @jsondata:Name {value: "NetWeightByUnit"}
-    decimal netWeightByUnit;
+    decimal netWeightByUnit?;
     @jsondata:Name {value: "IntrastatStatisticalAdjustmentAmount"}
-    decimal intrastatStatisticalAdjustmentAmount;
+    decimal intrastatStatisticalAdjustmentAmount?;
     @jsondata:Name {value: "TaxExemptNumber"}
     string taxExemptNumber?;
     @jsondata:Name {value: "ReferenceTableID"}
-    int:Signed32 referenceTableID;
+    int:Signed32 referenceTableID?;
     @jsondata:Name {value: "FulfillmentDate"}
-    string fulfillmentDate;
+    string fulfillmentDate?;
     @jsondata:Name {value: "OriginalIntrastatRecord"}
     string originalIntrastatRecord?;
-    int:Signed32 relation;
+    int:Signed32 relation?;
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ChargesPercentage"}
-    decimal chargesPercentage;
+    decimal chargesPercentage?;
     @jsondata:Name {value: "NGPCode"}
-    int:Signed32 nGPCode;
+    int:Signed32 nGPCode?;
     @jsondata:Name {value: "Month"}
     MonthsOfYear month?;
     @jsondata:Name {value: "Container"}
@@ -5102,27 +5102,27 @@ public type Intrastat record {
     @jsondata:Name {value: "StatisticsProcedure"}
     string statisticsProcedure?;
     @jsondata:Name {value: "SequenceNumber"}
-    int:Signed32 sequenceNumber;
+    int:Signed32 sequenceNumber?;
     @jsondata:Name {value: "TransactionCode"}
     string transactionCode?;
     @jsondata:Name {value: "StatusTrans"}
-    int:Signed32 statusTrans;
+    int:Signed32 statusTrans?;
     @jsondata:Name {value: "ShipmentBatch"}
-    string shipmentBatch;
+    string shipmentBatch?;
     @jsondata:Name {value: "Compress"}
     NoYes compress?;
     @jsondata:Name {value: "Log"}
     string log?;
     @jsondata:Name {value: "MiscChargePerKg"}
-    decimal miscChargePerKg;
+    decimal miscChargePerKg?;
     @jsondata:Name {value: "StateSenderReceiver"}
     string stateSenderReceiver?;
     @jsondata:Name {value: "Weight"}
-    decimal weight;
+    decimal weight?;
     @jsondata:Name {value: "StatisticalAmount"}
-    decimal statisticalAmount;
+    decimal statisticalAmount?;
     @jsondata:Name {value: "Preference"}
-    int:Signed32 preference;
+    int:Signed32 preference?;
     @jsondata:Name {value: "State"}
     string state?;
     @jsondata:Name {value: "PaymentMethod"}
@@ -5130,7 +5130,7 @@ public type Intrastat record {
     @jsondata:Name {value: "DeliveryMode"}
     string deliveryMode?;
     @jsondata:Name {value: "InvoiceChargesAmountTransCurrency"}
-    decimal invoiceChargesAmountTransCurrency;
+    decimal invoiceChargesAmountTransCurrency?;
     @jsondata:Name {value: "IdentificationOfThePackingSlipOrProductReceipt"}
     string identificationOfThePackingSlipOrProductReceipt?;
     @jsondata:Name {value: "CountryRegionSenderReceiver"}
@@ -5140,21 +5140,21 @@ public type Intrastat record {
     @jsondata:Name {value: "Module"}
     ModuleInventCustVend 'module?;
     @jsondata:Name {value: "Consignments"}
-    int:Signed32 consignments;
+    int:Signed32 consignments?;
     @jsondata:Name {value: "IntrastatStatisticalValue"}
-    decimal intrastatStatisticalValue;
+    decimal intrastatStatisticalValue?;
     @jsondata:Name {value: "DeliverySchedule"}
     IntrastatServicesDeliveryIT deliverySchedule?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TariffNumber"}
-    int:Signed32 tariffNumber;
+    int:Signed32 tariffNumber?;
     @jsondata:Name {value: "InvoiceChargesAmount"}
-    decimal invoiceChargesAmount;
+    decimal invoiceChargesAmount?;
     @jsondata:Name {value: "NGPDescription"}
     string nGPDescription?;
     @jsondata:Name {value: "InvoiceAmount"}
-    decimal invoiceAmount;
+    decimal invoiceAmount?;
     @jsondata:Name {value: "CommodityAdditionalUnits"}
     string commodityAdditionalUnits?;
     @jsondata:Name {value: "Correction"}
@@ -5180,9 +5180,9 @@ public type Intrastat record {
     @jsondata:Name {value: "Number"}
     string number?;
     @jsondata:Name {value: "InvoiceAmountTransCur"}
-    decimal invoiceAmountTransCur;
+    decimal invoiceAmountTransCur?;
     @jsondata:Name {value: "StatisticalChargesAmount"}
-    decimal statisticalChargesAmount;
+    decimal statisticalChargesAmount?;
     @jsondata:Name {value: "StatementNumber"}
     string statementNumber?;
     @jsondata:Name {value: "DeliveryTerms"}
@@ -5190,13 +5190,13 @@ public type Intrastat record {
     @jsondata:Name {value: "IntrastatOrderType"}
     IntrastatOrderType intrastatOrderType?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "AdditionalUnitsQuantity"}
-    decimal additionalUnitsQuantity;
+    decimal additionalUnitsQuantity?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "ChargesAmount"}
-    decimal chargesAmount;
+    decimal chargesAmount?;
     @jsondata:Name {value: "ParentCommodityName"}
     string parentCommodityName?;
     @jsondata:Name {value: "PartialConsignment"}
@@ -5204,7 +5204,7 @@ public type Intrastat record {
     @jsondata:Name {value: "DirectionCode"}
     string directionCode?;
     @jsondata:Name {value: "Date"}
-    string date;
+    string date?;
     @jsondata:Name {value: "AccountNumber"}
     string accountNumber?;
     @jsondata:Name {value: "LotID"}
@@ -5266,15 +5266,15 @@ public type GetOtherClientsQueries record {
 };
 
 public type RBSLFactor record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AssetRBSLFactor"}
-    decimal assetRBSLFactor;
+    decimal assetRBSLFactor?;
     @jsondata:Name {value: "Years"}
-    int:Signed32 years;
+    int:Signed32 years?;
     @jsondata:Name {value: "Months"}
-    int:Signed32 months;
+    int:Signed32 months?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
 };
 
 public type MessageStatusCollection record {
@@ -5292,8 +5292,8 @@ public type UpdateRecSetupBasesHeaders record {
 
 public type TNVEDCode record {
     @jsondata:Name {value: "TnVedCode"}
-    string tnVedCode;
-    string dataAreaId;
+    string tnVedCode?;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Blocked"}
@@ -5416,15 +5416,15 @@ public type UpdateExternalRolesHeaders record {
 public type TaxReportSituationCodeES "Option1"|"Option2"|"Option3"|"Option4"|"None";
 
 public type Table record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Comment"}
     string comment?;
     @jsondata:Name {value: "VATOffsetMethodForDeferrals"}
     RDeferralsVATRefundingMethod vATOffsetMethodForDeferrals?;
     @jsondata:Name {value: "DateAttached"}
-    string dateAttached;
+    string dateAttached?;
     @jsondata:Name {value: "DeferralId"}
-    string deferralId;
+    string deferralId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -5463,7 +5463,7 @@ public type ServiceCodesCollectionAllOf2 record {
 };
 
 public type StdSeq record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "AppliedModule"}
@@ -5473,7 +5473,7 @@ public type StdSeq record {
     @jsondata:Name {value: "ChannelReference"}
     string channelReference?;
     @jsondata:Name {value: "Sequence"}
-    int:Signed32 sequence;
+    int:Signed32 sequence?;
 };
 
 # Represents the Headers record for the operation: deleteNGPCodes
@@ -5494,11 +5494,11 @@ public type UpdateReport347Headers record {
 };
 
 public type Type record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ShortName"}
     string shortName?;
     @jsondata:Name {value: "FlTypeId"}
-    string flTypeId;
+    string flTypeId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -5531,7 +5531,7 @@ public type SourceSystem record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 # Represents the Queries record for the operation: getBatchJobs
@@ -5586,11 +5586,11 @@ public type ActionsCollectionAllOf2 record {
 };
 
 public type NGPCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "NGP"}
-    int:Signed32 nGP;
+    int:Signed32 nGP?;
 };
 
 # Represents the Headers record for the operation: updateNGPCodes
@@ -5661,7 +5661,7 @@ public type SystemUser record {
     @jsondata:Name {value: "EventPopUpDisplayWhen"}
     EventPopupShowDefineMode eventPopUpDisplayWhen?;
     @jsondata:Name {value: "HomePageRefreshDuration"}
-    int:Signed32 homePageRefreshDuration;
+    int:Signed32 homePageRefreshDuration?;
     @jsondata:Name {value: "DefaultCountryRegion"}
     string defaultCountryRegion?;
     @jsondata:Name {value: "Language"}
@@ -5669,7 +5669,7 @@ public type SystemUser record {
     @jsondata:Name {value: "MarkEmptyLinks"}
     NoYes markEmptyLinks?;
     @jsondata:Name {value: "UserID"}
-    string userID;
+    string userID?;
     @jsondata:Name {value: "Helplanguage"}
     string helplanguage?;
     @jsondata:Name {value: "DocumentHandlingActive"}
@@ -5679,7 +5679,7 @@ public type SystemUser record {
     @jsondata:Name {value: "EventWorkflowShowPopup"}
     NoYes eventWorkflowShowPopup?;
     @jsondata:Name {value: "SqmGUID"}
-    string sqmGUID;
+    string sqmGUID?;
     @jsondata:Name {value: "PersonName"}
     string personName?;
     @jsondata:Name {value: "SendNotificationsInEmail"}
@@ -5689,23 +5689,23 @@ public type SystemUser record {
     @jsondata:Name {value: "UserName"}
     string userName?;
     @jsondata:Name {value: "EventPollFrequency"}
-    int:Signed32 eventPollFrequency;
+    int:Signed32 eventPollFrequency?;
     @jsondata:Name {value: "WorkflowLineItemNotificationFormat"}
     WorkflowLineItemNotificationFormat workflowLineItemNotificationFormat?;
     @jsondata:Name {value: "ExternalUser"}
-    boolean externalUser;
+    boolean externalUser?;
     @jsondata:Name {value: "EventPopUps"}
     NoYes eventPopUps?;
     @jsondata:Name {value: "Enabled"}
-    boolean enabled;
+    boolean enabled?;
     @jsondata:Name {value: "PreferredLocale"}
     string preferredLocale?;
     @jsondata:Name {value: "AccountType"}
     UserAccountType accountType?;
     @jsondata:Name {value: "GlobalListPageLinkMode"}
-    int:Signed32 globalListPageLinkMode;
+    int:Signed32 globalListPageLinkMode?;
     @jsondata:Name {value: "UserInfo_defaultPartition"}
-    boolean userInfoDefaultPartition;
+    boolean userInfoDefaultPartition?;
     @jsondata:Name {value: "PreferredCalendar"}
     PreferredCalendar preferredCalendar?;
     @jsondata:Name {value: "EmailProviderID"}
@@ -5721,7 +5721,7 @@ public type SystemUser record {
     @jsondata:Name {value: "AutomaticUrlUpdate"}
     NoYes automaticUrlUpdate?;
     @jsondata:Name {value: "GlobalExcelExportMode"}
-    int:Signed32 globalExcelExportMode;
+    int:Signed32 globalExcelExportMode?;
     @jsondata:Name {value: "UserInfo_language"}
     string userInfoLanguage?;
     @jsondata:Name {value: "NetworkDomain"}
@@ -5729,7 +5729,7 @@ public type SystemUser record {
     @jsondata:Name {value: "SqmEnabled"}
     SysSqmEnabledClient sqmEnabled?;
     @jsondata:Name {value: "AutoLogOff"}
-    int:Signed32 autoLogOff;
+    int:Signed32 autoLogOff?;
 };
 
 # Represents the Headers record for the operation: updateLoadTemplates
@@ -5739,9 +5739,9 @@ public type UpdateLoadTemplatesHeaders record {
 };
 
 public type EstateStatus record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "EstStatId"}
-    string estStatId;
+    string estStatId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -5846,7 +5846,7 @@ public type Media record {
     string mobilePhone?;
     @jsondata:Name {value: "AddressCounty"}
     string addressCounty?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Language"}
     string language?;
     @jsondata:Name {value: "AddressCity"}
@@ -5854,11 +5854,11 @@ public type Media record {
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "MediaType"}
     string mediaType?;
     @jsondata:Name {value: "Media"}
-    string media;
+    string media?;
     @jsondata:Name {value: "Apartment"}
     string apartment?;
     @jsondata:Name {value: "AddressLocationId"}
@@ -5876,7 +5876,7 @@ public type Media record {
     @jsondata:Name {value: "AddressStreet"}
     string addressStreet?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "Fax"}
@@ -5892,11 +5892,11 @@ public type DeleteMessageItemsHeaders record {
 };
 
 public type TableMapping record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "EntityName"}
-    string entityName;
+    string entityName?;
     @jsondata:Name {value: "DataSourceTableId"}
-    int:Signed32 dataSourceTableId;
+    int:Signed32 dataSourceTableId?;
 };
 
 public type Report347CollectionAllOf2 record {
@@ -5938,7 +5938,7 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "Invoice"}
     string invoice?;
     @jsondata:Name {value: "CorrectionYear"}
-    int:Signed32 correctionYear;
+    int:Signed32 correctionYear?;
     @jsondata:Name {value: "CategoryHierarchyName"}
     string categoryHierarchyName?;
     @jsondata:Name {value: "Port"}
@@ -5950,25 +5950,25 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "StateOfOrigin"}
     string stateOfOrigin?;
     @jsondata:Name {value: "NetWeightByUnit"}
-    decimal netWeightByUnit;
+    decimal netWeightByUnit?;
     @jsondata:Name {value: "IntrastatStatisticalAdjustmentAmount"}
-    decimal intrastatStatisticalAdjustmentAmount;
+    decimal intrastatStatisticalAdjustmentAmount?;
     @jsondata:Name {value: "TaxExemptNumber"}
     string taxExemptNumber?;
     @jsondata:Name {value: "ReferenceTableID"}
-    int:Signed32 referenceTableID;
+    int:Signed32 referenceTableID?;
     @jsondata:Name {value: "FulfillmentDate"}
-    string fulfillmentDate;
+    string fulfillmentDate?;
     @jsondata:Name {value: "OriginalIntrastatRecord"}
     string originalIntrastatRecord?;
-    int:Signed32 relation;
+    int:Signed32 relation?;
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ChargesPercentage"}
-    decimal chargesPercentage;
+    decimal chargesPercentage?;
     @jsondata:Name {value: "NGPCode"}
-    int:Signed32 nGPCode;
+    int:Signed32 nGPCode?;
     @jsondata:Name {value: "Month"}
     MonthsOfYear month?;
     @jsondata:Name {value: "Container"}
@@ -5976,27 +5976,27 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "StatisticsProcedure"}
     string statisticsProcedure?;
     @jsondata:Name {value: "SequenceNumber"}
-    int:Signed32 sequenceNumber;
+    int:Signed32 sequenceNumber?;
     @jsondata:Name {value: "TransactionCode"}
     string transactionCode?;
     @jsondata:Name {value: "StatusTrans"}
-    int:Signed32 statusTrans;
+    int:Signed32 statusTrans?;
     @jsondata:Name {value: "ShipmentBatch"}
-    string shipmentBatch;
+    string shipmentBatch?;
     @jsondata:Name {value: "Compress"}
     NoYes compress?;
     @jsondata:Name {value: "Log"}
     string log?;
     @jsondata:Name {value: "MiscChargePerKg"}
-    decimal miscChargePerKg;
+    decimal miscChargePerKg?;
     @jsondata:Name {value: "StateSenderReceiver"}
     string stateSenderReceiver?;
     @jsondata:Name {value: "Weight"}
-    decimal weight;
+    decimal weight?;
     @jsondata:Name {value: "StatisticalAmount"}
-    decimal statisticalAmount;
+    decimal statisticalAmount?;
     @jsondata:Name {value: "Preference"}
-    int:Signed32 preference;
+    int:Signed32 preference?;
     @jsondata:Name {value: "State"}
     string state?;
     @jsondata:Name {value: "PaymentMethod"}
@@ -6004,7 +6004,7 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "DeliveryMode"}
     string deliveryMode?;
     @jsondata:Name {value: "InvoiceChargesAmountTransCurrency"}
-    decimal invoiceChargesAmountTransCurrency;
+    decimal invoiceChargesAmountTransCurrency?;
     @jsondata:Name {value: "IdentificationOfThePackingSlipOrProductReceipt"}
     string identificationOfThePackingSlipOrProductReceipt?;
     @jsondata:Name {value: "CountryRegionSenderReceiver"}
@@ -6014,21 +6014,21 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "Module"}
     ModuleInventCustVend 'module?;
     @jsondata:Name {value: "Consignments"}
-    int:Signed32 consignments;
+    int:Signed32 consignments?;
     @jsondata:Name {value: "IntrastatStatisticalValue"}
-    decimal intrastatStatisticalValue;
+    decimal intrastatStatisticalValue?;
     @jsondata:Name {value: "DeliverySchedule"}
     IntrastatServicesDeliveryIT deliverySchedule?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TariffNumber"}
-    int:Signed32 tariffNumber;
+    int:Signed32 tariffNumber?;
     @jsondata:Name {value: "InvoiceChargesAmount"}
-    decimal invoiceChargesAmount;
+    decimal invoiceChargesAmount?;
     @jsondata:Name {value: "NGPDescription"}
     string nGPDescription?;
     @jsondata:Name {value: "InvoiceAmount"}
-    decimal invoiceAmount;
+    decimal invoiceAmount?;
     @jsondata:Name {value: "CommodityAdditionalUnits"}
     string commodityAdditionalUnits?;
     @jsondata:Name {value: "Correction"}
@@ -6054,9 +6054,9 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "Number"}
     string number?;
     @jsondata:Name {value: "InvoiceAmountTransCur"}
-    decimal invoiceAmountTransCur;
+    decimal invoiceAmountTransCur?;
     @jsondata:Name {value: "StatisticalChargesAmount"}
-    decimal statisticalChargesAmount;
+    decimal statisticalChargesAmount?;
     @jsondata:Name {value: "StatementNumber"}
     string statementNumber?;
     @jsondata:Name {value: "DeliveryTerms"}
@@ -6064,13 +6064,13 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "IntrastatOrderType"}
     IntrastatOrderType intrastatOrderType?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "AdditionalUnitsQuantity"}
-    decimal additionalUnitsQuantity;
+    decimal additionalUnitsQuantity?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "ChargesAmount"}
-    decimal chargesAmount;
+    decimal chargesAmount?;
     @jsondata:Name {value: "ParentCommodityName"}
     string parentCommodityName?;
     @jsondata:Name {value: "PartialConsignment"}
@@ -6078,7 +6078,7 @@ public type IntrastatV2 record {
     @jsondata:Name {value: "DirectionCode"}
     string directionCode?;
     @jsondata:Name {value: "Date"}
-    string date;
+    string date?;
     @jsondata:Name {value: "AccountNumber"}
     string accountNumber?;
     @jsondata:Name {value: "LotID"}
@@ -6111,47 +6111,47 @@ public type DatabaseLogsCollection record {
 };
 
 public type OfBusiness record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "LineOfBusiness"}
-    string lineOfBusiness;
+    string lineOfBusiness?;
 };
 
 public type DatabaseLog record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "LogRecId"}
-    int logRecId;
+    int logRecId?;
     @jsondata:Name {value: "NewData"}
     string newData?;
     @jsondata:Name {value: "LogType"}
     DatabaseLogType logType?;
     @jsondata:Name {value: "TableIdNumber"}
-    int:Signed32 tableIdNumber;
+    int:Signed32 tableIdNumber?;
     @jsondata:Name {value: "Data"}
     record {byte[] fileContent; string fileName;} data?;
     @jsondata:Name {value: "LogDataAreaId"}
     string logDataAreaId?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TableName"}
     string tableName?;
     @jsondata:Name {value: "TableRecVersion"}
-    int:Signed32 tableRecVersion;
+    int:Signed32 tableRecVersion?;
     @jsondata:Name {value: "LogCreatedBy"}
     string logCreatedBy?;
     @jsondata:Name {value: "Username"}
     string username?;
     @jsondata:Name {value: "LogPartition"}
-    int logPartition;
+    int logPartition?;
     @jsondata:Name {value: "SequenceNumber"}
-    int sequenceNumber;
+    int sequenceNumber?;
     @jsondata:Name {value: "TableRecId"}
-    int tableRecId;
+    int tableRecId?;
     @jsondata:Name {value: "LogCreatedDateTime"}
-    string logCreatedDateTime;
+    string logCreatedDateTime?;
     @jsondata:Name {value: "LogCreatedTransactionId"}
-    int logCreatedTransactionId;
+    int logCreatedTransactionId?;
     @jsondata:Name {value: "FormattedData"}
     string formattedData?;
 };
@@ -6169,11 +6169,11 @@ public type UpdateTypeTablesHeaders record {
 };
 
 public type Operation record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OperationName"}
     string operationName?;
     @jsondata:Name {value: "OperationId"}
-    string operationId;
+    string operationId?;
 };
 
 # Represents the Queries record for the operation: listRecSetupBases
@@ -6254,7 +6254,7 @@ public type SysAADClient record {
     @jsondata:Name {value: "UserId"}
     string userId?;
     @jsondata:Name {value: "AADClientId"}
-    string aADClientId;
+    string aADClientId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -6274,9 +6274,9 @@ public type DocumentsCollectionAllOf2 record {
 };
 
 public type EMItemType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MessageItemType"}
-    string messageItemType;
+    string messageItemType?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -6316,27 +6316,27 @@ public type ListSecurityRolesQueries record {
 public type LedgerPeriodType "None"|"FiscalYear"|"Period"|"Year"|"SixMths"|"Tertial"|"Quarter"|"Month"|"Week";
 
 public type ReportPeriod record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PeriodStart"}
-    string periodStart;
+    string periodStart?;
     @jsondata:Name {value: "Approved"}
     NoYes approved?;
     @jsondata:Name {value: "TaxWithholdVersion"}
-    int:Signed32 taxWithholdVersion;
+    int:Signed32 taxWithholdVersion?;
     @jsondata:Name {value: "SalesTaxReporting"}
-    string salesTaxReporting;
+    string salesTaxReporting?;
     @jsondata:Name {value: "ReportingDate"}
-    string reportingDate;
+    string reportingDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "UseTax"}
     NoYes useTax?;
     @jsondata:Name {value: "SettlementPeriod"}
-    string settlementPeriod;
+    string settlementPeriod?;
     @jsondata:Name {value: "PeriodEnd"}
-    string periodEnd;
+    string periodEnd?;
 };
 
 public type SysMonDatasCollectionAllOf2 record {
@@ -6349,9 +6349,9 @@ public type ApprovalUser record {
     @jsondata:Name {value: "UserName"}
     string userName?;
     @jsondata:Name {value: "UserId"}
-    string userId;
+    string userId?;
     @jsondata:Name {value: "UserObjectId"}
-    string userObjectId;
+    string userObjectId?;
 };
 
 # Represents the Queries record for the operation: listLoadTemplates
@@ -6468,18 +6468,18 @@ public type ListAdvancedRulesQueries record {
 
 public type MessageItems record {
     @jsondata:Name {value: "TransDateTime"}
-    string transDateTime;
-    string dataAreaId;
+    string transDateTime?;
+    string dataAreaId?;
     @jsondata:Name {value: "ItemStatus"}
     string itemStatus?;
     @jsondata:Name {value: "ItemDate"}
-    string itemDate;
+    string itemDate?;
     @jsondata:Name {value: "ItemType"}
-    string itemType;
+    string itemType?;
     @jsondata:Name {value: "ProcessingId"}
-    string processingId;
+    string processingId?;
     @jsondata:Name {value: "ItemId"}
-    string itemId;
+    string itemId?;
     @jsondata:Name {value: "MessageId"}
     string messageId?;
 };

@@ -14,7 +14,7 @@ public type TaxRegion record {
     @jsondata:Name {value: "ZipCode"}
     string zipCode?;
     @jsondata:Name {value: "LocationId"}
-    string locationId;
+    string locationId?;
     @jsondata:Name {value: "City"}
     string city?;
     @jsondata:Name {value: "County"}
@@ -24,9 +24,9 @@ public type TaxRegion record {
     @jsondata:Name {value: "State"}
     string state?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "StreetNumber"}
     string streetNumber?;
     @jsondata:Name {value: "Street"}
@@ -60,13 +60,13 @@ public type DeleteEFDocSchemasHeaders record {
 };
 
 public type GSTMinorCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxComponent"}
-    string taxComponent;
+    string taxComponent?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "MinorCode"}
-    string minorCode;
+    string minorCode?;
 };
 
 # Represents the Queries record for the operation: listNIPTables
@@ -110,7 +110,7 @@ public type ListTaxGroupsQueries record {
 };
 
 public type TaxationCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxType"}
     TaxTypeBR taxType?;
     @jsondata:Name {value: "OutputCode"}
@@ -120,11 +120,11 @@ public type TaxationCode record {
     @jsondata:Name {value: "FiscalValue"}
     TaxFiscalValueBR fiscalValue?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "TaxationCode"}
-    string taxationCode;
+    string taxationCode?;
     @jsondata:Name {value: "SpedCode"}
     string spedCode?;
     @jsondata:Name {value: "InputCode"}
@@ -138,17 +138,17 @@ public type DeleteISRConceptsHeaders record {
 };
 
 public type TaxCodeLimit record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "MaximumSalesTax"}
-    decimal maximumSalesTax;
+    decimal maximumSalesTax?;
     @jsondata:Name {value: "MinimumSalesTax"}
-    decimal minimumSalesTax;
+    decimal minimumSalesTax?;
 };
 
 public type FillVATDueDateW "Manually"|"SalesDate"|"DocumentDate"|"PostingDate"|"LastDeliveryDate"|"Customized";
@@ -163,7 +163,7 @@ public type UpdateTaxGroupDatasHeaders record {
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -326,9 +326,9 @@ public type GetTax1099FieldsQueries record {
 public type TaxItemGroup record {
     @jsondata:Name {value: "EUSalesListType"}
     EUSalesListType eUSalesListType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TaxExemptCode"}
@@ -338,7 +338,7 @@ public type TaxItemGroup record {
     @jsondata:Name {value: "ExemptTax"}
     NoYes exemptTax?;
     @jsondata:Name {value: "TaxItemGroupCode"}
-    string taxItemGroupCode;
+    string taxItemGroupCode?;
     @jsondata:Name {value: "TaxationCode"}
     string taxationCode?;
 };
@@ -477,11 +477,11 @@ public type DeleteTaxTablesHeaders record {
 };
 
 public type CFOPGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "GroupId"}
-    string groupId;
+    string groupId?;
 };
 
 # Represents the Queries record for the operation: listEFDocSchemas
@@ -607,17 +607,17 @@ public type UpdateTaxRegionsHeaders record {
 };
 
 public type ISRRate record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Month"}
-    int:Signed32 month;
+    int:Signed32 month?;
     @jsondata:Name {value: "Year"}
-    int:Signed32 year;
+    int:Signed32 year?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "MaximumAmount"}
-    decimal maximumAmount;
+    decimal maximumAmount?;
     @jsondata:Name {value: "FixedAmount"}
-    decimal fixedAmount;
+    decimal fixedAmount?;
 };
 
 public type TaxDocumentsCollectionAllOf2 record {
@@ -662,14 +662,14 @@ public type NRTaxTrans record {
     @jsondata:Name {value: "TransType"}
     LvNRTransType transType?;
     @jsondata:Name {value: "ReferenceTableID"}
-    int:Signed32 referenceTableID;
+    int:Signed32 referenceTableID?;
     @jsondata:Name {value: "PackingUnitQty"}
-    decimal packingUnitQty;
+    decimal packingUnitQty?;
     @jsondata:Name {value: "TaxBaseAmount"}
-    decimal taxBaseAmount;
-    string dataAreaId;
+    decimal taxBaseAmount?;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxAmount"}
-    decimal taxAmount;
+    decimal taxAmount?;
     @jsondata:Name {value: "ItemNumber"}
     string itemNumber?;
     @jsondata:Name {value: "Number"}
@@ -677,31 +677,31 @@ public type NRTaxTrans record {
     @jsondata:Name {value: "TaxCode"}
     string taxCode?;
     @jsondata:Name {value: "ItemQty"}
-    decimal itemQty;
+    decimal itemQty?;
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
     @jsondata:Name {value: "LineId"}
-    string lineId;
+    string lineId?;
     @jsondata:Name {value: "TaxValue"}
-    decimal taxValue;
+    decimal taxValue?;
     @jsondata:Name {value: "PackingUnitWeight"}
-    decimal packingUnitWeight;
+    decimal packingUnitWeight?;
     @jsondata:Name {value: "InventTransId"}
     string inventTransId?;
     @jsondata:Name {value: "DimensionNumber"}
     string dimensionNumber?;
     @jsondata:Name {value: "PackingWeight"}
-    decimal packingWeight;
+    decimal packingWeight?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "TransRecIdReference"}
-    int transRecIdReference;
+    int transRecIdReference?;
     @jsondata:Name {value: "NRTaxGroup"}
     string nRTaxGroup?;
     @jsondata:Name {value: "PackingQty"}
-    decimal packingQty;
+    decimal packingQty?;
     @jsondata:Name {value: "TransDate"}
-    string transDate;
+    string transDate?;
     @jsondata:Name {value: "PackingUnit"}
     string packingUnit?;
     @jsondata:Name {value: "InventTransTypeReference"}
@@ -782,10 +782,10 @@ public type TaxPostingGroup record {
     @jsondata:Name {value: "TaxReceivableShortTermMainAccountIdDisplayValue"}
     string taxReceivableShortTermMainAccountIdDisplayValue?;
     @jsondata:Name {value: "TaxPostingGroupCode"}
-    string taxPostingGroupCode;
+    string taxPostingGroupCode?;
     @jsondata:Name {value: "TaxOutgoingDifferenceMainAccountIdDisplayValue"}
     string taxOutgoingDifferenceMainAccountIdDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxIncomingDifferenceMainAccountIdDisplayValue"}
     string taxIncomingDifferenceMainAccountIdDisplayValue?;
     @jsondata:Name {value: "TaxSettlementMainAccountIdDisplayValue"}
@@ -849,19 +849,19 @@ public type TaxCodesCollectionAllOf2 record {
 };
 
 public type Tax1099Field record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "BoxNumber"}
-    int:Signed32 boxNumber;
+    int:Signed32 boxNumber?;
     @jsondata:Name {value: "Form"}
     string form?;
     @jsondata:Name {value: "TypeOfTax1099Form"}
     Tax1099Type typeOfTax1099Form?;
     @jsondata:Name {value: "MinimumAmount"}
-    decimal minimumAmount;
+    decimal minimumAmount?;
     @jsondata:Name {value: "Tax1099Box"}
-    string tax1099Box;
+    string tax1099Box?;
 };
 
 public type TaxTablesCollectionAllOf2 record {
@@ -1011,13 +1011,13 @@ public type GetTaxGroupsQueries record {
 };
 
 public type TaxGroupData record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "ReverseCharge"}
     NoYes reverseCharge?;
     @jsondata:Name {value: "TaxGroupId"}
-    string taxGroupId;
+    string taxGroupId?;
     @jsondata:Name {value: "ExemptTax"}
     NoYes exemptTax?;
     @jsondata:Name {value: "TaxExemptCodeId"}
@@ -1092,11 +1092,11 @@ public type Intervat record {
     @jsondata:Name {value: "Status"}
     TaxIntervatStatus status?;
     @jsondata:Name {value: "IntervatId"}
-    string intervatId;
+    string intervatId?;
     @jsondata:Name {value: "Telephone"}
     string telephone?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "ReplacedVATDeclaration"}
     string replacedVATDeclaration?;
     @jsondata:Name {value: "Period"}
@@ -1109,13 +1109,13 @@ public type Intervat record {
     string salesTaxBox?;
     @jsondata:Name {value: "SalesTaxNumber"}
     string salesTaxNumber?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CompanyName"}
     string companyName?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "RequestForReimbursement"}
     NoYes requestForReimbursement?;
     @jsondata:Name {value: "EnterpriseNumber"}
@@ -1125,7 +1125,7 @@ public type Intervat record {
     @jsondata:Name {value: "PeriodFrequency"}
     TaxIntervatFrequency periodFrequency?;
     @jsondata:Name {value: "PreparationDate"}
-    string preparationDate;
+    string preparationDate?;
     @jsondata:Name {value: "RequestForPaymentForms"}
     NoYes requestForPaymentForms?;
     @jsondata:Name {value: "Location"}
@@ -1182,11 +1182,11 @@ public type GetISRConceptsQueries record {
 };
 
 public type NIPTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "NIPNumber"}
     string nIPNumber?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
     @jsondata:Name {value: "Addressing"}
     string addressing?;
     @jsondata:Name {value: "AccountName"}
@@ -1394,7 +1394,7 @@ public type TaxParameters record {
     NoYes isTaxBranchEnabled?;
     @jsondata:Name {value: "ValidateTaxCode"}
     NoYes validateTaxCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "BASFormatName"}
     string bASFormatName?;
     @jsondata:Name {value: "AdjustTaxForOverUnderpayment"}
@@ -1422,7 +1422,7 @@ public type TaxParameters record {
     @jsondata:Name {value: "ReverseSalesTaxOnCashDiscount"}
     NoYes reverseSalesTaxOnCashDiscount?;
     @jsondata:Name {value: "DateForSecondTaxRaise"}
-    string dateForSecondTaxRaise;
+    string dateForSecondTaxRaise?;
     @jsondata:Name {value: "AmountsIncludeTaxInJournals"}
     NoYes amountsIncludeTaxInJournals?;
     @jsondata:Name {value: "IncludeTaxValueInGSTSummary"}
@@ -1593,19 +1593,19 @@ public type ELParameter record {
     string dimensionAttributeName?;
     @jsondata:Name {value: "IsActiveMultiBranch"}
     NoYes isActiveMultiBranch?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "COALookupActive"}
     NoYes cOALookupActive?;
     @jsondata:Name {value: "TakeSameNumForSameVoucher"}
     NoYes takeSameNumForSameVoucher?;
     @jsondata:Name {value: "MaxBatchSessionsforSendingPool"}
-    int:Signed32 maxBatchSessionsforSendingPool;
+    int:Signed32 maxBatchSessionsforSendingPool?;
     @jsondata:Name {value: "BranchId"}
     string branchId?;
     @jsondata:Name {value: "HcmWorkerPersonnelNumber"}
     string hcmWorkerPersonnelNumber?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
     @jsondata:Name {value: "DimensionMainAccountActivate"}
     NoYes dimensionMainAccountActivate?;
     @jsondata:Name {value: "BranchDescription"}
@@ -1643,7 +1643,7 @@ public type GetEFDocSchemasQueries record {
 };
 
 public type TaxTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TypeOfTax"}
     TaxTypeW typeOfTax?;
     @jsondata:Name {value: "ExpenseCode"}
@@ -1653,13 +1653,13 @@ public type TaxTable record {
     @jsondata:Name {value: "Module"}
     RTax25TaxModule 'module?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
 };
 
 public type TaxesMatrix record {
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Type"}
     CustVendTypeBR 'type?;
     @jsondata:Name {value: "ItemCode"}
@@ -1669,17 +1669,17 @@ public type TaxesMatrix record {
     @jsondata:Name {value: "ItemSalesTaxGroup"}
     string itemSalesTaxGroup?;
     @jsondata:Name {value: "FiscalEstablishmentGroupId"}
-    string fiscalEstablishmentGroupId;
+    string fiscalEstablishmentGroupId?;
     @jsondata:Name {value: "CFOPGroupId"}
-    string cFOPGroupId;
+    string cFOPGroupId?;
     @jsondata:Name {value: "AccountCode"}
     TableGroupAll accountCode?;
     @jsondata:Name {value: "IsUsedForFreeTextInvoice"}
     NoYes isUsedForFreeTextInvoice?;
     @jsondata:Name {value: "AccountRelation"}
-    string accountRelation;
+    string accountRelation?;
     @jsondata:Name {value: "ItemRelation"}
-    string itemRelation;
+    string itemRelation?;
 };
 
 public type TaxGroup record {
@@ -1694,12 +1694,12 @@ public type TaxGroup record {
     @jsondata:Name {value: "InvoicePrintDetails"}
     TaxPrintDetail invoicePrintDetails?;
     @jsondata:Name {value: "TaxGroupCode"}
-    string taxGroupCode;
+    string taxGroupCode?;
     @jsondata:Name {value: "DefaultCriteriaZipCodeId"}
     string defaultCriteriaZipCodeId?;
     @jsondata:Name {value: "FillSalesDate_W"}
     FillSalesDateW fillSalesDateW?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxReverseOnCashDiscount"}
     NoYes taxReverseOnCashDiscount?;
     @jsondata:Name {value: "DefaultCriteriaStateId"}
@@ -1758,17 +1758,17 @@ public type ELParametersCollection record {
 };
 
 public type ISRConcept record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "DebitCreditIndicator"}
     ISRCreditDebitMX debitCreditIndicator?;
     @jsondata:Name {value: "ChartOfAccountsName"}
-    string chartOfAccountsName;
+    string chartOfAccountsName?;
     @jsondata:Name {value: "ConceptId"}
     ISRConceptCategoryMX conceptId?;
     @jsondata:Name {value: "MainAccountId"}
-    string mainAccountId;
+    string mainAccountId?;
 };
 
 # Represents the Headers record for the operation: updateTaxesMatrices
@@ -1797,30 +1797,30 @@ public type DeleteTaxItemGroupsHeaders record {
 
 public type TaxCode record {
     @jsondata:Name {value: "ReportingCodeTaxablePurchases"}
-    int:Signed32 reportingCodeTaxablePurchases;
+    int:Signed32 reportingCodeTaxablePurchases?;
     @jsondata:Name {value: "VATChargeSource"}
     VATChargeSourceRU vATChargeSource?;
     @jsondata:Name {value: "ReportingCodeTaxFreeBuyDebitNote"}
-    int:Signed32 reportingCodeTaxFreeBuyDebitNote;
+    int:Signed32 reportingCodeTaxFreeBuyDebitNote?;
     @jsondata:Name {value: "ReportingCodeUseTaxOffsetCreditNote"}
-    int:Signed32 reportingCodeUseTaxOffsetCreditNote;
+    int:Signed32 reportingCodeUseTaxOffsetCreditNote?;
     @jsondata:Name {value: "TaxationCode"}
     string taxationCode?;
     @jsondata:Name {value: "IsInvestment"}
     NoYes isInvestment?;
     @jsondata:Name {value: "ReportingCodeSalesTaxReceivableCreditNote"}
-    int:Signed32 reportingCodeSalesTaxReceivableCreditNote;
-    string dataAreaId;
+    int:Signed32 reportingCodeSalesTaxReceivableCreditNote?;
+    string dataAreaId?;
     @jsondata:Name {value: "DiotAddInfo"}
     NoYes diotAddInfo?;
     @jsondata:Name {value: "TaxCalculationMethod"}
     TaxCalcMode taxCalculationMethod?;
     @jsondata:Name {value: "ReportingCodeTaxOutgoingDebitNote"}
-    int:Signed32 reportingCodeTaxOutgoingDebitNote;
+    int:Signed32 reportingCodeTaxOutgoingDebitNote?;
     @jsondata:Name {value: "ReportingCodeBaseOutgoingDebitNote"}
-    int:Signed32 reportingCodeBaseOutgoingDebitNote;
+    int:Signed32 reportingCodeBaseOutgoingDebitNote?;
     @jsondata:Name {value: "ReportingCodeTaxFreePurchase"}
-    int:Signed32 reportingCodeTaxFreePurchase;
+    int:Signed32 reportingCodeTaxFreePurchase?;
     @jsondata:Name {value: "JapanTaxType"}
     TaxTypeJP japanTaxType?;
     @jsondata:Name {value: "DomesticCustomsPractice"}
@@ -1828,15 +1828,15 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxLimitBase"}
     TaxLimitBase taxLimitBase?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSaleCreditNote"}
-    int:Signed32 reportingCodeTaxFreeSaleCreditNote;
+    int:Signed32 reportingCodeTaxFreeSaleCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxableImport"}
-    int:Signed32 reportingCodeTaxableImport;
+    int:Signed32 reportingCodeTaxableImport?;
     @jsondata:Name {value: "ReportingCodeUseTax"}
-    int:Signed32 reportingCodeUseTax;
+    int:Signed32 reportingCodeUseTax?;
     @jsondata:Name {value: "TaxSubstitutionMethod"}
     TaxSubstitutionEnumBR taxSubstitutionMethod?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSale"}
-    int:Signed32 reportingCodeTaxFreeSale;
+    int:Signed32 reportingCodeTaxFreeSale?;
     @jsondata:Name {value: "NegativeTax"}
     NoYes negativeTax?;
     @jsondata:Name {value: "UnrealizedTax"}
@@ -1844,7 +1844,7 @@ public type TaxCode record {
     @jsondata:Name {value: "PackingDutySortCode"}
     string packingDutySortCode?;
     @jsondata:Name {value: "ReportingCodeSalesTaxPayableCreditNote"}
-    int:Signed32 reportingCodeSalesTaxPayableCreditNote;
+    int:Signed32 reportingCodeSalesTaxPayableCreditNote?;
     @jsondata:Name {value: "TaxCountryRegionType"}
     CountryRegionType taxCountryRegionType?;
     @jsondata:Name {value: "DescriptionQRBill"}
@@ -1856,7 +1856,7 @@ public type TaxCode record {
     @jsondata:Name {value: "MexicoTaxType"}
     TaxTypeMX mexicoTaxType?;
     @jsondata:Name {value: "ReportingCodeUseTaxCreditNote"}
-    int:Signed32 reportingCodeUseTaxCreditNote;
+    int:Signed32 reportingCodeUseTaxCreditNote?;
     @jsondata:Name {value: "TaxType"}
     TaxTypeTH taxType?;
     @jsondata:Name {value: "BrazilTaxType"}
@@ -1864,29 +1864,29 @@ public type TaxCode record {
     @jsondata:Name {value: "NotEUSalesList"}
     NoYes notEUSalesList?;
     @jsondata:Name {value: "ReportingCodeTaxableSales"}
-    int:Signed32 reportingCodeTaxableSales;
+    int:Signed32 reportingCodeTaxableSales?;
     @jsondata:Name {value: "ReportingCodeTaxablePurchasesCreditNote"}
-    int:Signed32 reportingCodeTaxablePurchasesCreditNote;
+    int:Signed32 reportingCodeTaxablePurchasesCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxFreePurchaseCreditNote"}
-    int:Signed32 reportingCodeTaxFreePurchaseCreditNote;
+    int:Signed32 reportingCodeTaxFreePurchaseCreditNote?;
     @jsondata:Name {value: "SingaporeTaxType"}
     TaxTypeSG singaporeTaxType?;
     @jsondata:Name {value: "TaxSubstitutionCalculationMethod"}
     TaxSubstitutionBaseRedCalculationModeBR taxSubstitutionCalculationMethod?;
     @jsondata:Name {value: "ReportingCodeSalesTaxReceivable"}
-    int:Signed32 reportingCodeSalesTaxReceivable;
+    int:Signed32 reportingCodeSalesTaxReceivable?;
     @jsondata:Name {value: "TaxPeriodId"}
     string taxPeriodId?;
     @jsondata:Name {value: "ReportingCodeTaxableSalesCreditNote"}
-    int:Signed32 reportingCodeTaxableSalesCreditNote;
+    int:Signed32 reportingCodeTaxableSalesCreditNote?;
     @jsondata:Name {value: "ReportingCodeSalesTaxPayable"}
-    int:Signed32 reportingCodeSalesTaxPayable;
+    int:Signed32 reportingCodeSalesTaxPayable?;
     @jsondata:Name {value: "TaxCode"}
-    string taxCode;
+    string taxCode?;
     @jsondata:Name {value: "PrintCode"}
     string printCode?;
     @jsondata:Name {value: "ReportingCodeUseTaxOffset"}
-    int:Signed32 reportingCodeUseTaxOffset;
+    int:Signed32 reportingCodeUseTaxOffset?;
     @jsondata:Name {value: "TaxRoundOffType"}
     RoundOffType taxRoundOffType?;
     @jsondata:Name {value: "TaxUnitId"}
@@ -1898,7 +1898,7 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxCurrencyCodeId"}
     string taxCurrencyCodeId?;
     @jsondata:Name {value: "ReportingCodeTaxableImportOffset"}
-    int:Signed32 reportingCodeTaxableImportOffset;
+    int:Signed32 reportingCodeTaxableImportOffset?;
     @jsondata:Name {value: "IsGST"}
     NoYes isGST?;
     @jsondata:Name {value: "TypeOfTax"}
@@ -1906,19 +1906,19 @@ public type TaxCode record {
     @jsondata:Name {value: "PaymentTaxCodeId"}
     string paymentTaxCodeId?;
     @jsondata:Name {value: "TaxRoundOff"}
-    decimal taxRoundOff;
+    decimal taxRoundOff?;
     @jsondata:Name {value: "TaxName"}
     string taxName?;
     @jsondata:Name {value: "RevenueCode"}
     string revenueCode?;
     @jsondata:Name {value: "ReportingCodeTaxableImportOffsetCreditNote"}
-    int:Signed32 reportingCodeTaxableImportOffsetCreditNote;
+    int:Signed32 reportingCodeTaxableImportOffsetCreditNote?;
     @jsondata:Name {value: "ExcludeFromInvoice"}
     NoYes excludeFromInvoice?;
     @jsondata:Name {value: "TaxOnTax"}
     string taxOnTax?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSalesDebitNote"}
-    int:Signed32 reportingCodeTaxFreeSalesDebitNote;
+    int:Signed32 reportingCodeTaxFreeSalesDebitNote?;
     @jsondata:Name {value: "RetainedTax"}
     NoYes retainedTax?;
     @jsondata:Name {value: "IncludedTax"}
@@ -1926,37 +1926,37 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxVatReportCategoryCode"}
     string taxVatReportCategoryCode?;
     @jsondata:Name {value: "ReportingCodeTaxableImportCreditNote"}
-    int:Signed32 reportingCodeTaxableImportCreditNote;
+    int:Signed32 reportingCodeTaxableImportCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxIncomingDebitNote"}
-    int:Signed32 reportingCodeTaxIncomingDebitNote;
+    int:Signed32 reportingCodeTaxIncomingDebitNote?;
     @jsondata:Name {value: "TaxPostingGroupId"}
     string taxPostingGroupId?;
     @jsondata:Name {value: "ReportingCodeBaseIncomingDebitNote"}
-    int:Signed32 reportingCodeBaseIncomingDebitNote;
+    int:Signed32 reportingCodeBaseIncomingDebitNote?;
     @jsondata:Name {value: "PrintCodeType"}
     TaxWriteSelection printCodeType?;
 };
 
 public type TaxPeriod record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PeriodInterval"}
     PeriodUnit periodInterval?;
     @jsondata:Name {value: "PaymentTermId"}
     string paymentTermId?;
     @jsondata:Name {value: "TaxPaymentVersion"}
-    int:Signed32 taxPaymentVersion;
+    int:Signed32 taxPaymentVersion?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TaxAuthorityId"}
     string taxAuthorityId?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "NumberOfUnit"}
-    int:Signed32 numberOfUnit;
+    int:Signed32 numberOfUnit?;
     @jsondata:Name {value: "TaxPeriodId"}
-    string taxPeriodId;
+    string taxPeriodId?;
 };
 
 # Represents the Queries record for the operation: listISRRates
@@ -2042,7 +2042,7 @@ public type CFOPCodes record {
     string name?;
     @jsondata:Name {value: "DeliveryCFOP"}
     string deliveryCFOP?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "FiscalDocumentSourceText"}
     string fiscalDocumentSourceText?;
     @jsondata:Name {value: "FiscalReferenceRequired"}
@@ -2052,7 +2052,7 @@ public type CFOPCodes record {
     @jsondata:Name {value: "FiscalDocumentText"}
     string fiscalDocumentText?;
     @jsondata:Name {value: "CFOP"}
-    string cFOP;
+    string cFOP?;
     @jsondata:Name {value: "Location"}
     CustVendLocationBR location?;
 };
@@ -2063,46 +2063,46 @@ public type TaxDocument record {
     @jsondata:Name {value: "TaxCreditMemoNumber"}
     string taxCreditMemoNumber?;
     @jsondata:Name {value: "TaxCreditMemoTransactionAmountInTransactionCurrency"}
-    decimal taxCreditMemoTransactionAmountInTransactionCurrency;
+    decimal taxCreditMemoTransactionAmountInTransactionCurrency?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxAmountInCurrency"}
-    decimal taxCreditMemoTransactionTaxAmountInCurrency;
+    decimal taxCreditMemoTransactionTaxAmountInCurrency?;
     @jsondata:Name {value: "AmountInTransactionCurrency"}
-    decimal amountInTransactionCurrency;
+    decimal amountInTransactionCurrency?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "TaxCreditMemoTransactionAmount"}
-    decimal taxCreditMemoTransactionAmount;
+    decimal taxCreditMemoTransactionAmount?;
     @jsondata:Name {value: "TaxDocumentNumber"}
-    string taxDocumentNumber;
+    string taxDocumentNumber?;
     @jsondata:Name {value: "CustVendTransTableId"}
-    int:Signed32 custVendTransTableId;
+    int:Signed32 custVendTransTableId?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxAmountInCurrency"}
-    decimal taxDocumentTransactionTaxAmountInCurrency;
+    decimal taxDocumentTransactionTaxAmountInCurrency?;
     @jsondata:Name {value: "TaxDocumentTransactionTypeOfTax"}
     TaxTypeW taxDocumentTransactionTypeOfTax?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTypeOfTax"}
     TaxTypeW taxCreditMemoTransactionTypeOfTax?;
     @jsondata:Name {value: "TaxAmount"}
-    decimal taxAmount;
+    decimal taxAmount?;
     @jsondata:Name {value: "TaxDocumentDate"}
-    string taxDocumentDate;
+    string taxDocumentDate?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxAmount"}
-    decimal taxDocumentTransactionTaxAmount;
+    decimal taxDocumentTransactionTaxAmount?;
     @jsondata:Name {value: "TaxCreditMemoDate"}
-    string taxCreditMemoDate;
+    string taxCreditMemoDate?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxValue"}
-    decimal taxDocumentTransactionTaxValue;
+    decimal taxDocumentTransactionTaxValue?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxAmount"}
-    decimal taxCreditMemoTransactionTaxAmount;
+    decimal taxCreditMemoTransactionTaxAmount?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxValue"}
-    decimal taxCreditMemoTransactionTaxValue;
+    decimal taxCreditMemoTransactionTaxValue?;
     @jsondata:Name {value: "TaxDocumentTransactionAmount"}
-    decimal taxDocumentTransactionAmount;
+    decimal taxDocumentTransactionAmount?;
     @jsondata:Name {value: "TaxDocumentTransactionAmountInTransactionCurrency"}
-    decimal taxDocumentTransactionAmountInTransactionCurrency;
+    decimal taxDocumentTransactionAmountInTransactionCurrency?;
     @jsondata:Name {value: "TaxAmountInCurrency"}
-    decimal taxAmountInCurrency;
+    decimal taxAmountInCurrency?;
 };
 
 # Represents the Headers record for the operation: deleteTaxParameters
@@ -2142,19 +2142,19 @@ public type DeleteIntervatsHeaders record {
 };
 
 public type HSNCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Heading"}
-    string heading;
+    string heading?;
     @jsondata:Name {value: "Subheading"}
-    string subheading;
+    string subheading?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Chapter"}
-    string chapter;
+    string chapter?;
     @jsondata:Name {value: "StatisticalSuffix"}
-    string statisticalSuffix;
+    string statisticalSuffix?;
     @jsondata:Name {value: "Code"}
     string code?;
     @jsondata:Name {value: "CountryExtension"}
-    string countryExtension;
+    string countryExtension?;
 };

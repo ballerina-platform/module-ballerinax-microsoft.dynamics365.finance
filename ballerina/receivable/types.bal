@@ -48,7 +48,7 @@ public type Customer record {
     @jsondata:Name {value: "PrimaryContactLinkedIn"}
     string primaryContactLinkedIn?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "ResidenceForeignCountryRegionId"}
     string residenceForeignCountryRegionId?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
@@ -62,7 +62,7 @@ public type Customer record {
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "DeliveryAddressLongitude"}
-    decimal deliveryAddressLongitude;
+    decimal deliveryAddressLongitude?;
     @jsondata:Name {value: "PersonMaritalStatus"}
     DirPersonMaritalStatus personMaritalStatus?;
     @jsondata:Name {value: "TotalDiscountCode"}
@@ -122,7 +122,7 @@ public type Customer record {
     @jsondata:Name {value: "HasSuframaDiscountPISandCOFINS"}
     NoYes hasSuframaDiscountPISandCOFINS?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
     string defaultInventoryStatusId?;
     @jsondata:Name {value: "WarehouseId"}
@@ -170,7 +170,7 @@ public type Customer record {
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "CustomerWithholdingContributionType"}
     CustWhtContributionTypeBR customerWithholdingContributionType?;
     @jsondata:Name {value: "DeliveryAddressDescription"}
@@ -178,7 +178,7 @@ public type Customer record {
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "PackingMaterialFeeLicenseNumber"}
     string packingMaterialFeeLicenseNumber?;
     @jsondata:Name {value: "FrenchSiret"}
@@ -186,7 +186,7 @@ public type Customer record {
     @jsondata:Name {value: "BrazilianCNPJOrCPF"}
     string brazilianCNPJOrCPF?;
     @jsondata:Name {value: "InvoiceAddressLatitude"}
-    decimal invoiceAddressLatitude;
+    decimal invoiceAddressLatitude?;
     @jsondata:Name {value: "ElectronicInvoiceEAN"}
     string electronicInvoiceEAN?;
     @jsondata:Name {value: "WarehouseIsASNGenerated"}
@@ -206,7 +206,7 @@ public type Customer record {
     @jsondata:Name {value: "InvoiceAddressCity"}
     string invoiceAddressCity?;
     @jsondata:Name {value: "PaymentTermsBaseDays"}
-    int:Signed32 paymentTermsBaseDays;
+    int:Signed32 paymentTermsBaseDays?;
     @jsondata:Name {value: "PaymentTerms"}
     string paymentTerms?;
     @jsondata:Name {value: "AddressBrazilianCNPJOrCPF"}
@@ -238,9 +238,9 @@ public type Customer record {
     @jsondata:Name {value: "LineOfBusinessId"}
     string lineOfBusinessId?;
     @jsondata:Name {value: "OrganizationNumberOfEmployees"}
-    int:Signed32 organizationNumberOfEmployees;
+    int:Signed32 organizationNumberOfEmployees?;
     @jsondata:Name {value: "DeliveryAddressLatitude"}
-    decimal deliveryAddressLatitude;
+    decimal deliveryAddressLatitude?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionISOCode"}
     string deliveryAddressCountryRegionISOCode?;
     @jsondata:Name {value: "ReceiptEmail"}
@@ -278,7 +278,7 @@ public type Customer record {
     @jsondata:Name {value: "IdentificationNumber"}
     string identificationNumber?;
     @jsondata:Name {value: "ConsolidationDay"}
-    int:Signed32 consolidationDay;
+    int:Signed32 consolidationDay?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionId"}
     string deliveryAddressCountryRegionId?;
     @jsondata:Name {value: "SalesOrderPoolId"}
@@ -292,7 +292,7 @@ public type Customer record {
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
     NoYes primaryContactEmailIsIM?;
     @jsondata:Name {value: "FulfillmentErrorTolerance"}
@@ -340,7 +340,7 @@ public type Customer record {
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "InvoiceAddressValidFrom"}
-    string invoiceAddressValidFrom;
+    string invoiceAddressValidFrom?;
     @jsondata:Name {value: "PersonGender"}
     Gender personGender?;
     @jsondata:Name {value: "DeliveryAddressCity"}
@@ -348,7 +348,7 @@ public type Customer record {
     @jsondata:Name {value: "AddressLocationRoles"}
     string addressLocationRoles?;
     @jsondata:Name {value: "InvoiceAddressValidTo"}
-    string invoiceAddressValidTo;
+    string invoiceAddressValidTo?;
     @jsondata:Name {value: "SiteId"}
     string siteId?;
     @jsondata:Name {value: "CustomerTMAGroupId"}
@@ -396,16 +396,16 @@ public type Customer record {
     @jsondata:Name {value: "PrimaryContactPhonePurpose"}
     string primaryContactPhonePurpose?;
     @jsondata:Name {value: "InvoiceAddressLongitude"}
-    decimal invoiceAddressLongitude;
+    decimal invoiceAddressLongitude?;
     @jsondata:Name {value: "DeliveryReason"}
     string deliveryReason?;
     @jsondata:Name {value: "IRS1099CIndicator"}
     NoYes iRS1099CIndicator?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "DeliveryAddressValidFrom"}
-    string deliveryAddressValidFrom;
+    string deliveryAddressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "FederalIndicator"}
@@ -443,9 +443,9 @@ public type Customer record {
     @jsondata:Name {value: "DeliveryMode"}
     string deliveryMode?;
     @jsondata:Name {value: "DeliveryAddressValidTo"}
-    string deliveryAddressValidTo;
+    string deliveryAddressValidTo?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "DeliveryAddressZipCode"}
     string deliveryAddressZipCode?;
     @jsondata:Name {value: "DiscountPriceGroupId"}
@@ -477,7 +477,7 @@ public type Customer record {
     @jsondata:Name {value: "SalesReturnTaxGroup"}
     string salesReturnTaxGroup?;
     @jsondata:Name {value: "WarehouseFulfillmentRate"}
-    decimal warehouseFulfillmentRate;
+    decimal warehouseFulfillmentRate?;
     @jsondata:Name {value: "PartyType"}
     string partyType?;
     @jsondata:Name {value: "PrimaryContactTelexPurpose"}
@@ -511,7 +511,7 @@ public type Customer record {
     @jsondata:Name {value: "DeliveryAddressState"}
     string deliveryAddressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type SalesInvoicePostingTypeRU "Standard"|"GoodsInRoute";
@@ -540,20 +540,20 @@ public type CustomerElectronicAddress record {
     @jsondata:Name {value: "LocationId"}
     string locationId?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "Purpose"}
     string purpose?;
     @jsondata:Name {value: "IsMobilePhone"}
     NoYes isMobilePhone?;
     @jsondata:Name {value: "LocatorExtension"}
     string locatorExtension?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Locator"}
     string locator?;
     @jsondata:Name {value: "Type"}
     LogisticsElectronicAddressMethodType 'type?;
     @jsondata:Name {value: "ElectronicAddressId"}
-    string electronicAddressId;
+    string electronicAddressId?;
     @jsondata:Name {value: "CountryRegionCode"}
     string countryRegionCode?;
     @jsondata:Name {value: "IsPrimary"}
@@ -622,18 +622,18 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "NACHAIATOFACScreeningIndicator"}
     CustVendGatewayOperatorOFACIndicatorUS nACHAIATOFACScreeningIndicator?;
     @jsondata:Name {value: "CreditAmount"}
-    decimal creditAmount;
+    decimal creditAmount?;
     @jsondata:Name {value: "UseSalesTaxDirectionFromMainAccount"}
     NoYes useSalesTaxDirectionFromMainAccount?;
     @jsondata:Name {value: "DefaultDimensionsForAccountDisplayValue"}
     string defaultDimensionsForAccountDisplayValue?;
     @jsondata:Name {value: "ReportingCurrencyExchRate"}
-    decimal reportingCurrencyExchRate;
+    decimal reportingCurrencyExchRate?;
     @jsondata:Name {value: "NACHAIATReceivingDFIQualifier"}
     CustVendOriginatingDFIQualifierUS nACHAIATReceivingDFIQualifier?;
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DepositNumber"}
     string depositNumber?;
     @jsondata:Name {value: "CentralBankPurposeText"}
@@ -645,7 +645,7 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckBankName"}
     string postdatedCheckBankName?;
     @jsondata:Name {value: "ReportingCurrencyExchRateSecondary"}
-    decimal reportingCurrencyExchRateSecondary;
+    decimal reportingCurrencyExchRateSecondary?;
     @jsondata:Name {value: "MarkedInvoiceCompany"}
     string markedInvoiceCompany?;
     @jsondata:Name {value: "IsPrepayment"}
@@ -653,7 +653,7 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckReplacementComments"}
     string postdatedCheckReplacementComments?;
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "NACHAIATForeignExchangeIndicator"}
     CustVendForeignExchIndicatorUS nACHAIATForeignExchangeIndicator?;
     @jsondata:Name {value: "NACHAIATForeignExchangeReferenceIndicator"}
@@ -675,7 +675,7 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckSalespersonDisplayValue"}
     string postdatedCheckSalespersonDisplayValue?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "PaymentReference"}
     string paymentReference?;
     @jsondata:Name {value: "OffsetFinTagDisplayValue"}
@@ -689,7 +689,7 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "UseABankDepositSlip"}
     NoYes useABankDepositSlip?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
     @jsondata:Name {value: "PaymentMethodName"}
@@ -703,11 +703,11 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "PostingProfile"}
     string postingProfile?;
     @jsondata:Name {value: "PostdatedCheckReceivedDate"}
-    string postdatedCheckReceivedDate;
+    string postdatedCheckReceivedDate?;
     @jsondata:Name {value: "DefaultDimensionsForOffsetAccountDisplayValue"}
     string defaultDimensionsForOffsetAccountDisplayValue?;
     @jsondata:Name {value: "PostdatedCheckMaturityDate"}
-    string postdatedCheckMaturityDate;
+    string postdatedCheckMaturityDate?;
     @jsondata:Name {value: "CentralBankPurposeCode"}
     string centralBankPurposeCode?;
     @jsondata:Name {value: "CustomerName"}
@@ -715,11 +715,11 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "NACHAIATOriginatingDFIQualifier"}
     CustVendOriginatingDFIQualifierUS nACHAIATOriginatingDFIQualifier?;
     @jsondata:Name {value: "TransactionDate"}
-    string transactionDate;
+    string transactionDate?;
     @jsondata:Name {value: "AccountDisplayValue"}
     string accountDisplayValue?;
     @jsondata:Name {value: "CentralBankImportDate"}
-    string centralBankImportDate;
+    string centralBankImportDate?;
     @jsondata:Name {value: "ItemWithholdingTaxGroup"}
     string itemWithholdingTaxGroup?;
     @jsondata:Name {value: "PaymentId"}
@@ -739,19 +739,19 @@ public type CustomerPaymentJournalLine record {
     @jsondata:Name {value: "NACHAIATOFACSecondaryScreeningIndicator"}
     CustVendSecondaryOFACIndicatorUS nACHAIATOFACSecondaryScreeningIndicator?;
     @jsondata:Name {value: "SecondaryExchangeRate"}
-    decimal secondaryExchangeRate;
+    decimal secondaryExchangeRate?;
     @jsondata:Name {value: "ChineseVoucher"}
     string chineseVoucher?;
     @jsondata:Name {value: "PaymentSpecification"}
     string paymentSpecification?;
     @jsondata:Name {value: "DebitAmount"}
-    decimal debitAmount;
+    decimal debitAmount?;
 };
 
 public type CustomerPaymentJournalHeader record {
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
-    string dataAreaId;
+    string journalBatchNumber?;
+    string dataAreaId?;
     @jsondata:Name {value: "IsPosted"}
     NoYes isPosted?;
     @jsondata:Name {value: "Description"}
@@ -766,7 +766,7 @@ public type CustomerPaymentJournalHeader record {
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -882,13 +882,13 @@ public type WHSCustFulfillmentErrorTolerance "UseCompanyPolicy"|"Accept"|"Warnin
 
 public type Plafond record {
     @jsondata:Name {value: "LimitPercent"}
-    decimal limitPercent;
+    decimal limitPercent?;
     @jsondata:Name {value: "Status"}
     PlafondStatusIT status?;
     @jsondata:Name {value: "AssimilatedOperations"}
     NoYes assimilatedOperations?;
     @jsondata:Name {value: "PlafondId"}
-    string plafondId;
+    string plafondId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "NoLimitCheck"}
@@ -896,16 +896,16 @@ public type Plafond record {
     @jsondata:Name {value: "EUSales"}
     NoYes eUSales?;
     @jsondata:Name {value: "LimitAmount"}
-    decimal limitAmount;
+    decimal limitAmount?;
     @jsondata:Name {value: "VATDeclarationPresented"}
     NoYes vATDeclarationPresented?;
     @jsondata:Name {value: "Exportation"}
     NoYes exportation?;
     @jsondata:Name {value: "CurrentAmount"}
-    decimal currentAmount;
+    decimal currentAmount?;
     @jsondata:Name {value: "SanMarinoSales"}
     NoYes sanMarinoSales?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "SpecialOperations"}
     NoYes specialOperations?;
     @jsondata:Name {value: "PlafondType"}
@@ -913,13 +913,13 @@ public type Plafond record {
     @jsondata:Name {value: "TaxPeriod"}
     string taxPeriod?;
     @jsondata:Name {value: "InitialAmount"}
-    decimal initialAmount;
+    decimal initialAmount?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ClosedDate"}
-    string closedDate;
+    string closedDate?;
     @jsondata:Name {value: "LimitType"}
     PlafondLimitTypeIT limitType?;
 };
@@ -968,7 +968,7 @@ public type CustomerPostalAddressV2 record {
     string addressBrazilianCNPJOrCPF?;
     @jsondata:Name {value: "AddressCounty"}
     string addressCounty?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AddressStreetNumber"}
     string addressStreetNumber?;
     @jsondata:Name {value: "AddressCity"}
@@ -976,21 +976,21 @@ public type CustomerPostalAddressV2 record {
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "AddressPostBox"}
     string addressPostBox?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "FormattedDeliveryAddress"}
     string formattedDeliveryAddress?;
     @jsondata:Name {value: "AddressTimeZone"}
     Timezone addressTimeZone?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "AddressDistrictName"}
     string addressDistrictName?;
     @jsondata:Name {value: "AddressLocationId"}
-    string addressLocationId;
+    string addressLocationId?;
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "AddressCountryRegionISOCode"}
@@ -1004,13 +1004,13 @@ public type CustomerPostalAddressV2 record {
     @jsondata:Name {value: "IsPrimary"}
     NoYes isPrimary?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "IsPrivate"}
     NoYes isPrivate?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
     @jsondata:Name {value: "AddressState"}
     string addressState?;
 };
@@ -1154,23 +1154,23 @@ public type CustomerBase record {
     string name?;
     @jsondata:Name {value: "PersonPersonalTitle"}
     string personPersonalTitle?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PrimaryContactPhoneDescription"}
     string primaryContactPhoneDescription?;
     @jsondata:Name {value: "CustomerGroupId"}
     string customerGroupId?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "AddressCity"}
     string addressCity?;
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
@@ -1190,9 +1190,9 @@ public type CustomerBase record {
     @jsondata:Name {value: "PrimaryContactLinkedIn"}
     string primaryContactLinkedIn?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
     string personProfessionalSuffix?;
     @jsondata:Name {value: "PersonFirstName"}
@@ -1224,7 +1224,7 @@ public type CustomerBase record {
     @jsondata:Name {value: "PaymentMethod"}
     string paymentMethod?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "PrimaryContactFacebookDescription"}
@@ -1274,7 +1274,7 @@ public type CustomerBase record {
     @jsondata:Name {value: "PartyState"}
     string partyState?;
     @jsondata:Name {value: "PersonBirthDay"}
-    int:Signed32 personBirthDay;
+    int:Signed32 personBirthDay?;
     @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
     NoYes primaryContactPhoneIsMobile?;
     @jsondata:Name {value: "PartyType"}
@@ -1294,9 +1294,9 @@ public type CustomerBase record {
     @jsondata:Name {value: "ElectronicLocationId"}
     string electronicLocationId?;
     @jsondata:Name {value: "OrganizationNumberOfEmployees"}
-    int:Signed32 organizationNumberOfEmployees;
+    int:Signed32 organizationNumberOfEmployees?;
     @jsondata:Name {value: "PersonBirthYear"}
-    int:Signed32 personBirthYear;
+    int:Signed32 personBirthYear?;
     @jsondata:Name {value: "AddressDistrictName"}
     string addressDistrictName?;
     @jsondata:Name {value: "PartyNumber"}
@@ -1314,7 +1314,7 @@ public type CustomerBase record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type QMSCustomerCheckItem "NoCheck"|"WarningOnly"|"NotAllowed";
@@ -1348,23 +1348,23 @@ public type GetCustomersBaseQueries record {
 };
 
 public type AdvLine record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "LineNum"}
-    decimal lineNum;
+    decimal lineNum?;
     @jsondata:Name {value: "DisbursementDate"}
-    string disbursementDate;
+    string disbursementDate?;
     @jsondata:Name {value: "OverRate"}
     NoYes overRate?;
     @jsondata:Name {value: "ConfirmedAmountOfAdvanceReport"}
-    decimal confirmedAmountOfAdvanceReport;
+    decimal confirmedAmountOfAdvanceReport?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "MainAccount"}
     string mainAccount?;
     @jsondata:Name {value: "AdvanceId"}
-    string advanceId;
+    string advanceId?;
     @jsondata:Name {value: "DocumentNumber"}
     string documentNumber?;
     @jsondata:Name {value: "DocumentName"}
@@ -1443,14 +1443,14 @@ public type CustomerPaymentMethod record {
     @jsondata:Name {value: "PostingProfileBillsRemitDiscount"}
     string postingProfileBillsRemitDiscount?;
     @jsondata:Name {value: "Name"}
-    string name;
-    string dataAreaId;
+    string name?;
+    string dataAreaId?;
     @jsondata:Name {value: "ValidateTransactionTypeIsBank"}
     NoYes validateTransactionTypeIsBank?;
     @jsondata:Name {value: "ImportFormatClassName"}
     string importFormatClassName?;
     @jsondata:Name {value: "LastFileNumberToday"}
-    int:Signed32 lastFileNumberToday;
+    int:Signed32 lastFileNumberToday?;
     @jsondata:Name {value: "UseGERConfiguration"}
     NoYes useGERConfiguration?;
     @jsondata:Name {value: "ExportBillOfExchangeDuringInvoicePosting"}
@@ -1458,7 +1458,7 @@ public type CustomerPaymentMethod record {
     @jsondata:Name {value: "PaymentStatus"}
     CustVendPaymStatus paymentStatus?;
     @jsondata:Name {value: "LastFileNumber"}
-    int:Signed32 lastFileNumber;
+    int:Signed32 lastFileNumber?;
     @jsondata:Name {value: "ValidatePaymentReferenceIsMandatory"}
     NoYes validatePaymentReferenceIsMandatory?;
     @jsondata:Name {value: "ValidateCheckNumberIsMandatory"}
@@ -1480,7 +1480,7 @@ public type CustomerPaymentMethod record {
     @jsondata:Name {value: "PaymentJournalName"}
     string paymentJournalName?;
     @jsondata:Name {value: "DiscountGracePeriodDays"}
-    int:Signed32 discountGracePeriodDays;
+    int:Signed32 discountGracePeriodDays?;
     @jsondata:Name {value: "ERSolution"}
     string eRSolution?;
     @jsondata:Name {value: "AttributePaymentIdEnabled"}
@@ -1492,9 +1492,9 @@ public type CustomerPaymentMethod record {
     @jsondata:Name {value: "BankTransactionType"}
     string bankTransactionType?;
     @jsondata:Name {value: "LastFileDate"}
-    string lastFileDate;
+    string lastFileDate?;
     @jsondata:Name {value: "ERModelMappingTable"}
-    int eRModelMappingTable;
+    int eRModelMappingTable?;
     @jsondata:Name {value: "SumByPeriod"}
     PaymSumBy sumByPeriod?;
     @jsondata:Name {value: "ExportLayoutGroupId"}
@@ -1830,26 +1830,26 @@ public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June
 
 public type DueDateLimit record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "PeriodInterval"}
     DueDateLimitPeriodUnitES periodInterval?;
     @jsondata:Name {value: "DueDateLimit"}
-    string dueDateLimit;
+    string dueDateLimit?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "NumberOfUnits"}
-    int:Signed32 numberOfUnits;
+    int:Signed32 numberOfUnits?;
 };
 
 public type CustInterestAdjustmentDateToUse "InterestNoteDate"|"CurrentSystemDate";
 
 public type DebtPeriod record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Percent"}
-    decimal percent;
+    decimal percent?;
     @jsondata:Name {value: "RegisterField"}
     string registerField?;
     @jsondata:Name {value: "DebtType"}
@@ -2118,7 +2118,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "IsIntegrationWithTaxSystemEnabled"}
     NoYes isIntegrationWithTaxSystemEnabled?;
     @jsondata:Name {value: "DirectDebitCoreSchemeDefaultDaysForRecurringBankSubmission"}
-    int:Signed32 directDebitCoreSchemeDefaultDaysForRecurringBankSubmission;
+    int:Signed32 directDebitCoreSchemeDefaultDaysForRecurringBankSubmission?;
     @jsondata:Name {value: "EditCashDiscountsWhenDueDateChanged"}
     NoYes editCashDiscountsWhenDueDateChanged?;
     @jsondata:Name {value: "CollectionsWriteOffLedgerJournalName"}
@@ -2130,7 +2130,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "CashFlowTimeBetweenInvoiceDueDateAndPaymentDate"}
     string cashFlowTimeBetweenInvoiceDueDateAndPaymentDate?;
     @jsondata:Name {value: "MaxNumberOfSalesOrdersForPosting"}
-    int:Signed32 maxNumberOfSalesOrdersForPosting;
+    int:Signed32 maxNumberOfSalesOrdersForPosting?;
     @jsondata:Name {value: "InterestTransactionsToCalculateFor"}
     CustInterestCalc interestTransactionsToCalculateFor?;
     @jsondata:Name {value: "SettlementWriteOffEnabled"}
@@ -2142,7 +2142,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "CashFlowTermsOfPayment"}
     string cashFlowTermsOfPayment?;
     @jsondata:Name {value: "CreditCardEstimatedShippingChargeMaximum"}
-    decimal creditCardEstimatedShippingChargeMaximum;
+    decimal creditCardEstimatedShippingChargeMaximum?;
     @jsondata:Name {value: "BypassValidationOfAccountingDistributions"}
     NoYes bypassValidationOfAccountingDistributions?;
     @jsondata:Name {value: "ExchAdjRateSource"}
@@ -2154,7 +2154,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "CreditCardNotes"}
     string creditCardNotes?;
     @jsondata:Name {value: "CollectionsAgencyTaxRate"}
-    decimal collectionsAgencyTaxRate;
+    decimal collectionsAgencyTaxRate?;
     @jsondata:Name {value: "IsInvoiceZeroAmount"}
     NoYes isInvoiceZeroAmount?;
     @jsondata:Name {value: "CollectionLetterCodeUpdate"}
@@ -2182,17 +2182,17 @@ public type CustomerParameters record {
     @jsondata:Name {value: "SuppressDepreciationOfPaymentSection"}
     NoYes suppressDepreciationOfPaymentSection?;
     @jsondata:Name {value: "DirectDebitB2BSchemeDefaultDaysForRecurringBankSubmission"}
-    int:Signed32 directDebitB2BSchemeDefaultDaysForRecurringBankSubmission;
+    int:Signed32 directDebitB2BSchemeDefaultDaysForRecurringBankSubmission?;
     @jsondata:Name {value: "SettlementProrationTypeForInvoices"}
     CustSettlementProrationType settlementProrationTypeForInvoices?;
     @jsondata:Name {value: "DirectDebitCor1SchemeDefaultDaysForFirstBankSubmission"}
-    int:Signed32 directDebitCor1SchemeDefaultDaysForFirstBankSubmission;
+    int:Signed32 directDebitCor1SchemeDefaultDaysForFirstBankSubmission?;
     @jsondata:Name {value: "GiroAccountPositions"}
-    int:Signed32 giroAccountPositions;
+    int:Signed32 giroAccountPositions?;
     @jsondata:Name {value: "EnableDateOfVATRegisterChanging"}
     NoYes enableDateOfVATRegisterChanging?;
     @jsondata:Name {value: "SettlementMaximumPennyDifference"}
-    decimal settlementMaximumPennyDifference;
+    decimal settlementMaximumPennyDifference?;
     @jsondata:Name {value: "CashFlowTimeBetweenDeliveryDateAndInvoiceDate"}
     string cashFlowTimeBetweenDeliveryDateAndInvoiceDate?;
     @jsondata:Name {value: "SkipSalesQuotationReferencedDataDuringChangeTracking"}
@@ -2204,7 +2204,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "TAMDeductionCustPaymSettleMethod"}
     TAMDeductionCustPaymSettleMethod tAMDeductionCustPaymSettleMethod?;
     @jsondata:Name {value: "InterestMaximumDaysAllowedToWaive"}
-    int:Signed32 interestMaximumDaysAllowedToWaive;
+    int:Signed32 interestMaximumDaysAllowedToWaive?;
     @jsondata:Name {value: "AccountingCurrencyExchangeRateType"}
     string accountingCurrencyExchangeRateType?;
     @jsondata:Name {value: "TAMDeductionRequireFullSettle"}
@@ -2212,17 +2212,17 @@ public type CustomerParameters record {
     @jsondata:Name {value: "ReasonRequirementForCreditNotes"}
     NoYes reasonRequirementForCreditNotes?;
     @jsondata:Name {value: "MarkupPeriodChargeBatchHelpers"}
-    int:Signed32 markupPeriodChargeBatchHelpers;
+    int:Signed32 markupPeriodChargeBatchHelpers?;
     @jsondata:Name {value: "MarkupValueBase"}
     MarkupValueBase markupValueBase?;
     @jsondata:Name {value: "DirectDebitB2BSchemeDefaultDaysForFirstBankSubmission"}
-    int:Signed32 directDebitB2BSchemeDefaultDaysForFirstBankSubmission;
+    int:Signed32 directDebitB2BSchemeDefaultDaysForFirstBankSubmission?;
     @jsondata:Name {value: "CreditCardPostingBankTransactionType"}
     string creditCardPostingBankTransactionType?;
     @jsondata:Name {value: "DirectDebitDefaultDaysForRecurringPrenotification"}
-    int:Signed32 directDebitDefaultDaysForRecurringPrenotification;
+    int:Signed32 directDebitDefaultDaysForRecurringPrenotification?;
     @jsondata:Name {value: "DirectDebitMandateDefaultExpirationInMonths"}
-    int:Signed32 directDebitMandateDefaultExpirationInMonths;
+    int:Signed32 directDebitMandateDefaultExpirationInMonths?;
     @jsondata:Name {value: "SalesReturnDeliverRemainderPolicy"}
     SalesReturnDeliverRemainderPolicy salesReturnDeliverRemainderPolicy?;
     @jsondata:Name {value: "DeductionsReturnOrderInvoiceTolerance"}
@@ -2232,7 +2232,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "ReplaceAlternativeItemLineDefaults"}
     NoYes replaceAlternativeItemLineDefaults?;
     @jsondata:Name {value: "CollectionsGracePeriodForDuesTransfer"}
-    int:Signed32 collectionsGracePeriodForDuesTransfer;
+    int:Signed32 collectionsGracePeriodForDuesTransfer?;
     @jsondata:Name {value: "InvoicePrintPackagingWeight"}
     NoYes invoicePrintPackagingWeight?;
     @jsondata:Name {value: "CashFlowPercentageOfAmountToAllocateToCashFlowForecast"}
@@ -2251,9 +2251,9 @@ public type CustomerParameters record {
     ItemCust generalLedgerPostingAccountForRevenue?;
     @jsondata:Name {value: "CollectionsTeamPartyNumber"}
     string collectionsTeamPartyNumber?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CreditCardAuthTransArchiveThreshold"}
-    int:Signed32 creditCardAuthTransArchiveThreshold;
+    int:Signed32 creditCardAuthTransArchiveThreshold?;
     @jsondata:Name {value: "CustomerIsBillingClassificationUsed"}
     NoYes customerIsBillingClassificationUsed?;
     @jsondata:Name {value: "MarkupPeriodChargeRuleQtyThresholdMatch"}
@@ -2289,7 +2289,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "FreeTextInvoiceCanEditLedgerAccountForProject"}
     NoYes freeTextInvoiceCanEditLedgerAccountForProject?;
     @jsondata:Name {value: "DirectDebitCoreSchemeDefaultDaysForFirstBankSubmission"}
-    int:Signed32 directDebitCoreSchemeDefaultDaysForFirstBankSubmission;
+    int:Signed32 directDebitCoreSchemeDefaultDaysForFirstBankSubmission?;
     @jsondata:Name {value: "ApplyPriceDiscOnSalesLineEntity"}
     NoYes applyPriceDiscOnSalesLineEntity?;
     @jsondata:Name {value: "FreeTextInvoiceIsItemTaxGroupMandatory"}
@@ -2297,7 +2297,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "PrepaymentPostingProfile"}
     string prepaymentPostingProfile?;
     @jsondata:Name {value: "CreditCardEstimatedShippingChargeValue"}
-    decimal creditCardEstimatedShippingChargeValue;
+    decimal creditCardEstimatedShippingChargeValue?;
     @jsondata:Name {value: "PrepaymentCalculateTax"}
     NoYes prepaymentCalculateTax?;
     @jsondata:Name {value: "PrimaryRelation"}
@@ -2315,7 +2315,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "CashDiscountIsCalculatedForCreditNotes"}
     NoYes cashDiscountIsCalculatedForCreditNotes?;
     @jsondata:Name {value: "DirectDebitDefaultDaysForFirstPrenotification"}
-    int:Signed32 directDebitDefaultDaysForFirstPrenotification;
+    int:Signed32 directDebitDefaultDaysForFirstPrenotification?;
     @jsondata:Name {value: "CashDiscountAdministration"}
     UnspecificSpecific cashDiscountAdministration?;
     @jsondata:Name {value: "SettlementAutoSettleEnabled"}
@@ -2339,7 +2339,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "EntryCertificateIsManagementEnabled"}
     NoYes entryCertificateIsManagementEnabled?;
     @jsondata:Name {value: "SettlementMaximumOverUnderPayment"}
-    decimal settlementMaximumOverUnderPayment;
+    decimal settlementMaximumOverUnderPayment?;
     @jsondata:Name {value: "DefaultFilterForCustomerTransactions"}
     CustVendShowTransaction defaultFilterForCustomerTransactions?;
     @jsondata:Name {value: "IsTotalsCalculationAutomatic"}
@@ -2361,17 +2361,17 @@ public type CustomerParameters record {
     @jsondata:Name {value: "CreditLimitIsCheckedOnFreeTextInvoice"}
     NoYes creditLimitIsCheckedOnFreeTextInvoice?;
     @jsondata:Name {value: "DirectDebitCor1SchemeDefaultDaysForRecurringBankSubmission"}
-    int:Signed32 directDebitCor1SchemeDefaultDaysForRecurringBankSubmission;
+    int:Signed32 directDebitCor1SchemeDefaultDaysForRecurringBankSubmission?;
     @jsondata:Name {value: "SettlementMarkOpenInvoiceLine"}
     NoYes settlementMarkOpenInvoiceLine?;
     @jsondata:Name {value: "CustomerMinimumRefund"}
-    decimal customerMinimumRefund;
+    decimal customerMinimumRefund?;
     @jsondata:Name {value: "PriceDetailsEnabledForSalesDocuments"}
     NoYes priceDetailsEnabledForSalesDocuments?;
     @jsondata:Name {value: "PreserveImportedSalesOrderLineNumbers"}
     NoYes preserveImportedSalesOrderLineNumbers?;
     @jsondata:Name {value: "CreditCardAuthorizationLastNumberOfDays"}
-    int:Signed32 creditCardAuthorizationLastNumberOfDays;
+    int:Signed32 creditCardAuthorizationLastNumberOfDays?;
     @jsondata:Name {value: "DeductionsReturnOrderPreApproval"}
     NoYes deductionsReturnOrderPreApproval?;
     @jsondata:Name {value: "CreditCardCostCenterDimensionAttribute"}
@@ -2383,7 +2383,7 @@ public type CustomerParameters record {
     @jsondata:Name {value: "FreeTextInvoiceIsProjectEnabled"}
     NoYes freeTextInvoiceIsProjectEnabled?;
     @jsondata:Name {value: "InterestMinimumDaysToAllowWaiving"}
-    int:Signed32 interestMinimumDaysToAllowWaiving;
+    int:Signed32 interestMinimumDaysToAllowWaiving?;
     @jsondata:Name {value: "TotalDiscountIsCalculatedOnPosting"}
     NoYes totalDiscountIsCalculatedOnPosting?;
     @jsondata:Name {value: "BillOfExchangePostingProfileForEndorsed"}
@@ -2402,7 +2402,7 @@ public type CustomApi record {
     @jsondata:Name {value: "EntityTable"}
     string entityTable?;
     @jsondata:Name {value: "EntityName"}
-    string entityName;
+    string entityName?;
 };
 
 # Represents the Headers record for the operation: deleteCustomOffices
@@ -2481,14 +2481,14 @@ public type ReturnDetail record {
     @jsondata:Name {value: "CarrierServiceCode"}
     string carrierServiceCode?;
     @jsondata:Name {value: "ReturnID"}
-    string returnID;
+    string returnID?;
     @jsondata:Name {value: "PrintedDateAndTime"}
-    string printedDateAndTime;
+    string printedDateAndTime?;
     @jsondata:Name {value: "OrderNumber"}
     string orderNumber?;
     @jsondata:Name {value: "ReturnAddress"}
     string returnAddress?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OrderType"}
     WHSReturnDetailOrderType orderType?;
     @jsondata:Name {value: "ReturnAddressName"}
@@ -2496,7 +2496,7 @@ public type ReturnDetail record {
     @jsondata:Name {value: "ContainerId"}
     string containerId?;
     @jsondata:Name {value: "ShipmentDate"}
-    string shipmentDate;
+    string shipmentDate?;
     @jsondata:Name {value: "AccountNum"}
     string accountNum?;
     @jsondata:Name {value: "CarrierCode"}
@@ -2623,7 +2623,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "PrimaryContactLinkedIn"}
     string primaryContactLinkedIn?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "ResidenceForeignCountryRegionId"}
     string residenceForeignCountryRegionId?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
@@ -2637,7 +2637,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "DeliveryAddressLongitude"}
-    decimal deliveryAddressLongitude;
+    decimal deliveryAddressLongitude?;
     @jsondata:Name {value: "PersonMaritalStatus"}
     DirPersonMaritalStatus personMaritalStatus?;
     @jsondata:Name {value: "TotalDiscountCode"}
@@ -2697,7 +2697,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "HasSuframaDiscountPISandCOFINS"}
     NoYes hasSuframaDiscountPISandCOFINS?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
     string defaultInventoryStatusId?;
     @jsondata:Name {value: "WarehouseId"}
@@ -2747,7 +2747,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "CustomerWithholdingContributionType"}
     CustWhtContributionTypeBR customerWithholdingContributionType?;
     @jsondata:Name {value: "DeliveryAddressDescription"}
@@ -2755,7 +2755,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "PackingMaterialFeeLicenseNumber"}
     string packingMaterialFeeLicenseNumber?;
     @jsondata:Name {value: "FrenchSiret"}
@@ -2763,7 +2763,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "BrazilianCNPJOrCPF"}
     string brazilianCNPJOrCPF?;
     @jsondata:Name {value: "InvoiceAddressLatitude"}
-    decimal invoiceAddressLatitude;
+    decimal invoiceAddressLatitude?;
     @jsondata:Name {value: "ElectronicInvoiceEAN"}
     string electronicInvoiceEAN?;
     @jsondata:Name {value: "WarehouseIsASNGenerated"}
@@ -2785,7 +2785,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "InvoiceAddressCity"}
     string invoiceAddressCity?;
     @jsondata:Name {value: "PaymentTermsBaseDays"}
-    int:Signed32 paymentTermsBaseDays;
+    int:Signed32 paymentTermsBaseDays?;
     @jsondata:Name {value: "PaymentTerms"}
     string paymentTerms?;
     @jsondata:Name {value: "AddressBrazilianCNPJOrCPF"}
@@ -2815,9 +2815,9 @@ public type CustomerV2 record {
     @jsondata:Name {value: "LineOfBusinessId"}
     string lineOfBusinessId?;
     @jsondata:Name {value: "OrganizationNumberOfEmployees"}
-    int:Signed32 organizationNumberOfEmployees;
+    int:Signed32 organizationNumberOfEmployees?;
     @jsondata:Name {value: "DeliveryAddressLatitude"}
-    decimal deliveryAddressLatitude;
+    decimal deliveryAddressLatitude?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionISOCode"}
     string deliveryAddressCountryRegionISOCode?;
     @jsondata:Name {value: "ReceiptEmail"}
@@ -2855,7 +2855,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "IdentificationNumber"}
     string identificationNumber?;
     @jsondata:Name {value: "ConsolidationDay"}
-    int:Signed32 consolidationDay;
+    int:Signed32 consolidationDay?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionId"}
     string deliveryAddressCountryRegionId?;
     @jsondata:Name {value: "SalesOrderPoolId"}
@@ -2869,7 +2869,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
     NoYes primaryContactEmailIsIM?;
     @jsondata:Name {value: "FulfillmentErrorTolerance"}
@@ -2919,7 +2919,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "InvoiceAddressValidFrom"}
-    string invoiceAddressValidFrom;
+    string invoiceAddressValidFrom?;
     @jsondata:Name {value: "PersonGender"}
     Gender personGender?;
     @jsondata:Name {value: "DeliveryAddressCity"}
@@ -2927,7 +2927,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "AddressLocationRoles"}
     string addressLocationRoles?;
     @jsondata:Name {value: "InvoiceAddressValidTo"}
-    string invoiceAddressValidTo;
+    string invoiceAddressValidTo?;
     @jsondata:Name {value: "SiteId"}
     string siteId?;
     @jsondata:Name {value: "CustomerTMAGroupId"}
@@ -2975,16 +2975,16 @@ public type CustomerV2 record {
     @jsondata:Name {value: "PrimaryContactPhonePurpose"}
     string primaryContactPhonePurpose?;
     @jsondata:Name {value: "InvoiceAddressLongitude"}
-    decimal invoiceAddressLongitude;
+    decimal invoiceAddressLongitude?;
     @jsondata:Name {value: "DeliveryReason"}
     string deliveryReason?;
     @jsondata:Name {value: "IRS1099CIndicator"}
     NoYes iRS1099CIndicator?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "DeliveryAddressValidFrom"}
-    string deliveryAddressValidFrom;
+    string deliveryAddressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "FederalIndicator"}
@@ -3020,9 +3020,9 @@ public type CustomerV2 record {
     @jsondata:Name {value: "DeliveryMode"}
     string deliveryMode?;
     @jsondata:Name {value: "DeliveryAddressValidTo"}
-    string deliveryAddressValidTo;
+    string deliveryAddressValidTo?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "DeliveryAddressZipCode"}
     string deliveryAddressZipCode?;
     @jsondata:Name {value: "DiscountPriceGroupId"}
@@ -3056,7 +3056,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "SalesReturnTaxGroup"}
     string salesReturnTaxGroup?;
     @jsondata:Name {value: "WarehouseFulfillmentRate"}
-    decimal warehouseFulfillmentRate;
+    decimal warehouseFulfillmentRate?;
     @jsondata:Name {value: "PartyType"}
     string partyType?;
     @jsondata:Name {value: "PrimaryContactTelexPurpose"}
@@ -3090,7 +3090,7 @@ public type CustomerV2 record {
     @jsondata:Name {value: "DeliveryAddressState"}
     string deliveryAddressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type CustomerV3 record {
@@ -3149,7 +3149,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PrimaryContactLinkedIn"}
     string primaryContactLinkedIn?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "ResidenceForeignCountryRegionId"}
     string residenceForeignCountryRegionId?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
@@ -3161,11 +3161,11 @@ public type CustomerV3 record {
     @jsondata:Name {value: "AddressLocationId"}
     string addressLocationId?;
     @jsondata:Name {value: "CredManLastReviewDate"}
-    string credManLastReviewDate;
+    string credManLastReviewDate?;
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "DeliveryAddressLongitude"}
-    decimal deliveryAddressLongitude;
+    decimal deliveryAddressLongitude?;
     @jsondata:Name {value: "PersonMaritalStatus"}
     DirPersonMaritalStatus personMaritalStatus?;
     @jsondata:Name {value: "TotalDiscountCode"}
@@ -3191,7 +3191,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "CredManExclude"}
     NoYes credManExclude?;
     @jsondata:Name {value: "PrimaryContactEmailRecordId"}
-    int primaryContactEmailRecordId;
+    int primaryContactEmailRecordId?;
     @jsondata:Name {value: "StateInscription"}
     string stateInscription?;
     @jsondata:Name {value: "AddressBrazilianIE"}
@@ -3201,7 +3201,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "FulfillmentPolicyName"}
     string fulfillmentPolicyName?;
     @jsondata:Name {value: "CredManCreditLimitDate"}
-    string credManCreditLimitDate;
+    string credManCreditLimitDate?;
     @jsondata:Name {value: "WriteoffReason"}
     string writeoffReason?;
     @jsondata:Name {value: "PrimaryContactURLPurpose"}
@@ -3239,7 +3239,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "CredManAccountStatusId"}
     string credManAccountStatusId?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
     string defaultInventoryStatusId?;
     @jsondata:Name {value: "WarehouseId"}
@@ -3277,7 +3277,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "NAFCode"}
     string nAFCode?;
     @jsondata:Name {value: "AddressRecordId"}
-    int addressRecordId;
+    int addressRecordId?;
     @jsondata:Name {value: "PrimaryContactPhoneDescription"}
     string primaryContactPhoneDescription?;
     @jsondata:Name {value: "IsPurchRequestUsed"}
@@ -3297,7 +3297,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "CustomerWithholdingContributionType"}
     CustWhtContributionTypeBR customerWithholdingContributionType?;
     @jsondata:Name {value: "CredManCustUnlimitedCredit"}
@@ -3311,9 +3311,9 @@ public type CustomerV3 record {
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "CustomerAccount"}
-    string customerAccount;
+    string customerAccount?;
     @jsondata:Name {value: "CredManBusinessStarted"}
-    string credManBusinessStarted;
+    string credManBusinessStarted?;
     @jsondata:Name {value: "PackingMaterialFeeLicenseNumber"}
     string packingMaterialFeeLicenseNumber?;
     @jsondata:Name {value: "FrenchSiret"}
@@ -3321,7 +3321,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "BrazilianCNPJOrCPF"}
     string brazilianCNPJOrCPF?;
     @jsondata:Name {value: "InvoiceAddressLatitude"}
-    decimal invoiceAddressLatitude;
+    decimal invoiceAddressLatitude?;
     @jsondata:Name {value: "ElectronicInvoiceEAN"}
     string electronicInvoiceEAN?;
     @jsondata:Name {value: "WarehouseIsASNGenerated"}
@@ -3345,7 +3345,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "InvoiceAddressCity"}
     string invoiceAddressCity?;
     @jsondata:Name {value: "PaymentTermsBaseDays"}
-    int:Signed32 paymentTermsBaseDays;
+    int:Signed32 paymentTermsBaseDays?;
     @jsondata:Name {value: "PaymentTerms"}
     string paymentTerms?;
     @jsondata:Name {value: "InvoiceAddressStreetNumber"}
@@ -3357,7 +3357,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PersonAnniversaryMonth"}
     MonthsOfYear personAnniversaryMonth?;
     @jsondata:Name {value: "CredManCustomerSince"}
-    string credManCustomerSince;
+    string credManCustomerSince?;
     @jsondata:Name {value: "FederalComments"}
     string federalComments?;
     @jsondata:Name {value: "LineDiscountCode"}
@@ -3383,9 +3383,9 @@ public type CustomerV3 record {
     @jsondata:Name {value: "LineOfBusinessId"}
     string lineOfBusinessId?;
     @jsondata:Name {value: "OrganizationNumberOfEmployees"}
-    int:Signed32 organizationNumberOfEmployees;
+    int:Signed32 organizationNumberOfEmployees?;
     @jsondata:Name {value: "DeliveryAddressLatitude"}
-    decimal deliveryAddressLatitude;
+    decimal deliveryAddressLatitude?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionISOCode"}
     string deliveryAddressCountryRegionISOCode?;
     @jsondata:Name {value: "ReceiptEmail"}
@@ -3425,13 +3425,13 @@ public type CustomerV3 record {
     @jsondata:Name {value: "IdentificationNumber"}
     string identificationNumber?;
     @jsondata:Name {value: "ConsolidationDay"}
-    int:Signed32 consolidationDay;
+    int:Signed32 consolidationDay?;
     @jsondata:Name {value: "DeliveryAddressCountryRegionId"}
     string deliveryAddressCountryRegionId?;
     @jsondata:Name {value: "SalesOrderPoolId"}
     string salesOrderPoolId?;
     @jsondata:Name {value: "CredManCreditLimitExpiryDate"}
-    string credManCreditLimitExpiryDate;
+    string credManCreditLimitExpiryDate?;
     @jsondata:Name {value: "ChargesGroupId"}
     string chargesGroupId?;
     @jsondata:Name {value: "PreferentialCustomer"}
@@ -3441,7 +3441,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "IsPublicSector_IT"}
     NoYes isPublicSectorIT?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -3449,7 +3449,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "CompanyChain"}
     string companyChain?;
     @jsondata:Name {value: "CredManEligibleCreditLimitDate"}
-    string credManEligibleCreditLimitDate;
+    string credManEligibleCreditLimitDate?;
     @jsondata:Name {value: "InvoiceAddressZipCode"}
     string invoiceAddressZipCode?;
     @jsondata:Name {value: "CreditCardAddressVerificationLevel"}
@@ -3495,7 +3495,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "InvoiceAddressValidFrom"}
-    string invoiceAddressValidFrom;
+    string invoiceAddressValidFrom?;
     @jsondata:Name {value: "PersonGender"}
     Gender personGender?;
     @jsondata:Name {value: "DeliveryAddressCity"}
@@ -3505,7 +3505,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "QMSApprovedCustomerGroupId"}
     string qMSApprovedCustomerGroupId?;
     @jsondata:Name {value: "InvoiceAddressValidTo"}
-    string invoiceAddressValidTo;
+    string invoiceAddressValidTo?;
     @jsondata:Name {value: "SiteId"}
     string siteId?;
     @jsondata:Name {value: "CustomerTMAGroupId"}
@@ -3519,7 +3519,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "CredManTitleHeld"}
     NoYes credManTitleHeld?;
     @jsondata:Name {value: "PrimaryContactPhoneRecordId"}
-    int primaryContactPhoneRecordId;
+    int primaryContactPhoneRecordId?;
     @jsondata:Name {value: "PaymentUseCashDiscount"}
     UseCashDisc paymentUseCashDiscount?;
     @jsondata:Name {value: "CollectionsContactPersonId"}
@@ -3555,7 +3555,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "NationalRegistryNumber"}
     string nationalRegistryNumber?;
     @jsondata:Name {value: "CredManNextSchedReviewDate"}
-    string credManNextSchedReviewDate;
+    string credManNextSchedReviewDate?;
     @jsondata:Name {value: "InvoiceAddressState"}
     string invoiceAddressState?;
     @jsondata:Name {value: "IsSimplifiedInvoiceAddress"}
@@ -3567,16 +3567,16 @@ public type CustomerV3 record {
     @jsondata:Name {value: "PrimaryContactPhonePurpose"}
     string primaryContactPhonePurpose?;
     @jsondata:Name {value: "InvoiceAddressLongitude"}
-    decimal invoiceAddressLongitude;
+    decimal invoiceAddressLongitude?;
     @jsondata:Name {value: "DeliveryReason"}
     string deliveryReason?;
     @jsondata:Name {value: "IRS1099CIndicator"}
     NoYes iRS1099CIndicator?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "DeliveryAddressValidFrom"}
-    string deliveryAddressValidFrom;
+    string deliveryAddressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "FederalIndicator"}
@@ -3584,7 +3584,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
     @jsondata:Name {value: "PrimaryContactFaxRecordId"}
-    int primaryContactFaxRecordId;
+    int primaryContactFaxRecordId?;
     @jsondata:Name {value: "PaymentCashDiscount"}
     string paymentCashDiscount?;
     @jsondata:Name {value: "CommissionCustomerGroupId"}
@@ -3594,7 +3594,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "InvoiceAddressBuildingComplement"}
     string invoiceAddressBuildingComplement?;
     @jsondata:Name {value: "CredManCustCreditMaxAlt"}
-    decimal credManCustCreditMaxAlt;
+    decimal credManCustCreditMaxAlt?;
     @jsondata:Name {value: "BrazilianCNAE"}
     string brazilianCNAE?;
     @jsondata:Name {value: "IsOneTimeCustomer"}
@@ -3626,9 +3626,9 @@ public type CustomerV3 record {
     @jsondata:Name {value: "DeliveryMode"}
     string deliveryMode?;
     @jsondata:Name {value: "DeliveryAddressValidTo"}
-    string deliveryAddressValidTo;
+    string deliveryAddressValidTo?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "DeliveryAddressZipCode"}
     string deliveryAddressZipCode?;
     @jsondata:Name {value: "DiscountPriceGroupId"}
@@ -3638,7 +3638,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "AuthorityOffice"}
     string authorityOffice?;
     @jsondata:Name {value: "CredManEligibleCreditMax"}
-    decimal credManEligibleCreditMax;
+    decimal credManEligibleCreditMax?;
     @jsondata:Name {value: "ReceiptCalendar"}
     string receiptCalendar?;
     @jsondata:Name {value: "RFCNumber"}
@@ -3670,7 +3670,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "CredManCollectionGroupId"}
     string credManCollectionGroupId?;
     @jsondata:Name {value: "PrimaryContactURLRecordId"}
-    int primaryContactURLRecordId;
+    int primaryContactURLRecordId?;
     @jsondata:Name {value: "PartyType"}
     string partyType?;
     @jsondata:Name {value: "PrimaryContactTelexPurpose"}
@@ -3710,7 +3710,7 @@ public type CustomerV3 record {
     @jsondata:Name {value: "DeliveryAddressState"}
     string deliveryAddressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 # Represents the Headers record for the operation: updateReturnDetails
@@ -3740,11 +3740,11 @@ public type ListCustDisputesQueries record {
 };
 
 public type CustomOffices record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OfficeCode"}
-    string officeCode;
+    string officeCode?;
     @jsondata:Name {value: "AgentAccountNumber"}
-    string agentAccountNumber;
+    string agentAccountNumber?;
 };
 
 public type CustomerTypeIN "None"|"GovtCompanyOrOtherAgencies"|"ECommerceOperator";
@@ -3821,9 +3821,9 @@ public type CustomerGroup record {
     string accountingCurrencyExchangeRateType?;
     @jsondata:Name {value: "ClearingPeriodPaymentTermName"}
     string clearingPeriodPaymentTermName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CustomerGroupId"}
-    string customerGroupId;
+    string customerGroupId?;
     @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
     string reportingCurrencyExchangeRateType?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
@@ -3894,9 +3894,9 @@ public type CustomerPostalAddressesV2Collection record {
 };
 
 public type CustomerPostingProfile record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PostingProfile"}
-    string postingProfile;
+    string postingProfile?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "IsTransactionIncludedInAutoSettlement"}
@@ -3946,7 +3946,7 @@ public type DueDateLimitsCollectionAllOf2 record {
 };
 
 public type SalesCarrier record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AddressStreetInKana"}
     string addressStreetInKana?;
     @jsondata:Name {value: "AddressStreetNumber"}
@@ -3956,17 +3956,17 @@ public type SalesCarrier record {
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "AddressPostBox"}
     string addressPostBox?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "IE"}
     string iE?;
     @jsondata:Name {value: "AddressTimezone"}
     Timezone addressTimezone?;
     @jsondata:Name {value: "CarrierName"}
-    string carrierName;
+    string carrierName?;
     @jsondata:Name {value: "CnpjOrCpf"}
     string cnpjOrCpf?;
     @jsondata:Name {value: "AddressStateId"}
@@ -3990,13 +3990,13 @@ public type SalesCarrier record {
     @jsondata:Name {value: "AddressStreet"}
     string addressStreet?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "AddressCountyId"}
     string addressCountyId?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type MarkupPeriodChargeRuleSiteLocationMatch "InvoiceLine"|"SalesOrder";
@@ -4029,34 +4029,34 @@ public type CustDispute record {
     @jsondata:Name {value: "Status"}
     CustVendDisputeStatus status?;
     @jsondata:Name {value: "LastPayment"}
-    decimal lastPayment;
+    decimal lastPayment?;
     @jsondata:Name {value: "ReasonComment"}
     string reasonComment?;
     @jsondata:Name {value: "IsAutomaticUpdate"}
     NoYes isAutomaticUpdate?;
     @jsondata:Name {value: "TransactionBalance"}
-    decimal transactionBalance;
+    decimal transactionBalance?;
     @jsondata:Name {value: "StatusChangedDate"}
-    string statusChangedDate;
+    string statusChangedDate?;
     @jsondata:Name {value: "ReasonTableRef"}
-    int reasonTableRef;
+    int reasonTableRef?;
     @jsondata:Name {value: "ReasonCode"}
     string reasonCode?;
     @jsondata:Name {value: "TransactionCurrency"}
     string transactionCurrency?;
     @jsondata:Name {value: "FollowUpDate"}
-    string followUpDate;
-    string dataAreaId;
+    string followUpDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "CustTrans"}
-    int custTrans;
+    int custTrans?;
     @jsondata:Name {value: "AmountCur"}
-    decimal amountCur;
+    decimal amountCur?;
     @jsondata:Name {value: "Note"}
     string note?;
     @jsondata:Name {value: "SysDataAreaId"}
     string sysDataAreaId?;
     @jsondata:Name {value: "SysRecId"}
-    int sysRecId;
+    int sysRecId?;
 };
 
 public type SalesList record {
@@ -4065,15 +4065,15 @@ public type SalesList record {
     @jsondata:Name {value: "Invoice"}
     string invoice?;
     @jsondata:Name {value: "CorrectionFiscalYear"}
-    int:Signed32 correctionFiscalYear;
+    int:Signed32 correctionFiscalYear?;
     @jsondata:Name {value: "DeliveryCode"}
     TaxReport349DeliveryCode deliveryCode?;
     @jsondata:Name {value: "OriginalSalesListNumber"}
-    int:Signed32 originalSalesListNumber;
+    int:Signed32 originalSalesListNumber?;
     @jsondata:Name {value: "ItemsValue"}
-    decimal itemsValue;
+    decimal itemsValue?;
     @jsondata:Name {value: "CorrectionAmount"}
-    decimal correctionAmount;
+    decimal correctionAmount?;
     @jsondata:Name {value: "CorrectionReasonWrongAmount"}
     NoYes correctionReasonWrongAmount?;
     @jsondata:Name {value: "TaxExemptNumber"}
@@ -4090,27 +4090,27 @@ public type SalesList record {
     NoYes isSettlement?;
     @jsondata:Name {value: "CorrectedServices"}
     NoYes correctedServices?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CorrectionAmountServices"}
-    decimal correctionAmountServices;
+    decimal correctionAmountServices?;
     @jsondata:Name {value: "Number"}
-    int:Signed32 number;
+    int:Signed32 number?;
     @jsondata:Name {value: "OriginalSalesListStatus"}
     ListStatus originalSalesListStatus?;
     @jsondata:Name {value: "InvoiceDate"}
-    string invoiceDate;
+    string invoiceDate?;
     @jsondata:Name {value: "DispatchId"}
-    string dispatchId;
+    string dispatchId?;
     @jsondata:Name {value: "CorrectionReasonWrongPeriod"}
     NoYes correctionReasonWrongPeriod?;
     @jsondata:Name {value: "Status"}
     ListStatus status?;
     @jsondata:Name {value: "InvestmentValue"}
-    decimal investmentValue;
+    decimal investmentValue?;
     @jsondata:Name {value: "CorrectionSignServices"}
     TaxRep349Sign correctionSignServices?;
     @jsondata:Name {value: "CorrectionMonthOrQuarter"}
-    int:Signed32 correctionMonthOrQuarter;
+    int:Signed32 correctionMonthOrQuarter?;
     @jsondata:Name {value: "CorrectionReasonWrongRegNum"}
     NoYes correctionReasonWrongRegNum?;
     @jsondata:Name {value: "ErrorLog"}
@@ -4124,25 +4124,25 @@ public type SalesList record {
     @jsondata:Name {value: "Corrected"}
     NoYes corrected?;
     @jsondata:Name {value: "Year"}
-    int:Signed32 year;
+    int:Signed32 year?;
     @jsondata:Name {value: "CountryRegionId"}
     string countryRegionId?;
     @jsondata:Name {value: "ServicesValue"}
-    decimal servicesValue;
+    decimal servicesValue?;
     @jsondata:Name {value: "CorrectionFiscalYearServices"}
-    int:Signed32 correctionFiscalYearServices;
+    int:Signed32 correctionFiscalYearServices?;
     @jsondata:Name {value: "CorrectionPeriodServices"}
     EUSalesListCorrectionPeriodES correctionPeriodServices?;
     @jsondata:Name {value: "CorrectionPeriod"}
     EUSalesListCorrectionPeriodES correctionPeriod?;
     @jsondata:Name {value: "ClosingDate"}
-    string closingDate;
+    string closingDate?;
     @jsondata:Name {value: "CorrectionMonthOrQuarterServices"}
-    int:Signed32 correctionMonthOrQuarterServices;
+    int:Signed32 correctionMonthOrQuarterServices?;
     @jsondata:Name {value: "CorrectionDeclarationType"}
     MonthQuarter correctionDeclarationType?;
     @jsondata:Name {value: "NotAssignedValue"}
-    decimal notAssignedValue;
+    decimal notAssignedValue?;
 };
 
 public type SalesListsCollection record {
@@ -4214,32 +4214,32 @@ public type CustomersCollectionAllOf2 record {
 
 public type CustomField record {
     @jsondata:Name {value: "DefaultReal"}
-    decimal defaultReal;
+    decimal defaultReal?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "ValidateMinimum"}
-    boolean validateMinimum;
+    boolean validateMinimum?;
     @jsondata:Name {value: "DefaultInt"}
-    int:Signed32 defaultInt;
+    int:Signed32 defaultInt?;
     @jsondata:Name {value: "MaxValue"}
-    decimal maxValue;
+    decimal maxValue?;
     @jsondata:Name {value: "MaxLength"}
-    int:Signed32 maxLength;
+    int:Signed32 maxLength?;
     @jsondata:Name {value: "DefaultText"}
     string defaultText?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DefaultBoolean"}
     NoYesCombo defaultBoolean?;
     @jsondata:Name {value: "CustomField"}
-    string customField;
+    string customField?;
     @jsondata:Name {value: "MinValue"}
-    decimal minValue;
+    decimal minValue?;
     @jsondata:Name {value: "DataType"}
     CustomFieldDataType dataType?;
     @jsondata:Name {value: "DefaultDate"}
-    string defaultDate;
+    string defaultDate?;
     @jsondata:Name {value: "ValidateMaximum"}
-    boolean validateMaximum;
+    boolean validateMaximum?;
 };
 
 public type PlafondsCollectionAllOf2 record {

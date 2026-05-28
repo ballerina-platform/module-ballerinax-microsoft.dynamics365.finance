@@ -15,17 +15,17 @@ public type LoanType record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "GracePeriodDays"}
-    int:Signed32 gracePeriodDays;
+    int:Signed32 gracePeriodDays?;
     @jsondata:Name {value: "LoanTypeId"}
-    string loanTypeId;
+    string loanTypeId?;
 };
 
 public type VestingRule record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "VestingRule"}
-    string vestingRule;
+    string vestingRule?;
     @jsondata:Name {value: "Note"}
     string note?;
 };
@@ -42,7 +42,7 @@ public type JobTemplate record {
     @jsondata:Name {value: "Note"}
     string note?;
     @jsondata:Name {value: "JobTemplate"}
-    string jobTemplate;
+    string jobTemplate?;
 };
 
 # Represents the Headers record for the operation: deleteSkillTypes
@@ -95,7 +95,7 @@ public type HcmEmploymentType "Employee"|"Contractor";
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -169,7 +169,7 @@ public type ListPeopleQueries record {
 
 public type CourseGroup record {
     @jsondata:Name {value: "Group"}
-    string group;
+    string group?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
@@ -178,15 +178,15 @@ public type LoanItem record {
     @jsondata:Name {value: "TaxReporting"}
     HrmLoanItemTax taxReporting?;
     @jsondata:Name {value: "LoanItemId"}
-    string loanItemId;
+    string loanItemId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "GracePeriodDays"}
-    int:Signed32 gracePeriodDays;
+    int:Signed32 gracePeriodDays?;
     @jsondata:Name {value: "SerialNumber"}
     string serialNumber?;
     @jsondata:Name {value: "LoanDays"}
-    int:Signed32 loanDays;
+    int:Signed32 loanDays?;
     @jsondata:Name {value: "LoanTypeId"}
     string loanTypeId?;
     @jsondata:Name {value: "PersonInCharge"}
@@ -210,7 +210,7 @@ public type RatingLevelsCollectionAllOf2 record {
 
 public type PersonImage record {
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "Image"}
     record {byte[] fileContent; string fileName;} image?;
 };
@@ -224,11 +224,11 @@ public type GetPositionTypesQueries record {
 };
 
 public type AbsenceReason record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AbsenceCode"}
-    string absenceCode;
+    string absenceCode?;
     @jsondata:Name {value: "ReasonCodeId"}
-    string reasonCodeId;
+    string reasonCodeId?;
 };
 
 public type EmploymentsCollectionAllOf2 record {
@@ -284,7 +284,7 @@ public type Team record {
     @jsondata:Name {value: "TeamTypeName"}
     string teamTypeName?;
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Administrator"}
@@ -634,7 +634,7 @@ public type TeamV2 record {
     @jsondata:Name {value: "IsActive"}
     NoYes isActive?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
 };
 
 # Represents the Headers record for the operation: deleteLoanItems
@@ -655,19 +655,19 @@ public type Employment record {
     @jsondata:Name {value: "CalendarLegalEntityId"}
     string calendarLegalEntityId?;
     @jsondata:Name {value: "PersonnelNumber"}
-    string personnelNumber;
+    string personnelNumber?;
     @jsondata:Name {value: "EmploymentEndDate"}
-    string employmentEndDate;
+    string employmentEndDate?;
     @jsondata:Name {value: "RegulatoryEstablishmentId"}
     string regulatoryEstablishmentId?;
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "CalendarId"}
     string calendarId?;
     @jsondata:Name {value: "EmploymentStartDate"}
-    string employmentStartDate;
+    string employmentStartDate?;
 };
 
 public type UnionsCollectionAllOf2 record {
@@ -709,7 +709,7 @@ public type Unions record {
     @jsondata:Name {value: "EntitledToNegotiate"}
     NoYes entitledToNegotiate?;
     @jsondata:Name {value: "UnionId"}
-    string unionId;
+    string unionId?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -720,7 +720,7 @@ public type CityHolidaysCollectionAllOf2 record {
 
 public type Skill record {
     @jsondata:Name {value: "Skill"}
-    string skill;
+    string skill?;
     @jsondata:Name {value: "RatingId"}
     string ratingId?;
     @jsondata:Name {value: "Description"}
@@ -733,17 +733,17 @@ public type Skill record {
 
 public type TeamMemberV2 record {
     @jsondata:Name {value: "TeamMemberPartyNumber"}
-    string teamMemberPartyNumber;
+    string teamMemberPartyNumber?;
     @jsondata:Name {value: "IsTeamLead"}
     NoYes isTeamLead?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "TeamMemberName"}
     string teamMemberName?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "TeamName"}
-    string teamName;
+    string teamName?;
 };
 
 # Represents the Queries record for the operation: getTeamMembersV2
@@ -758,13 +758,13 @@ public type CityHoliday record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "HolidayDate"}
-    string holidayDate;
+    string holidayDate?;
     @jsondata:Name {value: "StateId"}
-    string stateId;
+    string stateId?;
     @jsondata:Name {value: "CityName"}
-    string cityName;
+    string cityName?;
 };
 
 public type PeopleCollectionAllOf2 record {
@@ -924,9 +924,9 @@ public type SkillType record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Color"}
-    int:Signed32 color;
+    int:Signed32 color?;
     @jsondata:Name {value: "SkillType"}
-    string skillType;
+    string skillType?;
 };
 
 # Represents the Headers record for the operation: updateSkillTypes
@@ -971,7 +971,7 @@ public type Person record {
     @jsondata:Name {value: "PrimaryContactEmailPurpose"}
     string primaryContactEmailPurpose?;
     @jsondata:Name {value: "AnniversaryYear"}
-    int:Signed32 anniversaryYear;
+    int:Signed32 anniversaryYear?;
     @jsondata:Name {value: "PrimaryContactEmail"}
     string primaryContactEmail?;
     @jsondata:Name {value: "Gender"}
@@ -987,11 +987,11 @@ public type Person record {
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -999,7 +999,7 @@ public type Person record {
     @jsondata:Name {value: "PersonalSuffix"}
     string personalSuffix?;
     @jsondata:Name {value: "BirthYear"}
-    int:Signed32 birthYear;
+    int:Signed32 birthYear?;
     @jsondata:Name {value: "BirthMonth"}
     MonthsOfYear birthMonth?;
     @jsondata:Name {value: "PrimaryContactFax"}
@@ -1039,7 +1039,7 @@ public type Person record {
     @jsondata:Name {value: "PhoneticMiddleName"}
     string phoneticMiddleName?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "LastNamePrefix"}
     string lastNamePrefix?;
     @jsondata:Name {value: "PrimaryContactURLDescription"}
@@ -1075,7 +1075,7 @@ public type Person record {
     @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
     NoYes primaryContactTwitterIsPrivate?;
     @jsondata:Name {value: "AnniversaryDay"}
-    int:Signed32 anniversaryDay;
+    int:Signed32 anniversaryDay?;
     @jsondata:Name {value: "AnniversaryMonth"}
     MonthsOfYear anniversaryMonth?;
     @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
@@ -1099,7 +1099,7 @@ public type Person record {
     @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
     NoYes primaryContactFacebookIsPrivate?;
     @jsondata:Name {value: "BirthDay"}
-    int:Signed32 birthDay;
+    int:Signed32 birthDay?;
     @jsondata:Name {value: "NameSequenceDisplayAs"}
     string nameSequenceDisplayAs?;
     @jsondata:Name {value: "AddressDistrictName"}
@@ -1109,7 +1109,7 @@ public type Person record {
     @jsondata:Name {value: "Hobbies"}
     string hobbies?;
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "PrimaryContactFaxPurpose"}
     string primaryContactFaxPurpose?;
     @jsondata:Name {value: "PrimaryContactFaxDescription"}
@@ -1127,7 +1127,7 @@ public type Person record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type SkillTypesCollection record {
@@ -1161,7 +1161,7 @@ public type JobTask record {
     @jsondata:Name {value: "Note"}
     string note?;
     @jsondata:Name {value: "JobTaskId"}
-    string jobTaskId;
+    string jobTaskId?;
 };
 
 # Represents the Queries record for the operation: listStateHolidays
@@ -1198,13 +1198,13 @@ public type RatingLevel record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "RatingModelId"}
-    string ratingModelId;
+    string ratingModelId?;
     @jsondata:Name {value: "Factor"}
-    int:Signed32 factor;
+    int:Signed32 factor?;
     @jsondata:Name {value: "Note"}
     string note?;
     @jsondata:Name {value: "RatingLevelId"}
-    string ratingLevelId;
+    string ratingLevelId?;
 };
 
 # Represents the Headers record for the operation: deleteLoanTypes
@@ -1298,7 +1298,7 @@ public type InjuryType record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "InjuryTypeId"}
-    string injuryTypeId;
+    string injuryTypeId?;
 };
 
 public type TeamsCollectionAllOf2 record {
@@ -1508,7 +1508,7 @@ public type DeleteAbsenceCodesHeaders record {
 
 public type EssWorker record {
     @jsondata:Name {value: "PersonnelNumber"}
-    string personnelNumber;
+    string personnelNumber?;
     @jsondata:Name {value: "FirstName"}
     string firstName?;
     @jsondata:Name {value: "KnownAs"}
@@ -1522,7 +1522,7 @@ public type EssWorker record {
     @jsondata:Name {value: "Name"}
     string name?;
     @jsondata:Name {value: "AadUserObjectId"}
-    string aadUserObjectId;
+    string aadUserObjectId?;
     @jsondata:Name {value: "PartyNumber"}
     string partyNumber?;
     @jsondata:Name {value: "PhoneticFirstName"}
@@ -1571,11 +1571,11 @@ public type StateHoliday record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "HolidayDate"}
-    string holidayDate;
+    string holidayDate?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "StateId"}
-    string stateId;
+    string stateId?;
 };
 
 # Represents the Headers record for the operation: updateInjuryTypes
@@ -1604,19 +1604,19 @@ public type TeamMembersCollection record {
 
 public type PersonUser record {
     @jsondata:Name {value: "PartyNumber"}
-    string partyNumber;
+    string partyNumber?;
     @jsondata:Name {value: "PersonName"}
     string personName?;
     @jsondata:Name {value: "PersonNameAlias"}
     string personNameAlias?;
     @jsondata:Name {value: "UserId"}
-    string userId;
+    string userId?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "PersonPrimaryEmail"}
     string personPrimaryEmail?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "UserEmail"}
     string userEmail?;
 };
@@ -1827,7 +1827,7 @@ public type AbsenceCode record {
     @jsondata:Name {value: "IncludeInReport"}
     NoYes includeInReport?;
     @jsondata:Name {value: "AbsenceCode"}
-    string absenceCode;
+    string absenceCode?;
     @jsondata:Name {value: "ContinueAbsence"}
     NoYes continueAbsence?;
     @jsondata:Name {value: "PayType"}
@@ -1836,9 +1836,9 @@ public type AbsenceCode record {
     JmgAbsenceMethodEnum method?;
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Column"}
-    int:Signed32 column;
+    int:Signed32 column?;
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "Registration"}
@@ -1846,17 +1846,17 @@ public type AbsenceCode record {
     @jsondata:Name {value: "JobIdentification"}
     string jobIdentification?;
     @jsondata:Name {value: "Days"}
-    decimal days;
+    decimal days?;
     @jsondata:Name {value: "MainAccountDisplayValue"}
     string mainAccountDisplayValue?;
     @jsondata:Name {value: "TextColor"}
-    int:Signed32 textColor;
+    int:Signed32 textColor?;
     @jsondata:Name {value: "Icon"}
-    int:Signed32 icon;
+    int:Signed32 icon?;
     @jsondata:Name {value: "LetterCode"}
     string letterCode?;
     @jsondata:Name {value: "BackgroundColor"}
-    int:Signed32 backgroundColor;
+    int:Signed32 backgroundColor?;
 };
 
 public type EssWorkersCollection record {
@@ -1866,7 +1866,7 @@ public type EssWorkersCollection record {
 
 public type LaborUnions record {
     @jsondata:Name {value: "UnionID"}
-    string unionID;
+    string unionID?;
     string name?;
     NoYes negotiator?;
 };
@@ -1877,17 +1877,17 @@ public type AbsenceCodesCollectionAllOf2 record {
 
 public type TeamMember record {
     @jsondata:Name {value: "TeamMemberPartyNumber"}
-    string teamMemberPartyNumber;
+    string teamMemberPartyNumber?;
     @jsondata:Name {value: "RelationshipTypeId"}
-    string relationshipTypeId;
+    string relationshipTypeId?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "TeamPartyNumber"}
-    string teamPartyNumber;
+    string teamPartyNumber?;
     @jsondata:Name {value: "TeamMemberName"}
     string teamMemberName?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "TeamName"}
     string teamName?;
 };
@@ -1908,7 +1908,7 @@ public type PositionType record {
     @jsondata:Name {value: "Classification"}
     HcmEmploymentStatus classification?;
     @jsondata:Name {value: "PositionTypeId"}
-    string positionTypeId;
+    string positionTypeId?;
 };
 
 public type UnionsCollection record {
@@ -1920,7 +1920,7 @@ public type RatingModel record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "RatingModelId"}
-    string ratingModelId;
+    string ratingModelId?;
 };
 
 public type JobTasksCollection record {

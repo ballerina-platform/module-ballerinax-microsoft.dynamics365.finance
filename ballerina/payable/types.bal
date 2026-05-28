@@ -58,13 +58,13 @@ public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowho
 public type DisplayInvoiceMiscChargeMatchOption "GreaterThan"|"GreaterOrLessThan";
 
 public type VendorInvoiceDeclaration record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "RecordType"}
     InvoiceRecordTypeIS recordType?;
     @jsondata:Name {value: "InvoiceDeclarationId"}
-    string invoiceDeclarationId;
+    string invoiceDeclarationId?;
     @jsondata:Name {value: "ReportingCode"}
     string reportingCode?;
 };
@@ -77,7 +77,7 @@ public type ReuseVoucher "NoDuplicate"|"NoDuplicateInYear"|"AcceptDuplicate"|"Wa
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -118,7 +118,7 @@ public type ConnectionConfig record {|
 |};
 
 public type PayAgreement record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MinutesToDeductWhenLate"}
     string minutesToDeductWhenLate?;
     @jsondata:Name {value: "Description"}
@@ -128,11 +128,11 @@ public type PayAgreement record {
     @jsondata:Name {value: "OvertimeRoundingValue"}
     string overtimeRoundingValue?;
     @jsondata:Name {value: "PayAgreementCode"}
-    string payAgreementCode;
+    string payAgreementCode?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
 };
 
 # Represents the Headers record for the operation: updateVendorPaymentJournalHeaders
@@ -340,22 +340,22 @@ public type VendorsCollection record {
 
 public type VendorPaymentJournalHeader record {
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "ServiceLevel"}
-    int serviceLevel;
-    string dataAreaId;
+    int serviceLevel?;
+    string dataAreaId?;
     @jsondata:Name {value: "IsPosted"}
     NoYes isPosted?;
     @jsondata:Name {value: "LocalInstrument"}
-    int localInstrument;
+    int localInstrument?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "CategoryPurpose"}
-    int categoryPurpose;
+    int categoryPurpose?;
     @jsondata:Name {value: "JournalName"}
     string journalName?;
     @jsondata:Name {value: "ChargeBearer"}
-    int chargeBearer;
+    int chargeBearer?;
     @jsondata:Name {value: "OverrideSalesTax"}
     NoYes overrideSalesTax?;
 };
@@ -367,11 +367,11 @@ public type VendorPaymentJournalHeadersCollectionAllOf2 record {
 public type ABC "None"|"A"|"B"|"C";
 
 public type VendPWPTxt record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VendorRetentionContractLanguage"}
     string vendorRetentionContractLanguage?;
     @jsondata:Name {value: "VendorGroup"}
-    string vendorGroup;
+    string vendorGroup?;
     @jsondata:Name {value: "AccountCode"}
     TableGroupAll accountCode?;
     @jsondata:Name {value: "VendorAccount"}
@@ -411,7 +411,7 @@ public type ListPayAgreementsQueries record {
 public type CustVendOriginatingDFIQualifierUS "One"|"Two"|"Three";
 
 public type VendorGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DefaultTaxGroupCode"}
     string defaultTaxGroupCode?;
     @jsondata:Name {value: "Description"}
@@ -419,7 +419,7 @@ public type VendorGroup record {
     @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
     string reportingCurrencyExchangeRateType?;
     @jsondata:Name {value: "VendorGroupId"}
-    string vendorGroupId;
+    string vendorGroupId?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "IsExcludedFromSearchResults"}
@@ -603,7 +603,7 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "MarkedInvoice"}
     string markedInvoice?;
     @jsondata:Name {value: "CreditAmount"}
-    decimal creditAmount;
+    decimal creditAmount?;
     @jsondata:Name {value: "UseSalesTaxDirectionFromMainAccount"}
     NoYes useSalesTaxDirectionFromMainAccount?;
     @jsondata:Name {value: "TaxWithholdGroup"}
@@ -633,11 +633,11 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "IsPrepayment"}
     NoYes isPrepayment?;
     @jsondata:Name {value: "ChargeBearer"}
-    int chargeBearer;
+    int chargeBearer?;
     @jsondata:Name {value: "PostdatedCheckReplacementComments"}
     string postdatedCheckReplacementComments?;
     @jsondata:Name {value: "RemittanceAddressLatitude"}
-    decimal remittanceAddressLatitude;
+    decimal remittanceAddressLatitude?;
     @jsondata:Name {value: "PostdatedCheckCashierDisplayValue"}
     string postdatedCheckCashierDisplayValue?;
     @jsondata:Name {value: "TaxItemGroup"}
@@ -649,9 +649,9 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "RemittanceAddressDescription"}
     string remittanceAddressDescription?;
     @jsondata:Name {value: "RemittanceAddressValidTo"}
-    string remittanceAddressValidTo;
+    string remittanceAddressValidTo?;
     @jsondata:Name {value: "RemittanceAddressLongitude"}
-    decimal remittanceAddressLongitude;
+    decimal remittanceAddressLongitude?;
     @jsondata:Name {value: "PaymentReference"}
     string paymentReference?;
     @jsondata:Name {value: "PostdatedCheckReasonForStop"}
@@ -661,13 +661,13 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckIsReplacementCheck"}
     NoYes postdatedCheckIsReplacementCheck?;
     @jsondata:Name {value: "RemittanceAddressValidFrom"}
-    string remittanceAddressValidFrom;
+    string remittanceAddressValidFrom?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "PaymentMethodName"}
     string paymentMethodName?;
     @jsondata:Name {value: "LocalInstrument"}
-    int localInstrument;
+    int localInstrument?;
     @jsondata:Name {value: "PostingProfile"}
     string postingProfile?;
     @jsondata:Name {value: "SettleVoucher"}
@@ -677,7 +677,7 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "RemittanceLocationId"}
     string remittanceLocationId?;
     @jsondata:Name {value: "PostdatedCheckMaturityDate"}
-    string postdatedCheckMaturityDate;
+    string postdatedCheckMaturityDate?;
     @jsondata:Name {value: "ItemWithholdingTaxGroupCode"}
     string itemWithholdingTaxGroupCode?;
     @jsondata:Name {value: "NACHAIATOriginatingDFIQualifier"}
@@ -685,7 +685,7 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "RemittanceAddressTimeZone"}
     Timezone remittanceAddressTimeZone?;
     @jsondata:Name {value: "TransactionDate"}
-    string transactionDate;
+    string transactionDate?;
     @jsondata:Name {value: "AccountDisplayValue"}
     string accountDisplayValue?;
     @jsondata:Name {value: "InstructionKey3"}
@@ -701,7 +701,7 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "NACHAIATOFACSecondaryScreeningIndicator"}
     CustVendSecondaryOFACIndicatorUS nACHAIATOFACSecondaryScreeningIndicator?;
     @jsondata:Name {value: "SecondaryExchangeRate"}
-    decimal secondaryExchangeRate;
+    decimal secondaryExchangeRate?;
     @jsondata:Name {value: "ChineseVoucher"}
     string chineseVoucher?;
     @jsondata:Name {value: "CalculateWithholdingTax"}
@@ -715,10 +715,10 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "RemittanceAddressCounty"}
     string remittanceAddressCounty?;
     @jsondata:Name {value: "ReportingCurrencyExchRate"}
-    decimal reportingCurrencyExchRate;
+    decimal reportingCurrencyExchRate?;
     @jsondata:Name {value: "NACHAIATReceivingDFIQualifier"}
     CustVendOriginatingDFIQualifierUS nACHAIATReceivingDFIQualifier?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CentralBankPurposeText"}
     string centralBankPurposeText?;
     @jsondata:Name {value: "FinTagDisplayValue"}
@@ -726,13 +726,13 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckBankName"}
     string postdatedCheckBankName?;
     @jsondata:Name {value: "ReportingCurrencyExchRateSecondary"}
-    decimal reportingCurrencyExchRateSecondary;
+    decimal reportingCurrencyExchRateSecondary?;
     @jsondata:Name {value: "MarkedInvoiceCompany"}
     string markedInvoiceCompany?;
     @jsondata:Name {value: "RemittanceAddressStreet"}
     string remittanceAddressStreet?;
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "NACHAIATForeignExchangeReferenceIndicator"}
     CustVendForeignExchRefIndicatorUS nACHAIATForeignExchangeReferenceIndicator?;
     @jsondata:Name {value: "NACHAIATForeignExchangeIndicator"}
@@ -742,9 +742,9 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "PostdatedCheckNumber"}
     string postdatedCheckNumber?;
     @jsondata:Name {value: "ServiceLevel"}
-    int serviceLevel;
+    int serviceLevel?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "PostdatedCheckSalespersonDisplayValue"}
     string postdatedCheckSalespersonDisplayValue?;
     @jsondata:Name {value: "OffsetFinTagDisplayValue"}
@@ -758,15 +758,15 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "TransactionText"}
     string transactionText?;
     @jsondata:Name {value: "PostdatedCheckReceivedDate"}
-    string postdatedCheckReceivedDate;
+    string postdatedCheckReceivedDate?;
     @jsondata:Name {value: "CentralBankPurposeCode"}
     string centralBankPurposeCode?;
     @jsondata:Name {value: "FullPrimaryRemittanceAddress"}
     string fullPrimaryRemittanceAddress?;
     @jsondata:Name {value: "CategoryPurpose"}
-    int categoryPurpose;
+    int categoryPurpose?;
     @jsondata:Name {value: "CentralBankImportDate"}
-    string centralBankImportDate;
+    string centralBankImportDate?;
     @jsondata:Name {value: "PaymentId"}
     string paymentId?;
     @jsondata:Name {value: "NewJournalBatchNumber"}
@@ -788,7 +788,7 @@ public type VendorPaymentJournalLine record {
     @jsondata:Name {value: "PaymentSpecification"}
     string paymentSpecification?;
     @jsondata:Name {value: "DebitAmount"}
-    decimal debitAmount;
+    decimal debitAmount?;
     @jsondata:Name {value: "RemittanceAddressZipCode"}
     string remittanceAddressZipCode?;
 };
@@ -800,10 +800,10 @@ public type VendorsV3Collection record {
 
 public type DiscountRate record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "MarketDiscountRatePercentage"}
-    decimal marketDiscountRatePercentage;
+    decimal marketDiscountRatePercentage?;
 };
 
 public type LogisticsLocationRoleType "None"|"Invoice"|"Delivery"|"SWIFT"|"Payment"|"Service"|"Home"|"Other"|"Business"|"RemitTo"|"Statement"|"FixedAsset"|"OneTime"|"Recruit"|"SMS"|"Lading_W"|"Unlading_W"|"HeadCompany_IT"|"StableOrganization_IT"|"PayrollResidencyLocation"|"PayrollWorkLocation"|"RealAddress_RU"|"Consignment_IN"|"PurchaseOrderCommunications";
@@ -826,20 +826,20 @@ public type VendorPaymentMethod record {
     @jsondata:Name {value: "ElectronicReportingSolution"}
     string electronicReportingSolution?;
     @jsondata:Name {value: "Name"}
-    string name;
-    string dataAreaId;
+    string name?;
+    string dataAreaId?;
     @jsondata:Name {value: "SPEDPrimaryPaymentMethodDescription"}
     string sPEDPrimaryPaymentMethodDescription?;
     @jsondata:Name {value: "ValidateTransactionTypeIsBank"}
     NoYes validateTransactionTypeIsBank?;
     @jsondata:Name {value: "LastFileNumberToday"}
-    int:Signed32 lastFileNumberToday;
+    int:Signed32 lastFileNumberToday?;
     @jsondata:Name {value: "UseGERConfiguration"}
     NoYes useGERConfiguration?;
     @jsondata:Name {value: "PaymentStatus"}
     CustVendPaymStatus paymentStatus?;
     @jsondata:Name {value: "LastFileNumber"}
-    int:Signed32 lastFileNumber;
+    int:Signed32 lastFileNumber?;
     @jsondata:Name {value: "ValidatePaymentReferenceIsMandatory"}
     NoYes validatePaymentReferenceIsMandatory?;
     @jsondata:Name {value: "ValidateCheckNumberIsMandatory"}
@@ -861,7 +861,7 @@ public type VendorPaymentMethod record {
     @jsondata:Name {value: "PaymentJournalName"}
     string paymentJournalName?;
     @jsondata:Name {value: "DiscountGracePeriodDays"}
-    int:Signed32 discountGracePeriodDays;
+    int:Signed32 discountGracePeriodDays?;
     @jsondata:Name {value: "ExportPromissoryNoteDuringInvoicePosting"}
     NoYes exportPromissoryNoteDuringInvoicePosting?;
     @jsondata:Name {value: "AttributePaymentIdEnabled"}
@@ -873,9 +873,9 @@ public type VendorPaymentMethod record {
     @jsondata:Name {value: "BankTransactionType"}
     string bankTransactionType?;
     @jsondata:Name {value: "LastFileDate"}
-    string lastFileDate;
+    string lastFileDate?;
     @jsondata:Name {value: "ServiceLevel"}
-    int serviceLevel;
+    int serviceLevel?;
     @jsondata:Name {value: "SumByPeriod"}
     PaymSumBy sumByPeriod?;
     @jsondata:Name {value: "ExportLayoutGroupId"}
@@ -891,7 +891,7 @@ public type VendorPaymentMethod record {
     @jsondata:Name {value: "DimensionAttributeDisplayValue"}
     string dimensionAttributeDisplayValue?;
     @jsondata:Name {value: "LocalInstrument"}
-    int localInstrument;
+    int localInstrument?;
     @jsondata:Name {value: "RemittanceFormatClassName"}
     string remittanceFormatClassName?;
     @jsondata:Name {value: "ValidateOffsetTransactionTypeIsBank"}
@@ -901,7 +901,7 @@ public type VendorPaymentMethod record {
     @jsondata:Name {value: "DimensionControl"}
     NoYes dimensionControl?;
     @jsondata:Name {value: "CategoryPurpose"}
-    int categoryPurpose;
+    int categoryPurpose?;
     @jsondata:Name {value: "PostingProfileRemitNotes"}
     string postingProfileRemitNotes?;
     @jsondata:Name {value: "ElectronicReportingVendor"}
@@ -995,13 +995,13 @@ public type OAuth2ClientCredentialsGrantConfig record {|
 |};
 
 public type VendorReasons record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CancellationReason"}
     NoYes cancellationReason?;
     @jsondata:Name {value: "ForVendorTransactionType"}
     NoYes forVendorTransactionType?;
     @jsondata:Name {value: "ReasonCode"}
-    string reasonCode;
+    string reasonCode?;
     @jsondata:Name {value: "PurposeCode"}
     NoYes purposeCode?;
     @jsondata:Name {value: "DefaultComment"}
@@ -1099,7 +1099,7 @@ public type VendorParameter record {
     @jsondata:Name {value: "AutomationMatchingPriorToWorkflow"}
     NoYes automationMatchingPriorToWorkflow?;
     @jsondata:Name {value: "SequenceNumber"}
-    int sequenceNumber;
+    int sequenceNumber?;
     @jsondata:Name {value: "SettlementIsPriorityUsed"}
     NoYes settlementIsPriorityUsed?;
     @jsondata:Name {value: "PostProductReceiptInLedger"}
@@ -1113,13 +1113,13 @@ public type VendorParameter record {
     @jsondata:Name {value: "SettlementWriteOffReasonCode"}
     string settlementWriteOffReasonCode?;
     @jsondata:Name {value: "FactureIssuePeriod"}
-    int:Signed32 factureIssuePeriod;
+    int:Signed32 factureIssuePeriod?;
     @jsondata:Name {value: "EditCashDiscountsWhenDueDateChanged"}
     NoYes editCashDiscountsWhenDueDateChanged?;
     @jsondata:Name {value: "TaxWithholdCalculateCrossCompany"}
     NoYes taxWithholdCalculateCrossCompany?;
     @jsondata:Name {value: "MaxInvoicesPerBatch"}
-    int:Signed32 maxInvoicesPerBatch;
+    int:Signed32 maxInvoicesPerBatch?;
     @jsondata:Name {value: "CashFlowTimeBetweenInvoiceDueDateAndPaymentDate"}
     string cashFlowTimeBetweenInvoiceDueDateAndPaymentDate?;
     @jsondata:Name {value: "AdvanceHoldersSettlementByDimension"}
@@ -1149,9 +1149,9 @@ public type VendorParameter record {
     @jsondata:Name {value: "SettlementIsPriorityUsedOnAutoSettlement"}
     NoYes settlementIsPriorityUsedOnAutoSettlement?;
     @jsondata:Name {value: "InvoiceTotalsTolerancePercentage"}
-    decimal invoiceTotalsTolerancePercentage;
+    decimal invoiceTotalsTolerancePercentage?;
     @jsondata:Name {value: "MaximumOverpaymentOrUnderpayment"}
-    decimal maximumOverpaymentOrUnderpayment;
+    decimal maximumOverpaymentOrUnderpayment?;
     @jsondata:Name {value: "RoyaltyExpenseAccountDisplayValue"}
     string royaltyExpenseAccountDisplayValue?;
     @jsondata:Name {value: "TaxItemGroup"}
@@ -1161,7 +1161,7 @@ public type VendorParameter record {
     @jsondata:Name {value: "UseInvoiceGroupsForThisCompany"}
     NoYes useInvoiceGroupsForThisCompany?;
     @jsondata:Name {value: "PurchasePriceTotalTolerance"}
-    decimal purchasePriceTotalTolerance;
+    decimal purchasePriceTotalTolerance?;
     @jsondata:Name {value: "UseDocumentDate"}
     NoYes useDocumentDate?;
     @jsondata:Name {value: "VendBankIbanSwiftRequired"}
@@ -1197,7 +1197,7 @@ public type VendorParameter record {
     @jsondata:Name {value: "CheckTheTaxInvoiceNumberUsed"}
     ReuseVoucher checkTheTaxInvoiceNumberUsed?;
     @jsondata:Name {value: "PurchasePriceTotalTolerancePercent"}
-    decimal purchasePriceTotalTolerancePercent;
+    decimal purchasePriceTotalTolerancePercent?;
     @jsondata:Name {value: "DisablePaymentIDValidation"}
     NoYes disablePaymentIDValidation?;
     @jsondata:Name {value: "Draft"}
@@ -1225,10 +1225,10 @@ public type VendorParameter record {
     @jsondata:Name {value: "IsMatchCharges"}
     NoYes isMatchCharges?;
     @jsondata:Name {value: "MaximumPennyDifference"}
-    decimal maximumPennyDifference;
+    decimal maximumPennyDifference?;
     @jsondata:Name {value: "AccrualAccountDisplayValue"}
     string accrualAccountDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TermsOfPayment"}
     string termsOfPayment?;
     @jsondata:Name {value: "ExcludeCancelledLinesFromTotalsCalculation"}
@@ -1254,17 +1254,17 @@ public type VendorParameter record {
     @jsondata:Name {value: "SettlePrepaymentVATType"}
     CustSettlePrepaymentVATTypeRU settlePrepaymentVATType?;
     @jsondata:Name {value: "AutomationProductReceiptMatchingMaxAttempts"}
-    int:Signed32 automationProductReceiptMatchingMaxAttempts;
+    int:Signed32 automationProductReceiptMatchingMaxAttempts?;
     @jsondata:Name {value: "CreditMaxCheck"}
     TypeOfCreditmaxCheck creditMaxCheck?;
     @jsondata:Name {value: "RemitPromissoryNote"}
     string remitPromissoryNote?;
     @jsondata:Name {value: "PollingInterval_Minutes"}
-    int:Signed32 pollingIntervalMinutes;
+    int:Signed32 pollingIntervalMinutes?;
     @jsondata:Name {value: "TaxGroup"}
     string taxGroup?;
     @jsondata:Name {value: "MaxWaitTimeForInvoiceScheduledStatus_Hours"}
-    int:Signed32 maxWaitTimeForInvoiceScheduledStatusHours;
+    int:Signed32 maxWaitTimeForInvoiceScheduledStatusHours?;
     @jsondata:Name {value: "DimensionHierarchyType"}
     DimensionHierarchyType dimensionHierarchyType?;
     @jsondata:Name {value: "PSNPostingDefinitionCode"}
@@ -1302,7 +1302,7 @@ public type VendorParameter record {
     @jsondata:Name {value: "DisplayMiscChargeToleranceIcon"}
     DisplayInvoiceMiscChargeMatchOption displayMiscChargeToleranceIcon?;
     @jsondata:Name {value: "ChargesTolerancePercentage"}
-    decimal chargesTolerancePercentage;
+    decimal chargesTolerancePercentage?;
     @jsondata:Name {value: "DisplayInvoiceTotalsMatchIcon"}
     DisplayTotalPriceMatchOption displayInvoiceTotalsMatchIcon?;
     @jsondata:Name {value: "IsAutomaticSettlement"}
@@ -1485,32 +1485,32 @@ public type IntentLetter record {
     @jsondata:Name {value: "IntentLetterNotes"}
     string intentLetterNotes?;
     @jsondata:Name {value: "IntentLetterAmountMST"}
-    decimal intentLetterAmountMST;
+    decimal intentLetterAmountMST?;
     @jsondata:Name {value: "PurchaseType"}
     IntentLetterPurchaseTypeIT purchaseType?;
     @jsondata:Name {value: "VendName"}
     string vendName?;
     @jsondata:Name {value: "IntentLetterYear"}
-    int:Signed32 intentLetterYear;
+    int:Signed32 intentLetterYear?;
     @jsondata:Name {value: "ReportId"}
     string reportId?;
     @jsondata:Name {value: "IntentLetterType"}
     IntentLetterTypeIT intentLetterType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IntentLetterId"}
-    string intentLetterId;
+    string intentLetterId?;
     @jsondata:Name {value: "ClosingNotes"}
     string closingNotes?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ClosedDate"}
-    string closedDate;
+    string closedDate?;
     @jsondata:Name {value: "Protocol"}
     string protocol?;
     @jsondata:Name {value: "IntentLetterDate"}
-    string intentLetterDate;
+    string intentLetterDate?;
     @jsondata:Name {value: "VendAccount"}
     string vendAccount?;
 };
@@ -1594,9 +1594,9 @@ public type DeliveryTerm record {
     WMSFreightChargeTerms freightChargeTerms?;
     @jsondata:Name {value: "SalesTaxLocationRole"}
     LogisticsLocationRoleType salesTaxLocationRole?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TermsCode"}
-    string termsCode;
+    string termsCode?;
     @jsondata:Name {value: "TermsDescription"}
     string termsDescription?;
     @jsondata:Name {value: "ReceiptTransactionStatus"}
@@ -1672,7 +1672,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "IsPrimaryEmailAddressIMEnabled"}
     NoYes isPrimaryEmailAddressIMEnabled?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
     string personProfessionalSuffix?;
     @jsondata:Name {value: "RoundingMethod"}
@@ -1704,7 +1704,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PrimaryPhoneNumber"}
     string primaryPhoneNumber?;
     @jsondata:Name {value: "OrganizationEmployeeAmount"}
-    int:Signed32 organizationEmployeeAmount;
+    int:Signed32 organizationEmployeeAmount?;
     @jsondata:Name {value: "WillInvoiceProcessingSummaryUpdatePurchaseOrder"}
     NoYes willInvoiceProcessingSummaryUpdatePurchaseOrder?;
     @jsondata:Name {value: "DIOTVendorType"}
@@ -1724,13 +1724,13 @@ public type VendorV2 record {
     @jsondata:Name {value: "StateInscription"}
     string stateInscription?;
     @jsondata:Name {value: "PrimaryContactEmailRecordId"}
-    int primaryContactEmailRecordId;
+    int primaryContactEmailRecordId?;
     @jsondata:Name {value: "AddressBrazilianIE"}
     string addressBrazilianIE?;
     @jsondata:Name {value: "SizeIdPrefix"}
     string sizeIdPrefix?;
     @jsondata:Name {value: "VendorAccountNumber"}
-    string vendorAccountNumber;
+    string vendorAccountNumber?;
     @jsondata:Name {value: "MainContactPersonnelNumber"}
     string mainContactPersonnelNumber?;
     @jsondata:Name {value: "WillPurchaseOrderIncludePricesAndAmounts"}
@@ -1762,11 +1762,11 @@ public type VendorV2 record {
     @jsondata:Name {value: "ZakatServiceType"}
     string zakatServiceType?;
     @jsondata:Name {value: "SSIValidityDate"}
-    string sSIValidityDate;
+    string sSIValidityDate?;
     @jsondata:Name {value: "PaymentTransactionCode"}
     string paymentTransactionCode?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "OIDInvestorType"}
     InvestorType oIDInvestorType?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
@@ -1808,7 +1808,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PersonPersonalTitle"}
     string personPersonalTitle?;
     @jsondata:Name {value: "AddressRecordId"}
-    int addressRecordId;
+    int addressRecordId?;
     @jsondata:Name {value: "ZakatRegistrationNumber"}
     string zakatRegistrationNumber?;
     @jsondata:Name {value: "InventoryProfileType"}
@@ -1822,7 +1822,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "TDSGroup"}
     string tDSGroup?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "VendorInvoiceLineMatchingPolicy"}
@@ -1830,7 +1830,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "HasOnlyTakenBids"}
     NoYes hasOnlyTakenBids?;
     @jsondata:Name {value: "PurchaseOrderConsolidationDayOfMonth"}
-    int:Signed32 purchaseOrderConsolidationDayOfMonth;
+    int:Signed32 purchaseOrderConsolidationDayOfMonth?;
     @jsondata:Name {value: "DefaultAgentVendorAccountNumber"}
     string defaultAgentVendorAccountNumber?;
     @jsondata:Name {value: "AddressStateId"}
@@ -1868,7 +1868,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PersonBirthMonth"}
     MonthsOfYear personBirthMonth?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "VendorInvoiceDeclarationId"}
     string vendorInvoiceDeclarationId?;
     @jsondata:Name {value: "IsChangeMangementOverrideByVendorAllowed"}
@@ -1902,7 +1902,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "DefaultPurchaseOrderPoolId"}
     string defaultPurchaseOrderPoolId?;
     @jsondata:Name {value: "VendorLeadTime"}
-    int:Signed32 vendorLeadTime;
+    int:Signed32 vendorLeadTime?;
     @jsondata:Name {value: "PaymentFeeGroupId"}
     string paymentFeeGroupId?;
     @jsondata:Name {value: "TaxPartnerKind"}
@@ -1968,7 +1968,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "StyleIdPrefix"}
     string styleIdPrefix?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "AddressPostBox"}
     string addressPostBox?;
     @jsondata:Name {value: "IsPublicSector_IT"}
@@ -1982,7 +1982,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "TaxOperationCode"}
     string taxOperationCode?;
     @jsondata:Name {value: "VendorHoldReleaseDate"}
-    string vendorHoldReleaseDate;
+    string vendorHoldReleaseDate?;
     @jsondata:Name {value: "Tax1099Type"}
     Tax1099Type tax1099Type?;
     @jsondata:Name {value: "WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder"}
@@ -2046,11 +2046,11 @@ public type VendorV2 record {
     @jsondata:Name {value: "PrimaryLinkedIn"}
     string primaryLinkedIn?;
     @jsondata:Name {value: "PrimaryContactPhoneRecordId"}
-    int primaryContactPhoneRecordId;
+    int primaryContactPhoneRecordId?;
     @jsondata:Name {value: "IsVendorLocatedInHUBZone"}
     NoYes isVendorLocatedInHUBZone?;
     @jsondata:Name {value: "PersonBirthDay"}
-    int:Signed32 personBirthDay;
+    int:Signed32 personBirthDay?;
     @jsondata:Name {value: "IsPrimaryPhoneNumberMobile"}
     NoYes isPrimaryPhoneNumberMobile?;
     @jsondata:Name {value: "OurAccountNumber"}
@@ -2062,7 +2062,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "ElectronicLocationId"}
     string electronicLocationId?;
     @jsondata:Name {value: "CISVerificationDate"}
-    string cISVerificationDate;
+    string cISVerificationDate?;
     @jsondata:Name {value: "CommercialRegisterInsetNumber"}
     string commercialRegisterInsetNumber?;
     @jsondata:Name {value: "OIDNomineeDetails"}
@@ -2078,7 +2078,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "AddressStreet"}
     string addressStreet?;
     @jsondata:Name {value: "VendorProductHierarchyId"}
-    int vendorProductHierarchyId;
+    int vendorProductHierarchyId?;
     @jsondata:Name {value: "OnHoldStatus"}
     CustVendorBlocked onHoldStatus?;
     @jsondata:Name {value: "PrimaryPhoneNumberPurpose"}
@@ -2105,13 +2105,13 @@ public type VendorV2 record {
     NoYes isVendorPayingBankPaymentFee?;
     @jsondata:Name {value: "DefaultPaymentDayName"}
     string defaultPaymentDayName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxAgent"}
     NoYes taxAgent?;
     @jsondata:Name {value: "IsChangeManagementActivated"}
     NoYes isChangeManagementActivated?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "VendorPartyNumber"}
     string vendorPartyNumber?;
     @jsondata:Name {value: "StructureDepartment"}
@@ -2121,7 +2121,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PrimaryFaxNumber"}
     string primaryFaxNumber?;
     @jsondata:Name {value: "PrimaryContactFaxRecordId"}
-    int primaryContactFaxRecordId;
+    int primaryContactFaxRecordId?;
     @jsondata:Name {value: "BrazilianCNAE"}
     string brazilianCNAE?;
     @jsondata:Name {value: "OrganizationABCCode"}
@@ -2145,7 +2145,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PrimaryFaxNumberExtension"}
     string primaryFaxNumberExtension?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "IsServiceVeteranOwned"}
     NoYes isServiceVeteranOwned?;
     @jsondata:Name {value: "DefaultProcumentWarehouseId"}
@@ -2177,7 +2177,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PricePointRoundingType"}
     RetailRoundingTypeBase pricePointRoundingType?;
     @jsondata:Name {value: "PrimaryContactURLRecordId"}
-    int primaryContactURLRecordId;
+    int primaryContactURLRecordId?;
     @jsondata:Name {value: "CUSIPIdentificationNumber"}
     string cUSIPIdentificationNumber?;
     @jsondata:Name {value: "BuyerGroupId"}
@@ -2195,7 +2195,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "PrimaryEmailAddressPurpose"}
     string primaryEmailAddressPurpose?;
     @jsondata:Name {value: "PersonBirthYear"}
-    int:Signed32 personBirthYear;
+    int:Signed32 personBirthYear?;
     @jsondata:Name {value: "IsSmallBusiness"}
     NoYes isSmallBusiness?;
     @jsondata:Name {value: "DefaultDeliveryTermsCode"}
@@ -2211,7 +2211,7 @@ public type VendorV2 record {
     @jsondata:Name {value: "DefaultCashDiscountUsage"}
     UseCashDisc defaultCashDiscountUsage?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
     @jsondata:Name {value: "DefaultPurchaseSiteId"}
     string defaultPurchaseSiteId?;
 };
@@ -2256,7 +2256,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "IsPrimaryEmailAddressIMEnabled"}
     NoYes isPrimaryEmailAddressIMEnabled?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "PersonProfessionalSuffix"}
     string personProfessionalSuffix?;
     @jsondata:Name {value: "RoundingMethod"}
@@ -2288,7 +2288,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PrimaryPhoneNumber"}
     string primaryPhoneNumber?;
     @jsondata:Name {value: "OrganizationEmployeeAmount"}
-    int:Signed32 organizationEmployeeAmount;
+    int:Signed32 organizationEmployeeAmount?;
     @jsondata:Name {value: "WillInvoiceProcessingSummaryUpdatePurchaseOrder"}
     NoYes willInvoiceProcessingSummaryUpdatePurchaseOrder?;
     @jsondata:Name {value: "DIOTVendorType"}
@@ -2308,13 +2308,13 @@ public type VendorV3 record {
     @jsondata:Name {value: "StateInscription"}
     string stateInscription?;
     @jsondata:Name {value: "PrimaryContactEmailRecordId"}
-    int primaryContactEmailRecordId;
+    int primaryContactEmailRecordId?;
     @jsondata:Name {value: "AddressBrazilianIE"}
     string addressBrazilianIE?;
     @jsondata:Name {value: "SizeIdPrefix"}
     string sizeIdPrefix?;
     @jsondata:Name {value: "VendorAccountNumber"}
-    string vendorAccountNumber;
+    string vendorAccountNumber?;
     @jsondata:Name {value: "MainContactPersonnelNumber"}
     string mainContactPersonnelNumber?;
     @jsondata:Name {value: "WillPurchaseOrderIncludePricesAndAmounts"}
@@ -2346,11 +2346,11 @@ public type VendorV3 record {
     @jsondata:Name {value: "ZakatServiceType"}
     string zakatServiceType?;
     @jsondata:Name {value: "SSIValidityDate"}
-    string sSIValidityDate;
+    string sSIValidityDate?;
     @jsondata:Name {value: "PaymentTransactionCode"}
     string paymentTransactionCode?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "OIDInvestorType"}
     InvestorType oIDInvestorType?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
@@ -2390,7 +2390,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PersonPersonalTitle"}
     string personPersonalTitle?;
     @jsondata:Name {value: "AddressRecordId"}
-    int addressRecordId;
+    int addressRecordId?;
     @jsondata:Name {value: "ZakatRegistrationNumber"}
     string zakatRegistrationNumber?;
     @jsondata:Name {value: "InventoryProfileType"}
@@ -2404,7 +2404,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "TDSGroup"}
     string tDSGroup?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "VendorInvoiceLineMatchingPolicy"}
@@ -2412,7 +2412,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "HasOnlyTakenBids"}
     NoYes hasOnlyTakenBids?;
     @jsondata:Name {value: "PurchaseOrderConsolidationDayOfMonth"}
-    int:Signed32 purchaseOrderConsolidationDayOfMonth;
+    int:Signed32 purchaseOrderConsolidationDayOfMonth?;
     @jsondata:Name {value: "AddressStateId"}
     string addressStateId?;
     @jsondata:Name {value: "ForeignResident"}
@@ -2446,7 +2446,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PersonBirthMonth"}
     MonthsOfYear personBirthMonth?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "VendorInvoiceDeclarationId"}
     string vendorInvoiceDeclarationId?;
     @jsondata:Name {value: "IsChangeMangementOverrideByVendorAllowed"}
@@ -2542,7 +2542,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "StyleIdPrefix"}
     string styleIdPrefix?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "AddressPostBox"}
     string addressPostBox?;
     @jsondata:Name {value: "IsPublicSector_IT"}
@@ -2554,7 +2554,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "TaxOperationCode"}
     string taxOperationCode?;
     @jsondata:Name {value: "VendorHoldReleaseDate"}
-    string vendorHoldReleaseDate;
+    string vendorHoldReleaseDate?;
     @jsondata:Name {value: "Tax1099Type"}
     Tax1099Type tax1099Type?;
     @jsondata:Name {value: "WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder"}
@@ -2614,11 +2614,11 @@ public type VendorV3 record {
     @jsondata:Name {value: "PrimaryLinkedIn"}
     string primaryLinkedIn?;
     @jsondata:Name {value: "PrimaryContactPhoneRecordId"}
-    int primaryContactPhoneRecordId;
+    int primaryContactPhoneRecordId?;
     @jsondata:Name {value: "IsVendorLocatedInHUBZone"}
     NoYes isVendorLocatedInHUBZone?;
     @jsondata:Name {value: "PersonBirthDay"}
-    int:Signed32 personBirthDay;
+    int:Signed32 personBirthDay?;
     @jsondata:Name {value: "IsPrimaryPhoneNumberMobile"}
     NoYes isPrimaryPhoneNumberMobile?;
     @jsondata:Name {value: "OurAccountNumber"}
@@ -2628,7 +2628,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "ElectronicLocationId"}
     string electronicLocationId?;
     @jsondata:Name {value: "CISVerificationDate"}
-    string cISVerificationDate;
+    string cISVerificationDate?;
     @jsondata:Name {value: "CommercialRegisterInsetNumber"}
     string commercialRegisterInsetNumber?;
     @jsondata:Name {value: "OIDNomineeDetails"}
@@ -2644,7 +2644,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "AddressStreet"}
     string addressStreet?;
     @jsondata:Name {value: "VendorProductHierarchyId"}
-    int vendorProductHierarchyId;
+    int vendorProductHierarchyId?;
     @jsondata:Name {value: "OnHoldStatus"}
     CustVendorBlocked onHoldStatus?;
     @jsondata:Name {value: "PrimaryPhoneNumberPurpose"}
@@ -2671,13 +2671,13 @@ public type VendorV3 record {
     NoYes isVendorPayingBankPaymentFee?;
     @jsondata:Name {value: "DefaultPaymentDayName"}
     string defaultPaymentDayName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxAgent"}
     NoYes taxAgent?;
     @jsondata:Name {value: "IsChangeManagementActivated"}
     NoYes isChangeManagementActivated?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "VendorPartyNumber"}
     string vendorPartyNumber?;
     @jsondata:Name {value: "StructureDepartment"}
@@ -2687,7 +2687,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PrimaryFaxNumber"}
     string primaryFaxNumber?;
     @jsondata:Name {value: "PrimaryContactFaxRecordId"}
-    int primaryContactFaxRecordId;
+    int primaryContactFaxRecordId?;
     @jsondata:Name {value: "BrazilianCNAE"}
     string brazilianCNAE?;
     @jsondata:Name {value: "OrganizationABCCode"}
@@ -2709,7 +2709,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PrimaryFaxNumberExtension"}
     string primaryFaxNumberExtension?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "IsServiceVeteranOwned"}
     NoYes isServiceVeteranOwned?;
     @jsondata:Name {value: "DefaultProcumentWarehouseId"}
@@ -2739,7 +2739,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PricePointRoundingType"}
     RetailRoundingTypeBase pricePointRoundingType?;
     @jsondata:Name {value: "PrimaryContactURLRecordId"}
-    int primaryContactURLRecordId;
+    int primaryContactURLRecordId?;
     @jsondata:Name {value: "CUSIPIdentificationNumber"}
     string cUSIPIdentificationNumber?;
     @jsondata:Name {value: "BuyerGroupId"}
@@ -2757,7 +2757,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "PrimaryEmailAddressPurpose"}
     string primaryEmailAddressPurpose?;
     @jsondata:Name {value: "PersonBirthYear"}
-    int:Signed32 personBirthYear;
+    int:Signed32 personBirthYear?;
     @jsondata:Name {value: "IsSmallBusiness"}
     NoYes isSmallBusiness?;
     @jsondata:Name {value: "DefaultDeliveryTermsCode"}
@@ -2773,7 +2773,7 @@ public type VendorV3 record {
     @jsondata:Name {value: "DefaultCashDiscountUsage"}
     UseCashDisc defaultCashDiscountUsage?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
     @jsondata:Name {value: "DefaultPurchaseSiteId"}
     string defaultPurchaseSiteId?;
 };
@@ -2828,7 +2828,7 @@ public type Vendor record {
     @jsondata:Name {value: "CreditRating"}
     string creditRating?;
     @jsondata:Name {value: "PersonAnniversaryDay"}
-    int:Signed32 personAnniversaryDay;
+    int:Signed32 personAnniversaryDay?;
     @jsondata:Name {value: "ResidenceForeignCountryRegionId"}
     string residenceForeignCountryRegionId?;
     @jsondata:Name {value: "IsPrimaryEmailAddressIMEnabled"}
@@ -2860,7 +2860,7 @@ public type Vendor record {
     @jsondata:Name {value: "PrimaryPhoneNumber"}
     string primaryPhoneNumber?;
     @jsondata:Name {value: "OrganizationEmployeeAmount"}
-    int:Signed32 organizationEmployeeAmount;
+    int:Signed32 organizationEmployeeAmount?;
     @jsondata:Name {value: "DIOTVendorType"}
     VendorTypeMX dIOTVendorType?;
     @jsondata:Name {value: "AddressZipCode"}
@@ -2878,7 +2878,7 @@ public type Vendor record {
     @jsondata:Name {value: "AddressBrazilianIE"}
     string addressBrazilianIE?;
     @jsondata:Name {value: "VendorAccountNumber"}
-    string vendorAccountNumber;
+    string vendorAccountNumber?;
     @jsondata:Name {value: "MainContactPersonnelNumber"}
     string mainContactPersonnelNumber?;
     @jsondata:Name {value: "WillPurchaseOrderIncludePricesAndAmounts"}
@@ -2904,13 +2904,13 @@ public type Vendor record {
     @jsondata:Name {value: "ZakatServiceType"}
     string zakatServiceType?;
     @jsondata:Name {value: "SSIValidityDate"}
-    string sSIValidityDate;
+    string sSIValidityDate?;
     @jsondata:Name {value: "PaymentTransactionCode"}
     string paymentTransactionCode?;
     @jsondata:Name {value: "OIDInvestorType"}
     InvestorType oIDInvestorType?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "DefaultInventoryStatusId"}
     string defaultInventoryStatusId?;
     @jsondata:Name {value: "CashDiscountCode"}
@@ -2954,7 +2954,7 @@ public type Vendor record {
     @jsondata:Name {value: "BirthCountyCode"}
     string birthCountyCode?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PersonPhoneticMiddleName"}
     string personPhoneticMiddleName?;
     @jsondata:Name {value: "VendorInvoiceLineMatchingPolicy"}
@@ -2962,7 +2962,7 @@ public type Vendor record {
     @jsondata:Name {value: "HasOnlyTakenBids"}
     NoYes hasOnlyTakenBids?;
     @jsondata:Name {value: "PurchaseOrderConsolidationDayOfMonth"}
-    int:Signed32 purchaseOrderConsolidationDayOfMonth;
+    int:Signed32 purchaseOrderConsolidationDayOfMonth?;
     @jsondata:Name {value: "AddressStateId"}
     string addressStateId?;
     @jsondata:Name {value: "FormattedPrimaryAddress"}
@@ -3074,13 +3074,13 @@ public type Vendor record {
     @jsondata:Name {value: "PrimaryTwitter"}
     string primaryTwitter?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "Tax1099IdType"}
     TaxIDType tax1099IdType?;
     @jsondata:Name {value: "PrimaryTwitterPurpose"}
     string primaryTwitterPurpose?;
     @jsondata:Name {value: "VendorHoldReleaseDate"}
-    string vendorHoldReleaseDate;
+    string vendorHoldReleaseDate?;
     @jsondata:Name {value: "Tax1099Type"}
     Tax1099Type tax1099Type?;
     @jsondata:Name {value: "WillPurchaseOrderProcessingSummaryUpdatePurchaseOrder"}
@@ -3134,7 +3134,7 @@ public type Vendor record {
     @jsondata:Name {value: "IsVendorLocatedInHUBZone"}
     NoYes isVendorLocatedInHUBZone?;
     @jsondata:Name {value: "PersonBirthDay"}
-    int:Signed32 personBirthDay;
+    int:Signed32 personBirthDay?;
     @jsondata:Name {value: "IsPrimaryPhoneNumberMobile"}
     NoYes isPrimaryPhoneNumberMobile?;
     @jsondata:Name {value: "OurAccountNumber"}
@@ -3144,7 +3144,7 @@ public type Vendor record {
     @jsondata:Name {value: "ElectronicLocationId"}
     string electronicLocationId?;
     @jsondata:Name {value: "CISVerificationDate"}
-    string cISVerificationDate;
+    string cISVerificationDate?;
     @jsondata:Name {value: "CommercialRegisterInsetNumber"}
     string commercialRegisterInsetNumber?;
     @jsondata:Name {value: "IsWithholdingTaxCalculated"}
@@ -3179,9 +3179,9 @@ public type Vendor record {
     NoYes isVendorPayingBankPaymentFee?;
     @jsondata:Name {value: "DefaultPaymentDayName"}
     string defaultPaymentDayName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PersonAnniversaryYear"}
-    int:Signed32 personAnniversaryYear;
+    int:Signed32 personAnniversaryYear?;
     @jsondata:Name {value: "IsChangeManagementActivated"}
     NoYes isChangeManagementActivated?;
     @jsondata:Name {value: "VendorPartyNumber"}
@@ -3211,7 +3211,7 @@ public type Vendor record {
     @jsondata:Name {value: "PrimaryFaxNumberExtension"}
     string primaryFaxNumberExtension?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "IsServiceVeteranOwned"}
     NoYes isServiceVeteranOwned?;
     @jsondata:Name {value: "DefaultProcumentWarehouseId"}
@@ -3251,7 +3251,7 @@ public type Vendor record {
     @jsondata:Name {value: "PrimaryEmailAddressPurpose"}
     string primaryEmailAddressPurpose?;
     @jsondata:Name {value: "PersonBirthYear"}
-    int:Signed32 personBirthYear;
+    int:Signed32 personBirthYear?;
     @jsondata:Name {value: "AddressDistrictName"}
     string addressDistrictName?;
     @jsondata:Name {value: "IsSmallBusiness"}
@@ -3271,7 +3271,7 @@ public type Vendor record {
     @jsondata:Name {value: "DefaultPurchaseSiteId"}
     string defaultPurchaseSiteId?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type VendorGroupsCollection record {

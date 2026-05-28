@@ -66,7 +66,7 @@ public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|
 public type AssetLeaseType "Automatic"|"Finance"|"Operating";
 
 public type AuditTrail record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TransactionType"}
     TransactionLogType transactionType?;
     @jsondata:Name {value: "Description"}
@@ -74,9 +74,9 @@ public type AuditTrail record {
     @jsondata:Name {value: "CreatedByUser"}
     string createdByUser?;
     @jsondata:Name {value: "CreatedTransactionDateTime"}
-    string createdTransactionDateTime;
+    string createdTransactionDateTime?;
     @jsondata:Name {value: "TransactionId"}
-    int transactionId;
+    int transactionId?;
 };
 
 # Represents the Headers record for the operation: updateFinancialDimensionValues
@@ -149,21 +149,21 @@ public type FinancialDimensionValue record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "DimensionValue"}
-    string dimensionValue;
+    string dimensionValue?;
     @jsondata:Name {value: "IsBlockedForManualEntry"}
     NoYes isBlockedForManualEntry?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "ActiveTo"}
-    string activeTo;
+    string activeTo?;
     @jsondata:Name {value: "FinancialDimension"}
-    string financialDimension;
+    string financialDimension?;
     @jsondata:Name {value: "IsBalancing_PSN"}
     NoYes isBalancingPSN?;
     @jsondata:Name {value: "IsSuspended"}
     NoYes isSuspended?;
     @jsondata:Name {value: "ActiveFrom"}
-    string activeFrom;
+    string activeFrom?;
 };
 
 # Represents the Headers record for the operation: deleteLedgerJournalHeaders
@@ -196,12 +196,12 @@ public type JournalName record {
     @jsondata:Name {value: "WorkflowId"}
     string workflowId?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
     @jsondata:Name {value: "PrivateForUserGroup"}
     string privateForUserGroup?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IsApprovalActive"}
     NoYes isApprovalActive?;
     @jsondata:Name {value: "VoucherAllocationAtPosting"}
@@ -221,7 +221,7 @@ public type JournalName record {
     @jsondata:Name {value: "PrepaymentJournalVoucher"}
     NoYes prepaymentJournalVoucher?;
     @jsondata:Name {value: "PostingLineLimit"}
-    int:Signed32 postingLineLimit;
+    int:Signed32 postingLineLimit?;
     @jsondata:Name {value: "IsFixedExchangeRate"}
     NoYes isFixedExchangeRate?;
     @jsondata:Name {value: "NewVoucher"}
@@ -354,7 +354,7 @@ public type FinancialDimensionSet record {
     @jsondata:Name {value: "SegmentName01"}
     string segmentName01?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
     @jsondata:Name {value: "SegmentName10"}
     string segmentName10?;
     @jsondata:Name {value: "SegmentName04"}
@@ -404,12 +404,12 @@ public type ListBudgetPlansQueries record {
 
 public type LedgerJournalHeader record {
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "IntegrationKey"}
     string integrationKey?;
     @jsondata:Name {value: "JournalTotalDebit"}
-    decimal journalTotalDebit;
-    string dataAreaId;
+    decimal journalTotalDebit?;
+    string dataAreaId?;
     @jsondata:Name {value: "IsPosted"}
     NoYes isPosted?;
     @jsondata:Name {value: "Description"}
@@ -421,7 +421,7 @@ public type LedgerJournalHeader record {
     @jsondata:Name {value: "AccountingCurrency"}
     string accountingCurrency?;
     @jsondata:Name {value: "JournalTotalCredit"}
-    decimal journalTotalCredit;
+    decimal journalTotalCredit?;
 };
 
 # Represents the Headers record for the operation: updateFiscalCalendars
@@ -478,7 +478,7 @@ public type ListCPTablesQueries record {
 public type CostGroup record {
     @jsondata:Name {value: "GroupName"}
     string groupName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IsDefaultCostGroup"}
     NoYes isDefaultCostGroup?;
     @jsondata:Name {value: "CostBehaviour"}
@@ -486,7 +486,7 @@ public type CostGroup record {
     @jsondata:Name {value: "CostGroupType"}
     CostGroupType costGroupType?;
     @jsondata:Name {value: "GroupId"}
-    string groupId;
+    string groupId?;
 };
 
 public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
@@ -598,17 +598,17 @@ public type GetMainAccountsQueries record {
 };
 
 public type PeriodLine record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PeriodId"}
-    string periodId;
+    string periodId?;
     @jsondata:Name {value: "PeriodTo"}
-    string periodTo;
+    string periodTo?;
     @jsondata:Name {value: "PeriodName"}
     string periodName?;
     @jsondata:Name {value: "ModelId"}
     string modelId?;
     @jsondata:Name {value: "PeriodFrom"}
-    string periodFrom;
+    string periodFrom?;
 };
 
 # Represents the Headers record for the operation: updateMainAccounts
@@ -688,24 +688,24 @@ public type LedgerAccrualPeriod "Calendar"|"Fiscal"|"AllocationKey";
 
 public type CPJournal record {
     @jsondata:Name {value: "ReverseDate"}
-    string reverseDate;
+    string reverseDate?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "PaymReference"}
     string paymReference?;
     @jsondata:Name {value: "FixedExchRate"}
-    decimal fixedExchRate;
+    decimal fixedExchRate?;
     @jsondata:Name {value: "Posted"}
     NoYes posted?;
     @jsondata:Name {value: "AccountType"}
     CPAccountTypeTR accountType?;
     @jsondata:Name {value: "AverageMaturity"}
-    string averageMaturity;
+    string averageMaturity?;
     @jsondata:Name {value: "PortfolioDefaultDimensionDisplayValue"}
     string portfolioDefaultDimensionDisplayValue?;
     @jsondata:Name {value: "BankTransType"}
     string bankTransType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PaymId"}
     string paymId?;
     @jsondata:Name {value: "PostingProfile"}
@@ -713,15 +713,15 @@ public type CPJournal record {
     @jsondata:Name {value: "TransCode"}
     string transCode?;
     @jsondata:Name {value: "ChequeJournalNum"}
-    string chequeJournalNum;
+    string chequeJournalNum?;
     @jsondata:Name {value: "AccountNum"}
     string accountNum?;
     @jsondata:Name {value: "TransDate"}
-    string transDate;
+    string transDate?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "SessionLoginDateTime"}
-    string sessionLoginDateTime;
+    string sessionLoginDateTime?;
     @jsondata:Name {value: "OffsetTransCode"}
     string offsetTransCode?;
     @jsondata:Name {value: "JournalNum"}
@@ -729,7 +729,7 @@ public type CPJournal record {
     @jsondata:Name {value: "IsFixedExchRate"}
     NoYes isFixedExchRate?;
     @jsondata:Name {value: "SessionId"}
-    int:Signed32 sessionId;
+    int:Signed32 sessionId?;
     @jsondata:Name {value: "PortfolioCode"}
     string portfolioCode?;
     @jsondata:Name {value: "ReverseJournalNum"}
@@ -826,21 +826,21 @@ public type JournalNamesCollection record {
 
 public type LedgerTransSettlement record {
     @jsondata:Name {value: "GeneralJournalAccountEntry"}
-    int generalJournalAccountEntry;
+    int generalJournalAccountEntry?;
     @jsondata:Name {value: "Ledger"}
-    int ledger;
+    int ledger?;
     @jsondata:Name {value: "MainAccount"}
-    int mainAccount;
+    int mainAccount?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "DateProcessed"}
-    string dateProcessed;
+    string dateProcessed?;
     @jsondata:Name {value: "Text"}
     string text?;
     @jsondata:Name {value: "TransactionCurrencyAmount"}
-    decimal transactionCurrencyAmount;
+    decimal transactionCurrencyAmount?;
     @jsondata:Name {value: "AccountingDate"}
-    string accountingDate;
+    string accountingDate?;
     @jsondata:Name {value: "DocumentNumber"}
     string documentNumber?;
     @jsondata:Name {value: "TransactionCurrencyCode"}
@@ -850,11 +850,11 @@ public type LedgerTransSettlement record {
     @jsondata:Name {value: "AutomationRule"}
     string automationRule?;
     @jsondata:Name {value: "AccountingCurrencyAmount"}
-    decimal accountingCurrencyAmount;
+    decimal accountingCurrencyAmount?;
     @jsondata:Name {value: "LedgerAccountDisplayValue"}
     string ledgerAccountDisplayValue?;
     @jsondata:Name {value: "ReportingCurrencyAmount"}
-    decimal reportingCurrencyAmount;
+    decimal reportingCurrencyAmount?;
     @jsondata:Name {value: "SettleId"}
     string settleId?;
     @jsondata:Name {value: "JournalNumber"}
@@ -864,13 +864,13 @@ public type LedgerTransSettlement record {
     @jsondata:Name {value: "SubledgerVoucher"}
     string subledgerVoucher?;
     @jsondata:Name {value: "OriginalTransactionDate"}
-    string originalTransactionDate;
+    string originalTransactionDate?;
     @jsondata:Name {value: "SettleDate"}
-    string settleDate;
+    string settleDate?;
     @jsondata:Name {value: "Marked"}
     string marked?;
     @jsondata:Name {value: "DocumentDate"}
-    string documentDate;
+    string documentDate?;
 };
 
 # Represents the Headers record for the operation: deleteCPPortfolios
@@ -883,33 +883,33 @@ public type LeaseBook record {
     @jsondata:Name {value: "DimensionDefaultDisplayValue"}
     string dimensionDefaultDisplayValue?;
     @jsondata:Name {value: "DeferredRentCarryover"}
-    decimal deferredRentCarryover;
+    decimal deferredRentCarryover?;
     @jsondata:Name {value: "PercentOfIndexChangeToApply"}
-    decimal percentOfIndexChangeToApply;
+    decimal percentOfIndexChangeToApply?;
     @jsondata:Name {value: "CommencementDate"}
-    string commencementDate;
+    string commencementDate?;
     @jsondata:Name {value: "CostPerMile"}
-    decimal costPerMile;
+    decimal costPerMile?;
     @jsondata:Name {value: "IndexRateType"}
     string indexRateType?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "CurrentLiabilityBalance"}
-    decimal currentLiabilityBalance;
+    decimal currentLiabilityBalance?;
     @jsondata:Name {value: "LeaseStartDate"}
-    string leaseStartDate;
+    string leaseStartDate?;
     @jsondata:Name {value: "Street"}
     string street?;
     @jsondata:Name {value: "LeaseDescription"}
     string leaseDescription?;
     @jsondata:Name {value: "UnpostedDepreciationJournals"}
-    int:Signed32 unpostedDepreciationJournals;
+    int:Signed32 unpostedDepreciationJournals?;
     @jsondata:Name {value: "PresentValueOverFairValue"}
-    decimal presentValueOverFairValue;
+    decimal presentValueOverFairValue?;
     @jsondata:Name {value: "SecurityDepositReminderDate"}
-    string securityDepositReminderDate;
+    string securityDepositReminderDate?;
     @jsondata:Name {value: "LimitOnRateIncrease"}
-    decimal limitOnRateIncrease;
+    decimal limitOnRateIncrease?;
     @jsondata:Name {value: "ShortTermLease"}
     NoYes shortTermLease?;
     @jsondata:Name {value: "PreviousLeaseType"}
@@ -919,70 +919,70 @@ public type LeaseBook record {
     @jsondata:Name {value: "LeaseStatus"}
     AssetLeaseLeaseStatus leaseStatus?;
     @jsondata:Name {value: "LeaseTermMonths"}
-    int:Signed32 leaseTermMonths;
+    int:Signed32 leaseTermMonths?;
     @jsondata:Name {value: "CurrentAssetBalance"}
-    decimal currentAssetBalance;
+    decimal currentAssetBalance?;
     @jsondata:Name {value: "TaxItemGroup"}
     string taxItemGroup?;
     @jsondata:Name {value: "RentableArea"}
-    decimal rentableArea;
+    decimal rentableArea?;
     @jsondata:Name {value: "TransferOfOwnership"}
     NoYesCombo transferOfOwnership?;
     @jsondata:Name {value: "AllowDecreases"}
     NoYes allowDecreases?;
     @jsondata:Name {value: "LeasePrepayments"}
-    decimal leasePrepayments;
+    decimal leasePrepayments?;
     @jsondata:Name {value: "UnpostedInterestJournals"}
-    int:Signed32 unpostedInterestJournals;
+    int:Signed32 unpostedInterestJournals?;
     @jsondata:Name {value: "ResidualValueGuarantee"}
-    decimal residualValueGuarantee;
+    decimal residualValueGuarantee?;
     @jsondata:Name {value: "PostingLayer"}
     CurrentOperationsTax postingLayer?;
     @jsondata:Name {value: "RevaluationDate"}
-    string revaluationDate;
+    string revaluationDate?;
     @jsondata:Name {value: "LastDatePaymentJournal"}
-    string lastDatePaymentJournal;
+    string lastDatePaymentJournal?;
     @jsondata:Name {value: "InterestPeriodsRemaining"}
-    int:Signed32 interestPeriodsRemaining;
+    int:Signed32 interestPeriodsRemaining?;
     @jsondata:Name {value: "DepreciationPeriodsRemaining"}
-    int:Signed32 depreciationPeriodsRemaining;
+    int:Signed32 depreciationPeriodsRemaining?;
     @jsondata:Name {value: "LeaseGroup"}
     string leaseGroup?;
     @jsondata:Name {value: "LeaseClassification"}
     AssetLeaseAccountingFramework leaseClassification?;
     @jsondata:Name {value: "IncidentalCost"}
-    decimal incidentalCost;
+    decimal incidentalCost?;
     @jsondata:Name {value: "ContractSignatureDate"}
-    string contractSignatureDate;
+    string contractSignatureDate?;
     @jsondata:Name {value: "LeasingConvention"}
     AssetLeaseLeasingConvention leasingConvention?;
     @jsondata:Name {value: "MasterLeaseId"}
     string masterLeaseId?;
     @jsondata:Name {value: "ExpirationDate"}
-    string expirationDate;
+    string expirationDate?;
     @jsondata:Name {value: "LowValueLease"}
     NoYes lowValueLease?;
     @jsondata:Name {value: "LeaseModificationDate"}
-    string leaseModificationDate;
+    string leaseModificationDate?;
     @jsondata:Name {value: "ExpectedTerminationDate"}
-    string expectedTerminationDate;
+    string expectedTerminationDate?;
     @jsondata:Name {value: "BankContractNumber"}
     string bankContractNumber?;
     @jsondata:Name {value: "Company"}
     string company?;
     @jsondata:Name {value: "LatePayment"}
-    decimal latePayment;
+    decimal latePayment?;
     @jsondata:Name {value: "BorrowingRate"}
-    decimal borrowingRate;
+    decimal borrowingRate?;
     @jsondata:Name {value: "DeliveryDate"}
-    string deliveryDate;
+    string deliveryDate?;
     @jsondata:Name {value: "PresentValuePaymentsRemaining"}
-    decimal presentValuePaymentsRemaining;
+    decimal presentValuePaymentsRemaining?;
     @jsondata:Name {value: "LastDateInterestJournal"}
-    string lastDateInterestJournal;
+    string lastDateInterestJournal?;
     @jsondata:Name {value: "ManuallyRevalue"}
     NoYes manuallyRevalue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PaymentContractModified"}
     NoYes paymentContractModified?;
     @jsondata:Name {value: "CountryRegionID"}
@@ -990,17 +990,17 @@ public type LeaseBook record {
     @jsondata:Name {value: "AnnuityType"}
     AssetLeaseAnnuityType annuityType?;
     @jsondata:Name {value: "LeaseIncentives"}
-    decimal leaseIncentives;
+    decimal leaseIncentives?;
     @jsondata:Name {value: "HoldoverFee"}
-    decimal holdoverFee;
+    decimal holdoverFee?;
     @jsondata:Name {value: "UnitOfMeasure"}
     string unitOfMeasure?;
     @jsondata:Name {value: "FairValueOfAsset"}
-    decimal fairValueOfAsset;
+    decimal fairValueOfAsset?;
     @jsondata:Name {value: "ImplicitRate"}
-    decimal implicitRate;
+    decimal implicitRate?;
     @jsondata:Name {value: "LocationOpeningDate"}
-    string locationOpeningDate;
+    string locationOpeningDate?;
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "City"}
@@ -1008,11 +1008,11 @@ public type LeaseBook record {
     @jsondata:Name {value: "OverrideReason"}
     string overrideReason?;
     @jsondata:Name {value: "MinimunLimitsOfLiability"}
-    decimal minimunLimitsOfLiability;
+    decimal minimunLimitsOfLiability?;
     @jsondata:Name {value: "DateEntryToPost"}
-    string dateEntryToPost;
+    string dateEntryToPost?;
     @jsondata:Name {value: "IndexChangeToApply"}
-    decimal indexChangeToApply;
+    decimal indexChangeToApply?;
     @jsondata:Name {value: "BookType"}
     string bookType?;
     @jsondata:Name {value: "TaxGroup"}
@@ -1020,9 +1020,9 @@ public type LeaseBook record {
     @jsondata:Name {value: "State"}
     string state?;
     @jsondata:Name {value: "LastDepreciationDate"}
-    string lastDepreciationDate;
+    string lastDepreciationDate?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "FinancialCommercialTerms"}
     string financialCommercialTerms?;
     @jsondata:Name {value: "FixedExchangeRate"}
@@ -1030,9 +1030,9 @@ public type LeaseBook record {
     @jsondata:Name {value: "FixedAssetNumber"}
     string fixedAssetNumber?;
     @jsondata:Name {value: "LeaseId"}
-    string leaseId;
+    string leaseId?;
     @jsondata:Name {value: "LeasePaymentsRemaining"}
-    int:Signed32 leasePaymentsRemaining;
+    int:Signed32 leasePaymentsRemaining?;
     @jsondata:Name {value: "LeaseType"}
     AssetLeaseType leaseType?;
     @jsondata:Name {value: "FixedExchangeRateReporting"}
@@ -1040,49 +1040,49 @@ public type LeaseBook record {
     @jsondata:Name {value: "County"}
     string county?;
     @jsondata:Name {value: "OveruseFee"}
-    decimal overuseFee;
+    decimal overuseFee?;
     @jsondata:Name {value: "SecurityDepositRefundable"}
     NoYes securityDepositRefundable?;
     @jsondata:Name {value: "MileageLimit"}
-    decimal mileageLimit;
+    decimal mileageLimit?;
     @jsondata:Name {value: "FixedAssetBookId"}
     string fixedAssetBookId?;
     @jsondata:Name {value: "MonthsBetweenRevaluations"}
-    int:Signed32 monthsBetweenRevaluations;
+    int:Signed32 monthsBetweenRevaluations?;
     @jsondata:Name {value: "LocationNumber"}
     string locationNumber?;
     @jsondata:Name {value: "MaxCoverage"}
-    decimal maxCoverage;
+    decimal maxCoverage?;
     @jsondata:Name {value: "LeaseTermOverUsefulLife"}
-    decimal leaseTermOverUsefulLife;
+    decimal leaseTermOverUsefulLife?;
     @jsondata:Name {value: "SecurityDeposit"}
-    decimal securityDeposit;
+    decimal securityDeposit?;
     @jsondata:Name {value: "InitialDirectCost"}
-    decimal initialDirectCost;
+    decimal initialDirectCost?;
     @jsondata:Name {value: "ZipCode"}
     string zipCode?;
     @jsondata:Name {value: "CurrentMileage"}
-    decimal currentMileage;
+    decimal currentMileage?;
     @jsondata:Name {value: "UnpostedLeasePayments"}
-    int:Signed32 unpostedLeasePayments;
+    int:Signed32 unpostedLeasePayments?;
     @jsondata:Name {value: "CompoundingInterval"}
     AssetLeaseCompoundingInterval compoundingInterval?;
     @jsondata:Name {value: "UndiscountedPaymentsRemaining"}
-    decimal undiscountedPaymentsRemaining;
+    decimal undiscountedPaymentsRemaining?;
     @jsondata:Name {value: "AccountingFramework"}
     AssetLeaseAccountingFramework accountingFramework?;
     @jsondata:Name {value: "AssetUsefulLife"}
-    int:Signed32 assetUsefulLife;
+    int:Signed32 assetUsefulLife?;
     @jsondata:Name {value: "PercentCommonAreaMaintenance"}
-    decimal percentCommonAreaMaintenance;
+    decimal percentCommonAreaMaintenance?;
     @jsondata:Name {value: "DismantlingCosts"}
-    decimal dismantlingCosts;
+    decimal dismantlingCosts?;
     @jsondata:Name {value: "FinancingAmount"}
-    int:Signed32 financingAmount;
+    int:Signed32 financingAmount?;
     @jsondata:Name {value: "IndexRate"}
-    decimal indexRate;
+    decimal indexRate?;
     @jsondata:Name {value: "ExchangeRateReporting"}
-    decimal exchangeRateReporting;
+    decimal exchangeRateReporting?;
 };
 
 # Represents the Headers record for the operation: deleteOpeningSheets
@@ -1223,11 +1223,11 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "ListFieldCode02"}
     string listFieldCode02?;
     @jsondata:Name {value: "WithholdAccruedBaseMST"}
-    decimal withholdAccruedBaseMST;
+    decimal withholdAccruedBaseMST?;
     @jsondata:Name {value: "AmountMST"}
-    decimal amountMST;
+    decimal amountMST?;
     @jsondata:Name {value: "CreditAmount"}
-    decimal creditAmount;
+    decimal creditAmount?;
     @jsondata:Name {value: "TaxExemptNumber"}
     string taxExemptNumber?;
     @jsondata:Name {value: "Document"}
@@ -1237,13 +1237,13 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
     @jsondata:Name {value: "LineNum"}
-    decimal lineNum;
+    decimal lineNum?;
     @jsondata:Name {value: "WithholdingBaseMST"}
-    decimal withholdingBaseMST;
+    decimal withholdingBaseMST?;
     @jsondata:Name {value: "BankChequeNum"}
     string bankChequeNum?;
     @jsondata:Name {value: "ExchRate"}
-    decimal exchRate;
+    decimal exchRate?;
     @jsondata:Name {value: "CPDSource"}
     LTMCheckSource cPDSource?;
     @jsondata:Name {value: "CAICAE"}
@@ -1261,11 +1261,11 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "IsConcept"}
     NoYes isConcept?;
     @jsondata:Name {value: "CashDiscountDate"}
-    string cashDiscountDate;
+    string cashDiscountDate?;
     @jsondata:Name {value: "BankAccountNum"}
     string bankAccountNum?;
     @jsondata:Name {value: "CashDiscountAmount"}
-    decimal cashDiscountAmount;
+    decimal cashDiscountAmount?;
     @jsondata:Name {value: "PaymentReference"}
     string paymentReference?;
     @jsondata:Name {value: "StateId"}
@@ -1275,13 +1275,13 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "ListField08"}
     string listField08?;
     @jsondata:Name {value: "ExchRateTypeAlt"}
-    decimal exchRateTypeAlt;
+    decimal exchRateTypeAlt?;
     @jsondata:Name {value: "ListField05"}
     string listField05?;
     @jsondata:Name {value: "ListField04"}
     string listField04?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "ListField07"}
     string listField07?;
     @jsondata:Name {value: "ListField06"}
@@ -1289,7 +1289,7 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "PostingProfile"}
     string postingProfile?;
     @jsondata:Name {value: "AmountCUR"}
-    decimal amountCUR;
+    decimal amountCUR?;
     @jsondata:Name {value: "ListField10"}
     string listField10?;
     @jsondata:Name {value: "IsWithholdingCalculationEnabled"}
@@ -1299,7 +1299,7 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "ItemWithholdingTaxGroupCode"}
     string itemWithholdingTaxGroupCode?;
     @jsondata:Name {value: "CAICAEDueDate"}
-    string cAICAEDueDate;
+    string cAICAEDueDate?;
     @jsondata:Name {value: "CountryDocTypeId"}
     string countryDocTypeId?;
     @jsondata:Name {value: "ListFieldCode10"}
@@ -1309,7 +1309,7 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "AccountDisplayValue"}
     string accountDisplayValue?;
     @jsondata:Name {value: "OrigExchRate"}
-    decimal origExchRate;
+    decimal origExchRate?;
     @jsondata:Name {value: "Text"}
     string text?;
     @jsondata:Name {value: "ListField01"}
@@ -1325,9 +1325,9 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "ListField02"}
     string listField02?;
     @jsondata:Name {value: "DiscountPercentage"}
-    decimal discountPercentage;
+    decimal discountPercentage?;
     @jsondata:Name {value: "TransDate"}
-    string transDate;
+    string transDate?;
     @jsondata:Name {value: "ChineseVoucher"}
     string chineseVoucher?;
     @jsondata:Name {value: "OffsetText"}
@@ -1335,13 +1335,13 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "JournalNum"}
     string journalNum?;
     @jsondata:Name {value: "LedgerJournalTransId"}
-    int ledgerJournalTransId;
+    int ledgerJournalTransId?;
     @jsondata:Name {value: "DocumentDate"}
-    string documentDate;
+    string documentDate?;
     @jsondata:Name {value: "Beneficiary"}
     string beneficiary?;
     @jsondata:Name {value: "ReverseDate"}
-    string reverseDate;
+    string reverseDate?;
     @jsondata:Name {value: "Company"}
     string company?;
     @jsondata:Name {value: "SalesTaxCode"}
@@ -1351,14 +1351,14 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "OffsetAccountType"}
     LedgerJournalACType offsetAccountType?;
     @jsondata:Name {value: "LTMDocumentDate"}
-    string lTMDocumentDate;
+    string lTMDocumentDate?;
     @jsondata:Name {value: "ExchRateSecond"}
-    decimal exchRateSecond;
+    decimal exchRateSecond?;
     @jsondata:Name {value: "ReportingCurrencyExchRate"}
-    decimal reportingCurrencyExchRate;
+    decimal reportingCurrencyExchRate?;
     @jsondata:Name {value: "CPDAction"}
     LTMCollectPaymDocAction cPDAction?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "FinTagDisplayValue"}
     string finTagDisplayValue?;
     @jsondata:Name {value: "CountryDocNum"}
@@ -1370,17 +1370,17 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
     @jsondata:Name {value: "WithholdingEffectiveRate"}
-    decimal withholdingEffectiveRate;
+    decimal withholdingEffectiveRate?;
     @jsondata:Name {value: "ReportingCurrencyExchRateSecondary"}
-    decimal reportingCurrencyExchRateSecondary;
+    decimal reportingCurrencyExchRateSecondary?;
     @jsondata:Name {value: "CashDiscount"}
     string cashDiscount?;
     @jsondata:Name {value: "IsCollectPaymDoc"}
     NoYes isCollectPaymDoc?;
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "CPDTRXHistoryID"}
-    int cPDTRXHistoryID;
+    int cPDTRXHistoryID?;
     @jsondata:Name {value: "PaymentMethod"}
     string paymentMethod?;
     @jsondata:Name {value: "OffsetFinTagDisplayValue"}
@@ -1394,11 +1394,11 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "WithholdingSetID"}
     string withholdingSetID?;
     @jsondata:Name {value: "WithholdAccruedAmountMST"}
-    decimal withholdAccruedAmountMST;
+    decimal withholdAccruedAmountMST?;
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
     @jsondata:Name {value: "CPDTRXOpenID"}
-    int cPDTRXOpenID;
+    int cPDTRXOpenID?;
     @jsondata:Name {value: "AccountNum"}
     string accountNum?;
     @jsondata:Name {value: "ReverseEntry"}
@@ -1408,15 +1408,15 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "DocumentClassificationId"}
     string documentClassificationId?;
     @jsondata:Name {value: "DueDateAW"}
-    string dueDateAW;
+    string dueDateAW?;
     @jsondata:Name {value: "DueDate"}
-    string dueDate;
+    string dueDate?;
     @jsondata:Name {value: "StateDocTypeId"}
     string stateDocTypeId?;
     @jsondata:Name {value: "PaymentId"}
     string paymentId?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "ShiftID"}
     string shiftID?;
     @jsondata:Name {value: "OverrideSalesTax"}
@@ -1444,7 +1444,7 @@ public type LedgerJournalLine record {
     @jsondata:Name {value: "BankGroupId"}
     string bankGroupId?;
     @jsondata:Name {value: "DebitAmount"}
-    decimal debitAmount;
+    decimal debitAmount?;
 };
 
 # Represents the Headers record for the operation: deleteAuditTrails
@@ -1489,10 +1489,10 @@ public type JournalTable record {
     @jsondata:Name {value: "Posted"}
     NoYes posted?;
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
+    string journalBatchNumber?;
     @jsondata:Name {value: "ProjLineProperty"}
     string projLineProperty?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Txt"}
     string txt?;
     @jsondata:Name {value: "NewVoucherBy"}
@@ -1500,7 +1500,7 @@ public type JournalTable record {
     @jsondata:Name {value: "ResourceId"}
     string resourceId?;
     @jsondata:Name {value: "ProjectDate"}
-    string projectDate;
+    string projectDate?;
     @jsondata:Name {value: "JournalType"}
     ProjJournalType journalType?;
     @jsondata:Name {value: "DeleteLinesAfterPosting"}
@@ -1669,13 +1669,13 @@ public type BudgetPlan record {
     @jsondata:Name {value: "EstimateType"}
     BudgetPlanEstimateType estimateType?;
     @jsondata:Name {value: "TransactionUnitPrice"}
-    decimal transactionUnitPrice;
+    decimal transactionUnitPrice?;
     @jsondata:Name {value: "PreparerPersonnelNumber"}
     string preparerPersonnelNumber?;
     @jsondata:Name {value: "Comment"}
     string comment?;
     @jsondata:Name {value: "LineReferenceId"}
-    string lineReferenceId;
+    string lineReferenceId?;
     @jsondata:Name {value: "ProposedAsset"}
     string proposedAsset?;
     @jsondata:Name {value: "Priority"}
@@ -1685,19 +1685,19 @@ public type BudgetPlan record {
     @jsondata:Name {value: "ProjectId"}
     string projectId?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "TransactionCurrencyAmount"}
-    decimal transactionCurrencyAmount;
+    decimal transactionCurrencyAmount?;
     @jsondata:Name {value: "Rank"}
-    int:Signed32 rank;
+    int:Signed32 rank?;
     @jsondata:Name {value: "ParentBudgetPlan"}
     string parentBudgetPlan?;
     @jsondata:Name {value: "DocumentNumber"}
-    string documentNumber;
+    string documentNumber?;
     @jsondata:Name {value: "TransactionCurrencyCode"}
     string transactionCurrencyCode?;
     @jsondata:Name {value: "Scenario"}
-    string scenario;
+    string scenario?;
     @jsondata:Name {value: "WorkflowStatus"}
     BudgetPlanWorkflowStatus workflowStatus?;
     @jsondata:Name {value: "DocumentStatus"}
@@ -1705,7 +1705,7 @@ public type BudgetPlan record {
     @jsondata:Name {value: "ProposedProject"}
     string proposedProject?;
     @jsondata:Name {value: "UnitPrice"}
-    decimal unitPrice;
+    decimal unitPrice?;
     @jsondata:Name {value: "LedgerAccountDisplayValue"}
     string ledgerAccountDisplayValue?;
     @jsondata:Name {value: "Layout"}
@@ -1717,7 +1717,7 @@ public type BudgetPlan record {
     @jsondata:Name {value: "AssetId"}
     string assetId?;
     @jsondata:Name {value: "EffectiveDate"}
-    string effectiveDate;
+    string effectiveDate?;
 };
 
 public type FiscalYearStatus "Open"|"Close";
@@ -1751,13 +1751,13 @@ public type UpdateAccountantsHeaders record {
 };
 
 public type LedgerJournalDescription record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "SearchName"}
     string searchName?;
     @jsondata:Name {value: "Identification"}
-    string identification;
+    string identification?;
 };
 
 public type AccountantsCollection record {
@@ -1768,11 +1768,11 @@ public type AccountantsCollection record {
 public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
 
 public type FundType record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "FundType"}
-    string fundType;
+    string fundType?;
 };
 
 public type AuditTrailsCollectionAllOf2 record {
@@ -1805,7 +1805,7 @@ public type JournalLine record {
     @jsondata:Name {value: "ModelNumber"}
     string modelNumber?;
     @jsondata:Name {value: "Debit"}
-    decimal debit;
+    decimal debit?;
     @jsondata:Name {value: "Company"}
     string company?;
     @jsondata:Name {value: "Description"}
@@ -1819,15 +1819,15 @@ public type JournalLine record {
     @jsondata:Name {value: "AccountDisplayValue"}
     string accountDisplayValue?;
     @jsondata:Name {value: "Period"}
-    string period;
+    string period?;
     @jsondata:Name {value: "MainAccountTypeCache"}
     record {byte[] fileContent; string fileName;} mainAccountTypeCache?;
     @jsondata:Name {value: "AccountType"}
     LedgerJournalACType accountType?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "Date"}
-    string date;
+    string date?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "DeferralsId"}
@@ -1835,16 +1835,16 @@ public type JournalLine record {
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
     @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber;
-    string dataAreaId;
+    string journalBatchNumber?;
+    string dataAreaId?;
     @jsondata:Name {value: "OffsetCompany"}
     string offsetCompany?;
     @jsondata:Name {value: "Credit"}
-    decimal credit;
+    decimal credit?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "TransactionDate"}
-    string transactionDate;
+    string transactionDate?;
 };
 
 # Represents the Queries record for the operation: listFiscalYears
@@ -1926,11 +1926,11 @@ public type FiscalYear record {
     @jsondata:Name {value: "Status"}
     FiscalYearStatus status?;
     @jsondata:Name {value: "FiscalYear"}
-    string fiscalYear;
+    string fiscalYear?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "Calendar"}
-    string calendar;
+    string calendar?;
     @jsondata:Name {value: "LegalEntityName"}
     string legalEntityName?;
 };
@@ -1969,11 +1969,11 @@ public type CostCenter record {
     @jsondata:Name {value: "PrimaryContactTwitterDescription"}
     string primaryContactTwitterDescription?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "PrimaryContactTwitter"}
     string primaryContactTwitter?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "PrimaryContactPhoneExtension"}
     string primaryContactPhoneExtension?;
     @jsondata:Name {value: "PrimaryContactEmailIsIM"}
@@ -2005,7 +2005,7 @@ public type CostCenter record {
     @jsondata:Name {value: "NameAlias"}
     string nameAlias?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "PrimaryContactURLDescription"}
     string primaryContactURLDescription?;
     @jsondata:Name {value: "PrimaryContactFacebookDescription"}
@@ -2013,7 +2013,7 @@ public type CostCenter record {
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "OperatingUnitNumber"}
-    string operatingUnitNumber;
+    string operatingUnitNumber?;
     @jsondata:Name {value: "AddressLocationRoles"}
     string addressLocationRoles?;
     @jsondata:Name {value: "AddressBooks"}
@@ -2069,7 +2069,7 @@ public type CostCenter record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 # Represents the Headers record for the operation: deleteLeaseBooks
@@ -2098,7 +2098,7 @@ public type BudgetPlanProcess record {
     @jsondata:Name {value: "BudgetCycle"}
     string budgetCycle?;
     @jsondata:Name {value: "Name"}
-    string name;
+    string name?;
     @jsondata:Name {value: "FiscalCalendarId"}
     string fiscalCalendarId?;
 };
@@ -2189,35 +2189,35 @@ public type DeleteFundsHeaders record {
 
 public type LedgerTransSettlementV2 record {
     @jsondata:Name {value: "GeneralJournalAccountEntry"}
-    int generalJournalAccountEntry;
+    int generalJournalAccountEntry?;
     @jsondata:Name {value: "DateProcessed"}
-    string dateProcessed;
+    string dateProcessed?;
     @jsondata:Name {value: "AccountingDate"}
-    string accountingDate;
+    string accountingDate?;
     @jsondata:Name {value: "OpenAccountingCurrencyAmount"}
-    decimal openAccountingCurrencyAmount;
+    decimal openAccountingCurrencyAmount?;
     @jsondata:Name {value: "Reason"}
     string reason?;
     @jsondata:Name {value: "AccountingCurrencyAmount"}
-    decimal accountingCurrencyAmount;
+    decimal accountingCurrencyAmount?;
     @jsondata:Name {value: "ReportingCurrencyAmount"}
-    decimal reportingCurrencyAmount;
+    decimal reportingCurrencyAmount?;
     @jsondata:Name {value: "PostingLayer"}
     CurrentOperationsTax postingLayer?;
     @jsondata:Name {value: "SettleDate"}
-    string settleDate;
+    string settleDate?;
     @jsondata:Name {value: "SettleStatus"}
     LedgerSettlementStatus settleStatus?;
     @jsondata:Name {value: "Ledger"}
-    int ledger;
+    int ledger?;
     @jsondata:Name {value: "MainAccount"}
-    int mainAccount;
+    int mainAccount?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "Text"}
     string text?;
     @jsondata:Name {value: "TransactionCurrencyAmount"}
-    decimal transactionCurrencyAmount;
+    decimal transactionCurrencyAmount?;
     @jsondata:Name {value: "DocumentNumber"}
     string documentNumber?;
     @jsondata:Name {value: "TransactionCurrencyCode"}
@@ -2227,7 +2227,7 @@ public type LedgerTransSettlementV2 record {
     @jsondata:Name {value: "LedgerAccountDisplayValue"}
     string ledgerAccountDisplayValue?;
     @jsondata:Name {value: "OpenTransactionCurrencyAmount"}
-    decimal openTransactionCurrencyAmount;
+    decimal openTransactionCurrencyAmount?;
     @jsondata:Name {value: "SettleId"}
     string settleId?;
     @jsondata:Name {value: "JournalNumber"}
@@ -2235,13 +2235,13 @@ public type LedgerTransSettlementV2 record {
     @jsondata:Name {value: "SubledgerVoucher"}
     string subledgerVoucher?;
     @jsondata:Name {value: "OriginalTransactionDate"}
-    string originalTransactionDate;
+    string originalTransactionDate?;
     @jsondata:Name {value: "DocumentDate"}
-    string documentDate;
+    string documentDate?;
     @jsondata:Name {value: "Marked"}
     NoYes marked?;
     @jsondata:Name {value: "OpenReportingCurrencyAmount"}
-    decimal openReportingCurrencyAmount;
+    decimal openReportingCurrencyAmount?;
 };
 
 # Represents the Queries record for the operation: getFunds
@@ -2276,7 +2276,7 @@ public type AccrualScheme record {
     @jsondata:Name {value: "TransactionDescription"}
     string transactionDescription?;
     @jsondata:Name {value: "NumberOfOccurrencesPerPeriod"}
-    int:Signed32 numberOfOccurrencesPerPeriod;
+    int:Signed32 numberOfOccurrencesPerPeriod?;
     @jsondata:Name {value: "FiscalPeriodFrequency"}
     AssetAccrualFiscal fiscalPeriodFrequency?;
     @jsondata:Name {value: "PostTransactions"}
@@ -2297,7 +2297,7 @@ public type AccrualScheme record {
     LedgerAccrualVoucher voucher?;
     @jsondata:Name {value: "AccrualSchemeDescription"}
     string accrualSchemeDescription?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "NumberSequenceScope_DataArea"}
     string numberSequenceScopeDataArea?;
     @jsondata:Name {value: "CreditLedgerDimensionDisplayValue"}
@@ -2309,7 +2309,7 @@ public type AccrualScheme record {
     @jsondata:Name {value: "FiscalCalendarPeriod_Name"}
     string fiscalCalendarPeriodName?;
     @jsondata:Name {value: "AccrualIdentification"}
-    string accrualIdentification;
+    string accrualIdentification?;
     @jsondata:Name {value: "FiscalCalendarYear_Name"}
     string fiscalCalendarYearName?;
 };
@@ -2394,20 +2394,20 @@ public type UpdateBudgetPlanProcessesHeaders record {
 
 public type OpeningSheet record {
     @jsondata:Name {value: "SumBalance"}
-    decimal sumBalance;
+    decimal sumBalance?;
     @jsondata:Name {value: "SumTrialBalance"}
-    decimal sumTrialBalance;
+    decimal sumTrialBalance?;
     @jsondata:Name {value: "FiscalCalendarCalendarId"}
     string fiscalCalendarCalendarId?;
     @jsondata:Name {value: "OffsetAccountDisplayValue"}
     string offsetAccountDisplayValue?;
     @jsondata:Name {value: "Result"}
-    decimal result;
+    decimal result?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "LineNum"}
-    decimal lineNum;
+    decimal lineNum?;
     @jsondata:Name {value: "Txt"}
     string txt?;
     @jsondata:Name {value: "LedgerOpeningTransMainAccountChartOfAccountName"}
@@ -2419,25 +2419,25 @@ public type OpeningSheet record {
     @jsondata:Name {value: "PeriodCode"}
     FiscalPeriodType periodCode?;
     @jsondata:Name {value: "LedgerOpeningTableChartOfAccountsName"}
-    string ledgerOpeningTableChartOfAccountsName;
+    string ledgerOpeningTableChartOfAccountsName?;
     @jsondata:Name {value: "LedgerOpeningTransMainAccountMainAccountIdDisplayValue"}
     string ledgerOpeningTransMainAccountMainAccountIdDisplayValue?;
     @jsondata:Name {value: "SumCapital"}
-    decimal sumCapital;
+    decimal sumCapital?;
     @jsondata:Name {value: "LedgerOpeningTransOffsetAccountMainAccountId"}
     string ledgerOpeningTransOffsetAccountMainAccountId?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "TrialBalance"}
-    decimal trialBalance;
+    decimal trialBalance?;
     @jsondata:Name {value: "AcknowledgementDate"}
-    string acknowledgementDate;
+    string acknowledgementDate?;
     @jsondata:Name {value: "LedgerOpeningTableMainAccountIdDisplayValue"}
-    string ledgerOpeningTableMainAccountIdDisplayValue;
+    string ledgerOpeningTableMainAccountIdDisplayValue?;
     @jsondata:Name {value: "FiscalCalendarYearName"}
     string fiscalCalendarYearName?;
     @jsondata:Name {value: "Capital"}
-    decimal capital;
+    decimal capital?;
     @jsondata:Name {value: "AccountType"}
     DimensionLedgerAccountType accountType?;
     @jsondata:Name {value: "Voucher"}
@@ -2447,25 +2447,25 @@ public type OpeningSheet record {
     @jsondata:Name {value: "LedgerAccountDisplayValue"}
     string ledgerAccountDisplayValue?;
     @jsondata:Name {value: "Transfer"}
-    decimal transfer;
+    decimal transfer?;
     @jsondata:Name {value: "FiscalCalendarPeriodName"}
     string fiscalCalendarPeriodName?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "SumTransfer"}
-    decimal sumTransfer;
+    decimal sumTransfer?;
     @jsondata:Name {value: "SumResult"}
-    decimal sumResult;
+    decimal sumResult?;
     @jsondata:Name {value: "LedgerOpeningTransOffsetAccountChartOfAccountName"}
     string ledgerOpeningTransOffsetAccountChartOfAccountName?;
     @jsondata:Name {value: "PostDate"}
-    string postDate;
+    string postDate?;
     @jsondata:Name {value: "Sheet"}
-    string sheet;
+    string sheet?;
     @jsondata:Name {value: "Balance"}
-    decimal balance;
+    decimal balance?;
 };
 
 # Represents the Queries record for the operation: listLedgerJournalDescriptions
@@ -2494,7 +2494,7 @@ public type JournalVoucherDraw "Entering"|"Post";
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -2664,7 +2664,7 @@ public type DeleteLedgerJournalDescriptionsHeaders record {
 public type CPPortfolio record {
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PortfolioType"}
     CPPortfolioTypeTR portfolioType?;
     @jsondata:Name {value: "LedgerACTType"}
@@ -2674,7 +2674,7 @@ public type CPPortfolio record {
     @jsondata:Name {value: "AccountNum"}
     string accountNum?;
     @jsondata:Name {value: "PortfolioCode"}
-    string portfolioCode;
+    string portfolioCode?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -2701,7 +2701,7 @@ public type Accountant record {
     @jsondata:Name {value: "EmailIsPrivate"}
     NoYes emailIsPrivate?;
     @jsondata:Name {value: "CRCExpirationDate"}
-    string cRCExpirationDate;
+    string cRCExpirationDate?;
     @jsondata:Name {value: "AddressDescription"}
     string addressDescription?;
     @jsondata:Name {value: "PhoneCountryRegionCode"}
@@ -2709,7 +2709,7 @@ public type Accountant record {
     @jsondata:Name {value: "CRCCountryRegionId"}
     string cRCCountryRegionId?;
     @jsondata:Name {value: "EmailPrivateForParty"}
-    int emailPrivateForParty;
+    int emailPrivateForParty?;
     @jsondata:Name {value: "AddressIsPrivate"}
     NoYes addressIsPrivate?;
     @jsondata:Name {value: "PhoneDescription"}
@@ -2717,7 +2717,7 @@ public type Accountant record {
     @jsondata:Name {value: "AddressDistrictName"}
     string addressDistrictName?;
     @jsondata:Name {value: "PhonePrivateForParty"}
-    int phonePrivateForParty;
+    int phonePrivateForParty?;
     @jsondata:Name {value: "AddressCountryRegionId"}
     string addressCountryRegionId?;
     @jsondata:Name {value: "PhoneLocatorExtension"}
@@ -2727,7 +2727,7 @@ public type Accountant record {
     @jsondata:Name {value: "PhoneIsInstantMessage"}
     NoYes phoneIsInstantMessage?;
     @jsondata:Name {value: "CRC"}
-    string cRC;
+    string cRC?;
     @jsondata:Name {value: "AddressZipCodeName"}
     string addressZipCodeName?;
     @jsondata:Name {value: "EmailDescription"}
@@ -2743,7 +2743,7 @@ public type Accountant record {
     @jsondata:Name {value: "EmailCountryRegionCode"}
     string emailCountryRegionCode?;
     @jsondata:Name {value: "CPF"}
-    string cPF;
+    string cPF?;
     @jsondata:Name {value: "PhoneIsPrivate"}
     NoYes phoneIsPrivate?;
     @jsondata:Name {value: "PhoneIsMobilePhone"}
@@ -2904,27 +2904,27 @@ public type MainAccount record {
     @jsondata:Name {value: "AdjustmentMethod"}
     AdjustmentMethodMX adjustmentMethod?;
     @jsondata:Name {value: "ChartOfAccountsRecId"}
-    int chartOfAccountsRecId;
+    int chartOfAccountsRecId?;
     @jsondata:Name {value: "ActiveTo"}
-    string activeTo;
+    string activeTo?;
     @jsondata:Name {value: "ReportingAccountType"}
     DimensionLedgerAccountReportingType reportingAccountType?;
     @jsondata:Name {value: "IsSuspended"}
     NoYes isSuspended?;
     @jsondata:Name {value: "MainAccountId"}
-    string mainAccountId;
+    string mainAccountId?;
     @jsondata:Name {value: "RepomoType"}
     RepomoTypeMX repomoType?;
     @jsondata:Name {value: "ActiveFrom"}
-    string activeFrom;
+    string activeFrom?;
     @jsondata:Name {value: "PostingType"}
     LedgerPostingType postingType?;
     @jsondata:Name {value: "MainAccountCategory"}
     string mainAccountCategory?;
     @jsondata:Name {value: "ChartOfAccounts"}
-    string chartOfAccounts;
+    string chartOfAccounts?;
     @jsondata:Name {value: "MainAccountRecId"}
-    int mainAccountRecId;
+    int mainAccountRecId?;
     @jsondata:Name {value: "AccountCategoryDescription"}
     string accountCategoryDescription?;
     @jsondata:Name {value: "BalanceControl"}
@@ -2967,9 +2967,9 @@ public type JournalTrans record {
     @jsondata:Name {value: "ItemSalesTaxGroup"}
     string itemSalesTaxGroup?;
     @jsondata:Name {value: "EndTime"}
-    int:Signed32 endTime;
+    int:Signed32 endTime?;
     @jsondata:Name {value: "Hours"}
-    decimal hours;
+    decimal hours?;
     @jsondata:Name {value: "ProjectID"}
     string projectID?;
     @jsondata:Name {value: "LineProperty"}
@@ -2979,30 +2979,30 @@ public type JournalTrans record {
     @jsondata:Name {value: "Cost"}
     string cost?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "CurrencyId"}
     string currencyId?;
     @jsondata:Name {value: "TransactionID"}
     string transactionID?;
     @jsondata:Name {value: "ReversingDate"}
-    string reversingDate;
+    string reversingDate?;
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "SalesPrice"}
-    decimal salesPrice;
+    decimal salesPrice?;
     @jsondata:Name {value: "ActivityNumber"}
     string activityNumber?;
     @jsondata:Name {value: "VoucherDate"}
-    string voucherDate;
+    string voucherDate?;
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "PercentageComplete"}
-    decimal percentageComplete;
+    decimal percentageComplete?;
     @jsondata:Name {value: "ProjectDate"}
-    string projectDate;
+    string projectDate?;
     @jsondata:Name {value: "CostPrice"}
-    decimal costPrice;
+    decimal costPrice?;
     @jsondata:Name {value: "PriceGroup"}
     string priceGroup?;
     @jsondata:Name {value: "SalesTaxGroup"}
@@ -3012,11 +3012,11 @@ public type JournalTrans record {
     @jsondata:Name {value: "ReversingEntry"}
     NoYes reversingEntry?;
     @jsondata:Name {value: "StartTime"}
-    int:Signed32 startTime;
+    int:Signed32 startTime?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "JournalId"}
-    string journalId;
+    string journalId?;
     @jsondata:Name {value: "ResourceId"}
     string resourceId?;
     @jsondata:Name {value: "PSAWrkCtrId"}
@@ -3059,8 +3059,8 @@ public type UpdateLedgerJournalHeadersHeaders record {
 
 public type LedgerAccountGroup record {
     @jsondata:Name {value: "LedgerPostingGroup"}
-    string ledgerPostingGroup;
-    string dataAreaId;
+    string ledgerPostingGroup?;
+    string dataAreaId?;
     @jsondata:Name {value: "DTLDisplayValue"}
     string dTLDisplayValue?;
     @jsondata:Name {value: "AccountForFATaxesDisplayValue"}
@@ -3159,7 +3159,7 @@ public type ListBudgetPlanProcessesQueries record {
 
 public type FiscalPeriod record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "Quarter"}
     FiscalQuarter quarter?;
     @jsondata:Name {value: "Month"}
@@ -3167,19 +3167,19 @@ public type FiscalPeriod record {
     @jsondata:Name {value: "Type"}
     FiscalPeriodType 'type?;
     @jsondata:Name {value: "FiscalYear"}
-    string fiscalYear;
+    string fiscalYear?;
     @jsondata:Name {value: "Comments"}
     string comments?;
     @jsondata:Name {value: "Calendar"}
-    string calendar;
+    string calendar?;
     @jsondata:Name {value: "Days"}
-    int:Signed32 days;
+    int:Signed32 days?;
     @jsondata:Name {value: "ShortName"}
     string shortName?;
     @jsondata:Name {value: "PeriodName"}
-    string periodName;
+    string periodName?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "CalendarType"}
     CalendarTypeIN calendarType?;
 };
@@ -3192,27 +3192,27 @@ public type FiscalCalendar record {
     @jsondata:Name {value: "Quarter"}
     FiscalQuarter quarter?;
     @jsondata:Name {value: "LedgerRecId"}
-    int ledgerRecId;
+    int ledgerRecId?;
     @jsondata:Name {value: "QuarterOffset"}
-    int:Signed32 quarterOffset;
+    int:Signed32 quarterOffset?;
     @jsondata:Name {value: "CalendarId"}
     string calendarId?;
     @jsondata:Name {value: "PeriodOffset"}
-    int:Signed32 periodOffset;
+    int:Signed32 periodOffset?;
     @jsondata:Name {value: "YearName"}
     string yearName?;
     @jsondata:Name {value: "CalendarRecId"}
-    int calendarRecId;
+    int calendarRecId?;
     @jsondata:Name {value: "LedgerGregorianDateId"}
-    string ledgerGregorianDateId;
+    string ledgerGregorianDateId?;
     @jsondata:Name {value: "YearOffset"}
-    int:Signed32 yearOffset;
+    int:Signed32 yearOffset?;
     @jsondata:Name {value: "Month"}
     FiscalPeriodMonth month?;
     @jsondata:Name {value: "GregorianDate"}
-    string gregorianDate;
+    string gregorianDate?;
     @jsondata:Name {value: "PeriodRecId"}
-    int periodRecId;
+    int periodRecId?;
     @jsondata:Name {value: "PeriodName"}
     string periodName?;
 };
@@ -3246,13 +3246,13 @@ public type DimensionParameters record {
     @jsondata:Name {value: "DimensionSegmentDelimiter"}
     DimensionSegmentDelimiter dimensionSegmentDelimiter?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
 };
 
 public type Fund record {
     @jsondata:Name {value: "IsNonReportingFund"}
     NoYes isNonReportingFund?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "IsMajor"}
     NoYes isMajor?;
     @jsondata:Name {value: "YearEndOption"}
@@ -3262,7 +3262,7 @@ public type Fund record {
     @jsondata:Name {value: "FundType"}
     string fundType?;
     @jsondata:Name {value: "FundNumber"}
-    string fundNumber;
+    string fundNumber?;
     @jsondata:Name {value: "FundClass"}
     FundClassValue fundClass?;
     @jsondata:Name {value: "PSNTreasurerFundReport"}
@@ -3336,13 +3336,13 @@ public type UpdateDimensionAttributesHeaders record {
 public type LedgerAccrualVoucher "Base"|"Single"|"Multiple";
 
 public type BudgetModel record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Stopped"}
     NoYes stopped?;
     @jsondata:Name {value: "CashFlowForecasts"}
     NoYes cashFlowForecasts?;
     @jsondata:Name {value: "BudgetModel"}
-    string budgetModel;
+    string budgetModel?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
@@ -3454,7 +3454,7 @@ public type AssetAccrualCalendar "Yearly"|"Monthly"|"Quarterly"|"HalfYearly"|"Da
 
 public type Ledger record {
     @jsondata:Name {value: "LedgerRecId"}
-    int ledgerRecId;
+    int ledgerRecId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "IsBudgetControlEnabled"}
@@ -3490,7 +3490,7 @@ public type Ledger record {
     @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
     string reportingCurrencyExchangeRateType?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "AccountingCurrency"}
     string accountingCurrency?;
     @jsondata:Name {value: "MainAccountIdUnrealizedGain"}
@@ -3510,7 +3510,7 @@ public type Ledger record {
     @jsondata:Name {value: "AccountStructureName7"}
     string accountStructureName7?;
     @jsondata:Name {value: "ChartOfAccountsRecId"}
-    int chartOfAccountsRecId;
+    int chartOfAccountsRecId?;
     @jsondata:Name {value: "AccountStructureName8"}
     string accountStructureName8?;
     @jsondata:Name {value: "AccountStructureName9"}
@@ -3556,7 +3556,7 @@ public type CPTable record {
     string chequePrintedNum?;
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OwnCheque"}
     NoYes ownCheque?;
     @jsondata:Name {value: "PortfolioType"}
@@ -3570,11 +3570,11 @@ public type CPTable record {
     @jsondata:Name {value: "Guarantor"}
     string guarantor?;
     @jsondata:Name {value: "DueDate"}
-    string dueDate;
+    string dueDate?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "SystemChequeNum"}
-    string systemChequeNum;
+    string systemChequeNum?;
     @jsondata:Name {value: "Cancelled"}
     NoYes cancelled?;
     @jsondata:Name {value: "TransferCustAccount"}
@@ -3584,13 +3584,13 @@ public type CPTable record {
     @jsondata:Name {value: "AccountType"}
     CPAccountTypeTR accountType?;
     @jsondata:Name {value: "DrawingDate"}
-    string drawingDate;
+    string drawingDate?;
     @jsondata:Name {value: "ChequeTransactionNum"}
     string chequeTransactionNum?;
     @jsondata:Name {value: "TransCode"}
     string transCode?;
     @jsondata:Name {value: "TransferExchRate"}
-    decimal transferExchRate;
+    decimal transferExchRate?;
     @jsondata:Name {value: "BankGroupId"}
     string bankGroupId?;
     @jsondata:Name {value: "BankBranchName"}
@@ -3628,7 +3628,7 @@ public type CPParameter record {
     string notesReceivableMainAccountMainAccountId?;
     @jsondata:Name {value: "CustDimensionName"}
     string custDimensionName?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "VendDimensionType"}
     DimensionAttributeType vendDimensionType?;
     @jsondata:Name {value: "NotesPayableMainAccountMainAccountId"}
@@ -3678,7 +3678,7 @@ public type CPParameter record {
     @jsondata:Name {value: "BankDimensionName"}
     string bankDimensionName?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
     @jsondata:Name {value: "COADimensionType"}
     DimensionAttributeType cOADimensionType?;
     @jsondata:Name {value: "JournalCancelActive"}
@@ -3709,19 +3709,19 @@ public type AdjustmentMethodMX "None"|"TransactionDate"|"OpenBalance"|"MonthlyBa
 
 public type BudgetCycle record {
     @jsondata:Name {value: "StartDate"}
-    string startDate;
+    string startDate?;
     @jsondata:Name {value: "FiscalCalendar"}
-    string fiscalCalendar;
+    string fiscalCalendar?;
     @jsondata:Name {value: "NumberOfFiscalPeriods"}
-    int:Signed32 numberOfFiscalPeriods;
+    int:Signed32 numberOfFiscalPeriods?;
     @jsondata:Name {value: "BudgetCycleName"}
-    string budgetCycleName;
+    string budgetCycleName?;
     @jsondata:Name {value: "LengthOfBudgetCycle"}
     BudgetCycleLengthOption lengthOfBudgetCycle?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "BudgetCycleTimeSpanName"}
-    string budgetCycleTimeSpanName;
+    string budgetCycleTimeSpanName?;
 };
 
 # Represents the Queries record for the operation: listFunds
@@ -3921,17 +3921,17 @@ public type CPTransCollectionAllOf2 record {
 };
 
 public type LedgerInterval record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ToAccount"}
-    string toAccount;
+    string toAccount?;
     @jsondata:Name {value: "FromAccount"}
-    string fromAccount;
+    string fromAccount?;
     @jsondata:Name {value: "ToLedgerChartOfAccounts"}
-    string toLedgerChartOfAccounts;
+    string toLedgerChartOfAccounts?;
     @jsondata:Name {value: "FromLedgerChartOfAccounts"}
-    string fromLedgerChartOfAccounts;
+    string fromLedgerChartOfAccounts?;
     @jsondata:Name {value: "IntervalGroup"}
-    string intervalGroup;
+    string intervalGroup?;
 };
 
 public type AssetLeaseLeaseStatus "NotYetAcquired"|"Open"|"Closed"|"Terminated";
@@ -3958,7 +3958,7 @@ public type MainAccountLegalEntity record {
     @jsondata:Name {value: "ItemSalesTaxGroup"}
     string itemSalesTaxGroup?;
     @jsondata:Name {value: "ActiveTo"}
-    string activeTo;
+    string activeTo?;
     @jsondata:Name {value: "TaxTableLegalEntity"}
     string taxTableLegalEntity?;
     @jsondata:Name {value: "FixedDimensionsDisplayValue"}
@@ -3966,17 +3966,17 @@ public type MainAccountLegalEntity record {
     @jsondata:Name {value: "IsSuspended"}
     NoYes isSuspended?;
     @jsondata:Name {value: "MainAccountId"}
-    string mainAccountId;
+    string mainAccountId?;
     @jsondata:Name {value: "ActiveFrom"}
-    string activeFrom;
+    string activeFrom?;
     @jsondata:Name {value: "ExchangeAdjustmentRateType"}
     string exchangeAdjustmentRateType?;
     @jsondata:Name {value: "ItemSalesTaxGroupHeadingLegalEntity"}
     string itemSalesTaxGroupHeadingLegalEntity?;
     @jsondata:Name {value: "ChartOfAccounts"}
-    string chartOfAccounts;
+    string chartOfAccounts?;
     @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId;
+    string legalEntityId?;
     @jsondata:Name {value: "SalesTaxDirection"}
     SalesPurch salesTaxDirection?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
@@ -3988,13 +3988,13 @@ public type MainAccountLegalEntity record {
 };
 
 public type BudgetCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "IsDefaultCode"}
     NoYes isDefaultCode?;
     @jsondata:Name {value: "BudgetCode"}
-    string budgetCode;
+    string budgetCode?;
     @jsondata:Name {value: "WorkflowId"}
     string workflowId?;
     @jsondata:Name {value: "ReasonCode"}
@@ -4197,11 +4197,11 @@ public type GetBudgetModelsQueries record {
 public type DimensionRule record {
     @jsondata:Name {value: "ToDimensionAttribute_Type"}
     DimensionAttributeType toDimensionAttributeType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DimensionAttribute_Type"}
     DimensionAttributeType dimensionAttributeType?;
     @jsondata:Name {value: "LineId"}
-    string lineId;
+    string lineId?;
     @jsondata:Name {value: "ToDimensionCode"}
     string toDimensionCode?;
     @jsondata:Name {value: "DimensionAttribute_Name"}
@@ -4229,17 +4229,17 @@ public type GetLedgerAccountGroupsQueries record {
 };
 
 public type PostingDefinition record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "VersionDescription"}
     string versionDescription?;
     @jsondata:Name {value: "PostingDefinitionId"}
-    string postingDefinitionId;
+    string postingDefinitionId?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "Module"}
     JournalizingDefinitionModuleId 'module?;
 };
@@ -4285,7 +4285,7 @@ public type DimensionSet record {
     @jsondata:Name {value: "MainAccount"}
     string mainAccount?;
     @jsondata:Name {value: "RecordId"}
-    int recordId;
+    int recordId?;
 };
 
 public type BudgetCodesCollectionAllOf2 record {
@@ -4317,13 +4317,13 @@ public type CPTran record {
     @jsondata:Name {value: "DebitCredit"}
     DebitCredit debitCredit?;
     @jsondata:Name {value: "ChequeJournalTransNum"}
-    string chequeJournalTransNum;
+    string chequeJournalTransNum?;
     @jsondata:Name {value: "SystemChequeNum"}
     string systemChequeNum?;
     @jsondata:Name {value: "PaymReference"}
     string paymReference?;
     @jsondata:Name {value: "FixedExchRate"}
-    decimal fixedExchRate;
+    decimal fixedExchRate?;
     @jsondata:Name {value: "Posted"}
     NoYes posted?;
     @jsondata:Name {value: "AccountType"}
@@ -4334,11 +4334,11 @@ public type CPTran record {
     string portfolioDefaultDimensionDisplayValue?;
     @jsondata:Name {value: "BankTransType"}
     string bankTransType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PaymId"}
     string paymId?;
     @jsondata:Name {value: "FixedReportingCurrencyExchRate"}
-    decimal fixedReportingCurrencyExchRate;
+    decimal fixedReportingCurrencyExchRate?;
     @jsondata:Name {value: "PostingProfile"}
     string postingProfile?;
     @jsondata:Name {value: "TransCode"}
@@ -4348,7 +4348,7 @@ public type CPTran record {
     @jsondata:Name {value: "ChequeJournalNum"}
     string chequeJournalNum?;
     @jsondata:Name {value: "TransDate"}
-    string transDate;
+    string transDate?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "JournalNum"}
@@ -4358,7 +4358,7 @@ public type CPTran record {
     @jsondata:Name {value: "PortfolioCode"}
     string portfolioCode?;
     @jsondata:Name {value: "FixedExchangeRateTypeId"}
-    int fixedExchangeRateTypeId;
+    int fixedExchangeRateTypeId?;
     @jsondata:Name {value: "ReverseChequeTransNum"}
     string reverseChequeTransNum?;
 };
@@ -4446,11 +4446,11 @@ public type DimensionAttribute record {
     @jsondata:Name {value: "ReportColumnName"}
     string reportColumnName?;
     @jsondata:Name {value: "BalancingDimension_PSN"}
-    int balancingDimensionPSN;
+    int balancingDimensionPSN?;
     @jsondata:Name {value: "IsBalancing_PSN"}
     NoYes isBalancingPSN?;
     @jsondata:Name {value: "DimensionName"}
-    string dimensionName;
+    string dimensionName?;
 };
 
 public type FundTypesCollectionAllOf2 record {
@@ -4458,15 +4458,15 @@ public type FundTypesCollectionAllOf2 record {
 };
 
 public type PostingJournal record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "NumberSequenceCode"}
-    string numberSequenceCode;
+    string numberSequenceCode?;
     @jsondata:Name {value: "Journal"}
-    string journal;
+    string journal?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "JournalType"}
     LedgerJournalTypeBE journalType?;
     @jsondata:Name {value: "Name"}
