@@ -49,6 +49,15 @@ jobs:
           distribution: temurin
           java-version: 21.0.3
 
+      - name: Cache Ballerina packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.ballerina
+          key: ${{ runner.os }}-ballerina-${{ matrix.directory }}-${{ hashFiles(format('ballerina/{0}/Dependencies.toml', matrix.directory)) }}
+          restore-keys: |
+            ${{ runner.os }}-ballerina-${{ matrix.directory }}-
+            ${{ runner.os }}-ballerina-
+
       - name: Publish to Dev Central
         if: ${{ inputs.environment == 'DEV CENTRAL' }}
         env:
@@ -58,8 +67,10 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -PbuildUsingDocker=nightly -PpublishToCentral=true
+            -x test -PbuildUsingDocker=nightly -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -70,5 +81,7 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -PbuildUsingDocker=nightly -PpublishToCentral=true
+            -x test -PbuildUsingDocker=nightly -PpublishToCentral=true
