@@ -13,6 +13,7 @@ public type PaymentCalendarRulesCollection record {
 
 # Represents the Headers record for the operation: deletePaymentCalendarRules
 public type DeletePaymentCalendarRulesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -226,8 +227,10 @@ public type LegalEntity record {
 
 # Represents the Queries record for the operation: getBusinessUnits
 public type GetBusinessUnitsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -236,6 +239,7 @@ public type GenderMaleFemale "Male"|"Female";
 
 # Represents the Headers record for the operation: deleteDirParameters
 public type DeleteDirParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -247,6 +251,7 @@ public type BranchesCollection record {
 
 # Represents the Headers record for the operation: deleteCategories
 public type DeleteCategoriesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -378,6 +383,7 @@ public type Department record {
 
 # Represents the Headers record for the operation: deleteDepartmentsV2
 public type DeleteDepartmentsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -389,8 +395,10 @@ public type PaymentTermsCollection record {
 
 # Represents the Queries record for the operation: getExchangeRates
 public type GetExchangeRatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -455,26 +463,35 @@ public type Currency record {
 
 # Represents the Headers record for the operation: updateVRMTaxGroups
 public type UpdateVRMTaxGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listCardTypes
 public type ListCardTypesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -545,14 +562,17 @@ public type ConnectionConfig record {|
 
 # Represents the Queries record for the operation: getVRMLanguages
 public type GetVRMLanguagesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteWarehouses
 public type DeleteWarehousesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -565,6 +585,7 @@ public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
 
 # Represents the Headers record for the operation: deleteCDSParties
 public type DeleteCDSPartiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -573,8 +594,10 @@ public type DimSettlementCtrlTypeRU "None"|"Auto"|"Manual"|"Always";
 
 # Represents the Queries record for the operation: getPaymentMethods
 public type GetPaymentMethodsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -585,6 +608,7 @@ public type CardTypesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteAddressFormats
 public type DeleteAddressFormatsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -593,6 +617,7 @@ public type WeekDays "None"|"Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"
 
 # Represents the Headers record for the operation: updateELCOAs
 public type UpdateELCOAsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -718,8 +743,10 @@ public type BusinessUnit record {
 
 # Represents the Queries record for the operation: getCDSParties
 public type GetCDSPartiesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -740,14 +767,17 @@ public type DepartmentsCollection record {
 
 # Represents the Queries record for the operation: getWarehouses
 public type GetWarehousesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteDenominations
 public type DeleteDenominationsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -761,8 +791,10 @@ public type ABC "None"|"A"|"B"|"C";
 
 # Represents the Queries record for the operation: getDirParameters
 public type GetDirParametersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -771,8 +803,10 @@ public type WHSReleaseRuleFailureOption "WarningSkipLine"|"ErrorSkipOrder";
 
 # Represents the Queries record for the operation: getLegalEntities
 public type GetLegalEntitiesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -784,54 +818,69 @@ public type VRMLanguagesCollection record {
 
 # Represents the Headers record for the operation: deleteDepartments
 public type DeleteDepartmentsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateVoucherTypes
 public type UpdateVoucherTypesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getPaymentInstructions
 public type GetPaymentInstructionsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getEmplPostings
 public type GetEmplPostingsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteExchangeRates
 public type DeleteExchangeRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listPaymentMethods
 public type ListPaymentMethodsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -949,24 +998,30 @@ public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
 
 # Represents the Queries record for the operation: getPaymentTerms
 public type GetPaymentTermsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getVRMCurrencies
 public type GetVRMCurrenciesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getVRMParameters
 public type GetVRMParametersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -985,8 +1040,10 @@ public type VATNumTablesCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getPaymentCalendarRules
 public type GetPaymentCalendarRulesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -998,8 +1055,10 @@ public type VRMParametersCollection record {
 
 # Represents the Queries record for the operation: getAddressBooks
 public type GetAddressBooksQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1020,28 +1079,38 @@ public type ExchangeRatesCollection record {
 
 # Represents the Queries record for the operation: getSalutations
 public type GetSalutationsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listCompanies
 public type ListCompaniesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1079,6 +1148,7 @@ public type VATNumTable record {
 
 # Represents the Headers record for the operation: deleteCurrencies
 public type DeleteCurrenciesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1087,6 +1157,7 @@ public type ProdRAFPostingMethodInherit "Inherit"|"Immediate"|"Deferred";
 
 # Represents the Headers record for the operation: updateDenominations
 public type UpdateDenominationsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1127,6 +1198,7 @@ public type VRMPeopleCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateAddressObjects
 public type UpdateAddressObjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1140,8 +1212,10 @@ public type LanguageCode record {
 
 # Represents the Queries record for the operation: getNameSequences
 public type GetNameSequencesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1165,8 +1239,10 @@ public type DepartmentsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getCompanies
 public type GetCompaniesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1196,38 +1272,49 @@ public type DirParameters record {
 
 # Represents the Headers record for the operation: updateNameAffixes
 public type UpdateNameAffixesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateSalutations
 public type UpdateSalutationsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listCurrencyRules
 public type ListCurrencyRulesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateLanguageCodes
 public type UpdateLanguageCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1248,20 +1335,24 @@ public type ELCOA record {
 
 # Represents the Headers record for the operation: updateAddressCities
 public type UpdateAddressCitiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateLegalEntities
 public type UpdateLegalEntitiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getELCOAs
 public type GetELCOAsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1272,8 +1363,10 @@ public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
 
 # Represents the Queries record for the operation: getDepartments
 public type GetDepartmentsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1282,26 +1375,35 @@ public type TableGroupAll "Table"|"GroupId"|"All";
 
 # Represents the Headers record for the operation: updateVATNumTables
 public type UpdateVATNumTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listLegalEntities
 public type ListLegalEntitiesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1394,28 +1496,38 @@ public type CDSParty record {
 
 # Represents the Queries record for the operation: listNameSequences
 public type ListNameSequencesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getVATNumTables
 public type GetVATNumTablesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1674,14 +1786,17 @@ public type AddressBooks record {
 
 # Represents the Headers record for the operation: deleteBusinessUnits
 public type DeleteBusinessUnitsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getCardTypes
 public type GetCardTypesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1693,40 +1808,56 @@ public type AddressBooksCollection record {
 
 # Represents the Queries record for the operation: listPaymentDays
 public type ListPaymentDaysQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listWarehouses
 public type ListWarehousesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1738,8 +1869,10 @@ public type ExchangeRatesNonISOCollection record {
 
 # Represents the Queries record for the operation: getDenominations
 public type GetDenominationsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1750,6 +1883,7 @@ public type DepartmentsV2CollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteAddressBooks
 public type DeleteAddressBooksHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1772,8 +1906,10 @@ public type Branch record {
 
 # Represents the Queries record for the operation: getLanguageCodes
 public type GetLanguageCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1809,46 +1945,63 @@ public type NameSequence record {
 
 # Represents the Queries record for the operation: listAddressFormats
 public type ListAddressFormatsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listAddressBooks
 public type ListAddressBooksQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCardTypes
 public type DeleteCardTypesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1859,26 +2012,35 @@ public type ExchangeRatesNonISOCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateCurrencyRules
 public type UpdateCurrencyRulesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listLanguageCodes
 public type ListLanguageCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1887,6 +2049,7 @@ public type LegalNatureIT "LN1"|"LN2"|"LN3"|"LN4"|"LN5"|"LN6"|"LN7"|"LN8"|"LN9"|
 
 # Represents the Headers record for the operation: updateCurrencies
 public type UpdateCurrenciesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1937,18 +2100,21 @@ public type PaymentTerm record {
 
 # Represents the Headers record for the operation: deleteVATNumTables
 public type DeleteVATNumTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteVRMParameters
 public type DeleteVRMParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteVRMCurrencies
 public type DeleteVRMCurrenciesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1968,20 +2134,28 @@ public type NameSequencesCollection record {
 
 # Represents the Queries record for the operation: listDenominations
 public type ListDenominationsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1996,46 +2170,63 @@ public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June
 
 # Represents the Headers record for the operation: updateVRMCurrencies
 public type UpdateVRMCurrenciesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listExchangeRatesNonISO
 public type ListExchangeRatesNonISOQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listSalutations
 public type ListSalutationsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2046,66 +2237,87 @@ public type BusinessUnitsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listBranches
 public type ListBranchesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updatePaymentMethods
 public type UpdatePaymentMethodsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listVATNumTables
 public type ListVATNumTablesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateVRMLanguages
 public type UpdateVRMLanguagesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateCategories
 public type UpdateCategoriesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getVRMTaxGroups
 public type GetVRMTaxGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2117,12 +2329,14 @@ public type DepartmentsV2Collection record {
 
 # Represents the Headers record for the operation: deleteVRMPeople
 public type DeleteVRMPeopleHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteLanguageCodes
 public type DeleteLanguageCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2146,26 +2360,35 @@ public type CardTypes record {
 
 # Represents the Queries record for the operation: listNameAffixes
 public type ListNameAffixesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteAddressObjects
 public type DeleteAddressObjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2181,12 +2404,14 @@ public type CurrencyRulesCollection record {
 
 # Represents the Headers record for the operation: updateExchangeRates
 public type UpdateExchangeRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteCompanies
 public type DeleteCompaniesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2197,26 +2422,35 @@ public type LanguageCodesCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listExchangeRates
 public type ListExchangeRatesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateBranches
 public type UpdateBranchesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2248,20 +2482,28 @@ public type SysLocalizationCountryRegionCode "Default"|"None"|"BE"|"BR"|"CA"|"CZ
 
 # Represents the Queries record for the operation: listDepartments
 public type ListDepartmentsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2280,26 +2522,35 @@ public type Denomination record {
 
 # Represents the Queries record for the operation: listBusinessUnits
 public type ListBusinessUnitsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteEmplPostings
 public type DeleteEmplPostingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2318,40 +2569,56 @@ public type NoYes "No"|"Yes";
 
 # Represents the Queries record for the operation: listVRMCurrencies
 public type ListVRMCurrenciesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listEmplPostings
 public type ListEmplPostingsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2360,12 +2627,14 @@ public type DirPartyBaseType "Person"|"Organization";
 
 # Represents the Headers record for the operation: deletePaymentInstructions
 public type DeletePaymentInstructionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateAddressStates
 public type UpdateAddressStatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2381,6 +2650,7 @@ public type NameAffixesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateNameSequences
 public type UpdateNameSequencesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2389,6 +2659,7 @@ public type InventLocationType "Standard"|"Quarantine"|"Transit"|"GoodsInRoute_R
 
 # Represents the Headers record for the operation: deleteNameSequences
 public type DeleteNameSequencesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2399,26 +2670,35 @@ public type AddressObjectsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listPaymentCalendarRules
 public type ListPaymentCalendarRulesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updatePaymentTerms
 public type UpdatePaymentTermsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2431,14 +2711,17 @@ public type Salutation record {
 
 # Represents the Queries record for the operation: getAddressObjects
 public type GetAddressObjectsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteAddressStates
 public type DeleteAddressStatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2478,18 +2761,21 @@ public type VRMPeopleCollection record {
 
 # Represents the Headers record for the operation: deleteELCOAs
 public type DeleteELCOAsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updatePaymentDays
 public type UpdatePaymentDaysHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateAddressBooks
 public type UpdateAddressBooksHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2501,8 +2787,10 @@ public type EmplPostingsCollection record {
 
 # Represents the Queries record for the operation: getVoucherTypes
 public type GetVoucherTypesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2660,20 +2948,28 @@ public type ODataCollection record {
 
 # Represents the Queries record for the operation: listAddressObjects
 public type ListAddressObjectsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2700,62 +2996,83 @@ public type VRMParameter record {
 
 # Represents the Queries record for the operation: getVRMPeople
 public type GetVRMPeopleQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listELCOAs
 public type ListELCOAsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getCurrencyRules
 public type GetCurrencyRulesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateCDSParties
 public type UpdateCDSPartiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listCDSParties
 public type ListCDSPartiesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2790,32 +3107,42 @@ public type CurrencyRule record {
 
 # Represents the Headers record for the operation: updateEmplPostings
 public type UpdateEmplPostingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteAddressCities
 public type DeleteAddressCitiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listDepartmentsV2
 public type ListDepartmentsV2Queries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2837,18 +3164,21 @@ public type Company record {
 
 # Represents the Headers record for the operation: deletePaymentMethods
 public type DeletePaymentMethodsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteBranches
 public type DeleteBranchesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateDepartmentsV2
 public type UpdateDepartmentsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2860,6 +3190,7 @@ public type DenominationsCollection record {
 
 # Represents the Headers record for the operation: deleteExchangeRatesNonISO
 public type DeleteExchangeRatesNonISOHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2871,108 +3202,146 @@ public type CurrenciesCollection record {
 
 # Represents the Headers record for the operation: deleteVRMLanguages
 public type DeleteVRMLanguagesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listVRMLanguages
 public type ListVRMLanguagesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getPaymentDays
 public type GetPaymentDaysQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateVRMPeople
 public type UpdateVRMPeopleHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getAddressFormats
 public type GetAddressFormatsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listDirParameters
 public type ListDirParametersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listVRMTaxGroups
 public type ListVRMTaxGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listPaymentInstructions
 public type ListPaymentInstructionsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2989,6 +3358,7 @@ public type AddressStatesCollection record {
 
 # Represents the Headers record for the operation: deleteVRMTaxGroups
 public type DeleteVRMTaxGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3047,14 +3417,17 @@ public type AddressObject record {
 
 # Represents the Queries record for the operation: getNameAffixes
 public type GetNameAffixesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateDepartments
 public type UpdateDepartmentsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3069,6 +3442,7 @@ public type ExchangeRatesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteNameAffixes
 public type DeleteNameAffixesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3081,20 +3455,28 @@ public type PaymentTermsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listAddressCities
 public type ListAddressCitiesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3106,42 +3488,55 @@ public type ELCOAsCollection record {
 
 # Represents the Queries record for the operation: getCurrencies
 public type GetCurrenciesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listVRMParameters
 public type ListVRMParametersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getAddressCities
 public type GetAddressCitiesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateExchangeRatesNonISO
 public type UpdateExchangeRatesNonISOHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3150,20 +3545,28 @@ public type WHSAllowMarkingReservationRemoval "None"|"Reservation"|"MarkingReser
 
 # Represents the Queries record for the operation: listCategories
 public type ListCategoriesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3191,20 +3594,28 @@ public type CompaniesCollection record {
 
 # Represents the Queries record for the operation: listVRMPeople
 public type ListVRMPeopleQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3216,6 +3627,7 @@ public type CDSPartiesCollection record {
 
 # Represents the Headers record for the operation: updateCardTypes
 public type UpdateCardTypesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3238,20 +3650,28 @@ public type Category record {
 
 # Represents the Queries record for the operation: listAddressStates
 public type ListAddressStatesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3273,52 +3693,70 @@ public type PaymentInstruction record {
 
 # Represents the Headers record for the operation: deleteVoucherTypes
 public type DeleteVoucherTypesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deletePaymentTerms
 public type DeletePaymentTermsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listVoucherTypes
 public type ListVoucherTypesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listCurrencies
 public type ListCurrenciesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3330,26 +3768,31 @@ public type BusinessUnitsCollection record {
 
 # Represents the Headers record for the operation: updateBusinessUnits
 public type UpdateBusinessUnitsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteCurrencyRules
 public type DeleteCurrencyRulesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getDepartmentsV2
 public type GetDepartmentsV2Queries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateAddressFormats
 public type UpdateAddressFormatsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3363,6 +3806,7 @@ public type CardTypesCollection record {
 
 # Represents the Headers record for the operation: updateVRMParameters
 public type UpdateVRMParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3374,14 +3818,17 @@ public type VoucherTypesCollection record {
 
 # Represents the Queries record for the operation: getExchangeRatesNonISO
 public type GetExchangeRatesNonISOQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updatePaymentCalendarRules
 public type UpdatePaymentCalendarRulesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3404,6 +3851,7 @@ public type PaymentInstructionsCollection record {
 
 # Represents the Headers record for the operation: updateWarehouses
 public type UpdateWarehousesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3414,8 +3862,10 @@ public type AddressBooksCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getCategories
 public type GetCategoriesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3424,40 +3874,52 @@ public type PaymCalendarRuleType "Specific"|"ThirdPartyLocation"|"LegalEntityLoc
 
 # Represents the Headers record for the operation: deletePaymentDays
 public type DeletePaymentDaysHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteSalutations
 public type DeleteSalutationsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listPaymentTerms
 public type ListPaymentTermsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getAddressStates
 public type GetAddressStatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3469,12 +3931,14 @@ public type WarehousesCollection record {
 
 # Represents the Headers record for the operation: updatePaymentInstructions
 public type UpdatePaymentInstructionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateCompanies
 public type UpdateCompaniesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3487,20 +3951,24 @@ public type WHSReleaseToWarehouseRule "NotApplicable"|"AllowPartialReservation"|
 
 # Represents the Headers record for the operation: updateDirParameters
 public type UpdateDirParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteLegalEntities
 public type DeleteLegalEntitiesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getBranches
 public type GetBranchesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };

@@ -29,6 +29,7 @@ public isolated client class Client {
 
     # Create Abbreviations
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Abbreviations created 
     remote isolated function createAbbreviations(Abbreviations payload, map<string|string[]> headers = {}) returns Abbreviations|error {
@@ -41,6 +42,7 @@ public isolated client class Client {
 
     # Get Abbreviations by key
     #
+    # + addrTypeCode - The addr type code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Abbreviations 
@@ -52,6 +54,7 @@ public isolated client class Client {
 
     # Delete Abbreviations
     #
+    # + addrTypeCode - The addr type code key field 
     # + headers - Headers to be sent with the request 
     # + return - Abbreviations deleted 
     remote isolated function deleteAbbreviations(string addrTypeCode, DeleteAbbreviationsHeaders headers = {}) returns error? {
@@ -62,6 +65,8 @@ public isolated client class Client {
 
     # Update Abbreviations
     #
+    # + addrTypeCode - The addr type code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Abbreviations updated 
     remote isolated function updateAbbreviations(string addrTypeCode, Abbreviations payload, UpdateAbbreviationsHeaders headers = {}) returns Abbreviations|error {
@@ -86,6 +91,7 @@ public isolated client class Client {
 
     # Create ActionClass
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ActionClass created 
     remote isolated function createActionClasses(ActionClass payload, map<string|string[]> headers = {}) returns ActionClass|error {
@@ -98,6 +104,8 @@ public isolated client class Client {
 
     # Get ActionClass by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + executableClass - The executable class key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ActionClass 
@@ -109,6 +117,8 @@ public isolated client class Client {
 
     # Delete ActionClass
     #
+    # + dataAreaId - The company data area identifier 
+    # + executableClass - The executable class key field 
     # + headers - Headers to be sent with the request 
     # + return - ActionClass deleted 
     remote isolated function deleteActionClasses(string dataAreaId, string executableClass, DeleteActionClassesHeaders headers = {}) returns error? {
@@ -119,6 +129,9 @@ public isolated client class Client {
 
     # Update ActionClass
     #
+    # + dataAreaId - The company data area identifier 
+    # + executableClass - The executable class key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ActionClass updated 
     remote isolated function updateActionClasses(string dataAreaId, string executableClass, ActionClass payload, UpdateActionClassesHeaders headers = {}) returns ActionClass|error {
@@ -143,6 +156,7 @@ public isolated client class Client {
 
     # Create Action
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Action created 
     remote isolated function createActions(Action payload, map<string|string[]> headers = {}) returns Action|error {
@@ -155,6 +169,8 @@ public isolated client class Client {
 
     # Get Action by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + action - The action key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Action 
@@ -166,6 +182,8 @@ public isolated client class Client {
 
     # Delete Action
     #
+    # + dataAreaId - The company data area identifier 
+    # + action - The action key field 
     # + headers - Headers to be sent with the request 
     # + return - Action deleted 
     remote isolated function deleteActions(string dataAreaId, string action, DeleteActionsHeaders headers = {}) returns error? {
@@ -176,6 +194,9 @@ public isolated client class Client {
 
     # Update Action
     #
+    # + dataAreaId - The company data area identifier 
+    # + action - The action key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Action updated 
     remote isolated function updateActions(string dataAreaId, string action, Action payload, UpdateActionsHeaders headers = {}) returns Action|error {
@@ -200,6 +221,7 @@ public isolated client class Client {
 
     # Create AdvancedRule
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - AdvancedRule created 
     remote isolated function createAdvancedRules(AdvancedRule payload, map<string|string[]> headers = {}) returns AdvancedRule|error {
@@ -212,6 +234,9 @@ public isolated client class Client {
 
     # Get AdvancedRule by key
     #
+    # + accountStructure - The account structure key field 
+    # + advancedRuleName - The advanced rule name key field 
+    # + status - The status key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - AdvancedRule 
@@ -223,6 +248,9 @@ public isolated client class Client {
 
     # Delete AdvancedRule
     #
+    # + accountStructure - The account structure key field 
+    # + advancedRuleName - The advanced rule name key field 
+    # + status - The status key field 
     # + headers - Headers to be sent with the request 
     # + return - AdvancedRule deleted 
     remote isolated function deleteAdvancedRules(string accountStructure, string advancedRuleName, string status, DeleteAdvancedRulesHeaders headers = {}) returns error? {
@@ -233,6 +261,10 @@ public isolated client class Client {
 
     # Update AdvancedRule
     #
+    # + accountStructure - The account structure key field 
+    # + advancedRuleName - The advanced rule name key field 
+    # + status - The status key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - AdvancedRule updated 
     remote isolated function updateAdvancedRules(string accountStructure, string advancedRuleName, string status, AdvancedRule payload, UpdateAdvancedRulesHeaders headers = {}) returns AdvancedRule|error {
@@ -257,6 +289,7 @@ public isolated client class Client {
 
     # Create AgentFeed
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - AgentFeed created 
     remote isolated function createAgentFeeds(AgentFeed payload, map<string|string[]> headers = {}) returns AgentFeed|error {
@@ -269,6 +302,8 @@ public isolated client class Client {
 
     # Get AgentFeed by key
     #
+    # + feedItemId - The feed item id key field 
+    # + correlationId - The correlation id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - AgentFeed 
@@ -280,6 +315,8 @@ public isolated client class Client {
 
     # Delete AgentFeed
     #
+    # + feedItemId - The feed item id key field 
+    # + correlationId - The correlation id key field 
     # + headers - Headers to be sent with the request 
     # + return - AgentFeed deleted 
     remote isolated function deleteAgentFeeds(string feedItemId, string correlationId, DeleteAgentFeedsHeaders headers = {}) returns error? {
@@ -290,6 +327,9 @@ public isolated client class Client {
 
     # Update AgentFeed
     #
+    # + feedItemId - The feed item id key field 
+    # + correlationId - The correlation id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - AgentFeed updated 
     remote isolated function updateAgentFeeds(string feedItemId, string correlationId, AgentFeed payload, UpdateAgentFeedsHeaders headers = {}) returns AgentFeed|error {
@@ -314,6 +354,7 @@ public isolated client class Client {
 
     # Create Agent
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Agent created 
     remote isolated function createAgents(Agent payload, map<string|string[]> headers = {}) returns Agent|error {
@@ -326,6 +367,8 @@ public isolated client class Client {
 
     # Get Agent by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + agentId - The agent id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Agent 
@@ -337,6 +380,8 @@ public isolated client class Client {
 
     # Delete Agent
     #
+    # + dataAreaId - The company data area identifier 
+    # + agentId - The agent id key field 
     # + headers - Headers to be sent with the request 
     # + return - Agent deleted 
     remote isolated function deleteAgents(string dataAreaId, string agentId, DeleteAgentsHeaders headers = {}) returns error? {
@@ -347,6 +392,9 @@ public isolated client class Client {
 
     # Update Agent
     #
+    # + dataAreaId - The company data area identifier 
+    # + agentId - The agent id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Agent updated 
     remote isolated function updateAgents(string dataAreaId, string agentId, Agent payload, UpdateAgentsHeaders headers = {}) returns Agent|error {
@@ -371,6 +419,7 @@ public isolated client class Client {
 
     # Create EveryProduct
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EveryProduct created 
     remote isolated function createAllProducts(EveryProduct payload, map<string|string[]> headers = {}) returns EveryProduct|error {
@@ -383,6 +432,7 @@ public isolated client class Client {
 
     # Get EveryProduct by key
     #
+    # + productNumber - The product number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - EveryProduct 
@@ -394,6 +444,7 @@ public isolated client class Client {
 
     # Delete EveryProduct
     #
+    # + productNumber - The product number key field 
     # + headers - Headers to be sent with the request 
     # + return - EveryProduct deleted 
     remote isolated function deleteAllProducts(string productNumber, DeleteAllProductsHeaders headers = {}) returns error? {
@@ -404,6 +455,8 @@ public isolated client class Client {
 
     # Update EveryProduct
     #
+    # + productNumber - The product number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EveryProduct updated 
     remote isolated function updateAllProducts(string productNumber, EveryProduct payload, UpdateAllProductsHeaders headers = {}) returns EveryProduct|error {
@@ -428,6 +481,7 @@ public isolated client class Client {
 
     # Create ApprovalUser
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ApprovalUser created 
     remote isolated function createApprovalUsers(ApprovalUser payload, map<string|string[]> headers = {}) returns ApprovalUser|error {
@@ -440,6 +494,7 @@ public isolated client class Client {
 
     # Get ApprovalUser by key
     #
+    # + userId - The user id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ApprovalUser 
@@ -451,6 +506,7 @@ public isolated client class Client {
 
     # Delete ApprovalUser
     #
+    # + userId - The user id key field 
     # + headers - Headers to be sent with the request 
     # + return - ApprovalUser deleted 
     remote isolated function deleteApprovalUsers(string userId, DeleteApprovalUsersHeaders headers = {}) returns error? {
@@ -461,6 +517,8 @@ public isolated client class Client {
 
     # Update ApprovalUser
     #
+    # + userId - The user id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ApprovalUser updated 
     remote isolated function updateApprovalUsers(string userId, ApprovalUser payload, UpdateApprovalUsersHeaders headers = {}) returns ApprovalUser|error {
@@ -485,6 +543,7 @@ public isolated client class Client {
 
     # Create BLWI
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BLWI created 
     remote isolated function createBLWI(BLWI payload, map<string|string[]> headers = {}) returns BLWI|error {
@@ -497,6 +556,13 @@ public isolated client class Client {
 
     # Get BLWI by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + company - The company key field 
+    # + bLWITransaction - The b lwi transaction key field 
+    # + accountNumber - The account number key field 
+    # + voucher - The voucher key field 
+    # + invoice - The invoice key field 
+    # + transactionDate - The transaction date key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - BLWI 
@@ -508,6 +574,13 @@ public isolated client class Client {
 
     # Delete BLWI
     #
+    # + dataAreaId - The company data area identifier 
+    # + company - The company key field 
+    # + bLWITransaction - The b lwi transaction key field 
+    # + accountNumber - The account number key field 
+    # + voucher - The voucher key field 
+    # + invoice - The invoice key field 
+    # + transactionDate - The transaction date key field 
     # + headers - Headers to be sent with the request 
     # + return - BLWI deleted 
     remote isolated function deleteBLWI(string dataAreaId, string company, string bLWITransaction, string accountNumber, string voucher, string invoice, string transactionDate, DeleteBLWIHeaders headers = {}) returns error? {
@@ -518,6 +591,14 @@ public isolated client class Client {
 
     # Update BLWI
     #
+    # + dataAreaId - The company data area identifier 
+    # + company - The company key field 
+    # + bLWITransaction - The b lwi transaction key field 
+    # + accountNumber - The account number key field 
+    # + voucher - The voucher key field 
+    # + invoice - The invoice key field 
+    # + transactionDate - The transaction date key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BLWI updated 
     remote isolated function updateBLWI(string dataAreaId, string company, string bLWITransaction, string accountNumber, string voucher, string invoice, string transactionDate, BLWI payload, UpdateBLWIHeaders headers = {}) returns BLWI|error {
@@ -542,6 +623,7 @@ public isolated client class Client {
 
     # Create BatchGroup
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BatchGroup created 
     remote isolated function createBatchGroups(BatchGroup payload, map<string|string[]> headers = {}) returns BatchGroup|error {
@@ -554,6 +636,8 @@ public isolated client class Client {
 
     # Get BatchGroup by key
     #
+    # + groupId - The group id key field 
+    # + serverId - The server id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - BatchGroup 
@@ -565,6 +649,8 @@ public isolated client class Client {
 
     # Delete BatchGroup
     #
+    # + groupId - The group id key field 
+    # + serverId - The server id key field 
     # + headers - Headers to be sent with the request 
     # + return - BatchGroup deleted 
     remote isolated function deleteBatchGroups(string groupId, string serverId, DeleteBatchGroupsHeaders headers = {}) returns error? {
@@ -575,6 +661,9 @@ public isolated client class Client {
 
     # Update BatchGroup
     #
+    # + groupId - The group id key field 
+    # + serverId - The server id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BatchGroup updated 
     remote isolated function updateBatchGroups(string groupId, string serverId, BatchGroup payload, UpdateBatchGroupsHeaders headers = {}) returns BatchGroup|error {
@@ -599,6 +688,7 @@ public isolated client class Client {
 
     # Create BatchJob
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BatchJob created 
     remote isolated function createBatchJobs(BatchJob payload, map<string|string[]> headers = {}) returns BatchJob|error {
@@ -611,6 +701,7 @@ public isolated client class Client {
 
     # Get BatchJob by key
     #
+    # + batchJobRecId - The batch job rec id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - BatchJob 
@@ -622,6 +713,7 @@ public isolated client class Client {
 
     # Delete BatchJob
     #
+    # + batchJobRecId - The batch job rec id key field 
     # + headers - Headers to be sent with the request 
     # + return - BatchJob deleted 
     remote isolated function deleteBatchJobs(int batchJobRecId, DeleteBatchJobsHeaders headers = {}) returns error? {
@@ -632,6 +724,8 @@ public isolated client class Client {
 
     # Update BatchJob
     #
+    # + batchJobRecId - The batch job rec id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - BatchJob updated 
     remote isolated function updateBatchJobs(int batchJobRecId, BatchJob payload, UpdateBatchJobsHeaders headers = {}) returns BatchJob|error {
@@ -656,6 +750,7 @@ public isolated client class Client {
 
     # Create CFPSTable
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - CFPSTable created 
     remote isolated function createCFPSTable(CFPSTable payload, map<string|string[]> headers = {}) returns CFPSTable|error {
@@ -668,6 +763,9 @@ public isolated client class Client {
 
     # Get CFPSTable by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + transactionType - The transaction type key field 
+    # + cFPSCode - The c fps code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - CFPSTable 
@@ -679,6 +777,9 @@ public isolated client class Client {
 
     # Delete CFPSTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + transactionType - The transaction type key field 
+    # + cFPSCode - The c fps code key field 
     # + headers - Headers to be sent with the request 
     # + return - CFPSTable deleted 
     remote isolated function deleteCFPSTable(string dataAreaId, string transactionType, string cFPSCode, DeleteCFPSTableHeaders headers = {}) returns error? {
@@ -689,6 +790,10 @@ public isolated client class Client {
 
     # Update CFPSTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + transactionType - The transaction type key field 
+    # + cFPSCode - The c fps code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - CFPSTable updated 
     remote isolated function updateCFPSTable(string dataAreaId, string transactionType, string cFPSCode, CFPSTable payload, UpdateCFPSTableHeaders headers = {}) returns CFPSTable|error {
@@ -713,6 +818,7 @@ public isolated client class Client {
 
     # Create ChannelUser
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ChannelUser created 
     remote isolated function createChannelUsers(ChannelUser payload, map<string|string[]> headers = {}) returns ChannelUser|error {
@@ -725,6 +831,9 @@ public isolated client class Client {
 
     # Get ChannelUser by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + operatingUnitNumber - The operating unit number key field 
+    # + user - The user key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ChannelUser 
@@ -736,6 +845,9 @@ public isolated client class Client {
 
     # Delete ChannelUser
     #
+    # + dataAreaId - The company data area identifier 
+    # + operatingUnitNumber - The operating unit number key field 
+    # + user - The user key field 
     # + headers - Headers to be sent with the request 
     # + return - ChannelUser deleted 
     remote isolated function deleteChannelUsers(string dataAreaId, string operatingUnitNumber, string user, DeleteChannelUsersHeaders headers = {}) returns error? {
@@ -746,6 +858,10 @@ public isolated client class Client {
 
     # Update ChannelUser
     #
+    # + dataAreaId - The company data area identifier 
+    # + operatingUnitNumber - The operating unit number key field 
+    # + user - The user key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ChannelUser updated 
     remote isolated function updateChannelUsers(string dataAreaId, string operatingUnitNumber, string user, ChannelUser payload, UpdateChannelUsersHeaders headers = {}) returns ChannelUser|error {
@@ -770,6 +886,7 @@ public isolated client class Client {
 
     # Create Component
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Component created 
     remote isolated function createComponents(Component payload, map<string|string[]> headers = {}) returns Component|error {
@@ -782,6 +899,9 @@ public isolated client class Client {
 
     # Get Component by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + taxComponent - The tax component key field 
+    # + taxType - The tax type key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Component 
@@ -793,6 +913,9 @@ public isolated client class Client {
 
     # Delete Component
     #
+    # + dataAreaId - The company data area identifier 
+    # + taxComponent - The tax component key field 
+    # + taxType - The tax type key field 
     # + headers - Headers to be sent with the request 
     # + return - Component deleted 
     remote isolated function deleteComponents(string dataAreaId, string taxComponent, string taxType, DeleteComponentsHeaders headers = {}) returns error? {
@@ -803,6 +926,10 @@ public isolated client class Client {
 
     # Update Component
     #
+    # + dataAreaId - The company data area identifier 
+    # + taxComponent - The tax component key field 
+    # + taxType - The tax type key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Component updated 
     remote isolated function updateComponents(string dataAreaId, string taxComponent, string taxType, Component payload, UpdateComponentsHeaders headers = {}) returns Component|error {
@@ -827,6 +954,7 @@ public isolated client class Client {
 
     # Create DatabaseLog
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DatabaseLog created 
     remote isolated function createDatabaseLogs(DatabaseLog payload, map<string|string[]> headers = {}) returns DatabaseLog|error {
@@ -839,6 +967,10 @@ public isolated client class Client {
 
     # Get DatabaseLog by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + tableRecId - The table rec id key field 
+    # + logRecId - The log rec id key field 
+    # + tableIdNumber - The table id number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DatabaseLog 
@@ -850,6 +982,10 @@ public isolated client class Client {
 
     # Delete DatabaseLog
     #
+    # + dataAreaId - The company data area identifier 
+    # + tableRecId - The table rec id key field 
+    # + logRecId - The log rec id key field 
+    # + tableIdNumber - The table id number key field 
     # + headers - Headers to be sent with the request 
     # + return - DatabaseLog deleted 
     remote isolated function deleteDatabaseLogs(string dataAreaId, int tableRecId, int logRecId, int tableIdNumber, DeleteDatabaseLogsHeaders headers = {}) returns error? {
@@ -860,6 +996,11 @@ public isolated client class Client {
 
     # Update DatabaseLog
     #
+    # + dataAreaId - The company data area identifier 
+    # + tableRecId - The table rec id key field 
+    # + logRecId - The log rec id key field 
+    # + tableIdNumber - The table id number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DatabaseLog updated 
     remote isolated function updateDatabaseLogs(string dataAreaId, int tableRecId, int logRecId, int tableIdNumber, DatabaseLog payload, UpdateDatabaseLogsHeaders headers = {}) returns DatabaseLog|error {
@@ -884,6 +1025,7 @@ public isolated client class Client {
 
     # Create DateInterval
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DateInterval created 
     remote isolated function createDateIntervals(DateInterval payload, map<string|string[]> headers = {}) returns DateInterval|error {
@@ -896,6 +1038,8 @@ public isolated client class Client {
 
     # Get DateInterval by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + dateIntervalCode - The date interval code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DateInterval 
@@ -907,6 +1051,8 @@ public isolated client class Client {
 
     # Delete DateInterval
     #
+    # + dataAreaId - The company data area identifier 
+    # + dateIntervalCode - The date interval code key field 
     # + headers - Headers to be sent with the request 
     # + return - DateInterval deleted 
     remote isolated function deleteDateIntervals(string dataAreaId, string dateIntervalCode, DeleteDateIntervalsHeaders headers = {}) returns error? {
@@ -917,6 +1063,9 @@ public isolated client class Client {
 
     # Update DateInterval
     #
+    # + dataAreaId - The company data area identifier 
+    # + dateIntervalCode - The date interval code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DateInterval updated 
     remote isolated function updateDateIntervals(string dataAreaId, string dateIntervalCode, DateInterval payload, UpdateDateIntervalsHeaders headers = {}) returns DateInterval|error {
@@ -941,6 +1090,7 @@ public isolated client class Client {
 
     # Create DemoDataPost
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DemoDataPost created 
     remote isolated function createDemoDataPosts(DemoDataPost payload, map<string|string[]> headers = {}) returns DemoDataPost|error {
@@ -953,6 +1103,9 @@ public isolated client class Client {
 
     # Get DemoDataPost by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + demoDataJob - The demo data job key field 
+    # + lineNum - The line num key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DemoDataPost 
@@ -964,6 +1117,9 @@ public isolated client class Client {
 
     # Delete DemoDataPost
     #
+    # + dataAreaId - The company data area identifier 
+    # + demoDataJob - The demo data job key field 
+    # + lineNum - The line num key field 
     # + headers - Headers to be sent with the request 
     # + return - DemoDataPost deleted 
     remote isolated function deleteDemoDataPosts(string dataAreaId, string demoDataJob, decimal lineNum, DeleteDemoDataPostsHeaders headers = {}) returns error? {
@@ -974,6 +1130,10 @@ public isolated client class Client {
 
     # Update DemoDataPost
     #
+    # + dataAreaId - The company data area identifier 
+    # + demoDataJob - The demo data job key field 
+    # + lineNum - The line num key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DemoDataPost updated 
     remote isolated function updateDemoDataPosts(string dataAreaId, string demoDataJob, decimal lineNum, DemoDataPost payload, UpdateDemoDataPostsHeaders headers = {}) returns DemoDataPost|error {
@@ -998,6 +1158,7 @@ public isolated client class Client {
 
     # Create DocumentType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DocumentType created 
     remote isolated function createDocumentTypes(DocumentType payload, map<string|string[]> headers = {}) returns DocumentType|error {
@@ -1010,6 +1171,8 @@ public isolated client class Client {
 
     # Get DocumentType by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DocumentType 
@@ -1021,6 +1184,8 @@ public isolated client class Client {
 
     # Delete DocumentType
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
     # + headers - Headers to be sent with the request 
     # + return - DocumentType deleted 
     remote isolated function deleteDocumentTypes(string dataAreaId, string iD, DeleteDocumentTypesHeaders headers = {}) returns error? {
@@ -1031,6 +1196,9 @@ public isolated client class Client {
 
     # Update DocumentType
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DocumentType updated 
     remote isolated function updateDocumentTypes(string dataAreaId, string iD, DocumentType payload, UpdateDocumentTypesHeaders headers = {}) returns DocumentType|error {
@@ -1055,6 +1223,7 @@ public isolated client class Client {
 
     # Create Document
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Document created 
     remote isolated function createDocuments(Document payload, map<string|string[]> headers = {}) returns Document|error {
@@ -1067,6 +1236,8 @@ public isolated client class Client {
 
     # Get Document by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineId - The line id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Document 
@@ -1078,6 +1249,8 @@ public isolated client class Client {
 
     # Delete Document
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineId - The line id key field 
     # + headers - Headers to be sent with the request 
     # + return - Document deleted 
     remote isolated function deleteDocuments(string dataAreaId, string lineId, DeleteDocumentsHeaders headers = {}) returns error? {
@@ -1088,6 +1261,9 @@ public isolated client class Client {
 
     # Update Document
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineId - The line id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Document updated 
     remote isolated function updateDocuments(string dataAreaId, string lineId, Document payload, UpdateDocumentsHeaders headers = {}) returns Document|error {
@@ -1112,6 +1288,7 @@ public isolated client class Client {
 
     # Create EDParameter
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EDParameter created 
     remote isolated function createEDParameters(EDParameter payload, map<string|string[]> headers = {}) returns EDParameter|error {
@@ -1124,6 +1301,7 @@ public isolated client class Client {
 
     # Get EDParameter by key
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - EDParameter 
@@ -1135,6 +1313,7 @@ public isolated client class Client {
 
     # Delete EDParameter
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + return - EDParameter deleted 
     remote isolated function deleteEDParameters(string dataAreaId, int 'key, DeleteEDParametersHeaders headers = {}) returns error? {
@@ -1145,6 +1324,8 @@ public isolated client class Client {
 
     # Update EDParameter
     #
+    # + dataAreaId - The company data area identifier 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EDParameter updated 
     remote isolated function updateEDParameters(string dataAreaId, int 'key, EDParameter payload, UpdateEDParametersHeaders headers = {}) returns EDParameter|error {
@@ -1169,6 +1350,7 @@ public isolated client class Client {
 
     # Create EMItemType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EMItemType created 
     remote isolated function createEMItemTypes(EMItemType payload, map<string|string[]> headers = {}) returns EMItemType|error {
@@ -1181,6 +1363,8 @@ public isolated client class Client {
 
     # Get EMItemType by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageItemType - The message item type key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - EMItemType 
@@ -1192,6 +1376,8 @@ public isolated client class Client {
 
     # Delete EMItemType
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageItemType - The message item type key field 
     # + headers - Headers to be sent with the request 
     # + return - EMItemType deleted 
     remote isolated function deleteEMItemTypes(string dataAreaId, string messageItemType, DeleteEMItemTypesHeaders headers = {}) returns error? {
@@ -1202,6 +1388,9 @@ public isolated client class Client {
 
     # Update EMItemType
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageItemType - The message item type key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EMItemType updated 
     remote isolated function updateEMItemTypes(string dataAreaId, string messageItemType, EMItemType payload, UpdateEMItemTypesHeaders headers = {}) returns EMItemType|error {
@@ -1226,6 +1415,7 @@ public isolated client class Client {
 
     # Create EstateStatus
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EstateStatus created 
     remote isolated function createEstateStatus(EstateStatus payload, map<string|string[]> headers = {}) returns EstateStatus|error {
@@ -1238,6 +1428,8 @@ public isolated client class Client {
 
     # Get EstateStatus by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + estStatId - The est stat id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - EstateStatus 
@@ -1249,6 +1441,8 @@ public isolated client class Client {
 
     # Delete EstateStatus
     #
+    # + dataAreaId - The company data area identifier 
+    # + estStatId - The est stat id key field 
     # + headers - Headers to be sent with the request 
     # + return - EstateStatus deleted 
     remote isolated function deleteEstateStatus(string dataAreaId, string estStatId, DeleteEstateStatusHeaders headers = {}) returns error? {
@@ -1259,6 +1453,9 @@ public isolated client class Client {
 
     # Update EstateStatus
     #
+    # + dataAreaId - The company data area identifier 
+    # + estStatId - The est stat id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - EstateStatus updated 
     remote isolated function updateEstateStatus(string dataAreaId, string estStatId, EstateStatus payload, UpdateEstateStatusHeaders headers = {}) returns EstateStatus|error {
@@ -1283,6 +1480,7 @@ public isolated client class Client {
 
     # Create ExtCodeTable
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ExtCodeTable created 
     remote isolated function createExtCodeTables(ExtCodeTable payload, map<string|string[]> headers = {}) returns ExtCodeTable|error {
@@ -1295,6 +1493,10 @@ public isolated client class Client {
 
     # Get ExtCodeTable by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + codeType - The code type key field 
+    # + version - The version key field 
+    # + codeId - The code id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ExtCodeTable 
@@ -1306,6 +1508,10 @@ public isolated client class Client {
 
     # Delete ExtCodeTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + codeType - The code type key field 
+    # + version - The version key field 
+    # + codeId - The code id key field 
     # + headers - Headers to be sent with the request 
     # + return - ExtCodeTable deleted 
     remote isolated function deleteExtCodeTables(string dataAreaId, string codeType, string version, string codeId, DeleteExtCodeTablesHeaders headers = {}) returns error? {
@@ -1316,6 +1522,11 @@ public isolated client class Client {
 
     # Update ExtCodeTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + codeType - The code type key field 
+    # + version - The version key field 
+    # + codeId - The code id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ExtCodeTable updated 
     remote isolated function updateExtCodeTables(string dataAreaId, string codeType, string version, string codeId, ExtCodeTable payload, UpdateExtCodeTablesHeaders headers = {}) returns ExtCodeTable|error {
@@ -1340,6 +1551,7 @@ public isolated client class Client {
 
     # Create ExternalRole
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ExternalRole created 
     remote isolated function createExternalRoles(ExternalRole payload, map<string|string[]> headers = {}) returns ExternalRole|error {
@@ -1352,6 +1564,7 @@ public isolated client class Client {
 
     # Get ExternalRole by key
     #
+    # + role - The role key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ExternalRole 
@@ -1363,6 +1576,7 @@ public isolated client class Client {
 
     # Delete ExternalRole
     #
+    # + role - The role key field 
     # + headers - Headers to be sent with the request 
     # + return - ExternalRole deleted 
     remote isolated function deleteExternalRoles(string role, string 'type, DeleteExternalRolesHeaders headers = {}) returns error? {
@@ -1373,6 +1587,8 @@ public isolated client class Client {
 
     # Update ExternalRole
     #
+    # + role - The role key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ExternalRole updated 
     remote isolated function updateExternalRoles(string role, string 'type, ExternalRole payload, UpdateExternalRolesHeaders headers = {}) returns ExternalRole|error {
@@ -1397,6 +1613,7 @@ public isolated client class Client {
 
     # Create FormatCode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - FormatCode created 
     remote isolated function createFormatCodes(FormatCode payload, map<string|string[]> headers = {}) returns FormatCode|error {
@@ -1409,6 +1626,8 @@ public isolated client class Client {
 
     # Get FormatCode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - FormatCode 
@@ -1420,6 +1639,8 @@ public isolated client class Client {
 
     # Delete FormatCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
     # + headers - Headers to be sent with the request 
     # + return - FormatCode deleted 
     remote isolated function deleteFormatCodes(string dataAreaId, string code, string 'type, DeleteFormatCodesHeaders headers = {}) returns error? {
@@ -1430,6 +1651,9 @@ public isolated client class Client {
 
     # Update FormatCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - FormatCode updated 
     remote isolated function updateFormatCodes(string dataAreaId, string code, string 'type, FormatCode payload, UpdateFormatCodesHeaders headers = {}) returns FormatCode|error {
@@ -1454,6 +1678,7 @@ public isolated client class Client {
 
     # Create Group
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Group created 
     remote isolated function createGroups(Group payload, map<string|string[]> headers = {}) returns Group|error {
@@ -1466,6 +1691,8 @@ public isolated client class Client {
 
     # Get Group by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralsGroup - The deferrals group key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Group 
@@ -1477,6 +1704,8 @@ public isolated client class Client {
 
     # Delete Group
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralsGroup - The deferrals group key field 
     # + headers - Headers to be sent with the request 
     # + return - Group deleted 
     remote isolated function deleteGroups(string dataAreaId, string deferralsGroup, DeleteGroupsHeaders headers = {}) returns error? {
@@ -1487,6 +1716,9 @@ public isolated client class Client {
 
     # Update Group
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralsGroup - The deferrals group key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Group updated 
     remote isolated function updateGroups(string dataAreaId, string deferralsGroup, Group payload, UpdateGroupsHeaders headers = {}) returns Group|error {
@@ -1511,6 +1743,7 @@ public isolated client class Client {
 
     # Create Guide
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Guide created 
     remote isolated function createGuides(Guide payload, map<string|string[]> headers = {}) returns Guide|error {
@@ -1523,6 +1756,7 @@ public isolated client class Client {
 
     # Get Guide by key
     #
+    # + integrationKey - The integration key key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Guide 
@@ -1534,6 +1768,7 @@ public isolated client class Client {
 
     # Delete Guide
     #
+    # + integrationKey - The integration key key field 
     # + headers - Headers to be sent with the request 
     # + return - Guide deleted 
     remote isolated function deleteGuides(string integrationKey, DeleteGuidesHeaders headers = {}) returns error? {
@@ -1544,6 +1779,8 @@ public isolated client class Client {
 
     # Update Guide
     #
+    # + integrationKey - The integration key key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Guide updated 
     remote isolated function updateGuides(string integrationKey, Guide payload, UpdateGuidesHeaders headers = {}) returns Guide|error {
@@ -1568,6 +1805,7 @@ public isolated client class Client {
 
     # Create House
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - House created 
     remote isolated function createHouses(House payload, map<string|string[]> headers = {}) returns House|error {
@@ -1580,6 +1818,8 @@ public isolated client class Client {
 
     # Get House by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + houseId - The house id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - House 
@@ -1591,6 +1831,8 @@ public isolated client class Client {
 
     # Delete House
     #
+    # + dataAreaId - The company data area identifier 
+    # + houseId - The house id key field 
     # + headers - Headers to be sent with the request 
     # + return - House deleted 
     remote isolated function deleteHouses(string dataAreaId, string houseId, DeleteHousesHeaders headers = {}) returns error? {
@@ -1601,6 +1843,9 @@ public isolated client class Client {
 
     # Update House
     #
+    # + dataAreaId - The company data area identifier 
+    # + houseId - The house id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - House updated 
     remote isolated function updateHouses(string dataAreaId, string houseId, House payload, UpdateHousesHeaders headers = {}) returns House|error {
@@ -1625,6 +1870,7 @@ public isolated client class Client {
 
     # Create ImportMode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ImportMode created 
     remote isolated function createImportModes(ImportMode payload, map<string|string[]> headers = {}) returns ImportMode|error {
@@ -1637,6 +1883,8 @@ public isolated client class Client {
 
     # Get ImportMode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + methodOfImport - The method of import key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ImportMode 
@@ -1648,6 +1896,8 @@ public isolated client class Client {
 
     # Delete ImportMode
     #
+    # + dataAreaId - The company data area identifier 
+    # + methodOfImport - The method of import key field 
     # + headers - Headers to be sent with the request 
     # + return - ImportMode deleted 
     remote isolated function deleteImportModes(string dataAreaId, string methodOfImport, DeleteImportModesHeaders headers = {}) returns error? {
@@ -1658,6 +1908,9 @@ public isolated client class Client {
 
     # Update ImportMode
     #
+    # + dataAreaId - The company data area identifier 
+    # + methodOfImport - The method of import key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ImportMode updated 
     remote isolated function updateImportModes(string dataAreaId, string methodOfImport, ImportMode payload, UpdateImportModesHeaders headers = {}) returns ImportMode|error {
@@ -1682,6 +1935,7 @@ public isolated client class Client {
 
     # Create Intrastat
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Intrastat created 
     remote isolated function createIntrastats(Intrastat payload, map<string|string[]> headers = {}) returns Intrastat|error {
@@ -1694,6 +1948,9 @@ public isolated client class Client {
 
     # Get Intrastat by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Intrastat 
@@ -1705,6 +1962,9 @@ public isolated client class Client {
 
     # Delete Intrastat
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + return - Intrastat deleted 
     remote isolated function deleteIntrastats(string dataAreaId, string shipmentBatch, int sequenceNumber, DeleteIntrastatsHeaders headers = {}) returns error? {
@@ -1715,6 +1975,10 @@ public isolated client class Client {
 
     # Update Intrastat
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Intrastat updated 
     remote isolated function updateIntrastats(string dataAreaId, string shipmentBatch, int sequenceNumber, Intrastat payload, UpdateIntrastatsHeaders headers = {}) returns Intrastat|error {
@@ -1739,6 +2003,7 @@ public isolated client class Client {
 
     # Create IntrastatV2
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - IntrastatV2 created 
     remote isolated function createIntrastatsV2(IntrastatV2 payload, map<string|string[]> headers = {}) returns IntrastatV2|error {
@@ -1751,6 +2016,9 @@ public isolated client class Client {
 
     # Get IntrastatV2 by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - IntrastatV2 
@@ -1762,6 +2030,9 @@ public isolated client class Client {
 
     # Delete IntrastatV2
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + return - IntrastatV2 deleted 
     remote isolated function deleteIntrastatsV2(string dataAreaId, string shipmentBatch, int sequenceNumber, DeleteIntrastatsV2Headers headers = {}) returns error? {
@@ -1772,6 +2043,10 @@ public isolated client class Client {
 
     # Update IntrastatV2
     #
+    # + dataAreaId - The company data area identifier 
+    # + shipmentBatch - The shipment batch key field 
+    # + sequenceNumber - The sequence number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - IntrastatV2 updated 
     remote isolated function updateIntrastatsV2(string dataAreaId, string shipmentBatch, int sequenceNumber, IntrastatV2 payload, UpdateIntrastatsV2Headers headers = {}) returns IntrastatV2|error {
@@ -1796,6 +2071,7 @@ public isolated client class Client {
 
     # Create ItemGTD
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ItemGTD created 
     remote isolated function createItemGTDs(ItemGTD payload, map<string|string[]> headers = {}) returns ItemGTD|error {
@@ -1808,6 +2084,9 @@ public isolated client class Client {
 
     # Get ItemGTD by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemNumber - The item number key field 
+    # + gTDNumber - The g td number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ItemGTD 
@@ -1819,6 +2098,9 @@ public isolated client class Client {
 
     # Delete ItemGTD
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemNumber - The item number key field 
+    # + gTDNumber - The g td number key field 
     # + headers - Headers to be sent with the request 
     # + return - ItemGTD deleted 
     remote isolated function deleteItemGTDs(string dataAreaId, string itemNumber, string gTDNumber, DeleteItemGTDsHeaders headers = {}) returns error? {
@@ -1829,6 +2111,10 @@ public isolated client class Client {
 
     # Update ItemGTD
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemNumber - The item number key field 
+    # + gTDNumber - The g td number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ItemGTD updated 
     remote isolated function updateItemGTDs(string dataAreaId, string itemNumber, string gTDNumber, ItemGTD payload, UpdateItemGTDsHeaders headers = {}) returns ItemGTD|error {
@@ -1853,6 +2139,7 @@ public isolated client class Client {
 
     # Create LoadTemplate
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - LoadTemplate created 
     remote isolated function createLoadTemplates(LoadTemplate payload, map<string|string[]> headers = {}) returns LoadTemplate|error {
@@ -1865,6 +2152,8 @@ public isolated client class Client {
 
     # Get LoadTemplate by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + templateId - The template id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - LoadTemplate 
@@ -1876,6 +2165,8 @@ public isolated client class Client {
 
     # Delete LoadTemplate
     #
+    # + dataAreaId - The company data area identifier 
+    # + templateId - The template id key field 
     # + headers - Headers to be sent with the request 
     # + return - LoadTemplate deleted 
     remote isolated function deleteLoadTemplates(string dataAreaId, string templateId, DeleteLoadTemplatesHeaders headers = {}) returns error? {
@@ -1886,6 +2177,9 @@ public isolated client class Client {
 
     # Update LoadTemplate
     #
+    # + dataAreaId - The company data area identifier 
+    # + templateId - The template id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - LoadTemplate updated 
     remote isolated function updateLoadTemplates(string dataAreaId, string templateId, LoadTemplate payload, UpdateLoadTemplatesHeaders headers = {}) returns LoadTemplate|error {
@@ -1910,6 +2204,7 @@ public isolated client class Client {
 
     # Create LoyaltyLevel
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - LoyaltyLevel created 
     remote isolated function createLoyaltyLevels(LoyaltyLevel payload, map<string|string[]> headers = {}) returns LoyaltyLevel|error {
@@ -1922,6 +2217,8 @@ public isolated client class Client {
 
     # Get LoyaltyLevel by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + levelPhrase - The level phrase key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - LoyaltyLevel 
@@ -1933,6 +2230,8 @@ public isolated client class Client {
 
     # Delete LoyaltyLevel
     #
+    # + dataAreaId - The company data area identifier 
+    # + levelPhrase - The level phrase key field 
     # + headers - Headers to be sent with the request 
     # + return - LoyaltyLevel deleted 
     remote isolated function deleteLoyaltyLevels(string dataAreaId, string levelPhrase, DeleteLoyaltyLevelsHeaders headers = {}) returns error? {
@@ -1943,6 +2242,9 @@ public isolated client class Client {
 
     # Update LoyaltyLevel
     #
+    # + dataAreaId - The company data area identifier 
+    # + levelPhrase - The level phrase key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - LoyaltyLevel updated 
     remote isolated function updateLoyaltyLevels(string dataAreaId, string levelPhrase, LoyaltyLevel payload, UpdateLoyaltyLevelsHeaders headers = {}) returns LoyaltyLevel|error {
@@ -1967,6 +2269,7 @@ public isolated client class Client {
 
     # Create Media
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Media created 
     remote isolated function createMedia(Media payload, map<string|string[]> headers = {}) returns Media|error {
@@ -1979,6 +2282,8 @@ public isolated client class Client {
 
     # Get Media by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + media - The media key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Media 
@@ -1990,6 +2295,8 @@ public isolated client class Client {
 
     # Delete Media
     #
+    # + dataAreaId - The company data area identifier 
+    # + media - The media key field 
     # + headers - Headers to be sent with the request 
     # + return - Media deleted 
     remote isolated function deleteMedia(string dataAreaId, string media, DeleteMediaHeaders headers = {}) returns error? {
@@ -2000,6 +2307,9 @@ public isolated client class Client {
 
     # Update Media
     #
+    # + dataAreaId - The company data area identifier 
+    # + media - The media key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Media updated 
     remote isolated function updateMedia(string dataAreaId, string media, Media payload, UpdateMediaHeaders headers = {}) returns Media|error {
@@ -2024,6 +2334,7 @@ public isolated client class Client {
 
     # Create MediaType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MediaType created 
     remote isolated function createMediaTypes(MediaType payload, map<string|string[]> headers = {}) returns MediaType|error {
@@ -2036,6 +2347,8 @@ public isolated client class Client {
 
     # Get MediaType by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + mediaTypeId - The media type id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - MediaType 
@@ -2047,6 +2360,8 @@ public isolated client class Client {
 
     # Delete MediaType
     #
+    # + dataAreaId - The company data area identifier 
+    # + mediaTypeId - The media type id key field 
     # + headers - Headers to be sent with the request 
     # + return - MediaType deleted 
     remote isolated function deleteMediaTypes(string dataAreaId, string mediaTypeId, DeleteMediaTypesHeaders headers = {}) returns error? {
@@ -2057,6 +2372,9 @@ public isolated client class Client {
 
     # Update MediaType
     #
+    # + dataAreaId - The company data area identifier 
+    # + mediaTypeId - The media type id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MediaType updated 
     remote isolated function updateMediaTypes(string dataAreaId, string mediaTypeId, MediaType payload, UpdateMediaTypesHeaders headers = {}) returns MediaType|error {
@@ -2081,6 +2399,7 @@ public isolated client class Client {
 
     # Create MessageItems
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessageItems created 
     remote isolated function createMessageItems(MessageItems payload, map<string|string[]> headers = {}) returns MessageItems|error {
@@ -2093,6 +2412,10 @@ public isolated client class Client {
 
     # Get MessageItems by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemType - The item type key field 
+    # + processingId - The processing id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - MessageItems 
@@ -2104,6 +2427,10 @@ public isolated client class Client {
 
     # Delete MessageItems
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemType - The item type key field 
+    # + processingId - The processing id key field 
     # + headers - Headers to be sent with the request 
     # + return - MessageItems deleted 
     remote isolated function deleteMessageItems(string dataAreaId, string itemId, string itemType, string processingId, DeleteMessageItemsHeaders headers = {}) returns error? {
@@ -2114,6 +2441,11 @@ public isolated client class Client {
 
     # Update MessageItems
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemType - The item type key field 
+    # + processingId - The processing id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessageItems updated 
     remote isolated function updateMessageItems(string dataAreaId, string itemId, string itemType, string processingId, MessageItems payload, UpdateMessageItemsHeaders headers = {}) returns MessageItems|error {
@@ -2138,6 +2470,7 @@ public isolated client class Client {
 
     # Create MessageStatus
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessageStatus created 
     remote isolated function createMessageStatus(MessageStatus payload, map<string|string[]> headers = {}) returns MessageStatus|error {
@@ -2150,6 +2483,8 @@ public isolated client class Client {
 
     # Get MessageStatus by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageStatus - The message status key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - MessageStatus 
@@ -2161,6 +2496,8 @@ public isolated client class Client {
 
     # Delete MessageStatus
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageStatus - The message status key field 
     # + headers - Headers to be sent with the request 
     # + return - MessageStatus deleted 
     remote isolated function deleteMessageStatus(string dataAreaId, string messageStatus, DeleteMessageStatusHeaders headers = {}) returns error? {
@@ -2171,6 +2508,9 @@ public isolated client class Client {
 
     # Update MessageStatus
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageStatus - The message status key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessageStatus updated 
     remote isolated function updateMessageStatus(string dataAreaId, string messageStatus, MessageStatus payload, UpdateMessageStatusHeaders headers = {}) returns MessageStatus|error {
@@ -2195,6 +2535,7 @@ public isolated client class Client {
 
     # Create MessagesLog
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessagesLog created 
     remote isolated function createMessagesLogs(MessagesLog payload, map<string|string[]> headers = {}) returns MessagesLog|error {
@@ -2207,6 +2548,9 @@ public isolated client class Client {
 
     # Get MessagesLog by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageId - The message id key field 
+    # + actionId - The action id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - MessagesLog 
@@ -2218,6 +2562,9 @@ public isolated client class Client {
 
     # Delete MessagesLog
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageId - The message id key field 
+    # + actionId - The action id key field 
     # + headers - Headers to be sent with the request 
     # + return - MessagesLog deleted 
     remote isolated function deleteMessagesLogs(string dataAreaId, string messageId, string actionId, DeleteMessagesLogsHeaders headers = {}) returns error? {
@@ -2228,6 +2575,10 @@ public isolated client class Client {
 
     # Update MessagesLog
     #
+    # + dataAreaId - The company data area identifier 
+    # + messageId - The message id key field 
+    # + actionId - The action id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - MessagesLog updated 
     remote isolated function updateMessagesLogs(string dataAreaId, string messageId, string actionId, MessagesLog payload, UpdateMessagesLogsHeaders headers = {}) returns MessagesLog|error {
@@ -2252,6 +2603,7 @@ public isolated client class Client {
 
     # Create ModelTable
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ModelTable created 
     remote isolated function createModelTables(ModelTable payload, map<string|string[]> headers = {}) returns ModelTable|error {
@@ -2264,6 +2616,8 @@ public isolated client class Client {
 
     # Get ModelTable by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + model - The model key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ModelTable 
@@ -2275,6 +2629,8 @@ public isolated client class Client {
 
     # Delete ModelTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + model - The model key field 
     # + headers - Headers to be sent with the request 
     # + return - ModelTable deleted 
     remote isolated function deleteModelTables(string dataAreaId, string model, DeleteModelTablesHeaders headers = {}) returns error? {
@@ -2285,6 +2641,9 @@ public isolated client class Client {
 
     # Update ModelTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + model - The model key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ModelTable updated 
     remote isolated function updateModelTables(string dataAreaId, string model, ModelTable payload, UpdateModelTablesHeaders headers = {}) returns ModelTable|error {
@@ -2309,6 +2668,7 @@ public isolated client class Client {
 
     # Create NAFCode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - NAFCode created 
     remote isolated function createNAFCodes(NAFCode payload, map<string|string[]> headers = {}) returns NAFCode|error {
@@ -2321,6 +2681,8 @@ public isolated client class Client {
 
     # Get NAFCode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + nAFCode - The n af code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - NAFCode 
@@ -2332,6 +2694,8 @@ public isolated client class Client {
 
     # Delete NAFCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + nAFCode - The n af code key field 
     # + headers - Headers to be sent with the request 
     # + return - NAFCode deleted 
     remote isolated function deleteNAFCodes(string dataAreaId, string nAFCode, DeleteNAFCodesHeaders headers = {}) returns error? {
@@ -2342,6 +2706,9 @@ public isolated client class Client {
 
     # Update NAFCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + nAFCode - The n af code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - NAFCode updated 
     remote isolated function updateNAFCodes(string dataAreaId, string nAFCode, NAFCode payload, UpdateNAFCodesHeaders headers = {}) returns NAFCode|error {
@@ -2366,6 +2733,7 @@ public isolated client class Client {
 
     # Create NGPCode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - NGPCode created 
     remote isolated function createNGPCodes(NGPCode payload, map<string|string[]> headers = {}) returns NGPCode|error {
@@ -2378,6 +2746,8 @@ public isolated client class Client {
 
     # Get NGPCode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + nGP - The n gp key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - NGPCode 
@@ -2389,6 +2759,8 @@ public isolated client class Client {
 
     # Delete NGPCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + nGP - The n gp key field 
     # + headers - Headers to be sent with the request 
     # + return - NGPCode deleted 
     remote isolated function deleteNGPCodes(string dataAreaId, int nGP, DeleteNGPCodesHeaders headers = {}) returns error? {
@@ -2399,6 +2771,9 @@ public isolated client class Client {
 
     # Update NGPCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + nGP - The n gp key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - NGPCode updated 
     remote isolated function updateNGPCodes(string dataAreaId, int nGP, NGPCode payload, UpdateNGPCodesHeaders headers = {}) returns NGPCode|error {
@@ -2423,6 +2798,7 @@ public isolated client class Client {
 
     # Create OfBusiness
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - OfBusiness created 
     remote isolated function createOfBusinesses(OfBusiness payload, map<string|string[]> headers = {}) returns OfBusiness|error {
@@ -2435,6 +2811,8 @@ public isolated client class Client {
 
     # Get OfBusiness by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineOfBusiness - The line of business key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - OfBusiness 
@@ -2446,6 +2824,8 @@ public isolated client class Client {
 
     # Delete OfBusiness
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineOfBusiness - The line of business key field 
     # + headers - Headers to be sent with the request 
     # + return - OfBusiness deleted 
     remote isolated function deleteOfBusinesses(string dataAreaId, string lineOfBusiness, DeleteOfBusinessesHeaders headers = {}) returns error? {
@@ -2456,6 +2836,9 @@ public isolated client class Client {
 
     # Update OfBusiness
     #
+    # + dataAreaId - The company data area identifier 
+    # + lineOfBusiness - The line of business key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - OfBusiness updated 
     remote isolated function updateOfBusinesses(string dataAreaId, string lineOfBusiness, OfBusiness payload, UpdateOfBusinessesHeaders headers = {}) returns OfBusiness|error {
@@ -2480,6 +2863,7 @@ public isolated client class Client {
 
     # Create Operation
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Operation created 
     remote isolated function createOperations(Operation payload, map<string|string[]> headers = {}) returns Operation|error {
@@ -2492,6 +2876,8 @@ public isolated client class Client {
 
     # Get Operation by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + operationId - The operation id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Operation 
@@ -2503,6 +2889,8 @@ public isolated client class Client {
 
     # Delete Operation
     #
+    # + dataAreaId - The company data area identifier 
+    # + operationId - The operation id key field 
     # + headers - Headers to be sent with the request 
     # + return - Operation deleted 
     remote isolated function deleteOperations(string dataAreaId, string operationId, DeleteOperationsHeaders headers = {}) returns error? {
@@ -2513,6 +2901,9 @@ public isolated client class Client {
 
     # Update Operation
     #
+    # + dataAreaId - The company data area identifier 
+    # + operationId - The operation id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Operation updated 
     remote isolated function updateOperations(string dataAreaId, string operationId, Operation payload, UpdateOperationsHeaders headers = {}) returns Operation|error {
@@ -2537,6 +2928,7 @@ public isolated client class Client {
 
     # Create OtherClients
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - OtherClients created 
     remote isolated function createOtherClients(OtherClients payload, map<string|string[]> headers = {}) returns OtherClients|error {
@@ -2549,6 +2941,8 @@ public isolated client class Client {
 
     # Get OtherClients by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - OtherClients 
@@ -2560,6 +2954,8 @@ public isolated client class Client {
 
     # Delete OtherClients
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
     # + headers - Headers to be sent with the request 
     # + return - OtherClients deleted 
     remote isolated function deleteOtherClients(string dataAreaId, string code, DeleteOtherClientsHeaders headers = {}) returns error? {
@@ -2570,6 +2966,9 @@ public isolated client class Client {
 
     # Update OtherClients
     #
+    # + dataAreaId - The company data area identifier 
+    # + code - The code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - OtherClients updated 
     remote isolated function updateOtherClients(string dataAreaId, string code, OtherClients payload, UpdateOtherClientsHeaders headers = {}) returns OtherClients|error {
@@ -2594,6 +2993,7 @@ public isolated client class Client {
 
     # Create PSSerialLine
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PSSerialLine created 
     remote isolated function createPSSerialLines(PSSerialLine payload, map<string|string[]> headers = {}) returns PSSerialLine|error {
@@ -2606,6 +3006,9 @@ public isolated client class Client {
 
     # Get PSSerialLine by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + prefix - The prefix key field 
+    # + invoiceNumber - The invoice number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - PSSerialLine 
@@ -2617,6 +3020,9 @@ public isolated client class Client {
 
     # Delete PSSerialLine
     #
+    # + dataAreaId - The company data area identifier 
+    # + prefix - The prefix key field 
+    # + invoiceNumber - The invoice number key field 
     # + headers - Headers to be sent with the request 
     # + return - PSSerialLine deleted 
     remote isolated function deletePSSerialLines(string dataAreaId, string prefix, string invoiceNumber, DeletePSSerialLinesHeaders headers = {}) returns error? {
@@ -2627,6 +3033,10 @@ public isolated client class Client {
 
     # Update PSSerialLine
     #
+    # + dataAreaId - The company data area identifier 
+    # + prefix - The prefix key field 
+    # + invoiceNumber - The invoice number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PSSerialLine updated 
     remote isolated function updatePSSerialLines(string dataAreaId, string prefix, string invoiceNumber, PSSerialLine payload, UpdatePSSerialLinesHeaders headers = {}) returns PSSerialLine|error {
@@ -2651,6 +3061,7 @@ public isolated client class Client {
 
     # Create Parameters
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Parameters created 
     remote isolated function createParameters(Parameters payload, map<string|string[]> headers = {}) returns Parameters|error {
@@ -2663,6 +3074,7 @@ public isolated client class Client {
 
     # Get Parameters by key
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Parameters 
@@ -2674,6 +3086,7 @@ public isolated client class Client {
 
     # Delete Parameters
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + return - Parameters deleted 
     remote isolated function deleteParameters(string dataAreaId, int 'key, DeleteParametersHeaders headers = {}) returns error? {
@@ -2684,6 +3097,8 @@ public isolated client class Client {
 
     # Update Parameters
     #
+    # + dataAreaId - The company data area identifier 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Parameters updated 
     remote isolated function updateParameters(string dataAreaId, int 'key, Parameters payload, UpdateParametersHeaders headers = {}) returns Parameters|error {
@@ -2708,6 +3123,7 @@ public isolated client class Client {
 
     # Create PolicyRule
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PolicyRule created 
     remote isolated function createPolicyRules(PolicyRule payload, map<string|string[]> headers = {}) returns PolicyRule|error {
@@ -2720,6 +3136,10 @@ public isolated client class Client {
 
     # Get PolicyRule by key
     #
+    # + policyName - The policy name key field 
+    # + policyType - The policy type key field 
+    # + policyRuleName - The policy rule name key field 
+    # + validFrom - The valid from key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - PolicyRule 
@@ -2731,6 +3151,10 @@ public isolated client class Client {
 
     # Delete PolicyRule
     #
+    # + policyName - The policy name key field 
+    # + policyType - The policy type key field 
+    # + policyRuleName - The policy rule name key field 
+    # + validFrom - The valid from key field 
     # + headers - Headers to be sent with the request 
     # + return - PolicyRule deleted 
     remote isolated function deletePolicyRules(string policyName, string policyType, string policyRuleName, string validFrom, DeletePolicyRulesHeaders headers = {}) returns error? {
@@ -2741,6 +3165,11 @@ public isolated client class Client {
 
     # Update PolicyRule
     #
+    # + policyName - The policy name key field 
+    # + policyType - The policy type key field 
+    # + policyRuleName - The policy rule name key field 
+    # + validFrom - The valid from key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PolicyRule updated 
     remote isolated function updatePolicyRules(string policyName, string policyType, string policyRuleName, string validFrom, PolicyRule payload, UpdatePolicyRulesHeaders headers = {}) returns PolicyRule|error {
@@ -2765,6 +3194,7 @@ public isolated client class Client {
 
     # Create PolicyType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PolicyType created 
     remote isolated function createPolicyTypes(PolicyType payload, map<string|string[]> headers = {}) returns PolicyType|error {
@@ -2777,6 +3207,7 @@ public isolated client class Client {
 
     # Get PolicyType by key
     #
+    # + policyType - The policy type key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - PolicyType 
@@ -2788,6 +3219,7 @@ public isolated client class Client {
 
     # Delete PolicyType
     #
+    # + policyType - The policy type key field 
     # + headers - Headers to be sent with the request 
     # + return - PolicyType deleted 
     remote isolated function deletePolicyTypes(string policyType, DeletePolicyTypesHeaders headers = {}) returns error? {
@@ -2798,6 +3230,8 @@ public isolated client class Client {
 
     # Update PolicyType
     #
+    # + policyType - The policy type key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PolicyType updated 
     remote isolated function updatePolicyTypes(string policyType, PolicyType payload, UpdatePolicyTypesHeaders headers = {}) returns PolicyType|error {
@@ -2822,6 +3256,7 @@ public isolated client class Client {
 
     # Create PrintLayout
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PrintLayout created 
     remote isolated function createPrintLayouts(PrintLayout payload, map<string|string[]> headers = {}) returns PrintLayout|error {
@@ -2834,6 +3269,9 @@ public isolated client class Client {
 
     # Get PrintLayout by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + printLayoutGroup - The print layout group key field 
+    # + printLayoutCode - The print layout code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - PrintLayout 
@@ -2845,6 +3283,9 @@ public isolated client class Client {
 
     # Delete PrintLayout
     #
+    # + dataAreaId - The company data area identifier 
+    # + printLayoutGroup - The print layout group key field 
+    # + printLayoutCode - The print layout code key field 
     # + headers - Headers to be sent with the request 
     # + return - PrintLayout deleted 
     remote isolated function deletePrintLayouts(string dataAreaId, string printLayoutGroup, string printLayoutCode, DeletePrintLayoutsHeaders headers = {}) returns error? {
@@ -2855,6 +3296,10 @@ public isolated client class Client {
 
     # Update PrintLayout
     #
+    # + dataAreaId - The company data area identifier 
+    # + printLayoutGroup - The print layout group key field 
+    # + printLayoutCode - The print layout code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PrintLayout updated 
     remote isolated function updatePrintLayouts(string dataAreaId, string printLayoutGroup, string printLayoutCode, PrintLayout payload, UpdatePrintLayoutsHeaders headers = {}) returns PrintLayout|error {
@@ -2879,6 +3324,7 @@ public isolated client class Client {
 
     # Create ProcessStage
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ProcessStage created 
     remote isolated function createProcessStages(ProcessStage payload, map<string|string[]> headers = {}) returns ProcessStage|error {
@@ -2891,6 +3337,9 @@ public isolated client class Client {
 
     # Get ProcessStage by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + processType - The process type key field 
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ProcessStage 
@@ -2902,6 +3351,9 @@ public isolated client class Client {
 
     # Delete ProcessStage
     #
+    # + dataAreaId - The company data area identifier 
+    # + processType - The process type key field 
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + return - ProcessStage deleted 
     remote isolated function deleteProcessStages(string dataAreaId, string processType, string name, DeleteProcessStagesHeaders headers = {}) returns error? {
@@ -2912,6 +3364,10 @@ public isolated client class Client {
 
     # Update ProcessStage
     #
+    # + dataAreaId - The company data area identifier 
+    # + processType - The process type key field 
+    # + name - The name key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ProcessStage updated 
     remote isolated function updateProcessStages(string dataAreaId, string processType, string name, ProcessStage payload, UpdateProcessStagesHeaders headers = {}) returns ProcessStage|error {
@@ -2936,6 +3392,7 @@ public isolated client class Client {
 
     # Create ProductType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ProductType created 
     remote isolated function createProductTypes(ProductType payload, map<string|string[]> headers = {}) returns ProductType|error {
@@ -2948,6 +3405,8 @@ public isolated client class Client {
 
     # Get ProductType by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + productType - The product type key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ProductType 
@@ -2959,6 +3418,8 @@ public isolated client class Client {
 
     # Delete ProductType
     #
+    # + dataAreaId - The company data area identifier 
+    # + productType - The product type key field 
     # + headers - Headers to be sent with the request 
     # + return - ProductType deleted 
     remote isolated function deleteProductTypes(string dataAreaId, string productType, DeleteProductTypesHeaders headers = {}) returns error? {
@@ -2969,6 +3430,9 @@ public isolated client class Client {
 
     # Update ProductType
     #
+    # + dataAreaId - The company data area identifier 
+    # + productType - The product type key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ProductType updated 
     remote isolated function updateProductTypes(string dataAreaId, string productType, ProductType payload, UpdateProductTypesHeaders headers = {}) returns ProductType|error {
@@ -2993,6 +3457,7 @@ public isolated client class Client {
 
     # Create RBSLFactor
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - RBSLFactor created 
     remote isolated function createRBSLFactors(RBSLFactor payload, map<string|string[]> headers = {}) returns RBSLFactor|error {
@@ -3005,6 +3470,10 @@ public isolated client class Client {
 
     # Get RBSLFactor by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + fromDate - The from date key field 
+    # + years - The years key field 
+    # + months - The months key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - RBSLFactor 
@@ -3016,6 +3485,10 @@ public isolated client class Client {
 
     # Delete RBSLFactor
     #
+    # + dataAreaId - The company data area identifier 
+    # + fromDate - The from date key field 
+    # + years - The years key field 
+    # + months - The months key field 
     # + headers - Headers to be sent with the request 
     # + return - RBSLFactor deleted 
     remote isolated function deleteRBSLFactors(string dataAreaId, string fromDate, int years, int months, DeleteRBSLFactorsHeaders headers = {}) returns error? {
@@ -3026,6 +3499,11 @@ public isolated client class Client {
 
     # Update RBSLFactor
     #
+    # + dataAreaId - The company data area identifier 
+    # + fromDate - The from date key field 
+    # + years - The years key field 
+    # + months - The months key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - RBSLFactor updated 
     remote isolated function updateRBSLFactors(string dataAreaId, string fromDate, int years, int months, RBSLFactor payload, UpdateRBSLFactorsHeaders headers = {}) returns RBSLFactor|error {
@@ -3050,6 +3528,7 @@ public isolated client class Client {
 
     # Create Reasons
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Reasons created 
     remote isolated function createReasons(Reasons payload, map<string|string[]> headers = {}) returns Reasons|error {
@@ -3062,6 +3541,8 @@ public isolated client class Client {
 
     # Get Reasons by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Reasons 
@@ -3073,6 +3554,8 @@ public isolated client class Client {
 
     # Delete Reasons
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
     # + headers - Headers to be sent with the request 
     # + return - Reasons deleted 
     remote isolated function deleteReasons(string dataAreaId, string reasonCode, DeleteReasonsHeaders headers = {}) returns error? {
@@ -3083,6 +3566,9 @@ public isolated client class Client {
 
     # Update Reasons
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Reasons updated 
     remote isolated function updateReasons(string dataAreaId, string reasonCode, Reasons payload, UpdateReasonsHeaders headers = {}) returns Reasons|error {
@@ -3107,6 +3593,7 @@ public isolated client class Client {
 
     # Create RecSetupBasis
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - RecSetupBasis created 
     remote isolated function createRecSetupBases(RecSetupBasis payload, map<string|string[]> headers = {}) returns RecSetupBasis|error {
@@ -3119,6 +3606,9 @@ public isolated client class Client {
 
     # Get RecSetupBasis by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemGroup - The item group key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - RecSetupBasis 
@@ -3130,6 +3620,9 @@ public isolated client class Client {
 
     # Delete RecSetupBasis
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemGroup - The item group key field 
     # + headers - Headers to be sent with the request 
     # + return - RecSetupBasis deleted 
     remote isolated function deleteRecSetupBases(string dataAreaId, string itemId, string itemGroup, DeleteRecSetupBasesHeaders headers = {}) returns error? {
@@ -3140,6 +3633,10 @@ public isolated client class Client {
 
     # Update RecSetupBasis
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemId - The item id key field 
+    # + itemGroup - The item group key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - RecSetupBasis updated 
     remote isolated function updateRecSetupBases(string dataAreaId, string itemId, string itemGroup, RecSetupBasis payload, UpdateRecSetupBasesHeaders headers = {}) returns RecSetupBasis|error {
@@ -3164,6 +3661,7 @@ public isolated client class Client {
 
     # Create Registration
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Registration created 
     remote isolated function createRegistrations(Registration payload, map<string|string[]> headers = {}) returns Registration|error {
@@ -3176,6 +3674,11 @@ public isolated client class Client {
 
     # Get Registration by key
     #
+    # + partyNumber - The party number key field 
+    # + locationId - The location id key field 
+    # + validFrom - The valid from key field 
+    # + legislationType - The legislation type key field 
+    # + countryRegionId - The country region id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Registration 
@@ -3187,6 +3690,11 @@ public isolated client class Client {
 
     # Delete Registration
     #
+    # + partyNumber - The party number key field 
+    # + locationId - The location id key field 
+    # + validFrom - The valid from key field 
+    # + legislationType - The legislation type key field 
+    # + countryRegionId - The country region id key field 
     # + headers - Headers to be sent with the request 
     # + return - Registration deleted 
     remote isolated function deleteRegistrations(string partyNumber, string locationId, string validFrom, string legislationType, string countryRegionId, DeleteRegistrationsHeaders headers = {}) returns error? {
@@ -3197,6 +3705,12 @@ public isolated client class Client {
 
     # Update Registration
     #
+    # + partyNumber - The party number key field 
+    # + locationId - The location id key field 
+    # + validFrom - The valid from key field 
+    # + legislationType - The legislation type key field 
+    # + countryRegionId - The country region id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Registration updated 
     remote isolated function updateRegistrations(string partyNumber, string locationId, string validFrom, string legislationType, string countryRegionId, Registration payload, UpdateRegistrationsHeaders headers = {}) returns Registration|error {
@@ -3221,6 +3735,7 @@ public isolated client class Client {
 
     # Create Report347
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Report347 created 
     remote isolated function createReport347(Report347 payload, map<string|string[]> headers = {}) returns Report347|error {
@@ -3233,6 +3748,13 @@ public isolated client class Client {
 
     # Get Report347 by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + fiscalYear - The fiscal year key field 
+    # + referenceOfEstate - The reference of estate key field 
+    # + invoiceYearForCash - The invoice year for cash key field 
+    # + taxExemptNumberTrans - The tax exempt number trans key field 
+    # + taskCode - The task code key field 
+    # + countryRegionTrans - The country region trans key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Report347 
@@ -3244,6 +3766,13 @@ public isolated client class Client {
 
     # Delete Report347
     #
+    # + dataAreaId - The company data area identifier 
+    # + fiscalYear - The fiscal year key field 
+    # + referenceOfEstate - The reference of estate key field 
+    # + invoiceYearForCash - The invoice year for cash key field 
+    # + taxExemptNumberTrans - The tax exempt number trans key field 
+    # + taskCode - The task code key field 
+    # + countryRegionTrans - The country region trans key field 
     # + headers - Headers to be sent with the request 
     # + return - Report347 deleted 
     remote isolated function deleteReport347(string dataAreaId, int fiscalYear, string referenceOfEstate, int invoiceYearForCash, string taxExemptNumberTrans, string taskCode, string countryRegionTrans, DeleteReport347Headers headers = {}) returns error? {
@@ -3254,6 +3783,14 @@ public isolated client class Client {
 
     # Update Report347
     #
+    # + dataAreaId - The company data area identifier 
+    # + fiscalYear - The fiscal year key field 
+    # + referenceOfEstate - The reference of estate key field 
+    # + invoiceYearForCash - The invoice year for cash key field 
+    # + taxExemptNumberTrans - The tax exempt number trans key field 
+    # + taskCode - The task code key field 
+    # + countryRegionTrans - The country region trans key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Report347 updated 
     remote isolated function updateReport347(string dataAreaId, int fiscalYear, string referenceOfEstate, int invoiceYearForCash, string taxExemptNumberTrans, string taskCode, string countryRegionTrans, Report347 payload, UpdateReport347Headers headers = {}) returns Report347|error {
@@ -3278,6 +3815,7 @@ public isolated client class Client {
 
     # Create ReportPeriod
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ReportPeriod created 
     remote isolated function createReportPeriods(ReportPeriod payload, map<string|string[]> headers = {}) returns ReportPeriod|error {
@@ -3290,6 +3828,10 @@ public isolated client class Client {
 
     # Get ReportPeriod by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + settlementPeriod - The settlement period key field 
+    # + toDate - The to date key field 
+    # + fromDate - The from date key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ReportPeriod 
@@ -3301,6 +3843,10 @@ public isolated client class Client {
 
     # Delete ReportPeriod
     #
+    # + dataAreaId - The company data area identifier 
+    # + settlementPeriod - The settlement period key field 
+    # + toDate - The to date key field 
+    # + fromDate - The from date key field 
     # + headers - Headers to be sent with the request 
     # + return - ReportPeriod deleted 
     remote isolated function deleteReportPeriods(string dataAreaId, string settlementPeriod, string toDate, string fromDate, DeleteReportPeriodsHeaders headers = {}) returns error? {
@@ -3311,6 +3857,11 @@ public isolated client class Client {
 
     # Update ReportPeriod
     #
+    # + dataAreaId - The company data area identifier 
+    # + settlementPeriod - The settlement period key field 
+    # + toDate - The to date key field 
+    # + fromDate - The from date key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ReportPeriod updated 
     remote isolated function updateReportPeriods(string dataAreaId, string settlementPeriod, string toDate, string fromDate, ReportPeriod payload, UpdateReportPeriodsHeaders headers = {}) returns ReportPeriod|error {
@@ -3335,6 +3886,7 @@ public isolated client class Client {
 
     # Create Room
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Room created 
     remote isolated function createRooms(Room payload, map<string|string[]> headers = {}) returns Room|error {
@@ -3347,6 +3899,8 @@ public isolated client class Client {
 
     # Get Room by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + roomId - The room id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Room 
@@ -3358,6 +3912,8 @@ public isolated client class Client {
 
     # Delete Room
     #
+    # + dataAreaId - The company data area identifier 
+    # + roomId - The room id key field 
     # + headers - Headers to be sent with the request 
     # + return - Room deleted 
     remote isolated function deleteRooms(string dataAreaId, string roomId, DeleteRoomsHeaders headers = {}) returns error? {
@@ -3368,6 +3924,9 @@ public isolated client class Client {
 
     # Update Room
     #
+    # + dataAreaId - The company data area identifier 
+    # + roomId - The room id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Room updated 
     remote isolated function updateRooms(string dataAreaId, string roomId, Room payload, UpdateRoomsHeaders headers = {}) returns Room|error {
@@ -3392,6 +3951,7 @@ public isolated client class Client {
 
     # Create SADGroup
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADGroup created 
     remote isolated function createSADGroups(SADGroup payload, map<string|string[]> headers = {}) returns SADGroup|error {
@@ -3404,6 +3964,8 @@ public isolated client class Client {
 
     # Get SADGroup by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + sADGroup - The s ad group key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SADGroup 
@@ -3415,6 +3977,8 @@ public isolated client class Client {
 
     # Delete SADGroup
     #
+    # + dataAreaId - The company data area identifier 
+    # + sADGroup - The s ad group key field 
     # + headers - Headers to be sent with the request 
     # + return - SADGroup deleted 
     remote isolated function deleteSADGroups(string dataAreaId, string sADGroup, DeleteSADGroupsHeaders headers = {}) returns error? {
@@ -3425,6 +3989,9 @@ public isolated client class Client {
 
     # Update SADGroup
     #
+    # + dataAreaId - The company data area identifier 
+    # + sADGroup - The s ad group key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADGroup updated 
     remote isolated function updateSADGroups(string dataAreaId, string sADGroup, SADGroup payload, UpdateSADGroupsHeaders headers = {}) returns SADGroup|error {
@@ -3449,6 +4016,7 @@ public isolated client class Client {
 
     # Create SADItemCode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADItemCode created 
     remote isolated function createSADItemCodes(SADItemCode payload, map<string|string[]> headers = {}) returns SADItemCode|error {
@@ -3461,6 +4029,8 @@ public isolated client class Client {
 
     # Get SADItemCode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemCommodityCode - The item commodity code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SADItemCode 
@@ -3472,6 +4042,8 @@ public isolated client class Client {
 
     # Delete SADItemCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemCommodityCode - The item commodity code key field 
     # + headers - Headers to be sent with the request 
     # + return - SADItemCode deleted 
     remote isolated function deleteSADItemCodes(string dataAreaId, string itemCommodityCode, DeleteSADItemCodesHeaders headers = {}) returns error? {
@@ -3482,6 +4054,9 @@ public isolated client class Client {
 
     # Update SADItemCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + itemCommodityCode - The item commodity code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADItemCode updated 
     remote isolated function updateSADItemCodes(string dataAreaId, string itemCommodityCode, SADItemCode payload, UpdateSADItemCodesHeaders headers = {}) returns SADItemCode|error {
@@ -3506,6 +4081,7 @@ public isolated client class Client {
 
     # Create SADParameters
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADParameters created 
     remote isolated function createSADParameters(SADParameters payload, map<string|string[]> headers = {}) returns SADParameters|error {
@@ -3518,6 +4094,7 @@ public isolated client class Client {
 
     # Get SADParameters by key
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SADParameters 
@@ -3529,6 +4106,7 @@ public isolated client class Client {
 
     # Delete SADParameters
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + return - SADParameters deleted 
     remote isolated function deleteSADParameters(string dataAreaId, DeleteSADParametersHeaders headers = {}) returns error? {
@@ -3539,6 +4117,8 @@ public isolated client class Client {
 
     # Update SADParameters
     #
+    # + dataAreaId - The company data area identifier 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SADParameters updated 
     remote isolated function updateSADParameters(string dataAreaId, SADParameters payload, UpdateSADParametersHeaders headers = {}) returns SADParameters|error {
@@ -3563,6 +4143,7 @@ public isolated client class Client {
 
     # Create SecurityRole
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SecurityRole created 
     remote isolated function createSecurityRoles(SecurityRole payload, map<string|string[]> headers = {}) returns SecurityRole|error {
@@ -3575,6 +4156,7 @@ public isolated client class Client {
 
     # Get SecurityRole by key
     #
+    # + securityRoleIdentifier - The security role identifier key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SecurityRole 
@@ -3586,6 +4168,7 @@ public isolated client class Client {
 
     # Delete SecurityRole
     #
+    # + securityRoleIdentifier - The security role identifier key field 
     # + headers - Headers to be sent with the request 
     # + return - SecurityRole deleted 
     remote isolated function deleteSecurityRoles(string securityRoleIdentifier, DeleteSecurityRolesHeaders headers = {}) returns error? {
@@ -3596,6 +4179,8 @@ public isolated client class Client {
 
     # Update SecurityRole
     #
+    # + securityRoleIdentifier - The security role identifier key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SecurityRole updated 
     remote isolated function updateSecurityRoles(string securityRoleIdentifier, SecurityRole payload, UpdateSecurityRolesHeaders headers = {}) returns SecurityRole|error {
@@ -3620,6 +4205,7 @@ public isolated client class Client {
 
     # Create ServiceCodes
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ServiceCodes created 
     remote isolated function createServiceCodes(ServiceCodes payload, map<string|string[]> headers = {}) returns ServiceCodes|error {
@@ -3632,6 +4218,8 @@ public isolated client class Client {
 
     # Get ServiceCodes by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + serviceCode - The service code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ServiceCodes 
@@ -3643,6 +4231,8 @@ public isolated client class Client {
 
     # Delete ServiceCodes
     #
+    # + dataAreaId - The company data area identifier 
+    # + serviceCode - The service code key field 
     # + headers - Headers to be sent with the request 
     # + return - ServiceCodes deleted 
     remote isolated function deleteServiceCodes(string dataAreaId, string serviceCode, DeleteServiceCodesHeaders headers = {}) returns error? {
@@ -3653,6 +4243,9 @@ public isolated client class Client {
 
     # Update ServiceCodes
     #
+    # + dataAreaId - The company data area identifier 
+    # + serviceCode - The service code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - ServiceCodes updated 
     remote isolated function updateServiceCodes(string dataAreaId, string serviceCode, ServiceCodes payload, UpdateServiceCodesHeaders headers = {}) returns ServiceCodes|error {
@@ -3677,6 +4270,7 @@ public isolated client class Client {
 
     # Create SiteGate
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SiteGate created 
     remote isolated function createSiteGate(SiteGate payload, map<string|string[]> headers = {}) returns SiteGate|error {
@@ -3689,6 +4283,9 @@ public isolated client class Client {
 
     # Get SiteGate by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + gateId - The gate id key field 
+    # + siteId - The site id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SiteGate 
@@ -3700,6 +4297,9 @@ public isolated client class Client {
 
     # Delete SiteGate
     #
+    # + dataAreaId - The company data area identifier 
+    # + gateId - The gate id key field 
+    # + siteId - The site id key field 
     # + headers - Headers to be sent with the request 
     # + return - SiteGate deleted 
     remote isolated function deleteSiteGate(string dataAreaId, string 'type, string gateId, string siteId, DeleteSiteGateHeaders headers = {}) returns error? {
@@ -3710,6 +4310,10 @@ public isolated client class Client {
 
     # Update SiteGate
     #
+    # + dataAreaId - The company data area identifier 
+    # + gateId - The gate id key field 
+    # + siteId - The site id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SiteGate updated 
     remote isolated function updateSiteGate(string dataAreaId, string 'type, string gateId, string siteId, SiteGate payload, UpdateSiteGateHeaders headers = {}) returns SiteGate|error {
@@ -3734,6 +4338,7 @@ public isolated client class Client {
 
     # Create SourceSystem
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SourceSystem created 
     remote isolated function createSourceSystems(SourceSystem payload, map<string|string[]> headers = {}) returns SourceSystem|error {
@@ -3746,6 +4351,7 @@ public isolated client class Client {
 
     # Get SourceSystem by key
     #
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SourceSystem 
@@ -3757,6 +4363,7 @@ public isolated client class Client {
 
     # Delete SourceSystem
     #
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + return - SourceSystem deleted 
     remote isolated function deleteSourceSystems(string name, DeleteSourceSystemsHeaders headers = {}) returns error? {
@@ -3767,6 +4374,8 @@ public isolated client class Client {
 
     # Update SourceSystem
     #
+    # + name - The name key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SourceSystem updated 
     remote isolated function updateSourceSystems(string name, SourceSystem payload, UpdateSourceSystemsHeaders headers = {}) returns SourceSystem|error {
@@ -3791,6 +4400,7 @@ public isolated client class Client {
 
     # Create SourceType
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SourceType created 
     remote isolated function createSourceTypes(SourceType payload, map<string|string[]> headers = {}) returns SourceType|error {
@@ -3803,6 +4413,8 @@ public isolated client class Client {
 
     # Get SourceType by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + sourceTypeId - The source type id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SourceType 
@@ -3814,6 +4426,8 @@ public isolated client class Client {
 
     # Delete SourceType
     #
+    # + dataAreaId - The company data area identifier 
+    # + sourceTypeId - The source type id key field 
     # + headers - Headers to be sent with the request 
     # + return - SourceType deleted 
     remote isolated function deleteSourceTypes(string dataAreaId, string sourceTypeId, DeleteSourceTypesHeaders headers = {}) returns error? {
@@ -3824,6 +4438,9 @@ public isolated client class Client {
 
     # Update SourceType
     #
+    # + dataAreaId - The company data area identifier 
+    # + sourceTypeId - The source type id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SourceType updated 
     remote isolated function updateSourceTypes(string dataAreaId, string sourceTypeId, SourceType payload, UpdateSourceTypesHeaders headers = {}) returns SourceType|error {
@@ -3848,6 +4465,7 @@ public isolated client class Client {
 
     # Create State11
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - State11 created 
     remote isolated function createState11(State11 payload, map<string|string[]> headers = {}) returns State11|error {
@@ -3860,6 +4478,8 @@ public isolated client class Client {
 
     # Get State11 by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + bankAccount - The bank account key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - State11 
@@ -3871,6 +4491,8 @@ public isolated client class Client {
 
     # Delete State11
     #
+    # + dataAreaId - The company data area identifier 
+    # + bankAccount - The bank account key field 
     # + headers - Headers to be sent with the request 
     # + return - State11 deleted 
     remote isolated function deleteState11(string dataAreaId, string bankAccount, DeleteState11Headers headers = {}) returns error? {
@@ -3881,6 +4503,9 @@ public isolated client class Client {
 
     # Update State11
     #
+    # + dataAreaId - The company data area identifier 
+    # + bankAccount - The bank account key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - State11 updated 
     remote isolated function updateState11(string dataAreaId, string bankAccount, State11 payload, UpdateState11Headers headers = {}) returns State11|error {
@@ -3905,6 +4530,7 @@ public isolated client class Client {
 
     # Create StdSeq
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - StdSeq created 
     remote isolated function createStdSeqs(StdSeq payload, map<string|string[]> headers = {}) returns StdSeq|error {
@@ -3917,6 +4543,9 @@ public isolated client class Client {
 
     # Get StdSeq by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + sequence - The sequence key field 
+    # + appliedModule - The applied module key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - StdSeq 
@@ -3928,6 +4557,9 @@ public isolated client class Client {
 
     # Delete StdSeq
     #
+    # + dataAreaId - The company data area identifier 
+    # + sequence - The sequence key field 
+    # + appliedModule - The applied module key field 
     # + headers - Headers to be sent with the request 
     # + return - StdSeq deleted 
     remote isolated function deleteStdSeqs(string dataAreaId, int sequence, string appliedModule, DeleteStdSeqsHeaders headers = {}) returns error? {
@@ -3938,6 +4570,10 @@ public isolated client class Client {
 
     # Update StdSeq
     #
+    # + dataAreaId - The company data area identifier 
+    # + sequence - The sequence key field 
+    # + appliedModule - The applied module key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - StdSeq updated 
     remote isolated function updateStdSeqs(string dataAreaId, int sequence, string appliedModule, StdSeq payload, UpdateStdSeqsHeaders headers = {}) returns StdSeq|error {
@@ -3962,6 +4598,7 @@ public isolated client class Client {
 
     # Create Stead
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Stead created 
     remote isolated function createSteads(Stead payload, map<string|string[]> headers = {}) returns Stead|error {
@@ -3974,6 +4611,8 @@ public isolated client class Client {
 
     # Get Stead by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + steadId - The stead id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Stead 
@@ -3985,6 +4624,8 @@ public isolated client class Client {
 
     # Delete Stead
     #
+    # + dataAreaId - The company data area identifier 
+    # + steadId - The stead id key field 
     # + headers - Headers to be sent with the request 
     # + return - Stead deleted 
     remote isolated function deleteSteads(string dataAreaId, string steadId, DeleteSteadsHeaders headers = {}) returns error? {
@@ -3995,6 +4636,9 @@ public isolated client class Client {
 
     # Update Stead
     #
+    # + dataAreaId - The company data area identifier 
+    # + steadId - The stead id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Stead updated 
     remote isolated function updateSteads(string dataAreaId, string steadId, Stead payload, UpdateSteadsHeaders headers = {}) returns Stead|error {
@@ -4019,6 +4663,7 @@ public isolated client class Client {
 
     # Create SysAADClient
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SysAADClient created 
     remote isolated function createSysAADClients(SysAADClient payload, map<string|string[]> headers = {}) returns SysAADClient|error {
@@ -4031,6 +4676,7 @@ public isolated client class Client {
 
     # Get SysAADClient by key
     #
+    # + aADClientId - The a ad client id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SysAADClient 
@@ -4042,6 +4688,7 @@ public isolated client class Client {
 
     # Delete SysAADClient
     #
+    # + aADClientId - The a ad client id key field 
     # + headers - Headers to be sent with the request 
     # + return - SysAADClient deleted 
     remote isolated function deleteSysAADClients(string aADClientId, DeleteSysAADClientsHeaders headers = {}) returns error? {
@@ -4052,6 +4699,8 @@ public isolated client class Client {
 
     # Update SysAADClient
     #
+    # + aADClientId - The a ad client id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SysAADClient updated 
     remote isolated function updateSysAADClients(string aADClientId, SysAADClient payload, UpdateSysAADClientsHeaders headers = {}) returns SysAADClient|error {
@@ -4076,6 +4725,7 @@ public isolated client class Client {
 
     # Create SysMonData
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SysMonData created 
     remote isolated function createSysMonDatas(SysMonData payload, map<string|string[]> headers = {}) returns SysMonData|error {
@@ -4088,6 +4738,7 @@ public isolated client class Client {
 
     # Get SysMonData by key
     #
+    # + description - The description key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SysMonData 
@@ -4099,6 +4750,7 @@ public isolated client class Client {
 
     # Delete SysMonData
     #
+    # + description - The description key field 
     # + headers - Headers to be sent with the request 
     # + return - SysMonData deleted 
     remote isolated function deleteSysMonDatas(string description, DeleteSysMonDatasHeaders headers = {}) returns error? {
@@ -4109,6 +4761,8 @@ public isolated client class Client {
 
     # Update SysMonData
     #
+    # + description - The description key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SysMonData updated 
     remote isolated function updateSysMonDatas(string description, SysMonData payload, UpdateSysMonDatasHeaders headers = {}) returns SysMonData|error {
@@ -4133,6 +4787,7 @@ public isolated client class Client {
 
     # Create SystemUser
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SystemUser created 
     remote isolated function createSystemUsers(SystemUser payload, map<string|string[]> headers = {}) returns SystemUser|error {
@@ -4145,6 +4800,7 @@ public isolated client class Client {
 
     # Get SystemUser by key
     #
+    # + userID - The user id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SystemUser 
@@ -4156,6 +4812,7 @@ public isolated client class Client {
 
     # Delete SystemUser
     #
+    # + userID - The user id key field 
     # + headers - Headers to be sent with the request 
     # + return - SystemUser deleted 
     remote isolated function deleteSystemUsers(string userID, DeleteSystemUsersHeaders headers = {}) returns error? {
@@ -4166,6 +4823,8 @@ public isolated client class Client {
 
     # Update SystemUser
     #
+    # + userID - The user id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - SystemUser updated 
     remote isolated function updateSystemUsers(string userID, SystemUser payload, UpdateSystemUsersHeaders headers = {}) returns SystemUser|error {
@@ -4190,6 +4849,7 @@ public isolated client class Client {
 
     # Create TNVEDCode
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TNVEDCode created 
     remote isolated function createTNVEDCodes(TNVEDCode payload, map<string|string[]> headers = {}) returns TNVEDCode|error {
@@ -4202,6 +4862,8 @@ public isolated client class Client {
 
     # Get TNVEDCode by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + tnVedCode - The tn ved code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TNVEDCode 
@@ -4213,6 +4875,8 @@ public isolated client class Client {
 
     # Delete TNVEDCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + tnVedCode - The tn ved code key field 
     # + headers - Headers to be sent with the request 
     # + return - TNVEDCode deleted 
     remote isolated function deleteTNVEDCodes(string dataAreaId, string tnVedCode, DeleteTNVEDCodesHeaders headers = {}) returns error? {
@@ -4223,6 +4887,9 @@ public isolated client class Client {
 
     # Update TNVEDCode
     #
+    # + dataAreaId - The company data area identifier 
+    # + tnVedCode - The tn ved code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TNVEDCode updated 
     remote isolated function updateTNVEDCodes(string dataAreaId, string tnVedCode, TNVEDCode payload, UpdateTNVEDCodesHeaders headers = {}) returns TNVEDCode|error {
@@ -4247,6 +4914,7 @@ public isolated client class Client {
 
     # Create TableData
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TableData created 
     remote isolated function createTableDatas(TableData payload, map<string|string[]> headers = {}) returns TableData|error {
@@ -4259,6 +4927,15 @@ public isolated client class Client {
 
     # Get TableData by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + name - The name key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + jobTitle - The job title key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TableData 
@@ -4270,6 +4947,15 @@ public isolated client class Client {
 
     # Delete TableData
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + name - The name key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + jobTitle - The job title key field 
     # + headers - Headers to be sent with the request 
     # + return - TableData deleted 
     remote isolated function deleteTableDatas(string dataAreaId, string accountCode, string accountRelation, string warehouse, string associationWithWarehouse, string name, string position, string reportType, string jobTitle, DeleteTableDatasHeaders headers = {}) returns error? {
@@ -4280,6 +4966,16 @@ public isolated client class Client {
 
     # Update TableData
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + name - The name key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + jobTitle - The job title key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TableData updated 
     remote isolated function updateTableDatas(string dataAreaId, string accountCode, string accountRelation, string warehouse, string associationWithWarehouse, string name, string position, string reportType, string jobTitle, TableData payload, UpdateTableDatasHeaders headers = {}) returns TableData|error {
@@ -4304,6 +5000,7 @@ public isolated client class Client {
 
     # Create TableMapping
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TableMapping created 
     remote isolated function createTableMappings(TableMapping payload, map<string|string[]> headers = {}) returns TableMapping|error {
@@ -4316,6 +5013,9 @@ public isolated client class Client {
 
     # Get TableMapping by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + dataSourceTableId - The data source table id key field 
+    # + entityName - The entity name key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TableMapping 
@@ -4327,6 +5027,9 @@ public isolated client class Client {
 
     # Delete TableMapping
     #
+    # + dataAreaId - The company data area identifier 
+    # + dataSourceTableId - The data source table id key field 
+    # + entityName - The entity name key field 
     # + headers - Headers to be sent with the request 
     # + return - TableMapping deleted 
     remote isolated function deleteTableMappings(string dataAreaId, int dataSourceTableId, string entityName, DeleteTableMappingsHeaders headers = {}) returns error? {
@@ -4337,6 +5040,10 @@ public isolated client class Client {
 
     # Update TableMapping
     #
+    # + dataAreaId - The company data area identifier 
+    # + dataSourceTableId - The data source table id key field 
+    # + entityName - The entity name key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TableMapping updated 
     remote isolated function updateTableMappings(string dataAreaId, int dataSourceTableId, string entityName, TableMapping payload, UpdateTableMappingsHeaders headers = {}) returns TableMapping|error {
@@ -4361,6 +5068,7 @@ public isolated client class Client {
 
     # Create Table
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Table created 
     remote isolated function createTables(Table payload, map<string|string[]> headers = {}) returns Table|error {
@@ -4373,6 +5081,8 @@ public isolated client class Client {
 
     # Get Table by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralId - The deferral id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Table 
@@ -4384,6 +5094,8 @@ public isolated client class Client {
 
     # Delete Table
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralId - The deferral id key field 
     # + headers - Headers to be sent with the request 
     # + return - Table deleted 
     remote isolated function deleteTables(string dataAreaId, string deferralId, DeleteTablesHeaders headers = {}) returns error? {
@@ -4394,6 +5106,9 @@ public isolated client class Client {
 
     # Update Table
     #
+    # + dataAreaId - The company data area identifier 
+    # + deferralId - The deferral id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Table updated 
     remote isolated function updateTables(string dataAreaId, string deferralId, Table payload, UpdateTablesHeaders headers = {}) returns Table|error {
@@ -4418,6 +5133,7 @@ public isolated client class Client {
 
     # Create Test
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Test created 
     remote isolated function createTests(Test payload, map<string|string[]> headers = {}) returns Test|error {
@@ -4430,6 +5146,8 @@ public isolated client class Client {
 
     # Get Test by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Test 
@@ -4441,6 +5159,8 @@ public isolated client class Client {
 
     # Delete Test
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
     # + headers - Headers to be sent with the request 
     # + return - Test deleted 
     remote isolated function deleteTests(string dataAreaId, int iD, DeleteTestsHeaders headers = {}) returns error? {
@@ -4451,6 +5171,9 @@ public isolated client class Client {
 
     # Update Test
     #
+    # + dataAreaId - The company data area identifier 
+    # + iD - The i d key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Test updated 
     remote isolated function updateTests(string dataAreaId, int iD, Test payload, UpdateTestsHeaders headers = {}) returns Test|error {
@@ -4475,6 +5198,7 @@ public isolated client class Client {
 
     # Create TransData
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TransData created 
     remote isolated function createTransDatas(TransData payload, map<string|string[]> headers = {}) returns TransData|error {
@@ -4487,6 +5211,17 @@ public isolated client class Client {
 
     # Get TransData by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + module - The module key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + employeeName - The employee name key field 
+    # + officialSession - The official session key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + title - The title key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TransData 
@@ -4498,6 +5233,17 @@ public isolated client class Client {
 
     # Delete TransData
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + module - The module key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + employeeName - The employee name key field 
+    # + officialSession - The official session key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + title - The title key field 
     # + headers - Headers to be sent with the request 
     # + return - TransData deleted 
     remote isolated function deleteTransDatas(string dataAreaId, string accountCode, string module, string accountRelation, string warehouse, string associationWithWarehouse, string employeeName, string officialSession, string position, string reportType, string title, DeleteTransDatasHeaders headers = {}) returns error? {
@@ -4508,6 +5254,18 @@ public isolated client class Client {
 
     # Update TransData
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + module - The module key field 
+    # + accountRelation - The account relation key field 
+    # + warehouse - The warehouse key field 
+    # + associationWithWarehouse - The association with warehouse key field 
+    # + employeeName - The employee name key field 
+    # + officialSession - The official session key field 
+    # + position - The position key field 
+    # + reportType - The report type key field 
+    # + title - The title key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TransData updated 
     remote isolated function updateTransDatas(string dataAreaId, string accountCode, string module, string accountRelation, string warehouse, string associationWithWarehouse, string employeeName, string officialSession, string position, string reportType, string title, TransData payload, UpdateTransDatasHeaders headers = {}) returns TransData|error {
@@ -4532,6 +5290,7 @@ public isolated client class Client {
 
     # Create TypeTable
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TypeTable created 
     remote isolated function createTypeTables(TypeTable payload, map<string|string[]> headers = {}) returns TypeTable|error {
@@ -4544,6 +5303,8 @@ public isolated client class Client {
 
     # Get TypeTable by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + vehicleType - The vehicle type key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TypeTable 
@@ -4555,6 +5316,8 @@ public isolated client class Client {
 
     # Delete TypeTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + vehicleType - The vehicle type key field 
     # + headers - Headers to be sent with the request 
     # + return - TypeTable deleted 
     remote isolated function deleteTypeTables(string dataAreaId, string vehicleType, DeleteTypeTablesHeaders headers = {}) returns error? {
@@ -4565,6 +5328,9 @@ public isolated client class Client {
 
     # Update TypeTable
     #
+    # + dataAreaId - The company data area identifier 
+    # + vehicleType - The vehicle type key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - TypeTable updated 
     remote isolated function updateTypeTables(string dataAreaId, string vehicleType, TypeTable payload, UpdateTypeTablesHeaders headers = {}) returns TypeTable|error {
@@ -4589,6 +5355,7 @@ public isolated client class Client {
 
     # Create Type
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Type created 
     remote isolated function createTypes(Type payload, map<string|string[]> headers = {}) returns Type|error {
@@ -4601,6 +5368,8 @@ public isolated client class Client {
 
     # Get Type by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + flTypeId - The fl type id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Type 
@@ -4612,6 +5381,8 @@ public isolated client class Client {
 
     # Delete Type
     #
+    # + dataAreaId - The company data area identifier 
+    # + flTypeId - The fl type id key field 
     # + headers - Headers to be sent with the request 
     # + return - Type deleted 
     remote isolated function deleteTypes(string dataAreaId, string flTypeId, DeleteTypesHeaders headers = {}) returns error? {
@@ -4622,6 +5393,9 @@ public isolated client class Client {
 
     # Update Type
     #
+    # + dataAreaId - The company data area identifier 
+    # + flTypeId - The fl type id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Type updated 
     remote isolated function updateTypes(string dataAreaId, string flTypeId, Type payload, UpdateTypesHeaders headers = {}) returns Type|error {
@@ -4646,6 +5420,7 @@ public isolated client class Client {
 
     # Create UserGroup
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - UserGroup created 
     remote isolated function createUserGroups(UserGroup payload, map<string|string[]> headers = {}) returns UserGroup|error {
@@ -4658,6 +5433,7 @@ public isolated client class Client {
 
     # Get UserGroup by key
     #
+    # + groupId - The group id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - UserGroup 
@@ -4669,6 +5445,7 @@ public isolated client class Client {
 
     # Delete UserGroup
     #
+    # + groupId - The group id key field 
     # + headers - Headers to be sent with the request 
     # + return - UserGroup deleted 
     remote isolated function deleteUserGroups(string groupId, DeleteUserGroupsHeaders headers = {}) returns error? {
@@ -4679,6 +5456,8 @@ public isolated client class Client {
 
     # Update UserGroup
     #
+    # + groupId - The group id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - UserGroup updated 
     remote isolated function updateUserGroups(string groupId, UserGroup payload, UpdateUserGroupsHeaders headers = {}) returns UserGroup|error {
@@ -4703,6 +5482,7 @@ public isolated client class Client {
 
     # Create WebService
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - WebService created 
     remote isolated function createWebServices(WebService payload, map<string|string[]> headers = {}) returns WebService|error {
@@ -4715,6 +5495,8 @@ public isolated client class Client {
 
     # Get WebService by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + webService - The web service key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - WebService 
@@ -4726,6 +5508,8 @@ public isolated client class Client {
 
     # Delete WebService
     #
+    # + dataAreaId - The company data area identifier 
+    # + webService - The web service key field 
     # + headers - Headers to be sent with the request 
     # + return - WebService deleted 
     remote isolated function deleteWebServices(string dataAreaId, string webService, DeleteWebServicesHeaders headers = {}) returns error? {
@@ -4736,6 +5520,9 @@ public isolated client class Client {
 
     # Update WebService
     #
+    # + dataAreaId - The company data area identifier 
+    # + webService - The web service key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - WebService updated 
     remote isolated function updateWebServices(string dataAreaId, string webService, WebService payload, UpdateWebServicesHeaders headers = {}) returns WebService|error {
@@ -4760,6 +5547,7 @@ public isolated client class Client {
 
     # Create WorkCalendar
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - WorkCalendar created 
     remote isolated function createWorkCalendars(WorkCalendar payload, map<string|string[]> headers = {}) returns WorkCalendar|error {
@@ -4772,6 +5560,8 @@ public isolated client class Client {
 
     # Get WorkCalendar by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + calendarId - The calendar id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - WorkCalendar 
@@ -4783,6 +5573,8 @@ public isolated client class Client {
 
     # Delete WorkCalendar
     #
+    # + dataAreaId - The company data area identifier 
+    # + calendarId - The calendar id key field 
     # + headers - Headers to be sent with the request 
     # + return - WorkCalendar deleted 
     remote isolated function deleteWorkCalendars(string dataAreaId, string calendarId, DeleteWorkCalendarsHeaders headers = {}) returns error? {
@@ -4793,6 +5585,9 @@ public isolated client class Client {
 
     # Update WorkCalendar
     #
+    # + dataAreaId - The company data area identifier 
+    # + calendarId - The calendar id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - WorkCalendar updated 
     remote isolated function updateWorkCalendars(string dataAreaId, string calendarId, WorkCalendar payload, UpdateWorkCalendarsHeaders headers = {}) returns WorkCalendar|error {
@@ -4817,6 +5612,7 @@ public isolated client class Client {
 
     # Create Workflow
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Workflow created 
     remote isolated function createWorkflows(Workflow payload, map<string|string[]> headers = {}) returns Workflow|error {
@@ -4829,6 +5625,7 @@ public isolated client class Client {
 
     # Get Workflow by key
     #
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Workflow 
@@ -4840,6 +5637,7 @@ public isolated client class Client {
 
     # Delete Workflow
     #
+    # + sequenceNumber - The sequence number key field 
     # + headers - Headers to be sent with the request 
     # + return - Workflow deleted 
     remote isolated function deleteWorkflows(string sequenceNumber, DeleteWorkflowsHeaders headers = {}) returns error? {
@@ -4850,6 +5648,8 @@ public isolated client class Client {
 
     # Update Workflow
     #
+    # + sequenceNumber - The sequence number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Workflow updated 
     remote isolated function updateWorkflows(string sequenceNumber, Workflow payload, UpdateWorkflowsHeaders headers = {}) returns Workflow|error {
