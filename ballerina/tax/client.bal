@@ -238,6 +238,7 @@ public isolated client class Client {
     # Get ELParameter by key
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ELParameter 
@@ -250,6 +251,7 @@ public isolated client class Client {
     # Delete ELParameter
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - ELParameter deleted 
     remote isolated function deleteELParameters(string dataAreaId, int 'key, DeleteELParametersHeaders headers = {}) returns error? {
@@ -262,6 +264,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - ELParameter updated 
     remote isolated function updateELParameters(string dataAreaId, int 'key, ELParameter payload, UpdateELParametersHeaders headers = {}) returns ELParameter|error {
@@ -1667,6 +1670,7 @@ public isolated client class Client {
     # + cFOPGroupId - The c fop group id key field 
     # + accountRelation - The account relation key field 
     # + itemRelation - The item relation key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - TaxesMatrix 
@@ -1683,6 +1687,7 @@ public isolated client class Client {
     # + cFOPGroupId - The c fop group id key field 
     # + accountRelation - The account relation key field 
     # + itemRelation - The item relation key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - TaxesMatrix deleted 
     remote isolated function deleteTaxesMatrices(string dataAreaId, string fiscalEstablishmentGroupId, string cFOPGroupId, string 'type, string accountRelation, string itemRelation, DeleteTaxesMatricesHeaders headers = {}) returns error? {
@@ -1699,6 +1704,7 @@ public isolated client class Client {
     # + accountRelation - The account relation key field 
     # + itemRelation - The item relation key field 
     # + payload - The request body 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - TaxesMatrix updated 
     remote isolated function updateTaxesMatrices(string dataAreaId, string fiscalEstablishmentGroupId, string cFOPGroupId, string 'type, string accountRelation, string itemRelation, TaxesMatrix payload, UpdateTaxesMatricesHeaders headers = {}) returns TaxesMatrix|error {

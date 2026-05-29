@@ -1061,6 +1061,7 @@ public isolated client class Client {
 
     # Get DirParameters by key
     #
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DirParameters 
@@ -1072,6 +1073,7 @@ public isolated client class Client {
 
     # Delete DirParameters
     #
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - DirParameters deleted 
     remote isolated function deleteDirParameters(int 'key, DeleteDirParametersHeaders headers = {}) returns error? {
@@ -1083,6 +1085,7 @@ public isolated client class Client {
     # Update DirParameters
     #
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - DirParameters updated 
     remote isolated function updateDirParameters(int 'key, DirParameters payload, UpdateDirParametersHeaders headers = {}) returns DirParameters|error {
@@ -1523,6 +1526,7 @@ public isolated client class Client {
     # Get NameAffix by key
     #
     # + affix - The affix key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - NameAffix 
@@ -1535,6 +1539,7 @@ public isolated client class Client {
     # Delete NameAffix
     #
     # + affix - The affix key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - NameAffix deleted 
     remote isolated function deleteNameAffixes(string 'type, string affix, DeleteNameAffixesHeaders headers = {}) returns error? {
@@ -1547,6 +1552,7 @@ public isolated client class Client {
     #
     # + affix - The affix key field 
     # + payload - The request body 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - NameAffix updated 
     remote isolated function updateNameAffixes(string 'type, string affix, NameAffix payload, UpdateNameAffixesHeaders headers = {}) returns NameAffix|error {
@@ -2244,6 +2250,7 @@ public isolated client class Client {
     # Get VRMParameter by key
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VRMParameter 
@@ -2256,6 +2263,7 @@ public isolated client class Client {
     # Delete VRMParameter
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - VRMParameter deleted 
     remote isolated function deleteVRMParameters(string dataAreaId, int 'key, DeleteVRMParametersHeaders headers = {}) returns error? {
@@ -2268,6 +2276,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - VRMParameter updated 
     remote isolated function updateVRMParameters(string dataAreaId, int 'key, VRMParameter payload, UpdateVRMParametersHeaders headers = {}) returns VRMParameter|error {

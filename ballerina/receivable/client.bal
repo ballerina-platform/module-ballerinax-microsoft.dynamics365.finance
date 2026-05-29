@@ -1159,6 +1159,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + debtType - The debt type key field 
     # + periodDebtType - The period debt type key field 
+    # + 'from - The start date or lower bound for the range query 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DebtPeriod 
@@ -1173,6 +1174,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + debtType - The debt type key field 
     # + periodDebtType - The period debt type key field 
+    # + 'from - The start date or lower bound for the range query 
     # + headers - Headers to be sent with the request 
     # + return - DebtPeriod deleted 
     remote isolated function deleteDebtPeriods(string dataAreaId, string debtType, string periodDebtType, int 'from, DeleteDebtPeriodsHeaders headers = {}) returns error? {
@@ -1187,6 +1189,7 @@ public isolated client class Client {
     # + debtType - The debt type key field 
     # + periodDebtType - The period debt type key field 
     # + payload - The request body 
+    # + 'from - The start date or lower bound for the range query 
     # + headers - Headers to be sent with the request 
     # + return - DebtPeriod updated 
     remote isolated function updateDebtPeriods(string dataAreaId, string debtType, string periodDebtType, int 'from, DebtPeriod payload, UpdateDebtPeriodsHeaders headers = {}) returns DebtPeriod|error {

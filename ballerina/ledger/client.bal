@@ -631,6 +631,7 @@ public isolated client class Client {
     # Get CPParameter by key
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - CPParameter 
@@ -643,6 +644,7 @@ public isolated client class Client {
     # Delete CPParameter
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - CPParameter deleted 
     remote isolated function deleteCPParameters(string dataAreaId, int 'key, DeleteCPParametersHeaders headers = {}) returns error? {
@@ -655,6 +657,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - CPParameter updated 
     remote isolated function updateCPParameters(string dataAreaId, int 'key, CPParameter payload, UpdateCPParametersHeaders headers = {}) returns CPParameter|error {
@@ -1079,6 +1082,7 @@ public isolated client class Client {
 
     # Get DimensionParameters by key
     #
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DimensionParameters 
@@ -1090,6 +1094,7 @@ public isolated client class Client {
 
     # Delete DimensionParameters
     #
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - DimensionParameters deleted 
     remote isolated function deleteDimensionParameters(int 'key, DeleteDimensionParametersHeaders headers = {}) returns error? {
@@ -1101,6 +1106,7 @@ public isolated client class Client {
     # Update DimensionParameters
     #
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - DimensionParameters updated 
     remote isolated function updateDimensionParameters(int 'key, DimensionParameters payload, UpdateDimensionParametersHeaders headers = {}) returns DimensionParameters|error {

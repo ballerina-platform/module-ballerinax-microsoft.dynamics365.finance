@@ -709,6 +709,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + transactionFamily - The transaction family key field 
+    # + 'transaction - The transaction key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - CodaTrans 
@@ -722,6 +723,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + transactionFamily - The transaction family key field 
+    # + 'transaction - The transaction key field 
     # + headers - Headers to be sent with the request 
     # + return - CodaTrans deleted 
     remote isolated function deleteCodaTrans(string dataAreaId, string transactionFamily, string 'transaction, DeleteCodaTransHeaders headers = {}) returns error? {
@@ -735,6 +737,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + transactionFamily - The transaction family key field 
     # + payload - The request body 
+    # + 'transaction - The transaction key field 
     # + headers - Headers to be sent with the request 
     # + return - CodaTrans updated 
     remote isolated function updateCodaTrans(string dataAreaId, string transactionFamily, string 'transaction, CodaTrans payload, UpdateCodaTransHeaders headers = {}) returns CodaTrans|error {

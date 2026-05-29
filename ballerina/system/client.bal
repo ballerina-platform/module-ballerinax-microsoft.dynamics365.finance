@@ -1302,6 +1302,7 @@ public isolated client class Client {
     # Get EDParameter by key
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - EDParameter 
@@ -1314,6 +1315,7 @@ public isolated client class Client {
     # Delete EDParameter
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - EDParameter deleted 
     remote isolated function deleteEDParameters(string dataAreaId, int 'key, DeleteEDParametersHeaders headers = {}) returns error? {
@@ -1326,6 +1328,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - EDParameter updated 
     remote isolated function updateEDParameters(string dataAreaId, int 'key, EDParameter payload, UpdateEDParametersHeaders headers = {}) returns EDParameter|error {
@@ -1565,6 +1568,7 @@ public isolated client class Client {
     # Get ExternalRole by key
     #
     # + role - The role key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - ExternalRole 
@@ -1577,6 +1581,7 @@ public isolated client class Client {
     # Delete ExternalRole
     #
     # + role - The role key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - ExternalRole deleted 
     remote isolated function deleteExternalRoles(string role, string 'type, DeleteExternalRolesHeaders headers = {}) returns error? {
@@ -1589,6 +1594,7 @@ public isolated client class Client {
     #
     # + role - The role key field 
     # + payload - The request body 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - ExternalRole updated 
     remote isolated function updateExternalRoles(string role, string 'type, ExternalRole payload, UpdateExternalRolesHeaders headers = {}) returns ExternalRole|error {
@@ -1628,6 +1634,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + code - The code key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - FormatCode 
@@ -1641,6 +1648,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + code - The code key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - FormatCode deleted 
     remote isolated function deleteFormatCodes(string dataAreaId, string code, string 'type, DeleteFormatCodesHeaders headers = {}) returns error? {
@@ -1654,6 +1662,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + code - The code key field 
     # + payload - The request body 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - FormatCode updated 
     remote isolated function updateFormatCodes(string dataAreaId, string code, string 'type, FormatCode payload, UpdateFormatCodesHeaders headers = {}) returns FormatCode|error {
@@ -3075,6 +3084,7 @@ public isolated client class Client {
     # Get Parameters by key
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Parameters 
@@ -3087,6 +3097,7 @@ public isolated client class Client {
     # Delete Parameters
     #
     # + dataAreaId - The company data area identifier 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - Parameters deleted 
     remote isolated function deleteParameters(string dataAreaId, int 'key, DeleteParametersHeaders headers = {}) returns error? {
@@ -3099,6 +3110,7 @@ public isolated client class Client {
     #
     # + dataAreaId - The company data area identifier 
     # + payload - The request body 
+    # + 'key - The entity key value 
     # + headers - Headers to be sent with the request 
     # + return - Parameters updated 
     remote isolated function updateParameters(string dataAreaId, int 'key, Parameters payload, UpdateParametersHeaders headers = {}) returns Parameters|error {
@@ -4286,6 +4298,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + gateId - The gate id key field 
     # + siteId - The site id key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - SiteGate 
@@ -4300,6 +4313,7 @@ public isolated client class Client {
     # + dataAreaId - The company data area identifier 
     # + gateId - The gate id key field 
     # + siteId - The site id key field 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - SiteGate deleted 
     remote isolated function deleteSiteGate(string dataAreaId, string 'type, string gateId, string siteId, DeleteSiteGateHeaders headers = {}) returns error? {
@@ -4314,6 +4328,7 @@ public isolated client class Client {
     # + gateId - The gate id key field 
     # + siteId - The site id key field 
     # + payload - The request body 
+    # + 'type - The entity type identifier 
     # + headers - Headers to be sent with the request 
     # + return - SiteGate updated 
     remote isolated function updateSiteGate(string dataAreaId, string 'type, string gateId, string siteId, SiteGate payload, UpdateSiteGateHeaders headers = {}) returns SiteGate|error {
