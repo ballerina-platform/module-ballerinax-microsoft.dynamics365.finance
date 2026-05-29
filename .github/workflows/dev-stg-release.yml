@@ -49,14 +49,16 @@ jobs:
           distribution: temurin
           java-version: 21.0.3
 
-      - name: Cache Ballerina packages
-        uses: actions/cache@v3
+      - name: Get Ballerina Version
+        run: |
+          BAL_VERSION=$(grep -w 'ballerinaLangVersion' gradle.properties | cut -d= -f2 | rev | cut --complement -d- -f1 | rev)
+          if [ -z "$BAL_VERSION" ]; then BAL_VERSION="latest"; fi
+          echo "BAL_VERSION=$BAL_VERSION" >> $GITHUB_ENV
+
+      - name: Set Up Ballerina
+        uses: ballerina-platform/setup-ballerina@v1.1.0
         with:
-          path: ~/.ballerina
-          key: ${{ runner.os }}-ballerina-${{ matrix.directory }}-${{ hashFiles(format('ballerina/{0}/Dependencies.toml', matrix.directory)) }}
-          restore-keys: |
-            ${{ runner.os }}-ballerina-${{ matrix.directory }}-
-            ${{ runner.os }}-ballerina-
+          version: ${{ env.BAL_VERSION }}
 
       - name: Publish to Dev Central
         if: ${{ inputs.environment == 'DEV CENTRAL' }}
@@ -67,10 +69,8 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -x test -PbuildUsingDocker=nightly -PpublishToCentral=true
+          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
+            -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -81,7 +81,5 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -x test -PbuildUsingDocker=nightly -PpublishToCentral=true
+          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
+            -PpublishToCentral=true
