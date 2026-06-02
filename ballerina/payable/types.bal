@@ -79,7 +79,7 @@ public type ReuseVoucher "NoDuplicate"|"NoDuplicateInYear"|"AcceptDuplicate"|"Wa
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
+    OAuth2ClientCredentialsGrantConfig auth;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
