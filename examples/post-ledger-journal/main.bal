@@ -36,7 +36,7 @@ public function main() returns error? {
     io:println("Existing ledger journals:");
     ledger:LedgerJournalHeadersCollection page = check fo->listLedgerJournalHeaders();
     foreach ledger:LedgerJournalHeader j in page.value ?: [] {
-        io:println(string `  ${j.journalBatchNumber}   ${j.journalName ?: ""}   posted=${j.isPosted ?: ""}   ${j.description ?: ""}`);
+        io:println(string `  ${j.journalBatchNumber ?: ""}   ${j.journalName ?: ""}   posted=${j.isPosted ?: ""}   ${j.description ?: ""}`);
     }
 
     ledger:LedgerJournalHeader draft = {
@@ -50,7 +50,7 @@ public function main() returns error? {
     };
     ledger:LedgerJournalHeader created = check fo->createLedgerJournalHeaders(payload = draft);
     io:println("");
-    io:println(string `Created: ${created.journalBatchNumber}`);
+    io:println(string `Created: ${created.journalBatchNumber ?: ""}`);
     io:println(string `  etag:  ${(created["@odata.etag"] ?: "").toString()}`);
 
     check mockListener.gracefulStop();

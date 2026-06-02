@@ -36,14 +36,14 @@ public function main() returns error? {
     io:println("Default company (USMF) customers:");
     receivable:CustomersV3Collection page = check fo->listCustomersV3();
     foreach receivable:CustomerV3 c in page.value ?: [] {
-        io:println(string `  ${c.customerAccount}   ${c.organizationName ?: ""}   [${c.dataAreaId}]`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("All companies (cross-company):");
     receivable:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
     foreach receivable:CustomerV3 c in all.value ?: [] {
-        io:println(string `  ${c.customerAccount}   ${c.organizationName ?: ""}   [${c.dataAreaId}]`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
@@ -52,7 +52,7 @@ public function main() returns error? {
         queries = {filter: "contains(OrganizationName,'Contoso')"}
     );
     foreach receivable:CustomerV3 c in filtered.value ?: [] {
-        io:println(string `  ${c.customerAccount}   ${c.organizationName ?: ""}`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}`);
     }
 
     check mockListener.gracefulStop();
