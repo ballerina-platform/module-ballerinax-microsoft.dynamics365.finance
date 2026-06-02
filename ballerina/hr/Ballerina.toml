@@ -9,7 +9,9 @@ icon = "../icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
 
-export = ["microsoft.dynamics365.finance.hr", "microsoft.dynamics365.finance.hr.mock"]
+[[package.modules]]
+name = "microsoft.dynamics365.finance.hr.mock"
+export = true
 
 [build-options]
 observabilityIncluded = true

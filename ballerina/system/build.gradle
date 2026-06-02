@@ -12,9 +12,20 @@ plugins {
 description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - System Module'
 
 def packageName = "microsoft.dynamics365.finance.system"
-def tomlVersion = project.systemVersion.replace("-SNAPSHOT", "")
+def tomlVersion = stripBallerinaExtensionVersion("${project.systemVersion}")
 def ballerinaTomlFilePlaceHolder = new File("${project.rootDir}/build-config/resources/system/Ballerina.toml")
 def ballerinaTomlFile = new File("$project.projectDir/Ballerina.toml")
+
+def stripBallerinaExtensionVersion(String extVersion) {
+    if (extVersion.matches(project.ext.timestampedVersionRegex)) {
+        def splitVersion = extVersion.split('-')
+        if (splitVersion.length > 3) {
+            return splitVersion[0..-4].join('-')
+        }
+        return extVersion
+    }
+    return extVersion.replace("${project.ext.snapshotVersion}", "")
+}
 
 ballerina {
     packageOrganization = "ballerinax"
@@ -57,5 +68,6 @@ release {
     }
 }
 
+build.dependsOn updateTomlFiles
 publishToMavenLocal.dependsOn build
 publish.dependsOn build

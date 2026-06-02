@@ -112,9 +112,8 @@ isolated function projectRow(json row, string[] fields) returns json {
     map<json> projected = {};
     foreach string f in fields {
         string trimmed = f.trim();
-        json? val = row[trimmed];
-        if val is json {
-            projected[trimmed] = val;
+        if row.hasKey(trimmed) {
+            projected[trimmed] = row[trimmed];
         }
     }
     return projected;
@@ -214,14 +213,17 @@ isolated function parseEntitySetAndKey(string segment) returns [string, map<stri
     string keyExpr = segment.substring(open + 1, closeIdx);
 
     map<string> key = {};
-    regexp:RegExp kvRe = re `(\w+)\s*=\s*'([^']*)'`;
-    regexp:Groups[] all = kvRe.findAllGroups(keyExpr);
-    foreach regexp:Groups g in all {
-        if g.length() >= 3 {
-            regexp:Span? n = g[1];
-            regexp:Span? v = g[2];
-            if n is regexp:Span && v is regexp:Span {
-                key[n.substring()] = v.substring();
+    string[] pairs = re `,`.split(keyExpr);
+    foreach string pair in pairs {
+        int? eqIdx = pair.indexOf("=");
+        if eqIdx is int {
+            string k = pair.substring(0, eqIdx).trim();
+            string rawVal = pair.substring(eqIdx + 1).trim();
+            string v = rawVal.startsWith("'") && rawVal.endsWith("'")
+                ? rawVal.substring(1, rawVal.length() - 1)
+                : rawVal;
+            if k != "" {
+                key[k] = v;
             }
         }
     }
