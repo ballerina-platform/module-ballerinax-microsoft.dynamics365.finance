@@ -219,7 +219,7 @@ isolated function parseEntitySetAndKey(string segment) returns [string, map<stri
         if eqIdx is int {
             string k = pair.substring(0, eqIdx).trim();
             string rawVal = pair.substring(eqIdx + 1).trim();
-            string v = rawVal.startsWith("'") && rawVal.endsWith("'")
+            string v = rawVal.length() >= 2 && rawVal.startsWith("'") && rawVal.endsWith("'")
                 ? rawVal.substring(1, rawVal.length() - 1)
                 : rawVal;
             if k != "" {
