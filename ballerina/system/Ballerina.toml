@@ -9,11 +9,6 @@ icon = "../icon.png"
 license = ["Apache-2.0"]
 distribution = "2201.13.0"
 
-
-[[package.modules]]
-name = "microsoft.dynamics365.finance.system"
-export = true
-
 [[package.modules]]
 name = "microsoft.dynamics365.finance.system.mock"
 export = true
