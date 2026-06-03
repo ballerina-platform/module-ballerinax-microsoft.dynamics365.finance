@@ -14,26 +14,27 @@
 
 // List customers — default company, cross-company override, and name filter.
 
-import ballerina/http;
 import ballerina/io;
 import ballerinax/microsoft.dynamics365.finance.receivable;
-import ballerinax/microsoft.dynamics365.finance.receivable.mock as mockSrv;
+
+configurable string tokenUrl = ?;
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    http:Listener mockListener = check mockSrv:startMock();
-
     receivable:Client fo = check new (
         {
             auth: {
-                tokenUrl: "http://localhost:9090/token",
-                clientId: "mock-client-id",
-                clientSecret: "mock-client-secret"
+                tokenUrl,
+                clientId,
+                clientSecret
             }
         },
-        "http://localhost:9090/data"
+        serviceUrl
     );
 
-    io:println("Default company (USMF) customers:");
+    io:println("Default company customers:");
     receivable:CustomersV3Collection page = check fo->listCustomersV3();
     foreach receivable:CustomerV3 c in page.value ?: [] {
         io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
@@ -54,6 +55,4 @@ public function main() returns error? {
     foreach receivable:CustomerV3 c in filtered.value ?: [] {
         io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}`);
     }
-
-    check mockListener.gracefulStop();
 }
