@@ -10,7 +10,6 @@ license = ["Apache-2.0"]
 distribution = "2201.13.0"
 [[package.modules]]
 name = "microsoft.dynamics365.finance.mock.server"
-export = true
 
 [build-options]
 observabilityIncluded=true
