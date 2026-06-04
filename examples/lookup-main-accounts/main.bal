@@ -14,37 +14,36 @@
 
 // Look up main accounts from the Shared chart of accounts, then fetch one by key.
 
-import ballerina/http;
 import ballerina/io;
 import ballerinax/microsoft.dynamics365.finance.ledger;
-import ballerinax/microsoft.dynamics365.finance.ledger.mock as mockSrv;
+
+configurable string tokenUrl = ?;
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    http:Listener mockListener = check mockSrv:startMock();
-
     ledger:Client fo = check new (
         {
             auth: {
-                tokenUrl: "http://localhost:9090/token",
-                clientId: "mock-client-id",
-                clientSecret: "mock-client-secret"
+                tokenUrl,
+                clientId,
+                clientSecret
             }
         },
-        "http://localhost:9090/data"
+        serviceUrl
     );
 
     io:println("Main accounts in the Shared chart:");
     ledger:MainAccountsCollection page = check fo->listMainAccounts();
     foreach ledger:MainAccount m in page.value ?: [] {
-        io:println(string `  ${m.mainAccountId}   ${m.name ?: ""}   [${m.mainAccountType ?: ""}]`);
+        io:println(string `  ${m.mainAccountId ?: ""}   ${m.name ?: ""}   [${m.mainAccountType ?: ""}]`);
     }
 
     io:println("");
     io:println("Detail for account 401100:");
     ledger:MainAccount revenue = check fo->getMainAccounts(chartOfAccounts = "Shared", mainAccountId = "401100");
-    io:println(string `  id:    ${revenue.mainAccountId}`);
+    io:println(string `  id:    ${revenue.mainAccountId ?: ""}`);
     io:println(string `  name:  ${revenue.name ?: ""}`);
     io:println(string `  type:  ${revenue.mainAccountType ?: ""}`);
-
-    check mockListener.gracefulStop();
 }

@@ -58,7 +58,10 @@ jobs:
         env:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build -x test -PbuildUsingDocker=nightly
+        run: |
+          TOML_VERSION=$(grep -w '${{ inputs.connector }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build \
+            -Pversion=${TOML_VERSION} -P${{ inputs.connector }}Version=${TOML_VERSION} -x test
 
       - name: Run Trivy Vulnerability Scanner
         uses: aquasecurity/trivy-action@master

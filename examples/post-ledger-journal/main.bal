@@ -14,29 +14,30 @@
 
 // List existing ledger journals, then post a new daily journal header.
 
-import ballerina/http;
 import ballerina/io;
 import ballerinax/microsoft.dynamics365.finance.ledger;
-import ballerinax/microsoft.dynamics365.finance.ledger.mock as mockSrv;
+
+configurable string tokenUrl = ?;
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    http:Listener mockListener = check mockSrv:startMock();
-
     ledger:Client fo = check new (
         {
             auth: {
-                tokenUrl: "http://localhost:9090/token",
-                clientId: "mock-client-id",
-                clientSecret: "mock-client-secret"
+                tokenUrl,
+                clientId,
+                clientSecret
             }
         },
-        "http://localhost:9090/data"
+        serviceUrl
     );
 
     io:println("Existing ledger journals:");
     ledger:LedgerJournalHeadersCollection page = check fo->listLedgerJournalHeaders();
     foreach ledger:LedgerJournalHeader j in page.value ?: [] {
-        io:println(string `  ${j.journalBatchNumber}   ${j.journalName ?: ""}   posted=${j.isPosted ?: ""}   ${j.description ?: ""}`);
+        io:println(string `  ${j.journalBatchNumber ?: ""}   ${j.journalName ?: ""}   posted=${j.isPosted ?: ""}   ${j.description ?: ""}`);
     }
 
     ledger:LedgerJournalHeader draft = {
@@ -50,8 +51,6 @@ public function main() returns error? {
     };
     ledger:LedgerJournalHeader created = check fo->createLedgerJournalHeaders(payload = draft);
     io:println("");
-    io:println(string `Created: ${created.journalBatchNumber}`);
+    io:println(string `Created: ${created.journalBatchNumber ?: ""}`);
     io:println(string `  etag:  ${(created["@odata.etag"] ?: "").toString()}`);
-
-    check mockListener.gracefulStop();
 }

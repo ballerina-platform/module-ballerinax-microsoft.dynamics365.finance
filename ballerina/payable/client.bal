@@ -29,6 +29,7 @@ public isolated client class Client {
 
     # Create DeliveryTerm
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DeliveryTerm created 
     remote isolated function createDeliveryTerms(DeliveryTerm payload, map<string|string[]> headers = {}) returns DeliveryTerm|error {
@@ -41,6 +42,8 @@ public isolated client class Client {
 
     # Get DeliveryTerm by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + termsCode - The terms code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DeliveryTerm 
@@ -52,6 +55,8 @@ public isolated client class Client {
 
     # Delete DeliveryTerm
     #
+    # + dataAreaId - The company data area identifier 
+    # + termsCode - The terms code key field 
     # + headers - Headers to be sent with the request 
     # + return - DeliveryTerm deleted 
     remote isolated function deleteDeliveryTerms(string dataAreaId, string termsCode, DeleteDeliveryTermsHeaders headers = {}) returns error? {
@@ -62,6 +67,9 @@ public isolated client class Client {
 
     # Update DeliveryTerm
     #
+    # + dataAreaId - The company data area identifier 
+    # + termsCode - The terms code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DeliveryTerm updated 
     remote isolated function updateDeliveryTerms(string dataAreaId, string termsCode, DeliveryTerm payload, UpdateDeliveryTermsHeaders headers = {}) returns DeliveryTerm|error {
@@ -86,6 +94,7 @@ public isolated client class Client {
 
     # Create DiscountRate
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DiscountRate created 
     remote isolated function createDiscountRates(DiscountRate payload, map<string|string[]> headers = {}) returns DiscountRate|error {
@@ -98,6 +107,8 @@ public isolated client class Client {
 
     # Get DiscountRate by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + startDate - The start date key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - DiscountRate 
@@ -109,6 +120,8 @@ public isolated client class Client {
 
     # Delete DiscountRate
     #
+    # + dataAreaId - The company data area identifier 
+    # + startDate - The start date key field 
     # + headers - Headers to be sent with the request 
     # + return - DiscountRate deleted 
     remote isolated function deleteDiscountRates(string dataAreaId, string startDate, DeleteDiscountRatesHeaders headers = {}) returns error? {
@@ -119,6 +132,9 @@ public isolated client class Client {
 
     # Update DiscountRate
     #
+    # + dataAreaId - The company data area identifier 
+    # + startDate - The start date key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - DiscountRate updated 
     remote isolated function updateDiscountRates(string dataAreaId, string startDate, DiscountRate payload, UpdateDiscountRatesHeaders headers = {}) returns DiscountRate|error {
@@ -143,6 +159,7 @@ public isolated client class Client {
 
     # Create IntentLetter
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - IntentLetter created 
     remote isolated function createIntentLetters(IntentLetter payload, map<string|string[]> headers = {}) returns IntentLetter|error {
@@ -155,6 +172,8 @@ public isolated client class Client {
 
     # Get IntentLetter by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + intentLetterId - The intent letter id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - IntentLetter 
@@ -166,6 +185,8 @@ public isolated client class Client {
 
     # Delete IntentLetter
     #
+    # + dataAreaId - The company data area identifier 
+    # + intentLetterId - The intent letter id key field 
     # + headers - Headers to be sent with the request 
     # + return - IntentLetter deleted 
     remote isolated function deleteIntentLetters(string dataAreaId, string intentLetterId, DeleteIntentLettersHeaders headers = {}) returns error? {
@@ -176,6 +197,9 @@ public isolated client class Client {
 
     # Update IntentLetter
     #
+    # + dataAreaId - The company data area identifier 
+    # + intentLetterId - The intent letter id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - IntentLetter updated 
     remote isolated function updateIntentLetters(string dataAreaId, string intentLetterId, IntentLetter payload, UpdateIntentLettersHeaders headers = {}) returns IntentLetter|error {
@@ -200,6 +224,7 @@ public isolated client class Client {
 
     # Create PayAgreement
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PayAgreement created 
     remote isolated function createPayAgreements(PayAgreement payload, map<string|string[]> headers = {}) returns PayAgreement|error {
@@ -212,6 +237,8 @@ public isolated client class Client {
 
     # Get PayAgreement by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + payAgreementCode - The pay agreement code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - PayAgreement 
@@ -223,6 +250,8 @@ public isolated client class Client {
 
     # Delete PayAgreement
     #
+    # + dataAreaId - The company data area identifier 
+    # + payAgreementCode - The pay agreement code key field 
     # + headers - Headers to be sent with the request 
     # + return - PayAgreement deleted 
     remote isolated function deletePayAgreements(string dataAreaId, string payAgreementCode, DeletePayAgreementsHeaders headers = {}) returns error? {
@@ -233,6 +262,9 @@ public isolated client class Client {
 
     # Update PayAgreement
     #
+    # + dataAreaId - The company data area identifier 
+    # + payAgreementCode - The pay agreement code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - PayAgreement updated 
     remote isolated function updatePayAgreements(string dataAreaId, string payAgreementCode, PayAgreement payload, UpdatePayAgreementsHeaders headers = {}) returns PayAgreement|error {
@@ -257,6 +289,7 @@ public isolated client class Client {
 
     # Create VendPWPTxt
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendPWPTxt created 
     remote isolated function createVendPWPTxts(VendPWPTxt payload, map<string|string[]> headers = {}) returns VendPWPTxt|error {
@@ -269,6 +302,9 @@ public isolated client class Client {
 
     # Get VendPWPTxt by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + vendorGroup - The vendor group key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendPWPTxt 
@@ -280,6 +316,9 @@ public isolated client class Client {
 
     # Delete VendPWPTxt
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + vendorGroup - The vendor group key field 
     # + headers - Headers to be sent with the request 
     # + return - VendPWPTxt deleted 
     remote isolated function deleteVendPWPTxts(string dataAreaId, string accountCode, string vendorGroup, DeleteVendPWPTxtsHeaders headers = {}) returns error? {
@@ -290,6 +329,10 @@ public isolated client class Client {
 
     # Update VendPWPTxt
     #
+    # + dataAreaId - The company data area identifier 
+    # + accountCode - The account code key field 
+    # + vendorGroup - The vendor group key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendPWPTxt updated 
     remote isolated function updateVendPWPTxts(string dataAreaId, string accountCode, string vendorGroup, VendPWPTxt payload, UpdateVendPWPTxtsHeaders headers = {}) returns VendPWPTxt|error {
@@ -314,6 +357,7 @@ public isolated client class Client {
 
     # Create VendorGroup
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorGroup created 
     remote isolated function createVendorGroups(VendorGroup payload, map<string|string[]> headers = {}) returns VendorGroup|error {
@@ -326,6 +370,8 @@ public isolated client class Client {
 
     # Get VendorGroup by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorGroupId - The vendor group id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorGroup 
@@ -337,6 +383,8 @@ public isolated client class Client {
 
     # Delete VendorGroup
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorGroupId - The vendor group id key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorGroup deleted 
     remote isolated function deleteVendorGroups(string dataAreaId, string vendorGroupId, DeleteVendorGroupsHeaders headers = {}) returns error? {
@@ -347,6 +395,9 @@ public isolated client class Client {
 
     # Update VendorGroup
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorGroupId - The vendor group id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorGroup updated 
     remote isolated function updateVendorGroups(string dataAreaId, string vendorGroupId, VendorGroup payload, UpdateVendorGroupsHeaders headers = {}) returns VendorGroup|error {
@@ -371,6 +422,7 @@ public isolated client class Client {
 
     # Create VendorInvoiceDeclaration
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorInvoiceDeclaration created 
     remote isolated function createVendorInvoiceDeclarations(VendorInvoiceDeclaration payload, map<string|string[]> headers = {}) returns VendorInvoiceDeclaration|error {
@@ -383,6 +435,8 @@ public isolated client class Client {
 
     # Get VendorInvoiceDeclaration by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + invoiceDeclarationId - The invoice declaration id key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorInvoiceDeclaration 
@@ -394,6 +448,8 @@ public isolated client class Client {
 
     # Delete VendorInvoiceDeclaration
     #
+    # + dataAreaId - The company data area identifier 
+    # + invoiceDeclarationId - The invoice declaration id key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorInvoiceDeclaration deleted 
     remote isolated function deleteVendorInvoiceDeclarations(string dataAreaId, string invoiceDeclarationId, DeleteVendorInvoiceDeclarationsHeaders headers = {}) returns error? {
@@ -404,6 +460,9 @@ public isolated client class Client {
 
     # Update VendorInvoiceDeclaration
     #
+    # + dataAreaId - The company data area identifier 
+    # + invoiceDeclarationId - The invoice declaration id key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorInvoiceDeclaration updated 
     remote isolated function updateVendorInvoiceDeclarations(string dataAreaId, string invoiceDeclarationId, VendorInvoiceDeclaration payload, UpdateVendorInvoiceDeclarationsHeaders headers = {}) returns VendorInvoiceDeclaration|error {
@@ -428,6 +487,7 @@ public isolated client class Client {
 
     # Create VendorParameter
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorParameter created 
     remote isolated function createVendorParameters(VendorParameter payload, map<string|string[]> headers = {}) returns VendorParameter|error {
@@ -440,6 +500,7 @@ public isolated client class Client {
 
     # Get VendorParameter by key
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorParameter 
@@ -451,6 +512,7 @@ public isolated client class Client {
 
     # Delete VendorParameter
     #
+    # + dataAreaId - The company data area identifier 
     # + headers - Headers to be sent with the request 
     # + return - VendorParameter deleted 
     remote isolated function deleteVendorParameters(string dataAreaId, DeleteVendorParametersHeaders headers = {}) returns error? {
@@ -461,6 +523,8 @@ public isolated client class Client {
 
     # Update VendorParameter
     #
+    # + dataAreaId - The company data area identifier 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorParameter updated 
     remote isolated function updateVendorParameters(string dataAreaId, VendorParameter payload, UpdateVendorParametersHeaders headers = {}) returns VendorParameter|error {
@@ -485,6 +549,7 @@ public isolated client class Client {
 
     # Create VendorPaymentJournalHeader
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalHeader created 
     remote isolated function createVendorPaymentJournalHeaders(VendorPaymentJournalHeader payload, map<string|string[]> headers = {}) returns VendorPaymentJournalHeader|error {
@@ -497,6 +562,8 @@ public isolated client class Client {
 
     # Get VendorPaymentJournalHeader by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorPaymentJournalHeader 
@@ -508,6 +575,8 @@ public isolated client class Client {
 
     # Delete VendorPaymentJournalHeader
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalHeader deleted 
     remote isolated function deleteVendorPaymentJournalHeaders(string dataAreaId, string journalBatchNumber, DeleteVendorPaymentJournalHeadersHeaders headers = {}) returns error? {
@@ -518,6 +587,9 @@ public isolated client class Client {
 
     # Update VendorPaymentJournalHeader
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalHeader updated 
     remote isolated function updateVendorPaymentJournalHeaders(string dataAreaId, string journalBatchNumber, VendorPaymentJournalHeader payload, UpdateVendorPaymentJournalHeadersHeaders headers = {}) returns VendorPaymentJournalHeader|error {
@@ -542,6 +614,7 @@ public isolated client class Client {
 
     # Create VendorPaymentJournalLine
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalLine created 
     remote isolated function createVendorPaymentJournalLines(VendorPaymentJournalLine payload, map<string|string[]> headers = {}) returns VendorPaymentJournalLine|error {
@@ -554,6 +627,9 @@ public isolated client class Client {
 
     # Get VendorPaymentJournalLine by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
+    # + lineNumber - The line number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorPaymentJournalLine 
@@ -565,6 +641,9 @@ public isolated client class Client {
 
     # Delete VendorPaymentJournalLine
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
+    # + lineNumber - The line number key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalLine deleted 
     remote isolated function deleteVendorPaymentJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, DeleteVendorPaymentJournalLinesHeaders headers = {}) returns error? {
@@ -575,6 +654,10 @@ public isolated client class Client {
 
     # Update VendorPaymentJournalLine
     #
+    # + dataAreaId - The company data area identifier 
+    # + journalBatchNumber - The journal batch number key field 
+    # + lineNumber - The line number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentJournalLine updated 
     remote isolated function updateVendorPaymentJournalLines(string dataAreaId, string journalBatchNumber, decimal lineNumber, VendorPaymentJournalLine payload, UpdateVendorPaymentJournalLinesHeaders headers = {}) returns VendorPaymentJournalLine|error {
@@ -599,6 +682,7 @@ public isolated client class Client {
 
     # Create VendorPaymentMethod
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentMethod created 
     remote isolated function createVendorPaymentMethods(VendorPaymentMethod payload, map<string|string[]> headers = {}) returns VendorPaymentMethod|error {
@@ -611,6 +695,8 @@ public isolated client class Client {
 
     # Get VendorPaymentMethod by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorPaymentMethod 
@@ -622,6 +708,8 @@ public isolated client class Client {
 
     # Delete VendorPaymentMethod
     #
+    # + dataAreaId - The company data area identifier 
+    # + name - The name key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentMethod deleted 
     remote isolated function deleteVendorPaymentMethods(string dataAreaId, string name, DeleteVendorPaymentMethodsHeaders headers = {}) returns error? {
@@ -632,6 +720,9 @@ public isolated client class Client {
 
     # Update VendorPaymentMethod
     #
+    # + dataAreaId - The company data area identifier 
+    # + name - The name key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorPaymentMethod updated 
     remote isolated function updateVendorPaymentMethods(string dataAreaId, string name, VendorPaymentMethod payload, UpdateVendorPaymentMethodsHeaders headers = {}) returns VendorPaymentMethod|error {
@@ -656,6 +747,7 @@ public isolated client class Client {
 
     # Create VendorReasons
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorReasons created 
     remote isolated function createVendorReasons(VendorReasons payload, map<string|string[]> headers = {}) returns VendorReasons|error {
@@ -668,6 +760,8 @@ public isolated client class Client {
 
     # Get VendorReasons by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorReasons 
@@ -679,6 +773,8 @@ public isolated client class Client {
 
     # Delete VendorReasons
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorReasons deleted 
     remote isolated function deleteVendorReasons(string dataAreaId, string reasonCode, DeleteVendorReasonsHeaders headers = {}) returns error? {
@@ -689,6 +785,9 @@ public isolated client class Client {
 
     # Update VendorReasons
     #
+    # + dataAreaId - The company data area identifier 
+    # + reasonCode - The reason code key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorReasons updated 
     remote isolated function updateVendorReasons(string dataAreaId, string reasonCode, VendorReasons payload, UpdateVendorReasonsHeaders headers = {}) returns VendorReasons|error {
@@ -713,6 +812,7 @@ public isolated client class Client {
 
     # Create Vendor
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Vendor created 
     remote isolated function createVendors(Vendor payload, map<string|string[]> headers = {}) returns Vendor|error {
@@ -725,6 +825,8 @@ public isolated client class Client {
 
     # Get Vendor by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - Vendor 
@@ -736,6 +838,8 @@ public isolated client class Client {
 
     # Delete Vendor
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + return - Vendor deleted 
     remote isolated function deleteVendors(string dataAreaId, string vendorAccountNumber, DeleteVendorsHeaders headers = {}) returns error? {
@@ -746,6 +850,9 @@ public isolated client class Client {
 
     # Update Vendor
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - Vendor updated 
     remote isolated function updateVendors(string dataAreaId, string vendorAccountNumber, Vendor payload, UpdateVendorsHeaders headers = {}) returns Vendor|error {
@@ -770,6 +877,7 @@ public isolated client class Client {
 
     # Create VendorV2
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorV2 created 
     remote isolated function createVendorsV2(VendorV2 payload, map<string|string[]> headers = {}) returns VendorV2|error {
@@ -782,6 +890,8 @@ public isolated client class Client {
 
     # Get VendorV2 by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorV2 
@@ -793,6 +903,8 @@ public isolated client class Client {
 
     # Delete VendorV2
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorV2 deleted 
     remote isolated function deleteVendorsV2(string dataAreaId, string vendorAccountNumber, DeleteVendorsV2Headers headers = {}) returns error? {
@@ -803,6 +915,9 @@ public isolated client class Client {
 
     # Update VendorV2
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorV2 updated 
     remote isolated function updateVendorsV2(string dataAreaId, string vendorAccountNumber, VendorV2 payload, UpdateVendorsV2Headers headers = {}) returns VendorV2|error {
@@ -827,6 +942,7 @@ public isolated client class Client {
 
     # Create VendorV3
     #
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorV3 created 
     remote isolated function createVendorsV3(VendorV3 payload, map<string|string[]> headers = {}) returns VendorV3|error {
@@ -839,6 +955,8 @@ public isolated client class Client {
 
     # Get VendorV3 by key
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
     # + return - VendorV3 
@@ -850,6 +968,8 @@ public isolated client class Client {
 
     # Delete VendorV3
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
     # + headers - Headers to be sent with the request 
     # + return - VendorV3 deleted 
     remote isolated function deleteVendorsV3(string dataAreaId, string vendorAccountNumber, DeleteVendorsV3Headers headers = {}) returns error? {
@@ -860,6 +980,9 @@ public isolated client class Client {
 
     # Update VendorV3
     #
+    # + dataAreaId - The company data area identifier 
+    # + vendorAccountNumber - The vendor account number key field 
+    # + payload - The request body 
     # + headers - Headers to be sent with the request 
     # + return - VendorV3 updated 
     remote isolated function updateVendorsV3(string dataAreaId, string vendorAccountNumber, VendorV3 payload, UpdateVendorsV3Headers headers = {}) returns VendorV3|error {

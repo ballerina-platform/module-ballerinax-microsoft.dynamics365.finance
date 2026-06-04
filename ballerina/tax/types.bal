@@ -14,7 +14,7 @@ public type TaxRegion record {
     @jsondata:Name {value: "ZipCode"}
     string zipCode?;
     @jsondata:Name {value: "LocationId"}
-    string locationId;
+    string locationId?;
     @jsondata:Name {value: "City"}
     string city?;
     @jsondata:Name {value: "County"}
@@ -24,9 +24,9 @@ public type TaxRegion record {
     @jsondata:Name {value: "State"}
     string state?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "StreetNumber"}
     string streetNumber?;
     @jsondata:Name {value: "Street"}
@@ -41,12 +41,14 @@ public type GSTMinorCodesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateISRConcepts
 public type UpdateISRConceptsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateIntervats
 public type UpdateIntervatsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -55,62 +57,79 @@ public type TaxCalculationDateType "InvoiceDate"|"DeliveryDate"|"DocumentDate";
 
 # Represents the Headers record for the operation: deleteEFDocSchemas
 public type DeleteEFDocSchemasHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type GSTMinorCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxComponent"}
-    string taxComponent;
+    string taxComponent?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "MinorCode"}
-    string minorCode;
+    string minorCode?;
 };
 
 # Represents the Queries record for the operation: listNIPTables
 public type ListNIPTablesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listTaxGroups
 public type ListTaxGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type TaxationCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxType"}
     TaxTypeBR taxType?;
     @jsondata:Name {value: "OutputCode"}
@@ -120,11 +139,11 @@ public type TaxationCode record {
     @jsondata:Name {value: "FiscalValue"}
     TaxFiscalValueBR fiscalValue?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "TaxationCode"}
-    string taxationCode;
+    string taxationCode?;
     @jsondata:Name {value: "SpedCode"}
     string spedCode?;
     @jsondata:Name {value: "InputCode"}
@@ -133,28 +152,30 @@ public type TaxationCode record {
 
 # Represents the Headers record for the operation: deleteISRConcepts
 public type DeleteISRConceptsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type TaxCodeLimit record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "MaximumSalesTax"}
-    decimal maximumSalesTax;
+    decimal maximumSalesTax?;
     @jsondata:Name {value: "MinimumSalesTax"}
-    decimal minimumSalesTax;
+    decimal minimumSalesTax?;
 };
 
 public type FillVATDueDateW "Manually"|"SalesDate"|"DocumentDate"|"PostingDate"|"LastDeliveryDate"|"Customized";
 
 # Represents the Headers record for the operation: updateTaxGroupDatas
 public type UpdateTaxGroupDatasHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -163,7 +184,7 @@ public type UpdateTaxGroupDatasHeaders record {
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -207,20 +228,24 @@ public type RestoredVATCalcMethodRU "Mixed"|"ByFactor";
 
 # Represents the Queries record for the operation: getCFOPCodes
 public type GetCFOPCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateHSNCodes
 public type UpdateHSNCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateTaxGroups
 public type UpdateTaxGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -231,94 +256,129 @@ public type CustVendExchRateDiffDocTypeRU "Invoice"|"FirstByDate";
 
 # Represents the Queries record for the operation: listTaxRegions
 public type ListTaxRegionsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listTaxGroupDatas
 public type ListTaxGroupDatasQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listHSNCodes
 public type ListHSNCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listTaxParameters
 public type ListTaxParametersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateNRTaxTrans
 public type UpdateNRTaxTransHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTax1099Fields
 public type GetTax1099FieldsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -326,9 +386,9 @@ public type GetTax1099FieldsQueries record {
 public type TaxItemGroup record {
     @jsondata:Name {value: "EUSalesListType"}
     EUSalesListType eUSalesListType?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TaxExemptCode"}
@@ -338,7 +398,7 @@ public type TaxItemGroup record {
     @jsondata:Name {value: "ExemptTax"}
     NoYes exemptTax?;
     @jsondata:Name {value: "TaxItemGroupCode"}
-    string taxItemGroupCode;
+    string taxItemGroupCode?;
     @jsondata:Name {value: "TaxationCode"}
     string taxationCode?;
 };
@@ -347,6 +407,7 @@ public type TaxObligationCompany "Destination"|"Source";
 
 # Represents the Headers record for the operation: updateGSTMinorCodes
 public type UpdateGSTMinorCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -355,8 +416,10 @@ public type TaxSubstitutionBaseRedCalculationModeBR "OwnOperationIpiAndMarkup"|"
 
 # Represents the Queries record for the operation: getCFOPGroups
 public type GetCFOPGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -365,8 +428,10 @@ public type TaxCalcMode "FullAmounts"|"Interval";
 
 # Represents the Queries record for the operation: getELParameters
 public type GetELParametersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -377,36 +442,48 @@ public type CFOPCodesCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getHSNCodes
 public type GetHSNCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getTaxCodeLimits
 public type GetTaxCodeLimitsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listIntervats
 public type ListIntervatsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -433,6 +510,7 @@ public type TaxItemGroupsCollection record {
 
 # Represents the Headers record for the operation: deleteTaxPeriods
 public type DeleteTaxPeriodsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -445,20 +523,28 @@ public type Tax1099FieldsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listTaxDocuments
 public type ListTaxDocumentsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -472,54 +558,67 @@ public type CountryRegionType "Domestic"|"EU"|"EFTA"|"ThirdCountryRegion"|"Speci
 
 # Represents the Headers record for the operation: deleteTaxTables
 public type DeleteTaxTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type CFOPGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "GroupId"}
-    string groupId;
+    string groupId?;
 };
 
 # Represents the Queries record for the operation: listEFDocSchemas
 public type ListEFDocSchemasQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateNIPTables
 public type UpdateNIPTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteTaxDocuments
 public type DeleteTaxDocumentsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTaxItemGroups
 public type GetTaxItemGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -537,6 +636,7 @@ public type OAuth2ClientCredentialsGrantConfig record {|
 
 # Represents the Headers record for the operation: deleteTaxCodes
 public type DeleteTaxCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -545,8 +645,10 @@ public type TaxGroupRounding "TaxCode"|"TaxCodeSet";
 
 # Represents the Queries record for the operation: getTaxPostingGroups
 public type GetTaxPostingGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -569,20 +671,28 @@ public type LvNRTransType "TaxOnDangerousItems"|"TaxOnPackingMaterials";
 
 # Represents the Queries record for the operation: listTaxTables
 public type ListTaxTablesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -591,6 +701,7 @@ public type TaxTypeBR "Blank"|"IPI"|"PIS"|"ICMS"|"COFINS"|"ISS"|"IRRF"|"INSS"|"I
 
 # Represents the Headers record for the operation: deleteTaxCodeLimits
 public type DeleteTaxCodeLimitsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -602,22 +713,23 @@ public type TaxPeriodsCollection record {
 
 # Represents the Headers record for the operation: updateTaxRegions
 public type UpdateTaxRegionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type ISRRate record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Month"}
-    int:Signed32 month;
+    int:Signed32 month?;
     @jsondata:Name {value: "Year"}
-    int:Signed32 year;
+    int:Signed32 year?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "MaximumAmount"}
-    decimal maximumAmount;
+    decimal maximumAmount?;
     @jsondata:Name {value: "FixedAmount"}
-    decimal fixedAmount;
+    decimal fixedAmount?;
 };
 
 public type TaxDocumentsCollectionAllOf2 record {
@@ -628,28 +740,38 @@ public type TaxTypeSG "Standard"|"Zero"|"Exempt";
 
 # Represents the Queries record for the operation: getISRRates
 public type GetISRRatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listNRTaxTrans
 public type ListNRTaxTransQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -662,14 +784,14 @@ public type NRTaxTrans record {
     @jsondata:Name {value: "TransType"}
     LvNRTransType transType?;
     @jsondata:Name {value: "ReferenceTableID"}
-    int:Signed32 referenceTableID;
+    int:Signed32 referenceTableID?;
     @jsondata:Name {value: "PackingUnitQty"}
-    decimal packingUnitQty;
+    decimal packingUnitQty?;
     @jsondata:Name {value: "TaxBaseAmount"}
-    decimal taxBaseAmount;
-    string dataAreaId;
+    decimal taxBaseAmount?;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxAmount"}
-    decimal taxAmount;
+    decimal taxAmount?;
     @jsondata:Name {value: "ItemNumber"}
     string itemNumber?;
     @jsondata:Name {value: "Number"}
@@ -677,31 +799,31 @@ public type NRTaxTrans record {
     @jsondata:Name {value: "TaxCode"}
     string taxCode?;
     @jsondata:Name {value: "ItemQty"}
-    decimal itemQty;
+    decimal itemQty?;
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
     @jsondata:Name {value: "LineId"}
-    string lineId;
+    string lineId?;
     @jsondata:Name {value: "TaxValue"}
-    decimal taxValue;
+    decimal taxValue?;
     @jsondata:Name {value: "PackingUnitWeight"}
-    decimal packingUnitWeight;
+    decimal packingUnitWeight?;
     @jsondata:Name {value: "InventTransId"}
     string inventTransId?;
     @jsondata:Name {value: "DimensionNumber"}
     string dimensionNumber?;
     @jsondata:Name {value: "PackingWeight"}
-    decimal packingWeight;
+    decimal packingWeight?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "TransRecIdReference"}
-    int transRecIdReference;
+    int transRecIdReference?;
     @jsondata:Name {value: "NRTaxGroup"}
     string nRTaxGroup?;
     @jsondata:Name {value: "PackingQty"}
-    decimal packingQty;
+    decimal packingQty?;
     @jsondata:Name {value: "TransDate"}
-    string transDate;
+    string transDate?;
     @jsondata:Name {value: "PackingUnit"}
     string packingUnit?;
     @jsondata:Name {value: "InventTransTypeReference"}
@@ -714,8 +836,10 @@ public type TaxFiscalValueBR "Blank"|"WithCreditDebit"|"WithoutCreditDebitExempt
 
 # Represents the Queries record for the operation: getTaxesMatrices
 public type GetTaxesMatricesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -726,14 +850,17 @@ public type CFOPGroupsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getGSTMinorCodes
 public type GetGSTMinorCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateTaxDocuments
 public type UpdateTaxDocumentsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -742,6 +869,7 @@ public type TaxGSTInvoiceFormatMY "Full"|"Simplified";
 
 # Represents the Headers record for the operation: deleteISRRates
 public type DeleteISRRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -750,14 +878,17 @@ public type TableGroupAll "Table"|"GroupId"|"All";
 
 # Represents the Headers record for the operation: updateTaxTables
 public type UpdateTaxTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTaxDocuments
 public type GetTaxDocumentsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -782,10 +913,10 @@ public type TaxPostingGroup record {
     @jsondata:Name {value: "TaxReceivableShortTermMainAccountIdDisplayValue"}
     string taxReceivableShortTermMainAccountIdDisplayValue?;
     @jsondata:Name {value: "TaxPostingGroupCode"}
-    string taxPostingGroupCode;
+    string taxPostingGroupCode?;
     @jsondata:Name {value: "TaxOutgoingDifferenceMainAccountIdDisplayValue"}
     string taxOutgoingDifferenceMainAccountIdDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxIncomingDifferenceMainAccountIdDisplayValue"}
     string taxIncomingDifferenceMainAccountIdDisplayValue?;
     @jsondata:Name {value: "TaxSettlementMainAccountIdDisplayValue"}
@@ -808,20 +939,28 @@ public type TaxPostingGroup record {
 
 # Represents the Queries record for the operation: listGSTMinorCodes
 public type ListGSTMinorCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -834,12 +973,14 @@ public type CustVendLocationBR "SameState"|"OtherState"|"OutsideCountry";
 
 # Represents the Headers record for the operation: updateTaxItemGroups
 public type UpdateTaxItemGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteCFOPGroups
 public type DeleteCFOPGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -849,19 +990,19 @@ public type TaxCodesCollectionAllOf2 record {
 };
 
 public type Tax1099Field record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "BoxNumber"}
-    int:Signed32 boxNumber;
+    int:Signed32 boxNumber?;
     @jsondata:Name {value: "Form"}
     string form?;
     @jsondata:Name {value: "TypeOfTax1099Form"}
     Tax1099Type typeOfTax1099Form?;
     @jsondata:Name {value: "MinimumAmount"}
-    decimal minimumAmount;
+    decimal minimumAmount?;
     @jsondata:Name {value: "Tax1099Box"}
-    string tax1099Box;
+    string tax1099Box?;
 };
 
 public type TaxTablesCollectionAllOf2 record {
@@ -870,34 +1011,45 @@ public type TaxTablesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateTaxParameters
 public type UpdateTaxParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getNRTaxTrans
 public type GetNRTaxTransQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listELParameters
 public type ListELParametersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -909,12 +1061,14 @@ public type TaxDocumentsCollection record {
 
 # Represents the Headers record for the operation: updateCFOPCodes
 public type UpdateCFOPCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteTax1099Fields
 public type DeleteTax1099FieldsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -930,52 +1084,70 @@ public type TaxParametersCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteELParameters
 public type DeleteELParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listCFOPCodes
 public type ListCFOPCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listTaxCodes
 public type ListTaxCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteTaxPostingGroups
 public type DeleteTaxPostingGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -986,6 +1158,7 @@ public type EFDocSchemasCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateISRRates
 public type UpdateISRRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -998,26 +1171,29 @@ public type TaxPeriodsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateTaxPeriods
 public type UpdateTaxPeriodsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTaxGroups
 public type GetTaxGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type TaxGroupData record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCodeId"}
-    string taxCodeId;
+    string taxCodeId?;
     @jsondata:Name {value: "ReverseCharge"}
     NoYes reverseCharge?;
     @jsondata:Name {value: "TaxGroupId"}
-    string taxGroupId;
+    string taxGroupId?;
     @jsondata:Name {value: "ExemptTax"}
     NoYes exemptTax?;
     @jsondata:Name {value: "TaxExemptCodeId"}
@@ -1032,14 +1208,17 @@ public type TaxGroupData record {
 
 # Represents the Queries record for the operation: getTaxGroupDatas
 public type GetTaxGroupDatasQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteNRTaxTrans
 public type DeleteNRTaxTransHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1048,6 +1227,7 @@ public type TaxLimitBase "LineWithoutVAT"|"UnitWithoutVAT"|"InvoiceWithoutVAT"|"
 
 # Represents the Headers record for the operation: updateTaxCodes
 public type UpdateTaxCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1060,6 +1240,7 @@ public type ISRRatesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateCFOPGroups
 public type UpdateCFOPGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1074,14 +1255,17 @@ public type TaxTypeW "Other"|"VAT"|"Excise"|"VATReduced"|"VATZero"|"AssessedTax"
 
 # Represents the Headers record for the operation: updateELParameters
 public type UpdateELParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getIntervats
 public type GetIntervatsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1092,11 +1276,11 @@ public type Intervat record {
     @jsondata:Name {value: "Status"}
     TaxIntervatStatus status?;
     @jsondata:Name {value: "IntervatId"}
-    string intervatId;
+    string intervatId?;
     @jsondata:Name {value: "Telephone"}
     string telephone?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "ReplacedVATDeclaration"}
     string replacedVATDeclaration?;
     @jsondata:Name {value: "Period"}
@@ -1109,13 +1293,13 @@ public type Intervat record {
     string salesTaxBox?;
     @jsondata:Name {value: "SalesTaxNumber"}
     string salesTaxNumber?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CompanyName"}
     string companyName?;
     @jsondata:Name {value: "ValidTo"}
-    string validTo;
+    string validTo?;
     @jsondata:Name {value: "ValidFrom"}
-    string validFrom;
+    string validFrom?;
     @jsondata:Name {value: "RequestForReimbursement"}
     NoYes requestForReimbursement?;
     @jsondata:Name {value: "EnterpriseNumber"}
@@ -1125,7 +1309,7 @@ public type Intervat record {
     @jsondata:Name {value: "PeriodFrequency"}
     TaxIntervatFrequency periodFrequency?;
     @jsondata:Name {value: "PreparationDate"}
-    string preparationDate;
+    string preparationDate?;
     @jsondata:Name {value: "RequestForPaymentForms"}
     NoYes requestForPaymentForms?;
     @jsondata:Name {value: "Location"}
@@ -1152,6 +1336,7 @@ public type TaxIntervatFrequency "Monthly"|"Quarterly";
 
 # Represents the Headers record for the operation: updateTaxPostingGroups
 public type UpdateTaxPostingGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1167,6 +1352,7 @@ public type TaxationCodeCollection record {
 
 # Represents the Headers record for the operation: deleteTaxGroups
 public type DeleteTaxGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1175,18 +1361,20 @@ public type TaxCalcPrin "Total"|"Line";
 
 # Represents the Queries record for the operation: getISRConcepts
 public type GetISRConceptsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type NIPTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "NIPNumber"}
     string nIPNumber?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
     @jsondata:Name {value: "Addressing"}
     string addressing?;
     @jsondata:Name {value: "AccountName"}
@@ -1197,14 +1385,17 @@ public type FillSalesDateW "Manually"|"VATDueDate"|"DocumentDate"|"PostingDate"|
 
 # Represents the Headers record for the operation: deleteTaxationCode
 public type DeleteTaxationCodeHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTaxParameters
 public type GetTaxParametersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1218,34 +1409,45 @@ public type EFiscalDocVersionBR "V4"|"V31"|"V40";
 
 # Represents the Queries record for the operation: getTaxTables
 public type GetTaxTablesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listTaxationCode
 public type ListTaxationCodeQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteTaxesMatrices
 public type DeleteTaxesMatricesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1262,34 +1464,45 @@ public type TaxTablesCollection record {
 
 # Represents the Queries record for the operation: listTaxesMatrices
 public type ListTaxesMatricesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteNIPTables
 public type DeleteNIPTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTaxCodes
 public type GetTaxCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1300,20 +1513,28 @@ public type IntervatsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listTaxItemGroups
 public type ListTaxItemGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1322,20 +1543,28 @@ public type RTax25TaxModule "Tax"|"RPayFund"|"Asset_RU";
 
 # Represents the Queries record for the operation: listTaxCodeLimits
 public type ListTaxCodeLimitsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1351,20 +1580,28 @@ public type ODataCollection record {
 
 # Represents the Queries record for the operation: listTaxPostingGroups
 public type ListTaxPostingGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1394,7 +1631,7 @@ public type TaxParameters record {
     NoYes isTaxBranchEnabled?;
     @jsondata:Name {value: "ValidateTaxCode"}
     NoYes validateTaxCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "BASFormatName"}
     string bASFormatName?;
     @jsondata:Name {value: "AdjustTaxForOverUnderpayment"}
@@ -1422,7 +1659,7 @@ public type TaxParameters record {
     @jsondata:Name {value: "ReverseSalesTaxOnCashDiscount"}
     NoYes reverseSalesTaxOnCashDiscount?;
     @jsondata:Name {value: "DateForSecondTaxRaise"}
-    string dateForSecondTaxRaise;
+    string dateForSecondTaxRaise?;
     @jsondata:Name {value: "AmountsIncludeTaxInJournals"}
     NoYes amountsIncludeTaxInJournals?;
     @jsondata:Name {value: "IncludeTaxValueInGSTSummary"}
@@ -1471,6 +1708,7 @@ public type TaxParameters record {
 
 # Represents the Headers record for the operation: deleteTaxRegions
 public type DeleteTaxRegionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1486,6 +1724,7 @@ public type EFDocSchema record {
 
 # Represents the Headers record for the operation: deleteHSNCodes
 public type DeleteHSNCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1494,20 +1733,28 @@ public type CheckTaxGroups "None"|"Warning"|"Error";
 
 # Represents the Queries record for the operation: listCFOPGroups
 public type ListCFOPGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1519,6 +1766,7 @@ public type TaxParametersCollection record {
 
 # Represents the Headers record for the operation: updateEFDocSchemas
 public type UpdateEFDocSchemasHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1527,20 +1775,28 @@ public type TaxTypeJP "Standard"|"Reduced"|"Other";
 
 # Represents the Queries record for the operation: listISRConcepts
 public type ListISRConceptsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1554,20 +1810,28 @@ public type TaxCodeLimitsCollection record {
 
 # Represents the Queries record for the operation: listTaxPeriods
 public type ListTaxPeriodsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1593,19 +1857,19 @@ public type ELParameter record {
     string dimensionAttributeName?;
     @jsondata:Name {value: "IsActiveMultiBranch"}
     NoYes isActiveMultiBranch?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "COALookupActive"}
     NoYes cOALookupActive?;
     @jsondata:Name {value: "TakeSameNumForSameVoucher"}
     NoYes takeSameNumForSameVoucher?;
     @jsondata:Name {value: "MaxBatchSessionsforSendingPool"}
-    int:Signed32 maxBatchSessionsforSendingPool;
+    int:Signed32 maxBatchSessionsforSendingPool?;
     @jsondata:Name {value: "BranchId"}
     string branchId?;
     @jsondata:Name {value: "HcmWorkerPersonnelNumber"}
     string hcmWorkerPersonnelNumber?;
     @jsondata:Name {value: "Key"}
-    int:Signed32 key;
+    int:Signed32 key?;
     @jsondata:Name {value: "DimensionMainAccountActivate"}
     NoYes dimensionMainAccountActivate?;
     @jsondata:Name {value: "BranchDescription"}
@@ -1614,20 +1878,28 @@ public type ELParameter record {
 
 # Represents the Queries record for the operation: listTax1099Fields
 public type ListTax1099FieldsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1636,14 +1908,16 @@ public type InventTransType "Sales"|"Production"|"Purch"|"InventTransaction"|"In
 
 # Represents the Queries record for the operation: getEFDocSchemas
 public type GetEFDocSchemasQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type TaxTable record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TypeOfTax"}
     TaxTypeW typeOfTax?;
     @jsondata:Name {value: "ExpenseCode"}
@@ -1653,13 +1927,13 @@ public type TaxTable record {
     @jsondata:Name {value: "Module"}
     RTax25TaxModule 'module?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
 };
 
 public type TaxesMatrix record {
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Type"}
     CustVendTypeBR 'type?;
     @jsondata:Name {value: "ItemCode"}
@@ -1669,17 +1943,17 @@ public type TaxesMatrix record {
     @jsondata:Name {value: "ItemSalesTaxGroup"}
     string itemSalesTaxGroup?;
     @jsondata:Name {value: "FiscalEstablishmentGroupId"}
-    string fiscalEstablishmentGroupId;
+    string fiscalEstablishmentGroupId?;
     @jsondata:Name {value: "CFOPGroupId"}
-    string cFOPGroupId;
+    string cFOPGroupId?;
     @jsondata:Name {value: "AccountCode"}
     TableGroupAll accountCode?;
     @jsondata:Name {value: "IsUsedForFreeTextInvoice"}
     NoYes isUsedForFreeTextInvoice?;
     @jsondata:Name {value: "AccountRelation"}
-    string accountRelation;
+    string accountRelation?;
     @jsondata:Name {value: "ItemRelation"}
-    string itemRelation;
+    string itemRelation?;
 };
 
 public type TaxGroup record {
@@ -1694,12 +1968,12 @@ public type TaxGroup record {
     @jsondata:Name {value: "InvoicePrintDetails"}
     TaxPrintDetail invoicePrintDetails?;
     @jsondata:Name {value: "TaxGroupCode"}
-    string taxGroupCode;
+    string taxGroupCode?;
     @jsondata:Name {value: "DefaultCriteriaZipCodeId"}
     string defaultCriteriaZipCodeId?;
     @jsondata:Name {value: "FillSalesDate_W"}
     FillSalesDateW fillSalesDateW?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxReverseOnCashDiscount"}
     NoYes taxReverseOnCashDiscount?;
     @jsondata:Name {value: "DefaultCriteriaStateId"}
@@ -1725,6 +1999,7 @@ public type TaxGroupsCollection record {
 
 # Represents the Headers record for the operation: updateTax1099Fields
 public type UpdateTax1099FieldsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1737,6 +2012,7 @@ public type TaxGroupsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteCFOPCodes
 public type DeleteCFOPCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1748,6 +2024,7 @@ public type IntervatsCollection record {
 
 # Represents the Headers record for the operation: updateTaxationCode
 public type UpdateTaxationCodeHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1758,21 +2035,22 @@ public type ELParametersCollection record {
 };
 
 public type ISRConcept record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "DebitCreditIndicator"}
     ISRCreditDebitMX debitCreditIndicator?;
     @jsondata:Name {value: "ChartOfAccountsName"}
-    string chartOfAccountsName;
+    string chartOfAccountsName?;
     @jsondata:Name {value: "ConceptId"}
     ISRConceptCategoryMX conceptId?;
     @jsondata:Name {value: "MainAccountId"}
-    string mainAccountId;
+    string mainAccountId?;
 };
 
 # Represents the Headers record for the operation: updateTaxesMatrices
 public type UpdateTaxesMatricesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1783,44 +2061,47 @@ public type TaxPostingGroupsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getTaxPeriods
 public type GetTaxPeriodsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteTaxItemGroups
 public type DeleteTaxItemGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type TaxCode record {
     @jsondata:Name {value: "ReportingCodeTaxablePurchases"}
-    int:Signed32 reportingCodeTaxablePurchases;
+    int:Signed32 reportingCodeTaxablePurchases?;
     @jsondata:Name {value: "VATChargeSource"}
     VATChargeSourceRU vATChargeSource?;
     @jsondata:Name {value: "ReportingCodeTaxFreeBuyDebitNote"}
-    int:Signed32 reportingCodeTaxFreeBuyDebitNote;
+    int:Signed32 reportingCodeTaxFreeBuyDebitNote?;
     @jsondata:Name {value: "ReportingCodeUseTaxOffsetCreditNote"}
-    int:Signed32 reportingCodeUseTaxOffsetCreditNote;
+    int:Signed32 reportingCodeUseTaxOffsetCreditNote?;
     @jsondata:Name {value: "TaxationCode"}
     string taxationCode?;
     @jsondata:Name {value: "IsInvestment"}
     NoYes isInvestment?;
     @jsondata:Name {value: "ReportingCodeSalesTaxReceivableCreditNote"}
-    int:Signed32 reportingCodeSalesTaxReceivableCreditNote;
-    string dataAreaId;
+    int:Signed32 reportingCodeSalesTaxReceivableCreditNote?;
+    string dataAreaId?;
     @jsondata:Name {value: "DiotAddInfo"}
     NoYes diotAddInfo?;
     @jsondata:Name {value: "TaxCalculationMethod"}
     TaxCalcMode taxCalculationMethod?;
     @jsondata:Name {value: "ReportingCodeTaxOutgoingDebitNote"}
-    int:Signed32 reportingCodeTaxOutgoingDebitNote;
+    int:Signed32 reportingCodeTaxOutgoingDebitNote?;
     @jsondata:Name {value: "ReportingCodeBaseOutgoingDebitNote"}
-    int:Signed32 reportingCodeBaseOutgoingDebitNote;
+    int:Signed32 reportingCodeBaseOutgoingDebitNote?;
     @jsondata:Name {value: "ReportingCodeTaxFreePurchase"}
-    int:Signed32 reportingCodeTaxFreePurchase;
+    int:Signed32 reportingCodeTaxFreePurchase?;
     @jsondata:Name {value: "JapanTaxType"}
     TaxTypeJP japanTaxType?;
     @jsondata:Name {value: "DomesticCustomsPractice"}
@@ -1828,15 +2109,15 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxLimitBase"}
     TaxLimitBase taxLimitBase?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSaleCreditNote"}
-    int:Signed32 reportingCodeTaxFreeSaleCreditNote;
+    int:Signed32 reportingCodeTaxFreeSaleCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxableImport"}
-    int:Signed32 reportingCodeTaxableImport;
+    int:Signed32 reportingCodeTaxableImport?;
     @jsondata:Name {value: "ReportingCodeUseTax"}
-    int:Signed32 reportingCodeUseTax;
+    int:Signed32 reportingCodeUseTax?;
     @jsondata:Name {value: "TaxSubstitutionMethod"}
     TaxSubstitutionEnumBR taxSubstitutionMethod?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSale"}
-    int:Signed32 reportingCodeTaxFreeSale;
+    int:Signed32 reportingCodeTaxFreeSale?;
     @jsondata:Name {value: "NegativeTax"}
     NoYes negativeTax?;
     @jsondata:Name {value: "UnrealizedTax"}
@@ -1844,7 +2125,7 @@ public type TaxCode record {
     @jsondata:Name {value: "PackingDutySortCode"}
     string packingDutySortCode?;
     @jsondata:Name {value: "ReportingCodeSalesTaxPayableCreditNote"}
-    int:Signed32 reportingCodeSalesTaxPayableCreditNote;
+    int:Signed32 reportingCodeSalesTaxPayableCreditNote?;
     @jsondata:Name {value: "TaxCountryRegionType"}
     CountryRegionType taxCountryRegionType?;
     @jsondata:Name {value: "DescriptionQRBill"}
@@ -1856,7 +2137,7 @@ public type TaxCode record {
     @jsondata:Name {value: "MexicoTaxType"}
     TaxTypeMX mexicoTaxType?;
     @jsondata:Name {value: "ReportingCodeUseTaxCreditNote"}
-    int:Signed32 reportingCodeUseTaxCreditNote;
+    int:Signed32 reportingCodeUseTaxCreditNote?;
     @jsondata:Name {value: "TaxType"}
     TaxTypeTH taxType?;
     @jsondata:Name {value: "BrazilTaxType"}
@@ -1864,29 +2145,29 @@ public type TaxCode record {
     @jsondata:Name {value: "NotEUSalesList"}
     NoYes notEUSalesList?;
     @jsondata:Name {value: "ReportingCodeTaxableSales"}
-    int:Signed32 reportingCodeTaxableSales;
+    int:Signed32 reportingCodeTaxableSales?;
     @jsondata:Name {value: "ReportingCodeTaxablePurchasesCreditNote"}
-    int:Signed32 reportingCodeTaxablePurchasesCreditNote;
+    int:Signed32 reportingCodeTaxablePurchasesCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxFreePurchaseCreditNote"}
-    int:Signed32 reportingCodeTaxFreePurchaseCreditNote;
+    int:Signed32 reportingCodeTaxFreePurchaseCreditNote?;
     @jsondata:Name {value: "SingaporeTaxType"}
     TaxTypeSG singaporeTaxType?;
     @jsondata:Name {value: "TaxSubstitutionCalculationMethod"}
     TaxSubstitutionBaseRedCalculationModeBR taxSubstitutionCalculationMethod?;
     @jsondata:Name {value: "ReportingCodeSalesTaxReceivable"}
-    int:Signed32 reportingCodeSalesTaxReceivable;
+    int:Signed32 reportingCodeSalesTaxReceivable?;
     @jsondata:Name {value: "TaxPeriodId"}
     string taxPeriodId?;
     @jsondata:Name {value: "ReportingCodeTaxableSalesCreditNote"}
-    int:Signed32 reportingCodeTaxableSalesCreditNote;
+    int:Signed32 reportingCodeTaxableSalesCreditNote?;
     @jsondata:Name {value: "ReportingCodeSalesTaxPayable"}
-    int:Signed32 reportingCodeSalesTaxPayable;
+    int:Signed32 reportingCodeSalesTaxPayable?;
     @jsondata:Name {value: "TaxCode"}
-    string taxCode;
+    string taxCode?;
     @jsondata:Name {value: "PrintCode"}
     string printCode?;
     @jsondata:Name {value: "ReportingCodeUseTaxOffset"}
-    int:Signed32 reportingCodeUseTaxOffset;
+    int:Signed32 reportingCodeUseTaxOffset?;
     @jsondata:Name {value: "TaxRoundOffType"}
     RoundOffType taxRoundOffType?;
     @jsondata:Name {value: "TaxUnitId"}
@@ -1898,7 +2179,7 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxCurrencyCodeId"}
     string taxCurrencyCodeId?;
     @jsondata:Name {value: "ReportingCodeTaxableImportOffset"}
-    int:Signed32 reportingCodeTaxableImportOffset;
+    int:Signed32 reportingCodeTaxableImportOffset?;
     @jsondata:Name {value: "IsGST"}
     NoYes isGST?;
     @jsondata:Name {value: "TypeOfTax"}
@@ -1906,19 +2187,19 @@ public type TaxCode record {
     @jsondata:Name {value: "PaymentTaxCodeId"}
     string paymentTaxCodeId?;
     @jsondata:Name {value: "TaxRoundOff"}
-    decimal taxRoundOff;
+    decimal taxRoundOff?;
     @jsondata:Name {value: "TaxName"}
     string taxName?;
     @jsondata:Name {value: "RevenueCode"}
     string revenueCode?;
     @jsondata:Name {value: "ReportingCodeTaxableImportOffsetCreditNote"}
-    int:Signed32 reportingCodeTaxableImportOffsetCreditNote;
+    int:Signed32 reportingCodeTaxableImportOffsetCreditNote?;
     @jsondata:Name {value: "ExcludeFromInvoice"}
     NoYes excludeFromInvoice?;
     @jsondata:Name {value: "TaxOnTax"}
     string taxOnTax?;
     @jsondata:Name {value: "ReportingCodeTaxFreeSalesDebitNote"}
-    int:Signed32 reportingCodeTaxFreeSalesDebitNote;
+    int:Signed32 reportingCodeTaxFreeSalesDebitNote?;
     @jsondata:Name {value: "RetainedTax"}
     NoYes retainedTax?;
     @jsondata:Name {value: "IncludedTax"}
@@ -1926,55 +2207,63 @@ public type TaxCode record {
     @jsondata:Name {value: "TaxVatReportCategoryCode"}
     string taxVatReportCategoryCode?;
     @jsondata:Name {value: "ReportingCodeTaxableImportCreditNote"}
-    int:Signed32 reportingCodeTaxableImportCreditNote;
+    int:Signed32 reportingCodeTaxableImportCreditNote?;
     @jsondata:Name {value: "ReportingCodeTaxIncomingDebitNote"}
-    int:Signed32 reportingCodeTaxIncomingDebitNote;
+    int:Signed32 reportingCodeTaxIncomingDebitNote?;
     @jsondata:Name {value: "TaxPostingGroupId"}
     string taxPostingGroupId?;
     @jsondata:Name {value: "ReportingCodeBaseIncomingDebitNote"}
-    int:Signed32 reportingCodeBaseIncomingDebitNote;
+    int:Signed32 reportingCodeBaseIncomingDebitNote?;
     @jsondata:Name {value: "PrintCodeType"}
     TaxWriteSelection printCodeType?;
 };
 
 public type TaxPeriod record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PeriodInterval"}
     PeriodUnit periodInterval?;
     @jsondata:Name {value: "PaymentTermId"}
     string paymentTermId?;
     @jsondata:Name {value: "TaxPaymentVersion"}
-    int:Signed32 taxPaymentVersion;
+    int:Signed32 taxPaymentVersion?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "TaxAuthorityId"}
     string taxAuthorityId?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "NumberOfUnit"}
-    int:Signed32 numberOfUnit;
+    int:Signed32 numberOfUnit?;
     @jsondata:Name {value: "TaxPeriodId"}
-    string taxPeriodId;
+    string taxPeriodId?;
 };
 
 # Represents the Queries record for the operation: listISRRates
 public type ListISRRatesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1983,20 +2272,24 @@ public type VATChargeSourceRU "VendorFunds"|"OwnFunds";
 
 # Represents the Queries record for the operation: getNIPTables
 public type GetNIPTablesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateTaxCodeLimits
 public type UpdateTaxCodeLimitsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteGSTMinorCodes
 public type DeleteGSTMinorCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2012,8 +2305,10 @@ public type TaxItemGroupsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getTaxRegions
 public type GetTaxRegionsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2025,6 +2320,7 @@ public type ISRRatesCollection record {
 
 # Represents the Headers record for the operation: deleteTaxGroupDatas
 public type DeleteTaxGroupDatasHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2042,7 +2338,7 @@ public type CFOPCodes record {
     string name?;
     @jsondata:Name {value: "DeliveryCFOP"}
     string deliveryCFOP?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "FiscalDocumentSourceText"}
     string fiscalDocumentSourceText?;
     @jsondata:Name {value: "FiscalReferenceRequired"}
@@ -2052,7 +2348,7 @@ public type CFOPCodes record {
     @jsondata:Name {value: "FiscalDocumentText"}
     string fiscalDocumentText?;
     @jsondata:Name {value: "CFOP"}
-    string cFOP;
+    string cFOP?;
     @jsondata:Name {value: "Location"}
     CustVendLocationBR location?;
 };
@@ -2063,50 +2359,51 @@ public type TaxDocument record {
     @jsondata:Name {value: "TaxCreditMemoNumber"}
     string taxCreditMemoNumber?;
     @jsondata:Name {value: "TaxCreditMemoTransactionAmountInTransactionCurrency"}
-    decimal taxCreditMemoTransactionAmountInTransactionCurrency;
+    decimal taxCreditMemoTransactionAmountInTransactionCurrency?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxAmountInCurrency"}
-    decimal taxCreditMemoTransactionTaxAmountInCurrency;
+    decimal taxCreditMemoTransactionTaxAmountInCurrency?;
     @jsondata:Name {value: "AmountInTransactionCurrency"}
-    decimal amountInTransactionCurrency;
+    decimal amountInTransactionCurrency?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "TaxCreditMemoTransactionAmount"}
-    decimal taxCreditMemoTransactionAmount;
+    decimal taxCreditMemoTransactionAmount?;
     @jsondata:Name {value: "TaxDocumentNumber"}
-    string taxDocumentNumber;
+    string taxDocumentNumber?;
     @jsondata:Name {value: "CustVendTransTableId"}
-    int:Signed32 custVendTransTableId;
+    int:Signed32 custVendTransTableId?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxAmountInCurrency"}
-    decimal taxDocumentTransactionTaxAmountInCurrency;
+    decimal taxDocumentTransactionTaxAmountInCurrency?;
     @jsondata:Name {value: "TaxDocumentTransactionTypeOfTax"}
     TaxTypeW taxDocumentTransactionTypeOfTax?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTypeOfTax"}
     TaxTypeW taxCreditMemoTransactionTypeOfTax?;
     @jsondata:Name {value: "TaxAmount"}
-    decimal taxAmount;
+    decimal taxAmount?;
     @jsondata:Name {value: "TaxDocumentDate"}
-    string taxDocumentDate;
+    string taxDocumentDate?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxAmount"}
-    decimal taxDocumentTransactionTaxAmount;
+    decimal taxDocumentTransactionTaxAmount?;
     @jsondata:Name {value: "TaxCreditMemoDate"}
-    string taxCreditMemoDate;
+    string taxCreditMemoDate?;
     @jsondata:Name {value: "TaxDocumentTransactionTaxValue"}
-    decimal taxDocumentTransactionTaxValue;
+    decimal taxDocumentTransactionTaxValue?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxAmount"}
-    decimal taxCreditMemoTransactionTaxAmount;
+    decimal taxCreditMemoTransactionTaxAmount?;
     @jsondata:Name {value: "TaxCreditMemoTransactionTaxValue"}
-    decimal taxCreditMemoTransactionTaxValue;
+    decimal taxCreditMemoTransactionTaxValue?;
     @jsondata:Name {value: "TaxDocumentTransactionAmount"}
-    decimal taxDocumentTransactionAmount;
+    decimal taxDocumentTransactionAmount?;
     @jsondata:Name {value: "TaxDocumentTransactionAmountInTransactionCurrency"}
-    decimal taxDocumentTransactionAmountInTransactionCurrency;
+    decimal taxDocumentTransactionAmountInTransactionCurrency?;
     @jsondata:Name {value: "TaxAmountInCurrency"}
-    decimal taxAmountInCurrency;
+    decimal taxAmountInCurrency?;
 };
 
 # Represents the Headers record for the operation: deleteTaxParameters
 public type DeleteTaxParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2119,8 +2416,10 @@ public type HSNCodesCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getTaxationCode
 public type GetTaxationCodeQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2137,24 +2436,25 @@ public type NRTaxTransCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteIntervats
 public type DeleteIntervatsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type HSNCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Heading"}
-    string heading;
+    string heading?;
     @jsondata:Name {value: "Subheading"}
-    string subheading;
+    string subheading?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Chapter"}
-    string chapter;
+    string chapter?;
     @jsondata:Name {value: "StatisticalSuffix"}
-    string statisticalSuffix;
+    string statisticalSuffix?;
     @jsondata:Name {value: "Code"}
     string code?;
     @jsondata:Name {value: "CountryExtension"}
-    string countryExtension;
+    string countryExtension?;
 };

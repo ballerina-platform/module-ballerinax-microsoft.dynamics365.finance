@@ -62,4 +62,7 @@ Thumbs.db
 *.ctx
 
 # D365 CSDL metadata XML — never commit; only derived OAS specs are stored in docs/spec/
-*.xml
+docs/metadata/**/*.xml
+
+# Docker environment files contain local env vars and credentials
+docker.env

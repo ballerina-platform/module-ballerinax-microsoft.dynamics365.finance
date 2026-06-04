@@ -23,7 +23,9 @@ public type MockConfig record {|
 |};
 
 # Start a lightweight mock OData + OAuth2-token server.
-# Returns the listener so the caller can stop it cleanly.
+#
+# + config - Configuration for the mock server including port and default company
+# + return - An `http:Listener` instance, or an error if the server fails to start
 public isolated function startMock(MockConfig config = {}) returns http:Listener|error {
     http:Listener ln = check new (config.port);
     check ln.attach(new TokenService(), "/token");

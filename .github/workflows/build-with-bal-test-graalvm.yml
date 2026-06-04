@@ -52,5 +52,5 @@ jobs:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina-${{ matrix.directory }}:build \
+          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
             -x test -PbuildUsingDocker=nightly -Pnative

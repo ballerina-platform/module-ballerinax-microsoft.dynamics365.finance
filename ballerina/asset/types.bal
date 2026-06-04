@@ -10,26 +10,31 @@ public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
 
 # Represents the Queries record for the operation: getFixedAssetValueModels
 public type GetFixedAssetValueModelsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateCashAccounts
 public type UpdateCashAccountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteExpenseCodes
 public type DeleteExpenseCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateProjectStages
 public type UpdateProjectStagesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -38,20 +43,28 @@ public type PSAProjTimeMeasure "Hour"|"Unit";
 
 # Represents the Queries record for the operation: listFixedAssetsV2
 public type ListFixedAssetsV2Queries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -65,40 +78,56 @@ public type ProjGrantsV2Collection record {
 
 # Represents the Queries record for the operation: listProjectStages
 public type ListProjectStagesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listExpenseCodes
 public type ListExpenseCodesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -111,20 +140,28 @@ public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"
 
 # Represents the Queries record for the operation: listRAssetLedgers
 public type ListRAssetLedgersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -137,18 +174,18 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "AssetLocationId"}
     string assetLocationId?;
     @jsondata:Name {value: "ExceptionTaxationRateDenominator"}
-    decimal exceptionTaxationRateDenominator;
+    decimal exceptionTaxationRateDenominator?;
     @jsondata:Name {value: "SearchName"}
     string searchName?;
     @jsondata:Name {value: "MissingAsset"}
     NoYes missingAsset?;
     @jsondata:Name {value: "PolicyAmount"}
-    decimal policyAmount;
+    decimal policyAmount?;
     @jsondata:Name {value: "PropertyType"}
     AssetPropertyType propertyType?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TechnicalInformation1"}
     string technicalInformation1?;
     @jsondata:Name {value: "TechnicalInformation2"}
@@ -164,17 +201,17 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "TransferredFromInventory"}
     NoYes transferredFromInventory?;
     @jsondata:Name {value: "InsuredValue"}
-    decimal insuredValue;
+    decimal insuredValue?;
     @jsondata:Name {value: "NextMaintenance"}
-    string nextMaintenance;
+    string nextMaintenance?;
     @jsondata:Name {value: "LastMaintenance"}
-    string lastMaintenance;
+    string lastMaintenance?;
     @jsondata:Name {value: "AssetTypeOfMajorType"}
     AssetTypeJP assetTypeOfMajorType?;
     @jsondata:Name {value: "SortField3Id"}
     string sortField3Id?;
     @jsondata:Name {value: "LastPeriodicValueCostUpdate"}
-    string lastPeriodicValueCostUpdate;
+    string lastPeriodicValueCostUpdate?;
     @jsondata:Name {value: "Agent"}
     string agent?;
     @jsondata:Name {value: "SortField1Id"}
@@ -198,7 +235,7 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "DocumentLocation"}
     string documentLocation?;
     @jsondata:Name {value: "ExceptionTaxationRate"}
-    decimal exceptionTaxationRate;
+    decimal exceptionTaxationRate?;
     @jsondata:Name {value: "SerialNumber"}
     string serialNumber?;
     @jsondata:Name {value: "MainAssetId"}
@@ -208,17 +245,17 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "PropertyGroupId"}
     string propertyGroupId?;
     @jsondata:Name {value: "InsuranceDate1"}
-    string insuranceDate1;
+    string insuranceDate1?;
     @jsondata:Name {value: "InsuranceDate2"}
-    string insuranceDate2;
+    string insuranceDate2?;
     @jsondata:Name {value: "NameOfTheLender"}
     string nameOfTheLender?;
     @jsondata:Name {value: "AcquisitionPrice"}
-    decimal acquisitionPrice;
+    decimal acquisitionPrice?;
     @jsondata:Name {value: "FixedAssetGroupId"}
     string fixedAssetGroupId?;
     @jsondata:Name {value: "TaxCreditsInstallments"}
-    int:Signed32 taxCreditsInstallments;
+    int:Signed32 taxCreditsInstallments?;
     @jsondata:Name {value: "RoomNumber"}
     string roomNumber?;
     @jsondata:Name {value: "MajorTypeId"}
@@ -230,7 +267,7 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "ContactPersonnelNumber"}
     string contactPersonnelNumber?;
     @jsondata:Name {value: "FixedAssetNumber"}
-    string fixedAssetNumber;
+    string fixedAssetNumber?;
     @jsondata:Name {value: "BarCode"}
     string barCode?;
     @jsondata:Name {value: "InsuranceVendor"}
@@ -238,27 +275,27 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "DepartmentOperatingUnitNumber"}
     string departmentOperatingUnitNumber?;
     @jsondata:Name {value: "ICMSCreditInstallments"}
-    int:Signed32 iCMSCreditInstallments;
+    int:Signed32 iCMSCreditInstallments?;
     @jsondata:Name {value: "IsRented"}
     NoYes isRented?;
     @jsondata:Name {value: "ResponsibleName"}
     string responsibleName?;
     @jsondata:Name {value: "AcquisitionDate"}
-    string acquisitionDate;
+    string acquisitionDate?;
     @jsondata:Name {value: "ReplacementCost"}
-    decimal replacementCost;
+    decimal replacementCost?;
     @jsondata:Name {value: "GuaranteeDate"}
-    string guaranteeDate;
+    string guaranteeDate?;
     @jsondata:Name {value: "AppropriationMethod"}
     FBPISCOFINSFixedAssetAppropMethodBR appropriationMethod?;
     @jsondata:Name {value: "FiscalEstablishmentId"}
     string fiscalEstablishmentId?;
     @jsondata:Name {value: "PolicyExpirationDate"}
-    string policyExpirationDate;
+    string policyExpirationDate?;
     @jsondata:Name {value: "LocationMemo"}
     string locationMemo?;
     @jsondata:Name {value: "PhysicalInventory"}
-    string physicalInventory;
+    string physicalInventory?;
     @jsondata:Name {value: "SortField2Id"}
     string sortField2Id?;
     @jsondata:Name {value: "Information3"}
@@ -276,13 +313,13 @@ public type FixedAssetV2Entity record {
     @jsondata:Name {value: "Information1"}
     string information1?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "TaxCreditPurpose"}
     FBPISCOFINSFixedAssetCreditPurposeBR taxCreditPurpose?;
     @jsondata:Name {value: "InsuredAtFairMarketValue"}
     NoYes insuredAtFairMarketValue?;
     @jsondata:Name {value: "UnitCost"}
-    decimal unitCost;
+    decimal unitCost?;
     @jsondata:Name {value: "Type"}
     AssetType 'type?;
     @jsondata:Name {value: "AcceleratedDepreciationFixedAssetEquipmentGroupId"}
@@ -315,6 +352,7 @@ public type CashAccountsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateBankAccounts
 public type UpdateBankAccountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -332,17 +370,17 @@ public type BankGroup record {
     NoYes bankArchiveRU?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ContactSMS"}
     string contactSMS?;
     @jsondata:Name {value: "AddressCity"}
     string addressCity?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "BranchName"}
     string branchName?;
     @jsondata:Name {value: "RoutingNumberType"}
@@ -368,7 +406,7 @@ public type BankGroup record {
     @jsondata:Name {value: "ContactPager"}
     string contactPager?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "SWIFTNo_EE"}
     string sWIFTNoEE?;
     @jsondata:Name {value: "ContactTelex"}
@@ -414,7 +452,7 @@ public type BankGroup record {
     @jsondata:Name {value: "ContactEmail"}
     string contactEmail?;
     @jsondata:Name {value: "BankGroupId"}
-    string bankGroupId;
+    string bankGroupId?;
     @jsondata:Name {value: "ContactName"}
     string contactName?;
     @jsondata:Name {value: "CellularPhone"}
@@ -422,7 +460,7 @@ public type BankGroup record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
     @jsondata:Name {value: "BankBIC_RU"}
     string bankBICRU?;
     @jsondata:Name {value: "BanksIdentificationOfCompany"}
@@ -433,26 +471,35 @@ public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|
 
 # Represents the Queries record for the operation: listFixedAssets
 public type ListFixedAssetsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateProjectTasks
 public type UpdateProjectTasksHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -461,7 +508,7 @@ public type UpdateProjectTasksHeaders record {
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
     # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth;
+    OAuth2ClientCredentialsGrantConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -505,56 +552,72 @@ public type TrvMileageRateType "Mileage"|"Passenger";
 
 # Represents the Queries record for the operation: getProjectsV2
 public type GetProjectsV2Queries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getCashSymbols
 public type GetCashSymbolsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getProjects
 public type GetProjectsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listAssetSortings
 public type ListAssetSortingsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updatePerDiems
 public type UpdatePerDiemsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateAssetSortings
 public type UpdateAssetSortingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -563,6 +626,7 @@ public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"
 
 # Represents the Headers record for the operation: deleteLeasingGroups
 public type DeleteLeasingGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -571,7 +635,7 @@ public type Project record {
     @jsondata:Name {value: "TaskCompletelyScheduled"}
     NoYes taskCompletelyScheduled?;
     @jsondata:Name {value: "ZakatContractAmendment"}
-    decimal zakatContractAmendment;
+    decimal zakatContractAmendment?;
     @jsondata:Name {value: "IsReadyForInvoicing"}
     NoYes isReadyForInvoicing?;
     @jsondata:Name {value: "LocationID"}
@@ -579,7 +643,7 @@ public type Project record {
     @jsondata:Name {value: "SortingId3"}
     string sortingId3?;
     @jsondata:Name {value: "ActualStartDate"}
-    string actualStartDate;
+    string actualStartDate?;
     @jsondata:Name {value: "SortingId2"}
     string sortingId2?;
     @jsondata:Name {value: "SortingId1"}
@@ -619,7 +683,7 @@ public type Project record {
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "EndTime"}
-    int:Signed32 endTime;
+    int:Signed32 endTime?;
     @jsondata:Name {value: "ProjectName"}
     string projectName?;
     @jsondata:Name {value: "SubprojectIDFormat"}
@@ -627,7 +691,7 @@ public type Project record {
     @jsondata:Name {value: "WorkerArchitectPersonnelNumber"}
     string workerArchitectPersonnelNumber?;
     @jsondata:Name {value: "AlertTimeFrameWeeks"}
-    int:Signed32 alertTimeFrameWeeks;
+    int:Signed32 alertTimeFrameWeeks?;
     @jsondata:Name {value: "SalesPriceGroup"}
     string salesPriceGroup?;
     @jsondata:Name {value: "IsActivityRequiredForExpenseTransaction"}
@@ -643,17 +707,17 @@ public type Project record {
     @jsondata:Name {value: "ExternalRevision"}
     string externalRevision?;
     @jsondata:Name {value: "MinimumTimeIncrement"}
-    decimal minimumTimeIncrement;
+    decimal minimumTimeIncrement?;
     @jsondata:Name {value: "IsActivityRequiredForHourForecast"}
     NoYes isActivityRequiredForHourForecast?;
     @jsondata:Name {value: "Calendar"}
     string calendar?;
     @jsondata:Name {value: "EndDate1"}
-    string endDate1;
+    string endDate1?;
     @jsondata:Name {value: "CanUseAlternateProjectBudget"}
     NoYes canUseAlternateProjectBudget?;
     @jsondata:Name {value: "ProjectedEndDate"}
-    string projectedEndDate;
+    string projectedEndDate?;
     @jsondata:Name {value: "TrackCost"}
     PSAProjTrackCost trackCost?;
     @jsondata:Name {value: "JobIdentification"}
@@ -684,7 +748,7 @@ public type Project record {
     NoYes pSASchedIgnoreCalendar?;
     @jsondata:Name {value: "IsActivityRequiredForItemForecast"}
     NoYes isActivityRequiredForItemForecast?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "BudgetControlInterval"}
     ProjBudgetInterval budgetControlInterval?;
     @jsondata:Name {value: "DimensionDisplayValue"}
@@ -704,13 +768,13 @@ public type Project record {
     @jsondata:Name {value: "ProjectStage"}
     ProjStatus projectStage?;
     @jsondata:Name {value: "StartTime"}
-    int:Signed32 startTime;
+    int:Signed32 startTime?;
     @jsondata:Name {value: "StartDate1"}
-    string startDate1;
+    string startDate1?;
     @jsondata:Name {value: "CustomerAccount"}
     string customerAccount?;
     @jsondata:Name {value: "ExtensionDate"}
-    string extensionDate;
+    string extensionDate?;
     @jsondata:Name {value: "ProjectType"}
     ProjType projectType?;
     @jsondata:Name {value: "BankDocumentType"}
@@ -724,39 +788,39 @@ public type Project record {
     @jsondata:Name {value: "JobPayType"}
     JmgJobPayTypeEnum jobPayType?;
     @jsondata:Name {value: "DurationInDays"}
-    decimal durationInDays;
+    decimal durationInDays?;
     @jsondata:Name {value: "FixedAssetNumber"}
     string fixedAssetNumber?;
     @jsondata:Name {value: "ProjectID"}
-    string projectID;
+    string projectID?;
     @jsondata:Name {value: "CanUseBudgetControl"}
     NoYes canUseBudgetControl?;
     @jsondata:Name {value: "DeliveryName"}
     string deliveryName?;
     @jsondata:Name {value: "ProjectedStartDate"}
-    string projectedStartDate;
+    string projectedStartDate?;
     @jsondata:Name {value: "DateOfCreation"}
-    string dateOfCreation;
+    string dateOfCreation?;
     @jsondata:Name {value: "SearchPriority"}
     ProjLinePropertySearch searchPriority?;
     @jsondata:Name {value: "Notes"}
     string notes?;
     @jsondata:Name {value: "ActualEndDate"}
-    string actualEndDate;
+    string actualEndDate?;
     @jsondata:Name {value: "IsActivityRequiredForItemTransaction"}
     NoYes isActivityRequiredForItemTransaction?;
     @jsondata:Name {value: "HourValidation"}
     PSAPReqValidate hourValidation?;
     @jsondata:Name {value: "ConstraintDate"}
-    string constraintDate;
+    string constraintDate?;
     @jsondata:Name {value: "Date"}
-    string date;
+    string date?;
     @jsondata:Name {value: "ZakatProjectValue"}
-    decimal zakatProjectValue;
+    decimal zakatProjectValue?;
     @jsondata:Name {value: "TotalEffortInHours"}
-    decimal totalEffortInHours;
+    decimal totalEffortInHours?;
     @jsondata:Name {value: "PercentToRetain"}
-    decimal percentToRetain;
+    decimal percentToRetain?;
     @jsondata:Name {value: "TimeMeasure"}
     PSAProjTimeMeasure timeMeasure?;
     @jsondata:Name {value: "ProjectBudgetManagement"}
@@ -766,7 +830,7 @@ public type Project record {
     @jsondata:Name {value: "AlternateProject"}
     string alternateProject?;
     @jsondata:Name {value: "ZakatContractDate"}
-    string zakatContractDate;
+    string zakatContractDate?;
     @jsondata:Name {value: "ProjectTemplate"}
     NoYes projectTemplate?;
 };
@@ -777,24 +841,28 @@ public type RAssetLedgersCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteProjectsV2
 public type DeleteProjectsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateFixedAssetsV2
 public type UpdateFixedAssetsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateRAssetGroups
 public type UpdateRAssetGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteProjGrants
 public type DeleteProjGrantsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -805,22 +873,27 @@ public type FixedAssetValueModelsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getMileageRates
 public type GetMileageRatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCDSProjects
 public type DeleteCDSProjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getExpenseParameters
 public type GetExpenseParametersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -835,26 +908,35 @@ public type ExpenseRatesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateCDSProjects
 public type UpdateCDSProjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listBankAccounts
 public type ListBankAccountsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -872,6 +954,7 @@ public type RAssetUsesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deletePSAActuals
 public type DeletePSAActualsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -894,12 +977,14 @@ public type FixedAssetsV2Collection record {
 
 # Represents the Headers record for the operation: updateFixedAssetValueModels
 public type UpdateFixedAssetValueModelsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteBankAccounts
 public type DeleteBankAccountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -923,7 +1008,7 @@ public type ExpenseParameters record {
     NoYes createExpensesFromReport?;
     @jsondata:Name {value: "UseAdditionalInformationForDescriptionIntercompanyInvoice"}
     NoYes useAdditionalInformationForDescriptionIntercompanyInvoice?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DisplayEntireExpenseOnDrillBack"}
     NoYes displayEntireExpenseOnDrillBack?;
     @jsondata:Name {value: "PersonalPaidBy"}
@@ -931,7 +1016,7 @@ public type ExpenseParameters record {
     @jsondata:Name {value: "BarCodeSetupId"}
     string barCodeSetupId?;
     @jsondata:Name {value: "DeductBreakf"}
-    decimal deductBreakf;
+    decimal deductBreakf?;
     @jsondata:Name {value: "IsProjectValidationAllowedForMobile"}
     NoYes isProjectValidationAllowedForMobile?;
     @jsondata:Name {value: "IsReleaseEncumbrancesOnCloseRequisition"}
@@ -939,7 +1024,7 @@ public type ExpenseParameters record {
     @jsondata:Name {value: "AllowEditOnTransDateForPerDiems"}
     NoYes allowEditOnTransDateForPerDiems?;
     @jsondata:Name {value: "OtherReductionDef"}
-    decimal otherReductionDef;
+    decimal otherReductionDef?;
     @jsondata:Name {value: "PostExpensesOnPostingDate"}
     NoYes postExpensesOnPostingDate?;
     @jsondata:Name {value: "PerDiemRounding"}
@@ -957,7 +1042,7 @@ public type ExpenseParameters record {
     @jsondata:Name {value: "WhenToEvaluatePolicy"}
     TrvEvaluateExpensePolicies whenToEvaluatePolicy?;
     @jsondata:Name {value: "MealReductionDef"}
-    decimal mealReductionDef;
+    decimal mealReductionDef?;
     @jsondata:Name {value: "UseInterCompanyExpense"}
     NoYes useInterCompanyExpense?;
     @jsondata:Name {value: "PostImmediately"}
@@ -969,7 +1054,7 @@ public type ExpenseParameters record {
     @jsondata:Name {value: "IsAllowApproveExpenseOnBudgetFail"}
     NoYes isAllowApproveExpenseOnBudgetFail?;
     @jsondata:Name {value: "HotelReductionDef"}
-    decimal hotelReductionDef;
+    decimal hotelReductionDef?;
     @jsondata:Name {value: "IsAllowSubmitRequisitionOnBudgetFail"}
     NoYes isAllowSubmitRequisitionOnBudgetFail?;
     @jsondata:Name {value: "EnableTaxRecovery"}
@@ -977,13 +1062,13 @@ public type ExpenseParameters record {
     @jsondata:Name {value: "IsAllowUpdateAccountingDate"}
     NoYes isAllowUpdateAccountingDate?;
     @jsondata:Name {value: "MinHours"}
-    decimal minHours;
+    decimal minHours?;
     @jsondata:Name {value: "KmPrice"}
-    decimal kmPrice;
+    decimal kmPrice?;
     @jsondata:Name {value: "DeductDinner"}
-    decimal deductDinner;
+    decimal deductDinner?;
     @jsondata:Name {value: "DeductLunch"}
-    decimal deductLunch;
+    decimal deductLunch?;
     @jsondata:Name {value: "AllowEditCreditCardExchRate"}
     NoYes allowEditCreditCardExchRate?;
     @jsondata:Name {value: "IncludeOverviewInCoverPage"}
@@ -994,6 +1079,7 @@ public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
 
 # Represents the Headers record for the operation: updateParentLeases
 public type UpdateParentLeasesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1008,7 +1094,7 @@ public type BankAccount record {
     @jsondata:Name {value: "ControlInternalNumber"}
     string controlInternalNumber?;
     @jsondata:Name {value: "PrenoteResponseDays"}
-    int:Signed32 prenoteResponseDays;
+    int:Signed32 prenoteResponseDays?;
     @jsondata:Name {value: "ReconcileAfterStatementImport"}
     NoYes reconcileAfterStatementImport?;
     @jsondata:Name {value: "Name"}
@@ -1017,21 +1103,21 @@ public type BankAccount record {
     string sWIFTCode?;
     @jsondata:Name {value: "CurrencyCode"}
     string currencyCode?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ContactSMS"}
     string contactSMS?;
     @jsondata:Name {value: "CollectionExpensesFee"}
-    decimal collectionExpensesFee;
+    decimal collectionExpensesFee?;
     @jsondata:Name {value: "ContactFaxNumber"}
     string contactFaxNumber?;
     @jsondata:Name {value: "AddressCity"}
     string addressCity?;
     @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude;
+    decimal addressLongitude?;
     @jsondata:Name {value: "DestinationName"}
     string destinationName?;
     @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom;
+    string addressValidFrom?;
     @jsondata:Name {value: "ReconciliationMatchingRuleSetId"}
     string reconciliationMatchingRuleSetId?;
     @jsondata:Name {value: "RoutingNumberType"}
@@ -1057,7 +1143,7 @@ public type BankAccount record {
     @jsondata:Name {value: "AddressLocationId"}
     string addressLocationId?;
     @jsondata:Name {value: "PositivePayStartDate"}
-    string positivePayStartDate;
+    string positivePayStartDate?;
     @jsondata:Name {value: "UseBankStatementsAsConfirmationOfElectronicPayments"}
     NoYes useBankStatementsAsConfirmationOfElectronicPayments?;
     @jsondata:Name {value: "FullPrimaryAddress"}
@@ -1071,13 +1157,13 @@ public type BankAccount record {
     @jsondata:Name {value: "ClearingCode"}
     string clearingCode?;
     @jsondata:Name {value: "BankAccountId"}
-    string bankAccountId;
+    string bankAccountId?;
     @jsondata:Name {value: "ContactPager"}
     string contactPager?;
     @jsondata:Name {value: "FeeESRAccountNumber"}
     string feeESRAccountNumber?;
     @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo;
+    string addressValidTo?;
     @jsondata:Name {value: "AddressZipCode"}
     string addressZipCode?;
     @jsondata:Name {value: "BankTransactionType"}
@@ -1099,11 +1185,11 @@ public type BankAccount record {
     @jsondata:Name {value: "DirectDebitId"}
     string directDebitId?;
     @jsondata:Name {value: "PaymentDiscountingMaximum"}
-    decimal paymentDiscountingMaximum;
+    decimal paymentDiscountingMaximum?;
     @jsondata:Name {value: "AddressCounty"}
     string addressCounty?;
     @jsondata:Name {value: "DiscountInterestsFee"}
-    decimal discountInterestsFee;
+    decimal discountInterestsFee?;
     @jsondata:Name {value: "ContactTelexNumber"}
     string contactTelexNumber?;
     @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
@@ -1115,7 +1201,7 @@ public type BankAccount record {
     @jsondata:Name {value: "BankAccountStatus"}
     BankAccountHoldStatus bankAccountStatus?;
     @jsondata:Name {value: "InvoiceRemitFee"}
-    decimal invoiceRemitFee;
+    decimal invoiceRemitFee?;
     @jsondata:Name {value: "PostCustomerPaymentFee"}
     NoYes postCustomerPaymentFee?;
     @jsondata:Name {value: "DiscountMainAccountIdDisplayValue"}
@@ -1129,11 +1215,11 @@ public type BankAccount record {
     @jsondata:Name {value: "ESR"}
     string eSR?;
     @jsondata:Name {value: "CreditLimit"}
-    decimal creditLimit;
+    decimal creditLimit?;
     @jsondata:Name {value: "AllowedPennyDifferenceForReconciliation"}
-    decimal allowedPennyDifferenceForReconciliation;
+    decimal allowedPennyDifferenceForReconciliation?;
     @jsondata:Name {value: "ActiveTo"}
-    string activeTo;
+    string activeTo?;
     @jsondata:Name {value: "InvoiceRemitMainAccountIdDisplayValue"}
     string invoiceRemitMainAccountIdDisplayValue?;
     @jsondata:Name {value: "FeeJournalName"}
@@ -1147,7 +1233,7 @@ public type BankAccount record {
     @jsondata:Name {value: "PositivePayFormatName"}
     string positivePayFormatName?;
     @jsondata:Name {value: "ActiveFrom"}
-    string activeFrom;
+    string activeFrom?;
     @jsondata:Name {value: "AccountNumber"}
     string accountNumber?;
     @jsondata:Name {value: "RoutingNumber"}
@@ -1177,7 +1263,7 @@ public type BankAccount record {
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude;
+    decimal addressLatitude?;
 };
 
 public type ExpensesCollectionAllOf2 record {
@@ -1186,16 +1272,16 @@ public type ExpensesCollectionAllOf2 record {
 
 public type AssetLending record {
     @jsondata:Name {value: "DateOfLease"}
-    string dateOfLease;
-    string dataAreaId;
+    string dateOfLease?;
+    string dataAreaId?;
     @jsondata:Name {value: "ActualReturnDate"}
-    string actualReturnDate;
+    string actualReturnDate?;
     @jsondata:Name {value: "ExpectedReturnDate"}
-    string expectedReturnDate;
+    string expectedReturnDate?;
     @jsondata:Name {value: "Leaseholder"}
     string leaseholder?;
     @jsondata:Name {value: "FAInventoryNumber"}
-    string fAInventoryNumber;
+    string fAInventoryNumber?;
     @jsondata:Name {value: "Location"}
     string location?;
 };
@@ -1210,6 +1296,7 @@ public type ExpenseCodesCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateProjGrantsV2
 public type UpdateProjGrantsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1226,48 +1313,62 @@ public type RAssetAssessedTaxType "Section3"|"First"|"Second"|"Third"|"Fourth"|"
 
 # Represents the Queries record for the operation: getExpenseRates
 public type GetExpenseRatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listProjects
 public type ListProjectsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateRAssetLedgers
 public type UpdateRAssetLedgersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getLeasingGroups
 public type GetLeasingGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteAssetSortings
 public type DeleteAssetSortingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1283,36 +1384,36 @@ public type TrvMealReductionType "MealTypePerTrip"|"MealTypePerday"|"MealsPerDay
 
 public type PerDiems record {
     @jsondata:Name {value: "OtherAllowance"}
-    decimal otherAllowance;
+    decimal otherAllowance?;
     @jsondata:Name {value: "StateId"}
-    string stateId;
+    string stateId?;
     @jsondata:Name {value: "DeductTwoMeals"}
-    decimal deductTwoMeals;
+    decimal deductTwoMeals?;
     @jsondata:Name {value: "HotelAllowance"}
-    decimal hotelAllowance;
-    string dataAreaId;
+    decimal hotelAllowance?;
+    string dataAreaId?;
     @jsondata:Name {value: "DeductThreeOrMoreMeals"}
-    decimal deductThreeOrMoreMeals;
+    decimal deductThreeOrMoreMeals?;
     @jsondata:Name {value: "MealAllowance"}
-    decimal mealAllowance;
+    decimal mealAllowance?;
     @jsondata:Name {value: "DeductBreakf"}
-    decimal deductBreakf;
+    decimal deductBreakf?;
     @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId;
+    string countryRegionId?;
     @jsondata:Name {value: "DateFrom"}
-    string dateFrom;
+    string dateFrom?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "DeductDinner"}
-    decimal deductDinner;
+    decimal deductDinner?;
     @jsondata:Name {value: "DeductOneMeal"}
-    decimal deductOneMeal;
+    decimal deductOneMeal?;
     @jsondata:Name {value: "DeductLunch"}
-    decimal deductLunch;
+    decimal deductLunch?;
     @jsondata:Name {value: "Location"}
-    string location;
+    string location?;
     @jsondata:Name {value: "DateTo"}
-    string dateTo;
+    string dateTo?;
 };
 
 public type ProjectStagesCollection record {
@@ -1322,22 +1423,27 @@ public type ProjectStagesCollection record {
 
 # Represents the Queries record for the operation: getPerDiems
 public type GetPerDiemsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCashAccounts
 public type DeleteCashAccountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getCashDiscounts
 public type GetCashDiscountsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1347,29 +1453,33 @@ public type PerDiemsCollectionAllOf2 record {
 };
 
 public type RAssetLedger record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "PostingProfile"}
-    string postingProfile;
+    string postingProfile?;
     @jsondata:Name {value: "Description"}
     string description?;
 };
 
 # Represents the Queries record for the operation: getAssetLendings
 public type GetAssetLendingsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateProjects
 public type UpdateProjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteRAssetUses
 public type DeleteRAssetUsesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1381,52 +1491,70 @@ public type ParentLeasesCollection record {
 
 # Represents the Queries record for the operation: listLeasingGroups
 public type ListLeasingGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listProjGrants
 public type ListProjGrantsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCashLedgers
 public type DeleteCashLedgersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteProjectTasks
 public type DeleteProjectTasksHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1441,7 +1569,7 @@ public type CDSProject record {
     @jsondata:Name {value: "ProjectName"}
     string projectName?;
     @jsondata:Name {value: "ProjectID"}
-    string projectID;
+    string projectID?;
     @jsondata:Name {value: "ProjectContractID"}
     string projectContractID?;
     @jsondata:Name {value: "CustomerAccount"}
@@ -1449,14 +1577,14 @@ public type CDSProject record {
     @jsondata:Name {value: "SourceDataID"}
     string sourceDataID?;
     @jsondata:Name {value: "EndDate"}
-    string endDate;
+    string endDate?;
     @jsondata:Name {value: "ProjectedEndDate"}
-    string projectedEndDate;
+    string projectedEndDate?;
     @jsondata:Name {value: "StartDate"}
-    string startDate;
-    string dataAreaId;
+    string startDate?;
+    string dataAreaId?;
     @jsondata:Name {value: "ProjectedStartDate"}
-    string projectedStartDate;
+    string projectedStartDate?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "ProjectType"}
@@ -1467,26 +1595,35 @@ public type CDSProject record {
 
 # Represents the Queries record for the operation: listProjectTasks
 public type ListProjectTasksQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteFixedAssets
 public type DeleteFixedAssetsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1506,28 +1643,38 @@ public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
 
 # Represents the Queries record for the operation: listMileageRates
 public type ListMileageRatesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getPSAActuals
 public type GetPSAActualsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1541,22 +1688,22 @@ public type BankGroupsCollection record {
 
 public type CashDiscount record {
     @jsondata:Name {value: "CashDiscountCode"}
-    string cashDiscountCode;
+    string cashDiscountCode?;
     @jsondata:Name {value: "NextCashDiscountCode"}
     string nextCashDiscountCode?;
     @jsondata:Name {value: "NumberOfDays"}
-    int:Signed32 numberOfDays;
-    string dataAreaId;
+    int:Signed32 numberOfDays?;
+    string dataAreaId?;
     @jsondata:Name {value: "DiscountMethod"}
     NetCurrent discountMethod?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Percent"}
-    decimal percent;
+    decimal percent?;
     @jsondata:Name {value: "MainAccountIdForVendorDiscountsDisplayValue"}
     string mainAccountIdForVendorDiscountsDisplayValue?;
     @jsondata:Name {value: "NumberOfMonths"}
-    int:Signed32 numberOfMonths;
+    int:Signed32 numberOfMonths?;
     @jsondata:Name {value: "OffsetMethodForVendorDiscounts"}
     DiscountOffsetMethod offsetMethodForVendorDiscounts?;
     @jsondata:Name {value: "MainAccountIdForCustomerDiscountsDisplayValue"}
@@ -1567,6 +1714,7 @@ public type CashDiscount record {
 
 # Represents the Headers record for the operation: deleteExchSetups
 public type DeleteExchSetupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1574,15 +1722,16 @@ public type DeleteExchSetupsHeaders record {
 public type ProjectStage record {
     @jsondata:Name {value: "Status"}
     ProjStatus status?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Language"}
-    string language;
+    string language?;
     @jsondata:Name {value: "Stage"}
     string stage?;
 };
 
 # Represents the Headers record for the operation: deleteBankGroups
 public type DeleteBankGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1599,6 +1748,7 @@ public type PSAActualsCollection record {
 
 # Represents the Headers record for the operation: deleteRAssetLedgers
 public type DeleteRAssetLedgersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1610,9 +1760,9 @@ public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
 public type TrvReceiptEntity record {
     @jsondata:Name {value: "ActualCompanyId"}
     string actualCompanyId?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DocuRefId"}
-    int docuRefId;
+    int docuRefId?;
     @jsondata:Name {value: "FileContents"}
     record {byte[] fileContent; string fileName;} fileContents?;
     @jsondata:Name {value: "FileType"}
@@ -1622,7 +1772,7 @@ public type TrvReceiptEntity record {
     @jsondata:Name {value: "FileName"}
     string fileName?;
     @jsondata:Name {value: "DocumentId"}
-    string documentId;
+    string documentId?;
     @jsondata:Name {value: "Resource"}
     int 'resource;
     @jsondata:Name {value: "Notes"}
@@ -1633,12 +1783,14 @@ public type TrvReceiptEntity record {
 
 # Represents the Headers record for the operation: updateCashDiscounts
 public type UpdateCashDiscountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateCashSymbols
 public type UpdateCashSymbolsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1650,8 +1802,10 @@ public type RAssetTablesCollection record {
 
 # Represents the Queries record for the operation: getCashLedgers
 public type GetCashLedgersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1660,26 +1814,35 @@ public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
 
 # Represents the Headers record for the operation: deleteExpenseParameters
 public type DeleteExpenseParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listPerDiems
 public type ListPerDiemsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1712,36 +1875,45 @@ public type CashDiscountsCollection record {
 
 # Represents the Queries record for the operation: listAssetLendings
 public type ListAssetLendingsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type CodaTrans record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Transaction"}
     string 'transaction;
     @jsondata:Name {value: "TransactionFamily"}
-    string transactionFamily;
+    string transactionFamily?;
 };
 
 # Represents the Headers record for the operation: updateExchSetups
 public type UpdateExchSetupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -1764,25 +1936,25 @@ public type ExchSetupsCollectionAllOf2 record {
 };
 
 public type RAssetGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "DepreciationMethod"}
     string depreciationMethod?;
     @jsondata:Name {value: "DepreciationBonus"}
-    decimal depreciationBonus;
+    decimal depreciationBonus?;
     @jsondata:Name {value: "Lifetime"}
-    int:Signed32 lifetime;
+    int:Signed32 lifetime?;
     @jsondata:Name {value: "ValueModel"}
     string valueModel?;
     @jsondata:Name {value: "DepreciationGroup"}
-    string depreciationGroup;
+    string depreciationGroup?;
     @jsondata:Name {value: "DepreciationStartDate"}
     RAssetInitDepStartDate depreciationStartDate?;
     @jsondata:Name {value: "YearRate"}
-    decimal yearRate;
+    decimal yearRate?;
     @jsondata:Name {value: "Name"}
     string name?;
     @jsondata:Name {value: "MinimalDepreciation"}
-    decimal minimalDepreciation;
+    decimal minimalDepreciation?;
 };
 
 public type RAssetTable record {
@@ -1791,24 +1963,24 @@ public type RAssetTable record {
     @jsondata:Name {value: "Deduction"}
     string deduction?;
     @jsondata:Name {value: "OwnedShareDenominator"}
-    int:Signed32 ownedShareDenominator;
+    int:Signed32 ownedShareDenominator?;
     @jsondata:Name {value: "TypeOfRate"}
     string typeOfRate?;
     @jsondata:Name {value: "Unit"}
     string unit?;
     @jsondata:Name {value: "AssetUse"}
-    decimal assetUse;
+    decimal assetUse?;
     @jsondata:Name {value: "Name"}
     string name?;
     @jsondata:Name {value: "InsurancePolicyNumber"}
     string insurancePolicyNumber?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OutputYear"}
-    int:Signed32 outputYear;
+    int:Signed32 outputYear?;
     @jsondata:Name {value: "Manufacturer"}
     string manufacturer?;
     @jsondata:Name {value: "DateOfTheRegistration"}
-    string dateOfTheRegistration;
+    string dateOfTheRegistration?;
     @jsondata:Name {value: "IncreasingFactorGroup"}
     string increasingFactorGroup?;
     @jsondata:Name {value: "GroundAreaCategory"}
@@ -1818,15 +1990,15 @@ public type RAssetTable record {
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "LogisticsPostalAddress_FK_ValidFrom"}
-    string logisticsPostalAddressFKValidFrom;
+    string logisticsPostalAddressFKValidFrom?;
     @jsondata:Name {value: "CustomerAccount"}
     string customerAccount?;
     @jsondata:Name {value: "TaxDeductionAmount"}
-    decimal taxDeductionAmount;
+    decimal taxDeductionAmount?;
     @jsondata:Name {value: "OwnedShareNumerator"}
-    int:Signed32 ownedShareNumerator;
+    int:Signed32 ownedShareNumerator?;
     @jsondata:Name {value: "TaxBase"}
-    decimal taxBase;
+    decimal taxBase?;
     @jsondata:Name {value: "DocumentLocation"}
     string documentLocation?;
     @jsondata:Name {value: "VehicleModel"}
@@ -1834,27 +2006,27 @@ public type RAssetTable record {
     @jsondata:Name {value: "SerialNumber"}
     string serialNumber?;
     @jsondata:Name {value: "InsuranceAmount"}
-    decimal insuranceAmount;
+    decimal insuranceAmount?;
     @jsondata:Name {value: "AcquisitionCost"}
-    decimal acquisitionCost;
+    decimal acquisitionCost?;
     @jsondata:Name {value: "Barcode"}
     string barcode?;
     @jsondata:Name {value: "Note"}
     string note?;
     @jsondata:Name {value: "InsuranceDate1"}
-    string insuranceDate1;
+    string insuranceDate1?;
     @jsondata:Name {value: "PassportNumber"}
     string passportNumber?;
     @jsondata:Name {value: "InsuranceDate2"}
-    string insuranceDate2;
+    string insuranceDate2?;
     @jsondata:Name {value: "StartDateOfBuilding"}
-    string startDateOfBuilding;
+    string startDateOfBuilding?;
     @jsondata:Name {value: "FlagOfOwnership"}
     RAssetBelonged flagOfOwnership?;
     @jsondata:Name {value: "MainAsset"}
     string mainAsset?;
     @jsondata:Name {value: "RemovalFromTheRegisterDate"}
-    string removalFromTheRegisterDate;
+    string removalFromTheRegisterDate?;
     @jsondata:Name {value: "TraceableNumber"}
     string traceableNumber?;
     @jsondata:Name {value: "LandCadastralNumber"}
@@ -1866,15 +2038,15 @@ public type RAssetTable record {
     @jsondata:Name {value: "EmissionClass"}
     RAssetVehicleEcoClass emissionClass?;
     @jsondata:Name {value: "AcquisitionDate"}
-    string acquisitionDate;
+    string acquisitionDate?;
     @jsondata:Name {value: "ReplacementCost"}
-    decimal replacementCost;
+    decimal replacementCost?;
     @jsondata:Name {value: "Nontaxable"}
     NoYes nontaxable?;
     @jsondata:Name {value: "AssetKind"}
     RAssetAssessedTaxType assetKind?;
     @jsondata:Name {value: "GuaranteeDate"}
-    string guaranteeDate;
+    string guaranteeDate?;
     @jsondata:Name {value: "VATRefunding"}
     RAssetVatRefundingStartDate vATRefunding?;
     @jsondata:Name {value: "VehicleRegistrationNumber"}
@@ -1882,7 +2054,7 @@ public type RAssetTable record {
     @jsondata:Name {value: "VehicleType"}
     string vehicleType?;
     @jsondata:Name {value: "FAInventoryNumber"}
-    string fAInventoryNumber;
+    string fAInventoryNumber?;
     @jsondata:Name {value: "AssetType"}
     RAssetType assetType?;
     @jsondata:Name {value: "RoomCadastralNumber"}
@@ -1899,14 +2071,17 @@ public type RAssetTable record {
 
 # Represents the Headers record for the operation: deleteMileageRates
 public type DeleteMileageRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getProjGrants
 public type GetProjGrantsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1914,17 +2089,17 @@ public type GetProjGrantsQueries record {
 public type PSAPReqValidate "Amount"|"HoursQty";
 
 public type CashLedger record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CashPosting"}
-    string cashPosting;
+    string cashPosting?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Cash"}
-    string cash;
+    string cash?;
     @jsondata:Name {value: "ValidFor"}
     RCashTableAll validFor?;
     @jsondata:Name {value: "MainAccountIdDisplayValue"}
-    string mainAccountIdDisplayValue;
+    string mainAccountIdDisplayValue?;
 };
 
 public type RAssetTablesCollectionAllOf2 record {
@@ -1935,20 +2110,28 @@ public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles
 
 # Represents the Queries record for the operation: listCashDiscounts
 public type ListCashDiscountsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -1979,26 +2162,35 @@ public type TrvReceiptsCollection record {
 
 # Represents the Queries record for the operation: listPSAActuals
 public type ListPSAActualsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateRAssetUses
 public type UpdateRAssetUsesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2010,59 +2202,67 @@ public type LeasingGroupsCollection record {
 
 # Represents the Queries record for the operation: listCDSProjects
 public type ListCDSProjectsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type PSAForecast record {
     @jsondata:Name {value: "OnAccPrePayment"}
-    decimal onAccPrePayment;
+    decimal onAccPrePayment?;
     @jsondata:Name {value: "ProjId"}
     string projId?;
     @jsondata:Name {value: "AmountMst"}
-    decimal amountMst;
+    decimal amountMst?;
     ProjCostSales costSales?;
     @jsondata:Name {value: "PLaccruedRevenueSubscription"}
-    decimal pLaccruedRevenueSubscription;
+    decimal pLaccruedRevenueSubscription?;
     @jsondata:Name {value: "PLaccruedRevenueSalesValue"}
-    decimal pLaccruedRevenueSalesValue;
+    decimal pLaccruedRevenueSalesValue?;
     @jsondata:Name {value: "PLMaterialCostWithoutNeverLedger"}
-    decimal pLMaterialCostWithoutNeverLedger;
+    decimal pLMaterialCostWithoutNeverLedger?;
     @jsondata:Name {value: "ConsumedMaterialCostWithoutNeverLedger"}
-    decimal consumedMaterialCostWithoutNeverLedger;
-    string dataAreaId;
-    decimal totalInvoicedRevenue;
+    decimal consumedMaterialCostWithoutNeverLedger?;
+    string dataAreaId?;
+    decimal totalInvoicedRevenue?;
     @jsondata:Name {value: "ActivityNumber"}
     string activityNumber?;
     @jsondata:Name {value: "ConsumedMaterialCost"}
-    decimal consumedMaterialCost;
+    decimal consumedMaterialCost?;
     @jsondata:Name {value: "Qty"}
-    decimal qty;
+    decimal qty?;
     @jsondata:Name {value: "WIPTotalCost"}
-    decimal wIPTotalCost;
+    decimal wIPTotalCost?;
     @jsondata:Name {value: "ProjFundingSource_FundingSourceId"}
     string projFundingSourceFundingSourceId?;
     @jsondata:Name {value: "WIPSubscription"}
-    decimal wIPSubscription;
+    decimal wIPSubscription?;
     @jsondata:Name {value: "WIPMaterialCost"}
-    decimal wIPMaterialCost;
-    decimal totalConsumption;
+    decimal wIPMaterialCost?;
+    decimal totalConsumption?;
     @jsondata:Name {value: "PLLaborQtyWithoutNoNeverLedger"}
-    decimal pLLaborQtyWithoutNoNeverLedger;
+    decimal pLLaborQtyWithoutNoNeverLedger?;
     @jsondata:Name {value: "ProjType"}
     ProjType projType?;
     @jsondata:Name {value: "PaymentStatus"}
@@ -2070,29 +2270,29 @@ public type PSAForecast record {
     @jsondata:Name {value: "PSAIndirectComponent"}
     NoYes pSAIndirectComponent?;
     @jsondata:Name {value: "PayrollAllocation"}
-    decimal payrollAllocation;
+    decimal payrollAllocation?;
     @jsondata:Name {value: "PaymentDate"}
-    string paymentDate;
+    string paymentDate?;
     @jsondata:Name {value: "Elimination"}
     NoYes elimination?;
     @jsondata:Name {value: "PLaccruedRevenueProduction"}
-    decimal pLaccruedRevenueProduction;
+    decimal pLaccruedRevenueProduction?;
     @jsondata:Name {value: "Resource"}
     int 'resource;
     @jsondata:Name {value: "OnAccMilestone"}
-    decimal onAccMilestone;
+    decimal onAccMilestone?;
     @jsondata:Name {value: "PLInvoicedRevenue"}
-    decimal pLInvoicedRevenue;
+    decimal pLInvoicedRevenue?;
     @jsondata:Name {value: "LedgerTransDate"}
-    string ledgerTransDate;
+    string ledgerTransDate?;
     @jsondata:Name {value: "PLInvoicedRevenueOnAccount"}
-    decimal pLInvoicedRevenueOnAccount;
+    decimal pLInvoicedRevenueOnAccount?;
     @jsondata:Name {value: "PLLaborCostWithoutNoNeverLedger"}
-    decimal pLLaborCostWithoutNoNeverLedger;
+    decimal pLLaborCostWithoutNoNeverLedger?;
     @jsondata:Name {value: "ProjTransDate"}
-    string projTransDate;
+    string projTransDate?;
     @jsondata:Name {value: "WIPSalesTotal"}
-    decimal wIPSalesTotal;
+    decimal wIPSalesTotal?;
     @jsondata:Name {value: "ResourceCompanyId"}
     string resourceCompanyId?;
     @jsondata:Name {value: "LedgerDimensionDisplayValue"}
@@ -2100,93 +2300,93 @@ public type PSAForecast record {
     @jsondata:Name {value: "CategoryId"}
     string categoryId?;
     @jsondata:Name {value: "WIPSalesValue"}
-    decimal wIPSalesValue;
+    decimal wIPSalesValue?;
     @jsondata:Name {value: "WIPCostAccruedLoss"}
-    decimal wIPCostAccruedLoss;
+    decimal wIPCostAccruedLoss?;
     @jsondata:Name {value: "EmplItemId"}
     string emplItemId?;
     @jsondata:Name {value: "ConsumedExpenseCost"}
-    decimal consumedExpenseCost;
+    decimal consumedExpenseCost?;
     @jsondata:Name {value: "WIPInvoicedOnAccount"}
-    decimal wIPInvoicedOnAccount;
+    decimal wIPInvoicedOnAccount?;
     @jsondata:Name {value: "PLExpenseCost"}
-    decimal pLExpenseCost;
+    decimal pLExpenseCost?;
     @jsondata:Name {value: "WIPProfit"}
-    decimal wIPProfit;
+    decimal wIPProfit?;
     @jsondata:Name {value: "ResourceCategory"}
-    int resourceCategory;
+    int resourceCategory?;
     @jsondata:Name {value: "ProjTransType"}
     ProjTransType projTransType?;
     @jsondata:Name {value: "ProjTable_ProjId"}
     string projTableProjId?;
     @jsondata:Name {value: "FeeInvoicedRevenue"}
-    decimal feeInvoicedRevenue;
+    decimal feeInvoicedRevenue?;
     @jsondata:Name {value: "PLTotalCost"}
-    decimal pLTotalCost;
+    decimal pLTotalCost?;
     @jsondata:Name {value: "SubscriptionId"}
     string subscriptionId?;
     @jsondata:Name {value: "WIPExpenseCost"}
-    decimal wIPExpenseCost;
+    decimal wIPExpenseCost?;
     @jsondata:Name {value: "ConsumedLaborCost"}
-    decimal consumedLaborCost;
+    decimal consumedLaborCost?;
     @jsondata:Name {value: "PLLaborCost"}
-    decimal pLLaborCost;
+    decimal pLLaborCost?;
     @jsondata:Name {value: "LaborInvoicedRevenue"}
-    decimal laborInvoicedRevenue;
+    decimal laborInvoicedRevenue?;
     @jsondata:Name {value: "TransId"}
-    string transId;
+    string transId?;
     @jsondata:Name {value: "ConsumedLaborCostWithoutNoNeverLedger"}
-    decimal consumedLaborCostWithoutNoNeverLedger;
+    decimal consumedLaborCostWithoutNoNeverLedger?;
     @jsondata:Name {value: "ModelId"}
     string modelId?;
     @jsondata:Name {value: "WIPLaborCost"}
-    decimal wIPLaborCost;
+    decimal wIPLaborCost?;
     @jsondata:Name {value: "WIPProduction"}
-    decimal wIPProduction;
+    decimal wIPProduction?;
     @jsondata:Name {value: "PLTotalAccruedRevenue"}
-    decimal pLTotalAccruedRevenue;
+    decimal pLTotalAccruedRevenue?;
     @jsondata:Name {value: "ExpenseInvoicedRevenue"}
-    decimal expenseInvoicedRevenue;
+    decimal expenseInvoicedRevenue?;
     @jsondata:Name {value: "PLLaborQty"}
-    decimal pLLaborQty;
+    decimal pLLaborQty?;
     @jsondata:Name {value: "ConsumedLaborQtyWithoutNoNeverLedger"}
-    decimal consumedLaborQtyWithoutNoNeverLedger;
+    decimal consumedLaborQtyWithoutNoNeverLedger?;
     @jsondata:Name {value: "OnAccTotal"}
-    decimal onAccTotal;
+    decimal onAccTotal?;
     @jsondata:Name {value: "MaterialInvoicedRevenue"}
-    decimal materialInvoicedRevenue;
+    decimal materialInvoicedRevenue?;
     @jsondata:Name {value: "ContractId"}
     string contractId?;
     @jsondata:Name {value: "PLMaterialCost"}
-    decimal pLMaterialCost;
+    decimal pLMaterialCost?;
     @jsondata:Name {value: "ConsumedLaborQty"}
-    decimal consumedLaborQty;
+    decimal consumedLaborQty?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "PLAccruedRevenueOnAcc"}
-    decimal pLAccruedRevenueOnAcc;
+    decimal pLAccruedRevenueOnAcc?;
     @jsondata:Name {value: "PostingType"}
     LedgerPostingType postingType?;
     @jsondata:Name {value: "ProjFundingSource_ContractId"}
     string projFundingSourceContractId?;
     @jsondata:Name {value: "PLaccruedRevenueProfit"}
-    decimal pLaccruedRevenueProfit;
+    decimal pLaccruedRevenueProfit?;
     @jsondata:Name {value: "OnAccBegBal"}
-    decimal onAccBegBal;
+    decimal onAccBegBal?;
     @jsondata:Name {value: "ResourceId"}
     string resourceId?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "GrossWIP"}
-    decimal grossWIP;
+    decimal grossWIP?;
     @jsondata:Name {value: "OnAccDeduction"}
-    decimal onAccDeduction;
+    decimal onAccDeduction?;
     @jsondata:Name {value: "LaborInvoicedQty"}
-    decimal laborInvoicedQty;
+    decimal laborInvoicedQty?;
     @jsondata:Name {value: "NetWIP"}
-    decimal netWIP;
+    decimal netWIP?;
     @jsondata:Name {value: "PLCostAccruedLoss"}
-    decimal pLCostAccruedLoss;
+    decimal pLCostAccruedLoss?;
 };
 
 public type BankLGDocumentType "None"|"LetterOfGuarantee";
@@ -2199,12 +2399,14 @@ public type SmmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiti
 
 # Represents the Headers record for the operation: deleteProjects
 public type DeleteProjectsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateBankGroups
 public type UpdateBankGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2213,20 +2415,28 @@ public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentW
 
 # Represents the Queries record for the operation: listCashAccounts
 public type ListCashAccountsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2235,14 +2445,16 @@ public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallySchedule
 
 # Represents the Queries record for the operation: getFixedAssets
 public type GetFixedAssetsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type ExpenseCode record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Locked"}
     NoYes locked?;
     @jsondata:Name {value: "SalesTaxCode"}
@@ -2250,7 +2462,7 @@ public type ExpenseCode record {
     @jsondata:Name {value: "ParentCode"}
     string parentCode?;
     @jsondata:Name {value: "ExpenseCode"}
-    string expenseCode;
+    string expenseCode?;
     @jsondata:Name {value: "CodeType"}
     RTax25ProfitType codeType?;
     @jsondata:Name {value: "ShortDescription"}
@@ -2263,66 +2475,79 @@ public type ExpenseCode record {
 
 # Represents the Headers record for the operation: deleteRAssetGroups
 public type DeleteRAssetGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateLeasingGroups
 public type UpdateLeasingGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listRAssetGroups
 public type ListRAssetGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type MileageRate record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "ExpenseCategory"}
-    string expenseCategory;
+    string expenseCategory?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "VehicleType"}
-    string vehicleType;
+    string vehicleType?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "FromDate"}
-    string fromDate;
+    string fromDate?;
     @jsondata:Name {value: "ToDate"}
-    string toDate;
+    string toDate?;
     @jsondata:Name {value: "RateType"}
     TrvMileageRateType rateType?;
 };
 
 # Represents the Queries record for the operation: getCDSProjects
 public type GetCDSProjectsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCodaTrans
 public type DeleteCodaTransHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2333,7 +2558,7 @@ public type FixedAsset record {
     @jsondata:Name {value: "AssetLocationId"}
     string assetLocationId?;
     @jsondata:Name {value: "ExceptionTaxationRateDenominator"}
-    decimal exceptionTaxationRateDenominator;
+    decimal exceptionTaxationRateDenominator?;
     @jsondata:Name {value: "SearchName"}
     string searchName?;
     @jsondata:Name {value: "TechnicalInformation1"}
@@ -2347,13 +2572,13 @@ public type FixedAsset record {
     @jsondata:Name {value: "LeaseNote"}
     string leaseNote?;
     @jsondata:Name {value: "InsuredValue"}
-    decimal insuredValue;
+    decimal insuredValue?;
     @jsondata:Name {value: "Agent"}
     string agent?;
     @jsondata:Name {value: "SortField1Sorting"}
     AssetSortValue sortField1Sorting?;
     @jsondata:Name {value: "LastPeriodicValueCostUpdate"}
-    string lastPeriodicValueCostUpdate;
+    string lastPeriodicValueCostUpdate?;
     @jsondata:Name {value: "SortField1Id"}
     string sortField1Id?;
     @jsondata:Name {value: "Titleholder"}
@@ -2363,21 +2588,21 @@ public type FixedAsset record {
     @jsondata:Name {value: "DocumentLocation"}
     string documentLocation?;
     @jsondata:Name {value: "ExceptionTaxationRate"}
-    decimal exceptionTaxationRate;
+    decimal exceptionTaxationRate?;
     @jsondata:Name {value: "DepartmentSearchName"}
     string departmentSearchName?;
     @jsondata:Name {value: "PropertyGroupDescription"}
     string propertyGroupDescription?;
     @jsondata:Name {value: "InsuranceDate1"}
-    string insuranceDate1;
+    string insuranceDate1?;
     @jsondata:Name {value: "NameOfTheLender"}
     string nameOfTheLender?;
     @jsondata:Name {value: "InsuranceDate2"}
-    string insuranceDate2;
+    string insuranceDate2?;
     @jsondata:Name {value: "AcquisitionPrice"}
-    decimal acquisitionPrice;
+    decimal acquisitionPrice?;
     @jsondata:Name {value: "TaxCreditsInstallments"}
-    int:Signed32 taxCreditsInstallments;
+    int:Signed32 taxCreditsInstallments?;
     @jsondata:Name {value: "FixedAssetGroupId"}
     string fixedAssetGroupId?;
     @jsondata:Name {value: "SortField3Sorting"}
@@ -2387,7 +2612,7 @@ public type FixedAsset record {
     @jsondata:Name {value: "ContactPersonnelNumber"}
     string contactPersonnelNumber?;
     @jsondata:Name {value: "ICMSCreditInstallments"}
-    int:Signed32 iCMSCreditInstallments;
+    int:Signed32 iCMSCreditInstallments?;
     @jsondata:Name {value: "FiscalEstablishmentId"}
     string fiscalEstablishmentId?;
     @jsondata:Name {value: "SortField2Sorting"}
@@ -2429,12 +2654,12 @@ public type FixedAsset record {
     @jsondata:Name {value: "MissingAsset"}
     NoYes missingAsset?;
     @jsondata:Name {value: "PolicyAmount"}
-    decimal policyAmount;
+    decimal policyAmount?;
     @jsondata:Name {value: "PropertyType"}
     AssetPropertyType propertyType?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "MajorTypeDescription"}
     string majorTypeDescription?;
     @jsondata:Name {value: "TaxationCodeForCOFINS"}
@@ -2444,9 +2669,9 @@ public type FixedAsset record {
     @jsondata:Name {value: "TransferredFromInventory"}
     NoYes transferredFromInventory?;
     @jsondata:Name {value: "NextMaintenance"}
-    string nextMaintenance;
+    string nextMaintenance?;
     @jsondata:Name {value: "LastMaintenance"}
-    string lastMaintenance;
+    string lastMaintenance?;
     @jsondata:Name {value: "AssetTypeOfMajorType"}
     AssetTypeJP assetTypeOfMajorType?;
     @jsondata:Name {value: "SortField3Id"}
@@ -2480,7 +2705,7 @@ public type FixedAsset record {
     @jsondata:Name {value: "ExceptionTaxationCode"}
     string exceptionTaxationCode?;
     @jsondata:Name {value: "FixedAssetNumber"}
-    string fixedAssetNumber;
+    string fixedAssetNumber?;
     @jsondata:Name {value: "BarCode"}
     string barCode?;
     @jsondata:Name {value: "InsuranceVendor"}
@@ -2492,19 +2717,19 @@ public type FixedAsset record {
     @jsondata:Name {value: "ResponsibleName"}
     string responsibleName?;
     @jsondata:Name {value: "AcquisitionDate"}
-    string acquisitionDate;
+    string acquisitionDate?;
     @jsondata:Name {value: "ReplacementCost"}
-    decimal replacementCost;
+    decimal replacementCost?;
     @jsondata:Name {value: "GuaranteeDate"}
-    string guaranteeDate;
+    string guaranteeDate?;
     @jsondata:Name {value: "AppropriationMethod"}
     FBPISCOFINSFixedAssetAppropMethodBR appropriationMethod?;
     @jsondata:Name {value: "PolicyExpirationDate"}
-    string policyExpirationDate;
+    string policyExpirationDate?;
     @jsondata:Name {value: "SortField2Description"}
     string sortField2Description?;
     @jsondata:Name {value: "PhysicalInventory"}
-    string physicalInventory;
+    string physicalInventory?;
     @jsondata:Name {value: "LocationMemo"}
     string locationMemo?;
     @jsondata:Name {value: "Information3"}
@@ -2516,9 +2741,9 @@ public type FixedAsset record {
     @jsondata:Name {value: "Information1"}
     string information1?;
     @jsondata:Name {value: "Quantity"}
-    decimal quantity;
+    decimal quantity?;
     @jsondata:Name {value: "UnitCost"}
-    decimal unitCost;
+    decimal unitCost?;
     @jsondata:Name {value: "SortField3Description"}
     string sortField3Description?;
     @jsondata:Name {value: "TaxationCodeForPIS"}
@@ -2533,34 +2758,45 @@ public type ProjLinePropertySearch "Project"|"Category";
 
 # Represents the Queries record for the operation: getRAssetGroups
 public type GetRAssetGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listCashLedgers
 public type ListCashLedgersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateExpenseRates
 public type UpdateExpenseRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2594,60 +2830,80 @@ public type DetailSummary "Detail"|"Summary";
 
 # Represents the Queries record for the operation: listPSAForecasts
 public type ListPSAForecastsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteProjectGroups
 public type DeleteProjectGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listFixedAssetValueModels
 public type ListFixedAssetValueModelsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateProjGrants
 public type UpdateProjGrantsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getProjectTasks
 public type GetProjectTasksQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2656,52 +2912,68 @@ public type AssetSortValue "Sorting1"|"Sorting2"|"Sorting3";
 
 # Represents the Queries record for the operation: listProjGrantsV2
 public type ListProjGrantsV2Queries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listExpenses
 public type ListExpensesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 public type CashAccounts record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "MoreCurrencies"}
     NoYes moreCurrencies?;
     @jsondata:Name {value: "Cash"}
-    string cash;
+    string cash?;
     @jsondata:Name {value: "NumberSequenceGroup"}
     string numberSequenceGroup?;
     @jsondata:Name {value: "Name"}
@@ -2714,20 +2986,24 @@ public type TrvPersonalPaidBy "Employee"|"Company";
 
 # Represents the Headers record for the operation: deleteProjGrantsV2
 public type DeleteProjGrantsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deletePSAForecasts
 public type DeletePSAForecastsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getBankAccounts
 public type GetBankAccountsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2736,16 +3012,20 @@ public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSal
 
 # Represents the Queries record for the operation: getCashAccounts
 public type GetCashAccountsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getFixedAssetsV2
 public type GetFixedAssetsV2Queries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -2772,46 +3052,46 @@ public type Expenses record {
     @jsondata:Name {value: "CashAdvanceNumber"}
     string cashAdvanceNumber?;
     @jsondata:Name {value: "PerDiemFromDate"}
-    string perDiemFromDate;
+    string perDiemFromDate?;
     @jsondata:Name {value: "PostingErrors"}
     string postingErrors?;
     @jsondata:Name {value: "AmountMST"}
-    decimal amountMST;
+    decimal amountMST?;
     @jsondata:Name {value: "LegalEntityDataAreaId"}
     string legalEntityDataAreaId?;
     @jsondata:Name {value: "ReimbursementAmount"}
-    decimal reimbursementAmount;
+    decimal reimbursementAmount?;
     @jsondata:Name {value: "CreditCardLocalCurrency"}
     string creditCardLocalCurrency?;
     @jsondata:Name {value: "ApprovalStatus"}
     TrvAppStatus approvalStatus?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "ActualSalesTaxAmount"}
-    decimal actualSalesTaxAmount;
+    decimal actualSalesTaxAmount?;
     @jsondata:Name {value: "ExpenseLineLevelPosting"}
     NoYes expenseLineLevelPosting?;
     @jsondata:Name {value: "ActivityNumber"}
     string activityNumber?;
     @jsondata:Name {value: "IntercompanyCostPrice"}
-    decimal intercompanyCostPrice;
+    decimal intercompanyCostPrice?;
     @jsondata:Name {value: "TicketNumber"}
     string ticketNumber?;
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "Dinner"}
-    int:Signed32 dinner;
+    int:Signed32 dinner?;
     @jsondata:Name {value: "PerDiemToDate"}
-    string perDiemToDate;
+    string perDiemToDate?;
     @jsondata:Name {value: "LocationsCountryRegionId"}
     string locationsCountryRegionId?;
     @jsondata:Name {value: "FinTagDisplayValue"}
     string finTagDisplayValue?;
     @jsondata:Name {value: "CreditCardLocalAmount"}
-    decimal creditCardLocalAmount;
+    decimal creditCardLocalAmount?;
     @jsondata:Name {value: "Currency"}
     string currency?;
     @jsondata:Name {value: "RatePerMile"}
-    decimal ratePerMile;
+    decimal ratePerMile?;
     @jsondata:Name {value: "IsSplitToPersonal"}
     NoYes isSplitToPersonal?;
     @jsondata:Name {value: "OriginalReceiptsReceived"}
@@ -2823,7 +3103,7 @@ public type Expenses record {
     @jsondata:Name {value: "SalesTaxGroup"}
     string salesTaxGroup?;
     @jsondata:Name {value: "Mileage"}
-    decimal mileage;
+    decimal mileage?;
     @jsondata:Name {value: "CountryRegion"}
     string countryRegion?;
     @jsondata:Name {value: "EmployeePersonnelNumber"}
@@ -2843,9 +3123,9 @@ public type Expenses record {
     @jsondata:Name {value: "ReceiptRequired"}
     NoYes receiptRequired?;
     @jsondata:Name {value: "Reconciled"}
-    decimal reconciled;
+    decimal reconciled?;
     @jsondata:Name {value: "NetTransactionAmount"}
-    decimal netTransactionAmount;
+    decimal netTransactionAmount?;
     @jsondata:Name {value: "ReceiptsAttached"}
     NoYes receiptsAttached?;
     @jsondata:Name {value: "PaymentMethod"}
@@ -2855,13 +3135,13 @@ public type Expenses record {
     @jsondata:Name {value: "CategoryDescription"}
     string categoryDescription?;
     @jsondata:Name {value: "DateApproved"}
-    string dateApproved;
+    string dateApproved?;
     @jsondata:Name {value: "AddressCityName"}
     string addressCityName?;
     @jsondata:Name {value: "CostOwner"}
     TrvCostOwner costOwner?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "TicketClass"}
     string ticketClass?;
     @jsondata:Name {value: "ItemSalesTaxGroup"}
@@ -2879,21 +3159,21 @@ public type Expenses record {
     @jsondata:Name {value: "IntercompanyProjectCategory"}
     string intercompanyProjectCategory?;
     @jsondata:Name {value: "InvoiceAmount"}
-    decimal invoiceAmount;
+    decimal invoiceAmount?;
     @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber;
+    decimal lineNumber?;
     @jsondata:Name {value: "SalesTaxAmountInCompanyCurrency"}
-    decimal salesTaxAmountInCompanyCurrency;
+    decimal salesTaxAmountInCompanyCurrency?;
     @jsondata:Name {value: "LocationOfEntertainment"}
     string locationOfEntertainment?;
     @jsondata:Name {value: "Merchant"}
     string merchant?;
     @jsondata:Name {value: "IntercompanyBilled"}
-    boolean intercompanyBilled;
+    boolean intercompanyBilled?;
     @jsondata:Name {value: "TicketUsed"}
     NoYes ticketUsed?;
     @jsondata:Name {value: "DateRejected"}
-    string dateRejected;
+    string dateRejected?;
     @jsondata:Name {value: "IntercompanyCurrency"}
     string intercompanyCurrency?;
     @jsondata:Name {value: "AddressZipCodeDetails"}
@@ -2901,19 +3181,19 @@ public type Expenses record {
     @jsondata:Name {value: "LocationsStateId"}
     string locationsStateId?;
     @jsondata:Name {value: "NumberOfPassengers"}
-    int:Signed32 numberOfPassengers;
+    int:Signed32 numberOfPassengers?;
     @jsondata:Name {value: "ExpenseLineType"}
     TrvExpLineType expenseLineType?;
     @jsondata:Name {value: "TransactionDate"}
-    string transactionDate;
+    string transactionDate?;
     @jsondata:Name {value: "AdditionalInformation"}
     string additionalInformation?;
     @jsondata:Name {value: "Breakfast"}
-    int:Signed32 breakfast;
+    int:Signed32 breakfast?;
     @jsondata:Name {value: "ExpenseTransactionNumber"}
-    string expenseTransactionNumber;
+    string expenseTransactionNumber?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "Billable"}
     string billable?;
     @jsondata:Name {value: "VehicleType"}
@@ -2925,17 +3205,17 @@ public type Expenses record {
     @jsondata:Name {value: "SplitLineType"}
     TrvExpSplitLineType splitLineType?;
     @jsondata:Name {value: "Lunch"}
-    int:Signed32 lunch;
+    int:Signed32 lunch?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "TransRowNum"}
-    int:Signed32 transRowNum;
+    int:Signed32 transRowNum?;
     @jsondata:Name {value: "TransactionAmount"}
-    decimal transactionAmount;
+    decimal transactionAmount?;
     @jsondata:Name {value: "SharedSubCategoryName"}
     string sharedSubCategoryName?;
     @jsondata:Name {value: "MealReduction"}
-    decimal mealReduction;
+    decimal mealReduction?;
     @jsondata:Name {value: "ExpenseCategory"}
     string expenseCategory?;
     @jsondata:Name {value: "MileageFromAddress"}
@@ -2947,7 +3227,7 @@ public type Expenses record {
     @jsondata:Name {value: "PostOffsetAccountType"}
     LedgerJournalACType postOffsetAccountType?;
     @jsondata:Name {value: "IntercompanySalesPrice"}
-    decimal intercompanySalesPrice;
+    decimal intercompanySalesPrice?;
     @jsondata:Name {value: "AddressState"}
     string addressState?;
     @jsondata:Name {value: "LocationsLocation"}
@@ -2956,6 +3236,7 @@ public type Expenses record {
 
 # Represents the Headers record for the operation: updateTrvReceipts
 public type UpdateTrvReceiptsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2969,14 +3250,17 @@ public type AssetLendingsCollection record {
 
 # Represents the Queries record for the operation: getBankGroups
 public type GetBankGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deletePerDiems
 public type DeletePerDiemsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -2993,22 +3277,22 @@ public type ProjectV2 record {
     @jsondata:Name {value: "IsBudgetControlEnabled"}
     NoYes isBudgetControlEnabled?;
     @jsondata:Name {value: "ZakatContractAmendment"}
-    decimal zakatContractAmendment;
+    decimal zakatContractAmendment?;
     @jsondata:Name {value: "ZakatContractPeriod"}
     string zakatContractPeriod?;
     @jsondata:Name {value: "IsOCIPWorkerCompensation"}
     NoYes isOCIPWorkerCompensation?;
     @jsondata:Name {value: "ScheduleDurationInDays"}
-    decimal scheduleDurationInDays;
+    decimal scheduleDurationInDays?;
     @jsondata:Name {value: "ActualStartDate"}
-    string actualStartDate;
+    string actualStartDate?;
     @jsondata:Name {value: "IsInvestment"}
     NoYes isInvestment?;
     @jsondata:Name {value: "DefaultInvoiceAccount"}
     string defaultInvoiceAccount?;
     @jsondata:Name {value: "IsActivityRequiredForItemForecast"}
     NoYes isActivityRequiredForItemForecast?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "BudgetControlInterval"}
     ProjBudgetInterval budgetControlInterval?;
     @jsondata:Name {value: "DimensionDisplayValue"}
@@ -3026,7 +3310,7 @@ public type ProjectV2 record {
     @jsondata:Name {value: "SchedulingCalendarId"}
     string schedulingCalendarId?;
     @jsondata:Name {value: "DefaultScheduleDate"}
-    string defaultScheduleDate;
+    string defaultScheduleDate?;
     @jsondata:Name {value: "ArchitectPersonnelNumber"}
     string architectPersonnelNumber?;
     @jsondata:Name {value: "ProjectManagerPersonnelNumber"}
@@ -3044,7 +3328,7 @@ public type ProjectV2 record {
     @jsondata:Name {value: "LedgerPostingSortPriority"}
     ProjLedgerPosting ledgerPostingSortPriority?;
     @jsondata:Name {value: "ExtensionDate"}
-    string extensionDate;
+    string extensionDate?;
     @jsondata:Name {value: "AlternateProjectId"}
     string alternateProjectId?;
     @jsondata:Name {value: "EstimateProjectId"}
@@ -3066,11 +3350,11 @@ public type ProjectV2 record {
     @jsondata:Name {value: "ProjectName"}
     string projectName?;
     @jsondata:Name {value: "ScheduleStartDate"}
-    string scheduleStartDate;
+    string scheduleStartDate?;
     @jsondata:Name {value: "IntegrationSourceDataId"}
     string integrationSourceDataId?;
     @jsondata:Name {value: "ScheduleEndDate"}
-    string scheduleEndDate;
+    string scheduleEndDate?;
     @jsondata:Name {value: "SalesTaxGroupId"}
     string salesTaxGroupId?;
     @jsondata:Name {value: "IsHeader"}
@@ -3086,21 +3370,21 @@ public type ProjectV2 record {
     @jsondata:Name {value: "ZakatSubject"}
     string zakatSubject?;
     @jsondata:Name {value: "ProjectedStartDate"}
-    string projectedStartDate;
+    string projectedStartDate?;
     @jsondata:Name {value: "DateOfCreation"}
-    string dateOfCreation;
+    string dateOfCreation?;
     @jsondata:Name {value: "TotalPlannedEffortInHours"}
-    decimal totalPlannedEffortInHours;
+    decimal totalPlannedEffortInHours?;
     @jsondata:Name {value: "ParentProjectId"}
     string parentProjectId?;
     @jsondata:Name {value: "LinePropertySearchPriority"}
     ProjLinePropertySearch linePropertySearchPriority?;
     @jsondata:Name {value: "ActualEndDate"}
-    string actualEndDate;
+    string actualEndDate?;
     @jsondata:Name {value: "IsActivityRequiredForHourForecast"}
     NoYes isActivityRequiredForHourForecast?;
     @jsondata:Name {value: "ProjectId"}
-    string projectId;
+    string projectId?;
     @jsondata:Name {value: "IsTemplateApplied"}
     NoYes isTemplateApplied?;
     @jsondata:Name {value: "CanUseAlternateProjectBudget"}
@@ -3112,9 +3396,9 @@ public type ProjectV2 record {
     @jsondata:Name {value: "CustomerAccountNumber"}
     string customerAccountNumber?;
     @jsondata:Name {value: "ProjectedEndDate"}
-    string projectedEndDate;
+    string projectedEndDate?;
     @jsondata:Name {value: "ZakatProjectValue"}
-    decimal zakatProjectValue;
+    decimal zakatProjectValue?;
     @jsondata:Name {value: "JobIdentification"}
     string jobIdentification?;
     @jsondata:Name {value: "SubprojectIdFormat"}
@@ -3124,7 +3408,7 @@ public type ProjectV2 record {
     @jsondata:Name {value: "BudgetOverrunDefault"}
     ProjBudgetOverrunOption budgetOverrunDefault?;
     @jsondata:Name {value: "ZakatContractDate"}
-    string zakatContractDate;
+    string zakatContractDate?;
     @jsondata:Name {value: "DeliveryAddressLocationId"}
     string deliveryAddressLocationId?;
 };
@@ -3135,6 +3419,7 @@ public type BankGroupsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateProjectsV2
 public type UpdateProjectsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3153,26 +3438,31 @@ public type PerDiemsCollection record {
 
 # Represents the Headers record for the operation: deleteTrvReceipts
 public type DeleteTrvReceiptsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateMileageRates
 public type UpdateMileageRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getCodaTrans
 public type GetCodaTransQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteExpenses
 public type DeleteExpensesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3181,32 +3471,32 @@ public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|
 
 public type FixedAssetValueModel record {
     @jsondata:Name {value: "SpecialDepreciationRunDate"}
-    string specialDepreciationRunDate;
+    string specialDepreciationRunDate?;
     @jsondata:Name {value: "AlternativeDepreciationProfileId"}
     string alternativeDepreciationProfileId?;
     @jsondata:Name {value: "AcquisitionMethodDescription"}
     string acquisitionMethodDescription?;
     @jsondata:Name {value: "ReductionEntryAllocationStartDate"}
-    string reductionEntryAllocationStartDate;
+    string reductionEntryAllocationStartDate?;
     @jsondata:Name {value: "ShortenedUsefulLife"}
     NoYes shortenedUsefulLife?;
     @jsondata:Name {value: "ServiceLifeYears"}
-    int:Signed32 serviceLifeYears;
+    int:Signed32 serviceLifeYears?;
     @jsondata:Name {value: "DisposalDate"}
-    string disposalDate;
+    string disposalDate?;
     @jsondata:Name {value: "ReducingBalanceCheckMaximumPercent"}
     NoYes reducingBalanceCheckMaximumPercent?;
     @jsondata:Name {value: "DepreciationPeriods"}
-    int:Signed32 depreciationPeriods;
+    int:Signed32 depreciationPeriods?;
     @jsondata:Name {value: "RevisedAcquisitionCost"}
-    decimal revisedAcquisitionCost;
-    string dataAreaId;
+    decimal revisedAcquisitionCost?;
+    string dataAreaId?;
     @jsondata:Name {value: "DerogatoryTaxModel"}
     NoYes derogatoryTaxModel?;
     @jsondata:Name {value: "SpecialDepreciationAllocationStartConvention"}
     AssetSpecialDepAllocationConventionJP specialDepreciationAllocationStartConvention?;
     @jsondata:Name {value: "ConsumptionEstimated"}
-    decimal consumptionEstimated;
+    decimal consumptionEstimated?;
     @jsondata:Name {value: "DimensionDisplayValue"}
     string dimensionDisplayValue?;
     @jsondata:Name {value: "SummarizeByMajorType"}
@@ -3218,7 +3508,7 @@ public type FixedAssetValueModel record {
     @jsondata:Name {value: "SortField3Id"}
     string sortField3Id?;
     @jsondata:Name {value: "LowValuePoolTransferDate"}
-    string lowValuePoolTransferDate;
+    string lowValuePoolTransferDate?;
     @jsondata:Name {value: "CreateDepreciationAdjustmentsWithBasisAdjustments"}
     NoYes createDepreciationAdjustmentsWithBasisAdjustments?;
     @jsondata:Name {value: "SortField1Id"}
@@ -3226,19 +3516,19 @@ public type FixedAssetValueModel record {
     @jsondata:Name {value: "ConsumptionFactorId"}
     string consumptionFactorId?;
     @jsondata:Name {value: "ReducingBalanceStraightLineFactor"}
-    decimal reducingBalanceStraightLineFactor;
+    decimal reducingBalanceStraightLineFactor?;
     @jsondata:Name {value: "CustomerInvoice"}
     string customerInvoice?;
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "ReductionEntryAllocationLastRunDate"}
-    string reductionEntryAllocationLastRunDate;
+    string reductionEntryAllocationLastRunDate?;
     @jsondata:Name {value: "CustomerAccount"}
     string customerAccount?;
     @jsondata:Name {value: "ReducingBalancePercentageAfterValidation"}
-    decimal reducingBalancePercentageAfterValidation;
+    decimal reducingBalancePercentageAfterValidation?;
     @jsondata:Name {value: "ExpectedScrapValue"}
-    decimal expectedScrapValue;
+    decimal expectedScrapValue?;
     @jsondata:Name {value: "VendorInvoice"}
     string vendorInvoice?;
     @jsondata:Name {value: "CalculateDepreciation"}
@@ -3248,7 +3538,7 @@ public type FixedAssetValueModel record {
     @jsondata:Name {value: "LowValuePoolTransferId"}
     string lowValuePoolTransferId?;
     @jsondata:Name {value: "AcquisitionPrice"}
-    decimal acquisitionPrice;
+    decimal acquisitionPrice?;
     @jsondata:Name {value: "FixedAssetGroupId"}
     string fixedAssetGroupId?;
     @jsondata:Name {value: "DerogatoryCalculation"}
@@ -3256,73 +3546,73 @@ public type FixedAssetValueModel record {
     @jsondata:Name {value: "SpecialDepreciationAllocationUnit"}
     AssetAccrualFiscal specialDepreciationAllocationUnit?;
     @jsondata:Name {value: "ConsumptionUnitDepreciation"}
-    decimal consumptionUnitDepreciation;
+    decimal consumptionUnitDepreciation?;
     @jsondata:Name {value: "ServiceLife"}
-    decimal serviceLife;
+    decimal serviceLife?;
     @jsondata:Name {value: "AcquisitionMethodId"}
     string acquisitionMethodId?;
     @jsondata:Name {value: "IsMigratedAsset"}
     NoYes isMigratedAsset?;
     @jsondata:Name {value: "FixedAssetNumber"}
-    string fixedAssetNumber;
+    string fixedAssetNumber?;
     @jsondata:Name {value: "RevaluationGroupId"}
     string revaluationGroupId?;
     @jsondata:Name {value: "PostingProfileId"}
     string postingProfileId?;
     @jsondata:Name {value: "ReplacementDate"}
-    string replacementDate;
+    string replacementDate?;
     @jsondata:Name {value: "AllowNegativeNetBookValue"}
     NoYes allowNegativeNetBookValue?;
     @jsondata:Name {value: "DepreciationConvention"}
     AssetDepreciationConvention depreciationConvention?;
     @jsondata:Name {value: "ExtraordinaryDepreciationLastRunDate"}
-    string extraordinaryDepreciationLastRunDate;
+    string extraordinaryDepreciationLastRunDate?;
     @jsondata:Name {value: "PlacedInService"}
-    string placedInService;
+    string placedInService?;
     @jsondata:Name {value: "SpecialDepreciationAllocationLastRunDate"}
-    string specialDepreciationAllocationLastRunDate;
+    string specialDepreciationAllocationLastRunDate?;
     @jsondata:Name {value: "AcquisitionDate"}
-    string acquisitionDate;
+    string acquisitionDate?;
     @jsondata:Name {value: "ProvisionType"}
     string provisionType?;
     @jsondata:Name {value: "DepreciationRunDate"}
-    string depreciationRunDate;
+    string depreciationRunDate?;
     @jsondata:Name {value: "RevisedAcquisitionCostStartDate"}
-    string revisedAcquisitionCostStartDate;
+    string revisedAcquisitionCostStartDate?;
     @jsondata:Name {value: "ServiceLifeMonths"}
-    int:Signed32 serviceLifeMonths;
+    int:Signed32 serviceLifeMonths?;
     @jsondata:Name {value: "AllowNetBookValueHigherThanAcquisitionCosts"}
     NoYes allowNetBookValueHigherThanAcquisitionCosts?;
     @jsondata:Name {value: "ValueModelId"}
-    string valueModelId;
+    string valueModelId?;
     @jsondata:Name {value: "AllowableLimitForAccumulatedDepreciation"}
     AssetLimitForAccumulatedDepTypeJP allowableLimitForAccumulatedDepreciation?;
     @jsondata:Name {value: "SalesValue"}
-    decimal salesValue;
+    decimal salesValue?;
     @jsondata:Name {value: "ExtraordinaryDepreciationProfileId"}
     string extraordinaryDepreciationProfileId?;
     @jsondata:Name {value: "SpecialDepreciationAllocationPeriods"}
-    int:Signed32 specialDepreciationAllocationPeriods;
+    int:Signed32 specialDepreciationAllocationPeriods?;
     @jsondata:Name {value: "SortField2Id"}
     string sortField2Id?;
     @jsondata:Name {value: "DepreciationPeriodsRemaining"}
-    decimal depreciationPeriodsRemaining;
+    decimal depreciationPeriodsRemaining?;
     @jsondata:Name {value: "AllowDepreciationWhenPlacedInServiceAndDisposalAreInTheSameFiscalYear"}
     NoYes allowDepreciationWhenPlacedInServiceAndDisposalAreInTheSameFiscalYear?;
     @jsondata:Name {value: "FairValue"}
-    decimal fairValue;
+    decimal fairValue?;
     @jsondata:Name {value: "AcceleratedDepreciationLastRunDate"}
-    string acceleratedDepreciationLastRunDate;
+    string acceleratedDepreciationLastRunDate?;
     @jsondata:Name {value: "IsAssetGroupDepreciation"}
     NoYes isAssetGroupDepreciation?;
     @jsondata:Name {value: "DepreciationLastRunDate"}
-    string depreciationLastRunDate;
+    string depreciationLastRunDate?;
     @jsondata:Name {value: "AcceleratedDepreciationProfileId"}
     string acceleratedDepreciationProfileId?;
     @jsondata:Name {value: "PurchaseOrder"}
     string purchaseOrder?;
     @jsondata:Name {value: "EquallyDividedStartDate"}
-    string equallyDividedStartDate;
+    string equallyDividedStartDate?;
     @jsondata:Name {value: "ConsumptionUnitId"}
     string consumptionUnitId?;
 };
@@ -3337,28 +3627,38 @@ public type AssetDepreciationConvention "None"|"HalfYear"|"FullMonth"|"MidQuarte
 
 # Represents the Queries record for the operation: getParentLeases
 public type GetParentLeasesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listProjectsV2
 public type ListProjectsV2Queries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3380,22 +3680,22 @@ public type ParentLease record {
     @jsondata:Name {value: "DimensionDefaultDisplayValue"}
     string dimensionDefaultDisplayValue?;
     @jsondata:Name {value: "LatePayment"}
-    decimal latePayment;
+    decimal latePayment?;
     @jsondata:Name {value: "BorrowingRate"}
-    decimal borrowingRate;
+    decimal borrowingRate?;
     @jsondata:Name {value: "DeliveryDate"}
-    string deliveryDate;
+    string deliveryDate?;
     @jsondata:Name {value: "DeferredRentCarryover"}
-    decimal deferredRentCarryover;
+    decimal deferredRentCarryover?;
     @jsondata:Name {value: "PercentOfIndexChangeToApply"}
-    decimal percentOfIndexChangeToApply;
+    decimal percentOfIndexChangeToApply?;
     @jsondata:Name {value: "ManuallyRevalue"}
     NoYes manuallyRevalue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CommencementDate"}
-    string commencementDate;
+    string commencementDate?;
     @jsondata:Name {value: "CostPerMile"}
-    decimal costPerMile;
+    decimal costPerMile?;
     @jsondata:Name {value: "CountryRegionID"}
     string countryRegionID?;
     @jsondata:Name {value: "AnnuityType"}
@@ -3407,25 +3707,25 @@ public type ParentLease record {
     @jsondata:Name {value: "Street"}
     string street?;
     @jsondata:Name {value: "LeaseStartDate"}
-    string leaseStartDate;
+    string leaseStartDate?;
     @jsondata:Name {value: "LeaseDescription"}
     string leaseDescription?;
     @jsondata:Name {value: "LeaseIncentives"}
-    decimal leaseIncentives;
+    decimal leaseIncentives?;
     @jsondata:Name {value: "HoldoverFee"}
-    decimal holdoverFee;
+    decimal holdoverFee?;
     @jsondata:Name {value: "UnitOfMeasure"}
     string unitOfMeasure?;
     @jsondata:Name {value: "FairValueOfAsset"}
-    decimal fairValueOfAsset;
+    decimal fairValueOfAsset?;
     @jsondata:Name {value: "SecurityDepositReminderDate"}
-    string securityDepositReminderDate;
+    string securityDepositReminderDate?;
     @jsondata:Name {value: "ImplicitRate"}
-    decimal implicitRate;
+    decimal implicitRate?;
     @jsondata:Name {value: "LimitOnRateIncrease"}
-    decimal limitOnRateIncrease;
+    decimal limitOnRateIncrease?;
     @jsondata:Name {value: "LocationOpeningDate"}
-    string locationOpeningDate;
+    string locationOpeningDate?;
     @jsondata:Name {value: "VendorAccount"}
     string vendorAccount?;
     @jsondata:Name {value: "City"}
@@ -3433,9 +3733,9 @@ public type ParentLease record {
     @jsondata:Name {value: "UniqueAsset"}
     NoYes uniqueAsset?;
     @jsondata:Name {value: "MinimunLimitsOfLiability"}
-    decimal minimunLimitsOfLiability;
+    decimal minimunLimitsOfLiability?;
     @jsondata:Name {value: "IndexChangeToApply"}
-    decimal indexChangeToApply;
+    decimal indexChangeToApply?;
     @jsondata:Name {value: "TaxGroup"}
     string taxGroup?;
     @jsondata:Name {value: "State"}
@@ -3443,9 +3743,9 @@ public type ParentLease record {
     @jsondata:Name {value: "TaxItemGroup"}
     string taxItemGroup?;
     @jsondata:Name {value: "RentableArea"}
-    decimal rentableArea;
+    decimal rentableArea?;
     @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate;
+    decimal exchangeRate?;
     @jsondata:Name {value: "FinancialCommercialTerms"}
     string financialCommercialTerms?;
     @jsondata:Name {value: "AllowDecreases"}
@@ -3453,11 +3753,11 @@ public type ParentLease record {
     @jsondata:Name {value: "FixedExchangeRate"}
     NoYes fixedExchangeRate?;
     @jsondata:Name {value: "LeasePrepayments"}
-    decimal leasePrepayments;
+    decimal leasePrepayments?;
     @jsondata:Name {value: "FixedAssetNumber"}
     string fixedAssetNumber?;
     @jsondata:Name {value: "LeaseId"}
-    string leaseId;
+    string leaseId?;
     @jsondata:Name {value: "BreakdownPaymentAmount"}
     NoYes breakdownPaymentAmount?;
     @jsondata:Name {value: "FixedExchangeRateReporting"}
@@ -3465,25 +3765,25 @@ public type ParentLease record {
     @jsondata:Name {value: "County"}
     string county?;
     @jsondata:Name {value: "OveruseFee"}
-    decimal overuseFee;
+    decimal overuseFee?;
     @jsondata:Name {value: "SecurityDepositRefundable"}
     NoYes securityDepositRefundable?;
     @jsondata:Name {value: "MileageLimit"}
-    decimal mileageLimit;
+    decimal mileageLimit?;
     @jsondata:Name {value: "MonthsBetweenRevaluations"}
-    int:Signed32 monthsBetweenRevaluations;
+    int:Signed32 monthsBetweenRevaluations?;
     @jsondata:Name {value: "LocationNumber"}
     string locationNumber?;
     @jsondata:Name {value: "MaxCoverage"}
-    decimal maxCoverage;
+    decimal maxCoverage?;
     @jsondata:Name {value: "ResidualValueGuarantee"}
-    decimal residualValueGuarantee;
+    decimal residualValueGuarantee?;
     @jsondata:Name {value: "SecurityDeposit"}
-    decimal securityDeposit;
+    decimal securityDeposit?;
     @jsondata:Name {value: "RevaluationDate"}
-    string revaluationDate;
+    string revaluationDate?;
     @jsondata:Name {value: "InitialDirectCost"}
-    decimal initialDirectCost;
+    decimal initialDirectCost?;
     @jsondata:Name {value: "TransferOwnership"}
     NoYesCombo transferOwnership?;
     @jsondata:Name {value: "LeaseGroup"}
@@ -3491,27 +3791,27 @@ public type ParentLease record {
     @jsondata:Name {value: "ZipCode"}
     string zipCode?;
     @jsondata:Name {value: "CurrentMileage"}
-    decimal currentMileage;
+    decimal currentMileage?;
     @jsondata:Name {value: "IncidentalCost"}
-    decimal incidentalCost;
+    decimal incidentalCost?;
     @jsondata:Name {value: "ContractSignatureDate"}
-    string contractSignatureDate;
+    string contractSignatureDate?;
     @jsondata:Name {value: "CompoundingInterval"}
     AssetLeaseCompoundingInterval compoundingInterval?;
     @jsondata:Name {value: "ExpirationDate"}
-    string expirationDate;
+    string expirationDate?;
     @jsondata:Name {value: "AssetUsefulLife"}
-    int:Signed32 assetUsefulLife;
+    int:Signed32 assetUsefulLife?;
     @jsondata:Name {value: "DismantlingCosts"}
-    decimal dismantlingCosts;
+    decimal dismantlingCosts?;
     @jsondata:Name {value: "PercentCommonAreaMaintenance"}
-    decimal percentCommonAreaMaintenance;
+    decimal percentCommonAreaMaintenance?;
     @jsondata:Name {value: "FinancingAmount"}
-    int:Signed32 financingAmount;
+    int:Signed32 financingAmount?;
     @jsondata:Name {value: "IndexRate"}
-    decimal indexRate;
+    decimal indexRate?;
     @jsondata:Name {value: "ExchangeRateReporting"}
-    decimal exchangeRateReporting;
+    decimal exchangeRateReporting?;
 };
 
 public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
@@ -3522,21 +3822,22 @@ public type CDSProjectsCollection record {
 };
 
 public type RAssetUse record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "OutputMileage"}
-    decimal outputMileage;
+    decimal outputMileage?;
     @jsondata:Name {value: "FAInventoryNumber"}
-    string fAInventoryNumber;
+    string fAInventoryNumber?;
     @jsondata:Name {value: "Period"}
-    string period;
+    string period?;
     @jsondata:Name {value: "OutputRunExport"}
-    decimal outputRunExport;
+    decimal outputRunExport?;
     @jsondata:Name {value: "OutputRunNontaxable"}
-    decimal outputRunNontaxable;
+    decimal outputRunNontaxable?;
 };
 
 # Represents the Headers record for the operation: deleteCashSymbols
 public type DeleteCashSymbolsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3548,16 +3849,20 @@ public type ExpensesCollection record {
 
 # Represents the Queries record for the operation: getExpenses
 public type GetExpensesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getProjectStages
 public type GetProjectStagesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3566,12 +3871,14 @@ public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly"
 
 # Represents the Headers record for the operation: updateProjectGroups
 public type UpdateProjectGroupsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateAssetLendings
 public type UpdateAssetLendingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3580,26 +3887,26 @@ public type AssetDeferredTypeJP "EquallyDivided"|"OneTime";
 
 public type ProjGrantV2 record {
     @jsondata:Name {value: "AwardedAmount"}
-    decimal awardedAmount;
+    decimal awardedAmount?;
     @jsondata:Name {value: "RejectionNotification"}
-    string rejectionNotification;
+    string rejectionNotification?;
     @jsondata:Name {value: "ProjLocalTrackingId"}
     string projLocalTrackingId?;
     @jsondata:Name {value: "CustAccount"}
     string custAccount?;
     @jsondata:Name {value: "EstimatedAwardDate"}
-    string estimatedAwardDate;
+    string estimatedAwardDate?;
     @jsondata:Name {value: "SubGrantor"}
     NoYes subGrantor?;
     @jsondata:Name {value: "GrantMatchingComments"}
     string grantMatchingComments?;
     @jsondata:Name {value: "BoardApprovalDate"}
-    string boardApprovalDate;
+    string boardApprovalDate?;
     @jsondata:Name {value: "ActualStartDate"}
-    string actualStartDate;
+    string actualStartDate?;
     @jsondata:Name {value: "GrantParentId"}
     string grantParentId?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "FederalMandate"}
     NoYes federalMandate?;
     @jsondata:Name {value: "WorkerContact_PersonnelNumber"}
@@ -3607,39 +3914,39 @@ public type ProjGrantV2 record {
     @jsondata:Name {value: "GrantApplicationId"}
     string grantApplicationId?;
     @jsondata:Name {value: "MatchingPercentage"}
-    decimal matchingPercentage;
+    decimal matchingPercentage?;
     @jsondata:Name {value: "GrantStatus"}
     ProjGrantStatus grantStatus?;
     @jsondata:Name {value: "ProjGrantorType_GrantorType"}
     string projGrantorTypeGrantorType?;
     @jsondata:Name {value: "GrantId"}
-    string grantId;
+    string grantId?;
     @jsondata:Name {value: "GrantorAgency"}
     string grantorAgency?;
     @jsondata:Name {value: "GrantName"}
     string grantName?;
     @jsondata:Name {value: "RenewalActionDate"}
-    string renewalActionDate;
+    string renewalActionDate?;
     @jsondata:Name {value: "MatchingAmount"}
-    decimal matchingAmount;
+    decimal matchingAmount?;
     @jsondata:Name {value: "ProjGrantType_GrantType"}
     string projGrantTypeGrantType?;
     @jsondata:Name {value: "RequestedAmount"}
-    decimal requestedAmount;
+    decimal requestedAmount?;
     @jsondata:Name {value: "ProjGrantMatching_MatchingTypeCode"}
     string projGrantMatchingMatchingTypeCode?;
     @jsondata:Name {value: "ApplicationDueDate"}
-    string applicationDueDate;
+    string applicationDueDate?;
     @jsondata:Name {value: "GrantPurpose"}
     string grantPurpose?;
     @jsondata:Name {value: "ApplicationSubmittedDate"}
-    string applicationSubmittedDate;
+    string applicationSubmittedDate?;
     @jsondata:Name {value: "PassThrough"}
     NoYes passThrough?;
     @jsondata:Name {value: "ActualExpirationDate"}
-    string actualExpirationDate;
+    string actualExpirationDate?;
     @jsondata:Name {value: "ActualAwardDate"}
-    string actualAwardDate;
+    string actualAwardDate?;
     @jsondata:Name {value: "OrganizationUnitId"}
     string organizationUnitId?;
     @jsondata:Name {value: "GrantDescription"}
@@ -3653,19 +3960,19 @@ public type ProjGrantV2 record {
 };
 
 public type ProjectTask record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "TaskDisplaySequence"}
-    decimal taskDisplaySequence;
+    decimal taskDisplaySequence?;
     @jsondata:Name {value: "TaskId"}
-    string taskId;
+    string taskId?;
     @jsondata:Name {value: "TaskOutlineLevel"}
-    int:Signed32 taskOutlineLevel;
+    int:Signed32 taskOutlineLevel?;
     @jsondata:Name {value: "TaskName"}
     string taskName?;
     @jsondata:Name {value: "TaskElementId"}
     string taskElementId?;
     @jsondata:Name {value: "ProjectId"}
-    string projectId;
+    string projectId?;
     @jsondata:Name {value: "ParentTaskElementId"}
     string parentTaskElementId?;
     @jsondata:Name {value: "TaskStatus"}
@@ -3678,8 +3985,10 @@ public type ProjGrantStatus "Entered"|"Submitted"|"Approved"|"Awarded"|"Active"|
 
 # Represents the Queries record for the operation: getProjGrantsV2
 public type GetProjGrantsV2Queries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3699,7 +4008,7 @@ public type ProjectGroup record {
     NoYes accrueRevenueItem?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
     NoYes canVerifyCostAgainstRemainingForecast?;
     @jsondata:Name {value: "SalesValueCategoryId"}
@@ -3733,11 +4042,12 @@ public type ProjectGroup record {
     @jsondata:Name {value: "ProfitCategoryId"}
     string profitCategoryId?;
     @jsondata:Name {value: "ProjectGroup"}
-    string projectGroup;
+    string projectGroup?;
 };
 
 # Represents the Headers record for the operation: updateCashLedgers
 public type UpdateCashLedgersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3752,16 +4062,16 @@ public type ExpenseRate record {
     @jsondata:Name {value: "OverRatePayrollIncome"}
     string overRatePayrollIncome?;
     @jsondata:Name {value: "Rate"}
-    decimal rate;
+    decimal rate?;
     @jsondata:Name {value: "RateMainAccountDisplayValue"}
     string rateMainAccountDisplayValue?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "RateItemSalesTaxGroup"}
     string rateItemSalesTaxGroup?;
     @jsondata:Name {value: "RateIAmountsIncludeSalesTax"}
     NoYes rateIAmountsIncludeSalesTax?;
     @jsondata:Name {value: "Expense"}
-    string expense;
+    string expense?;
     @jsondata:Name {value: "OverRateIsAmountsIncludeSalesTax"}
     NoYes overRateIsAmountsIncludeSalesTax?;
     @jsondata:Name {value: "Currency"}
@@ -3790,8 +4100,10 @@ public type ProjBudgetManagement "None"|"Independent";
 
 # Represents the Queries record for the operation: getPSAForecasts
 public type GetPSAForecastsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3806,42 +4118,55 @@ public type PSAForecastsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getRAssetUses
 public type GetRAssetUsesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteFixedAssetsV2
 public type DeleteFixedAssetsV2Headers record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: getTrvReceipts
 public type GetTrvReceiptsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listExpenseRates
 public type ListExpenseRatesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3852,34 +4177,45 @@ public type ParentLeasesCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getExpenseCodes
 public type GetExpenseCodesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listParentLeases
 public type ListParentLeasesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteExpenseRates
 public type DeleteExpenseRatesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3895,14 +4231,17 @@ public type RAssetGroupsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: getExchSetups
 public type GetExchSetupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateFixedAssets
 public type UpdateFixedAssetsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -3914,19 +4253,19 @@ public type ProjectStagesCollectionAllOf2 record {
 };
 
 public type CashBalances record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AmountInTransactionCurrency"}
-    decimal amountInTransactionCurrency;
+    decimal amountInTransactionCurrency?;
     @jsondata:Name {value: "Currency"}
-    string currency;
+    string currency?;
     @jsondata:Name {value: "Amount"}
-    decimal amount;
+    decimal amount?;
     @jsondata:Name {value: "ExchangeRateAdjustmentAmount"}
-    decimal exchangeRateAdjustmentAmount;
+    decimal exchangeRateAdjustmentAmount?;
     @jsondata:Name {value: "Cash"}
-    string cash;
+    string cash?;
     @jsondata:Name {value: "MainAccountId"}
-    int mainAccountId;
+    int mainAccountId?;
 };
 
 public type BankAccountsCollectionAllOf2 record {
@@ -3935,34 +4274,43 @@ public type BankAccountsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updateExpenseCodes
 public type UpdateExpenseCodesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 public type CashSymbol record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Code"}
-    string code;
+    string code?;
 };
 
 # Represents the Queries record for the operation: listProjectGroups
 public type ListProjectGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -3973,73 +4321,73 @@ public type CashDiscountsCollectionAllOf2 record {
 
 public type PSAActual record {
     @jsondata:Name {value: "OnAccPrePayment"}
-    decimal onAccPrePayment;
+    decimal onAccPrePayment?;
     @jsondata:Name {value: "CompanyInfo_DataArea"}
     string companyInfoDataArea?;
     @jsondata:Name {value: "ProjId"}
     string projId?;
     @jsondata:Name {value: "AmountMst"}
-    decimal amountMst;
+    decimal amountMst?;
     ProjCostSales costSales?;
     @jsondata:Name {value: "PLAccruedRevenueProfit"}
-    decimal pLAccruedRevenueProfit;
+    decimal pLAccruedRevenueProfit?;
     @jsondata:Name {value: "PLMaterialCostWithoutNeverLedger"}
-    decimal pLMaterialCostWithoutNeverLedger;
+    decimal pLMaterialCostWithoutNeverLedger?;
     @jsondata:Name {value: "ConsumedMaterialCostWithoutNeverLedger"}
-    decimal consumedMaterialCostWithoutNeverLedger;
-    string dataAreaId;
-    decimal totalInvoicedRevenue;
+    decimal consumedMaterialCostWithoutNeverLedger?;
+    string dataAreaId?;
+    decimal totalInvoicedRevenue?;
     @jsondata:Name {value: "ActivityNumber"}
     string activityNumber?;
     @jsondata:Name {value: "PLAccruedRevenueSalesValueMaterial"}
-    decimal pLAccruedRevenueSalesValueMaterial;
+    decimal pLAccruedRevenueSalesValueMaterial?;
     @jsondata:Name {value: "ConsumedMaterialCost"}
-    decimal consumedMaterialCost;
+    decimal consumedMaterialCost?;
     @jsondata:Name {value: "PLAccruedRevenueSalesValueExpense"}
-    decimal pLAccruedRevenueSalesValueExpense;
+    decimal pLAccruedRevenueSalesValueExpense?;
     @jsondata:Name {value: "Qty"}
-    decimal qty;
+    decimal qty?;
     @jsondata:Name {value: "WIPTotalCost"}
-    decimal wIPTotalCost;
+    decimal wIPTotalCost?;
     @jsondata:Name {value: "ProjFundingSource_FundingSourceId"}
     string projFundingSourceFundingSourceId?;
     @jsondata:Name {value: "WIPSubscription"}
-    decimal wIPSubscription;
+    decimal wIPSubscription?;
     @jsondata:Name {value: "WIPMaterialCost"}
-    decimal wIPMaterialCost;
-    decimal totalConsumption;
+    decimal wIPMaterialCost?;
+    decimal totalConsumption?;
     @jsondata:Name {value: "PLLaborQtyWithoutNoNeverLedger"}
-    decimal pLLaborQtyWithoutNoNeverLedger;
+    decimal pLLaborQtyWithoutNoNeverLedger?;
     @jsondata:Name {value: "ProjType"}
     ProjType projType?;
     @jsondata:Name {value: "PaymentStatus"}
     ProjPaymentStatus paymentStatus?;
     @jsondata:Name {value: "PayrollAllocation"}
-    decimal payrollAllocation;
+    decimal payrollAllocation?;
     @jsondata:Name {value: "PaymentDate"}
-    string paymentDate;
+    string paymentDate?;
     @jsondata:Name {value: "PLAccruedRevenueSalesValueFee"}
-    decimal pLAccruedRevenueSalesValueFee;
+    decimal pLAccruedRevenueSalesValueFee?;
     @jsondata:Name {value: "OnAccMilestone"}
-    decimal onAccMilestone;
+    decimal onAccMilestone?;
     @jsondata:Name {value: "InventTransId"}
     string inventTransId?;
     @jsondata:Name {value: "SubBillDeferralSalesExpense"}
-    decimal subBillDeferralSalesExpense;
+    decimal subBillDeferralSalesExpense?;
     @jsondata:Name {value: "SubBillDeferralSalesItem"}
-    decimal subBillDeferralSalesItem;
+    decimal subBillDeferralSalesItem?;
     @jsondata:Name {value: "PLInvoicedRevenue"}
-    decimal pLInvoicedRevenue;
+    decimal pLInvoicedRevenue?;
     @jsondata:Name {value: "LedgerTransDate"}
-    string ledgerTransDate;
+    string ledgerTransDate?;
     @jsondata:Name {value: "PLInvoicedRevenueOnAccount"}
-    decimal pLInvoicedRevenueOnAccount;
+    decimal pLInvoicedRevenueOnAccount?;
     @jsondata:Name {value: "PLLaborCostWithoutNoNeverLedger"}
-    decimal pLLaborCostWithoutNoNeverLedger;
+    decimal pLLaborCostWithoutNoNeverLedger?;
     @jsondata:Name {value: "ProjTransDate"}
-    string projTransDate;
+    string projTransDate?;
     @jsondata:Name {value: "WIPSalesTotal"}
-    decimal wIPSalesTotal;
+    decimal wIPSalesTotal?;
     @jsondata:Name {value: "ResourceCompanyId"}
     string resourceCompanyId?;
     @jsondata:Name {value: "LedgerDimensionDisplayValue"}
@@ -4047,115 +4395,115 @@ public type PSAActual record {
     @jsondata:Name {value: "CategoryId"}
     string categoryId?;
     @jsondata:Name {value: "PLAccruedRevenueSubscription"}
-    decimal pLAccruedRevenueSubscription;
+    decimal pLAccruedRevenueSubscription?;
     @jsondata:Name {value: "WIPSalesValue"}
-    decimal wIPSalesValue;
+    decimal wIPSalesValue?;
     @jsondata:Name {value: "WIPCostAccruedLoss"}
-    decimal wIPCostAccruedLoss;
+    decimal wIPCostAccruedLoss?;
     @jsondata:Name {value: "ProjAdjustRefId"}
     string projAdjustRefId?;
     @jsondata:Name {value: "EmplItemId"}
     string emplItemId?;
     @jsondata:Name {value: "ConsumedExpenseCost"}
-    decimal consumedExpenseCost;
+    decimal consumedExpenseCost?;
     @jsondata:Name {value: "WIPInvoicedOnAccount"}
-    decimal wIPInvoicedOnAccount;
+    decimal wIPInvoicedOnAccount?;
     @jsondata:Name {value: "PLExpenseCost"}
-    decimal pLExpenseCost;
+    decimal pLExpenseCost?;
     @jsondata:Name {value: "WIPProfit"}
-    decimal wIPProfit;
+    decimal wIPProfit?;
     @jsondata:Name {value: "ProjTransType"}
     ProjTransType projTransType?;
     @jsondata:Name {value: "SubBillDeferralCostExpense"}
-    decimal subBillDeferralCostExpense;
+    decimal subBillDeferralCostExpense?;
     @jsondata:Name {value: "FeeInvoicedRevenue"}
-    decimal feeInvoicedRevenue;
+    decimal feeInvoicedRevenue?;
     @jsondata:Name {value: "PLTotalCost"}
-    decimal pLTotalCost;
+    decimal pLTotalCost?;
     @jsondata:Name {value: "SubscriptionId"}
     string subscriptionId?;
     @jsondata:Name {value: "WIPExpenseCost"}
-    decimal wIPExpenseCost;
+    decimal wIPExpenseCost?;
     @jsondata:Name {value: "ConsumedLaborCost"}
-    decimal consumedLaborCost;
+    decimal consumedLaborCost?;
     @jsondata:Name {value: "SubBillDeferralCostHour"}
-    decimal subBillDeferralCostHour;
+    decimal subBillDeferralCostHour?;
     @jsondata:Name {value: "PLLaborCost"}
-    decimal pLLaborCost;
+    decimal pLLaborCost?;
     @jsondata:Name {value: "PLAccruedRevenueProduction"}
-    decimal pLAccruedRevenueProduction;
+    decimal pLAccruedRevenueProduction?;
     @jsondata:Name {value: "LedgerOrigin"}
     ProjOrigin ledgerOrigin?;
     @jsondata:Name {value: "LaborInvoicedRevenue"}
-    decimal laborInvoicedRevenue;
+    decimal laborInvoicedRevenue?;
     @jsondata:Name {value: "TransId"}
-    string transId;
+    string transId?;
     @jsondata:Name {value: "ConsumedLaborCostWithoutNoNeverLedger"}
-    decimal consumedLaborCostWithoutNoNeverLedger;
+    decimal consumedLaborCostWithoutNoNeverLedger?;
     @jsondata:Name {value: "WIPLaborCost"}
-    decimal wIPLaborCost;
+    decimal wIPLaborCost?;
     @jsondata:Name {value: "SubBillDeferralSalesHour"}
-    decimal subBillDeferralSalesHour;
+    decimal subBillDeferralSalesHour?;
     @jsondata:Name {value: "WIPProduction"}
-    decimal wIPProduction;
+    decimal wIPProduction?;
     @jsondata:Name {value: "PLTotalAccruedRevenue"}
-    decimal pLTotalAccruedRevenue;
+    decimal pLTotalAccruedRevenue?;
     @jsondata:Name {value: "PLAccruedRevenueSalesValue"}
-    decimal pLAccruedRevenueSalesValue;
+    decimal pLAccruedRevenueSalesValue?;
     @jsondata:Name {value: "ExpenseInvoicedRevenue"}
-    decimal expenseInvoicedRevenue;
+    decimal expenseInvoicedRevenue?;
     @jsondata:Name {value: "PLLaborQty"}
-    decimal pLLaborQty;
+    decimal pLLaborQty?;
     @jsondata:Name {value: "ConsumedLaborQtyWithoutNoNeverLedger"}
-    decimal consumedLaborQtyWithoutNoNeverLedger;
+    decimal consumedLaborQtyWithoutNoNeverLedger?;
     @jsondata:Name {value: "OnAccTotal"}
-    decimal onAccTotal;
+    decimal onAccTotal?;
     @jsondata:Name {value: "TransactionOrigin"}
     ProjOrigin transactionOrigin?;
     @jsondata:Name {value: "MaterialInvoicedRevenue"}
-    decimal materialInvoicedRevenue;
+    decimal materialInvoicedRevenue?;
     @jsondata:Name {value: "PLAccruedRevenueSalesValueLabor"}
-    decimal pLAccruedRevenueSalesValueLabor;
+    decimal pLAccruedRevenueSalesValueLabor?;
     @jsondata:Name {value: "ContractId"}
     string contractId?;
     @jsondata:Name {value: "PLMaterialCost"}
-    decimal pLMaterialCost;
+    decimal pLMaterialCost?;
     @jsondata:Name {value: "ConsumedLaborQty"}
-    decimal consumedLaborQty;
+    decimal consumedLaborQty?;
     @jsondata:Name {value: "SubBillDeferralCostItem"}
-    decimal subBillDeferralCostItem;
+    decimal subBillDeferralCostItem?;
     @jsondata:Name {value: "Voucher"}
     string voucher?;
     @jsondata:Name {value: "PLAccruedRevenueOnAcc"}
-    decimal pLAccruedRevenueOnAcc;
+    decimal pLAccruedRevenueOnAcc?;
     @jsondata:Name {value: "PostingType"}
     LedgerPostingType postingType?;
     @jsondata:Name {value: "ProjFundingSource_ContractId"}
     string projFundingSourceContractId?;
     @jsondata:Name {value: "OnAccBegBal"}
-    decimal onAccBegBal;
+    decimal onAccBegBal?;
     @jsondata:Name {value: "ResourceId"}
     string resourceId?;
     @jsondata:Name {value: "DefaultDimensionDisplayValue"}
     string defaultDimensionDisplayValue?;
     @jsondata:Name {value: "GrossWIP"}
-    decimal grossWIP;
+    decimal grossWIP?;
     @jsondata:Name {value: "OnAccDeduction"}
-    decimal onAccDeduction;
+    decimal onAccDeduction?;
     @jsondata:Name {value: "LaborInvoicedQty"}
-    decimal laborInvoicedQty;
+    decimal laborInvoicedQty?;
     @jsondata:Name {value: "NetWIP"}
-    decimal netWIP;
+    decimal netWIP?;
     @jsondata:Name {value: "PLCostAccruedLoss"}
-    decimal pLCostAccruedLoss;
+    decimal pLCostAccruedLoss?;
 };
 
 public type ExchSetup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "AdvanceAccountLedgerDimensionDisplayValue"}
     string advanceAccountLedgerDimensionDisplayValue?;
     @jsondata:Name {value: "ExchangeCode"}
-    string exchangeCode;
+    string exchangeCode?;
     @jsondata:Name {value: "AccountType"}
     LedgerJournalACType accountType?;
 };
@@ -4164,14 +4512,17 @@ public type NoYesCombo "No"|"Yes";
 
 # Represents the Queries record for the operation: getRAssetTables
 public type GetRAssetTablesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updateCodaTrans
 public type UpdateCodaTransHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4182,6 +4533,7 @@ public type CDSProjectsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteParentLeases
 public type DeleteParentLeasesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4190,34 +4542,45 @@ public type ProjOrigin "None"|"HourJournal"|"CostJournal"|"GeneralJournal"|"Invo
 
 # Represents the Queries record for the operation: listCashBalances
 public type ListCashBalancesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getAssetSortings
 public type GetAssetSortingsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteCashBalances
 public type DeleteCashBalancesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4239,12 +4602,14 @@ public type PSAProjTask "Project"|"Task";
 
 # Represents the Headers record for the operation: updateRAssetTables
 public type UpdateRAssetTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: deleteAssetLendings
 public type DeleteAssetLendingsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4255,6 +4620,7 @@ public type FixedAssetsCollectionAllOf2 record {
 
 # Represents the Headers record for the operation: deleteProjectStages
 public type DeleteProjectStagesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4263,6 +4629,7 @@ public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Pers
 
 # Represents the Headers record for the operation: updateExpenses
 public type UpdateExpensesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4285,26 +4652,35 @@ public type BankAccountsCollection record {
 
 # Represents the Headers record for the operation: deleteCashDiscounts
 public type DeleteCashDiscountsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listRAssetUses
 public type ListRAssetUsesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4315,52 +4691,70 @@ public type PSAPReqControl "None"|"Warning"|"Control";
 
 # Represents the Queries record for the operation: listRAssetTables
 public type ListRAssetTablesQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: updatePSAActuals
 public type UpdatePSAActualsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Queries record for the operation: listCashSymbols
 public type ListCashSymbolsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Headers record for the operation: deleteFixedAssetValueModels
 public type DeleteFixedAssetValueModelsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4371,20 +4765,28 @@ public type AssetSortingsCollectionAllOf2 record {
 
 # Represents the Queries record for the operation: listTrvReceipts
 public type ListTrvReceiptsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4393,20 +4795,28 @@ public type TrvPerDiemCalculation "CalendarDay"|"CalendarDayNoTime"|"FullDayHour
 
 # Represents the Queries record for the operation: listCodaTrans
 public type ListCodaTransQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4433,26 +4843,26 @@ public type CodaTransCollection record {
 
 public type ProjGrant record {
     @jsondata:Name {value: "AwardedAmount"}
-    decimal awardedAmount;
+    decimal awardedAmount?;
     @jsondata:Name {value: "RejectionNotification"}
-    string rejectionNotification;
+    string rejectionNotification?;
     @jsondata:Name {value: "ProjLocalTrackingId"}
     string projLocalTrackingId?;
     @jsondata:Name {value: "CustAccount"}
     string custAccount?;
     @jsondata:Name {value: "EstimatedAwardDate"}
-    string estimatedAwardDate;
+    string estimatedAwardDate?;
     @jsondata:Name {value: "SubGrantor"}
     NoYes subGrantor?;
     @jsondata:Name {value: "GrantMatchingComments"}
     string grantMatchingComments?;
     @jsondata:Name {value: "BoardApprovalDate"}
-    string boardApprovalDate;
+    string boardApprovalDate?;
     @jsondata:Name {value: "ActualStartDate"}
-    string actualStartDate;
+    string actualStartDate?;
     @jsondata:Name {value: "GrantParentId"}
     string grantParentId?;
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "FederalMandate"}
     NoYes federalMandate?;
     @jsondata:Name {value: "WorkerContact_PersonnelNumber"}
@@ -4462,37 +4872,37 @@ public type ProjGrant record {
     @jsondata:Name {value: "CFDAId"}
     string cFDAId?;
     @jsondata:Name {value: "MatchingPercentage"}
-    decimal matchingPercentage;
+    decimal matchingPercentage?;
     @jsondata:Name {value: "GrantStatus"}
     ProjGrantStatus grantStatus?;
     @jsondata:Name {value: "ProjGrantorType_GrantorType"}
     string projGrantorTypeGrantorType?;
     @jsondata:Name {value: "GrantId"}
-    string grantId;
+    string grantId?;
     @jsondata:Name {value: "GrantName"}
     string grantName?;
     @jsondata:Name {value: "RenewalActionDate"}
-    string renewalActionDate;
+    string renewalActionDate?;
     @jsondata:Name {value: "MatchingAmount"}
-    decimal matchingAmount;
+    decimal matchingAmount?;
     @jsondata:Name {value: "ProjGrantType_GrantType"}
     string projGrantTypeGrantType?;
     @jsondata:Name {value: "RequestedAmount"}
-    decimal requestedAmount;
+    decimal requestedAmount?;
     @jsondata:Name {value: "ProjGrantMatching_MatchingTypeCode"}
     string projGrantMatchingMatchingTypeCode?;
     @jsondata:Name {value: "ApplicationDueDate"}
-    string applicationDueDate;
+    string applicationDueDate?;
     @jsondata:Name {value: "GrantPurpose"}
     string grantPurpose?;
     @jsondata:Name {value: "ApplicationSubmittedDate"}
-    string applicationSubmittedDate;
+    string applicationSubmittedDate?;
     @jsondata:Name {value: "PassThrough"}
     NoYes passThrough?;
     @jsondata:Name {value: "ActualExpirationDate"}
-    string actualExpirationDate;
+    string actualExpirationDate?;
     @jsondata:Name {value: "ActualAwardDate"}
-    string actualAwardDate;
+    string actualAwardDate?;
     @jsondata:Name {value: "OrganizationUnitId"}
     string organizationUnitId?;
     @jsondata:Name {value: "GrantDescription"}
@@ -4505,8 +4915,10 @@ public type ProjGrant record {
 
 # Represents the Queries record for the operation: getProjectGroups
 public type GetProjectGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4518,12 +4930,14 @@ public type ExpenseParametersCollection record {
 
 # Represents the Headers record for the operation: updateExpenseParameters
 public type UpdateExpenseParametersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
 
 # Represents the Headers record for the operation: updateCashBalances
 public type UpdateCashBalancesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4543,40 +4957,56 @@ public type CashLedgersCollection record {
 
 # Represents the Queries record for the operation: listExchSetups
 public type ListExchSetupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: listExpenseParameters
 public type ListExpenseParametersQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4585,6 +5015,7 @@ public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwi
 
 # Represents the Headers record for the operation: deleteRAssetTables
 public type DeleteRAssetTablesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4597,6 +5028,7 @@ public type FixedAssetsV2CollectionAllOf2 record {
 
 # Represents the Headers record for the operation: updatePSAForecasts
 public type UpdatePSAForecastsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
@@ -4607,28 +5039,38 @@ public type BankCodeType "Code_None"|"Code_AT"|"Code_BL"|"Code_CC"|"Code_CP"|"Co
 
 # Represents the Queries record for the operation: listBankGroups
 public type ListBankGroupsQueries record {
+    # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
+    # OData $top query parameter - maximum number of records to return
     @http:Query {name: "$top"}
     int top?;
+    # OData $filter query parameter - filter expression
     @http:Query {name: "$filter"}
     string filter?;
+    # OData $orderby query parameter - sort order expression
     @http:Query {name: "$orderby"}
     string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
     @http:Query {name: "cross-company"}
     boolean crossCompany?;
+    # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
 
 # Represents the Queries record for the operation: getCashBalances
 public type GetCashBalancesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
@@ -4636,29 +5078,31 @@ public type GetCashBalancesQueries record {
 public type BankTransTypeJP "OrdinarySavings"|"Checking"|"Others";
 
 public type LeasingGroup record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Company"}
     string company?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "LeaseGroup"}
-    string leaseGroup;
+    string leaseGroup?;
 };
 
 public type AssetSorting record {
-    string dataAreaId;
+    string dataAreaId?;
     @jsondata:Name {value: "Description"}
     string description?;
     @jsondata:Name {value: "Identification"}
-    string identification;
+    string identification?;
     @jsondata:Name {value: "Sorting"}
     AssetSortValue sorting?;
 };
 
 # Represents the Queries record for the operation: getRAssetLedgers
 public type GetRAssetLedgersQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };

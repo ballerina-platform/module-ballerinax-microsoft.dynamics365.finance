@@ -49,6 +49,17 @@ jobs:
           distribution: temurin
           java-version: 21.0.3
 
+      - name: Get Ballerina Version
+        run: |
+          BAL_VERSION=$(grep -w 'ballerinaLangVersion' gradle.properties | cut -d= -f2 | rev | cut --complement -d- -f1 | rev)
+          if [ -z "$BAL_VERSION" ]; then BAL_VERSION="latest"; fi
+          echo "BAL_VERSION=$BAL_VERSION" >> $GITHUB_ENV
+
+      - name: Set Up Ballerina
+        uses: ballerina-platform/setup-ballerina@v1.1.0
+        with:
+          version: ${{ env.BAL_VERSION }}
+
       - name: Publish to Dev Central
         if: ${{ inputs.environment == 'DEV CENTRAL' }}
         env:
@@ -58,8 +69,11 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -PbuildUsingDocker=nightly -PpublishToCentral=true
+          ROOT_VERSION=$(grep -w '^version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
+          MODULE_VERSION=$(grep -w '${{ matrix.directory }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
+          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
+            -Pversion=${ROOT_VERSION} -P${{ matrix.directory }}Version=${MODULE_VERSION} \
+            -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -70,5 +84,8 @@ jobs:
           packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
-          ./gradlew :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -PbuildUsingDocker=nightly -PpublishToCentral=true
+          ROOT_VERSION=$(grep -w '^version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
+          MODULE_VERSION=$(grep -w '${{ matrix.directory }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
+          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
+            -Pversion=${ROOT_VERSION} -P${{ matrix.directory }}Version=${MODULE_VERSION} \
+            -PpublishToCentral=true
