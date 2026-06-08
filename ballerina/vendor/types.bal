@@ -4,61 +4,32 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type CustSettlePrepaymentVATTypeRU "Storno"|"Reversal";
-public type CustVendShowTransaction "All"|"Open"|"Closed"|"OpenAsOf";
-public type PurchMatchingPolicyOption "ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
-public type ABC "None"|"A"|"B"|"C";
-public type InvoiceMatchPostingOption "AllowWithWarning"|"RequireApproval";
-public type ExtendedPriceMatching "None"|"Percentage"|"Amount"|"PercentAndAmount";
-public type UseFiscalInvoiceAccount "Never"|"Always"|"Ask";
-public type VendorGroup record {
-    string dataAreaId?;
-    @jsondata:Name {value: "DefaultTaxGroupCode"}
-    string defaultTaxGroupCode?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
-    string reportingCurrencyExchangeRateType?;
-    @jsondata:Name {value: "VendorGroupId"}
-    string vendorGroupId?;
-    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
-    string defaultDimensionDisplayValue?;
-    @jsondata:Name {value: "IsExcludedFromSearchResults"}
-    NoYes isExcludedFromSearchResults?;
-    @jsondata:Name {value: "IsPublicSector_IT"}
-    NoYes isPublicSectorIT?;
-    @jsondata:Name {value: "DefaultPaymentTermName"}
-    string defaultPaymentTermName?;
-    @jsondata:Name {value: "VendorAccountNumberSequence"}
-    string vendorAccountNumberSequence?;
-    @jsondata:Name {value: "AccountingCurrencyExchangeRateType"}
-    string accountingCurrencyExchangeRateType?;
-    @jsondata:Name {value: "ClearingPeriodPaymentTermName"}
-    string clearingPeriodPaymentTermName?;
-};
-public type Tax1099Type "F1099DIV"|"F1099INT"|"F1099MISC"|"F1099OID"|"F1099G"|"F1099S"|"F1099NEC";
-public type PurchMatchingPolicyWithNotSetOption "NotSet"|"ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
-public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
-public type PurchMatchingPolicyOverrideOption "HigherOnly"|"LowerOrHigher";
-public type ReuseVoucher "NoDuplicate"|"NoDuplicateInYear"|"AcceptDuplicate"|"WarnDuplicate";
-public type ExtendedPriceMatchIcon "GreaterThan"|"GreaterOrLessThan";
+public type Tax1099NameChoice "VendorName"|"DBA";
+public type InvoicePolicyViolationStatus "Warning"|"Reject";
 public type DisplayInvoiceMiscChargeMatchOption "GreaterThan"|"GreaterOrLessThan";
-public type CustVendExchAdjRateSource "Ledger"|"Specific"|"Group";
+public type ItemVend "Item"|"Vend";
+public type PurchMatchingPolicyWithNotSetOption "NotSet"|"ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
+public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+public type VendCISStatus "None"|"Gross"|"Standard"|"Higher";
+public type EFDocPresenceTypeBR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+public type ABC "None"|"A"|"B"|"C";
+public type PurchMatchingPolicyOverrideOption "HigherOnly"|"LowerOrHigher";
+public type DisplayPriceMatchOption "GreaterThan"|"GreaterOrLessThan";
+public type VendorTypeMX "Blank"|"DomesticVendor"|"ForeignVendor"|"DomesticGlobal";
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+public type ExtendedPriceMatchIcon "GreaterThan"|"GreaterOrLessThan";
+public type SettlementType "None"|"OpenTransact"|"SelectedTransact";
+public type InvoiceMatchPostingOption "AllowWithWarning"|"RequireApproval";
+public type VendInvoiceDefaultGroupType "Username"|"Date"|"Custom";
+public type NatureOfAssesseeIN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
+public type NoYes "No"|"Yes";
+public type VendTaxRegisterApproval "Register"|"Approval";
+public type VendTableChangeProposalDataEntityBehavior "AllowWithoutApproval"|"RejectChanges"|"CreateChangeProposal";
+public type VendVendorCollaborationType "Disabled"|"WithoutAutoConfirmation"|"WithAutoConfirmation";
 public type UseCashDisc "Normal"|"Always"|"Never";
 public type InvestorType "None"|"Owner"|"Broker";
-public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
-public type VendTableChangeProposalDataEntityBehavior "AllowWithoutApproval"|"RejectChanges"|"CreateChangeProposal";
-public type ItemVend "Item"|"Vend";
-public type VendTaxRegisterApproval "Register"|"Approval";
 public type DiscountOffsetMethod "AccountReceived"|"InvoiceAccount";
-public type DisplayPriceMatchOption "GreaterThan"|"GreaterOrLessThan";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type Tax1099NameChoice "VendorName"|"DBA";
+public type TaxVATNumCountryRegionType "None"|"DomesticEU"|"EU";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth;
@@ -100,26 +71,6 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type PurchPrepayApplicationPolicy "Notification"|"Automatic";
-public type VendCISStatus "None"|"Gross"|"Standard"|"Higher";
-public type PANStatusIN "NotAvailable"|"Received"|"Applied"|"Invalid";
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-public type NatureOfAssesseeIN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-public type VendVendorCollaborationType "Disabled"|"WithoutAutoConfirmation"|"WithAutoConfirmation";
-public type TypeOfCreditmaxCheck "None"|"Balance"|"BalanceDelivered"|"BalanceAll";
-public type UnknownNoYes "Unknown"|"No"|"Yes";
-public type VendorOperationTypeMX "Blank"|"SalesGoods"|"ProServices"|"RentLease"|"ImportGoodsServices"|"ImportVirtualTransfer"|"Other"|"GlobalOperations";
-public type VendInvoiceDefaultGroupType "Username"|"Date"|"Custom";
-public type VendInvoiceDocDate "None"|"Error"|"Warning";
-public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
-public type DimensionHierarchyType "AccountStructure"|"AccountRuleStructure"|"JournalControlStructure"|"Focus"|"Customer"|"Vendor"|"Project"|"FixedAsset"|"BankAccount"|"Employee"|"Item"|"SingleAttributeStructure"|"DefaultAccount"|"FixedAssets_RU"|"RDeferrals"|"RCash"|"Employee_RU"|"AllAttributeStructure"|"DataEntityDefaultDimensionFormat"|"DataEntityLedgerDimensionFormat"|"DataEntityBudgetDimensionFormat"|"DataEntityBudgetPlanningDimensionFormat"|"FinancialReportingDimensionFormat"|"DerivedDimension"|"CashFlowForecast";
-public type TaxVATNumCountryRegionType "None"|"DomesticEU"|"EU";
-public type TaxIDType "Unknown"|"EIN"|"SSN"|"ITIN"|"ATIN";
-public type InvoicePolicyViolationStatus "Warning"|"Reject";
-public type NoYes "No"|"Yes";
-public type TaxWithholdVendorTypeTH "Blank"|"Domestic"|"Foreign"|"Individual";
-public type EFDocPresenceTypeBR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
 public type Vendor record {
     @jsondata:Name {value: "PersonPhoneticLastName"}
     string personPhoneticLastName?;
@@ -597,13 +548,27 @@ public type Vendor record {
     @jsondata:Name {value: "AddressLatitude"}
     decimal addressLatitude?;
 };
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
-public type UnspecificSpecific "Unspecific"|"Specific";
-public type WeekDays "None"|"Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday";
+public type TaxIDType "Unknown"|"EIN"|"SSN"|"ITIN"|"ATIN";
+public type CustSettlePrepaymentVATTypeRU "Storno"|"Reversal";
 public type DimSettlementCtrlTypeRU "None"|"Auto"|"Manual"|"Always";
-public type VendorTypeMX "Blank"|"DomesticVendor"|"ForeignVendor"|"DomesticGlobal";
+public type UnknownNoYes "Unknown"|"No"|"Yes";
+public type TaxWithholdVendorTypeTH "Blank"|"Domestic"|"Foreign"|"Individual";
+public type VendorOperationTypeMX "Blank"|"SalesGoods"|"ProServices"|"RentLease"|"ImportGoodsServices"|"ImportVirtualTransfer"|"Other"|"GlobalOperations";
+public type CustVendExchAdjRateSource "Ledger"|"Specific"|"Group";
+public type TypeOfCreditmaxCheck "None"|"Balance"|"BalanceDelivered"|"BalanceAll";
 public type DisplayTotalPriceMatchOption "GreaterThan"|"GreaterOrLessThan";
+public type UseFiscalInvoiceAccount "Never"|"Always"|"Ask";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
+public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
+public type PurchMatchingPolicyOption "ThreeWayMatch"|"TwoWayMatch"|"NoMatch";
+public type Tax1099Type "F1099DIV"|"F1099INT"|"F1099MISC"|"F1099OID"|"F1099G"|"F1099S"|"F1099NEC";
+public type ReuseVoucher "NoDuplicate"|"NoDuplicateInYear"|"AcceptDuplicate"|"WarnDuplicate";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -612,7 +577,42 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
-public type SettlementType "None"|"OpenTransact"|"SelectedTransact";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+public type WeekDays "None"|"Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday";
+public type UnspecificSpecific "Unspecific"|"Specific";
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+public type VendorGroup record {
+    string dataAreaId?;
+    @jsondata:Name {value: "DefaultTaxGroupCode"}
+    string defaultTaxGroupCode?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
+    string reportingCurrencyExchangeRateType?;
+    @jsondata:Name {value: "VendorGroupId"}
+    string vendorGroupId?;
+    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
+    string defaultDimensionDisplayValue?;
+    @jsondata:Name {value: "IsExcludedFromSearchResults"}
+    NoYes isExcludedFromSearchResults?;
+    @jsondata:Name {value: "IsPublicSector_IT"}
+    NoYes isPublicSectorIT?;
+    @jsondata:Name {value: "DefaultPaymentTermName"}
+    string defaultPaymentTermName?;
+    @jsondata:Name {value: "VendorAccountNumberSequence"}
+    string vendorAccountNumberSequence?;
+    @jsondata:Name {value: "AccountingCurrencyExchangeRateType"}
+    string accountingCurrencyExchangeRateType?;
+    @jsondata:Name {value: "ClearingPeriodPaymentTermName"}
+    string clearingPeriodPaymentTermName?;
+};
+public type VendInvoiceDocDate "None"|"Error"|"Warning";
+public type ExtendedPriceMatching "None"|"Percentage"|"Amount"|"PercentAndAmount";
+public type PANStatusIN "NotAvailable"|"Received"|"Applied"|"Invalid";
+public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
+public type PurchPrepayApplicationPolicy "Notification"|"Automatic";
+public type CustVendShowTransaction "All"|"Open"|"Closed"|"OpenAsOf";
+public type DimensionHierarchyType "AccountStructure"|"AccountRuleStructure"|"JournalControlStructure"|"Focus"|"Customer"|"Vendor"|"Project"|"FixedAsset"|"BankAccount"|"Employee"|"Item"|"SingleAttributeStructure"|"DefaultAccount"|"FixedAssets_RU"|"RDeferrals"|"RCash"|"Employee_RU"|"AllAttributeStructure"|"DataEntityDefaultDimensionFormat"|"DataEntityLedgerDimensionFormat"|"DataEntityBudgetDimensionFormat"|"DataEntityBudgetPlanningDimensionFormat"|"FinancialReportingDimensionFormat"|"DerivedDimension"|"CashFlowForecast";
 public type VendorParametersCollectionAllOf2 record {
     VendorParameter[] value?;
 };

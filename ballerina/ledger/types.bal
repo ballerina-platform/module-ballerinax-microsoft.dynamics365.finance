@@ -4,142 +4,49 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type FiscalYearStatus "Open"|"Close";
-public type FiscalQuarter "Q1"|"Q2"|"Q3"|"Q4";
-public type JournalName record {
-    @jsondata:Name {value: "AmountsIncludeSalesTax"}
-    NoYes amountsIncludeSalesTax?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "DefaultCashAccount"}
-    string defaultCashAccount?;
-    @jsondata:Name {value: "RequiresSimulationValidation_IT"}
-    NoYes requiresSimulationValidationIT?;
-    @jsondata:Name {value: "OffsetAccountType"}
-    LedgerJournalACType offsetAccountType?;
-    @jsondata:Name {value: "PostingDateControl"}
-    NoYes postingDateControl?;
-    @jsondata:Name {value: "IsFixedOffsetAccount"}
-    NoYes isFixedOffsetAccount?;
-    @jsondata:Name {value: "WorkflowId"}
-    string workflowId?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-    @jsondata:Name {value: "OffsetAccountDisplayValue"}
-    string offsetAccountDisplayValue?;
-    @jsondata:Name {value: "PrivateForUserGroup"}
-    string privateForUserGroup?;
-    string dataAreaId?;
-    @jsondata:Name {value: "IsApprovalActive"}
-    NoYes isApprovalActive?;
-    @jsondata:Name {value: "VoucherAllocationAtPosting"}
-    NoYes voucherAllocationAtPosting?;
-    @jsondata:Name {value: "Currency"}
-    string currency?;
-    @jsondata:Name {value: "GeneratePaymentsBeforePosting"}
-    NoYes generatePaymentsBeforePosting?;
-    @jsondata:Name {value: "EndBalanceControl"}
-    NoYes endBalanceControl?;
-    @jsondata:Name {value: "IsWorkflowApprovalActive"}
-    NoYes isWorkflowApprovalActive?;
-    @jsondata:Name {value: "PostingLayer"}
-    CurrentOperationsTax postingLayer?;
-    @jsondata:Name {value: "HideSalesTaxFieldsInJournalEntryForms"}
-    NoYes hideSalesTaxFieldsInJournalEntryForms?;
-    @jsondata:Name {value: "PrepaymentJournalVoucher"}
-    NoYes prepaymentJournalVoucher?;
-    @jsondata:Name {value: "PostingLineLimit"}
-    int:Signed32 postingLineLimit?;
-    @jsondata:Name {value: "IsFixedExchangeRate"}
-    NoYes isFixedExchangeRate?;
-    @jsondata:Name {value: "NewVoucher"}
-    NewVoucher newVoucher?;
-    @jsondata:Name {value: "VoucherSeriesCode"}
-    string voucherSeriesCode?;
-    @jsondata:Name {value: "FeesPosting"}
-    LedgerJournalFeePosting feesPosting?;
-    @jsondata:Name {value: "DefaultFinancialDimensionDisplayValue"}
-    string defaultFinancialDimensionDisplayValue?;
-    @jsondata:Name {value: "DocumentNumber"}
-    string documentNumber?;
-    @jsondata:Name {value: "OverrideSalesTax"}
-    NoYes overrideSalesTax?;
-    @jsondata:Name {value: "AllowOnlyPositiveDebitsAndCredits"}
-    NoYes allowOnlyPositiveDebitsAndCredits?;
-    @jsondata:Name {value: "PrincipleOfDateInitialization"}
-    LedgerJournalDateInitTypeRU principleOfDateInitialization?;
-    @jsondata:Name {value: "Type"}
-    LedgerJournalType 'type?;
-    @jsondata:Name {value: "VoucherSeriesCompanyId"}
-    string voucherSeriesCompanyId?;
-    @jsondata:Name {value: "DetailLevel"}
-    DetailSummary detailLevel?;
-    @jsondata:Name {value: "ApprovalUserGroup"}
-    string approvalUserGroup?;
-    @jsondata:Name {value: "DeleteLinesAfterPosting"}
-    NoYes deleteLinesAfterPosting?;
+public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
+public type LedgerJournalType "Daily"|"Periodic"|"PurchaseLedger"|"Approval"|"Payment"|"CustPayment"|"Cost"|"VendInvoiceRegister"|"VendInvoicePool"|"Assets"|"AssetBudgets"|"CustPaymRemittance"|"CustBillOfExchangeDraw"|"CustBillOfExchangeProtest"|"CustBillOfExchangeRedraw"|"VendPromissoryNoteDraw"|"CustBillOfExchangeAccept"|"VendPromissoryNoteRedraw"|"VendPaymRemittance"|"CustBillOfExchangeSettle"|"VendPromissoryNoteSettle"|"RDeferrals"|"RCash"|"Assets_RU"|"AssetBudgets_RU"|"RTax25"|"RTax25AmountDifference"|"RTax25ExchDifference"|"RAssetAssessedTax"|"RAssetTransportTax"|"RAssetLandTax"|"StatTrans"|"Allocation"|"Elimination"|"BankChequeReversal"|"BankDepositPaymCancel"|"Budget"|"Payroll"|"PayrollDisbursement"|"RTax25TaxRemainGoods"|"Payroll_RU"|"FBTaxAssessmentAdjustments_BR"|"None"|"VendInvoice"|"Netting"|"CustomsDeclaration_IT"|"ReportingCurrencyAdjustment"|"RTax25DebtDebitReserve"|"RTax25TaxDiffByBalance"|"CustVendNetting"|"AssetLease"|"RevenueRecognition";
+public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|"CustomLayer1"|"CustomLayer2"|"CustomLayer3"|"CustomLayer4"|"CustomLayer5"|"CustomLayer6"|"CustomLayer7"|"None";
+public type FiscalYear record {
+    @jsondata:Name {value: "Status"}
+    FiscalYearStatus status?;
+    @jsondata:Name {value: "FiscalYear"}
+    string fiscalYear?;
+    @jsondata:Name {value: "LegalEntityId"}
+    string legalEntityId?;
+    @jsondata:Name {value: "Calendar"}
+    string calendar?;
+    @jsondata:Name {value: "LegalEntityName"}
+    string legalEntityName?;
 };
-public type PrimoMedioUltimo "Primo"|"Medio"|"Ultimo";
-public type LedgerAccrualVoucher "Base"|"Single"|"Multiple";
-public type TransactionLogType "Unspecified"|"SalesInvoice"|"SalesConfirm"|"SalesQuotation"|"SalesPckSlp"|"LedgerJournal"|"LedgerExchAdj"|"LedgerOpening"|"LedgerClosing"|"PurchPackingSlip"|"PurchPurchaseOrder"|"PurchInvoice"|"TaxReport"|"CheckAndFix"|"ProjInvoice"|"SalesPickingList"|"PurchReceiptsList"|"CostAccounting"|"CustExchAdj"|"VendExchAdj"|"CustPaymReconciliation"|"VendPaymReconciliation"|"ProjJournal"|"InventJournal"|"PaymMan"|"PaymReversal"|"CustInterestNote"|"CustCollectionLetter"|"CustTransEdit"|"VendTransEdit"|"BankReconciliation"|"CustReimbursement"|"LedgerConsolidation"|"ConvCompanyCurrency"|"CustFreeInvoice"|"SMASubscription"|"ProdPicklist"|"ProdReportFinished"|"ProdRouteCard"|"ProdJobCard"|"ProdStartUp"|"ProdEnd"|"ProdStatusDecrease"|"System"|"TransactionReversal"|"AssetReclassification"|"ProjPackingSlip"|"ProjCost"|"ProjRevenue"|"ProjAdjustment"|"ProjEstimate"|"InventCloseTrans"|"InventCloseOnHand"|"InventCloseClosing"|"InventCloseRecalc"|"PurchRFQ"|"ProdIndirectCost"|"InventStdCostChange"|"PurchCustomsBillOfEntry_IN"|"SalesCustomsShippingBill_IN"|"PurchPurchReq"|"ConvReportingCurrency"|"InventCloseRevaluation"|"SalesInvoice4Paym_RU"|"PurchInvoice4Paym_RU"|"RCashExchAdj"|"PlBankExchAdj"|"GoodsInRoute_RU"|"ExpenseReport"|"Timesheet"|"PayrollPaymReconciliation"|"AdvancedLedgerEntry"|"RPayTaxRefundOffset"|"LedgerSettlement"|"LedgerSettlementReversal"|"ConsignmentReplenishmentOrder"|"BudgetReservation_PSN"|"BankCurrencyReval";
-public type NewVoucher "BalanceSheet"|"Manually"|"OneVoucher";
-public type LedgerAccrualPeriod "Calendar"|"Fiscal"|"AllocationKey";
-public type DetailSummary "Detail"|"Summary";
-public type LedgerJournalFeePosting "Keep"|"TransferKeep"|"TransferNew";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type CalendarTypeIN "Standard"|"DayBased";
-public type LedgerJournalTypeBE "Purchase"|"Sales"|"Financial"|"Other"|"Empty";
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type FiscalPeriodType "Opening"|"Operating"|"Closing";
-public type LedgerJournalDateInitTypeRU "None"|"NullDate"|"CurrentDate";
-public type DayWeekMonth "Day"|"Week"|"Month"|"Quarter";
-public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
-public type LedgerClosing "None"|"Result"|"BalanceSheet"|"Capital";
+public type FiscalCalendar record {
+    @jsondata:Name {value: "Quarter"}
+    FiscalQuarter quarter?;
+    @jsondata:Name {value: "LedgerRecId"}
+    int ledgerRecId?;
+    @jsondata:Name {value: "QuarterOffset"}
+    int:Signed32 quarterOffset?;
+    @jsondata:Name {value: "CalendarId"}
+    string calendarId?;
+    @jsondata:Name {value: "PeriodOffset"}
+    int:Signed32 periodOffset?;
+    @jsondata:Name {value: "YearName"}
+    string yearName?;
+    @jsondata:Name {value: "CalendarRecId"}
+    int calendarRecId?;
+    @jsondata:Name {value: "LedgerGregorianDateId"}
+    string ledgerGregorianDateId?;
+    @jsondata:Name {value: "YearOffset"}
+    int:Signed32 yearOffset?;
+    @jsondata:Name {value: "Month"}
+    FiscalPeriodMonth month?;
+    @jsondata:Name {value: "GregorianDate"}
+    string gregorianDate?;
+    @jsondata:Name {value: "PeriodRecId"}
+    int periodRecId?;
+    @jsondata:Name {value: "PeriodName"}
+    string periodName?;
+};
 public type Ledger record {
     @jsondata:Name {value: "LedgerRecId"}
     int ledgerRecId?;
@@ -222,40 +129,140 @@ public type Ledger record {
     @jsondata:Name {value: "ReportingCurrency"}
     string reportingCurrency?;
 };
-public type LedgerJournalType "Daily"|"Periodic"|"PurchaseLedger"|"Approval"|"Payment"|"CustPayment"|"Cost"|"VendInvoiceRegister"|"VendInvoicePool"|"Assets"|"AssetBudgets"|"CustPaymRemittance"|"CustBillOfExchangeDraw"|"CustBillOfExchangeProtest"|"CustBillOfExchangeRedraw"|"VendPromissoryNoteDraw"|"CustBillOfExchangeAccept"|"VendPromissoryNoteRedraw"|"VendPaymRemittance"|"CustBillOfExchangeSettle"|"VendPromissoryNoteSettle"|"RDeferrals"|"RCash"|"Assets_RU"|"AssetBudgets_RU"|"RTax25"|"RTax25AmountDifference"|"RTax25ExchDifference"|"RAssetAssessedTax"|"RAssetTransportTax"|"RAssetLandTax"|"StatTrans"|"Allocation"|"Elimination"|"BankChequeReversal"|"BankDepositPaymCancel"|"Budget"|"Payroll"|"PayrollDisbursement"|"RTax25TaxRemainGoods"|"Payroll_RU"|"FBTaxAssessmentAdjustments_BR"|"None"|"VendInvoice"|"Netting"|"CustomsDeclaration_IT"|"ReportingCurrencyAdjustment"|"RTax25DebtDebitReserve"|"RTax25TaxDiffByBalance"|"CustVendNetting"|"AssetLease"|"RevenueRecognition";
-public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|"CustomLayer1"|"CustomLayer2"|"CustomLayer3"|"CustomLayer4"|"CustomLayer5"|"CustomLayer6"|"CustomLayer7"|"None";
-public type DimensionLedgerAccountType "Blank"|"ProfitAndLoss"|"Revenue"|"Expense"|"BalanceSheet"|"Asset"|"Liability"|"Equity"|"Total"|"Reporting"|"Common_CN";
-public type LedgerAccrualEvenScale "Even"|"Scale";
-public type FiscalCalendar record {
-    @jsondata:Name {value: "Quarter"}
-    FiscalQuarter quarter?;
-    @jsondata:Name {value: "LedgerRecId"}
-    int ledgerRecId?;
-    @jsondata:Name {value: "QuarterOffset"}
-    int:Signed32 quarterOffset?;
-    @jsondata:Name {value: "CalendarId"}
-    string calendarId?;
-    @jsondata:Name {value: "PeriodOffset"}
-    int:Signed32 periodOffset?;
-    @jsondata:Name {value: "YearName"}
-    string yearName?;
-    @jsondata:Name {value: "CalendarRecId"}
-    int calendarRecId?;
-    @jsondata:Name {value: "LedgerGregorianDateId"}
-    string ledgerGregorianDateId?;
-    @jsondata:Name {value: "YearOffset"}
-    int:Signed32 yearOffset?;
-    @jsondata:Name {value: "Month"}
-    FiscalPeriodMonth month?;
-    @jsondata:Name {value: "GregorianDate"}
-    string gregorianDate?;
-    @jsondata:Name {value: "PeriodRecId"}
-    int periodRecId?;
-    @jsondata:Name {value: "PeriodName"}
-    string periodName?;
-};
-public type NoYes "No"|"Yes";
 public type FiscalPeriodMonth "Month1"|"Month2"|"Month3"|"Month4"|"Month5"|"Month6"|"Month7"|"Month8"|"Month9"|"Month10"|"Month11"|"Month12";
+public type LedgerAccrualEvenScale "Even"|"Scale";
+public type LedgerJournalFeePosting "Keep"|"TransferKeep"|"TransferNew";
+public type FiscalQuarter "Q1"|"Q2"|"Q3"|"Q4";
+public type NoYes "No"|"Yes";
+public type TransactionLogType "Unspecified"|"SalesInvoice"|"SalesConfirm"|"SalesQuotation"|"SalesPckSlp"|"LedgerJournal"|"LedgerExchAdj"|"LedgerOpening"|"LedgerClosing"|"PurchPackingSlip"|"PurchPurchaseOrder"|"PurchInvoice"|"TaxReport"|"CheckAndFix"|"ProjInvoice"|"SalesPickingList"|"PurchReceiptsList"|"CostAccounting"|"CustExchAdj"|"VendExchAdj"|"CustPaymReconciliation"|"VendPaymReconciliation"|"ProjJournal"|"InventJournal"|"PaymMan"|"PaymReversal"|"CustInterestNote"|"CustCollectionLetter"|"CustTransEdit"|"VendTransEdit"|"BankReconciliation"|"CustReimbursement"|"LedgerConsolidation"|"ConvCompanyCurrency"|"CustFreeInvoice"|"SMASubscription"|"ProdPicklist"|"ProdReportFinished"|"ProdRouteCard"|"ProdJobCard"|"ProdStartUp"|"ProdEnd"|"ProdStatusDecrease"|"System"|"TransactionReversal"|"AssetReclassification"|"ProjPackingSlip"|"ProjCost"|"ProjRevenue"|"ProjAdjustment"|"ProjEstimate"|"InventCloseTrans"|"InventCloseOnHand"|"InventCloseClosing"|"InventCloseRecalc"|"PurchRFQ"|"ProdIndirectCost"|"InventStdCostChange"|"PurchCustomsBillOfEntry_IN"|"SalesCustomsShippingBill_IN"|"PurchPurchReq"|"ConvReportingCurrency"|"InventCloseRevaluation"|"SalesInvoice4Paym_RU"|"PurchInvoice4Paym_RU"|"RCashExchAdj"|"PlBankExchAdj"|"GoodsInRoute_RU"|"ExpenseReport"|"Timesheet"|"PayrollPaymReconciliation"|"AdvancedLedgerEntry"|"RPayTaxRefundOffset"|"LedgerSettlement"|"LedgerSettlementReversal"|"ConsignmentReplenishmentOrder"|"BudgetReservation_PSN"|"BankCurrencyReval";
+public type PrimoMedioUltimo "Primo"|"Medio"|"Ultimo";
+public type NewVoucher "BalanceSheet"|"Manually"|"OneVoucher";
+public type LedgerClosing "None"|"Result"|"BalanceSheet"|"Capital";
+public type FiscalPeriodType "Opening"|"Operating"|"Closing";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type DayWeekMonth "Day"|"Week"|"Month"|"Quarter";
+public type LedgerAccrualPeriod "Calendar"|"Fiscal"|"AllocationKey";
+public type LedgerJournalDateInitTypeRU "None"|"NullDate"|"CurrentDate";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type LedgerJournalTypeBE "Purchase"|"Sales"|"Financial"|"Other"|"Empty";
+public type JournalName record {
+    @jsondata:Name {value: "AmountsIncludeSalesTax"}
+    NoYes amountsIncludeSalesTax?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "DefaultCashAccount"}
+    string defaultCashAccount?;
+    @jsondata:Name {value: "RequiresSimulationValidation_IT"}
+    NoYes requiresSimulationValidationIT?;
+    @jsondata:Name {value: "OffsetAccountType"}
+    LedgerJournalACType offsetAccountType?;
+    @jsondata:Name {value: "PostingDateControl"}
+    NoYes postingDateControl?;
+    @jsondata:Name {value: "IsFixedOffsetAccount"}
+    NoYes isFixedOffsetAccount?;
+    @jsondata:Name {value: "WorkflowId"}
+    string workflowId?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    @jsondata:Name {value: "OffsetAccountDisplayValue"}
+    string offsetAccountDisplayValue?;
+    @jsondata:Name {value: "PrivateForUserGroup"}
+    string privateForUserGroup?;
+    string dataAreaId?;
+    @jsondata:Name {value: "IsApprovalActive"}
+    NoYes isApprovalActive?;
+    @jsondata:Name {value: "VoucherAllocationAtPosting"}
+    NoYes voucherAllocationAtPosting?;
+    @jsondata:Name {value: "Currency"}
+    string currency?;
+    @jsondata:Name {value: "GeneratePaymentsBeforePosting"}
+    NoYes generatePaymentsBeforePosting?;
+    @jsondata:Name {value: "EndBalanceControl"}
+    NoYes endBalanceControl?;
+    @jsondata:Name {value: "IsWorkflowApprovalActive"}
+    NoYes isWorkflowApprovalActive?;
+    @jsondata:Name {value: "PostingLayer"}
+    CurrentOperationsTax postingLayer?;
+    @jsondata:Name {value: "HideSalesTaxFieldsInJournalEntryForms"}
+    NoYes hideSalesTaxFieldsInJournalEntryForms?;
+    @jsondata:Name {value: "PrepaymentJournalVoucher"}
+    NoYes prepaymentJournalVoucher?;
+    @jsondata:Name {value: "PostingLineLimit"}
+    int:Signed32 postingLineLimit?;
+    @jsondata:Name {value: "IsFixedExchangeRate"}
+    NoYes isFixedExchangeRate?;
+    @jsondata:Name {value: "NewVoucher"}
+    NewVoucher newVoucher?;
+    @jsondata:Name {value: "VoucherSeriesCode"}
+    string voucherSeriesCode?;
+    @jsondata:Name {value: "FeesPosting"}
+    LedgerJournalFeePosting feesPosting?;
+    @jsondata:Name {value: "DefaultFinancialDimensionDisplayValue"}
+    string defaultFinancialDimensionDisplayValue?;
+    @jsondata:Name {value: "DocumentNumber"}
+    string documentNumber?;
+    @jsondata:Name {value: "OverrideSalesTax"}
+    NoYes overrideSalesTax?;
+    @jsondata:Name {value: "AllowOnlyPositiveDebitsAndCredits"}
+    NoYes allowOnlyPositiveDebitsAndCredits?;
+    @jsondata:Name {value: "PrincipleOfDateInitialization"}
+    LedgerJournalDateInitTypeRU principleOfDateInitialization?;
+    @jsondata:Name {value: "Type"}
+    LedgerJournalType 'type?;
+    @jsondata:Name {value: "VoucherSeriesCompanyId"}
+    string voucherSeriesCompanyId?;
+    @jsondata:Name {value: "DetailLevel"}
+    DetailSummary detailLevel?;
+    @jsondata:Name {value: "ApprovalUserGroup"}
+    string approvalUserGroup?;
+    @jsondata:Name {value: "DeleteLinesAfterPosting"}
+    NoYes deleteLinesAfterPosting?;
+};
 public type FiscalPeriod record {
     @jsondata:Name {value: "StartDate"}
     string startDate?;
@@ -282,20 +289,9 @@ public type FiscalPeriod record {
     @jsondata:Name {value: "CalendarType"}
     CalendarTypeIN calendarType?;
 };
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-public type FiscalYear record {
-    @jsondata:Name {value: "Status"}
-    FiscalYearStatus status?;
-    @jsondata:Name {value: "FiscalYear"}
-    string fiscalYear?;
-    @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId?;
-    @jsondata:Name {value: "Calendar"}
-    string calendar?;
-    @jsondata:Name {value: "LegalEntityName"}
-    string legalEntityName?;
-};
-public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
+public type JournalizingDefinitionModuleId "AccountsPayable"|"AccountsReceivable"|"Purchasing"|"Budget"|"Bank"|"GeneralLedger"|"Payroll"|"BudgetReservation_PSN";
+public type FiscalYearStatus "Open"|"Close";
+public type DimensionLedgerAccountType "Blank"|"ProfitAndLoss"|"Revenue"|"Expense"|"BalanceSheet"|"Asset"|"Liability"|"Equity"|"Total"|"Reporting"|"Common_CN";
 public type AssetAccrualCalendar "Yearly"|"Monthly"|"Quarterly"|"HalfYearly"|"Daily";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
@@ -305,7 +301,11 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
-public type JournalizingDefinitionModuleId "AccountsPayable"|"AccountsReceivable"|"Purchasing"|"Budget"|"Bank"|"GeneralLedger"|"Payroll"|"BudgetReservation_PSN";
+public type DetailSummary "Detail"|"Summary";
+public type LedgerAccrualVoucher "Base"|"Single"|"Multiple";
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
+public type CalendarTypeIN "Standard"|"DayBased";
 public type AuditTrail record {
     string dataAreaId?;
     @jsondata:Name {value: "TransactionType"}

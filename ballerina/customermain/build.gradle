@@ -71,3 +71,11 @@ release {
 build.dependsOn updateTomlFiles
 publishToMavenLocal.dependsOn build
 publish.dependsOn build
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'test') {
+        task.doFirst {
+            new File("${project.projectDir}/target/cache/tests_cache/coverage").mkdirs()
+        }
+    }
+}

@@ -4,11 +4,46 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
+public type PSAProjTimeMeasure "Hour"|"Unit";
+public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+public type ProjTransType "None"|"Revenue"|"Hour"|"Cost"|"Item"|"OnAccount"|"WIP"|"IndirectComponent"|"Retainage";
+public type PSAProjStatus "Active"|"OnHold"|"Finished";
+public type CashDiscount record {
+    @jsondata:Name {value: "CashDiscountCode"}
+    string cashDiscountCode?;
+    @jsondata:Name {value: "NextCashDiscountCode"}
+    string nextCashDiscountCode?;
+    @jsondata:Name {value: "NumberOfDays"}
+    int:Signed32 numberOfDays?;
+    string dataAreaId?;
+    @jsondata:Name {value: "DiscountMethod"}
+    NetCurrent discountMethod?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "Percent"}
+    decimal percent?;
+    @jsondata:Name {value: "MainAccountIdForVendorDiscountsDisplayValue"}
+    string mainAccountIdForVendorDiscountsDisplayValue?;
+    @jsondata:Name {value: "NumberOfMonths"}
+    int:Signed32 numberOfMonths?;
+    @jsondata:Name {value: "OffsetMethodForVendorDiscounts"}
+    DiscountOffsetMethod offsetMethodForVendorDiscounts?;
+    @jsondata:Name {value: "MainAccountIdForCustomerDiscountsDisplayValue"}
+    string mainAccountIdForCustomerDiscountsDisplayValue?;
+    @jsondata:Name {value: "DescriptionQRBill"}
+    string descriptionQRBill?;
+};
 public type PSAPReqValidate "Amount"|"HoursQty";
-public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
-public type ProjPaymentStatus "NoPayment"|"ExpectedPayment"|"Paid";
-public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentWeek"|"COD"|"CutOffDate";
-public type SmmShowTimeAs "Free"|"Tentative"|"Busy"|"OutOfOffice";
+public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
+public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
+public type PSAPReqControl "None"|"Warning"|"Control";
+public type ProjCostSales "None"|"Cost"|"Sales";
+public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
+public type NoYes "No"|"Yes";
+public type ProjOrigin "None"|"HourJournal"|"CostJournal"|"GeneralJournal"|"InvoiceJournal"|"InvoiceApprovalJournal"|"ExpenseManagement"|"EliminationInvestment"|"EstimateAccruedLoss"|"ItemJournal"|"PurchaseOrder"|"ItemRequirement"|"SalesOrder"|"ProductionFinished"|"ProductionConsumed"|"FeeJournal"|"EstimateFee"|"Subscription"|"Prepayment"|"Deduction"|"Milestone"|"Invoice"|"InventoryClosing"|"Adjustment"|"PostCost"|"AccrueRevenue"|"PostEstimate"|"ReverseEstimate"|"EliminateEstimate"|"ReverseElimination"|"AccrueSubscriptionRev"|"BeginningBalance"|"PurchaseRequisition"|"Timesheet"|"FreeTextInvoice"|"VendorInvoice"|"AdvancedLedgerEntry"|"PayrollEarningStatement"|"PayrollPayStatement"|"ProgressBillingRule"|"UnitOfDeliveryBillingRule"|"BudgetReservation"|"ProjAdvancedJournal";
+public type ProjBudgetManagement "None"|"Independent";
+public type PSAProjTask "Project"|"Task";
+public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
 public type Project record {
     @jsondata:Name {value: "TaskCompletelyScheduled"}
     NoYes taskCompletelyScheduled?;
@@ -212,66 +247,21 @@ public type Project record {
     @jsondata:Name {value: "ProjectTemplate"}
     NoYes projectTemplate?;
 };
-public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
-public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
-public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
-public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
+public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
+public type ProjectStage record {
+    @jsondata:Name {value: "Status"}
+    ProjStatus status?;
+    string dataAreaId?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "Stage"}
+    string stage?;
+};
 public type PSAProjTrackCost "Actual"|"Standard";
-public type ProjLedgerPosting "GroupId"|"Categories";
-public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
-public type ProjOrigin "None"|"HourJournal"|"CostJournal"|"GeneralJournal"|"InvoiceJournal"|"InvoiceApprovalJournal"|"ExpenseManagement"|"EliminationInvestment"|"EstimateAccruedLoss"|"ItemJournal"|"PurchaseOrder"|"ItemRequirement"|"SalesOrder"|"ProductionFinished"|"ProductionConsumed"|"FeeJournal"|"EstimateFee"|"Subscription"|"Prepayment"|"Deduction"|"Milestone"|"Invoice"|"InventoryClosing"|"Adjustment"|"PostCost"|"AccrueRevenue"|"PostEstimate"|"ReverseEstimate"|"EliminateEstimate"|"ReverseElimination"|"AccrueSubscriptionRev"|"BeginningBalance"|"PurchaseRequisition"|"Timesheet"|"FreeTextInvoice"|"VendorInvoice"|"AdvancedLedgerEntry"|"PayrollEarningStatement"|"PayrollPayStatement"|"ProgressBillingRule"|"UnitOfDeliveryBillingRule"|"BudgetReservation"|"ProjAdvancedJournal";
-public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
-public type DetailSummary "Detail"|"Summary";
 public type DiscountOffsetMethod "AccountReceived"|"InvoiceAccount";
-public type PSAProjTask "Project"|"Task";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type SmmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
+public type ProjPaymentStatus "NoPayment"|"ExpectedPayment"|"Paid";
+public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
+public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
 public type ProjectGroup record {
     @jsondata:Name {value: "LedgerPostingSearchPriority"}
     ProjLedgerPosting ledgerPostingSearchPriority?;
@@ -323,56 +313,61 @@ public type ProjectGroup record {
     @jsondata:Name {value: "ProjectGroup"}
     string projectGroup?;
 };
-public type ProjBudgetManagement "None"|"Independent";
-public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
-public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
-public type PSAPReqControl "None"|"Warning"|"Control";
-public type PSAProjTimeMeasure "Hour"|"Unit";
-public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
-public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
-public type ProjectStage record {
-    @jsondata:Name {value: "Status"}
-    ProjStatus status?;
-    string dataAreaId?;
-    @jsondata:Name {value: "Language"}
-    string language?;
-    @jsondata:Name {value: "Stage"}
-    string stage?;
-};
-public type ProjCostSales "None"|"Cost"|"Sales";
+public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentWeek"|"COD"|"CutOffDate";
 public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
-public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
-public type NoYes "No"|"Yes";
-public type PSAProjStatus "Active"|"OnHold"|"Finished";
-public type ProjLinePropertySearch "Project"|"Category";
-public type CashDiscount record {
-    @jsondata:Name {value: "CashDiscountCode"}
-    string cashDiscountCode?;
-    @jsondata:Name {value: "NextCashDiscountCode"}
-    string nextCashDiscountCode?;
-    @jsondata:Name {value: "NumberOfDays"}
-    int:Signed32 numberOfDays?;
-    string dataAreaId?;
-    @jsondata:Name {value: "DiscountMethod"}
-    NetCurrent discountMethod?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "Percent"}
-    decimal percent?;
-    @jsondata:Name {value: "MainAccountIdForVendorDiscountsDisplayValue"}
-    string mainAccountIdForVendorDiscountsDisplayValue?;
-    @jsondata:Name {value: "NumberOfMonths"}
-    int:Signed32 numberOfMonths?;
-    @jsondata:Name {value: "OffsetMethodForVendorDiscounts"}
-    DiscountOffsetMethod offsetMethodForVendorDiscounts?;
-    @jsondata:Name {value: "MainAccountIdForCustomerDiscountsDisplayValue"}
-    string mainAccountIdForCustomerDiscountsDisplayValue?;
-    @jsondata:Name {value: "DescriptionQRBill"}
-    string descriptionQRBill?;
-};
-public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
 public type BankLGDocumentType "None"|"LetterOfGuarantee";
-public type ProjTransType "None"|"Revenue"|"Hour"|"Cost"|"Item"|"OnAccount"|"WIP"|"IndirectComponent"|"Retainage";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type SmmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
+public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
+public type SmmShowTimeAs "Free"|"Tentative"|"Busy"|"OutOfOffice";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -381,7 +376,12 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
-public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+public type DetailSummary "Detail"|"Summary";
+public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
+public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
+public type ProjLedgerPosting "GroupId"|"Categories";
+public type ProjLinePropertySearch "Project"|"Category";
+public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
 public type ProjGrantsV2Collection record {
     *ODataCollection;
     *ProjGrantsV2CollectionAllOf2;

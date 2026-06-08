@@ -4,7 +4,15 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
+public type RAssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Vehicle"|"Land"|"Other"|"Cloths"|"Rigging"|"LowCostAssets";
+public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
 public type AssetSortValue "Sorting1"|"Sorting2"|"Sorting3";
+public type RAssetAssessedTaxType "Section3"|"First"|"Second"|"Third"|"Fourth"|"Fifth"|"Sixth"|"K7"|"K8"|"K9"|"K10"|"K11"|"K12"|"K13";
+public type FBPISCOFINSFixedAssetCreditGroupBR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
+public type NoYes "No"|"Yes";
+public type RAssetVehicleEcoClass "Empty"|"Class0"|"Class1"|"Class2"|"Class3"|"Class4"|"Class5";
+public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
+public type AssetDepreciationConvention "None"|"HalfYear"|"FullMonth"|"MidQuarter"|"MidMonth1st"|"MidMonth15"|"HalfYearStart"|"HalfYearNext";
 public type FixedAsset record {
     @jsondata:Name {value: "FixedAssetCreditGroup"}
     FBPISCOFINSFixedAssetCreditGroupBR fixedAssetCreditGroup?;
@@ -206,19 +214,9 @@ public type FixedAsset record {
     @jsondata:Name {value: "SourceTypeId"}
     string sourceTypeId?;
 };
-public type RAssetVehicleEcoClass "Empty"|"Class0"|"Class1"|"Class2"|"Class3"|"Class4"|"Class5";
-public type AssetStatus "NoAcquisition"|"Open"|"Suspended"|"Closed"|"Sold"|"Scrapped"|"TransferredToLowValuePool"|"Acquired_CZ"|"Lended_RU"|"Disposed_RU"|"PurchInvoice_RU"|"OrderedForSale_RU";
-public type FBPISCOFINSFixedAssetAppropMethodBR "None"|"Depreciation"|"Acquisition"|"Amortization";
-public type RAssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Vehicle"|"Land"|"Other"|"Cloths"|"Rigging"|"LowCostAssets";
-public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
-public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
-public type AssetLeaseCompoundingInterval "Monthly"|"Quarterly"|"Annually"|"SemiAnnually";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
+public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"RegistrationDate"|"AcquisitionDate";
+public type AssetSpecialDepAllocationConventionJP "FollowingFiscalYear"|"FollowingFiscalPeriod";
+public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -260,21 +258,19 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"RegistrationDate"|"AcquisitionDate";
-public type FBPISCOFINSFixedAssetCreditGroupBR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
-public type NoYesCombo "No"|"Yes";
-public type RAssetVatRefundingStartDate "AcquisitionDate"|"DepreciationDate";
-public type AssetClassificationJP "None"|"LowValue"|"LumpSum";
-public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
-public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
-public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
-public type RAssetAssessedTaxType "Section3"|"First"|"Second"|"Third"|"Fourth"|"Fifth"|"Sixth"|"K7"|"K8"|"K9"|"K10"|"K11"|"K12"|"K13";
-public type NoYes "No"|"Yes";
-public type AssetLimitForAccumulatedDepTypeJP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
 public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
-public type AssetSpecialDepAllocationConventionJP "FollowingFiscalYear"|"FollowingFiscalPeriod";
-public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Deferred_JP"|"Other"|"Vehicle_RU"|"Land_RU"|"Cloths_RU"|"Rigging_RU"|"LowCostAssets_RU"|"Vehicle_MX";
-public type AssetDepreciationConvention "None"|"HalfYear"|"FullMonth"|"MidQuarter"|"MidMonth1st"|"MidMonth15"|"HalfYearStart"|"HalfYearNext";
+public type AssetStatus "NoAcquisition"|"Open"|"Suspended"|"Closed"|"Sold"|"Scrapped"|"TransferredToLowValuePool"|"Acquired_CZ"|"Lended_RU"|"Disposed_RU"|"PurchInvoice_RU"|"OrderedForSale_RU";
+public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
+public type NoYesCombo "No"|"Yes";
+public type AssetLimitForAccumulatedDepTypeJP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
+public type FBPISCOFINSFixedAssetAppropMethodBR "None"|"Depreciation"|"Acquisition"|"Amortization";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -283,7 +279,11 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
+public type AssetClassificationJP "None"|"LowValue"|"LumpSum";
 public type AssetDeferredTypeJP "EquallyDivided"|"OneTime";
+public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Deferred_JP"|"Other"|"Vehicle_RU"|"Land_RU"|"Cloths_RU"|"Rigging_RU"|"LowCostAssets_RU"|"Vehicle_MX";
+public type AssetLeaseCompoundingInterval "Monthly"|"Quarterly"|"Annually"|"SemiAnnually";
+public type RAssetVatRefundingStartDate "AcquisitionDate"|"DepreciationDate";
 public type FixedAssetV2Entity record {
     @jsondata:Name {value: "PhysicalAssetNumber"}
     string physicalAssetNumber?;

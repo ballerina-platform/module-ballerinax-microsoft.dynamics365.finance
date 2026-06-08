@@ -4,9 +4,22 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
+public type PSAProjTimeMeasure "Hour"|"Unit";
+public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+public type ProjExpPolicyStatus "NoPolicy"|"ExpensePassed"|"DayPassed"|"ReportPassed"|"ExpenseWarning"|"DayWarning"|"ReportWarning"|"ExpenseFailed"|"DayFailed"|"ReportFailed";
+public type PSAProjStatus "Active"|"OnHold"|"Finished";
+public type TrvAppStatus "None"|"Create"|"Submitted"|"Approved"|"Returned"|"Ready"|"Ledger"|"Cancelled"|"Pending"|"Matched";
 public type PSAPReqValidate "Amount"|"HoursQty";
-public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
-public type TrvMealReductionType "MealTypePerTrip"|"MealTypePerday"|"MealsPerDay";
+public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
+public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
+public type PSAPReqControl "None"|"Warning"|"Control";
+public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
+public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
+public type NoYes "No"|"Yes";
+public type ProjBudgetManagement "None"|"Independent";
+public type PSAProjTask "Project"|"Task";
+public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
+public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
 public type Project record {
     @jsondata:Name {value: "TaskCompletelyScheduled"}
     NoYes taskCompletelyScheduled?;
@@ -210,70 +223,20 @@ public type Project record {
     @jsondata:Name {value: "ProjectTemplate"}
     NoYes projectTemplate?;
 };
-public type TrvPersonalPaidBy "Employee"|"Company";
-public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
-public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
-public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
-public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
-public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
-public type PSAProjTrackCost "Actual"|"Standard";
-public type TrvAppStatus "None"|"Create"|"Submitted"|"Approved"|"Returned"|"Ready"|"Ledger"|"Cancelled"|"Pending"|"Matched";
-public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Personal"|"Airline"|"CarRental"|"Conference"|"Entertainment"|"Hotel"|"Meals"|"Gift";
-public type ProjLedgerPosting "GroupId"|"Categories";
-public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
-public type TrvMileageRateType "Mileage"|"Passenger";
-public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
-public type DetailSummary "Detail"|"Summary";
 public type TrvEvaluateExpensePolicies "OnLineSave"|"OnSubmit";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type PSAProjTask "Project"|"Task";
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
+public type ProjectStage record {
+    @jsondata:Name {value: "Status"}
+    ProjStatus status?;
+    string dataAreaId?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "Stage"}
+    string stage?;
+};
+public type PSAProjTrackCost "Actual"|"Standard";
 public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
+public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
+public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
 public type ProjectGroup record {
     @jsondata:Name {value: "LedgerPostingSearchPriority"}
     ProjLedgerPosting ledgerPostingSearchPriority?;
@@ -325,34 +288,62 @@ public type ProjectGroup record {
     @jsondata:Name {value: "ProjectGroup"}
     string projectGroup?;
 };
-public type ProjBudgetManagement "None"|"Independent";
-public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
-public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
-public type PSAPReqControl "None"|"Warning"|"Control";
-public type ProjExpPolicyStatus "NoPolicy"|"ExpensePassed"|"DayPassed"|"ReportPassed"|"ExpenseWarning"|"DayWarning"|"ReportWarning"|"ExpenseFailed"|"DayFailed"|"ReportFailed";
-public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
-public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
-public type PSAProjTimeMeasure "Hour"|"Unit";
-public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
-public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
-public type ProjectStage record {
-    @jsondata:Name {value: "Status"}
-    ProjStatus status?;
-    string dataAreaId?;
-    @jsondata:Name {value: "Language"}
-    string language?;
-    @jsondata:Name {value: "Stage"}
-    string stage?;
-};
+public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
+public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type TrvMileageRateType "Mileage"|"Passenger";
 public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
-public type TrvPerDiemCalculation "CalendarDay"|"CalendarDayNoTime"|"FullDayHourPeriod";
-public type TrvExpSplitLineType "NoSplit"|"SplitHeader"|"SplitLine";
-public type NoYes "No"|"Yes";
-public type PSAProjStatus "Active"|"OnHold"|"Finished";
-public type ProjLinePropertySearch "Project"|"Category";
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
 public type BankLGDocumentType "None"|"LetterOfGuarantee";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type TrvPerDiemCalculation "CalendarDay"|"CalendarDayNoTime"|"FullDayHourPeriod";
+public type TrvPersonalPaidBy "Employee"|"Company";
+public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
+public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -361,7 +352,16 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
-public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+public type DetailSummary "Detail"|"Summary";
+public type TrvMealReductionType "MealTypePerTrip"|"MealTypePerday"|"MealsPerDay";
+public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
+public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+public type ProjLedgerPosting "GroupId"|"Categories";
+public type ProjLinePropertySearch "Project"|"Category";
+public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
+public type TrvExpSplitLineType "NoSplit"|"SplitHeader"|"SplitLine";
+public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Personal"|"Airline"|"CarRental"|"Conference"|"Entertainment"|"Hotel"|"Meals"|"Gift";
 public type ExpenseParametersCollectionAllOf2 record {
     ExpenseParameters[] value?;
 };

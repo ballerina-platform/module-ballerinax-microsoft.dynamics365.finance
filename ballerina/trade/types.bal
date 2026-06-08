@@ -4,73 +4,7 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type PlSADPostingRule "Item"|"Costs";
-public type IntrastatItemTypeIT "Goods"|"Services";
-public type TaxReportSituationCodeES "Option1"|"Option2"|"Option3"|"Option4"|"None";
-public type IntrastatOrderType "Order"|"Correction"|"Return";
-public type TaxRep347OperationKey "Purchase"|"Sales"|"PaymentMediation"|"PurchPublicEntity"|"Subsidy";
-public type TaxRep347Presentation "Telematic"|"CD"|"Report";
-public type TradeBLWICustVend "Customer"|"Vendor";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
 public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
-public type IntrastatDirection "Import"|"Export";
-public type NGPCode record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "NGP"}
-    int:Signed32 nGP?;
-};
-public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
-public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
-public type NoYes "No"|"Yes";
 public type Intrastat record {
     @jsondata:Name {value: "Quarter"}
     QuarterOfYear quarter?;
@@ -237,7 +171,61 @@ public type Intrastat record {
     @jsondata:Name {value: "CurrentAgreement"}
     NoYes currentAgreement?;
 };
-public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
+public type TradeBLWICustVend "Customer"|"Vendor";
+public type PlSADPostingRule "Item"|"Costs";
+public type TaxRep347OperationKey "Purchase"|"Sales"|"PaymentMediation"|"PurchPublicEntity"|"Subsidy";
+public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
+public type NoYes "No"|"Yes";
+public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
+public type TaxRep347Presentation "Telematic"|"CD"|"Report";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type IntrastatItemTypeIT "Goods"|"Services";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -245,6 +233,18 @@ public type ODataCollection record {
     int odataCount?;
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
+};
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+public type IntrastatOrderType "Order"|"Correction"|"Return";
+public type IntrastatDirection "Import"|"Export";
+public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
+public type TaxReportSituationCodeES "Option1"|"Option2"|"Option3"|"Option4"|"None";
+public type NGPCode record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "NGP"}
+    int:Signed32 nGP?;
 };
 public type IntrastatsV2Collection record {
     *ODataCollection;

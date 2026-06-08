@@ -4,161 +4,8 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type Type record {
-    string dataAreaId?;
-    @jsondata:Name {value: "ShortName"}
-    string shortName?;
-    @jsondata:Name {value: "FlTypeId"}
-    string flTypeId?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-public type WebService record {
-    @jsondata:Name {value: "WebApplicationName"}
-    string webApplicationName?;
-    @jsondata:Name {value: "InternetAddress"}
-    string internetAddress?;
-    @jsondata:Name {value: "AdditionalSuccessfulResponseCodes"}
-    string additionalSuccessfulResponseCodes?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "WebService"}
-    string webService?;
-    @jsondata:Name {value: "SignXMLUriFormat"}
-    string signXMLUriFormat?;
-    @jsondata:Name {value: "SOAPPathResponse"}
-    string sOAPPathResponse?;
-    @jsondata:Name {value: "RequestTypeXML"}
-    NoYes requestTypeXML?;
-    @jsondata:Name {value: "RequestMethod"}
-    string requestMethod?;
-    @jsondata:Name {value: "SOAPPatternRequest"}
-    string sOAPPatternRequest?;
-    @jsondata:Name {value: "SignXML"}
-    NoYes signXML?;
-    @jsondata:Name {value: "SOAPEnvelope"}
-    NoYes sOAPEnvelope?;
-    @jsondata:Name {value: "SignXMLUseRSA256"}
-    NoYes signXMLUseRSA256?;
-    @jsondata:Name {value: "SignXMLUriPath"}
-    string signXMLUriPath?;
-    @jsondata:Name {value: "RequestHeadersFormatMappingGUID"}
-    string requestHeadersFormatMappingGUID?;
-    @jsondata:Name {value: "RequestAccept"}
-    string requestAccept?;
-    string dataAreaId?;
-    @jsondata:Name {value: "SignXMLPath"}
-    string signXMLPath?;
-    @jsondata:Name {value: "SOAPPathRequest"}
-    string sOAPPathRequest?;
-    @jsondata:Name {value: "UseAdvancedParameters"}
-    NoYes useAdvancedParameters?;
-    @jsondata:Name {value: "SuccessfulResponseCode"}
-    int:Signed32 successfulResponseCode?;
-    @jsondata:Name {value: "RequestContentType"}
-    string requestContentType?;
-    @jsondata:Name {value: "RequestHeaders"}
-    string requestHeaders?;
-    @jsondata:Name {value: "RequestAcceptEncoding"}
-    string requestAcceptEncoding?;
-};
-public type EMCompressionType "None"|"GZIP";
-public type BatchStatus "Hold"|"Waiting"|"Executing"|"Error"|"Finished"|"Ready"|"NotRun"|"Cancelling"|"Canceled"|"Scheduled";
-public type IntrastatItemTypeIT "Goods"|"Services";
-public type WorkflowAssociationType "Company"|"Global"|"Other";
-public type EMActionType "GERExport"|"GERImport"|"WEBService"|"User"|"ExecutableCode"|"PopulateRecords"|"ExecutableCodeMessageItemLevel"|"ValidateSchema"|"GERExportMessage"|"UserMessageLevel"|"CreateMessage";
-public type IntrastatOrderType "Order"|"Correction"|"Return";
-public type TrvPolicyViolationLevel "None"|"Warning"|"Error"|"ApproveJustification"|"SubmitJustification"|"SubmitApproveJustification";
-public type HierarchyPurpose "NotSet"|"PurchaseControl"|"ExpenseControl"|"OrganizationChart"|"SigningLimitControl"|"InvoiceControl"|"AuditInternalControl"|"CentralizedPayments"|"Security"|"RetailAssortment"|"RetailReplenishment"|"RetailReporting"|"BenefitEligibilityControl"|"BudgetPlanning"|"RetailPOSPosting"|"Project"|"PremiumEarningGeneration"|"MultiCompanyProcessing"|"RetailAutoCharge"|"DistributedOrderManagement";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type DimensionHierarchyConstraintStatus "Draft"|"Active"|"Activating";
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
 public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
-public type IntrastatDirection "Import"|"Export";
-public type NGPCode record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "NGP"}
-    int:Signed32 nGP?;
-};
-public type Workflow record {
-    @jsondata:Name {value: "Type"}
-    WorkflowConfigurationType 'type?;
-    @jsondata:Name {value: "DataArea"}
-    string dataArea?;
-    @jsondata:Name {value: "AssociationType"}
-    WorkflowAssociationType associationType?;
-    @jsondata:Name {value: "DocumentTableName"}
-    string documentTableName?;
-    @jsondata:Name {value: "SequenceNumber"}
-    string sequenceNumber?;
-    @jsondata:Name {value: "CategoryName"}
-    string categoryName?;
-    @jsondata:Name {value: "TemplateName"}
-    string templateName?;
-    @jsondata:Name {value: "DefaultConfiguration"}
-    NoYes defaultConfiguration?;
-    @jsondata:Name {value: "Module"}
-    ModuleAxapta 'module?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-public type SysPolicyTypeEnum "PurchasingPolicy"|"ApprovalPolicy"|"TrvExpensePolicy"|"TrvRequisitionPolicy"|"AuditPolicy"|"VendInvoicesPolicy"|"None"|"HcmBenefitEligibilityPolicy"|"PayrollPremiumEarningGenerationPolicy"|"ExpExpensePolicy"|"TimesheetPolicy";
-public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
-public type WorkflowConfigurationType "Definition"|"InProcess";
-public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
-public type DimensionRuleType "GeneralLedger"|"BudgetPlanning";
-public type BatchLogLevel "Always"|"Error"|"Never";
-public type ModuleAxapta "Ledger"|"Bank"|"SalesOrder"|"Customer"|"PurchaseOrder"|"Vendor"|"Inventory"|"BOM"|"Route"|"WorkCenter"|"Production"|"MasterPlanning"|"HumanResource"|"Project"|"Location"|"General"|"Costing"|"Expense"|"CRM"|"Activities"|"Contacts"|"BusinessRelations"|"Opportunities"|"Leads"|"Campaigns"|"Basic"|"TimeAndAttendance"|"Budget"|"FixedAssets"|"RetailTerminal"|"RCash"|"FleetManagement"|"TAM"|"ProcurementAndSourcing"|"NotApplicable"|"Obsolete"|"SalesAndMarketing"|"SystemAdministration"|"Tax"|"ProductInformationManagement"|"Workflow"|"Batch"|"DIXF"|"Alerts"|"WorkflowType"|"WorkflowExternalTask"|"WorkflowElement"|"WorkflowElementStarted"|"WorkflowWorkItem"|"BackgroundOperation"|"ProductionControl"|"IoTIntelligence"|"EMPAShared"|"GAB"|"Currency"|"FinancialDimensions"|"AccountingFoundation"|"FinancialReporting"|"Retail"|"ChannelManagement"|"BrickAndMortarStore"|"CallCenter"|"OnlineStore"|"Merchandising"|"CommerceCustomers"|"CommerceEmployees"|"InventoryAndAdvancedWarehouse"|"Payments"|"TransactionsAndOrders"|"WebActivity"|"CommerceMiscellaneous"|"CashManagement"|"FiscalBooksBrazil"|"AccountsReceivable"|"AccountsPayable"|"APARShared"|"ComplianceAndInternalControls"|"EGAIS"|"EInvoice"|"ElectronicMessages"|"ExportImportIndia"|"Intrastat"|"Payroll"|"ProjectManagementAndAccounting"|"PublicSector"|"RCashFlowManagement"|"RDeferrals"|"RSalesPurchBooks"|"RAsset"|"RTax25"|"ServiceManagement"|"Transportation"|"Warehouse"|"AssetLease"|"CostAccountingService"|"CredMan"|"EngineeringChangeManagement"|"AssetManagement"|"TAMRebate"|"SubscriptionBilling";
-public type NoYes "No"|"Yes";
-public type BusinessProcessType "Generic"|"Onboarding"|"Offboarding"|"Transitions";
+public type EMCompressionType "None"|"GZIP";
 public type Intrastat record {
     @jsondata:Name {value: "Quarter"}
     QuarterOfYear quarter?;
@@ -325,7 +172,146 @@ public type Intrastat record {
     @jsondata:Name {value: "CurrentAgreement"}
     NoYes currentAgreement?;
 };
-public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
+public type SysPolicyTypeEnum "PurchasingPolicy"|"ApprovalPolicy"|"TrvExpensePolicy"|"TrvRequisitionPolicy"|"AuditPolicy"|"VendInvoicesPolicy"|"None"|"HcmBenefitEligibilityPolicy"|"PayrollPremiumEarningGenerationPolicy"|"ExpExpensePolicy"|"TimesheetPolicy";
+public type WebService record {
+    @jsondata:Name {value: "WebApplicationName"}
+    string webApplicationName?;
+    @jsondata:Name {value: "InternetAddress"}
+    string internetAddress?;
+    @jsondata:Name {value: "AdditionalSuccessfulResponseCodes"}
+    string additionalSuccessfulResponseCodes?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "WebService"}
+    string webService?;
+    @jsondata:Name {value: "SignXMLUriFormat"}
+    string signXMLUriFormat?;
+    @jsondata:Name {value: "SOAPPathResponse"}
+    string sOAPPathResponse?;
+    @jsondata:Name {value: "RequestTypeXML"}
+    NoYes requestTypeXML?;
+    @jsondata:Name {value: "RequestMethod"}
+    string requestMethod?;
+    @jsondata:Name {value: "SOAPPatternRequest"}
+    string sOAPPatternRequest?;
+    @jsondata:Name {value: "SignXML"}
+    NoYes signXML?;
+    @jsondata:Name {value: "SOAPEnvelope"}
+    NoYes sOAPEnvelope?;
+    @jsondata:Name {value: "SignXMLUseRSA256"}
+    NoYes signXMLUseRSA256?;
+    @jsondata:Name {value: "SignXMLUriPath"}
+    string signXMLUriPath?;
+    @jsondata:Name {value: "RequestHeadersFormatMappingGUID"}
+    string requestHeadersFormatMappingGUID?;
+    @jsondata:Name {value: "RequestAccept"}
+    string requestAccept?;
+    string dataAreaId?;
+    @jsondata:Name {value: "SignXMLPath"}
+    string signXMLPath?;
+    @jsondata:Name {value: "SOAPPathRequest"}
+    string sOAPPathRequest?;
+    @jsondata:Name {value: "UseAdvancedParameters"}
+    NoYes useAdvancedParameters?;
+    @jsondata:Name {value: "SuccessfulResponseCode"}
+    int:Signed32 successfulResponseCode?;
+    @jsondata:Name {value: "RequestContentType"}
+    string requestContentType?;
+    @jsondata:Name {value: "RequestHeaders"}
+    string requestHeaders?;
+    @jsondata:Name {value: "RequestAcceptEncoding"}
+    string requestAcceptEncoding?;
+};
+public type BatchLogLevel "Always"|"Error"|"Never";
+public type Workflow record {
+    @jsondata:Name {value: "Type"}
+    WorkflowConfigurationType 'type?;
+    @jsondata:Name {value: "DataArea"}
+    string dataArea?;
+    @jsondata:Name {value: "AssociationType"}
+    WorkflowAssociationType associationType?;
+    @jsondata:Name {value: "DocumentTableName"}
+    string documentTableName?;
+    @jsondata:Name {value: "SequenceNumber"}
+    string sequenceNumber?;
+    @jsondata:Name {value: "CategoryName"}
+    string categoryName?;
+    @jsondata:Name {value: "TemplateName"}
+    string templateName?;
+    @jsondata:Name {value: "DefaultConfiguration"}
+    NoYes defaultConfiguration?;
+    @jsondata:Name {value: "Module"}
+    ModuleAxapta 'module?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+public type ModuleAxapta "Ledger"|"Bank"|"SalesOrder"|"Customer"|"PurchaseOrder"|"Vendor"|"Inventory"|"BOM"|"Route"|"WorkCenter"|"Production"|"MasterPlanning"|"HumanResource"|"Project"|"Location"|"General"|"Costing"|"Expense"|"CRM"|"Activities"|"Contacts"|"BusinessRelations"|"Opportunities"|"Leads"|"Campaigns"|"Basic"|"TimeAndAttendance"|"Budget"|"FixedAssets"|"RetailTerminal"|"RCash"|"FleetManagement"|"TAM"|"ProcurementAndSourcing"|"NotApplicable"|"Obsolete"|"SalesAndMarketing"|"SystemAdministration"|"Tax"|"ProductInformationManagement"|"Workflow"|"Batch"|"DIXF"|"Alerts"|"WorkflowType"|"WorkflowExternalTask"|"WorkflowElement"|"WorkflowElementStarted"|"WorkflowWorkItem"|"BackgroundOperation"|"ProductionControl"|"IoTIntelligence"|"EMPAShared"|"GAB"|"Currency"|"FinancialDimensions"|"AccountingFoundation"|"FinancialReporting"|"Retail"|"ChannelManagement"|"BrickAndMortarStore"|"CallCenter"|"OnlineStore"|"Merchandising"|"CommerceCustomers"|"CommerceEmployees"|"InventoryAndAdvancedWarehouse"|"Payments"|"TransactionsAndOrders"|"WebActivity"|"CommerceMiscellaneous"|"CashManagement"|"FiscalBooksBrazil"|"AccountsReceivable"|"AccountsPayable"|"APARShared"|"ComplianceAndInternalControls"|"EGAIS"|"EInvoice"|"ElectronicMessages"|"ExportImportIndia"|"Intrastat"|"Payroll"|"ProjectManagementAndAccounting"|"PublicSector"|"RCashFlowManagement"|"RDeferrals"|"RSalesPurchBooks"|"RAsset"|"RTax25"|"ServiceManagement"|"Transportation"|"Warehouse"|"AssetLease"|"CostAccountingService"|"CredMan"|"EngineeringChangeManagement"|"AssetManagement"|"TAMRebate"|"SubscriptionBilling";
+public type BusinessProcessType "Generic"|"Onboarding"|"Offboarding"|"Transitions";
+public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
+public type WorkflowAssociationType "Company"|"Global"|"Other";
+public type NoYes "No"|"Yes";
+public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
+public type EMActionType "GERExport"|"GERImport"|"WEBService"|"User"|"ExecutableCode"|"PopulateRecords"|"ExecutableCodeMessageItemLevel"|"ValidateSchema"|"GERExportMessage"|"UserMessageLevel"|"CreateMessage";
+public type TrvPolicyViolationLevel "None"|"Warning"|"Error"|"ApproveJustification"|"SubmitJustification"|"SubmitApproveJustification";
+public type DimensionRuleType "GeneralLedger"|"BudgetPlanning";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type Type record {
+    string dataAreaId?;
+    @jsondata:Name {value: "ShortName"}
+    string shortName?;
+    @jsondata:Name {value: "FlTypeId"}
+    string flTypeId?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type IntrastatItemTypeIT "Goods"|"Services";
+public type DimensionHierarchyConstraintStatus "Draft"|"Active"|"Activating";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -333,6 +319,20 @@ public type ODataCollection record {
     int odataCount?;
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
+};
+public type BatchStatus "Hold"|"Waiting"|"Executing"|"Error"|"Finished"|"Ready"|"NotRun"|"Cancelling"|"Canceled"|"Scheduled";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+public type HierarchyPurpose "NotSet"|"PurchaseControl"|"ExpenseControl"|"OrganizationChart"|"SigningLimitControl"|"InvoiceControl"|"AuditInternalControl"|"CentralizedPayments"|"Security"|"RetailAssortment"|"RetailReplenishment"|"RetailReporting"|"BenefitEligibilityControl"|"BudgetPlanning"|"RetailPOSPosting"|"Project"|"PremiumEarningGeneration"|"MultiCompanyProcessing"|"RetailAutoCharge"|"DistributedOrderManagement";
+public type IntrastatOrderType "Order"|"Correction"|"Return";
+public type IntrastatDirection "Import"|"Export";
+public type WorkflowConfigurationType "Definition"|"InProcess";
+public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
+public type NGPCode record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "NGP"}
+    int:Signed32 nGP?;
 };
 public type DatabaseLogType "Insert"|"Delete"|"Update"|"RenameKey"|"EventInsert"|"EventDelete"|"EventUpdate"|"EventRenameKey";
 public type PolicyTypesCollection record {

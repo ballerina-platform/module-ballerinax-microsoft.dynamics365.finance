@@ -4,27 +4,6 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type Type record {
-    string dataAreaId?;
-    @jsondata:Name {value: "ShortName"}
-    string shortName?;
-    @jsondata:Name {value: "FlTypeId"}
-    string flTypeId?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-public type WHSLoadSplitShipConfirmPolicy "ManualSelection"|"CancelUnfulfilledQuantity"|"SplitQtyToNewLoad";
-public type EveryProduct record {
-    @jsondata:Name {value: "ProductName"}
-    string productName?;
-    @jsondata:Name {value: "ProductNumber"}
-    string productNumber?;
-    @jsondata:Name {value: "ProductDescription"}
-    string productDescription?;
-    @jsondata:Name {value: "ProductSearchName"}
-    string productSearchName?;
-};
-public type InventSiteGateTypeIN "In"|"Out";
 public type Document record {
     @jsondata:Name {value: "UnloadingState"}
     string unloadingState?;
@@ -144,50 +123,54 @@ public type Document record {
     @jsondata:Name {value: "UnloadingCountryRegionISOCode"}
     string unloadingCountryRegionISOCode?;
 };
-public type Parameters record {
-    @jsondata:Name {value: "CashFlowDimension"}
-    string cashFlowDimension?;
-    @jsondata:Name {value: "CashflowCodeFormat"}
-    string cashflowCodeFormat?;
-    @jsondata:Name {value: "FixedAssetGroupCodeFormat"}
-    string fixedAssetGroupCodeFormat?;
-    @jsondata:Name {value: "ERModelName"}
-    string eRModelName?;
-    @jsondata:Name {value: "BalanceSheet"}
-    string balanceSheet?;
-    @jsondata:Name {value: "CashflowAdditional"}
-    string cashflowAdditional?;
-    @jsondata:Name {value: "OrgNumber"}
-    string orgNumber?;
-    @jsondata:Name {value: "ChangesOfOwnersEquity"}
-    string changesOfOwnersEquity?;
-    @jsondata:Name {value: "Industry"}
-    string industry?;
-    string dataAreaId?;
-    @jsondata:Name {value: "DepreciationLedgerDimensionDisplayValue"}
-    string depreciationLedgerDimensionDisplayValue?;
-    @jsondata:Name {value: "IncomeSheet"}
-    string incomeSheet?;
-    @jsondata:Name {value: "OrgType"}
-    GBTOrgTypeCN orgType?;
-    @jsondata:Name {value: "CashflowMajorSheet"}
-    string cashflowMajorSheet?;
-    @jsondata:Name {value: "DisposalLedgerDimensionDisplayValue"}
-    string disposalLedgerDimensionDisplayValue?;
-    @jsondata:Name {value: "AcquisitionLedgerDimensionDisplayValue"}
-    string acquisitionLedgerDimensionDisplayValue?;
-    int:Signed32 'key;
-};
-public type CarrierTypeW "InvoiceAccount"|"Customer"|"Vendor";
+public type LedgerPeriodType "None"|"FiscalYear"|"Period"|"Year"|"SixMths"|"Tertial"|"Quarter"|"Month"|"Week";
+public type TaxTypeIN "None"|"VAT"|"SalesTax"|"Excise"|"ServiceTax"|"Customs"|"GST";
 public type EInvoiceExtCodeTypeMX "TaxRegime"|"ProductOrService"|"UnitOfMeasure"|"Purpose"|"PaymentMethod"|"IncotermCode"|"TariffFraction"|"CustomUnitOfMeasure"|"ShippingReason"|"PermissionType"|"TransConf"|"TrailerType"|"SpotType"|"ActorRole"|"WeightUnit"|"DocumentType"|"CustomsRegime"|"CustomsMaterialType";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
+public type DocumentType record {
+    @jsondata:Name {value: "Site"}
+    string site?;
+    @jsondata:Name {value: "Parameters"}
+    record {byte[] fileContent; string fileName;} parameters?;
+    @jsondata:Name {value: "ActionClassName"}
+    string actionClassName?;
+    @jsondata:Name {value: "FolderPath"}
+    string folderPath?;
+    @jsondata:Name {value: "Host"}
+    string host?;
+    @jsondata:Name {value: "FilePlace"}
+    DocuFilePlace filePlace?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    string dataAreaId?;
+    @jsondata:Name {value: "TypeGroup"}
+    DocuTypeGroup typeGroup?;
+    @jsondata:Name {value: "ID"}
+    string iD?;
+    @jsondata:Name {value: "RemoveOption"}
+    DocuRemoveOption removeOption?;
+    @jsondata:Name {value: "FileRemovalConfirmation"}
+    NoYes fileRemovalConfirmation?;
+    @jsondata:Name {value: "DocuStructureType"}
+    DocuStructureType docuStructureType?;
+};
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+public type DocuTypeGroup "Note"|"File"|"Image"|"Document"|"Worksheet"|"URL";
 public type PaymentFormatCodeTypeW "ServiceLevel"|"LocalInstrument"|"CategoryPurpose"|"ChargeBearer";
-public type EconomicActivityType "None"|"DeliveryGoods"|"OtherTaxPayer"|"Transfer";
+public type DocuFilePlace "Archive"|"Database"|"SharePoint";
+public type EveryProduct record {
+    @jsondata:Name {value: "ProductName"}
+    string productName?;
+    @jsondata:Name {value: "ProductNumber"}
+    string productNumber?;
+    @jsondata:Name {value: "ProductDescription"}
+    string productDescription?;
+    @jsondata:Name {value: "ProductSearchName"}
+    string productSearchName?;
+};
+public type SalesPurchBothBR "Sales"|"Purch"|"Both";
+public type NoYes "No"|"Yes";
+public type PeriodUnitCalc "Day"|"Month"|"Year"|"Period";
+public type WHSLoadSplitShipConfirmPolicy "ManualSelection"|"CancelUnfulfilledQuantity"|"SplitQtyToNewLoad";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -229,45 +212,60 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type DocuTypeGroup "Note"|"File"|"Image"|"Document"|"Worksheet"|"URL";
-public type PeriodUnitCalc "Day"|"Month"|"Year"|"Period";
-public type LedgerPeriodType "None"|"FiscalYear"|"Period"|"Year"|"SixMths"|"Tertial"|"Quarter"|"Month"|"Week";
-public type DocuRemoveOption "DocumentOnly"|"DocumentAndFile";
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-public type DocuFilePlace "Archive"|"Database"|"SharePoint";
-public type GBTOrgTypeCN "Enterprise"|"NonProfitUndertaking";
-public type SalesPurchBothBR "Sales"|"Purch"|"Both";
-public type DocumentType record {
-    @jsondata:Name {value: "Site"}
-    string site?;
-    @jsondata:Name {value: "Parameters"}
-    record {byte[] fileContent; string fileName;} parameters?;
-    @jsondata:Name {value: "ActionClassName"}
-    string actionClassName?;
-    @jsondata:Name {value: "FolderPath"}
-    string folderPath?;
-    @jsondata:Name {value: "Host"}
-    string host?;
-    @jsondata:Name {value: "FilePlace"}
-    DocuFilePlace filePlace?;
+public type Type record {
+    string dataAreaId?;
+    @jsondata:Name {value: "ShortName"}
+    string shortName?;
+    @jsondata:Name {value: "FlTypeId"}
+    string flTypeId?;
     @jsondata:Name {value: "Name"}
     string name?;
-    string dataAreaId?;
-    @jsondata:Name {value: "TypeGroup"}
-    DocuTypeGroup typeGroup?;
-    @jsondata:Name {value: "ID"}
-    string iD?;
-    @jsondata:Name {value: "RemoveOption"}
-    DocuRemoveOption removeOption?;
-    @jsondata:Name {value: "FileRemovalConfirmation"}
-    NoYes fileRemovalConfirmation?;
-    @jsondata:Name {value: "DocuStructureType"}
-    DocuStructureType docuStructureType?;
 };
-public type StartEnd "None"|"Start"|"End";
-public type NoYes "No"|"Yes";
-public type TaxTypeIN "None"|"VAT"|"SalesTax"|"Excise"|"ServiceTax"|"Customs"|"GST";
+public type Parameters record {
+    @jsondata:Name {value: "CashFlowDimension"}
+    string cashFlowDimension?;
+    @jsondata:Name {value: "CashflowCodeFormat"}
+    string cashflowCodeFormat?;
+    @jsondata:Name {value: "FixedAssetGroupCodeFormat"}
+    string fixedAssetGroupCodeFormat?;
+    @jsondata:Name {value: "ERModelName"}
+    string eRModelName?;
+    @jsondata:Name {value: "BalanceSheet"}
+    string balanceSheet?;
+    @jsondata:Name {value: "CashflowAdditional"}
+    string cashflowAdditional?;
+    @jsondata:Name {value: "OrgNumber"}
+    string orgNumber?;
+    @jsondata:Name {value: "ChangesOfOwnersEquity"}
+    string changesOfOwnersEquity?;
+    @jsondata:Name {value: "Industry"}
+    string industry?;
+    string dataAreaId?;
+    @jsondata:Name {value: "DepreciationLedgerDimensionDisplayValue"}
+    string depreciationLedgerDimensionDisplayValue?;
+    @jsondata:Name {value: "IncomeSheet"}
+    string incomeSheet?;
+    @jsondata:Name {value: "OrgType"}
+    GBTOrgTypeCN orgType?;
+    @jsondata:Name {value: "CashflowMajorSheet"}
+    string cashflowMajorSheet?;
+    @jsondata:Name {value: "DisposalLedgerDimensionDisplayValue"}
+    string disposalLedgerDimensionDisplayValue?;
+    @jsondata:Name {value: "AcquisitionLedgerDimensionDisplayValue"}
+    string acquisitionLedgerDimensionDisplayValue?;
+    int:Signed32 'key;
+};
+public type CarrierTypeW "InvoiceAccount"|"Customer"|"Vendor";
+public type EconomicActivityType "None"|"DeliveryGoods"|"OtherTaxPayer"|"Transfer";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type DocuRemoveOption "DocumentOnly"|"DocumentAndFile";
 public type DocuStructureType "None"|"Specifications"|"DataSheets"|"Brochures"|"Catalogs"|"Drawings"|"Contracts"|"QA"|"Analyses"|"Technical"|"Guides"|"Maintenance"|"Notes"|"Receipts";
+public type GBTOrgTypeCN "Enterprise"|"NonProfitUndertaking";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -276,6 +274,8 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
+public type InventSiteGateTypeIN "In"|"Out";
+public type StartEnd "None"|"Start"|"End";
 public type ImportModesCollection record {
     *ODataCollection;
     *ImportModesCollectionAllOf2;

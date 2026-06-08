@@ -4,7 +4,70 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type TaxRegistrationTypesList "None"|"KPP"|"INN"|"OKDP"|"OKPO"|"OKATO"|"OGRN"|"SNILS"|"CIFTS"|"UID"|"TAXID"|"BranchId"|"CommercialRegisterCZ"|"CustomsCustomerId"|"Passport"|"OfficialIdDoc"|"ResidenceCertificate"|"OtherIdDoc"|"NotCensused"|"BusinessPremiseID"|"LotteryCode"|"SIRET"|"PersonID"|"QualifiedInvoiceIssuer"|"WithholdingTaxPayerReference"|"EAN"|"EUVatID";
+public type Table record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Comment"}
+    string comment?;
+    @jsondata:Name {value: "VATOffsetMethodForDeferrals"}
+    RDeferralsVATRefundingMethod vATOffsetMethodForDeferrals?;
+    @jsondata:Name {value: "DateAttached"}
+    string dateAttached?;
+    @jsondata:Name {value: "DeferralId"}
+    string deferralId?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+public type PSSerialTypeTR "Invoice"|"PackingSlip";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type RTax25StdChannelType "Register"|"Deferral"|"DeferralsFactor";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
 public type Type record {
     string dataAreaId?;
     @jsondata:Name {value: "ShortName"}
@@ -14,6 +77,17 @@ public type Type record {
     @jsondata:Name {value: "Name"}
     string name?;
 };
+public type OffReportTypeRU "General"|"CashSlip"|"AdvanceReport"|"CashBookPage"|"SalesInvoice"|"PurchInvoice"|"InventTORG16"|"InventTORG13"|"InventM11"|"InventINV19"|"ProdM8"|"SalesInvoice4Paym"|"CashCountStatement"|"CustFacture"|"VendFacture"|"SalesInvoiceCreditNote"|"PurchInvoiceCreditNote"|"CustFactureCreditNote"|"VendFactureCreditNote"|"EmplAdvanceReportFacture"|"PurchInvoice4Paym"|"TaxCorrectionFactureVend"|"TaxCorrectionFactureCust"|"SalesInvoiceM15"|"PurchM4M7"|"RPayTaxList"|"RTax25Inv17"|"InventINV3"|"RDeferrals"|"RAssetsINV1"|"RAssetsINV1a"|"RAssetMB8"|"InventINV5"|"TransferInvoiceM15"|"CommissionAgentReport"|"InventINV6"|"RPayCivilContract";
+public type ModuleCustVend "Cust"|"Vend";
+public type TaxRegistrationTypesList "None"|"KPP"|"INN"|"OKDP"|"OKPO"|"OKATO"|"OGRN"|"SNILS"|"CIFTS"|"UID"|"TAXID"|"BranchId"|"CommercialRegisterCZ"|"CustomsCustomerId"|"Passport"|"OfficialIdDoc"|"ResidenceCertificate"|"OtherIdDoc"|"NotCensused"|"BusinessPremiseID"|"LotteryCode"|"SIRET"|"PersonID"|"QualifiedInvoiceIssuer"|"WithholdingTaxPayerReference"|"EAN"|"EUVatID";
+public type OffTableAllRU "Table"|"All";
+public type NoYes "No"|"Yes";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
 public type WebService record {
     @jsondata:Name {value: "WebApplicationName"}
     string webApplicationName?;
@@ -63,84 +137,10 @@ public type WebService record {
     @jsondata:Name {value: "RequestAcceptEncoding"}
     string requestAcceptEncoding?;
 };
-public type OffTableAllRU "Table"|"All";
-public type RTax25StdModuleType "ProfitTax"|"Deferrals"|"AccountsReceivable";
-public type RDeferralsVATRefundingMethod "Standard"|"Proportional";
-public type RTax25StdChannelType "Register"|"Deferral"|"DeferralsFactor";
-public type OffInvRelationTypeAllTableRU "All"|"Table";
-public type PSSerialTypeTR "Invoice"|"PackingSlip";
-public type NoYes "No"|"Yes";
-public type Table record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Comment"}
-    string comment?;
-    @jsondata:Name {value: "VATOffsetMethodForDeferrals"}
-    RDeferralsVATRefundingMethod vATOffsetMethodForDeferrals?;
-    @jsondata:Name {value: "DateAttached"}
-    string dateAttached?;
-    @jsondata:Name {value: "DeferralId"}
-    string deferralId?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-public type ModuleCustVend "Cust"|"Vend";
-public type OffReportTypeRU "General"|"CashSlip"|"AdvanceReport"|"CashBookPage"|"SalesInvoice"|"PurchInvoice"|"InventTORG16"|"InventTORG13"|"InventM11"|"InventINV19"|"ProdM8"|"SalesInvoice4Paym"|"CashCountStatement"|"CustFacture"|"VendFacture"|"SalesInvoiceCreditNote"|"PurchInvoiceCreditNote"|"CustFactureCreditNote"|"VendFactureCreditNote"|"EmplAdvanceReportFacture"|"PurchInvoice4Paym"|"TaxCorrectionFactureVend"|"TaxCorrectionFactureCust"|"SalesInvoiceM15"|"PurchM4M7"|"RPayTaxList"|"RTax25Inv17"|"InventINV3"|"RDeferrals"|"RAssetsINV1"|"RAssetsINV1a"|"RAssetMB8"|"InventINV5"|"TransferInvoiceM15"|"CommissionAgentReport"|"InventINV6"|"RPayCivilContract";
 public type OffPositionRU "Director"|"Accountant"|"Cashier"|"Filler"|"Supplier"|"Acceptor"|"Taker"|"Requester"|"Manager"|"Chairman"|"Member"|"InCharge"|"Responsible"|"AccountantJ"|"Representative"|"Controller"|"TransResp"|"TransRespCust"|"TransRespVend"|"TransRespCarrier";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
+public type RDeferralsVATRefundingMethod "Standard"|"Proportional";
+public type OffInvRelationTypeAllTableRU "All"|"Table";
+public type RTax25StdModuleType "ProfitTax"|"Deferrals"|"AccountsReceivable";
 public type ReasonsCollection record {
     *ODataCollection;
     *ReasonsCollectionAllOf2;
