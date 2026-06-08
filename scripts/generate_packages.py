@@ -923,6 +923,32 @@ def write_utils_bal(pkg_dir: Path, utils_text: str) -> None:
     (pkg_dir / "utils.bal").write_text(utils_text)
 
 
+def write_readme(pkg_dir: Path, pkg_name: str, cfg: dict) -> None:
+    """Generate README.md from the shared template so the file is tracked by git."""
+    template_path = BUILD_CFG_DIR.parent.parent / "build-config" / "resources" / "README.md"
+    if not template_path.exists():
+        return
+    full_pkg = f"microsoft.dynamics365.finance.{pkg_name}"
+    entities_example = cfg["entities"][:3] if cfg["entities"] else ["Entity"]
+    first_entity = entities_example[0] if entities_example else "Entity"
+    list_func = f"list{first_entity}"
+    collection_type = f"{first_entity}Collection"
+    key_features = "\n".join([
+        f"- Manage {cfg['display'].lower()} entities in Microsoft Dynamics 365 Finance",
+        "- Support for list, create, read, update, and delete operations",
+        "- OAuth2 client credentials authentication",
+    ])
+    content = template_path.read_text()
+    content = content.replace("@package-name@", full_pkg)
+    content = content.replace("@description@", f"The `{full_pkg}` connector provides access to Microsoft Dynamics 365 Finance {cfg['display']} entities via the OData REST API.")
+    content = content.replace("@key-features@", key_features)
+    content = content.replace("@communication-scenario@", f"Connecting to Microsoft Dynamics 365 Finance {cfg['display']} API")
+    content = content.replace("@import-statement@", f"import ballerinax/{full_pkg};")
+    content = content.replace("@client-init@", f"{pkg_name}:Client cl = check new ({{")
+    content = content.replace("@api-invocation@", f"{pkg_name}:{collection_type} results = check cl->{list_func}();")
+    (pkg_dir / "README.md").write_text(content)
+
+
 def write_docs_json(pkg_dir: Path, pkg_name: str, cfg: dict) -> None:
     full_pkg = f"microsoft.dynamics365.finance.{pkg_name}"
     entities_example = cfg["entities"][:3] if cfg["entities"] else ["Entity"]
@@ -1033,6 +1059,7 @@ def generate_all():
             write_build_gradle(pkg_dir, pkg_name, cfg)
             write_build_config_toml(pkg_name, cfg)
             write_docs_json(pkg_dir, pkg_name, cfg)
+            write_readme(pkg_dir, pkg_name, cfg)
 
             # Report size
             types_file = pkg_dir / "types.bal"
