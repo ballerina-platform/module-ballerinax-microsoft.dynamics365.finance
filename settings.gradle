@@ -45,7 +45,7 @@ rootProject.name = "module-ballerinax-${projectName}"
 include ":${projectName}-ballerina"
 project(":${projectName}-ballerina").projectDir = file("ballerina")
 
-def ballerinaBuckets = ['budget', 'core', 'customer', 'customeraccount', 'document', 'expense', 'fiscal', 'fixedasset', 'hr', 'hrdev', 'ledger', 'mainaccount', 'payment', 'procurement', 'project', 'receivable', 'sysconfig', 'system', 'tax', 'taxregion', 'trade', 'users', 'vendor', 'vendorpayment', 'workflow']
+def ballerinaBuckets = ['budget', 'cashmanagement', 'core', 'coreorg', 'customer', 'customeraccount', 'customermain', 'document', 'expense', 'fiscal', 'fixedasset', 'hr', 'hrdev', 'journalentry', 'ledger', 'mainaccount', 'payment', 'procurement', 'project', 'receivable', 'sysconfig', 'system', 'tax', 'taxregion', 'trade', 'users', 'vendor', 'vendorextended', 'vendorpayment', 'workflow']
 ballerinaBuckets.each { bucket ->
     include ":${projectName}-ballerina:${bucket}"
     project(":${projectName}-ballerina:${bucket}").projectDir = file("ballerina/${bucket}")

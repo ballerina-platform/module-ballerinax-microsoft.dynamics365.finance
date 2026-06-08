@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.journalentry connector provides access to Microsoft Dynamics 365 Finance Journal Entry entities via the OData REST API.",
+  "key-features": [
+    "Manage journal entry entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Journal Entry API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.journalentry;",
+  "client-init": "journalentry:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "journalentry:JournalLinesCollection results = check cl->listJournalLines();"
+}

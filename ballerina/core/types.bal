@@ -4,86 +4,51 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-# Represents the Headers record for the operation: deletePaymentCalendarRules
-public type DeletePaymentCalendarRulesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
+public type ABC "None"|"A"|"B"|"C";
+public type AddressBooks record {
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "System"}
+    NoYes system?;
+    @jsondata:Name {value: "Name"}
+    string name?;
 };
-# Represents the Queries record for the operation: getBusinessUnits
-public type GetBusinessUnitsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
+public type AddressState record {
+    @jsondata:Name {value: "BrazilStateCode"}
+    string brazilStateCode?;
+    @jsondata:Name {value: "TimeZone"}
+    Timezone timeZone?;
+    @jsondata:Name {value: "DefaultStateForCountryRegion"}
+    NoYes defaultStateForCountryRegion?;
+    @jsondata:Name {value: "CountryRegionId"}
+    string countryRegionId?;
+    @jsondata:Name {value: "State"}
+    string state?;
+    @jsondata:Name {value: "IntrastatCode"}
+    string intrastatCode?;
+    @jsondata:Name {value: "Name"}
+    string name?;
 };
-public type GenderMaleFemale "Male"|"Female";
-# Represents the Headers record for the operation: deleteDirParameters
-public type DeleteDirParametersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
+public type Branch record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Address"}
+    string address?;
+    @jsondata:Name {value: "LogisticsLocation_LocationId"}
+    string logisticsLocationLocationId?;
+    @jsondata:Name {value: "HeadOffice"}
+    NoYes headOffice?;
+    @jsondata:Name {value: "Code"}
+    string code?;
+    @jsondata:Name {value: "Name"}
+    string name?;
 };
-# Represents the Headers record for the operation: deleteCategories
-public type DeleteCategoriesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type CreditCardCreditCheck "Normal"|"ByPass";
-public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
-# Represents the Headers record for the operation: deleteDepartmentsV2
-public type DeleteDepartmentsV2Headers record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getExchangeRates
-public type GetExchangeRatesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
-# Represents the Headers record for the operation: updateVRMTaxGroups
-public type UpdateVRMTaxGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listCardTypes
-public type ListCardTypesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
+public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -125,8 +90,793 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-# Represents the Queries record for the operation: getVRMLanguages
-public type GetVRMLanguagesQueries record {
+public type SysLocalizationCountryRegionCode "Default"|"None"|"BE"|"BR"|"CA"|"CZ"|"DE"|"EE"|"ES"|"FR"|"GB"|"HU"|"IE"|"IN"|"IT"|"JP"|"LT"|"LV"|"MX"|"NL"|"NO"|"PL"|"RU"|"SA"|"TH"|"US"|"AU"|"CN"|"DK"|"FI"|"MY"|"SG"|"ZA"|"SE"|"CH"|"IS"|"AT"|"TR";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
+public type LegalEntity record {
+    @jsondata:Name {value: "PrimaryContactEmailPurpose"}
+    string primaryContactEmailPurpose?;
+    @jsondata:Name {value: "FiscalCode"}
+    string fiscalCode?;
+    @jsondata:Name {value: "PrimaryContactEmail"}
+    string primaryContactEmail?;
+    @jsondata:Name {value: "CUC"}
+    string cUC?;
+    @jsondata:Name {value: "NationalClassificationOfCompanyEconomicActivity"}
+    string nationalClassificationOfCompanyEconomicActivity?;
+    @jsondata:Name {value: "AddressCity"}
+    string addressCity?;
+    @jsondata:Name {value: "AddressLongitude"}
+    decimal addressLongitude?;
+    @jsondata:Name {value: "PrimaryContactTwitter"}
+    string primaryContactTwitter?;
+    @jsondata:Name {value: "PrimaryContactEmailIsIM"}
+    NoYes primaryContactEmailIsIM?;
+    @jsondata:Name {value: "PrintINNKPPInAddress"}
+    NoYes printINNKPPInAddress?;
+    @jsondata:Name {value: "LegalNature"}
+    LegalNatureIT legalNature?;
+    @jsondata:Name {value: "AccountsOfficeReferenceNumber"}
+    string accountsOfficeReferenceNumber?;
+    @jsondata:Name {value: "PrimaryContactFax"}
+    string primaryContactFax?;
+    @jsondata:Name {value: "UseForFinancialEliminationProcess"}
+    NoYes useForFinancialEliminationProcess?;
+    @jsondata:Name {value: "ImportVATNum"}
+    string importVATNum?;
+    @jsondata:Name {value: "PrimaryContactLinkedIn"}
+    string primaryContactLinkedIn?;
+    @jsondata:Name {value: "CompanyType"}
+    CompanyTypeMX companyType?;
+    @jsondata:Name {value: "StartDateOfBusiness"}
+    string startDateOfBusiness?;
+    @jsondata:Name {value: "AddressCountryRegionId"}
+    string addressCountryRegionId?;
+    @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
+    string primaryContactTwitterPurpose?;
+    @jsondata:Name {value: "AddressCountryRegionISOCode"}
+    string addressCountryRegionISOCode?;
+    @jsondata:Name {value: "FullPrimaryAddress"}
+    string fullPrimaryAddress?;
+    @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
+    string primaryContactLinkedInPurpose?;
+    @jsondata:Name {value: "TimeZone"}
+    Timezone timeZone?;
+    @jsondata:Name {value: "NameAlias"}
+    string nameAlias?;
+    @jsondata:Name {value: "PrimaryAddressLocationId"}
+    string primaryAddressLocationId?;
+    @jsondata:Name {value: "PrimaryContactURLDescription"}
+    string primaryContactURLDescription?;
+    @jsondata:Name {value: "PrimaryContactFacebookDescription"}
+    string primaryContactFacebookDescription?;
+    @jsondata:Name {value: "AddressZipCode"}
+    string addressZipCode?;
+    @jsondata:Name {value: "VATOnCustomerBehalf"}
+    NoYes vATOnCustomerBehalf?;
+    @jsondata:Name {value: "AddressLocationRoles"}
+    string addressLocationRoles?;
+    @jsondata:Name {value: "SoftwareIdentificationCode"}
+    string softwareIdentificationCode?;
+    @jsondata:Name {value: "StateInscription"}
+    string stateInscription?;
+    @jsondata:Name {value: "ExternalLegalRepresentativeName"}
+    string externalLegalRepresentativeName?;
+    @jsondata:Name {value: "PrimaryContactURLPurpose"}
+    string primaryContactURLPurpose?;
+    @jsondata:Name {value: "PrintCorrectiveInvoice"}
+    NoYes printCorrectiveInvoice?;
+    @jsondata:Name {value: "RfcLegalRepresentative"}
+    string rfcLegalRepresentative?;
+    @jsondata:Name {value: "DNBRoutingNumber"}
+    string dNBRoutingNumber?;
+    @jsondata:Name {value: "LegalEntityId"}
+    string legalEntityId?;
+    @jsondata:Name {value: "AddressDescription"}
+    string addressDescription?;
+    @jsondata:Name {value: "ProfitMarginScheme"}
+    NoYes profitMarginScheme?;
+    @jsondata:Name {value: "RegistrationNumber"}
+    string registrationNumber?;
+    @jsondata:Name {value: "TraderNumber"}
+    string traderNumber?;
+    @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
+    NoYes primaryContactPhoneIsMobile?;
+    @jsondata:Name {value: "CertifiedTaxAccountantName"}
+    string certifiedTaxAccountantName?;
+    @jsondata:Name {value: "AccountingPersonnel"}
+    string accountingPersonnel?;
+    @jsondata:Name {value: "PrimaryContactFacebook"}
+    string primaryContactFacebook?;
+    @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
+    NoYes primaryContactFacebookIsPrivate?;
+    @jsondata:Name {value: "UseForFinancialConsolidationProcess"}
+    NoYes useForFinancialConsolidationProcess?;
+    @jsondata:Name {value: "PrimaryContactFaxPurpose"}
+    string primaryContactFaxPurpose?;
+    @jsondata:Name {value: "AddressStreet"}
+    string addressStreet?;
+    @jsondata:Name {value: "NationalRegistryNumber"}
+    string nationalRegistryNumber?;
+    @jsondata:Name {value: "VATRefund"}
+    NoYes vATRefund?;
+    @jsondata:Name {value: "CurpNumber"}
+    string curpNumber?;
+    @jsondata:Name {value: "PrimaryContactPhonePurpose"}
+    string primaryContactPhonePurpose?;
+    @jsondata:Name {value: "Rfc"}
+    string rfc?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    @jsondata:Name {value: "NAICS"}
+    string nAICS?;
+    @jsondata:Name {value: "CompanyName"}
+    string companyName?;
+    @jsondata:Name {value: "PrimaryContactPhoneDescription"}
+    string primaryContactPhoneDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterDescription"}
+    string primaryContactTwitterDescription?;
+    @jsondata:Name {value: "AddressValidFrom"}
+    string addressValidFrom?;
+    @jsondata:Name {value: "PrimaryContactPhoneExtension"}
+    string primaryContactPhoneExtension?;
+    @jsondata:Name {value: "InitialCapitalInvestment"}
+    decimal initialCapitalInvestment?;
+    @jsondata:Name {value: "LegalForm"}
+    string legalForm?;
+    @jsondata:Name {value: "PrintEnterpriseRegister"}
+    NoYes printEnterpriseRegister?;
+    @jsondata:Name {value: "AddressTimeZone"}
+    Timezone addressTimeZone?;
+    @jsondata:Name {value: "ReportFolder"}
+    string reportFolder?;
+    @jsondata:Name {value: "PhoneticName"}
+    string phoneticName?;
+    @jsondata:Name {value: "LegalRepresentativeName"}
+    string legalRepresentativeName?;
+    @jsondata:Name {value: "PersonInCharge"}
+    string personInCharge?;
+    @jsondata:Name {value: "AddressValidTo"}
+    string addressValidTo?;
+    @jsondata:Name {value: "BusinessItem"}
+    string businessItem?;
+    @jsondata:Name {value: "VATNum"}
+    string vATNum?;
+    @jsondata:Name {value: "CompanyRepresentative"}
+    string companyRepresentative?;
+    @jsondata:Name {value: "AddressBooks"}
+    string addressBooks?;
+    @jsondata:Name {value: "PrimaryContactURL"}
+    string primaryContactURL?;
+    @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
+    string primaryContactFacebookPurpose?;
+    @jsondata:Name {value: "PrimaryContactLinkedInIsPrivate"}
+    NoYes primaryContactLinkedInIsPrivate?;
+    @jsondata:Name {value: "AddressCounty"}
+    string addressCounty?;
+    @jsondata:Name {value: "PrintCorrectiveInvoiceStartingDate"}
+    string printCorrectiveInvoiceStartingDate?;
+    @jsondata:Name {value: "PrimaryContactEmailDescription"}
+    string primaryContactEmailDescription?;
+    @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
+    string primaryContactLinkedInDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
+    NoYes primaryContactTwitterIsPrivate?;
+    @jsondata:Name {value: "CurpLegalRepresentative"}
+    string curpLegalRepresentative?;
+    @jsondata:Name {value: "PrimaryContactPhone"}
+    string primaryContactPhone?;
+    @jsondata:Name {value: "FICreditorID"}
+    string fICreditorID?;
+    @jsondata:Name {value: "PrimaryContactTelexDescription"}
+    string primaryContactTelexDescription?;
+    @jsondata:Name {value: "LocalizationCountryRegionCode"}
+    SysLocalizationCountryRegionCode localizationCountryRegionCode?;
+    @jsondata:Name {value: "PrimaryContactFaxExtension"}
+    string primaryContactFaxExtension?;
+    @jsondata:Name {value: "PrimaryContactTelexPurpose"}
+    string primaryContactTelexPurpose?;
+    @jsondata:Name {value: "CommerceRegistration"}
+    string commerceRegistration?;
+    @jsondata:Name {value: "AddressDistrictName"}
+    string addressDistrictName?;
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "PrimaryContactFaxDescription"}
+    string primaryContactFaxDescription?;
+    @jsondata:Name {value: "PrimaryContactTelex"}
+    string primaryContactTelex?;
+    @jsondata:Name {value: "LanguageId"}
+    string languageId?;
+    @jsondata:Name {value: "AddressState"}
+    string addressState?;
+    @jsondata:Name {value: "CompanyCountry"}
+    string companyCountry?;
+    @jsondata:Name {value: "AddressLatitude"}
+    decimal addressLatitude?;
+};
+public type LegalNatureIT "LN1"|"LN2"|"LN3"|"LN4"|"LN5"|"LN6"|"LN7"|"LN8"|"LN9"|"LN10"|"LN11"|"LN12"|"LN13"|"LN14"|"LN15"|"LN16"|"LN17"|"LN18"|"LN19"|"LN20"|"LN21"|"LN22"|"LN23"|"LN24"|"LN25"|"LN26"|"LN27"|"LN28"|"LN29"|"LN50"|"LN51"|"LN52"|"LN53"|"LN54"|"LN55"|"LN56"|"LN57"|"LN58"|"LN30"|"LN31"|"LN32"|"LN33"|"LN34"|"LN35"|"LN36"|"LN37"|"LN38"|"LN39"|"LN40"|"LN41"|"LN42"|"LN43"|"LN44"|"LN59";
+public type OMInternalOrganizationType "None"|"LegalEntity"|"OperatingUnit"|"Team";
+public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
+public type NoYes "No"|"Yes";
+public type Company record {
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "DataArea"}
+    string dataArea?;
+    @jsondata:Name {value: "KnownAs"}
+    string knownAs?;
+    @jsondata:Name {value: "LanguageId"}
+    string languageId?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+public type AddressCity record {
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "CountryRegionId"}
+    string countryRegionId?;
+    @jsondata:Name {value: "StateId"}
+    string stateId?;
+    @jsondata:Name {value: "CountyId"}
+    string countyId?;
+    @jsondata:Name {value: "ItalyCityCode"}
+    string italyCityCode?;
+    @jsondata:Name {value: "CityKey"}
+    string cityKey?;
+    @jsondata:Name {value: "ItalyMunicipalityCode"}
+    string italyMunicipalityCode?;
+    @jsondata:Name {value: "CityInKana"}
+    string cityInKana?;
+    @jsondata:Name {value: "BrazilCityCode"}
+    string brazilCityCode?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type AddressFormatsCollectionAllOf2 record {
+    AddressFormat[] value?;
+};
+public type BranchesCollection record {
+    *ODataCollection;
+    *BranchesCollectionAllOf2;
+};
+public type AddressStatesCollectionAllOf2 record {
+    AddressState[] value?;
+};
+public type Department record {
+    @jsondata:Name {value: "PrimaryContactEmailPurpose"}
+    string primaryContactEmailPurpose?;
+    @jsondata:Name {value: "SearchName"}
+    string searchName?;
+    @jsondata:Name {value: "PrimaryContactEmail"}
+    string primaryContactEmail?;
+    @jsondata:Name {value: "PrimaryContactPhonePurpose"}
+    string primaryContactPhonePurpose?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    @jsondata:Name {value: "PrimaryContactPhoneDescription"}
+    string primaryContactPhoneDescription?;
+    @jsondata:Name {value: "PrimaryAddressDescription"}
+    string primaryAddressDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterDescription"}
+    string primaryContactTwitterDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitter"}
+    string primaryContactTwitter?;
+    @jsondata:Name {value: "PrimaryContactEmailIsIM"}
+    NoYes primaryContactEmailIsIM?;
+    @jsondata:Name {value: "PrimaryContactPhoneExtension"}
+    string primaryContactPhoneExtension?;
+    @jsondata:Name {value: "PrimaryAddressCity"}
+    string primaryAddressCity?;
+    @jsondata:Name {value: "PrimaryContactFax"}
+    string primaryContactFax?;
+    @jsondata:Name {value: "PrimaryContactLinkedIn"}
+    string primaryContactLinkedIn?;
+    @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
+    string primaryContactTwitterPurpose?;
+    @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
+    string primaryContactLinkedInPurpose?;
+    @jsondata:Name {value: "PrimaryContactURLDescription"}
+    string primaryContactURLDescription?;
+    @jsondata:Name {value: "PrimaryContactFacebookDescription"}
+    string primaryContactFacebookDescription?;
+    @jsondata:Name {value: "PrimaryAddressStreet"}
+    string primaryAddressStreet?;
+    @jsondata:Name {value: "OperatingUnitNumber"}
+    string operatingUnitNumber?;
+    @jsondata:Name {value: "AddressLocationRoles"}
+    string addressLocationRoles?;
+    @jsondata:Name {value: "PrimaryAddressCounty"}
+    string primaryAddressCounty?;
+    @jsondata:Name {value: "PrimaryContactURL"}
+    string primaryContactURL?;
+    @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
+    string primaryContactFacebookPurpose?;
+    @jsondata:Name {value: "KnownAs"}
+    string knownAs?;
+    @jsondata:Name {value: "PrimaryContactLinkedInIsPrivate"}
+    NoYes primaryContactLinkedInIsPrivate?;
+    @jsondata:Name {value: "PrimaryAddressState"}
+    string primaryAddressState?;
+    @jsondata:Name {value: "PrimaryContactURLPurpose"}
+    string primaryContactURLPurpose?;
+    @jsondata:Name {value: "PrimaryContactEmailDescription"}
+    string primaryContactEmailDescription?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "OperatingUnitTypes"}
+    OMOperatingUnitType operatingUnitTypes?;
+    @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
+    string primaryContactLinkedInDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
+    NoYes primaryContactTwitterIsPrivate?;
+    @jsondata:Name {value: "PrimaryAddressCountryRegionISOCode"}
+    string primaryAddressCountryRegionISOCode?;
+    @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
+    NoYes primaryContactPhoneIsMobile?;
+    @jsondata:Name {value: "PartyType"}
+    string partyType?;
+    @jsondata:Name {value: "PrimaryContactPhone"}
+    string primaryContactPhone?;
+    @jsondata:Name {value: "PrimaryContactTelexDescription"}
+    string primaryContactTelexDescription?;
+    @jsondata:Name {value: "PrimaryContactFaxExtension"}
+    string primaryContactFaxExtension?;
+    @jsondata:Name {value: "PrimaryContactTelexPurpose"}
+    string primaryContactTelexPurpose?;
+    @jsondata:Name {value: "PrimaryContactFacebook"}
+    string primaryContactFacebook?;
+    @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
+    NoYes primaryContactFacebookIsPrivate?;
+    @jsondata:Name {value: "OrganizationType"}
+    OMInternalOrganizationType organizationType?;
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "PrimaryContactFaxPurpose"}
+    string primaryContactFaxPurpose?;
+    @jsondata:Name {value: "PrimaryContactFaxDescription"}
+    string primaryContactFaxDescription?;
+    @jsondata:Name {value: "PrimaryAddressCountryRegionId"}
+    string primaryAddressCountryRegionId?;
+    @jsondata:Name {value: "PrimaryContactTelex"}
+    string primaryContactTelex?;
+    @jsondata:Name {value: "PrimaryAddressValidFrom"}
+    string primaryAddressValidFrom?;
+    @jsondata:Name {value: "PrimaryAddressValidTo"}
+    string primaryAddressValidTo?;
+    @jsondata:Name {value: "PrimaryAddressZipCode"}
+    string primaryAddressZipCode?;
+    @jsondata:Name {value: "Memo"}
+    string memo?;
+};
+public type BusinessUnit record {
+    @jsondata:Name {value: "PrimaryContactEmailPurpose"}
+    string primaryContactEmailPurpose?;
+    @jsondata:Name {value: "PrimaryContactEmail"}
+    string primaryContactEmail?;
+    @jsondata:Name {value: "PrimaryContactPhonePurpose"}
+    string primaryContactPhonePurpose?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    @jsondata:Name {value: "PrimaryContactPhoneDescription"}
+    string primaryContactPhoneDescription?;
+    @jsondata:Name {value: "AddressCity"}
+    string addressCity?;
+    @jsondata:Name {value: "PrimaryContactTwitterDescription"}
+    string primaryContactTwitterDescription?;
+    @jsondata:Name {value: "AddressLongitude"}
+    decimal addressLongitude?;
+    @jsondata:Name {value: "PrimaryContactTwitter"}
+    string primaryContactTwitter?;
+    @jsondata:Name {value: "AddressValidFrom"}
+    string addressValidFrom?;
+    @jsondata:Name {value: "PrimaryContactPhoneExtension"}
+    string primaryContactPhoneExtension?;
+    @jsondata:Name {value: "PrimaryContactEmailIsIM"}
+    NoYes primaryContactEmailIsIM?;
+    @jsondata:Name {value: "OperatingUnitType"}
+    OMOperatingUnitType operatingUnitType?;
+    @jsondata:Name {value: "PrimaryContactFax"}
+    string primaryContactFax?;
+    @jsondata:Name {value: "AddressTimeZone"}
+    Timezone addressTimeZone?;
+    @jsondata:Name {value: "PrimaryContactLinkedIn"}
+    string primaryContactLinkedIn?;
+    @jsondata:Name {value: "DunsNumber"}
+    string dunsNumber?;
+    @jsondata:Name {value: "AddressLocationId"}
+    string addressLocationId?;
+    @jsondata:Name {value: "AddressCountryRegionId"}
+    string addressCountryRegionId?;
+    @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
+    string primaryContactTwitterPurpose?;
+    @jsondata:Name {value: "AddressCountryRegionISOCode"}
+    string addressCountryRegionISOCode?;
+    @jsondata:Name {value: "FullPrimaryAddress"}
+    string fullPrimaryAddress?;
+    @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
+    string primaryContactLinkedInPurpose?;
+    @jsondata:Name {value: "PhoneticName"}
+    string phoneticName?;
+    @jsondata:Name {value: "NameAlias"}
+    string nameAlias?;
+    @jsondata:Name {value: "AddressValidTo"}
+    string addressValidTo?;
+    @jsondata:Name {value: "PrimaryContactURLDescription"}
+    string primaryContactURLDescription?;
+    @jsondata:Name {value: "PrimaryContactFacebookDescription"}
+    string primaryContactFacebookDescription?;
+    @jsondata:Name {value: "AddressZipCode"}
+    string addressZipCode?;
+    @jsondata:Name {value: "OperatingUnitNumber"}
+    string operatingUnitNumber?;
+    @jsondata:Name {value: "AddressLocationRoles"}
+    string addressLocationRoles?;
+    @jsondata:Name {value: "AddressBooks"}
+    string addressBooks?;
+    @jsondata:Name {value: "PrimaryContactURL"}
+    string primaryContactURL?;
+    @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
+    string primaryContactFacebookPurpose?;
+    @jsondata:Name {value: "PrimaryContactLinkedInIsPrivate"}
+    NoYes primaryContactLinkedInIsPrivate?;
+    @jsondata:Name {value: "PrimaryContactURLPurpose"}
+    string primaryContactURLPurpose?;
+    @jsondata:Name {value: "AddressCounty"}
+    string addressCounty?;
+    @jsondata:Name {value: "PrimaryContactEmailDescription"}
+    string primaryContactEmailDescription?;
+    @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
+    string primaryContactLinkedInDescription?;
+    @jsondata:Name {value: "AddressDescription"}
+    string addressDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
+    NoYes primaryContactTwitterIsPrivate?;
+    @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
+    NoYes primaryContactPhoneIsMobile?;
+    @jsondata:Name {value: "PrimaryContactPhone"}
+    string primaryContactPhone?;
+    @jsondata:Name {value: "PrimaryContactTelexDescription"}
+    string primaryContactTelexDescription?;
+    @jsondata:Name {value: "PrimaryContactFaxExtension"}
+    string primaryContactFaxExtension?;
+    @jsondata:Name {value: "PrimaryContactTelexPurpose"}
+    string primaryContactTelexPurpose?;
+    @jsondata:Name {value: "PrimaryContactFacebook"}
+    string primaryContactFacebook?;
+    @jsondata:Name {value: "ElectronicLocationId"}
+    string electronicLocationId?;
+    @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
+    NoYes primaryContactFacebookIsPrivate?;
+    @jsondata:Name {value: "AddressDistrictName"}
+    string addressDistrictName?;
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "PrimaryContactFaxPurpose"}
+    string primaryContactFaxPurpose?;
+    @jsondata:Name {value: "PrimaryContactFaxDescription"}
+    string primaryContactFaxDescription?;
+    @jsondata:Name {value: "PrimaryContactTelex"}
+    string primaryContactTelex?;
+    @jsondata:Name {value: "AddressStreet"}
+    string addressStreet?;
+    @jsondata:Name {value: "LanguageId"}
+    string languageId?;
+    @jsondata:Name {value: "AddressState"}
+    string addressState?;
+    @jsondata:Name {value: "AddressLatitude"}
+    decimal addressLatitude?;
+};
+public type DepartmentsCollection record {
+    *ODataCollection;
+    *DepartmentsCollectionAllOf2;
+};
+public type DepartmentV2 record {
+    @jsondata:Name {value: "PrimaryContactEmailPurpose"}
+    string primaryContactEmailPurpose?;
+    @jsondata:Name {value: "SearchName"}
+    string searchName?;
+    @jsondata:Name {value: "PrimaryContactEmail"}
+    string primaryContactEmail?;
+    @jsondata:Name {value: "PrimaryContactPhonePurpose"}
+    string primaryContactPhonePurpose?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    @jsondata:Name {value: "PrimaryContactPhoneDescription"}
+    string primaryContactPhoneDescription?;
+    @jsondata:Name {value: "PrimaryAddressDescription"}
+    string primaryAddressDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterDescription"}
+    string primaryContactTwitterDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitter"}
+    string primaryContactTwitter?;
+    @jsondata:Name {value: "PrimaryContactEmailIsIM"}
+    NoYes primaryContactEmailIsIM?;
+    @jsondata:Name {value: "PrimaryContactPhoneExtension"}
+    string primaryContactPhoneExtension?;
+    @jsondata:Name {value: "PrimaryAddressCity"}
+    string primaryAddressCity?;
+    @jsondata:Name {value: "PrimaryContactFax"}
+    string primaryContactFax?;
+    @jsondata:Name {value: "PrimaryContactLinkedIn"}
+    string primaryContactLinkedIn?;
+    @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
+    string primaryContactTwitterPurpose?;
+    @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
+    string primaryContactLinkedInPurpose?;
+    @jsondata:Name {value: "PrimaryContactURLDescription"}
+    string primaryContactURLDescription?;
+    @jsondata:Name {value: "PrimaryContactFacebookDescription"}
+    string primaryContactFacebookDescription?;
+    @jsondata:Name {value: "OperatingUnitNumber"}
+    string operatingUnitNumber?;
+    @jsondata:Name {value: "PrimaryAddressStreet"}
+    string primaryAddressStreet?;
+    @jsondata:Name {value: "AddressLocationRoles"}
+    string addressLocationRoles?;
+    @jsondata:Name {value: "PrimaryAddressCounty"}
+    string primaryAddressCounty?;
+    @jsondata:Name {value: "PrimaryContactURL"}
+    string primaryContactURL?;
+    @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
+    string primaryContactFacebookPurpose?;
+    @jsondata:Name {value: "KnownAs"}
+    string knownAs?;
+    @jsondata:Name {value: "PrimaryContactLinkedInIsPrivate"}
+    NoYes primaryContactLinkedInIsPrivate?;
+    @jsondata:Name {value: "PrimaryAddressState"}
+    string primaryAddressState?;
+    @jsondata:Name {value: "PrimaryContactURLPurpose"}
+    string primaryContactURLPurpose?;
+    @jsondata:Name {value: "PrimaryContactEmailDescription"}
+    string primaryContactEmailDescription?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "OperatingUnitTypes"}
+    OMOperatingUnitType operatingUnitTypes?;
+    @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
+    string primaryContactLinkedInDescription?;
+    @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
+    NoYes primaryContactTwitterIsPrivate?;
+    @jsondata:Name {value: "PrimaryAddressCountryRegionISOCode"}
+    string primaryAddressCountryRegionISOCode?;
+    @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
+    NoYes primaryContactPhoneIsMobile?;
+    @jsondata:Name {value: "PartyType"}
+    string partyType?;
+    @jsondata:Name {value: "PrimaryContactPhone"}
+    string primaryContactPhone?;
+    @jsondata:Name {value: "PrimaryContactTelexDescription"}
+    string primaryContactTelexDescription?;
+    @jsondata:Name {value: "PrimaryContactFaxExtension"}
+    string primaryContactFaxExtension?;
+    @jsondata:Name {value: "PrimaryContactTelexPurpose"}
+    string primaryContactTelexPurpose?;
+    @jsondata:Name {value: "PrimaryContactFacebook"}
+    string primaryContactFacebook?;
+    @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
+    NoYes primaryContactFacebookIsPrivate?;
+    @jsondata:Name {value: "OrganizationType"}
+    OMInternalOrganizationType organizationType?;
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "PrimaryContactFaxPurpose"}
+    string primaryContactFaxPurpose?;
+    @jsondata:Name {value: "PrimaryContactFaxDescription"}
+    string primaryContactFaxDescription?;
+    @jsondata:Name {value: "PrimaryAddressCountryRegionId"}
+    string primaryAddressCountryRegionId?;
+    @jsondata:Name {value: "PrimaryContactTelex"}
+    string primaryContactTelex?;
+    @jsondata:Name {value: "PrimaryAddressValidFrom"}
+    string primaryAddressValidFrom?;
+    @jsondata:Name {value: "PrimaryAddressValidTo"}
+    string primaryAddressValidTo?;
+    @jsondata:Name {value: "PrimaryAddressZipCode"}
+    string primaryAddressZipCode?;
+    @jsondata:Name {value: "Memo"}
+    string memo?;
+};
+public type AddressFormatsCollection record {
+    *ODataCollection;
+    *AddressFormatsCollectionAllOf2;
+};
+public type AddressCitiesCollectionAllOf2 record {
+    AddressCity[] value?;
+};
+public type DepartmentsCollectionAllOf2 record {
+    Department[] value?;
+};
+public type CDSParty record {
+    @jsondata:Name {value: "OrganizationName"}
+    string organizationName?;
+    @jsondata:Name {value: "PersonPhoneticLastName"}
+    string personPhoneticLastName?;
+    @jsondata:Name {value: "OrganizationNumber"}
+    string organizationNumber?;
+    @jsondata:Name {value: "PersonBirthMonth"}
+    MonthsOfYear personBirthMonth?;
+    @jsondata:Name {value: "AddressBooks"}
+    string addressBooks?;
+    @jsondata:Name {value: "PersonLastNamePrefix"}
+    string personLastNamePrefix?;
+    @jsondata:Name {value: "KnownAs"}
+    string knownAs?;
+    @jsondata:Name {value: "PersonMiddleName"}
+    string personMiddleName?;
+    @jsondata:Name {value: "PersonPhoneticFirstName"}
+    string personPhoneticFirstName?;
+    @jsondata:Name {value: "PersonAnniversaryMonth"}
+    MonthsOfYear personAnniversaryMonth?;
+    @jsondata:Name {value: "PersonPersonalTitle"}
+    string personPersonalTitle?;
+    @jsondata:Name {value: "PersonAnniversaryYear"}
+    int:Signed32 personAnniversaryYear?;
+    @jsondata:Name {value: "PersonPhoneticMiddleName"}
+    string personPhoneticMiddleName?;
+    @jsondata:Name {value: "PersonBirthDay"}
+    int:Signed32 personBirthDay?;
+    @jsondata:Name {value: "PartyType"}
+    string partyType?;
+    @jsondata:Name {value: "PersonPersonalSuffix"}
+    string personPersonalSuffix?;
+    @jsondata:Name {value: "PersonLastName"}
+    string personLastName?;
+    @jsondata:Name {value: "OrganizationABCCode"}
+    ABC organizationABCCode?;
+    @jsondata:Name {value: "PersonAnniversaryDay"}
+    int:Signed32 personAnniversaryDay?;
+    @jsondata:Name {value: "PersonProfessionalSuffix"}
+    string personProfessionalSuffix?;
+    @jsondata:Name {value: "PersonBirthYear"}
+    int:Signed32 personBirthYear?;
+    @jsondata:Name {value: "PersonFirstName"}
+    string personFirstName?;
+    @jsondata:Name {value: "PersonMaritalStatus"}
+    DirPersonMaritalStatus personMaritalStatus?;
+    @jsondata:Name {value: "PartyNumber"}
+    string partyNumber?;
+    @jsondata:Name {value: "OrganizationPhoneticName"}
+    string organizationPhoneticName?;
+    @jsondata:Name {value: "OrganizationNumOfEmployees"}
+    int:Signed32 organizationNumOfEmployees?;
+    @jsondata:Name {value: "PersonProfessionalTitle"}
+    string personProfessionalTitle?;
+    @jsondata:Name {value: "PersonHobbies"}
+    string personHobbies?;
+    @jsondata:Name {value: "NameAlias"}
+    string nameAlias?;
+    @jsondata:Name {value: "PersonInitials"}
+    string personInitials?;
+    @jsondata:Name {value: "PersonGender"}
+    Gender personGender?;
+    @jsondata:Name {value: "LanguageId"}
+    string languageId?;
+    @jsondata:Name {value: "PersonChildrenNames"}
+    string personChildrenNames?;
+};
+public type AddressBooksCollection record {
+    *ODataCollection;
+    *AddressBooksCollectionAllOf2;
+};
+public type DepartmentsV2CollectionAllOf2 record {
+    DepartmentV2[] value?;
+};
+public type CDSPartiesCollectionAllOf2 record {
+    CDSParty[] value?;
+};
+public type BusinessUnitsCollectionAllOf2 record {
+    BusinessUnit[] value?;
+};
+public type DepartmentsV2Collection record {
+    *ODataCollection;
+    *DepartmentsV2CollectionAllOf2;
+};
+public type BranchesCollectionAllOf2 record {
+    Branch[] value?;
+};
+public type CompaniesCollectionAllOf2 record {
+    Company[] value?;
+};
+public type AddressCitiesCollection record {
+    *ODataCollection;
+    *AddressCitiesCollectionAllOf2;
+};
+public type AddressObjectsCollectionAllOf2 record {
+    AddressObject[] value?;
+};
+public type AddressStatesCollection record {
+    *ODataCollection;
+    *AddressStatesCollectionAllOf2;
+};
+public type AddressObject record {
+    @jsondata:Name {value: "CityCode"}
+    string cityCode?;
+    @jsondata:Name {value: "RegionCode"}
+    string regionCode?;
+    @jsondata:Name {value: "ParentGuid"}
+    string parentGuid?;
+    @jsondata:Name {value: "PlaceCode"}
+    string placeCode?;
+    @jsondata:Name {value: "PostalCode"}
+    string postalCode?;
+    @jsondata:Name {value: "ShortName"}
+    string shortName?;
+    @jsondata:Name {value: "TerrIFNSFL"}
+    string terrIFNSFL?;
+    string dataAreaId?;
+    @jsondata:Name {value: "AOLevel"}
+    string aOLevel?;
+    @jsondata:Name {value: "OKATO"}
+    string oKATO?;
+    @jsondata:Name {value: "PlanCode"}
+    string planCode?;
+    @jsondata:Name {value: "OffName"}
+    string offName?;
+    @jsondata:Name {value: "OperStatus"}
+    string operStatus?;
+    @jsondata:Name {value: "ExtrCode"}
+    string extrCode?;
+    @jsondata:Name {value: "LiveStatus"}
+    string liveStatus?;
+    @jsondata:Name {value: "NextId"}
+    string nextId?;
+    @jsondata:Name {value: "DivType"}
+    string divType?;
+    @jsondata:Name {value: "AOGuid"}
+    string aOGuid?;
+    @jsondata:Name {value: "AOId"}
+    string aOId?;
+    @jsondata:Name {value: "PrevId"}
+    string prevId?;
+    @jsondata:Name {value: "IFNSFL"}
+    string iFNSFL?;
+    @jsondata:Name {value: "StreetCode"}
+    string streetCode?;
+    @jsondata:Name {value: "AreaCode"}
+    string areaCode?;
+    @jsondata:Name {value: "CtArCode"}
+    string ctArCode?;
+    @jsondata:Name {value: "ActStatus"}
+    string actStatus?;
+};
+public type CompaniesCollection record {
+    *ODataCollection;
+    *CompaniesCollectionAllOf2;
+};
+public type CDSPartiesCollection record {
+    *ODataCollection;
+    *CDSPartiesCollectionAllOf2;
+};
+public type AddressObjectsCollection record {
+    *ODataCollection;
+    *AddressObjectsCollectionAllOf2;
+};
+public type BusinessUnitsCollection record {
+    *ODataCollection;
+    *BusinessUnitsCollectionAllOf2;
+};
+public type AddressFormat record {
+    @jsondata:Name {value: "AddressFormat"}
+    string addressFormat?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+};
+public type AddressBooksCollectionAllOf2 record {
+    AddressBooks[] value?;
+};
+# Represents the Queries record for the operation: getBusinessUnits
+public type GetBusinessUnitsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -134,38 +884,20 @@ public type GetVRMLanguagesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: deleteWarehouses
-public type DeleteWarehousesHeaders record {
+# Represents the Headers record for the operation: deleteDepartmentsV2
+public type DeleteDepartmentsV2Headers record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
 # Represents the Headers record for the operation: deleteCDSParties
 public type DeleteCDSPartiesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-public type DimSettlementCtrlTypeRU "None"|"Auto"|"Manual"|"Always";
-# Represents the Queries record for the operation: getPaymentMethods
-public type GetPaymentMethodsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: deleteAddressFormats
 public type DeleteAddressFormatsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type WeekDays "None"|"Monday"|"Tuesday"|"Wednesday"|"Thursday"|"Friday"|"Saturday"|"Sunday";
-# Represents the Headers record for the operation: updateELCOAs
-public type UpdateELCOAsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
@@ -179,155 +911,14 @@ public type GetCDSPartiesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type PaymentDueDateUpdatePolicy "NoUpdate"|"Next"|"Previous";
-public type WeekMonth "Week"|"Month";
-# Represents the Queries record for the operation: getWarehouses
-public type GetWarehousesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteDenominations
-public type DeleteDenominationsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ABC "None"|"A"|"B"|"C";
-# Represents the Queries record for the operation: getDirParameters
-public type GetDirParametersQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type WHSReleaseRuleFailureOption "WarningSkipLine"|"ErrorSkipOrder";
-# Represents the Queries record for the operation: getLegalEntities
-public type GetLegalEntitiesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: deleteDepartments
 public type DeleteDepartmentsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Headers record for the operation: updateVoucherTypes
-public type UpdateVoucherTypesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getPaymentInstructions
-public type GetPaymentInstructionsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getEmplPostings
-public type GetEmplPostingsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteExchangeRates
-public type DeleteExchangeRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listPaymentMethods
-public type ListPaymentMethodsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type WHSAutoUpdateShipment "OnQuantityDecrease"|"Always";
-public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
-# Represents the Queries record for the operation: getPaymentTerms
-public type GetPaymentTermsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getVRMCurrencies
-public type GetVRMCurrenciesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getVRMParameters
-public type GetVRMParametersQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getPaymentCalendarRules
-public type GetPaymentCalendarRulesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Queries record for the operation: getAddressBooks
 public type GetAddressBooksQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getSalutations
-public type GetSalutationsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -362,45 +953,12 @@ public type ListCompaniesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type RTSLCurrencyRate "NoChange"|"Indexes"|"ExchRates";
-public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
-public type WHSLoadReleaseReservationPolicy "Error"|"Warning";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-# Represents the Headers record for the operation: deleteCurrencies
-public type DeleteCurrenciesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProdRAFPostingMethodInherit "Inherit"|"Immediate"|"Deferred";
-# Represents the Headers record for the operation: updateDenominations
-public type UpdateDenominationsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: updateAddressObjects
 public type UpdateAddressObjectsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: getNameSequences
-public type GetNameSequencesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type TrvPostMethod "None"|"Employee"|"Ledger"|"Bank"|"Vendor";
-public type DirSubNameSequenceType "None"|"FirstName"|"MiddleName"|"LastName"|"LastNamePrefix"|"KnownAs";
 # Represents the Queries record for the operation: getCompanies
 public type GetCompaniesQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -410,153 +968,14 @@ public type GetCompaniesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: updateNameAffixes
-public type UpdateNameAffixesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateSalutations
-public type UpdateSalutationsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listCurrencyRules
-public type ListCurrencyRulesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateLanguageCodes
-public type UpdateLanguageCodesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: updateAddressCities
 public type UpdateAddressCitiesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Headers record for the operation: updateLegalEntities
-public type UpdateLegalEntitiesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getELCOAs
-public type GetELCOAsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type DirNameAffixType "PersonalPrefix"|"PersonalSuffix";
 # Represents the Queries record for the operation: getDepartments
 public type GetDepartmentsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type TableGroupAll "Table"|"GroupId"|"All";
-# Represents the Headers record for the operation: updateVATNumTables
-public type UpdateVATNumTablesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listLegalEntities
-public type ListLegalEntitiesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type NameAffix record {
-    @jsondata:Name {value: "Type"}
-    DirNameAffixType 'type?;
-    @jsondata:Name {value: "Affix"}
-    string affix?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-};
-# Represents the Queries record for the operation: listNameSequences
-public type ListNameSequencesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getVATNumTables
-public type GetVATNumTablesQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -570,106 +989,11 @@ public type DeleteBusinessUnitsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: getCardTypes
-public type GetCardTypesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listPaymentDays
-public type ListPaymentDaysQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listWarehouses
-public type ListWarehousesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getDenominations
-public type GetDenominationsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: deleteAddressBooks
 public type DeleteAddressBooksHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-public type InventProfileTypeRU "NotSpecified"|"General"|"CommissionAgent"|"CommissionPrincipalAgent"|"Bailee";
-public type Branch record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Address"}
-    string address?;
-    @jsondata:Name {value: "LogisticsLocation_LocationId"}
-    string logisticsLocationLocationId?;
-    @jsondata:Name {value: "HeadOffice"}
-    NoYes headOffice?;
-    @jsondata:Name {value: "Code"}
-    string code?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-# Represents the Queries record for the operation: getLanguageCodes
-public type GetLanguageCodesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Queries record for the operation: listAddressFormats
 public type ListAddressFormatsQueries record {
@@ -725,257 +1049,8 @@ public type ListAddressBooksQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: deleteCardTypes
-public type DeleteCardTypesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateCurrencyRules
-public type UpdateCurrencyRulesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listLanguageCodes
-public type ListLanguageCodesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type LegalNatureIT "LN1"|"LN2"|"LN3"|"LN4"|"LN5"|"LN6"|"LN7"|"LN8"|"LN9"|"LN10"|"LN11"|"LN12"|"LN13"|"LN14"|"LN15"|"LN16"|"LN17"|"LN18"|"LN19"|"LN20"|"LN21"|"LN22"|"LN23"|"LN24"|"LN25"|"LN26"|"LN27"|"LN28"|"LN29"|"LN50"|"LN51"|"LN52"|"LN53"|"LN54"|"LN55"|"LN56"|"LN57"|"LN58"|"LN30"|"LN31"|"LN32"|"LN33"|"LN34"|"LN35"|"LN36"|"LN37"|"LN38"|"LN39"|"LN40"|"LN41"|"LN42"|"LN43"|"LN44"|"LN59";
-# Represents the Headers record for the operation: updateCurrencies
-public type UpdateCurrenciesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteVATNumTables
-public type DeleteVATNumTablesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteVRMParameters
-public type DeleteVRMParametersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteVRMCurrencies
-public type DeleteVRMCurrenciesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type WHSCoordinatesRetrievalStrategy "Location";
-public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentWeek"|"COD"|"CutOffDate";
-# Represents the Queries record for the operation: listDenominations
-public type ListDenominationsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type RTSLCurrencyAction "None"|"Zero"|"AmountCur"|"AmountMST"|"AmountMSTSecond"|"One";
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-# Represents the Headers record for the operation: updateVRMCurrencies
-public type UpdateVRMCurrenciesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listExchangeRatesNonISO
-public type ListExchangeRatesNonISOQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listSalutations
-public type ListSalutationsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Queries record for the operation: listBranches
 public type ListBranchesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updatePaymentMethods
-public type UpdatePaymentMethodsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listVATNumTables
-public type ListVATNumTablesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateVRMLanguages
-public type UpdateVRMLanguagesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateCategories
-public type UpdateCategoriesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getVRMTaxGroups
-public type GetVRMTaxGroupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteVRMPeople
-public type DeleteVRMPeopleHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteLanguageCodes
-public type DeleteLanguageCodesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type WHSSpatialLocationSortingStrategy "FastCalculation"|"OptimizedRoute";
-# Represents the Queries record for the operation: listNameAffixes
-public type ListNameAffixesQueries record {
     # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
@@ -1007,44 +1082,11 @@ public type DeleteAddressObjectsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Headers record for the operation: updateExchangeRates
-public type UpdateExchangeRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: deleteCompanies
 public type DeleteCompaniesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-# Represents the Queries record for the operation: listExchangeRates
-public type ListExchangeRatesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Headers record for the operation: updateBranches
 public type UpdateBranchesHeaders record {
@@ -1052,7 +1094,6 @@ public type UpdateBranchesHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-public type SysLocalizationCountryRegionCode "Default"|"None"|"BE"|"BR"|"CA"|"CZ"|"DE"|"EE"|"ES"|"FR"|"GB"|"HU"|"IE"|"IN"|"IT"|"JP"|"LT"|"LV"|"MX"|"NL"|"NO"|"PL"|"RU"|"SA"|"TH"|"US"|"AU"|"CN"|"DK"|"FI"|"MY"|"SG"|"ZA"|"SE"|"CH"|"IS"|"AT"|"TR";
 # Represents the Queries record for the operation: listDepartments
 public type ListDepartmentsQueries record {
     # OData $skip query parameter - number of records to skip
@@ -1107,123 +1148,8 @@ public type ListBusinessUnitsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: deleteEmplPostings
-public type DeleteEmplPostingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type CreditCardPaymentType "NA"|"CreditCard";
-public type NoYes "No"|"Yes";
-# Represents the Queries record for the operation: listVRMCurrencies
-public type ListVRMCurrenciesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listEmplPostings
-public type ListEmplPostingsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type DirPartyBaseType "Person"|"Organization";
-# Represents the Headers record for the operation: deletePaymentInstructions
-public type DeletePaymentInstructionsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: updateAddressStates
 public type UpdateAddressStatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateNameSequences
-public type UpdateNameSequencesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type InventLocationType "Standard"|"Quarantine"|"Transit"|"GoodsInRoute_RU"|"ITMGIT"|"ITMUnder";
-# Represents the Headers record for the operation: deleteNameSequences
-public type DeleteNameSequencesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listPaymentCalendarRules
-public type ListPaymentCalendarRulesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updatePaymentTerms
-public type UpdatePaymentTermsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
@@ -1243,168 +1169,11 @@ public type DeleteAddressStatesHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Headers record for the operation: deleteELCOAs
-public type DeleteELCOAsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updatePaymentDays
-public type UpdatePaymentDaysHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: updateAddressBooks
 public type UpdateAddressBooksHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-# Represents the Queries record for the operation: getVoucherTypes
-public type GetVoucherTypesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type VRMPerson record {
-    @jsondata:Name {value: "PrimaryContactEmailPurpose"}
-    string primaryContactEmailPurpose?;
-    @jsondata:Name {value: "PrimaryContactEmail"}
-    string primaryContactEmail?;
-    @jsondata:Name {value: "PrimaryContactPhonePurpose"}
-    string primaryContactPhonePurpose?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-    @jsondata:Name {value: "PrimaryContactPhoneDescription"}
-    string primaryContactPhoneDescription?;
-    @jsondata:Name {value: "AddressCity"}
-    string addressCity?;
-    @jsondata:Name {value: "PrimaryContactTwitterDescription"}
-    string primaryContactTwitterDescription?;
-    @jsondata:Name {value: "AddressLongitude"}
-    decimal addressLongitude?;
-    @jsondata:Name {value: "PrimaryContactTwitter"}
-    string primaryContactTwitter?;
-    @jsondata:Name {value: "AddressValidFrom"}
-    string addressValidFrom?;
-    @jsondata:Name {value: "PrimaryContactPhoneExtension"}
-    string primaryContactPhoneExtension?;
-    @jsondata:Name {value: "PrimaryContactEmailIsIM"}
-    NoYes primaryContactEmailIsIM?;
-    @jsondata:Name {value: "PrimaryContactFax"}
-    string primaryContactFax?;
-    @jsondata:Name {value: "AddressTimeZone"}
-    Timezone addressTimeZone?;
-    @jsondata:Name {value: "PrimaryContactLinkedIn"}
-    string primaryContactLinkedIn?;
-    @jsondata:Name {value: "AddressIsPrivate"}
-    NoYes addressIsPrivate?;
-    @jsondata:Name {value: "AddressLocationId"}
-    string addressLocationId?;
-    @jsondata:Name {value: "AddressCountryRegionId"}
-    string addressCountryRegionId?;
-    @jsondata:Name {value: "PrimaryContactTwitterPurpose"}
-    string primaryContactTwitterPurpose?;
-    @jsondata:Name {value: "AddressCountryRegionISOCode"}
-    string addressCountryRegionISOCode?;
-    @jsondata:Name {value: "FullPrimaryAddress"}
-    string fullPrimaryAddress?;
-    @jsondata:Name {value: "PrimaryContactLinkedInPurpose"}
-    string primaryContactLinkedInPurpose?;
-    @jsondata:Name {value: "AddressValidTo"}
-    string addressValidTo?;
-    @jsondata:Name {value: "PrimaryContactURLDescription"}
-    string primaryContactURLDescription?;
-    @jsondata:Name {value: "LastName"}
-    string lastName?;
-    @jsondata:Name {value: "PrimaryContactFacebookDescription"}
-    string primaryContactFacebookDescription?;
-    @jsondata:Name {value: "AddressZipCode"}
-    string addressZipCode?;
-    @jsondata:Name {value: "AddressLocationRoles"}
-    string addressLocationRoles?;
-    @jsondata:Name {value: "PrimaryContactEmailRecordId"}
-    int primaryContactEmailRecordId?;
-    @jsondata:Name {value: "PrimaryContactURL"}
-    string primaryContactURL?;
-    @jsondata:Name {value: "PrimaryContactFacebookPurpose"}
-    string primaryContactFacebookPurpose?;
-    @jsondata:Name {value: "PrimaryContactLinkedInIsPrivate"}
-    NoYes primaryContactLinkedInIsPrivate?;
-    @jsondata:Name {value: "GlobalVendorAccount"}
-    string globalVendorAccount?;
-    @jsondata:Name {value: "PrimaryContactURLPurpose"}
-    string primaryContactURLPurpose?;
-    @jsondata:Name {value: "IsPortalUserContext"}
-    NoYes isPortalUserContext?;
-    @jsondata:Name {value: "AddressCounty"}
-    string addressCounty?;
-    @jsondata:Name {value: "PrimaryContactEmailDescription"}
-    string primaryContactEmailDescription?;
-    @jsondata:Name {value: "PrimaryContactLinkedInDescription"}
-    string primaryContactLinkedInDescription?;
-    @jsondata:Name {value: "AddressDescription"}
-    string addressDescription?;
-    @jsondata:Name {value: "PrimaryContactTwitterIsPrivate"}
-    NoYes primaryContactTwitterIsPrivate?;
-    @jsondata:Name {value: "PrimaryContactPhoneRecordId"}
-    int primaryContactPhoneRecordId?;
-    @jsondata:Name {value: "PrimaryContactPhoneIsMobile"}
-    NoYes primaryContactPhoneIsMobile?;
-    @jsondata:Name {value: "PartyType"}
-    string partyType?;
-    @jsondata:Name {value: "PrimaryContactPhone"}
-    string primaryContactPhone?;
-    @jsondata:Name {value: "PrimaryContactTelexDescription"}
-    string primaryContactTelexDescription?;
-    @jsondata:Name {value: "PrimaryContactFaxExtension"}
-    string primaryContactFaxExtension?;
-    @jsondata:Name {value: "PrimaryContactTelexPurpose"}
-    string primaryContactTelexPurpose?;
-    @jsondata:Name {value: "PrimaryContactFacebook"}
-    string primaryContactFacebook?;
-    @jsondata:Name {value: "ElectronicLocationId"}
-    string electronicLocationId?;
-    @jsondata:Name {value: "FirstName"}
-    string firstName?;
-    @jsondata:Name {value: "PrimaryContactFacebookIsPrivate"}
-    NoYes primaryContactFacebookIsPrivate?;
-    @jsondata:Name {value: "AddressDistrictName"}
-    string addressDistrictName?;
-    @jsondata:Name {value: "MiddleName"}
-    string middleName?;
-    @jsondata:Name {value: "PartyNumber"}
-    string partyNumber?;
-    @jsondata:Name {value: "PrimaryContactFaxPurpose"}
-    string primaryContactFaxPurpose?;
-    @jsondata:Name {value: "PrimaryContactFaxDescription"}
-    string primaryContactFaxDescription?;
-    @jsondata:Name {value: "PrimaryContactTelex"}
-    string primaryContactTelex?;
-    @jsondata:Name {value: "AddressStreet"}
-    string addressStreet?;
-    @jsondata:Name {value: "PersonalTitle"}
-    string personalTitle?;
-    @jsondata:Name {value: "ProfessionalTitle"}
-    string professionalTitle?;
-    @jsondata:Name {value: "LanguageId"}
-    string languageId?;
-    @jsondata:Name {value: "AddressState"}
-    string addressState?;
-    @jsondata:Name {value: "AddressLatitude"}
-    decimal addressLatitude?;
-};
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
 };
 # Represents the Queries record for the operation: listAddressObjects
 public type ListAddressObjectsQueries record {
@@ -1429,52 +1198,6 @@ public type ListAddressObjectsQueries record {
     # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type PaymCalendarModuleType "Customer"|"Vendor";
-# Represents the Queries record for the operation: getVRMPeople
-public type GetVRMPeopleQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listELCOAs
-public type ListELCOAsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getCurrencyRules
-public type GetCurrencyRulesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
@@ -1512,12 +1235,6 @@ public type ListCDSPartiesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: updateEmplPostings
-public type UpdateEmplPostingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: deleteAddressCities
 public type DeleteAddressCitiesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
@@ -1551,13 +1268,6 @@ public type ListDepartmentsV2Queries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type WHSDistanceCalculationStrategy "StraightLine"|"CityBlock";
-# Represents the Headers record for the operation: deletePaymentMethods
-public type DeletePaymentMethodsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: deleteBranches
 public type DeleteBranchesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
@@ -1566,60 +1276,6 @@ public type DeleteBranchesHeaders record {
 };
 # Represents the Headers record for the operation: updateDepartmentsV2
 public type UpdateDepartmentsV2Headers record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteExchangeRatesNonISO
-public type DeleteExchangeRatesNonISOHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteVRMLanguages
-public type DeleteVRMLanguagesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listVRMLanguages
-public type ListVRMLanguagesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getPaymentDays
-public type GetPaymentDaysQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateVRMPeople
-public type UpdateVRMPeopleHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
@@ -1633,8 +1289,14 @@ public type GetAddressFormatsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Queries record for the operation: listDirParameters
-public type ListDirParametersQueries record {
+# Represents the Headers record for the operation: updateDepartments
+public type UpdateDepartmentsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listAddressCities
+public type ListAddressCitiesQueries record {
     # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
@@ -1660,8 +1322,17 @@ public type ListDirParametersQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Queries record for the operation: listVRMTaxGroups
-public type ListVRMTaxGroupsQueries record {
+# Represents the Queries record for the operation: getAddressCities
+public type GetAddressCitiesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Queries record for the operation: listAddressStates
+public type ListAddressStatesQueries record {
     # OData $skip query parameter - number of records to skip
     @http:Query {name: "$skip"}
     int skip?;
@@ -1683,6 +1354,51 @@ public type ListVRMTaxGroupsQueries record {
     # When true, the response includes the total count of matching records
     @http:Query {name: "$count"}
     boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateBusinessUnits
+public type UpdateBusinessUnitsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getDepartmentsV2
+public type GetDepartmentsV2Queries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateAddressFormats
+public type UpdateAddressFormatsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getAddressStates
+public type GetAddressStatesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateCompanies
+public type UpdateCompaniesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getBranches
+public type GetBranchesQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;

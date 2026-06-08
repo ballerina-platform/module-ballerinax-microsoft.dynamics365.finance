@@ -8,5 +8,5 @@
   "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Expense API",
   "import-statement": "import ballerinax/microsoft.dynamics365.finance.expense;",
   "client-init": "expense:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
-  "api-invocation": "expense:BankAccountsCollection results = check cl->listBankAccounts();"
+  "api-invocation": "expense:ExpenseCodesCollection results = check cl->listExpenseCodes();"
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Split 8 D365 Finance Ballerina modules into 25 independent packages.
+Split 8 D365 Finance Ballerina modules into independent packages.
 Run from the repo root: python3 scripts/generate_packages.py
 """
 import os
@@ -36,25 +36,38 @@ PACKAGES = {
     },
     "expense": {
         "source": "asset",
-        "entities": ["BankAccounts", "BankGroups", "CashAccounts", "CashBalances", "CashDiscounts",
-                     "CashLedgers", "CashSymbols", "CodaTrans", "ExchSetups", "ExpenseCodes",
-                     "ExpenseParameters", "ExpenseRates", "Expenses", "MileageRates", "PerDiems",
-                     "TrvReceipts"],
+        "entities": ["ExpenseCodes", "ExpenseParameters", "ExpenseRates", "Expenses",
+                     "MileageRates", "PerDiems", "TrvReceipts"],
         "display": "Expense",
         "area": "Finance & Accounting",
-        "kw": ["Expense", "Travel", "Bank", "Cash"],
+        "kw": ["Expense", "Travel", "Mileage", "PerDiem"],
+    },
+    "cashmanagement": {
+        "source": "asset",
+        "entities": ["BankAccounts", "BankGroups", "CashAccounts", "CashBalances",
+                     "CashDiscounts", "CashLedgers", "CashSymbols", "CodaTrans", "ExchSetups"],
+        "display": "Cash Management",
+        "area": "Finance & Accounting",
+        "kw": ["Bank", "Cash", "Exchange", "Finance"],
     },
     # ---- From core ----
     "core": {
         "source": "core",
         "entities": ["AddressBooks", "AddressCities", "AddressFormats", "AddressObjects",
-                     "AddressStates", "Branches", "BusinessUnits", "CDSParties", "CardTypes",
-                     "Categories", "Companies", "Departments", "DepartmentsV2", "DirParameters",
-                     "ELCOAs", "EmplPostings", "LanguageCodes", "LegalEntities", "NameAffixes",
-                     "NameSequences", "Salutations", "VATNumTables", "Warehouses"],
+                     "AddressStates", "Branches", "BusinessUnits", "CDSParties", "Companies",
+                     "Departments", "DepartmentsV2"],
         "display": "Core",
         "area": "Finance & Accounting",
-        "kw": ["Company", "Organization", "Address", "Legal"],
+        "kw": ["Company", "Organization", "Address", "Department"],
+    },
+    "coreorg": {
+        "source": "core",
+        "entities": ["CardTypes", "Categories", "DirParameters", "ELCOAs", "EmplPostings",
+                     "LanguageCodes", "LegalEntities", "NameAffixes", "NameSequences",
+                     "Salutations", "VATNumTables", "Warehouses"],
+        "display": "Core Organization",
+        "area": "Finance & Accounting",
+        "kw": ["LegalEntity", "Warehouse", "Organization", "Reference"],
     },
     "payment": {
         "source": "core",
@@ -88,14 +101,20 @@ PACKAGES = {
     # ---- From ledger ----
     "ledger": {
         "source": "ledger",
-        "entities": ["Accountants", "AccrualSchemes", "AuditTrails", "JournalLines", "JournalNames",
-                     "JournalTables", "JournalTrans", "LedgerIntervals", "LedgerJournalDescriptions",
-                     "LedgerJournalHeaders", "LedgerJournalLines", "LedgerTransSettlements",
-                     "LedgerTransSettlementsV2", "OpeningSheets", "PostingDefinitions",
-                     "PostingJournals"],
+        "entities": ["Accountants", "AccrualSchemes", "AuditTrails", "LedgerIntervals",
+                     "LedgerJournalDescriptions", "LedgerJournalHeaders", "OpeningSheets",
+                     "PostingDefinitions", "PostingJournals"],
         "display": "Ledger",
         "area": "Finance & Accounting",
         "kw": ["Ledger", "Journal", "Accounting", "Posting"],
+    },
+    "journalentry": {
+        "source": "ledger",
+        "entities": ["JournalLines", "JournalNames", "JournalTables", "JournalTrans",
+                     "LedgerJournalLines", "LedgerTransSettlements", "LedgerTransSettlementsV2"],
+        "display": "Journal Entry",
+        "area": "Finance & Accounting",
+        "kw": ["Journal", "Ledger", "Entry", "Transaction"],
     },
     "mainaccount": {
         "source": "ledger",
@@ -126,9 +145,15 @@ PACKAGES = {
     # ---- From payable ----
     "vendor": {
         "source": "payable",
-        "entities": ["VendorGroups", "VendorParameters", "VendorReasons", "Vendors", "VendorsV2",
-                     "VendorsV3"],
+        "entities": ["VendorGroups", "VendorParameters", "VendorReasons", "Vendors"],
         "display": "Vendor",
+        "area": "Accounts Payable",
+        "kw": ["Vendor", "AccountsPayable", "AP"],
+    },
+    "vendorextended": {
+        "source": "payable",
+        "entities": ["VendorsV2", "VendorsV3"],
+        "display": "Vendor Extended",
         "area": "Accounts Payable",
         "kw": ["Vendor", "AccountsPayable", "AP"],
     },
@@ -150,9 +175,15 @@ PACKAGES = {
     # ---- From receivable ----
     "customer": {
         "source": "receivable",
-        "entities": ["CustomerGroups", "CustomerParameters", "Customers", "CustomersBase",
-                     "CustomersV2", "CustomersV3"],
+        "entities": ["CustomerGroups", "CustomerParameters", "Customers", "CustomersBase"],
         "display": "Customer",
+        "area": "Accounts Receivable",
+        "kw": ["Customer", "AccountsReceivable", "AR"],
+    },
+    "customermain": {
+        "source": "receivable",
+        "entities": ["CustomersV2", "CustomersV3"],
+        "display": "Customer Main",
         "area": "Accounts Receivable",
         "kw": ["Customer", "AccountsReceivable", "AR"],
     },
@@ -500,13 +531,58 @@ def assign_to_packages(source_module: str) -> tuple[
                         del type_owner[used_type]
                         changed = True
 
-    # Add orphaned types to every package of this module
-    for pkg_name in pkgs_for_mod:
-        pkg_types[pkg_name] = orphaned_types + pkg_types[pkg_name]
+    # Second pass: try verb-stripped matching for remaining orphaned types.
+    # e.g. ListCPJournalsQueries -> CPJournals -> best_match -> budget package
+    if len(pkgs_for_mod) > 1:
+        VERB_PREFIXES = ["ListV2", "CreateV2", "GetV2", "DeleteV2", "UpdateV2",
+                         "List", "Create", "Get", "Delete", "Update"]
+        TYPE_SUFFIXES = ["Queries", "Headers"]
+        still_orphaned: list[tuple[str, str]] = []
+        for type_name, block in orphaned_types:
+            candidate = type_name
+            for verb in VERB_PREFIXES:
+                if candidate.startswith(verb):
+                    candidate = candidate[len(verb):]
+                    break
+            for suffix in TYPE_SUFFIXES:
+                if candidate.endswith(suffix):
+                    candidate = candidate[:-len(suffix)]
+                    break
+            if candidate != type_name:
+                matched_ent = best_match(candidate, all_entities)
+                if matched_ent:
+                    pkg_types[entity_to_pkg[matched_ent]].append((type_name, block))
+                    continue
+            still_orphaned.append((type_name, block))
+        orphaned_types = still_orphaned
 
-    # Parse client functions
+    # Parse client functions now (before orphaned assignment) so client_header
+    # type refs are included in the transitive closure seed.
     client_bal = BAL_DIR / source_module / "client.bal"
     client_header, all_funcs = parse_client_functions(client_bal)
+
+    # Add only the orphaned types actually needed by each package (transitive closure).
+    # Seed includes both entity types and the client header (e.g. ConnectionConfig).
+    orphaned_map = {name: block for name, block in orphaned_types}
+    if len(pkgs_for_mod) > 1 and orphaned_map:
+        import re as _re2
+        for pkg_name in pkgs_for_mod:
+            pkg_body = "".join(block for _, block in pkg_types[pkg_name]) + client_header
+            direct_refs = set(_re2.findall(r'\b([A-Z][a-zA-Z0-9]+)\b', pkg_body))
+            needed: set[str] = set()
+            queue = [n for n in direct_refs if n in orphaned_map]
+            while queue:
+                t = queue.pop()
+                if t in needed:
+                    continue
+                needed.add(t)
+                refs = set(_re2.findall(r'\b([A-Z][a-zA-Z0-9]+)\b', orphaned_map[t]))
+                queue.extend(n for n in refs if n in orphaned_map and n not in needed)
+            needed_orphaned = [(n, orphaned_map[n]) for n in needed]
+            pkg_types[pkg_name] = needed_orphaned + pkg_types[pkg_name]
+    else:
+        for pkg_name in pkgs_for_mod:
+            pkg_types[pkg_name] = orphaned_types + pkg_types[pkg_name]
 
     # Assign functions: derive entity set from function name
     pkg_funcs: dict[str, list] = {p: [] for p in pkgs_for_mod}
@@ -581,38 +657,12 @@ def build_types_header(content: str) -> str:
 
 
 def write_types_bal(pkg_dir: Path, types: list[tuple[str, str]]) -> None:
-    """Write types.bal for a package, splitting if > 1700 lines."""
+    """Write a single types.bal. Warns if over 1700 lines (split into more packages instead)."""
     body = "".join(block for _, block in types)
-    body_lines = body.splitlines(keepends=True)
-
-    LIMIT = 1700
-    if len(body_lines) <= LIMIT:
-        (pkg_dir / "types.bal").write_text(build_types_header(body) + body)
-        return
-
-    # Need to split: find split points at "public type" boundaries
-    # Write in chunks of <= LIMIT lines, each with its own conditional header
-    seg = 1
-    start = 0
-    while start < len(body_lines):
-        end = min(start + LIMIT, len(body_lines))
-        # Walk end backward to find a "public type" boundary
-        if end < len(body_lines):
-            while end > start + 100:
-                if body_lines[end].startswith("public type"):
-                    # Walk back past doc comments
-                    while end > start + 1 and body_lines[end - 1].strip().startswith("#"):
-                        end -= 1
-                    break
-                end -= 1
-        chunk_str = "".join(body_lines[start:end])
-        chunk_str = build_types_header(chunk_str) + chunk_str
-        if seg == 1:
-            (pkg_dir / "types.bal").write_text(chunk_str)
-        else:
-            (pkg_dir / f"types_seg_{seg}.bal").write_text(chunk_str)
-        seg += 1
-        start = end
+    line_count = body.count("\n")
+    if line_count > 1700:
+        print(f"  WARNING: {pkg_dir.name}/types.bal is {line_count} lines — split into more packages")
+    (pkg_dir / "types.bal").write_text(build_types_header(body) + body)
 
 
 def write_client_bal(pkg_dir: Path, header: str, funcs: list[tuple[str, str]]) -> None:
@@ -959,6 +1009,8 @@ def generate_all():
 
             print(f"  [{src_mod}] -> {pkg_name}")
             pkg_dir = BAL_DIR / pkg_name
+            if pkg_dir.exists():
+                shutil.rmtree(pkg_dir)
             pkg_dir.mkdir(parents=True, exist_ok=True)
 
             types = pkg_types[pkg_name]

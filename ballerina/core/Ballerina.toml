@@ -1,9 +1,9 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.core"
-version = "0.1.0"
+version = "0.1.0-SNAPSHOT"
 authors = ["Ballerina"]
-keywords = ["Name/Microsoft Dynamics 365 Finance Core", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Core", "Currency", "LegalEntity", "Type/Connector"]
+keywords = ["Name/Microsoft Dynamics 365 Finance Core", "Area/Finance & Accounting", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "Company", "Organization", "Address", "Department"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
 icon = "../icon.png"
 license = ["Apache-2.0"]

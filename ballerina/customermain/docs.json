@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.customermain connector provides access to Microsoft Dynamics 365 Finance Customer Main entities via the OData REST API.",
+  "key-features": [
+    "Manage customer main entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Customer Main API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.customermain;",
+  "client-init": "customermain:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "customermain:CustomersV2Collection results = check cl->listCustomersV2();"
+}

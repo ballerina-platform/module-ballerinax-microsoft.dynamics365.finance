@@ -65,9 +65,9 @@ function buildClient() returns Client|error {
 }
 
 @test:Config
-function testListBankAccounts() returns error? {
+function testListExpenseCodes() returns error? {
     Client cl = check buildClient();
-    BankAccountsCollection response = check cl->listBankAccounts();
+    ExpenseCodesCollection response = check cl->listExpenseCodes();
     test:assertTrue(response.value is json[], "should return a valid collection");
 }
 

@@ -5,7 +5,7 @@
 
 [ballerina]
 dependencies-toml-version = "2"
-distribution-version = "2201.13.0-20250927-204700-7b3ef131"
+distribution-version = "2201.13.0"
 
 [[package]]
 org = "ballerina"
@@ -339,7 +339,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.ledger"
-version = "0.1.0"
+version = "0.1.0-SNAPSHOT"
 dependencies = [
 	{org = "ballerina", name = "data.jsondata"},
 	{org = "ballerina", name = "http"},

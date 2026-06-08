@@ -4,186 +4,232 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
-# Represents the Queries record for the operation: getFixedAssetValueModels
-public type GetFixedAssetValueModelsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
+public type PSAPReqValidate "Amount"|"HoursQty";
+public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
+public type ProjPaymentStatus "NoPayment"|"ExpectedPayment"|"Paid";
+public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentWeek"|"COD"|"CutOffDate";
+public type SmmShowTimeAs "Free"|"Tentative"|"Busy"|"OutOfOffice";
+public type Project record {
+    @jsondata:Name {value: "TaskCompletelyScheduled"}
+    NoYes taskCompletelyScheduled?;
+    @jsondata:Name {value: "ZakatContractAmendment"}
+    decimal zakatContractAmendment?;
+    @jsondata:Name {value: "IsReadyForInvoicing"}
+    NoYes isReadyForInvoicing?;
+    @jsondata:Name {value: "LocationID"}
+    string locationID?;
+    @jsondata:Name {value: "SortingId3"}
+    string sortingId3?;
+    @jsondata:Name {value: "ActualStartDate"}
+    string actualStartDate?;
+    @jsondata:Name {value: "SortingId2"}
+    string sortingId2?;
+    @jsondata:Name {value: "SortingId1"}
+    string sortingId1?;
+    @jsondata:Name {value: "EstimateProjectID"}
+    string estimateProjectID?;
+    @jsondata:Name {value: "CertifiedPayroll"}
+    NoYes certifiedPayroll?;
+    @jsondata:Name {value: "InvoicingMethod"}
+    PSAInvoiceMethod invoicingMethod?;
+    @jsondata:Name {value: "Status"}
+    PSAProjStatus status?;
+    @jsondata:Name {value: "ProjectOrTask"}
+    PSAProjTask projectOrTask?;
+    @jsondata:Name {value: "CanCarryForwardRemainingBudgets"}
+    NoYes canCarryForwardRemainingBudgets?;
+    @jsondata:Name {value: "CustomerRetentionTermId"}
+    string customerRetentionTermId?;
+    @jsondata:Name {value: "AllowNegativeBudgetsToBeCarriedForward"}
+    NoYes allowNegativeBudgetsToBeCarriedForward?;
+    @jsondata:Name {value: "DefaultOnSubprojects"}
+    NoYes defaultOnSubprojects?;
+    @jsondata:Name {value: "LedgerPostingSortPriority"}
+    ProjLedgerPosting ledgerPostingSortPriority?;
+    @jsondata:Name {value: "RequisitionOrPurchaseOrderControl"}
+    PSAPReqControl requisitionOrPurchaseOrderControl?;
+    @jsondata:Name {value: "TransactionTypesControlled"}
+    ProjBudgetaryControlOn transactionTypesControlled?;
+    @jsondata:Name {value: "Header"}
+    NoYes header?;
+    @jsondata:Name {value: "IsActivityRequiredForExpenseForecast"}
+    NoYes isActivityRequiredForExpenseForecast?;
+    @jsondata:Name {value: "DurationDeterminesEndDate"}
+    NoYes durationDeterminesEndDate?;
+    @jsondata:Name {value: "ItemValidation"}
+    PSAPReqValidate itemValidation?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "EndTime"}
+    int:Signed32 endTime?;
+    @jsondata:Name {value: "ProjectName"}
+    string projectName?;
+    @jsondata:Name {value: "SubprojectIDFormat"}
+    string subprojectIDFormat?;
+    @jsondata:Name {value: "WorkerArchitectPersonnelNumber"}
+    string workerArchitectPersonnelNumber?;
+    @jsondata:Name {value: "AlertTimeFrameWeeks"}
+    int:Signed32 alertTimeFrameWeeks?;
+    @jsondata:Name {value: "SalesPriceGroup"}
+    string salesPriceGroup?;
+    @jsondata:Name {value: "IsActivityRequiredForExpenseTransaction"}
+    NoYes isActivityRequiredForExpenseTransaction?;
+    @jsondata:Name {value: "WorkerRespSalesPersonnelNumber"}
+    string workerRespSalesPersonnelNumber?;
+    @jsondata:Name {value: "ActiveRevision"}
+    string activeRevision?;
+    @jsondata:Name {value: "ZakatSubject"}
+    string zakatSubject?;
+    @jsondata:Name {value: "WorkerResponsiblePersonnelNumber"}
+    string workerResponsiblePersonnelNumber?;
+    @jsondata:Name {value: "ExternalRevision"}
+    string externalRevision?;
+    @jsondata:Name {value: "MinimumTimeIncrement"}
+    decimal minimumTimeIncrement?;
+    @jsondata:Name {value: "IsActivityRequiredForHourForecast"}
+    NoYes isActivityRequiredForHourForecast?;
+    @jsondata:Name {value: "Calendar"}
+    string calendar?;
+    @jsondata:Name {value: "EndDate1"}
+    string endDate1?;
+    @jsondata:Name {value: "CanUseAlternateProjectBudget"}
+    NoYes canUseAlternateProjectBudget?;
+    @jsondata:Name {value: "ProjectedEndDate"}
+    string projectedEndDate?;
+    @jsondata:Name {value: "TrackCost"}
+    PSAProjTrackCost trackCost?;
+    @jsondata:Name {value: "JobIdentification"}
+    string jobIdentification?;
+    @jsondata:Name {value: "ConstraintType"}
+    PSAConstraintType constraintType?;
+    @jsondata:Name {value: "InvoiceCost"}
+    NoYes invoiceCost?;
+    @jsondata:Name {value: "BudgetOverrunDefault"}
+    ProjBudgetOverrunOption budgetOverrunDefault?;
+    @jsondata:Name {value: "ScheduleStatus"}
+    PSAResSchedStatus scheduleStatus?;
+    @jsondata:Name {value: "ProjectGroup"}
+    string projectGroup?;
+    @jsondata:Name {value: "Email"}
+    string email?;
+    @jsondata:Name {value: "WorkerRespFinancialPersonnelNumber"}
+    string workerRespFinancialPersonnelNumber?;
+    @jsondata:Name {value: "ProjectContractID"}
+    string projectContractID?;
+    @jsondata:Name {value: "ZakatContractPeriod"}
+    string zakatContractPeriod?;
+    @jsondata:Name {value: "Unit"}
+    string unit?;
+    @jsondata:Name {value: "DefaultInvoiceAccount"}
+    string defaultInvoiceAccount?;
+    @jsondata:Name {value: "PSASchedIgnoreCalendar"}
+    NoYes pSASchedIgnoreCalendar?;
+    @jsondata:Name {value: "IsActivityRequiredForItemForecast"}
+    NoYes isActivityRequiredForItemForecast?;
+    string dataAreaId?;
+    @jsondata:Name {value: "BudgetControlInterval"}
+    ProjBudgetInterval budgetControlInterval?;
+    @jsondata:Name {value: "DimensionDisplayValue"}
+    string dimensionDisplayValue?;
+    @jsondata:Name {value: "PostingLevel"}
+    DetailSummary postingLevel?;
+    @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
+    NoYes canVerifyCostAgainstRemainingForecast?;
+    @jsondata:Name {value: "TemplateApplied"}
+    NoYes templateApplied?;
+    @jsondata:Name {value: "SalesTaxGroup"}
+    string salesTaxGroup?;
+    @jsondata:Name {value: "ParentProject"}
+    string parentProject?;
+    @jsondata:Name {value: "Milestone"}
+    NoYes milestone?;
+    @jsondata:Name {value: "ProjectStage"}
+    ProjStatus projectStage?;
+    @jsondata:Name {value: "StartTime"}
+    int:Signed32 startTime?;
+    @jsondata:Name {value: "StartDate1"}
+    string startDate1?;
+    @jsondata:Name {value: "CustomerAccount"}
+    string customerAccount?;
+    @jsondata:Name {value: "ExtensionDate"}
+    string extensionDate?;
+    @jsondata:Name {value: "ProjectType"}
+    ProjType projectType?;
+    @jsondata:Name {value: "BankDocumentType"}
+    BankLGDocumentType bankDocumentType?;
+    @jsondata:Name {value: "IsActivityRequiredForHourTransaction"}
+    NoYes isActivityRequiredForHourTransaction?;
+    @jsondata:Name {value: "Category"}
+    NoYes category?;
+    @jsondata:Name {value: "Telephone"}
+    string telephone?;
+    @jsondata:Name {value: "JobPayType"}
+    JmgJobPayTypeEnum jobPayType?;
+    @jsondata:Name {value: "DurationInDays"}
+    decimal durationInDays?;
+    @jsondata:Name {value: "FixedAssetNumber"}
+    string fixedAssetNumber?;
+    @jsondata:Name {value: "ProjectID"}
+    string projectID?;
+    @jsondata:Name {value: "CanUseBudgetControl"}
+    NoYes canUseBudgetControl?;
+    @jsondata:Name {value: "DeliveryName"}
+    string deliveryName?;
+    @jsondata:Name {value: "ProjectedStartDate"}
+    string projectedStartDate?;
+    @jsondata:Name {value: "DateOfCreation"}
+    string dateOfCreation?;
+    @jsondata:Name {value: "SearchPriority"}
+    ProjLinePropertySearch searchPriority?;
+    @jsondata:Name {value: "Notes"}
+    string notes?;
+    @jsondata:Name {value: "ActualEndDate"}
+    string actualEndDate?;
+    @jsondata:Name {value: "IsActivityRequiredForItemTransaction"}
+    NoYes isActivityRequiredForItemTransaction?;
+    @jsondata:Name {value: "HourValidation"}
+    PSAPReqValidate hourValidation?;
+    @jsondata:Name {value: "ConstraintDate"}
+    string constraintDate?;
+    @jsondata:Name {value: "Date"}
+    string date?;
+    @jsondata:Name {value: "ZakatProjectValue"}
+    decimal zakatProjectValue?;
+    @jsondata:Name {value: "TotalEffortInHours"}
+    decimal totalEffortInHours?;
+    @jsondata:Name {value: "PercentToRetain"}
+    decimal percentToRetain?;
+    @jsondata:Name {value: "TimeMeasure"}
+    PSAProjTimeMeasure timeMeasure?;
+    @jsondata:Name {value: "ProjectBudgetManagement"}
+    ProjBudgetManagement projectBudgetManagement?;
+    @jsondata:Name {value: "Fax"}
+    string fax?;
+    @jsondata:Name {value: "AlternateProject"}
+    string alternateProject?;
+    @jsondata:Name {value: "ZakatContractDate"}
+    string zakatContractDate?;
+    @jsondata:Name {value: "ProjectTemplate"}
+    NoYes projectTemplate?;
 };
-# Represents the Headers record for the operation: updateCashAccounts
-public type UpdateCashAccountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteExpenseCodes
-public type DeleteExpenseCodesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateProjectStages
-public type UpdateProjectStagesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type PSAProjTimeMeasure "Hour"|"Unit";
-# Represents the Queries record for the operation: listFixedAssetsV2
-public type ListFixedAssetsV2Queries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type ProjCostSales "None"|"Cost"|"Sales";
-# Represents the Queries record for the operation: listProjectStages
-public type ListProjectStagesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listExpenseCodes
-public type ListExpenseCodesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
+public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
+public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
 public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
-# Represents the Queries record for the operation: listRAssetLedgers
-public type ListRAssetLedgersQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateBankAccounts
-public type UpdateBankAccountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
-# Represents the Queries record for the operation: listFixedAssets
-public type ListFixedAssetsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateProjectTasks
-public type UpdateProjectTasksHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
+public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
+public type PSAProjTrackCost "Actual"|"Standard";
+public type ProjLedgerPosting "GroupId"|"Categories";
+public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
+public type ProjOrigin "None"|"HourJournal"|"CostJournal"|"GeneralJournal"|"InvoiceJournal"|"InvoiceApprovalJournal"|"ExpenseManagement"|"EliminationInvestment"|"EstimateAccruedLoss"|"ItemJournal"|"PurchaseOrder"|"ItemRequirement"|"SalesOrder"|"ProductionFinished"|"ProductionConsumed"|"FeeJournal"|"EstimateFee"|"Subscription"|"Prepayment"|"Deduction"|"Milestone"|"Invoice"|"InventoryClosing"|"Adjustment"|"PostCost"|"AccrueRevenue"|"PostEstimate"|"ReverseEstimate"|"EliminateEstimate"|"ReverseElimination"|"AccrueSubscriptionRev"|"BeginningBalance"|"PurchaseRequisition"|"Timesheet"|"FreeTextInvoice"|"VendorInvoice"|"AdvancedLedgerEntry"|"PayrollEarningStatement"|"PayrollPayStatement"|"ProgressBillingRule"|"UnitOfDeliveryBillingRule"|"BudgetReservation"|"ProjAdvancedJournal";
+public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
+public type DetailSummary "Detail"|"Summary";
+public type DiscountOffsetMethod "AccountReceived"|"InvoiceAccount";
+public type PSAProjTask "Project"|"Task";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -225,18 +271,912 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type TrvMileageRateType "Mileage"|"Passenger";
-# Represents the Queries record for the operation: getProjectsV2
-public type GetProjectsV2Queries record {
+public type SmmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
+public type ProjectGroup record {
+    @jsondata:Name {value: "LedgerPostingSearchPriority"}
+    ProjLedgerPosting ledgerPostingSearchPriority?;
+    @jsondata:Name {value: "AccrueRevenueExpense"}
+    NoYes accrueRevenueExpense?;
+    @jsondata:Name {value: "ProductionCategoryId"}
+    string productionCategoryId?;
+    @jsondata:Name {value: "PostCostsItem"}
+    ProjLedgerStatus postCostsItem?;
+    @jsondata:Name {value: "AccrueRevenueFee"}
+    NoYes accrueRevenueFee?;
+    @jsondata:Name {value: "AccrueRevenueItem"}
+    NoYes accrueRevenueItem?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    string dataAreaId?;
+    @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
+    NoYes canVerifyCostAgainstRemainingForecast?;
+    @jsondata:Name {value: "SalesValueCategoryId"}
+    string salesValueCategoryId?;
+    @jsondata:Name {value: "PeriodCode"}
+    string periodCode?;
+    @jsondata:Name {value: "AccrueRevenueHour"}
+    NoYes accrueRevenueHour?;
+    @jsondata:Name {value: "LinePropertySearchPriority"}
+    ProjLinePropertySearch linePropertySearchPriority?;
+    @jsondata:Name {value: "PostCostsExpense"}
+    ProjLedgerStatus postCostsExpense?;
+    @jsondata:Name {value: "OnAccountInvoicing"}
+    ProjLedgerStatusOnAcc onAccountInvoicing?;
+    @jsondata:Name {value: "AccruedLossCategoryId"}
+    string accruedLossCategoryId?;
+    @jsondata:Name {value: "CalculationMethod"}
+    ProjSalesPriceMatchingPrincip calculationMethod?;
+    @jsondata:Name {value: "PostCostsHour"}
+    ProjLedgerStatus postCostsHour?;
+    @jsondata:Name {value: "ProjectType"}
+    ProjType projectType?;
+    @jsondata:Name {value: "MatchingPrinciple"}
+    ProjMatchingPrincip matchingPrinciple?;
+    @jsondata:Name {value: "AreForeseeableLosses"}
+    NoYes areForeseeableLosses?;
+    @jsondata:Name {value: "RevenueRecognitionAccountingRule"}
+    ProjCompletePrincip revenueRecognitionAccountingRule?;
+    @jsondata:Name {value: "CostTemplate"}
+    string costTemplate?;
+    @jsondata:Name {value: "ProfitCategoryId"}
+    string profitCategoryId?;
+    @jsondata:Name {value: "ProjectGroup"}
+    string projectGroup?;
+};
+public type ProjBudgetManagement "None"|"Independent";
+public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
+public type PSAPReqControl "None"|"Warning"|"Control";
+public type PSAProjTimeMeasure "Hour"|"Unit";
+public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
+public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
+public type ProjectStage record {
+    @jsondata:Name {value: "Status"}
+    ProjStatus status?;
+    string dataAreaId?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "Stage"}
+    string stage?;
+};
+public type ProjCostSales "None"|"Cost"|"Sales";
+public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
+public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
+public type NoYes "No"|"Yes";
+public type PSAProjStatus "Active"|"OnHold"|"Finished";
+public type ProjLinePropertySearch "Project"|"Category";
+public type CashDiscount record {
+    @jsondata:Name {value: "CashDiscountCode"}
+    string cashDiscountCode?;
+    @jsondata:Name {value: "NextCashDiscountCode"}
+    string nextCashDiscountCode?;
+    @jsondata:Name {value: "NumberOfDays"}
+    int:Signed32 numberOfDays?;
+    string dataAreaId?;
+    @jsondata:Name {value: "DiscountMethod"}
+    NetCurrent discountMethod?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "Percent"}
+    decimal percent?;
+    @jsondata:Name {value: "MainAccountIdForVendorDiscountsDisplayValue"}
+    string mainAccountIdForVendorDiscountsDisplayValue?;
+    @jsondata:Name {value: "NumberOfMonths"}
+    int:Signed32 numberOfMonths?;
+    @jsondata:Name {value: "OffsetMethodForVendorDiscounts"}
+    DiscountOffsetMethod offsetMethodForVendorDiscounts?;
+    @jsondata:Name {value: "MainAccountIdForCustomerDiscountsDisplayValue"}
+    string mainAccountIdForCustomerDiscountsDisplayValue?;
+    @jsondata:Name {value: "DescriptionQRBill"}
+    string descriptionQRBill?;
+};
+public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
+public type BankLGDocumentType "None"|"LetterOfGuarantee";
+public type ProjTransType "None"|"Revenue"|"Hour"|"Cost"|"Item"|"OnAccount"|"WIP"|"IndirectComponent"|"Retainage";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+public type ProjGrantsV2Collection record {
+    *ODataCollection;
+    *ProjGrantsV2CollectionAllOf2;
+};
+public type ProjectTasksCollectionAllOf2 record {
+    ProjectTask[] value?;
+};
+public type ProjectStagesCollection record {
+    *ODataCollection;
+    *ProjectStagesCollectionAllOf2;
+};
+public type CDSProject record {
+    @jsondata:Name {value: "ParentId"}
+    string parentId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "ProjectManagerPersonnelNumber"}
+    string projectManagerPersonnelNumber?;
+    @jsondata:Name {value: "ProjectName"}
+    string projectName?;
+    @jsondata:Name {value: "ProjectID"}
+    string projectID?;
+    @jsondata:Name {value: "ProjectContractID"}
+    string projectContractID?;
+    @jsondata:Name {value: "CustomerAccount"}
+    string customerAccount?;
+    @jsondata:Name {value: "SourceDataID"}
+    string sourceDataID?;
+    @jsondata:Name {value: "EndDate"}
+    string endDate?;
+    @jsondata:Name {value: "ProjectedEndDate"}
+    string projectedEndDate?;
+    @jsondata:Name {value: "StartDate"}
+    string startDate?;
+    string dataAreaId?;
+    @jsondata:Name {value: "ProjectedStartDate"}
+    string projectedStartDate?;
+    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
+    string defaultDimensionDisplayValue?;
+    @jsondata:Name {value: "ProjectType"}
+    ProjType projectType?;
+    @jsondata:Name {value: "ProjectGroup"}
+    string projectGroup?;
+};
+public type PSAForecastsCollection record {
+    *ODataCollection;
+    *PSAForecastsCollectionAllOf2;
+};
+public type PSAActualsCollection record {
+    *ODataCollection;
+    *PSAActualsCollectionAllOf2;
+};
+public type ProjGrantsCollection record {
+    *ODataCollection;
+    *ProjGrantsCollectionAllOf2;
+};
+public type ProjGrantsV2CollectionAllOf2 record {
+    ProjGrantV2[] value?;
+};
+public type ProjectsV2Collection record {
+    *ODataCollection;
+    *ProjectsV2CollectionAllOf2;
+};
+public type PSAForecast record {
+    @jsondata:Name {value: "OnAccPrePayment"}
+    decimal onAccPrePayment?;
+    @jsondata:Name {value: "ProjId"}
+    string projId?;
+    @jsondata:Name {value: "AmountMst"}
+    decimal amountMst?;
+    ProjCostSales costSales?;
+    @jsondata:Name {value: "PLaccruedRevenueSubscription"}
+    decimal pLaccruedRevenueSubscription?;
+    @jsondata:Name {value: "PLaccruedRevenueSalesValue"}
+    decimal pLaccruedRevenueSalesValue?;
+    @jsondata:Name {value: "PLMaterialCostWithoutNeverLedger"}
+    decimal pLMaterialCostWithoutNeverLedger?;
+    @jsondata:Name {value: "ConsumedMaterialCostWithoutNeverLedger"}
+    decimal consumedMaterialCostWithoutNeverLedger?;
+    string dataAreaId?;
+    decimal totalInvoicedRevenue?;
+    @jsondata:Name {value: "ActivityNumber"}
+    string activityNumber?;
+    @jsondata:Name {value: "ConsumedMaterialCost"}
+    decimal consumedMaterialCost?;
+    @jsondata:Name {value: "Qty"}
+    decimal qty?;
+    @jsondata:Name {value: "WIPTotalCost"}
+    decimal wIPTotalCost?;
+    @jsondata:Name {value: "ProjFundingSource_FundingSourceId"}
+    string projFundingSourceFundingSourceId?;
+    @jsondata:Name {value: "WIPSubscription"}
+    decimal wIPSubscription?;
+    @jsondata:Name {value: "WIPMaterialCost"}
+    decimal wIPMaterialCost?;
+    decimal totalConsumption?;
+    @jsondata:Name {value: "PLLaborQtyWithoutNoNeverLedger"}
+    decimal pLLaborQtyWithoutNoNeverLedger?;
+    @jsondata:Name {value: "ProjType"}
+    ProjType projType?;
+    @jsondata:Name {value: "PaymentStatus"}
+    ProjPaymentStatus paymentStatus?;
+    @jsondata:Name {value: "PSAIndirectComponent"}
+    NoYes pSAIndirectComponent?;
+    @jsondata:Name {value: "PayrollAllocation"}
+    decimal payrollAllocation?;
+    @jsondata:Name {value: "PaymentDate"}
+    string paymentDate?;
+    @jsondata:Name {value: "Elimination"}
+    NoYes elimination?;
+    @jsondata:Name {value: "PLaccruedRevenueProduction"}
+    decimal pLaccruedRevenueProduction?;
+    @jsondata:Name {value: "Resource"}
+    int 'resource;
+    @jsondata:Name {value: "OnAccMilestone"}
+    decimal onAccMilestone?;
+    @jsondata:Name {value: "PLInvoicedRevenue"}
+    decimal pLInvoicedRevenue?;
+    @jsondata:Name {value: "LedgerTransDate"}
+    string ledgerTransDate?;
+    @jsondata:Name {value: "PLInvoicedRevenueOnAccount"}
+    decimal pLInvoicedRevenueOnAccount?;
+    @jsondata:Name {value: "PLLaborCostWithoutNoNeverLedger"}
+    decimal pLLaborCostWithoutNoNeverLedger?;
+    @jsondata:Name {value: "ProjTransDate"}
+    string projTransDate?;
+    @jsondata:Name {value: "WIPSalesTotal"}
+    decimal wIPSalesTotal?;
+    @jsondata:Name {value: "ResourceCompanyId"}
+    string resourceCompanyId?;
+    @jsondata:Name {value: "LedgerDimensionDisplayValue"}
+    string ledgerDimensionDisplayValue?;
+    @jsondata:Name {value: "CategoryId"}
+    string categoryId?;
+    @jsondata:Name {value: "WIPSalesValue"}
+    decimal wIPSalesValue?;
+    @jsondata:Name {value: "WIPCostAccruedLoss"}
+    decimal wIPCostAccruedLoss?;
+    @jsondata:Name {value: "EmplItemId"}
+    string emplItemId?;
+    @jsondata:Name {value: "ConsumedExpenseCost"}
+    decimal consumedExpenseCost?;
+    @jsondata:Name {value: "WIPInvoicedOnAccount"}
+    decimal wIPInvoicedOnAccount?;
+    @jsondata:Name {value: "PLExpenseCost"}
+    decimal pLExpenseCost?;
+    @jsondata:Name {value: "WIPProfit"}
+    decimal wIPProfit?;
+    @jsondata:Name {value: "ResourceCategory"}
+    int resourceCategory?;
+    @jsondata:Name {value: "ProjTransType"}
+    ProjTransType projTransType?;
+    @jsondata:Name {value: "ProjTable_ProjId"}
+    string projTableProjId?;
+    @jsondata:Name {value: "FeeInvoicedRevenue"}
+    decimal feeInvoicedRevenue?;
+    @jsondata:Name {value: "PLTotalCost"}
+    decimal pLTotalCost?;
+    @jsondata:Name {value: "SubscriptionId"}
+    string subscriptionId?;
+    @jsondata:Name {value: "WIPExpenseCost"}
+    decimal wIPExpenseCost?;
+    @jsondata:Name {value: "ConsumedLaborCost"}
+    decimal consumedLaborCost?;
+    @jsondata:Name {value: "PLLaborCost"}
+    decimal pLLaborCost?;
+    @jsondata:Name {value: "LaborInvoicedRevenue"}
+    decimal laborInvoicedRevenue?;
+    @jsondata:Name {value: "TransId"}
+    string transId?;
+    @jsondata:Name {value: "ConsumedLaborCostWithoutNoNeverLedger"}
+    decimal consumedLaborCostWithoutNoNeverLedger?;
+    @jsondata:Name {value: "ModelId"}
+    string modelId?;
+    @jsondata:Name {value: "WIPLaborCost"}
+    decimal wIPLaborCost?;
+    @jsondata:Name {value: "WIPProduction"}
+    decimal wIPProduction?;
+    @jsondata:Name {value: "PLTotalAccruedRevenue"}
+    decimal pLTotalAccruedRevenue?;
+    @jsondata:Name {value: "ExpenseInvoicedRevenue"}
+    decimal expenseInvoicedRevenue?;
+    @jsondata:Name {value: "PLLaborQty"}
+    decimal pLLaborQty?;
+    @jsondata:Name {value: "ConsumedLaborQtyWithoutNoNeverLedger"}
+    decimal consumedLaborQtyWithoutNoNeverLedger?;
+    @jsondata:Name {value: "OnAccTotal"}
+    decimal onAccTotal?;
+    @jsondata:Name {value: "MaterialInvoicedRevenue"}
+    decimal materialInvoicedRevenue?;
+    @jsondata:Name {value: "ContractId"}
+    string contractId?;
+    @jsondata:Name {value: "PLMaterialCost"}
+    decimal pLMaterialCost?;
+    @jsondata:Name {value: "ConsumedLaborQty"}
+    decimal consumedLaborQty?;
+    @jsondata:Name {value: "Voucher"}
+    string voucher?;
+    @jsondata:Name {value: "PLAccruedRevenueOnAcc"}
+    decimal pLAccruedRevenueOnAcc?;
+    @jsondata:Name {value: "PostingType"}
+    LedgerPostingType postingType?;
+    @jsondata:Name {value: "ProjFundingSource_ContractId"}
+    string projFundingSourceContractId?;
+    @jsondata:Name {value: "PLaccruedRevenueProfit"}
+    decimal pLaccruedRevenueProfit?;
+    @jsondata:Name {value: "OnAccBegBal"}
+    decimal onAccBegBal?;
+    @jsondata:Name {value: "ResourceId"}
+    string resourceId?;
+    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
+    string defaultDimensionDisplayValue?;
+    @jsondata:Name {value: "GrossWIP"}
+    decimal grossWIP?;
+    @jsondata:Name {value: "OnAccDeduction"}
+    decimal onAccDeduction?;
+    @jsondata:Name {value: "LaborInvoicedQty"}
+    decimal laborInvoicedQty?;
+    @jsondata:Name {value: "NetWIP"}
+    decimal netWIP?;
+    @jsondata:Name {value: "PLCostAccruedLoss"}
+    decimal pLCostAccruedLoss?;
+};
+public type ProjectGroupsCollection record {
+    *ODataCollection;
+    *ProjectGroupsCollectionAllOf2;
+};
+public type ProjectsCollection record {
+    *ODataCollection;
+    *ProjectsCollectionAllOf2;
+};
+public type ProjectGroupsCollectionAllOf2 record {
+    ProjectGroup[] value?;
+};
+public type ProjectV2 record {
+    @jsondata:Name {value: "SortingField3"}
+    string sortingField3?;
+    @jsondata:Name {value: "Email"}
+    string email?;
+    @jsondata:Name {value: "SortingField2"}
+    string sortingField2?;
+    @jsondata:Name {value: "SortingField1"}
+    string sortingField1?;
+    @jsondata:Name {value: "IsBudgetControlEnabled"}
+    NoYes isBudgetControlEnabled?;
+    @jsondata:Name {value: "ZakatContractAmendment"}
+    decimal zakatContractAmendment?;
+    @jsondata:Name {value: "ZakatContractPeriod"}
+    string zakatContractPeriod?;
+    @jsondata:Name {value: "IsOCIPWorkerCompensation"}
+    NoYes isOCIPWorkerCompensation?;
+    @jsondata:Name {value: "ScheduleDurationInDays"}
+    decimal scheduleDurationInDays?;
+    @jsondata:Name {value: "ActualStartDate"}
+    string actualStartDate?;
+    @jsondata:Name {value: "IsInvestment"}
+    NoYes isInvestment?;
+    @jsondata:Name {value: "DefaultInvoiceAccount"}
+    string defaultInvoiceAccount?;
+    @jsondata:Name {value: "IsActivityRequiredForItemForecast"}
+    NoYes isActivityRequiredForItemForecast?;
+    string dataAreaId?;
+    @jsondata:Name {value: "BudgetControlInterval"}
+    ProjBudgetInterval budgetControlInterval?;
+    @jsondata:Name {value: "DimensionDisplayValue"}
+    string dimensionDisplayValue?;
+    @jsondata:Name {value: "PostingLevel"}
+    DetailSummary postingLevel?;
+    @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
+    NoYes canVerifyCostAgainstRemainingForecast?;
+    @jsondata:Name {value: "IsCertifiedPayroll"}
+    NoYes isCertifiedPayroll?;
+    @jsondata:Name {value: "IsOCIPGeneralLiability"}
+    NoYes isOCIPGeneralLiability?;
+    @jsondata:Name {value: "IsResourceCalendarIgnored"}
+    NoYes isResourceCalendarIgnored?;
+    @jsondata:Name {value: "SchedulingCalendarId"}
+    string schedulingCalendarId?;
+    @jsondata:Name {value: "DefaultScheduleDate"}
+    string defaultScheduleDate?;
+    @jsondata:Name {value: "ArchitectPersonnelNumber"}
+    string architectPersonnelNumber?;
+    @jsondata:Name {value: "ProjectManagerPersonnelNumber"}
+    string projectManagerPersonnelNumber?;
+    @jsondata:Name {value: "ProjectControllerPersonnelNumber"}
+    string projectControllerPersonnelNumber?;
+    @jsondata:Name {value: "CanCarryForwardRemainingBudgets"}
+    NoYes canCarryForwardRemainingBudgets?;
+    @jsondata:Name {value: "ProjectStage"}
+    ProjStatus projectStage?;
+    @jsondata:Name {value: "AllowNegativeBudgetsToBeCarriedForward"}
+    NoYes allowNegativeBudgetsToBeCarriedForward?;
+    @jsondata:Name {value: "ProjectContractId"}
+    string projectContractId?;
+    @jsondata:Name {value: "LedgerPostingSortPriority"}
+    ProjLedgerPosting ledgerPostingSortPriority?;
+    @jsondata:Name {value: "ExtensionDate"}
+    string extensionDate?;
+    @jsondata:Name {value: "AlternateProjectId"}
+    string alternateProjectId?;
+    @jsondata:Name {value: "EstimateProjectId"}
+    string estimateProjectId?;
+    @jsondata:Name {value: "TransactionTypesControlled"}
+    ProjBudgetaryControlOn transactionTypesControlled?;
+    @jsondata:Name {value: "IsActivityRequiredForExpenseForecast"}
+    NoYes isActivityRequiredForExpenseForecast?;
+    @jsondata:Name {value: "BankDocumentType"}
+    BankLGDocumentType bankDocumentType?;
+    @jsondata:Name {value: "IsProjectCategoryValidationEnabled"}
+    NoYes isProjectCategoryValidationEnabled?;
+    @jsondata:Name {value: "SalesPriceGroupId"}
+    string salesPriceGroupId?;
+    @jsondata:Name {value: "IsActivityRequiredForHourTransaction"}
+    NoYes isActivityRequiredForHourTransaction?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "ProjectName"}
+    string projectName?;
+    @jsondata:Name {value: "ScheduleStartDate"}
+    string scheduleStartDate?;
+    @jsondata:Name {value: "IntegrationSourceDataId"}
+    string integrationSourceDataId?;
+    @jsondata:Name {value: "ScheduleEndDate"}
+    string scheduleEndDate?;
+    @jsondata:Name {value: "SalesTaxGroupId"}
+    string salesTaxGroupId?;
+    @jsondata:Name {value: "IsHeader"}
+    NoYes isHeader?;
+    @jsondata:Name {value: "ProjectGroupId"}
+    string projectGroupId?;
+    @jsondata:Name {value: "IsActivityRequiredForExpenseTransaction"}
+    NoYes isActivityRequiredForExpenseTransaction?;
+    @jsondata:Name {value: "SalesManagerPersonnelNumber"}
+    string salesManagerPersonnelNumber?;
+    @jsondata:Name {value: "DeliveryName"}
+    string deliveryName?;
+    @jsondata:Name {value: "ZakatSubject"}
+    string zakatSubject?;
+    @jsondata:Name {value: "ProjectedStartDate"}
+    string projectedStartDate?;
+    @jsondata:Name {value: "DateOfCreation"}
+    string dateOfCreation?;
+    @jsondata:Name {value: "TotalPlannedEffortInHours"}
+    decimal totalPlannedEffortInHours?;
+    @jsondata:Name {value: "ParentProjectId"}
+    string parentProjectId?;
+    @jsondata:Name {value: "LinePropertySearchPriority"}
+    ProjLinePropertySearch linePropertySearchPriority?;
+    @jsondata:Name {value: "ActualEndDate"}
+    string actualEndDate?;
+    @jsondata:Name {value: "IsActivityRequiredForHourForecast"}
+    NoYes isActivityRequiredForHourForecast?;
+    @jsondata:Name {value: "ProjectId"}
+    string projectId?;
+    @jsondata:Name {value: "IsTemplateApplied"}
+    NoYes isTemplateApplied?;
+    @jsondata:Name {value: "CanUseAlternateProjectBudget"}
+    NoYes canUseAlternateProjectBudget?;
+    @jsondata:Name {value: "IsActivityRequiredForItemTransaction"}
+    NoYes isActivityRequiredForItemTransaction?;
+    @jsondata:Name {value: "IsProjectTemplate"}
+    NoYes isProjectTemplate?;
+    @jsondata:Name {value: "CustomerAccountNumber"}
+    string customerAccountNumber?;
+    @jsondata:Name {value: "ProjectedEndDate"}
+    string projectedEndDate?;
+    @jsondata:Name {value: "ZakatProjectValue"}
+    decimal zakatProjectValue?;
+    @jsondata:Name {value: "JobIdentification"}
+    string jobIdentification?;
+    @jsondata:Name {value: "SubprojectIdFormat"}
+    string subprojectIdFormat?;
+    @jsondata:Name {value: "ProjectBudgetManagement"}
+    ProjBudgetManagement projectBudgetManagement?;
+    @jsondata:Name {value: "BudgetOverrunDefault"}
+    ProjBudgetOverrunOption budgetOverrunDefault?;
+    @jsondata:Name {value: "ZakatContractDate"}
+    string zakatContractDate?;
+    @jsondata:Name {value: "DeliveryAddressLocationId"}
+    string deliveryAddressLocationId?;
+};
+public type ProjectTasksCollection record {
+    *ODataCollection;
+    *ProjectTasksCollectionAllOf2;
+};
+public type ProjectsCollectionAllOf2 record {
+    Project[] value?;
+};
+public type CDSProjectsCollection record {
+    *ODataCollection;
+    *CDSProjectsCollectionAllOf2;
+};
+public type ProjGrantV2 record {
+    @jsondata:Name {value: "AwardedAmount"}
+    decimal awardedAmount?;
+    @jsondata:Name {value: "RejectionNotification"}
+    string rejectionNotification?;
+    @jsondata:Name {value: "ProjLocalTrackingId"}
+    string projLocalTrackingId?;
+    @jsondata:Name {value: "CustAccount"}
+    string custAccount?;
+    @jsondata:Name {value: "EstimatedAwardDate"}
+    string estimatedAwardDate?;
+    @jsondata:Name {value: "SubGrantor"}
+    NoYes subGrantor?;
+    @jsondata:Name {value: "GrantMatchingComments"}
+    string grantMatchingComments?;
+    @jsondata:Name {value: "BoardApprovalDate"}
+    string boardApprovalDate?;
+    @jsondata:Name {value: "ActualStartDate"}
+    string actualStartDate?;
+    @jsondata:Name {value: "GrantParentId"}
+    string grantParentId?;
+    string dataAreaId?;
+    @jsondata:Name {value: "FederalMandate"}
+    NoYes federalMandate?;
+    @jsondata:Name {value: "WorkerContact_PersonnelNumber"}
+    string workerContactPersonnelNumber?;
+    @jsondata:Name {value: "GrantApplicationId"}
+    string grantApplicationId?;
+    @jsondata:Name {value: "MatchingPercentage"}
+    decimal matchingPercentage?;
+    @jsondata:Name {value: "GrantStatus"}
+    ProjGrantStatus grantStatus?;
+    @jsondata:Name {value: "ProjGrantorType_GrantorType"}
+    string projGrantorTypeGrantorType?;
+    @jsondata:Name {value: "GrantId"}
+    string grantId?;
+    @jsondata:Name {value: "GrantorAgency"}
+    string grantorAgency?;
+    @jsondata:Name {value: "GrantName"}
+    string grantName?;
+    @jsondata:Name {value: "RenewalActionDate"}
+    string renewalActionDate?;
+    @jsondata:Name {value: "MatchingAmount"}
+    decimal matchingAmount?;
+    @jsondata:Name {value: "ProjGrantType_GrantType"}
+    string projGrantTypeGrantType?;
+    @jsondata:Name {value: "RequestedAmount"}
+    decimal requestedAmount?;
+    @jsondata:Name {value: "ProjGrantMatching_MatchingTypeCode"}
+    string projGrantMatchingMatchingTypeCode?;
+    @jsondata:Name {value: "ApplicationDueDate"}
+    string applicationDueDate?;
+    @jsondata:Name {value: "GrantPurpose"}
+    string grantPurpose?;
+    @jsondata:Name {value: "ApplicationSubmittedDate"}
+    string applicationSubmittedDate?;
+    @jsondata:Name {value: "PassThrough"}
+    NoYes passThrough?;
+    @jsondata:Name {value: "ActualExpirationDate"}
+    string actualExpirationDate?;
+    @jsondata:Name {value: "ActualAwardDate"}
+    string actualAwardDate?;
+    @jsondata:Name {value: "OrganizationUnitId"}
+    string organizationUnitId?;
+    @jsondata:Name {value: "GrantDescription"}
+    string grantDescription?;
+    @jsondata:Name {value: "StateMandate"}
+    NoYes stateMandate?;
+    @jsondata:Name {value: "GrantManagerWorker_PersonnelNumber"}
+    string grantManagerWorkerPersonnelNumber?;
+    @jsondata:Name {value: "CFDA"}
+    string cFDA?;
+};
+public type ProjectTask record {
+    string dataAreaId?;
+    @jsondata:Name {value: "TaskDisplaySequence"}
+    decimal taskDisplaySequence?;
+    @jsondata:Name {value: "TaskId"}
+    string taskId?;
+    @jsondata:Name {value: "TaskOutlineLevel"}
+    int:Signed32 taskOutlineLevel?;
+    @jsondata:Name {value: "TaskName"}
+    string taskName?;
+    @jsondata:Name {value: "TaskElementId"}
+    string taskElementId?;
+    @jsondata:Name {value: "ProjectId"}
+    string projectId?;
+    @jsondata:Name {value: "ParentTaskElementId"}
+    string parentTaskElementId?;
+    @jsondata:Name {value: "TaskStatus"}
+    SmmShowTimeAs taskStatus?;
+    @jsondata:Name {value: "TaskTimeType"}
+    SmmActivityTaskTimeType taskTimeType?;
+};
+public type ProjGrantStatus "Entered"|"Submitted"|"Approved"|"Awarded"|"Active"|"Closed"|"Rejected";
+public type ProjGrantsCollectionAllOf2 record {
+    ProjGrant[] value?;
+};
+public type PSAForecastsCollectionAllOf2 record {
+    PSAForecast[] value?;
+};
+public type ProjectStagesCollectionAllOf2 record {
+    ProjectStage[] value?;
+};
+public type PSAActual record {
+    @jsondata:Name {value: "OnAccPrePayment"}
+    decimal onAccPrePayment?;
+    @jsondata:Name {value: "CompanyInfo_DataArea"}
+    string companyInfoDataArea?;
+    @jsondata:Name {value: "ProjId"}
+    string projId?;
+    @jsondata:Name {value: "AmountMst"}
+    decimal amountMst?;
+    ProjCostSales costSales?;
+    @jsondata:Name {value: "PLAccruedRevenueProfit"}
+    decimal pLAccruedRevenueProfit?;
+    @jsondata:Name {value: "PLMaterialCostWithoutNeverLedger"}
+    decimal pLMaterialCostWithoutNeverLedger?;
+    @jsondata:Name {value: "ConsumedMaterialCostWithoutNeverLedger"}
+    decimal consumedMaterialCostWithoutNeverLedger?;
+    string dataAreaId?;
+    decimal totalInvoicedRevenue?;
+    @jsondata:Name {value: "ActivityNumber"}
+    string activityNumber?;
+    @jsondata:Name {value: "PLAccruedRevenueSalesValueMaterial"}
+    decimal pLAccruedRevenueSalesValueMaterial?;
+    @jsondata:Name {value: "ConsumedMaterialCost"}
+    decimal consumedMaterialCost?;
+    @jsondata:Name {value: "PLAccruedRevenueSalesValueExpense"}
+    decimal pLAccruedRevenueSalesValueExpense?;
+    @jsondata:Name {value: "Qty"}
+    decimal qty?;
+    @jsondata:Name {value: "WIPTotalCost"}
+    decimal wIPTotalCost?;
+    @jsondata:Name {value: "ProjFundingSource_FundingSourceId"}
+    string projFundingSourceFundingSourceId?;
+    @jsondata:Name {value: "WIPSubscription"}
+    decimal wIPSubscription?;
+    @jsondata:Name {value: "WIPMaterialCost"}
+    decimal wIPMaterialCost?;
+    decimal totalConsumption?;
+    @jsondata:Name {value: "PLLaborQtyWithoutNoNeverLedger"}
+    decimal pLLaborQtyWithoutNoNeverLedger?;
+    @jsondata:Name {value: "ProjType"}
+    ProjType projType?;
+    @jsondata:Name {value: "PaymentStatus"}
+    ProjPaymentStatus paymentStatus?;
+    @jsondata:Name {value: "PayrollAllocation"}
+    decimal payrollAllocation?;
+    @jsondata:Name {value: "PaymentDate"}
+    string paymentDate?;
+    @jsondata:Name {value: "PLAccruedRevenueSalesValueFee"}
+    decimal pLAccruedRevenueSalesValueFee?;
+    @jsondata:Name {value: "OnAccMilestone"}
+    decimal onAccMilestone?;
+    @jsondata:Name {value: "InventTransId"}
+    string inventTransId?;
+    @jsondata:Name {value: "SubBillDeferralSalesExpense"}
+    decimal subBillDeferralSalesExpense?;
+    @jsondata:Name {value: "SubBillDeferralSalesItem"}
+    decimal subBillDeferralSalesItem?;
+    @jsondata:Name {value: "PLInvoicedRevenue"}
+    decimal pLInvoicedRevenue?;
+    @jsondata:Name {value: "LedgerTransDate"}
+    string ledgerTransDate?;
+    @jsondata:Name {value: "PLInvoicedRevenueOnAccount"}
+    decimal pLInvoicedRevenueOnAccount?;
+    @jsondata:Name {value: "PLLaborCostWithoutNoNeverLedger"}
+    decimal pLLaborCostWithoutNoNeverLedger?;
+    @jsondata:Name {value: "ProjTransDate"}
+    string projTransDate?;
+    @jsondata:Name {value: "WIPSalesTotal"}
+    decimal wIPSalesTotal?;
+    @jsondata:Name {value: "ResourceCompanyId"}
+    string resourceCompanyId?;
+    @jsondata:Name {value: "LedgerDimensionDisplayValue"}
+    string ledgerDimensionDisplayValue?;
+    @jsondata:Name {value: "CategoryId"}
+    string categoryId?;
+    @jsondata:Name {value: "PLAccruedRevenueSubscription"}
+    decimal pLAccruedRevenueSubscription?;
+    @jsondata:Name {value: "WIPSalesValue"}
+    decimal wIPSalesValue?;
+    @jsondata:Name {value: "WIPCostAccruedLoss"}
+    decimal wIPCostAccruedLoss?;
+    @jsondata:Name {value: "ProjAdjustRefId"}
+    string projAdjustRefId?;
+    @jsondata:Name {value: "EmplItemId"}
+    string emplItemId?;
+    @jsondata:Name {value: "ConsumedExpenseCost"}
+    decimal consumedExpenseCost?;
+    @jsondata:Name {value: "WIPInvoicedOnAccount"}
+    decimal wIPInvoicedOnAccount?;
+    @jsondata:Name {value: "PLExpenseCost"}
+    decimal pLExpenseCost?;
+    @jsondata:Name {value: "WIPProfit"}
+    decimal wIPProfit?;
+    @jsondata:Name {value: "ProjTransType"}
+    ProjTransType projTransType?;
+    @jsondata:Name {value: "SubBillDeferralCostExpense"}
+    decimal subBillDeferralCostExpense?;
+    @jsondata:Name {value: "FeeInvoicedRevenue"}
+    decimal feeInvoicedRevenue?;
+    @jsondata:Name {value: "PLTotalCost"}
+    decimal pLTotalCost?;
+    @jsondata:Name {value: "SubscriptionId"}
+    string subscriptionId?;
+    @jsondata:Name {value: "WIPExpenseCost"}
+    decimal wIPExpenseCost?;
+    @jsondata:Name {value: "ConsumedLaborCost"}
+    decimal consumedLaborCost?;
+    @jsondata:Name {value: "SubBillDeferralCostHour"}
+    decimal subBillDeferralCostHour?;
+    @jsondata:Name {value: "PLLaborCost"}
+    decimal pLLaborCost?;
+    @jsondata:Name {value: "PLAccruedRevenueProduction"}
+    decimal pLAccruedRevenueProduction?;
+    @jsondata:Name {value: "LedgerOrigin"}
+    ProjOrigin ledgerOrigin?;
+    @jsondata:Name {value: "LaborInvoicedRevenue"}
+    decimal laborInvoicedRevenue?;
+    @jsondata:Name {value: "TransId"}
+    string transId?;
+    @jsondata:Name {value: "ConsumedLaborCostWithoutNoNeverLedger"}
+    decimal consumedLaborCostWithoutNoNeverLedger?;
+    @jsondata:Name {value: "WIPLaborCost"}
+    decimal wIPLaborCost?;
+    @jsondata:Name {value: "SubBillDeferralSalesHour"}
+    decimal subBillDeferralSalesHour?;
+    @jsondata:Name {value: "WIPProduction"}
+    decimal wIPProduction?;
+    @jsondata:Name {value: "PLTotalAccruedRevenue"}
+    decimal pLTotalAccruedRevenue?;
+    @jsondata:Name {value: "PLAccruedRevenueSalesValue"}
+    decimal pLAccruedRevenueSalesValue?;
+    @jsondata:Name {value: "ExpenseInvoicedRevenue"}
+    decimal expenseInvoicedRevenue?;
+    @jsondata:Name {value: "PLLaborQty"}
+    decimal pLLaborQty?;
+    @jsondata:Name {value: "ConsumedLaborQtyWithoutNoNeverLedger"}
+    decimal consumedLaborQtyWithoutNoNeverLedger?;
+    @jsondata:Name {value: "OnAccTotal"}
+    decimal onAccTotal?;
+    @jsondata:Name {value: "TransactionOrigin"}
+    ProjOrigin transactionOrigin?;
+    @jsondata:Name {value: "MaterialInvoicedRevenue"}
+    decimal materialInvoicedRevenue?;
+    @jsondata:Name {value: "PLAccruedRevenueSalesValueLabor"}
+    decimal pLAccruedRevenueSalesValueLabor?;
+    @jsondata:Name {value: "ContractId"}
+    string contractId?;
+    @jsondata:Name {value: "PLMaterialCost"}
+    decimal pLMaterialCost?;
+    @jsondata:Name {value: "ConsumedLaborQty"}
+    decimal consumedLaborQty?;
+    @jsondata:Name {value: "SubBillDeferralCostItem"}
+    decimal subBillDeferralCostItem?;
+    @jsondata:Name {value: "Voucher"}
+    string voucher?;
+    @jsondata:Name {value: "PLAccruedRevenueOnAcc"}
+    decimal pLAccruedRevenueOnAcc?;
+    @jsondata:Name {value: "PostingType"}
+    LedgerPostingType postingType?;
+    @jsondata:Name {value: "ProjFundingSource_ContractId"}
+    string projFundingSourceContractId?;
+    @jsondata:Name {value: "OnAccBegBal"}
+    decimal onAccBegBal?;
+    @jsondata:Name {value: "ResourceId"}
+    string resourceId?;
+    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
+    string defaultDimensionDisplayValue?;
+    @jsondata:Name {value: "GrossWIP"}
+    decimal grossWIP?;
+    @jsondata:Name {value: "OnAccDeduction"}
+    decimal onAccDeduction?;
+    @jsondata:Name {value: "LaborInvoicedQty"}
+    decimal laborInvoicedQty?;
+    @jsondata:Name {value: "NetWIP"}
+    decimal netWIP?;
+    @jsondata:Name {value: "PLCostAccruedLoss"}
+    decimal pLCostAccruedLoss?;
+};
+public type CDSProjectsCollectionAllOf2 record {
+    CDSProject[] value?;
+};
+public type ProjectsV2CollectionAllOf2 record {
+    ProjectV2[] value?;
+};
+public type PSAActualsCollectionAllOf2 record {
+    PSAActual[] value?;
+};
+public type ProjGrant record {
+    @jsondata:Name {value: "AwardedAmount"}
+    decimal awardedAmount?;
+    @jsondata:Name {value: "RejectionNotification"}
+    string rejectionNotification?;
+    @jsondata:Name {value: "ProjLocalTrackingId"}
+    string projLocalTrackingId?;
+    @jsondata:Name {value: "CustAccount"}
+    string custAccount?;
+    @jsondata:Name {value: "EstimatedAwardDate"}
+    string estimatedAwardDate?;
+    @jsondata:Name {value: "SubGrantor"}
+    NoYes subGrantor?;
+    @jsondata:Name {value: "GrantMatchingComments"}
+    string grantMatchingComments?;
+    @jsondata:Name {value: "BoardApprovalDate"}
+    string boardApprovalDate?;
+    @jsondata:Name {value: "ActualStartDate"}
+    string actualStartDate?;
+    @jsondata:Name {value: "GrantParentId"}
+    string grantParentId?;
+    string dataAreaId?;
+    @jsondata:Name {value: "FederalMandate"}
+    NoYes federalMandate?;
+    @jsondata:Name {value: "WorkerContact_PersonnelNumber"}
+    string workerContactPersonnelNumber?;
+    @jsondata:Name {value: "GrantApplicationId"}
+    string grantApplicationId?;
+    @jsondata:Name {value: "CFDAId"}
+    string cFDAId?;
+    @jsondata:Name {value: "MatchingPercentage"}
+    decimal matchingPercentage?;
+    @jsondata:Name {value: "GrantStatus"}
+    ProjGrantStatus grantStatus?;
+    @jsondata:Name {value: "ProjGrantorType_GrantorType"}
+    string projGrantorTypeGrantorType?;
+    @jsondata:Name {value: "GrantId"}
+    string grantId?;
+    @jsondata:Name {value: "GrantName"}
+    string grantName?;
+    @jsondata:Name {value: "RenewalActionDate"}
+    string renewalActionDate?;
+    @jsondata:Name {value: "MatchingAmount"}
+    decimal matchingAmount?;
+    @jsondata:Name {value: "ProjGrantType_GrantType"}
+    string projGrantTypeGrantType?;
+    @jsondata:Name {value: "RequestedAmount"}
+    decimal requestedAmount?;
+    @jsondata:Name {value: "ProjGrantMatching_MatchingTypeCode"}
+    string projGrantMatchingMatchingTypeCode?;
+    @jsondata:Name {value: "ApplicationDueDate"}
+    string applicationDueDate?;
+    @jsondata:Name {value: "GrantPurpose"}
+    string grantPurpose?;
+    @jsondata:Name {value: "ApplicationSubmittedDate"}
+    string applicationSubmittedDate?;
+    @jsondata:Name {value: "PassThrough"}
+    NoYes passThrough?;
+    @jsondata:Name {value: "ActualExpirationDate"}
+    string actualExpirationDate?;
+    @jsondata:Name {value: "ActualAwardDate"}
+    string actualAwardDate?;
+    @jsondata:Name {value: "OrganizationUnitId"}
+    string organizationUnitId?;
+    @jsondata:Name {value: "GrantDescription"}
+    string grantDescription?;
+    @jsondata:Name {value: "StateMandate"}
+    NoYes stateMandate?;
+    @jsondata:Name {value: "GrantManagerWorker_PersonnelNumber"}
+    string grantManagerWorkerPersonnelNumber?;
+};
+# Represents the Headers record for the operation: updateProjectStages
+public type UpdateProjectStagesHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listProjectStages
+public type ListProjectStagesQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Queries record for the operation: getCashSymbols
-public type GetCashSymbolsQueries record {
+# Represents the Headers record for the operation: updateProjectTasks
+public type UpdateProjectTasksHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getProjectsV2
+public type GetProjectsV2Queries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -253,66 +1193,8 @@ public type GetProjectsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Queries record for the operation: listAssetSortings
-public type ListAssetSortingsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updatePerDiems
-public type UpdatePerDiemsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateAssetSortings
-public type UpdateAssetSortingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-# Represents the Headers record for the operation: deleteLeasingGroups
-public type DeleteLeasingGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: deleteProjectsV2
 public type DeleteProjectsV2Headers record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateFixedAssetsV2
-public type UpdateFixedAssetsV2Headers record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateRAssetGroups
-public type UpdateRAssetGroupsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
@@ -323,29 +1205,11 @@ public type DeleteProjGrantsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: getMileageRates
-public type GetMileageRatesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: deleteCDSProjects
 public type DeleteCDSProjectsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-# Represents the Queries record for the operation: getExpenseParameters
-public type GetExpenseParametersQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Headers record for the operation: updateCDSProjects
 public type UpdateCDSProjectsHeaders record {
@@ -353,80 +1217,17 @@ public type UpdateCDSProjectsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: listBankAccounts
-public type ListBankAccountsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
 # Represents the Headers record for the operation: deletePSAActuals
 public type DeletePSAActualsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
-public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
-public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
-# Represents the Headers record for the operation: updateFixedAssetValueModels
-public type UpdateFixedAssetValueModelsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteBankAccounts
-public type DeleteBankAccountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
-# Represents the Headers record for the operation: updateParentLeases
-public type UpdateParentLeasesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
 # Represents the Headers record for the operation: updateProjGrantsV2
 public type UpdateProjGrantsV2Headers record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-public type BankTypeRU "Main"|"Branch"|"Foreign";
-public type TrvAppStatus "None"|"Create"|"Submitted"|"Approved"|"Returned"|"Ready"|"Ledger"|"Cancelled"|"Pending"|"Matched";
-public type RAssetAssessedTaxType "Section3"|"First"|"Second"|"Third"|"Fourth"|"Fifth"|"Sixth"|"K7"|"K8"|"K9"|"K10"|"K11"|"K12"|"K13";
-# Represents the Queries record for the operation: getExpenseRates
-public type GetExpenseRatesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Queries record for the operation: listProjects
 public type ListProjectsQueries record {
@@ -455,105 +1256,11 @@ public type ListProjectsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: updateRAssetLedgers
-public type UpdateRAssetLedgersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getLeasingGroups
-public type GetLeasingGroupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteAssetSortings
-public type DeleteAssetSortingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type TrvMealReductionType "MealTypePerTrip"|"MealTypePerday"|"MealsPerDay";
-# Represents the Queries record for the operation: getPerDiems
-public type GetPerDiemsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteCashAccounts
-public type DeleteCashAccountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getCashDiscounts
-public type GetCashDiscountsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getAssetLendings
-public type GetAssetLendingsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: updateProjects
 public type UpdateProjectsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteRAssetUses
-public type DeleteRAssetUsesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listLeasingGroups
-public type ListLeasingGroupsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Queries record for the operation: listProjGrants
 public type ListProjGrantsQueries record {
@@ -581,12 +1288,6 @@ public type ListProjGrantsQueries record {
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
-};
-# Represents the Headers record for the operation: deleteCashLedgers
-public type DeleteCashLedgersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
 };
 # Represents the Headers record for the operation: deleteProjectTasks
 public type DeleteProjectTasksHeaders record {
@@ -621,41 +1322,6 @@ public type ListProjectTasksQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: deleteFixedAssets
-public type DeleteFixedAssetsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type TrvEvaluateExpensePolicies "OnLineSave"|"OnSubmit";
-public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
-# Represents the Queries record for the operation: listMileageRates
-public type ListMileageRatesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Queries record for the operation: getPSAActuals
 public type GetPSAActualsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -665,160 +1331,11 @@ public type GetPSAActualsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
-# Represents the Headers record for the operation: deleteExchSetups
-public type DeleteExchSetupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteBankGroups
-public type DeleteBankGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteRAssetLedgers
-public type DeleteRAssetLedgersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
-public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
-# Represents the Headers record for the operation: updateCashDiscounts
-public type UpdateCashDiscountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateCashSymbols
-public type UpdateCashSymbolsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getCashLedgers
-public type GetCashLedgersQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
-# Represents the Headers record for the operation: deleteExpenseParameters
-public type DeleteExpenseParametersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listPerDiems
-public type ListPerDiemsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type TrvExpSplitLineType "NoSplit"|"SplitHeader"|"SplitLine";
-public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
-public type DiscountOffsetMethod "AccountReceived"|"InvoiceAccount";
-# Represents the Queries record for the operation: listAssetLendings
-public type ListAssetLendingsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateExchSetups
-public type UpdateExchSetupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type AssetStatus "NoAcquisition"|"Open"|"Suspended"|"Closed"|"Sold"|"Scrapped"|"TransferredToLowValuePool"|"Acquired_CZ"|"Lended_RU"|"Disposed_RU"|"PurchInvoice_RU"|"OrderedForSale_RU";
-public type ProjTransType "None"|"Revenue"|"Hour"|"Cost"|"Item"|"OnAccount"|"WIP"|"IndirectComponent"|"Retainage";
-# Represents the Headers record for the operation: deleteMileageRates
-public type DeleteMileageRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Queries record for the operation: getProjGrants
 public type GetProjGrantsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type PSAPReqValidate "Amount"|"HoursQty";
-public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
-# Represents the Queries record for the operation: listCashDiscounts
-public type ListCashDiscountsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
@@ -850,12 +1367,6 @@ public type ListPSAActualsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: updateRAssetUses
-public type UpdateRAssetUsesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Queries record for the operation: listCDSProjects
 public type ListCDSProjectsQueries record {
     # OData $skip query parameter - number of records to skip
@@ -883,96 +1394,11 @@ public type ListCDSProjectsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type BankLGDocumentType "None"|"LetterOfGuarantee";
-public type SmmActivityTaskTimeType "NotStarted"|"InProgress"|"Completed"|"Waiting"|"Deferred";
 # Represents the Headers record for the operation: deleteProjects
 public type DeleteProjectsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-# Represents the Headers record for the operation: updateBankGroups
-public type UpdateBankGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type NetCurrent "Net"|"CurrentMth"|"CurrentQuart"|"CurrentYear"|"CurrentWeek"|"COD"|"CutOffDate";
-# Represents the Queries record for the operation: listCashAccounts
-public type ListCashAccountsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
-# Represents the Queries record for the operation: getFixedAssets
-public type GetFixedAssetsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteRAssetGroups
-public type DeleteRAssetGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateLeasingGroups
-public type UpdateLeasingGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listRAssetGroups
-public type ListRAssetGroupsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Queries record for the operation: getCDSProjects
 public type GetCDSProjectsQueries record {
@@ -983,61 +1409,6 @@ public type GetCDSProjectsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: deleteCodaTrans
-public type DeleteCodaTransHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjLinePropertySearch "Project"|"Category";
-# Represents the Queries record for the operation: getRAssetGroups
-public type GetRAssetGroupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listCashLedgers
-public type ListCashLedgersQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateExpenseRates
-public type UpdateExpenseRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type FBPISCOFINSFixedAssetCreditGroupBR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
-public type ProjLedgerPosting "GroupId"|"Categories";
-public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
-public type RAssetVehicleEcoClass "Empty"|"Class0"|"Class1"|"Class2"|"Class3"|"Class4"|"Class5";
-public type AssetLeaseCompoundingInterval "Monthly"|"Quarterly"|"Annually"|"SemiAnnually";
-public type DetailSummary "Detail"|"Summary";
 # Represents the Queries record for the operation: listPSAForecasts
 public type ListPSAForecastsQueries record {
     # OData $skip query parameter - number of records to skip
@@ -1071,33 +1442,6 @@ public type DeleteProjectGroupsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: listFixedAssetValueModels
-public type ListFixedAssetValueModelsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: updateProjGrants
 public type UpdateProjGrantsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
@@ -1113,7 +1457,6 @@ public type GetProjectTasksQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type AssetSortValue "Sorting1"|"Sorting2"|"Sorting3";
 # Represents the Queries record for the operation: listProjGrantsV2
 public type ListProjGrantsV2Queries record {
     # OData $skip query parameter - number of records to skip
@@ -1141,34 +1484,6 @@ public type ListProjGrantsV2Queries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Queries record for the operation: listExpenses
-public type ListExpensesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type TrvPersonalPaidBy "Employee"|"Company";
 # Represents the Headers record for the operation: deleteProjGrantsV2
 public type DeleteProjGrantsV2Headers record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
@@ -1181,105 +1496,11 @@ public type DeletePSAForecastsHeaders record {
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Queries record for the operation: getBankAccounts
-public type GetBankAccountsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
-# Represents the Queries record for the operation: getCashAccounts
-public type GetCashAccountsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getFixedAssetsV2
-public type GetFixedAssetsV2Queries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
-public type NoYes "No"|"Yes";
-public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
-public type AssetSpecialDepAllocationConventionJP "FollowingFiscalYear"|"FollowingFiscalPeriod";
-# Represents the Headers record for the operation: updateTrvReceipts
-public type UpdateTrvReceiptsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type RAssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Vehicle"|"Land"|"Other"|"Cloths"|"Rigging"|"LowCostAssets";
-# Represents the Queries record for the operation: getBankGroups
-public type GetBankGroupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deletePerDiems
-public type DeletePerDiemsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: updateProjectsV2
 public type UpdateProjectsV2Headers record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
-};
-public type PSAProjTrackCost "Actual"|"Standard";
-# Represents the Headers record for the operation: deleteTrvReceipts
-public type DeleteTrvReceiptsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: updateMileageRates
-public type UpdateMileageRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getCodaTrans
-public type GetCodaTransQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteExpenses
-public type DeleteExpensesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"RegistrationDate"|"AcquisitionDate";
-public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
-public type AssetDepreciationConvention "None"|"HalfYear"|"FullMonth"|"MidQuarter"|"MidMonth1st"|"MidMonth15"|"HalfYearStart"|"HalfYearNext";
-# Represents the Queries record for the operation: getParentLeases
-public type GetParentLeasesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
 };
 # Represents the Queries record for the operation: listProjectsV2
 public type ListProjectsV2Queries record {
@@ -1308,30 +1529,6 @@ public type ListProjectsV2Queries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
-# Represents the Headers record for the operation: deleteCashSymbols
-public type DeleteCashSymbolsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getExpenses
-public type GetExpensesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Queries record for the operation: getProjectStages
 public type GetProjectStagesQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -1341,20 +1538,12 @@ public type GetProjectStagesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
 # Represents the Headers record for the operation: updateProjectGroups
 public type UpdateProjectGroupsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-# Represents the Headers record for the operation: updateAssetLendings
-public type UpdateAssetLendingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type AssetDeferredTypeJP "EquallyDivided"|"OneTime";
 # Represents the Queries record for the operation: getProjGrantsV2
 public type GetProjGrantsV2Queries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -1364,13 +1553,6 @@ public type GetProjGrantsV2Queries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-# Represents the Headers record for the operation: updateCashLedgers
-public type UpdateCashLedgersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjBudgetManagement "None"|"Independent";
 # Represents the Queries record for the operation: getPSAForecasts
 public type GetPSAForecastsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -1379,121 +1561,6 @@ public type GetPSAForecastsQueries record {
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
-};
-# Represents the Queries record for the operation: getRAssetUses
-public type GetRAssetUsesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteFixedAssetsV2
-public type DeleteFixedAssetsV2Headers record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getTrvReceipts
-public type GetTrvReceiptsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listExpenseRates
-public type ListExpenseRatesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getExpenseCodes
-public type GetExpenseCodesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: listParentLeases
-public type ListParentLeasesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteExpenseRates
-public type DeleteExpenseRatesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: getExchSetups
-public type GetExchSetupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateFixedAssets
-public type UpdateFixedAssetsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type LedgerPostingType "None"|"ExchRateGain"|"ExchRateLoss"|"InterCompany"|"Tax"|"VATRoundOff"|"Allocation"|"InvestmentDuty"|"Liquidity"|"MSTDiffSecond"|"ErrorAccount"|"MSTDiff"|"YearResult"|"Closing"|"LedgerJournal"|"CashDiscount"|"ConsolidateDiffBalance"|"PaymentFee"|"TaxReport"|"TransferOpeningClosing"|"Bank"|"ConversionProfit"|"ConversionLoss"|"TaxWithhold"|"ConsolidateDiffProfitLoss"|"IndirectEstimatedAbsorptionOffset"|"IndirectAbsorption"|"IndirectAbsorptionOffset"|"FreeTextInvoice"|"ConversionReportingLoss"|"ConversionReportingProfit"|"CustBalance"|"CustRevenue"|"CustInterest"|"CustCashDisc"|"CustCollectionLetterFee"|"CustInterestFee"|"CustInvoiceDisc"|"CustPayment"|"CustReimbursement"|"CustSettlement"|"VendBalance"|"VendPurchLedger"|"VendOffsetAccount"|"VendInterest"|"VendCashDisc"|"VendPayment"|"VendInvoiceDisc"|"VendSettlement"|"CrossCompanySettlement"|"InventIssueFixedAsset"|"SalesRevenue"|"SalesConsump"|"SalesDisc"|"SalesCash"|"SalesFreight"|"SalesFee"|"SalesPostage"|"SalesRoundOff"|"SalesPackingSlip"|"SalesOffsetAccountPackingSlip"|"SalesIssue"|"SalesCommission"|"SalesOffsetAccountCommission"|"SalesPckSlipRevenue"|"SalesPckSlipRevenueOffsetAccount"|"Rebate"|"PdsCWLoss"|"PdsCWProfit"|"PurchConsump"|"PurchDisc"|"PurchCash"|"PurchFreight"|"PurchFee"|"PurchPostage"|"PurchOffsetAccount"|"PurchaseInvoiceRoundOff"|"PurchMarkupFreight"|"PurchMarkupCustoms"|"PurchMarkupInsurance"|"PurchPckSlp"|"PurchOffsetAccountPckSlp"|"PurchReceipt"|"PurchStdProfit"|"PurchStdLoss"|"PurchStdOffsetAccount"|"InventReceipt"|"InventIssue"|"InventProfit"|"InventLoss"|"InventStdProfit"|"InventStdLoss"|"Opening_ES"|"PurchReq"|"PurchOrder"|"APInvoice"|"Budget"|"PurchOrderYearEnd"|"InflationAdjustment_MX"|"ProdReportFinished"|"ProdReportFinishedOffsetAccount"|"ProdIssue"|"ProdIssueOffsetAccount"|"ProdReceipt"|"ProdReceiptOffsetAccount"|"ProdPicklistOffsetAccount"|"ProdPicklist"|"ProdWIPValuation"|"ProdWIPIssue"|"ProdWrkCtrIssue"|"ProdScrap"|"ProdWrkCtrIssueOffsetAccount"|"ProdScrapOffsetAccount"|"ProdLeanWIPServiceReceipt"|"ProdLeanWIPServiceClearing"|"ProjCost"|"ProjPayrollAllocation"|"ProjWIPCostvalue"|"ProjOffsetAccountItem"|"ProjStatusAccountItem"|"ProjTurnover"|"ProjOnAccount"|"ProjSalesvalue"|"ProjSalesvalueOffset"|"ProjAccruedTurnoverProd"|"ProjWIPProduction"|"ProJAccruedTurnoverProfit"|"ProjWIPProfit"|"ProjNeverLedger"|"ProjAccruedCost"|"ProjWIPCost"|"ProjAccruedRevenueOnAccount"|"ProjWIPInvoicedOnAccount"|"ProjNoLedger"|"PayrollDebitAccount"|"PayrollCreditAccount"|"EmplPayment_RU"|"RTSLTranslationDifference"|"RCash"|"InventRoundingLoss_RU"|"InventRoundingProfit_RU"|"AdvanceAdjustmentGain_RU"|"AdvanceAdjustmentLoss_RU"|"FixedAssetsDebit"|"FixedAssetsCredit"|"CACLedgerJournalNoOff"|"AmountDiffGain_RU"|"AmountDiffLoss_RU"|"Misc_IN"|"TransferGoodsTransit_IN"|"TransferScrap_IN"|"PurchCharge"|"PurchStockVariation"|"PurchPckSlpPurchaseOffsetAccount"|"PurchPckSlpTax"|"PurchPckSlpPurchase"|"SalesPackingslipTax"|"ProjAccruedRevenueSubscription"|"ProjWIPSubscription"|"TaxOffsetWithhold_TH"|"InventStdCostChangeVariance"|"InventSystemRounding"|"PurchAdvance"|"PurchStdCostPurchasePriceVariance"|"PurchAdvanceApplication"|"ProdStdCostProductionVariance"|"SalesGoodsInRoute_RU"|"SalesGoodsInRouteOffset_RU"|"InventInterUnitPayable"|"InventInterUnitReceivable"|"IndirectEstimatedAbsorption"|"ProdStdCostLotSizeVariance"|"ProdStdCostQuantityVariance"|"ProdStdCostSubstitutionVariance"|"InventStdCostRoundingVariance"|"PurchReceiptFixedAsset"|"PSATransportation"|"PSACompanyCCClearing"|"PSAEmployeeClearing"|"PSAEmployeeAdvance"|"PSAWriteOffCap"|"PSAProjRetain"|"PSAProjPurchRetain"|"InventStdCostRevaluation"|"PurchExpense"|"VAT_IN"|"InventMovingAveragePriceDifference"|"SalesTax_IN"|"InventMovingAverageCostRevaluation"|"Excise_IN"|"IntercompanyCost"|"ServiceTax_IN"|"IntercompanyRevenue"|"Customs_IN"|"TDS_IN"|"TCS_IN"|"TransferIssue_IN"|"TransferReceipt_IN"|"TransferProfit_IN"|"TransferLoss_IN"|"TaxAdjustmentSettlement_IN"|"TaxExpense_BR"|"BankStatement"|"EmplBalance_RU"|"DebitNote_BR"|"CustFine_BR"|"VendFine_BR"|"Payroll"|"InterunitDebit"|"InterunitCredit"|"FixedAssetsDebit_RU"|"FixedAssetsCredit_RU"|"TransferInterim_IN"|"DeferralsDebit_RU"|"DeferralsCredit_RU"|"MCRReturns"|"MCRReturnsConsump"|"MCRUnderpayWriteOff"|"MCRBrokerFee"|"RPayTaxRefundOffset"|"BudgetReservation_PSN"|"BudgetReservationYearEnd_PSN"|"SalesAdvance"|"ProjAccruedRevenueAdjustment"|"ProjectLineDiscount"|"GST_IN"|"ReportingCurrencyAdjustment"|"SalesCreditNote_IT"|"SalesForFree_IT"|"ProjProcurementIntegration"|"AccountReconciliationJournalOffset"|"ITMGIT"|"ITMCostAccrual"|"ITMCostClearing"|"ITMCostChargeAccrual"|"ITMCostCharge"|"ITMCostVariance"|"SalesRevenueOffset"|"SalesDiscOffset"|"UnbilledDiscOffset"|"DeferredCost"|"DeferredRevenue"|"RevRecDeferredRevenue"|"RevRecDeferredCostOfGoodsSold"|"RevRecPartialRevenue"|"RevRecDeferredCost";
-# Represents the Headers record for the operation: updateExpenseCodes
-public type UpdateExpenseCodesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
 };
 # Represents the Queries record for the operation: listProjectGroups
 public type ListProjectGroupsQueries record {
@@ -1522,164 +1589,29 @@ public type ListProjectGroupsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-public type NoYesCombo "No"|"Yes";
-# Represents the Queries record for the operation: getRAssetTables
-public type GetRAssetTablesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: updateCodaTrans
-public type UpdateCodaTransHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteParentLeases
-public type DeleteParentLeasesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type ProjOrigin "None"|"HourJournal"|"CostJournal"|"GeneralJournal"|"InvoiceJournal"|"InvoiceApprovalJournal"|"ExpenseManagement"|"EliminationInvestment"|"EstimateAccruedLoss"|"ItemJournal"|"PurchaseOrder"|"ItemRequirement"|"SalesOrder"|"ProductionFinished"|"ProductionConsumed"|"FeeJournal"|"EstimateFee"|"Subscription"|"Prepayment"|"Deduction"|"Milestone"|"Invoice"|"InventoryClosing"|"Adjustment"|"PostCost"|"AccrueRevenue"|"PostEstimate"|"ReverseEstimate"|"EliminateEstimate"|"ReverseElimination"|"AccrueSubscriptionRev"|"BeginningBalance"|"PurchaseRequisition"|"Timesheet"|"FreeTextInvoice"|"VendorInvoice"|"AdvancedLedgerEntry"|"PayrollEarningStatement"|"PayrollPayStatement"|"ProgressBillingRule"|"UnitOfDeliveryBillingRule"|"BudgetReservation"|"ProjAdvancedJournal";
-# Represents the Queries record for the operation: listCashBalances
-public type ListCashBalancesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Queries record for the operation: getAssetSortings
-public type GetAssetSortingsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-# Represents the Headers record for the operation: deleteCashBalances
-public type DeleteCashBalancesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type FBPISCOFINSFixedAssetAppropMethodBR "None"|"Depreciation"|"Acquisition"|"Amortization";
-public type AssetLimitForAccumulatedDepTypeJP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
-public type PSAProjTask "Project"|"Task";
-# Represents the Headers record for the operation: updateRAssetTables
-public type UpdateRAssetTablesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Headers record for the operation: deleteAssetLendings
-public type DeleteAssetLendingsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
 # Represents the Headers record for the operation: deleteProjectStages
 public type DeleteProjectStagesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Personal"|"Airline"|"CarRental"|"Conference"|"Entertainment"|"Hotel"|"Meals"|"Gift";
-# Represents the Headers record for the operation: updateExpenses
-public type UpdateExpensesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-public type RAssetVatRefundingStartDate "AcquisitionDate"|"DepreciationDate";
-# Represents the Headers record for the operation: deleteCashDiscounts
-public type DeleteCashDiscountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-# Represents the Queries record for the operation: listRAssetUses
-public type ListRAssetUsesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-public type ProjExpPolicyStatus "NoPolicy"|"ExpensePassed"|"DayPassed"|"ReportPassed"|"ExpenseWarning"|"DayWarning"|"ReportWarning"|"ExpenseFailed"|"DayFailed"|"ReportFailed";
-public type PSAPReqControl "None"|"Warning"|"Control";
-# Represents the Queries record for the operation: listRAssetTables
-public type ListRAssetTablesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
 # Represents the Headers record for the operation: updatePSAActuals
 public type UpdatePSAActualsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getProjectGroups
+public type GetProjectGroupsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updatePSAForecasts
+public type UpdatePSAForecastsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
