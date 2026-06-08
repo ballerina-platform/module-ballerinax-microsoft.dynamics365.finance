@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// List customers — default company, cross-company override, and name filter.
+// List customermains — default company, cross-company override, and name filter.
 
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.finance.customer;
+import ballerinax/microsoft.dynamics365.finance.customermain;
 
 configurable string tokenUrl = ?;
 configurable string clientId = ?;
@@ -23,7 +23,7 @@ configurable string clientSecret = ?;
 configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    customer:Client fo = check new (
+    customermain:Client fo = check new (
         {
             auth: {
                 tokenUrl,
@@ -34,25 +34,25 @@ public function main() returns error? {
         serviceUrl
     );
 
-    io:println("Default company customers:");
-    customer:CustomersV3Collection page = check fo->listCustomersV3();
-    foreach customer:CustomerV3 c in page.value ?: [] {
-        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
+    io:println("Default company customermains:");
+    customermain:CustomersV3Collection page = check fo->listCustomersV3();
+    foreach customermain:CustomerV3 c in page.value ?: [] {
+        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("All companies (cross-company):");
-    customer:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
-    foreach customer:CustomerV3 c in all.value ?: [] {
-        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
+    customermain:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
+    foreach customermain:CustomerV3 c in all.value ?: [] {
+        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("Filter — contains 'Contoso':");
-    customer:CustomersV3Collection filtered = check fo->listCustomersV3(
+    customermain:CustomersV3Collection filtered = check fo->listCustomersV3(
         queries = {filter: "contains(OrganizationName,'Contoso')"}
     );
-    foreach customer:CustomerV3 c in filtered.value ?: [] {
-        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}`);
+    foreach customermain:CustomerV3 c in filtered.value ?: [] {
+        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}`);
     }
 }
