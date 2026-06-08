@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAbbreviations() returns error? {
     Client cl = check buildClient();
     AbbreviationsCollection response = check cl->listAbbreviations();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

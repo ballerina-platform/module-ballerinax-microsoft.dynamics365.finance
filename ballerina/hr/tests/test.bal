@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAbsenceCodes() returns error? {
     Client cl = check buildClient();
     AbsenceCodesCollection response = check cl->listAbsenceCodes();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

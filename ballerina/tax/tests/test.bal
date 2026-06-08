@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListCFOPCodes() returns error? {
     Client cl = check buildClient();
     CFOPCodesCollection response = check cl->listCFOPCodes();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

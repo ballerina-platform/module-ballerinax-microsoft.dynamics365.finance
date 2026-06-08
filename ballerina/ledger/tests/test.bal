@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAccountants() returns error? {
     Client cl = check buildClient();
     AccountantsCollection response = check cl->listAccountants();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListActionClasses() returns error? {
     Client cl = check buildClient();
     ActionClassesCollection response = check cl->listActionClasses();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

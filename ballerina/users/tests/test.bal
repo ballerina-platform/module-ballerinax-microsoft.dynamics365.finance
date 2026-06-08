@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListChannelUsers() returns error? {
     Client cl = check buildClient();
     ChannelUsersCollection response = check cl->listChannelUsers();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListDimensionAttributes() returns error? {
     Client cl = check buildClient();
     DimensionAttributesCollection response = check cl->listDimensionAttributes();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

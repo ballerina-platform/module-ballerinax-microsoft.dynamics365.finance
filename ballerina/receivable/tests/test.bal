@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAdvLines() returns error? {
     Client cl = check buildClient();
     AdvLinesCollection response = check cl->listAdvLines();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

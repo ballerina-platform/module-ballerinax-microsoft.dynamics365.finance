@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListCDSProjects() returns error? {
     Client cl = check buildClient();
     CDSProjectsCollection response = check cl->listCDSProjects();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

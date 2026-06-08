@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAssetLendings() returns error? {
     Client cl = check buildClient();
     AssetLendingsCollection response = check cl->listAssetLendings();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

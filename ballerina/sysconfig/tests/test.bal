@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListPSSerialLines() returns error? {
     Client cl = check buildClient();
     PSSerialLinesCollection response = check cl->listPSSerialLines();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

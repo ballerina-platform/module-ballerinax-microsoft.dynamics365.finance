@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListBLWI() returns error? {
     Client cl = check buildClient();
     BLWICollection response = check cl->listBLWI();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

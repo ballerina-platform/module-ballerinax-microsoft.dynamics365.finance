@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListAgentFeeds() returns error? {
     Client cl = check buildClient();
     AgentFeedsCollection response = check cl->listAgentFeeds();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 

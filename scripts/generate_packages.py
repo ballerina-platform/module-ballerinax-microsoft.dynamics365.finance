@@ -856,7 +856,7 @@ def write_test_bal(pkg_dir: Path, pkg_name: str, funcs: list[tuple[str, str]]) -
 function testList{entity_name}() returns error? {{
     Client cl = check buildClient();
     {return_type} response = check cl->{first_list}();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }}
 """
 

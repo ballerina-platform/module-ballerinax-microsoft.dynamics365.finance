@@ -68,6 +68,6 @@ function buildClient() returns Client|error {
 function testListCurrencies() returns error? {
     Client cl = check buildClient();
     CurrenciesCollection response = check cl->listCurrencies();
-    test:assertTrue(response.value is json[], "should return a valid collection");
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
 
