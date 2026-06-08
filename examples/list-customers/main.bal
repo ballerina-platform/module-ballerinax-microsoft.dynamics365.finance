@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// List customermains — default company, cross-company override, and name filter.
+// List customers — default company, cross-company override, and name filter.
 
 import ballerina/io;
 import ballerinax/microsoft.dynamics365.finance.customermain;
@@ -34,17 +34,17 @@ public function main() returns error? {
         serviceUrl
     );
 
-    io:println("Default company customermains:");
+    io:println("Default company customers:");
     customermain:CustomersV3Collection page = check fo->listCustomersV3();
     foreach customermain:CustomerV3 c in page.value ?: [] {
-        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("All companies (cross-company):");
     customermain:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
     foreach customermain:CustomerV3 c in all.value ?: [] {
-        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
@@ -53,6 +53,6 @@ public function main() returns error? {
         queries = {filter: "contains(OrganizationName,'Contoso')"}
     );
     foreach customermain:CustomerV3 c in filtered.value ?: [] {
-        io:println(string `  ${c.customermainAccount ?: ""}   ${c.organizationName ?: ""}`);
+        io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}`);
     }
 }
