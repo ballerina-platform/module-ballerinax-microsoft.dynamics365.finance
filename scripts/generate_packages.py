@@ -1147,22 +1147,18 @@ def update_gradle_properties():
 
 
 def update_ci_examples():
-    ci_file = BASE_DIR / ".github" / "workflows" / "ci.yml"
-    content = ci_file.read_text()
     pkgs = sorted(PACKAGES.keys())
-    pack_lines = "\n".join(f"            (cd ballerina/{p} && bal pack)\n"
-                           f"            bal push --repository local ballerina/{p}/target/bala/ballerinax-microsoft.dynamics365.finance.{p}-any-*.bala"
-                           for p in pkgs)
-    new_content = re.sub(
-        r"for bucket in .*?done",
+    new_loop = (
         f"for bucket in {' '.join(pkgs)}; do\n"
         "            (cd ballerina/${bucket} && bal pack)\n"
         "            bal push --repository local ballerina/${bucket}/target/bala/ballerinax-microsoft.dynamics365.finance.${bucket}-any-*.bala\n"
-        "          done",
-        content,
-        flags=re.DOTALL,
+        "          done"
     )
-    ci_file.write_text(new_content)
+    for wf_name in ("ci.yml", "pull-request.yml"):
+        wf_file = BASE_DIR / ".github" / "workflows" / wf_name
+        content = wf_file.read_text()
+        new_content = re.sub(r"for bucket in .*?done", new_loop, content, flags=re.DOTALL)
+        wf_file.write_text(new_content)
 
 
 if __name__ == "__main__":
