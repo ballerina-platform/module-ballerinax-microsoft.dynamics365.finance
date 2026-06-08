@@ -1,7 +1,7 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.tax"
-version = "0.1.0"
+version = "0.1.0-SNAPSHOT"
 authors = ["Ballerina"]
 keywords = ["Name/Microsoft Dynamics 365 Finance Tax", "Area/Tax", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "Tax", "VAT", "GST", "Taxation"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
