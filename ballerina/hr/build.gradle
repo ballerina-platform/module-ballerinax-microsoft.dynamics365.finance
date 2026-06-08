@@ -9,7 +9,7 @@ plugins {
     id 'io.ballerina.plugin'
 }
 
-description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - HR Module'
+description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - Human Resources Module'
 
 def packageName = "microsoft.dynamics365.finance.hr"
 def tomlVersion = stripBallerinaExtensionVersion("${project.hrVersion}")

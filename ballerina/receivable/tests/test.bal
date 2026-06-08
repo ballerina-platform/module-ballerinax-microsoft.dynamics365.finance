@@ -16,7 +16,6 @@ import ballerina/http;
 import ballerina/test;
 import ballerinax/microsoft.dynamics365.finance.receivable.mock as mockSrv;
 
-// Set isTestOnLiveServer=true via Config.toml to run against a real D365 environment.
 configurable boolean isTestOnLiveServer = false;
 
 configurable string serviceUrl = "http://localhost:9090/data";
@@ -66,9 +65,9 @@ function buildClient() returns Client|error {
 }
 
 @test:Config
-function testListCustomerV3s() returns error? {
+function testListAdvLines() returns error? {
     Client cl = check buildClient();
-    CustomersV3Collection response = check cl->listCustomersV3();
-    CustomerV3[] rows = <CustomerV3[]>response.value;
-    test:assertTrue(rows.length() >= 0, "should return a valid collection");
+    AdvLinesCollection response = check cl->listAdvLines();
+    test:assertTrue(response.value is json[], "should return a valid collection");
 }
+

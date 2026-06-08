@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.ledger` connector provides APIs for general ledger operations in Microsoft Dynamics 365 Finance. It covers journal headers and lines, main accounts, budget plans, fiscal calendars and periods, fund accounting, posting definitions, accrual schemes, and ledger allocation rules.
+The microsoft.dynamics365.finance.ledger connector provides access to Microsoft Dynamics 365 Finance Ledger entities via the OData REST API.
 
 ### Key Features
 
-- Create, read, update, and delete ledger journal headers and lines
-- Main account and chart-of-accounts management
-- Budget plans, budget cycles, and budget register entries
-- Fiscal calendars, fiscal years, and period allocation keys
-- Fund accounting and posting-definition setup
+- Manage ledger entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.ledger` connector in your Ballerina ap
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.ledger as finLedger;
+import ballerinax/microsoft.dynamics365.finance.ledger;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finLedger:Client finLedgerClient = check new (
+ledger:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finLedger:Client finLedgerClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finLedger:MainAccountsCollection accounts = check finLedgerClient->listMainAccounts();
+ledger:AccountantsCollection results = check cl->listAccountants();
 ```
 
 ### Step 4: Run the Ballerina application

@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.tax` connector provides APIs for tax configuration in Microsoft Dynamics 365 Finance. It covers sales tax codes and groups, withholding tax, and country-specific tax settings including Brazil (CFOP, CST), India (GST, HSN), Switzerland (ISR), Belgium (Intervat), Poland (NIP), and Norway (NRT).
+The microsoft.dynamics365.finance.tax connector provides access to Microsoft Dynamics 365 Finance Tax entities via the OData REST API.
 
 ### Key Features
 
-- Sales tax codes, sales tax groups, and item sales tax groups
-- Withholding tax code and group configuration
-- Electronic fiscal document (EFDoc) setup for Brazil
-- India-specific GST and HSN code management
-- Country-specific tax reporting (Intervat, ISR, NRT, NIP)
+- Manage tax entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.tax` connector in your Ballerina appli
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.tax as finTax;
+import ballerinax/microsoft.dynamics365.finance.tax;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finTax:Client finTaxClient = check new (
+tax:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finTax:Client finTaxClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finTax:TaxGroupsCollection taxGroups = check finTaxClient->listTaxGroups();
+tax:CFOPCodesCollection results = check cl->listCFOPCodes();
 ```
 
 ### Step 4: Run the Ballerina application

@@ -1,0 +1,16 @@
+[package]
+org = "ballerinax"
+name = "microsoft.dynamics365.finance.hrdev"
+version = "@toml.version@"
+authors = ["Ballerina"]
+keywords = ["Name/Microsoft Dynamics 365 Finance HR Development", "Area/Human Resources", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "HR", "Skills", "Training", "Team"]
+repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
+icon = "../icon.png"
+license = ["Apache-2.0"]
+distribution = "2201.13.0"
+
+[[package.modules]]
+name = "microsoft.dynamics365.finance.hrdev.mock"
+
+[build-options]
+observabilityIncluded = true

@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.receivable` connector provides APIs for accounts-receivable operations in Microsoft Dynamics 365 Finance. It covers customer master data, customer groups, collection letters and cases, dunning setup, credit limits, and carrier configuration.
+The microsoft.dynamics365.finance.receivable connector provides access to Microsoft Dynamics 365 Finance Receivable entities via the OData REST API.
 
 ### Key Features
 
-- Create, read, update, and delete customer master records (V2 and V3)
-- Customer groups and customer account statements
-- Collection letters, collection cases, and collection activity management
-- Dunning note creation and write-off journal management
-- Credit limit and credit-management configuration
+- Manage receivable entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.receivable` connector in your Ballerin
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.receivable as finReceivable;
+import ballerinax/microsoft.dynamics365.finance.receivable;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finReceivable:Client finReceivableClient = check new (
+receivable:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finReceivable:Client finReceivableClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finReceivable:CustomersV3Collection customers = check finReceivableClient->listCustomersV3();
+receivable:AdvLinesCollection results = check cl->listAdvLines();
 ```
 
 ### Step 4: Run the Ballerina application

@@ -6,6 +6,6 @@ distribution = "2201.13.0"
 
 [[dependency]]
 org = "ballerinax"
-name = "microsoft.dynamics365.finance.ledger"
+name = "microsoft.dynamics365.finance.mainaccount"
 version = "0.1.0"
 repository = "local"

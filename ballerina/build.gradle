@@ -7,7 +7,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 description = 'Ballerina - Microsoft Dynamics 365 Finance and Operations'
 
-def ballerinaBuckets = ['ledger', 'receivable', 'payable', 'tax', 'asset', 'core', 'hr', 'system']
+def ballerinaBuckets = ['budget', 'core', 'customer', 'customeraccount', 'document', 'expense', 'fiscal', 'fixedasset', 'hr', 'hrdev', 'ledger', 'mainaccount', 'payment', 'procurement', 'project', 'receivable', 'sysconfig', 'system', 'tax', 'taxregion', 'trade', 'users', 'vendor', 'vendorpayment', 'workflow']
 def projectName = 'microsoft.dynamics365.finance'
 
 subprojects {

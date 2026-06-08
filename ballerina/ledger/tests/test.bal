@@ -16,7 +16,6 @@ import ballerina/http;
 import ballerina/test;
 import ballerinax/microsoft.dynamics365.finance.ledger.mock as mockSrv;
 
-// Set isTestOnLiveServer=true via Config.toml to run against a real D365 environment.
 configurable boolean isTestOnLiveServer = false;
 
 configurable string serviceUrl = "http://localhost:9090/data";
@@ -66,9 +65,9 @@ function buildClient() returns Client|error {
 }
 
 @test:Config
-function testListMainAccounts() returns error? {
+function testListAccountants() returns error? {
     Client cl = check buildClient();
-    MainAccountsCollection response = check cl->listMainAccounts();
-    MainAccount[] rows = <MainAccount[]>response.value;
-    test:assertTrue(rows.length() >= 0, "should return a valid collection");
+    AccountantsCollection response = check cl->listAccountants();
+    test:assertTrue(response.value is json[], "should return a valid collection");
 }
+

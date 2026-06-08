@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.trade connector provides access to Microsoft Dynamics 365 Finance Trade entities via the OData REST API.",
+  "key-features": [
+    "Manage trade entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Trade API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.trade;",
+  "client-init": "trade:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "trade:BLWICollection results = check cl->listBLWI();"
+}

@@ -1,14 +1,12 @@
 {
-  "description": "The `microsoft.dynamics365.finance.hr` connector provides APIs for human resources data in Microsoft Dynamics 365 Finance. It covers workers and employment records, job templates and tasks, team structures, skills, absence codes, vesting rules, and employee self-service.",
+  "description": "The microsoft.dynamics365.finance.hr connector provides access to Microsoft Dynamics 365 Finance Human Resources entities via the OData REST API.",
   "key-features": [
-    "Worker and employment record management",
-    "Job template, job task, and labor union configuration",
-    "Team and team member management",
-    "Skills matrix and vesting rule setup",
-    "Absence codes, injury types, and employee self-service workers"
+    "Manage human resources entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
   ],
-  "communication-scenario": "Human Resources Integration",
-  "import-statement": "import ballerinax/microsoft.dynamics365.finance.hr as finHR;",
-  "client-init": "finHR:Client finHRClient = check new (",
-  "api-invocation": "finHR:EmploymentsCollection employments = check finHRClient->listEmployments();"
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Human Resources API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.hr;",
+  "client-init": "hr:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "hr:AbsenceCodesCollection results = check cl->listAbsenceCodes();"
 }

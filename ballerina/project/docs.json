@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.project connector provides access to Microsoft Dynamics 365 Finance Project entities via the OData REST API.",
+  "key-features": [
+    "Manage project entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Project API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.project;",
+  "client-init": "project:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "project:CDSProjectsCollection results = check cl->listCDSProjects();"
+}

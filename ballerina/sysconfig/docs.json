@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.sysconfig connector provides access to Microsoft Dynamics 365 Finance System Config entities via the OData REST API.",
+  "key-features": [
+    "Manage system config entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance System Config API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.sysconfig;",
+  "client-init": "sysconfig:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "sysconfig:PSSerialLinesCollection results = check cl->listPSSerialLines();"
+}

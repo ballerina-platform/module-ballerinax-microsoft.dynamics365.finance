@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.hr` connector provides APIs for human resources data in Microsoft Dynamics 365 Finance. It covers workers and employment records, job templates and tasks, team structures, skills, absence codes, vesting rules, and employee self-service.
+The microsoft.dynamics365.finance.hr connector provides access to Microsoft Dynamics 365 Finance Human Resources entities via the OData REST API.
 
 ### Key Features
 
-- Worker and employment record management
-- Job template, job task, and labor union configuration
-- Team and team member management
-- Skills matrix and vesting rule setup
-- Absence codes, injury types, and employee self-service workers
+- Manage human resources entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.hr` connector in your Ballerina applic
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.hr as finHR;
+import ballerinax/microsoft.dynamics365.finance.hr;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finHR:Client finHRClient = check new (
+hr:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finHR:Client finHRClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finHR:EmploymentsCollection employments = check finHRClient->listEmployments();
+hr:AbsenceCodesCollection results = check cl->listAbsenceCodes();
 ```
 
 ### Step 4: Run the Ballerina application

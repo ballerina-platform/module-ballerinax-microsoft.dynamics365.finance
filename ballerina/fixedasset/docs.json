@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.fixedasset connector provides access to Microsoft Dynamics 365 Finance Fixed Asset entities via the OData REST API.",
+  "key-features": [
+    "Manage fixed asset entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Fixed Asset API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.fixedasset;",
+  "client-init": "fixedasset:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "fixedasset:AssetLendingsCollection results = check cl->listAssetLendings();"
+}
