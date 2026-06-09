@@ -1,7 +1,7 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.vendorextended"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0"
 authors = ["Ballerina"]
 keywords = ["Name/Microsoft Dynamics 365 Finance Vendor Extended", "Area/Accounts Payable", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "Vendor", "AccountsPayable", "AP"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
