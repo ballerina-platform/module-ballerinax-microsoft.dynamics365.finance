@@ -1,14 +1,12 @@
 {
-  "description": "The `microsoft.dynamics365.finance.tax` connector provides APIs for tax configuration in Microsoft Dynamics 365 Finance. It covers sales tax codes and groups, withholding tax, and country-specific tax settings including Brazil (CFOP, CST), India (GST, HSN), Switzerland (ISR), Belgium (Intervat), Poland (NIP), and Norway (NRT).",
+  "description": "The microsoft.dynamics365.finance.tax connector provides access to Microsoft Dynamics 365 Finance Tax entities via the OData REST API.",
   "key-features": [
-    "Sales tax codes, sales tax groups, and item sales tax groups",
-    "Withholding tax code and group configuration",
-    "Electronic fiscal document (EFDoc) setup for Brazil",
-    "India-specific GST and HSN code management",
-    "Country-specific tax reporting (Intervat, ISR, NRT, NIP)"
+    "Manage tax entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
   ],
-  "communication-scenario": "Tax Integration",
-  "import-statement": "import ballerinax/microsoft.dynamics365.finance.tax as finTax;",
-  "client-init": "finTax:Client finTaxClient = check new (",
-  "api-invocation": "finTax:TaxGroupsCollection taxGroups = check finTaxClient->listTaxGroups();"
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Tax API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.tax;",
+  "client-init": "tax:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "tax:CFOPCodesCollection results = check cl->listCFOPCodes();"
 }

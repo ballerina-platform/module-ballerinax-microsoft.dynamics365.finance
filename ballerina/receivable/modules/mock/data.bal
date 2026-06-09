@@ -12,50 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Stub data for the receivable module mock: CustomersV3, CustomerGroups.
-
-final readonly & json[] customers = [
-    {
-        "@odata.etag": "W/\"Jzs7MDs7MCcp\"",
-        "dataAreaId": "USMF",
-        "CustomerAccount": "US-001",
-        "OrganizationName": "Contoso Retail",
-        "AddressCountryRegionId": "USA",
-        "SalesCurrencyCode": "USD",
-        "PrimaryContactEmail": "ap@contoso-retail.example",
-        "PrimaryContactPhone": "+1-206-555-0101"
-    },
-    {
-        "@odata.etag": "W/\"Jzs7MDs7MScp\"",
-        "dataAreaId": "USMF",
-        "CustomerAccount": "US-002",
-        "OrganizationName": "Fabrikam Industries",
-        "AddressCountryRegionId": "USA",
-        "SalesCurrencyCode": "USD",
-        "PrimaryContactEmail": "procurement@fabrikam.example",
-        "PrimaryContactPhone": "+1-415-555-0142"
-    },
-    {
-        "@odata.etag": "W/\"Jzs7MDs7MicpCw==\"",
-        "dataAreaId": "GBSI",
-        "CustomerAccount": "UK-001",
-        "OrganizationName": "Tailwind Traders",
-        "AddressCountryRegionId": "GBR",
-        "SalesCurrencyCode": "GBP",
-        "PrimaryContactEmail": "orders@tailwind.example"
-    }
-];
-
-final readonly & json[] customerGroups = [
-    {"@odata.etag": "W/\"CG01\"", "dataAreaId": "USMF", "CustomerGroupId": "10", "Description": "Retail customers", "PaymentTermId": "Net30"},
-    {"@odata.etag": "W/\"CG02\"", "dataAreaId": "USMF", "CustomerGroupId": "20", "Description": "Manufacturing partners", "PaymentTermId": "Net15"},
-    {"@odata.etag": "W/\"CG03\"", "dataAreaId": "USMF", "CustomerGroupId": "30", "Description": "Logistics & 3PL", "PaymentTermId": "Net60"}
-];
+// Minimal stub data for the receivable mock.
 
 isolated function dataFor(string entitySet) returns json[] {
-    match entitySet {
-        "CustomersV3" => { return customers; }
-        "CustomerGroups" => { return customerGroups; }
-        _ => { return []; }
-    }
+    return [];
 }

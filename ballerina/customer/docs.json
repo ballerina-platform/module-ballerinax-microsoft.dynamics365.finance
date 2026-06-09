@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.customer connector provides access to Microsoft Dynamics 365 Finance Customer entities via the OData REST API.",
+  "key-features": [
+    "Manage customer entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Customer API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.customer;",
+  "client-init": "customer:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "customer:CustomerGroupsCollection results = check cl->listCustomerGroups();"
+}

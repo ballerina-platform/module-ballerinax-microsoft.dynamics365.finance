@@ -16,7 +16,6 @@ import ballerina/http;
 import ballerina/test;
 import ballerinax/microsoft.dynamics365.finance.core.mock as mockSrv;
 
-// Set isTestOnLiveServer=true via Config.toml to run against a real D365 environment.
 configurable boolean isTestOnLiveServer = false;
 
 configurable string serviceUrl = "http://localhost:9090/data";
@@ -66,9 +65,9 @@ function buildClient() returns Client|error {
 }
 
 @test:Config
-function testListExchangeRates() returns error? {
+function testListAddressBooks() returns error? {
     Client cl = check buildClient();
-    ExchangeRatesCollection response = check cl->listExchangeRates();
-    ExchangeRate[] rows = <ExchangeRate[]>response.value;
-    test:assertTrue(rows.length() >= 0, "should return a valid collection");
+    AddressBooksCollection response = check cl->listAddressBooks();
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
+

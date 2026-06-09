@@ -15,7 +15,7 @@
 // List customers — default company, cross-company override, and name filter.
 
 import ballerina/io;
-import ballerinax/microsoft.dynamics365.finance.receivable;
+import ballerinax/microsoft.dynamics365.finance.customermain;
 
 configurable string tokenUrl = ?;
 configurable string clientId = ?;
@@ -23,7 +23,7 @@ configurable string clientSecret = ?;
 configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    receivable:Client fo = check new (
+    customermain:Client fo = check new (
         {
             auth: {
                 tokenUrl,
@@ -35,24 +35,24 @@ public function main() returns error? {
     );
 
     io:println("Default company customers:");
-    receivable:CustomersV3Collection page = check fo->listCustomersV3();
-    foreach receivable:CustomerV3 c in page.value ?: [] {
+    customermain:CustomersV3Collection page = check fo->listCustomersV3();
+    foreach customermain:CustomerV3 c in page.value ?: [] {
         io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("All companies (cross-company):");
-    receivable:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
-    foreach receivable:CustomerV3 c in all.value ?: [] {
+    customermain:CustomersV3Collection all = check fo->listCustomersV3(queries = {crossCompany: true});
+    foreach customermain:CustomerV3 c in all.value ?: [] {
         io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}   [${c.dataAreaId ?: ""}]`);
     }
 
     io:println("");
     io:println("Filter — contains 'Contoso':");
-    receivable:CustomersV3Collection filtered = check fo->listCustomersV3(
+    customermain:CustomersV3Collection filtered = check fo->listCustomersV3(
         queries = {filter: "contains(OrganizationName,'Contoso')"}
     );
-    foreach receivable:CustomerV3 c in filtered.value ?: [] {
+    foreach customermain:CustomerV3 c in filtered.value ?: [] {
         io:println(string `  ${c.customerAccount ?: ""}   ${c.organizationName ?: ""}`);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.payment connector provides access to Microsoft Dynamics 365 Finance Payment entities via the OData REST API.",
+  "key-features": [
+    "Manage payment entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Payment API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.payment;",
+  "client-init": "payment:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "payment:CurrenciesCollection results = check cl->listCurrencies();"
+}

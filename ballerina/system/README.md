@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.system` connector provides APIs for system administration in Microsoft Dynamics 365 Finance. It covers workflow configuration and assignments, security roles, batch job monitoring, document management, system parameters, approval users, and work calendars.
+The `microsoft.dynamics365.finance.system` connector provides access to Microsoft Dynamics 365 Finance System entities via the OData REST API.
 
 ### Key Features
 
-- Workflow setup, delegation, and approval management
-- Security role and user security role assignment
-- Batch job groups and batch job history monitoring
-- Document types and document routing setup
-- System parameters, number sequences, and work calendar configuration
+- Manage system entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.system` connector in your Ballerina ap
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.system as finSystem;
+import ballerinax/microsoft.dynamics365.finance.system;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finSystem:Client finSystemClient = check new (
+system:Client cl = check new ({
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finSystem:Client finSystemClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finSystem:WorkflowsCollection workflows = check finSystemClient->listWorkflows();
+system:AbbreviationsCollection results = check cl->listAbbreviations();
 ```
 
 ### Step 4: Run the Ballerina application

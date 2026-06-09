@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.coreorg connector provides access to Microsoft Dynamics 365 Finance Core Organization entities via the OData REST API.",
+  "key-features": [
+    "Manage core organization entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Core Organization API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.coreorg;",
+  "client-init": "coreorg:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "coreorg:CardTypesCollection results = check cl->listCardTypes();"
+}

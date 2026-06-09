@@ -12,11 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Stub data for the hr module mock.
-// Add entries for Employments, Workers as needed for integration tests.
+// Minimal stub data for the hr mock.
 
 isolated function dataFor(string entitySet) returns json[] {
-    // No seed data — all entity sets return empty collections.
-    // Populate as required for test scenarios.
     return [];
 }

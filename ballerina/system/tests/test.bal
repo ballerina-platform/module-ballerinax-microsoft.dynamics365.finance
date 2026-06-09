@@ -16,7 +16,6 @@ import ballerina/http;
 import ballerina/test;
 import ballerinax/microsoft.dynamics365.finance.system.mock as mockSrv;
 
-// Set isTestOnLiveServer=true via Config.toml to run against a real D365 environment.
 configurable boolean isTestOnLiveServer = false;
 
 configurable string serviceUrl = "http://localhost:9090/data";
@@ -66,9 +65,9 @@ function buildClient() returns Client|error {
 }
 
 @test:Config
-function testListWorkflows() returns error? {
+function testListAbbreviations() returns error? {
     Client cl = check buildClient();
-    WorkflowsCollection response = check cl->listWorkflows();
-    Workflow[] rows = <Workflow[]>response.value;
-    test:assertTrue(rows.length() >= 0, "should return a valid collection");
+    AbbreviationsCollection response = check cl->listAbbreviations();
+    test:assertTrue(response.value !is (), "should return a valid collection");
 }
+

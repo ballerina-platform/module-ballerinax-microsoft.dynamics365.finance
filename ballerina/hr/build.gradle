@@ -9,7 +9,7 @@ plugins {
     id 'io.ballerina.plugin'
 }
 
-description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - HR Module'
+description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - Human Resources Module'
 
 def packageName = "microsoft.dynamics365.finance.hr"
 def tomlVersion = stripBallerinaExtensionVersion("${project.hrVersion}")
@@ -71,3 +71,11 @@ release {
 build.dependsOn updateTomlFiles
 publishToMavenLocal.dependsOn build
 publish.dependsOn build
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'test') {
+        task.doFirst {
+            new File("${project.projectDir}/target/cache/tests_cache/coverage").mkdirs()
+        }
+    }
+}

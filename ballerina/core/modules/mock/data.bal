@@ -12,31 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Stub data for the core module mock: ExchangeRates, PaymentTerms, Currencies.
-
-final readonly & json[] exchangeRates = [
-    {"@odata.etag": "W/\"ER01\"", "RateTypeName": "Default", "FromCurrency": "USD", "ToCurrency": "EUR", "StartDate": "2026-04-01", "Rate": 0.92},
-    {"@odata.etag": "W/\"ER02\"", "RateTypeName": "Default", "FromCurrency": "USD", "ToCurrency": "GBP", "StartDate": "2026-04-01", "Rate": 0.79},
-    {"@odata.etag": "W/\"ER03\"", "RateTypeName": "Default", "FromCurrency": "USD", "ToCurrency": "JPY", "StartDate": "2026-04-01", "Rate": 154.20}
-];
-
-final readonly & json[] paymentTerms = [
-    {"@odata.etag": "W/\"PT01\"", "dataAreaId": "USMF", "Name": "Net30", "Description": "Net 30 days", "NumberOfDays": 30},
-    {"@odata.etag": "W/\"PT02\"", "dataAreaId": "USMF", "Name": "Net15", "Description": "Net 15 days", "NumberOfDays": 15},
-    {"@odata.etag": "W/\"PT03\"", "dataAreaId": "USMF", "Name": "Net60", "Description": "Net 60 days", "NumberOfDays": 60}
-];
-
-final readonly & json[] currencies = [
-    {"@odata.etag": "W/\"CUR01\"", "CurrencyCode": "USD", "CurrencyName": "US Dollar", "Symbol": "$"},
-    {"@odata.etag": "W/\"CUR02\"", "CurrencyCode": "EUR", "CurrencyName": "Euro", "Symbol": "€"},
-    {"@odata.etag": "W/\"CUR03\"", "CurrencyCode": "GBP", "CurrencyName": "British Pound", "Symbol": "£"}
-];
+// Minimal stub data for the core mock.
 
 isolated function dataFor(string entitySet) returns json[] {
-    match entitySet {
-        "ExchangeRates" => { return exchangeRates; }
-        "PaymentTerms" => { return paymentTerms; }
-        "Currencies" => { return currencies; }
-        _ => { return []; }
-    }
+    return [];
 }

@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.users connector provides access to Microsoft Dynamics 365 Finance Users entities via the OData REST API.",
+  "key-features": [
+    "Manage users entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Users API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.users;",
+  "client-init": "users:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "users:ChannelUsersCollection results = check cl->listChannelUsers();"
+}

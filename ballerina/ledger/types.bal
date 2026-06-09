@@ -4,201 +4,6 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
-
-# Represents the Headers record for the operation: deleteCostGroups
-public type DeleteCostGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getFiscalPeriods
-public type GetFiscalPeriodsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type LTMCheckSource "Own"|"Third";
-
-public type FiscalYearsCollection record {
-    *ODataCollection;
-    *FiscalYearsCollectionAllOf2;
-};
-
-public type DimensionLedgerAccountReportingType "None"|"Heading"|"HeadingEmpty"|"HeadingPage";
-
-# Represents the Queries record for the operation: getCostGroups
-public type GetCostGroupsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type FinancialDimensionValuesCollectionAllOf2 record {
-    FinancialDimensionValue[] value?;
-};
-
-# Represents the Headers record for the operation: updatePeriodLines
-public type UpdatePeriodLinesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getAccrualSchemes
-public type GetAccrualSchemesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Headers record for the operation: deleteLedgerIntervals
-public type DeleteLedgerIntervalsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|"CustomLayer1"|"CustomLayer2"|"CustomLayer3"|"CustomLayer4"|"CustomLayer5"|"CustomLayer6"|"CustomLayer7"|"None";
-
-public type AssetLeaseType "Automatic"|"Finance"|"Operating";
-
-public type AuditTrail record {
-    string dataAreaId?;
-    @jsondata:Name {value: "TransactionType"}
-    TransactionLogType transactionType?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "CreatedByUser"}
-    string createdByUser?;
-    @jsondata:Name {value: "CreatedTransactionDateTime"}
-    string createdTransactionDateTime?;
-    @jsondata:Name {value: "TransactionId"}
-    int transactionId?;
-};
-
-# Represents the Headers record for the operation: updateFinancialDimensionValues
-public type UpdateFinancialDimensionValuesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type DimensionRulesCollectionAllOf2 record {
-    DimensionRule[] value?;
-};
-
-# Represents the Headers record for the operation: deleteLedgerTransSettlements
-public type DeleteLedgerTransSettlementsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getFinancialDimensionSets
-public type GetFinancialDimensionSetsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Queries record for the operation: getLedgerJournalDescriptions
-public type GetLedgerJournalDescriptionsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Headers record for the operation: deleteLedgers
-public type DeleteLedgersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Headers record for the operation: deleteJournalTables
-public type DeleteJournalTablesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Headers record for the operation: updateLedgerIntervals
-public type UpdateLedgerIntervalsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Headers record for the operation: deleteCostCenters
-public type DeleteCostCentersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type MainAccountsCollectionAllOf2 record {
-    MainAccount[] value?;
-};
-
-public type FinancialDimensionValue record {
-    @jsondata:Name {value: "GroupDimension"}
-    string groupDimension?;
-    @jsondata:Name {value: "IsTotal"}
-    NoYes isTotal?;
-    @jsondata:Name {value: "Owner"}
-    string owner?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "DimensionValue"}
-    string dimensionValue?;
-    @jsondata:Name {value: "IsBlockedForManualEntry"}
-    NoYes isBlockedForManualEntry?;
-    @jsondata:Name {value: "LegalEntityId"}
-    string legalEntityId?;
-    @jsondata:Name {value: "ActiveTo"}
-    string activeTo?;
-    @jsondata:Name {value: "FinancialDimension"}
-    string financialDimension?;
-    @jsondata:Name {value: "IsBalancing_PSN"}
-    NoYes isBalancingPSN?;
-    @jsondata:Name {value: "IsSuspended"}
-    NoYes isSuspended?;
-    @jsondata:Name {value: "ActiveFrom"}
-    string activeFrom?;
-};
-
-# Represents the Headers record for the operation: deleteLedgerJournalHeaders
-public type DeleteLedgerJournalHeadersHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Headers record for the operation: deleteFiscalYears
-public type DeleteFiscalYearsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 public type JournalName record {
     @jsondata:Name {value: "AmountsIncludeSalesTax"}
     NoYes amountsIncludeSalesTax?;
@@ -272,190 +77,248 @@ public type JournalName record {
     @jsondata:Name {value: "DeleteLinesAfterPosting"}
     NoYes deleteLinesAfterPosting?;
 };
-
-# Represents the Headers record for the operation: updateLedgerTransSettlements
-public type UpdateLedgerTransSettlementsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getCPParameters
-public type GetCPParametersQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Queries record for the operation: getDimensionSets
-public type GetDimensionSetsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type BudgetPlanProcessesCollection record {
-    *ODataCollection;
-    *BudgetPlanProcessesCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: listCPTrans
-public type ListCPTransQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Queries record for the operation: getAccountants
-public type GetAccountantsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Queries record for the operation: getBudgetCycles
-public type GetBudgetCyclesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type CPTablesCollectionAllOf2 record {
-    CPTable[] value?;
-};
-
-public type MainAccountLegalEntitiesCollection record {
-    *ODataCollection;
-    *MainAccountLegalEntitiesCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: listJournalLines
-public type ListJournalLinesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type FinancialDimensionSet record {
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+public type Ledger record {
+    @jsondata:Name {value: "LedgerRecId"}
+    int ledgerRecId?;
     @jsondata:Name {value: "Description"}
     string description?;
-    @jsondata:Name {value: "FocusState"}
-    DimensionFocusBalanceInitializationState focusState?;
-    @jsondata:Name {value: "SegmentName11"}
-    string segmentName11?;
-    @jsondata:Name {value: "SegmentName01"}
-    string segmentName01?;
+    @jsondata:Name {value: "IsBudgetControlEnabled"}
+    NoYes isBudgetControlEnabled?;
+    @jsondata:Name {value: "AccountStructureName18"}
+    string accountStructureName18?;
+    @jsondata:Name {value: "AccountStructureName19"}
+    string accountStructureName19?;
+    @jsondata:Name {value: "AccountStructureName16"}
+    string accountStructureName16?;
+    @jsondata:Name {value: "AccountStructureName17"}
+    string accountStructureName17?;
+    @jsondata:Name {value: "AccountStructureName14"}
+    string accountStructureName14?;
+    @jsondata:Name {value: "AccountStructureName15"}
+    string accountStructureName15?;
+    @jsondata:Name {value: "MainAccountIdFinancialLoss"}
+    string mainAccountIdFinancialLoss?;
+    @jsondata:Name {value: "AccountStructureName12"}
+    string accountStructureName12?;
+    @jsondata:Name {value: "ExchangeRateType"}
+    string exchangeRateType?;
+    @jsondata:Name {value: "AccountStructureName13"}
+    string accountStructureName13?;
+    @jsondata:Name {value: "MainAccountIdUnrealizedLoss"}
+    string mainAccountIdUnrealizedLoss?;
+    @jsondata:Name {value: "AccountStructureName10"}
+    string accountStructureName10?;
     @jsondata:Name {value: "Name"}
     string name?;
-    @jsondata:Name {value: "SegmentName10"}
-    string segmentName10?;
-    @jsondata:Name {value: "SegmentName04"}
-    string segmentName04?;
-    @jsondata:Name {value: "SegmentName05"}
-    string segmentName05?;
-    @jsondata:Name {value: "SegmentName02"}
-    string segmentName02?;
-    @jsondata:Name {value: "SegmentName03"}
-    string segmentName03?;
-    @jsondata:Name {value: "SegmentName08"}
-    string segmentName08?;
-    @jsondata:Name {value: "SegmentName09"}
-    string segmentName09?;
-    @jsondata:Name {value: "SegmentName06"}
-    string segmentName06?;
-    @jsondata:Name {value: "SegmentName07"}
-    string segmentName07?;
+    @jsondata:Name {value: "AccountStructureName11"}
+    string accountStructureName11?;
+    @jsondata:Name {value: "ReportingCurrencyExchangeRateType"}
+    string reportingCurrencyExchangeRateType?;
+    @jsondata:Name {value: "LegalEntityId"}
+    string legalEntityId?;
+    @jsondata:Name {value: "AccountingCurrency"}
+    string accountingCurrency?;
+    @jsondata:Name {value: "MainAccountIdUnrealizedGain"}
+    string mainAccountIdUnrealizedGain?;
+    @jsondata:Name {value: "AccountStructureName1"}
+    string accountStructureName1?;
+    @jsondata:Name {value: "AccountStructureName2"}
+    string accountStructureName2?;
+    @jsondata:Name {value: "AccountStructureName3"}
+    string accountStructureName3?;
+    @jsondata:Name {value: "AccountStructureName4"}
+    string accountStructureName4?;
+    @jsondata:Name {value: "AccountStructureName5"}
+    string accountStructureName5?;
+    @jsondata:Name {value: "AccountStructureName6"}
+    string accountStructureName6?;
+    @jsondata:Name {value: "AccountStructureName7"}
+    string accountStructureName7?;
+    @jsondata:Name {value: "ChartOfAccountsRecId"}
+    int chartOfAccountsRecId?;
+    @jsondata:Name {value: "AccountStructureName8"}
+    string accountStructureName8?;
+    @jsondata:Name {value: "AccountStructureName9"}
+    string accountStructureName9?;
+    @jsondata:Name {value: "MainAccountIdFinancialGain"}
+    string mainAccountIdFinancialGain?;
+    @jsondata:Name {value: "MainAccountIdRealizedLoss"}
+    string mainAccountIdRealizedLoss?;
+    @jsondata:Name {value: "BalancingFinancialDimension"}
+    string balancingFinancialDimension?;
+    @jsondata:Name {value: "AccountStructureName20"}
+    string accountStructureName20?;
+    @jsondata:Name {value: "FiscalCalendar"}
+    string fiscalCalendar?;
+    @jsondata:Name {value: "ChartOfAccounts"}
+    string chartOfAccounts?;
+    @jsondata:Name {value: "MainAccountIdRealizedGain"}
+    string mainAccountIdRealizedGain?;
+    @jsondata:Name {value: "BudgetExchangeRateType"}
+    string budgetExchangeRateType?;
+    @jsondata:Name {value: "ReportingCurrency"}
+    string reportingCurrency?;
 };
-
+public type TransactionLogType "Unspecified"|"SalesInvoice"|"SalesConfirm"|"SalesQuotation"|"SalesPckSlp"|"LedgerJournal"|"LedgerExchAdj"|"LedgerOpening"|"LedgerClosing"|"PurchPackingSlip"|"PurchPurchaseOrder"|"PurchInvoice"|"TaxReport"|"CheckAndFix"|"ProjInvoice"|"SalesPickingList"|"PurchReceiptsList"|"CostAccounting"|"CustExchAdj"|"VendExchAdj"|"CustPaymReconciliation"|"VendPaymReconciliation"|"ProjJournal"|"InventJournal"|"PaymMan"|"PaymReversal"|"CustInterestNote"|"CustCollectionLetter"|"CustTransEdit"|"VendTransEdit"|"BankReconciliation"|"CustReimbursement"|"LedgerConsolidation"|"ConvCompanyCurrency"|"CustFreeInvoice"|"SMASubscription"|"ProdPicklist"|"ProdReportFinished"|"ProdRouteCard"|"ProdJobCard"|"ProdStartUp"|"ProdEnd"|"ProdStatusDecrease"|"System"|"TransactionReversal"|"AssetReclassification"|"ProjPackingSlip"|"ProjCost"|"ProjRevenue"|"ProjAdjustment"|"ProjEstimate"|"InventCloseTrans"|"InventCloseOnHand"|"InventCloseClosing"|"InventCloseRecalc"|"PurchRFQ"|"ProdIndirectCost"|"InventStdCostChange"|"PurchCustomsBillOfEntry_IN"|"SalesCustomsShippingBill_IN"|"PurchPurchReq"|"ConvReportingCurrency"|"InventCloseRevaluation"|"SalesInvoice4Paym_RU"|"PurchInvoice4Paym_RU"|"RCashExchAdj"|"PlBankExchAdj"|"GoodsInRoute_RU"|"ExpenseReport"|"Timesheet"|"PayrollPaymReconciliation"|"AdvancedLedgerEntry"|"RPayTaxRefundOffset"|"LedgerSettlement"|"LedgerSettlementReversal"|"ConsignmentReplenishmentOrder"|"BudgetReservation_PSN"|"BankCurrencyReval";
+public type LedgerAccrualPeriod "Calendar"|"Fiscal"|"AllocationKey";
+public type LedgerAccrualVoucher "Base"|"Single"|"Multiple";
+public type FiscalPeriodType "Opening"|"Operating"|"Closing";
+public type CurrentOperationsTax "Current"|"Operations"|"Tax"|"WarehouseCur_RU"|"CustomLayer1"|"CustomLayer2"|"CustomLayer3"|"CustomLayer4"|"CustomLayer5"|"CustomLayer6"|"CustomLayer7"|"None";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
 # OAuth2 Client Credentials Grant Configs
 public type OAuth2ClientCredentialsGrantConfig record {|
     *http:OAuth2ClientCredentialsGrantConfig;
     # Token URL
     string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
 |};
-
-# Represents the Queries record for the operation: listBudgetPlans
-public type ListBudgetPlansQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
+public type FiscalYear record {
+    @jsondata:Name {value: "Status"}
+    FiscalYearStatus status?;
+    @jsondata:Name {value: "FiscalYear"}
+    string fiscalYear?;
+    @jsondata:Name {value: "LegalEntityId"}
+    string legalEntityId?;
+    @jsondata:Name {value: "Calendar"}
+    string calendar?;
+    @jsondata:Name {value: "LegalEntityName"}
+    string legalEntityName?;
 };
-
+public type DayWeekMonth "Day"|"Week"|"Month"|"Quarter";
+public type AssetAccrualCalendar "Yearly"|"Monthly"|"Quarterly"|"HalfYearly"|"Daily";
+public type LedgerJournalFeePosting "Keep"|"TransferKeep"|"TransferNew";
+public type LedgerClosing "None"|"Result"|"BalanceSheet"|"Capital";
+public type NewVoucher "BalanceSheet"|"Manually"|"OneVoucher";
+public type DetailSummary "Detail"|"Summary";
+public type LedgerAccrualEvenScale "Even"|"Scale";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type FiscalPeriod record {
+    @jsondata:Name {value: "StartDate"}
+    string startDate?;
+    @jsondata:Name {value: "Quarter"}
+    FiscalQuarter quarter?;
+    @jsondata:Name {value: "Month"}
+    FiscalPeriodMonth month?;
+    @jsondata:Name {value: "Type"}
+    FiscalPeriodType 'type?;
+    @jsondata:Name {value: "FiscalYear"}
+    string fiscalYear?;
+    @jsondata:Name {value: "Comments"}
+    string comments?;
+    @jsondata:Name {value: "Calendar"}
+    string calendar?;
+    @jsondata:Name {value: "Days"}
+    int:Signed32 days?;
+    @jsondata:Name {value: "ShortName"}
+    string shortName?;
+    @jsondata:Name {value: "PeriodName"}
+    string periodName?;
+    @jsondata:Name {value: "EndDate"}
+    string endDate?;
+    @jsondata:Name {value: "CalendarType"}
+    CalendarTypeIN calendarType?;
+};
+public type DimensionLedgerAccountType "Blank"|"ProfitAndLoss"|"Revenue"|"Expense"|"BalanceSheet"|"Asset"|"Liability"|"Equity"|"Total"|"Reporting"|"Common_CN";
+public type CalendarTypeIN "Standard"|"DayBased";
+public type LedgerJournalType "Daily"|"Periodic"|"PurchaseLedger"|"Approval"|"Payment"|"CustPayment"|"Cost"|"VendInvoiceRegister"|"VendInvoicePool"|"Assets"|"AssetBudgets"|"CustPaymRemittance"|"CustBillOfExchangeDraw"|"CustBillOfExchangeProtest"|"CustBillOfExchangeRedraw"|"VendPromissoryNoteDraw"|"CustBillOfExchangeAccept"|"VendPromissoryNoteRedraw"|"VendPaymRemittance"|"CustBillOfExchangeSettle"|"VendPromissoryNoteSettle"|"RDeferrals"|"RCash"|"Assets_RU"|"AssetBudgets_RU"|"RTax25"|"RTax25AmountDifference"|"RTax25ExchDifference"|"RAssetAssessedTax"|"RAssetTransportTax"|"RAssetLandTax"|"StatTrans"|"Allocation"|"Elimination"|"BankChequeReversal"|"BankDepositPaymCancel"|"Budget"|"Payroll"|"PayrollDisbursement"|"RTax25TaxRemainGoods"|"Payroll_RU"|"FBTaxAssessmentAdjustments_BR"|"None"|"VendInvoice"|"Netting"|"CustomsDeclaration_IT"|"ReportingCurrencyAdjustment"|"RTax25DebtDebitReserve"|"RTax25TaxDiffByBalance"|"CustVendNetting"|"AssetLease"|"RevenueRecognition";
+public type FiscalPeriodMonth "Month1"|"Month2"|"Month3"|"Month4"|"Month5"|"Month6"|"Month7"|"Month8"|"Month9"|"Month10"|"Month11"|"Month12";
+public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
+public type FiscalYearStatus "Open"|"Close";
+public type JournalizingDefinitionModuleId "AccountsPayable"|"AccountsReceivable"|"Purchasing"|"Budget"|"Bank"|"GeneralLedger"|"Payroll"|"BudgetReservation_PSN";
+public type LedgerJournalTypeBE "Purchase"|"Sales"|"Financial"|"Other"|"Empty";
+public type OMOperatingUnitType "None"|"OMDepartment"|"OMCostCenter"|"OMValueStream"|"OMBusinessUnit"|"OMAnyOU"|"OMBranch"|"OMRentalLocation"|"OMRegion"|"RetailChannel";
+public type LedgerJournalDateInitTypeRU "None"|"NullDate"|"CurrentDate";
+public type PrimoMedioUltimo "Primo"|"Medio"|"Ultimo";
+public type FiscalCalendar record {
+    @jsondata:Name {value: "Quarter"}
+    FiscalQuarter quarter?;
+    @jsondata:Name {value: "LedgerRecId"}
+    int ledgerRecId?;
+    @jsondata:Name {value: "QuarterOffset"}
+    int:Signed32 quarterOffset?;
+    @jsondata:Name {value: "CalendarId"}
+    string calendarId?;
+    @jsondata:Name {value: "PeriodOffset"}
+    int:Signed32 periodOffset?;
+    @jsondata:Name {value: "YearName"}
+    string yearName?;
+    @jsondata:Name {value: "CalendarRecId"}
+    int calendarRecId?;
+    @jsondata:Name {value: "LedgerGregorianDateId"}
+    string ledgerGregorianDateId?;
+    @jsondata:Name {value: "YearOffset"}
+    int:Signed32 yearOffset?;
+    @jsondata:Name {value: "Month"}
+    FiscalPeriodMonth month?;
+    @jsondata:Name {value: "GregorianDate"}
+    string gregorianDate?;
+    @jsondata:Name {value: "PeriodRecId"}
+    int periodRecId?;
+    @jsondata:Name {value: "PeriodName"}
+    string periodName?;
+};
+public type NoYes "No"|"Yes";
+public type FiscalQuarter "Q1"|"Q2"|"Q3"|"Q4";
+public type AuditTrail record {
+    string dataAreaId?;
+    @jsondata:Name {value: "TransactionType"}
+    TransactionLogType transactionType?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "CreatedByUser"}
+    string createdByUser?;
+    @jsondata:Name {value: "CreatedTransactionDateTime"}
+    string createdTransactionDateTime?;
+    @jsondata:Name {value: "TransactionId"}
+    int transactionId?;
+};
 public type LedgerJournalHeader record {
     @jsondata:Name {value: "JournalBatchNumber"}
     string journalBatchNumber?;
@@ -477,85 +340,360 @@ public type LedgerJournalHeader record {
     @jsondata:Name {value: "JournalTotalCredit"}
     decimal journalTotalCredit?;
 };
-
-# Represents the Headers record for the operation: updateFiscalCalendars
-public type UpdateFiscalCalendarsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
+public type AccrualSchemesCollectionAllOf2 record {
+    AccrualScheme[] value?;
 };
-
-# Represents the Headers record for the operation: updateCPPortfolios
-public type UpdateCPPortfoliosHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Headers record for the operation: deleteFinancialDimensionValues
-public type DeleteFinancialDimensionValuesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type DimensionSetsCollectionAllOf2 record {
-    DimensionSet[] value?;
-};
-
-public type JournalTablesCollectionAllOf2 record {
-    JournalTable[] value?;
-};
-
-public type DimensionAttributesCollection record {
+public type LedgerJournalDescriptionsCollection record {
     *ODataCollection;
-    *DimensionAttributesCollectionAllOf2;
+    *LedgerJournalDescriptionsCollectionAllOf2;
 };
-
-# Represents the Queries record for the operation: listCPTables
-public type ListCPTablesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
+public type LedgerJournalDescription record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "SearchName"}
+    string searchName?;
+    @jsondata:Name {value: "Identification"}
+    string identification?;
+};
+public type AccountantsCollection record {
+    *ODataCollection;
+    *AccountantsCollectionAllOf2;
+};
+public type AuditTrailsCollectionAllOf2 record {
+    AuditTrail[] value?;
+};
+public type LedgerJournalHeadersCollectionAllOf2 record {
+    LedgerJournalHeader[] value?;
+};
+public type PostingJournalsCollection record {
+    *ODataCollection;
+    *PostingJournalsCollectionAllOf2;
+};
+public type LedgerIntervalsCollection record {
+    *ODataCollection;
+    *LedgerIntervalsCollectionAllOf2;
+};
+public type AccrualScheme record {
+    @jsondata:Name {value: "SpreadMonthAndQuarterValues"}
+    LedgerAccrualEvenScale spreadMonthAndQuarterValues?;
+    @jsondata:Name {value: "LegalEntity_DataArea"}
+    string legalEntityDataArea?;
+    @jsondata:Name {value: "NumberSequenceScope_OperatingUnitType"}
+    OMOperatingUnitType numberSequenceScopeOperatingUnitType?;
+    @jsondata:Name {value: "AccrualBasis"}
+    LedgerAccrualPeriod accrualBasis?;
+    @jsondata:Name {value: "TransactionDescription"}
+    string transactionDescription?;
+    @jsondata:Name {value: "NumberOfOccurrencesPerPeriod"}
+    int:Signed32 numberOfOccurrencesPerPeriod?;
+    @jsondata:Name {value: "FiscalPeriodFrequency"}
+    AssetAccrualFiscal fiscalPeriodFrequency?;
+    @jsondata:Name {value: "PostTransactions"}
+    DayWeekMonth postTransactions?;
+    @jsondata:Name {value: "PeriodKey"}
+    string periodKey?;
+    @jsondata:Name {value: "DebitLedgerDimensionDisplayValue"}
+    string debitLedgerDimensionDisplayValue?;
+    @jsondata:Name {value: "OperatingUnit_PartyNumber"}
+    string operatingUnitPartyNumber?;
+    @jsondata:Name {value: "FiscalCalendar_CalendarId"}
+    string fiscalCalendarCalendarId?;
+    @jsondata:Name {value: "NumberSequenceTable_NumberSequence"}
+    string numberSequenceTableNumberSequence?;
+    @jsondata:Name {value: "CalendarPeriodFrequency"}
+    AssetAccrualCalendar calendarPeriodFrequency?;
+    @jsondata:Name {value: "Voucher"}
+    LedgerAccrualVoucher voucher?;
+    @jsondata:Name {value: "AccrualSchemeDescription"}
+    string accrualSchemeDescription?;
+    string dataAreaId?;
+    @jsondata:Name {value: "NumberSequenceScope_DataArea"}
+    string numberSequenceScopeDataArea?;
+    @jsondata:Name {value: "CreditLedgerDimensionDisplayValue"}
+    string creditLedgerDimensionDisplayValue?;
+    @jsondata:Name {value: "PostInWeekMonthOrQuarter"}
+    PrimoMedioUltimo postInWeekMonthOrQuarter?;
+    @jsondata:Name {value: "LegalEntity_PartyNumber"}
+    string legalEntityPartyNumber?;
+    @jsondata:Name {value: "FiscalCalendarPeriod_Name"}
+    string fiscalCalendarPeriodName?;
+    @jsondata:Name {value: "AccrualIdentification"}
+    string accrualIdentification?;
+    @jsondata:Name {value: "FiscalCalendarYear_Name"}
+    string fiscalCalendarYearName?;
+};
+public type OpeningSheetsCollectionAllOf2 record {
+    OpeningSheet[] value?;
+};
+public type OpeningSheet record {
+    @jsondata:Name {value: "SumBalance"}
+    decimal sumBalance?;
+    @jsondata:Name {value: "SumTrialBalance"}
+    decimal sumTrialBalance?;
+    @jsondata:Name {value: "FiscalCalendarCalendarId"}
+    string fiscalCalendarCalendarId?;
+    @jsondata:Name {value: "OffsetAccountDisplayValue"}
+    string offsetAccountDisplayValue?;
+    @jsondata:Name {value: "Result"}
+    decimal result?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    string dataAreaId?;
+    @jsondata:Name {value: "LineNum"}
+    decimal lineNum?;
+    @jsondata:Name {value: "Txt"}
+    string txt?;
+    @jsondata:Name {value: "LedgerOpeningTransMainAccountChartOfAccountName"}
+    string ledgerOpeningTransMainAccountChartOfAccountName?;
+    @jsondata:Name {value: "OperationsTax"}
+    CurrentOperationsTax operationsTax?;
+    @jsondata:Name {value: "CurrentOperationsTax"}
+    CurrentOperationsTax currentOperationsTax?;
+    @jsondata:Name {value: "PeriodCode"}
+    FiscalPeriodType periodCode?;
+    @jsondata:Name {value: "LedgerOpeningTableChartOfAccountsName"}
+    string ledgerOpeningTableChartOfAccountsName?;
+    @jsondata:Name {value: "LedgerOpeningTransMainAccountMainAccountIdDisplayValue"}
+    string ledgerOpeningTransMainAccountMainAccountIdDisplayValue?;
+    @jsondata:Name {value: "SumCapital"}
+    decimal sumCapital?;
+    @jsondata:Name {value: "LedgerOpeningTransOffsetAccountMainAccountId"}
+    string ledgerOpeningTransOffsetAccountMainAccountId?;
+    @jsondata:Name {value: "Amount"}
+    decimal amount?;
+    @jsondata:Name {value: "TrialBalance"}
+    decimal trialBalance?;
+    @jsondata:Name {value: "AcknowledgementDate"}
+    string acknowledgementDate?;
+    @jsondata:Name {value: "LedgerOpeningTableMainAccountIdDisplayValue"}
+    string ledgerOpeningTableMainAccountIdDisplayValue?;
+    @jsondata:Name {value: "FiscalCalendarYearName"}
+    string fiscalCalendarYearName?;
+    @jsondata:Name {value: "Capital"}
+    decimal capital?;
+    @jsondata:Name {value: "AccountType"}
+    DimensionLedgerAccountType accountType?;
+    @jsondata:Name {value: "Voucher"}
+    string voucher?;
+    @jsondata:Name {value: "Reconciled"}
+    NoYes reconciled?;
+    @jsondata:Name {value: "LedgerAccountDisplayValue"}
+    string ledgerAccountDisplayValue?;
+    @jsondata:Name {value: "Transfer"}
+    decimal transfer?;
+    @jsondata:Name {value: "FiscalCalendarPeriodName"}
+    string fiscalCalendarPeriodName?;
+    @jsondata:Name {value: "ToDate"}
+    string toDate?;
+    @jsondata:Name {value: "FromDate"}
+    string fromDate?;
+    @jsondata:Name {value: "SumTransfer"}
+    decimal sumTransfer?;
+    @jsondata:Name {value: "SumResult"}
+    decimal sumResult?;
+    @jsondata:Name {value: "LedgerOpeningTransOffsetAccountChartOfAccountName"}
+    string ledgerOpeningTransOffsetAccountChartOfAccountName?;
+    @jsondata:Name {value: "PostDate"}
+    string postDate?;
+    @jsondata:Name {value: "Sheet"}
+    string sheet?;
+    @jsondata:Name {value: "Balance"}
+    decimal balance?;
+};
+public type AccountantsCollectionAllOf2 record {
+    Accountant[] value?;
+};
+public type LedgerJournalHeadersCollection record {
+    *ODataCollection;
+    *LedgerJournalHeadersCollectionAllOf2;
+};
+public type Accountant record {
+    @jsondata:Name {value: "CRCIssuerState"}
+    string cRCIssuerState?;
+    @jsondata:Name {value: "PhoneLocator"}
+    string phoneLocator?;
+    @jsondata:Name {value: "AddressCounty"}
+    string addressCounty?;
+    @jsondata:Name {value: "AddressStreetNumber"}
+    string addressStreetNumber?;
+    @jsondata:Name {value: "EmailIsPrivate"}
+    NoYes emailIsPrivate?;
+    @jsondata:Name {value: "CRCExpirationDate"}
+    string cRCExpirationDate?;
+    @jsondata:Name {value: "AddressDescription"}
+    string addressDescription?;
+    @jsondata:Name {value: "PhoneCountryRegionCode"}
+    string phoneCountryRegionCode?;
+    @jsondata:Name {value: "CRCCountryRegionId"}
+    string cRCCountryRegionId?;
+    @jsondata:Name {value: "EmailPrivateForParty"}
+    int emailPrivateForParty?;
+    @jsondata:Name {value: "AddressIsPrivate"}
+    NoYes addressIsPrivate?;
+    @jsondata:Name {value: "PhoneDescription"}
+    string phoneDescription?;
+    @jsondata:Name {value: "AddressDistrictName"}
+    string addressDistrictName?;
+    @jsondata:Name {value: "PhonePrivateForParty"}
+    int phonePrivateForParty?;
+    @jsondata:Name {value: "AddressCountryRegionId"}
+    string addressCountryRegionId?;
+    @jsondata:Name {value: "PhoneLocatorExtension"}
+    string phoneLocatorExtension?;
+    @jsondata:Name {value: "EmailLocator"}
+    string emailLocator?;
+    @jsondata:Name {value: "PhoneIsInstantMessage"}
+    NoYes phoneIsInstantMessage?;
+    @jsondata:Name {value: "CRC"}
+    string cRC?;
+    @jsondata:Name {value: "AddressZipCodeName"}
+    string addressZipCodeName?;
+    @jsondata:Name {value: "EmailDescription"}
+    string emailDescription?;
+    @jsondata:Name {value: "EmailIsInstantMessage"}
+    NoYes emailIsInstantMessage?;
+    @jsondata:Name {value: "AddressBuildingCompliment"}
+    string addressBuildingCompliment?;
+    @jsondata:Name {value: "AddressStreet"}
+    string addressStreet?;
+    @jsondata:Name {value: "AccountantName"}
+    string accountantName?;
+    @jsondata:Name {value: "EmailCountryRegionCode"}
+    string emailCountryRegionCode?;
+    @jsondata:Name {value: "CPF"}
+    string cPF?;
+    @jsondata:Name {value: "PhoneIsPrivate"}
+    NoYes phoneIsPrivate?;
+    @jsondata:Name {value: "PhoneIsMobilePhone"}
+    NoYes phoneIsMobilePhone?;
+    @jsondata:Name {value: "CNPJ"}
+    string cNPJ?;
+    @jsondata:Name {value: "AddressZipCode"}
+    string addressZipCode?;
+    @jsondata:Name {value: "AddressCityName"}
+    string addressCityName?;
+    @jsondata:Name {value: "EmailLocatorExtension"}
+    string emailLocatorExtension?;
+    @jsondata:Name {value: "AddressState"}
+    string addressState?;
+};
+public type PostingDefinitionsCollectionAllOf2 record {
+    PostingDefinition[] value?;
+};
+public type AccrualSchemesCollection record {
+    *ODataCollection;
+    *AccrualSchemesCollectionAllOf2;
+};
+public type LedgerJournalDescriptionsCollectionAllOf2 record {
+    LedgerJournalDescription[] value?;
+};
+public type PostingDefinitionsCollection record {
+    *ODataCollection;
+    *PostingDefinitionsCollectionAllOf2;
+};
+public type LedgerIntervalsCollectionAllOf2 record {
+    LedgerInterval[] value?;
+};
+public type LedgerInterval record {
+    string dataAreaId?;
+    @jsondata:Name {value: "ToAccount"}
+    string toAccount?;
+    @jsondata:Name {value: "FromAccount"}
+    string fromAccount?;
+    @jsondata:Name {value: "ToLedgerChartOfAccounts"}
+    string toLedgerChartOfAccounts?;
+    @jsondata:Name {value: "FromLedgerChartOfAccounts"}
+    string fromLedgerChartOfAccounts?;
+    @jsondata:Name {value: "IntervalGroup"}
+    string intervalGroup?;
+};
+public type OpeningSheetsCollection record {
+    *ODataCollection;
+    *OpeningSheetsCollectionAllOf2;
+};
+public type PostingJournalsCollectionAllOf2 record {
+    PostingJournal[] value?;
+};
+public type AuditTrailsCollection record {
+    *ODataCollection;
+    *AuditTrailsCollectionAllOf2;
+};
+public type PostingDefinition record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "VersionDescription"}
+    string versionDescription?;
+    @jsondata:Name {value: "PostingDefinitionId"}
+    string postingDefinitionId?;
+    @jsondata:Name {value: "ValidTo"}
+    string validTo?;
+    @jsondata:Name {value: "ValidFrom"}
+    string validFrom?;
+    @jsondata:Name {value: "Module"}
+    JournalizingDefinitionModuleId 'module?;
+};
+public type PostingJournal record {
+    string dataAreaId?;
+    @jsondata:Name {value: "NumberSequenceCode"}
+    string numberSequenceCode?;
+    @jsondata:Name {value: "Journal"}
+    string journal?;
+    @jsondata:Name {value: "FromDate"}
+    string fromDate?;
+    @jsondata:Name {value: "ToDate"}
+    string toDate?;
+    @jsondata:Name {value: "JournalType"}
+    LedgerJournalTypeBE journalType?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+# Represents the Queries record for the operation: getAccrualSchemes
+public type GetAccrualSchemesQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
     # OData $select query parameter - comma-separated list of fields to return
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-public type CostGroup record {
-    @jsondata:Name {value: "GroupName"}
-    string groupName?;
-    string dataAreaId?;
-    @jsondata:Name {value: "IsDefaultCostGroup"}
-    NoYes isDefaultCostGroup?;
-    @jsondata:Name {value: "CostBehaviour"}
-    CostGroupBehavior costBehaviour?;
-    @jsondata:Name {value: "CostGroupType"}
-    CostGroupType costGroupType?;
-    @jsondata:Name {value: "GroupId"}
-    string groupId?;
+# Represents the Headers record for the operation: deleteLedgerIntervals
+public type DeleteLedgerIntervalsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
 };
-
-public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
-
+# Represents the Queries record for the operation: getLedgerJournalDescriptions
+public type GetLedgerJournalDescriptionsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateLedgerIntervals
+public type UpdateLedgerIntervalsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Headers record for the operation: deleteLedgerJournalHeaders
+public type DeleteLedgerJournalHeadersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getAccountants
+public type GetAccountantsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
 # Represents the Queries record for the operation: getLedgerIntervals
 public type GetLedgerIntervalsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
@@ -565,358 +703,24 @@ public type GetLedgerIntervalsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-# Represents the Queries record for the operation: listFinancialDimensionSets
-public type ListFinancialDimensionSetsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
 # Represents the Headers record for the operation: updatePostingDefinitions
 public type UpdatePostingDefinitionsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-# Represents the Queries record for the operation: getCPPortfolios
-public type GetCPPortfoliosQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
 # Represents the Headers record for the operation: updateLedgerJournalDescriptions
 public type UpdateLedgerJournalDescriptionsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-public type JournalTransCollectionAllOf2 record {
-    JournalTrans[] value?;
-};
-
-public type ProjJournalVoucherChange "DateChange"|"DateEmplChange";
-
-public type CPPortfoliosCollectionAllOf2 record {
-    CPPortfolio[] value?;
-};
-
-public type LeaseBooksCollection record {
-    *ODataCollection;
-    *LeaseBooksCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: listCostGroups
-public type ListCostGroupsQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type FundsCollection record {
-    *ODataCollection;
-    *FundsCollectionAllOf2;
-};
-
-public type CPPortfoliosCollection record {
-    *ODataCollection;
-    *CPPortfoliosCollectionAllOf2;
-};
-
-public type DimensionRulesCollection record {
-    *ODataCollection;
-    *DimensionRulesCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: getMainAccounts
-public type GetMainAccountsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type PeriodLine record {
-    string dataAreaId?;
-    @jsondata:Name {value: "PeriodId"}
-    string periodId?;
-    @jsondata:Name {value: "PeriodTo"}
-    string periodTo?;
-    @jsondata:Name {value: "PeriodName"}
-    string periodName?;
-    @jsondata:Name {value: "ModelId"}
-    string modelId?;
-    @jsondata:Name {value: "PeriodFrom"}
-    string periodFrom?;
-};
-
-# Represents the Headers record for the operation: updateMainAccounts
-public type UpdateMainAccountsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type RTSLDimensionAction "NoChange"|"CompanyId"|"Value"|"Counteragent";
-
-# Represents the Queries record for the operation: getJournalLines
-public type GetJournalLinesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Headers record for the operation: updateMainAccountLegalEntities
-public type UpdateMainAccountLegalEntitiesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getBudgetPlans
-public type GetBudgetPlansQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type LedgerTransSettlementsCollection record {
-    *ODataCollection;
-    *LedgerTransSettlementsCollectionAllOf2;
-};
-
-public type AccrualSchemesCollectionAllOf2 record {
-    AccrualScheme[] value?;
-};
-
-# Represents the Headers record for the operation: updateFunds
-public type UpdateFundsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getDimensionRules
-public type GetDimensionRulesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-# Represents the Queries record for the operation: listCostCenters
-public type ListCostCentersQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type LedgerAccrualPeriod "Calendar"|"Fiscal"|"AllocationKey";
-
-public type CPJournal record {
-    @jsondata:Name {value: "ReverseDate"}
-    string reverseDate?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "PaymReference"}
-    string paymReference?;
-    @jsondata:Name {value: "FixedExchRate"}
-    decimal fixedExchRate?;
-    @jsondata:Name {value: "Posted"}
-    NoYes posted?;
-    @jsondata:Name {value: "AccountType"}
-    CPAccountTypeTR accountType?;
-    @jsondata:Name {value: "AverageMaturity"}
-    string averageMaturity?;
-    @jsondata:Name {value: "PortfolioDefaultDimensionDisplayValue"}
-    string portfolioDefaultDimensionDisplayValue?;
-    @jsondata:Name {value: "BankTransType"}
-    string bankTransType?;
-    string dataAreaId?;
-    @jsondata:Name {value: "PaymId"}
-    string paymId?;
-    @jsondata:Name {value: "PostingProfile"}
-    string postingProfile?;
-    @jsondata:Name {value: "TransCode"}
-    string transCode?;
-    @jsondata:Name {value: "ChequeJournalNum"}
-    string chequeJournalNum?;
-    @jsondata:Name {value: "AccountNum"}
-    string accountNum?;
-    @jsondata:Name {value: "TransDate"}
-    string transDate?;
-    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
-    string defaultDimensionDisplayValue?;
-    @jsondata:Name {value: "SessionLoginDateTime"}
-    string sessionLoginDateTime?;
-    @jsondata:Name {value: "OffsetTransCode"}
-    string offsetTransCode?;
-    @jsondata:Name {value: "JournalNum"}
-    string journalNum?;
-    @jsondata:Name {value: "IsFixedExchRate"}
-    NoYes isFixedExchRate?;
-    @jsondata:Name {value: "SessionId"}
-    int:Signed32 sessionId?;
-    @jsondata:Name {value: "PortfolioCode"}
-    string portfolioCode?;
-    @jsondata:Name {value: "ReverseJournalNum"}
-    string reverseJournalNum?;
-};
-
-# Represents the Queries record for the operation: listJournalNames
-public type ListJournalNamesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type LedgerAccountGroupsCollection record {
-    *ODataCollection;
-    *LedgerAccountGroupsCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: listCPParameters
-public type ListCPParametersQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
 # Represents the Headers record for the operation: deleteAccrualSchemes
 public type DeleteAccrualSchemesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-# Represents the Headers record for the operation: updateCPJournals
-public type UpdateCPJournalsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 # Represents the Queries record for the operation: listAccountants
 public type ListAccountantsQueries record {
     # OData $skip query parameter - number of records to skip
@@ -944,325 +748,12 @@ public type ListAccountantsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-# Represents the Headers record for the operation: deleteCPTables
-public type DeleteCPTablesHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type JournalNamesCollection record {
-    *ODataCollection;
-    *JournalNamesCollectionAllOf2;
-};
-
-public type LedgerTransSettlement record {
-    @jsondata:Name {value: "GeneralJournalAccountEntry"}
-    int generalJournalAccountEntry?;
-    @jsondata:Name {value: "Ledger"}
-    int ledger?;
-    @jsondata:Name {value: "MainAccount"}
-    int mainAccount?;
-    @jsondata:Name {value: "Quantity"}
-    decimal quantity?;
-    @jsondata:Name {value: "DateProcessed"}
-    string dateProcessed?;
-    @jsondata:Name {value: "Text"}
-    string text?;
-    @jsondata:Name {value: "TransactionCurrencyAmount"}
-    decimal transactionCurrencyAmount?;
-    @jsondata:Name {value: "AccountingDate"}
-    string accountingDate?;
-    @jsondata:Name {value: "DocumentNumber"}
-    string documentNumber?;
-    @jsondata:Name {value: "TransactionCurrencyCode"}
-    string transactionCurrencyCode?;
-    @jsondata:Name {value: "PostingType"}
-    LedgerPostingType postingType?;
-    @jsondata:Name {value: "AutomationRule"}
-    string automationRule?;
-    @jsondata:Name {value: "AccountingCurrencyAmount"}
-    decimal accountingCurrencyAmount?;
-    @jsondata:Name {value: "LedgerAccountDisplayValue"}
-    string ledgerAccountDisplayValue?;
-    @jsondata:Name {value: "ReportingCurrencyAmount"}
-    decimal reportingCurrencyAmount?;
-    @jsondata:Name {value: "SettleId"}
-    string settleId?;
-    @jsondata:Name {value: "JournalNumber"}
-    string journalNumber?;
-    @jsondata:Name {value: "PostingLayer"}
-    CurrentOperationsTax postingLayer?;
-    @jsondata:Name {value: "SubledgerVoucher"}
-    string subledgerVoucher?;
-    @jsondata:Name {value: "OriginalTransactionDate"}
-    string originalTransactionDate?;
-    @jsondata:Name {value: "SettleDate"}
-    string settleDate?;
-    @jsondata:Name {value: "Marked"}
-    string marked?;
-    @jsondata:Name {value: "DocumentDate"}
-    string documentDate?;
-};
-
-# Represents the Headers record for the operation: deleteCPPortfolios
-public type DeleteCPPortfoliosHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-public type LeaseBook record {
-    @jsondata:Name {value: "DimensionDefaultDisplayValue"}
-    string dimensionDefaultDisplayValue?;
-    @jsondata:Name {value: "DeferredRentCarryover"}
-    decimal deferredRentCarryover?;
-    @jsondata:Name {value: "PercentOfIndexChangeToApply"}
-    decimal percentOfIndexChangeToApply?;
-    @jsondata:Name {value: "CommencementDate"}
-    string commencementDate?;
-    @jsondata:Name {value: "CostPerMile"}
-    decimal costPerMile?;
-    @jsondata:Name {value: "IndexRateType"}
-    string indexRateType?;
-    @jsondata:Name {value: "Currency"}
-    string currency?;
-    @jsondata:Name {value: "CurrentLiabilityBalance"}
-    decimal currentLiabilityBalance?;
-    @jsondata:Name {value: "LeaseStartDate"}
-    string leaseStartDate?;
-    @jsondata:Name {value: "Street"}
-    string street?;
-    @jsondata:Name {value: "LeaseDescription"}
-    string leaseDescription?;
-    @jsondata:Name {value: "UnpostedDepreciationJournals"}
-    int:Signed32 unpostedDepreciationJournals?;
-    @jsondata:Name {value: "PresentValueOverFairValue"}
-    decimal presentValueOverFairValue?;
-    @jsondata:Name {value: "SecurityDepositReminderDate"}
-    string securityDepositReminderDate?;
-    @jsondata:Name {value: "LimitOnRateIncrease"}
-    decimal limitOnRateIncrease?;
-    @jsondata:Name {value: "ShortTermLease"}
-    NoYes shortTermLease?;
-    @jsondata:Name {value: "PreviousLeaseType"}
-    AssetLeaseType previousLeaseType?;
-    @jsondata:Name {value: "UniqueAsset"}
-    NoYes uniqueAsset?;
-    @jsondata:Name {value: "LeaseStatus"}
-    AssetLeaseLeaseStatus leaseStatus?;
-    @jsondata:Name {value: "LeaseTermMonths"}
-    int:Signed32 leaseTermMonths?;
-    @jsondata:Name {value: "CurrentAssetBalance"}
-    decimal currentAssetBalance?;
-    @jsondata:Name {value: "TaxItemGroup"}
-    string taxItemGroup?;
-    @jsondata:Name {value: "RentableArea"}
-    decimal rentableArea?;
-    @jsondata:Name {value: "TransferOfOwnership"}
-    NoYesCombo transferOfOwnership?;
-    @jsondata:Name {value: "AllowDecreases"}
-    NoYes allowDecreases?;
-    @jsondata:Name {value: "LeasePrepayments"}
-    decimal leasePrepayments?;
-    @jsondata:Name {value: "UnpostedInterestJournals"}
-    int:Signed32 unpostedInterestJournals?;
-    @jsondata:Name {value: "ResidualValueGuarantee"}
-    decimal residualValueGuarantee?;
-    @jsondata:Name {value: "PostingLayer"}
-    CurrentOperationsTax postingLayer?;
-    @jsondata:Name {value: "RevaluationDate"}
-    string revaluationDate?;
-    @jsondata:Name {value: "LastDatePaymentJournal"}
-    string lastDatePaymentJournal?;
-    @jsondata:Name {value: "InterestPeriodsRemaining"}
-    int:Signed32 interestPeriodsRemaining?;
-    @jsondata:Name {value: "DepreciationPeriodsRemaining"}
-    int:Signed32 depreciationPeriodsRemaining?;
-    @jsondata:Name {value: "LeaseGroup"}
-    string leaseGroup?;
-    @jsondata:Name {value: "LeaseClassification"}
-    AssetLeaseAccountingFramework leaseClassification?;
-    @jsondata:Name {value: "IncidentalCost"}
-    decimal incidentalCost?;
-    @jsondata:Name {value: "ContractSignatureDate"}
-    string contractSignatureDate?;
-    @jsondata:Name {value: "LeasingConvention"}
-    AssetLeaseLeasingConvention leasingConvention?;
-    @jsondata:Name {value: "MasterLeaseId"}
-    string masterLeaseId?;
-    @jsondata:Name {value: "ExpirationDate"}
-    string expirationDate?;
-    @jsondata:Name {value: "LowValueLease"}
-    NoYes lowValueLease?;
-    @jsondata:Name {value: "LeaseModificationDate"}
-    string leaseModificationDate?;
-    @jsondata:Name {value: "ExpectedTerminationDate"}
-    string expectedTerminationDate?;
-    @jsondata:Name {value: "BankContractNumber"}
-    string bankContractNumber?;
-    @jsondata:Name {value: "Company"}
-    string company?;
-    @jsondata:Name {value: "LatePayment"}
-    decimal latePayment?;
-    @jsondata:Name {value: "BorrowingRate"}
-    decimal borrowingRate?;
-    @jsondata:Name {value: "DeliveryDate"}
-    string deliveryDate?;
-    @jsondata:Name {value: "PresentValuePaymentsRemaining"}
-    decimal presentValuePaymentsRemaining?;
-    @jsondata:Name {value: "LastDateInterestJournal"}
-    string lastDateInterestJournal?;
-    @jsondata:Name {value: "ManuallyRevalue"}
-    NoYes manuallyRevalue?;
-    string dataAreaId?;
-    @jsondata:Name {value: "PaymentContractModified"}
-    NoYes paymentContractModified?;
-    @jsondata:Name {value: "CountryRegionID"}
-    string countryRegionID?;
-    @jsondata:Name {value: "AnnuityType"}
-    AssetLeaseAnnuityType annuityType?;
-    @jsondata:Name {value: "LeaseIncentives"}
-    decimal leaseIncentives?;
-    @jsondata:Name {value: "HoldoverFee"}
-    decimal holdoverFee?;
-    @jsondata:Name {value: "UnitOfMeasure"}
-    string unitOfMeasure?;
-    @jsondata:Name {value: "FairValueOfAsset"}
-    decimal fairValueOfAsset?;
-    @jsondata:Name {value: "ImplicitRate"}
-    decimal implicitRate?;
-    @jsondata:Name {value: "LocationOpeningDate"}
-    string locationOpeningDate?;
-    @jsondata:Name {value: "VendorAccount"}
-    string vendorAccount?;
-    @jsondata:Name {value: "City"}
-    string city?;
-    @jsondata:Name {value: "OverrideReason"}
-    string overrideReason?;
-    @jsondata:Name {value: "MinimunLimitsOfLiability"}
-    decimal minimunLimitsOfLiability?;
-    @jsondata:Name {value: "DateEntryToPost"}
-    string dateEntryToPost?;
-    @jsondata:Name {value: "IndexChangeToApply"}
-    decimal indexChangeToApply?;
-    @jsondata:Name {value: "BookType"}
-    string bookType?;
-    @jsondata:Name {value: "TaxGroup"}
-    string taxGroup?;
-    @jsondata:Name {value: "State"}
-    string state?;
-    @jsondata:Name {value: "LastDepreciationDate"}
-    string lastDepreciationDate?;
-    @jsondata:Name {value: "ExchangeRate"}
-    decimal exchangeRate?;
-    @jsondata:Name {value: "FinancialCommercialTerms"}
-    string financialCommercialTerms?;
-    @jsondata:Name {value: "FixedExchangeRate"}
-    NoYes fixedExchangeRate?;
-    @jsondata:Name {value: "FixedAssetNumber"}
-    string fixedAssetNumber?;
-    @jsondata:Name {value: "LeaseId"}
-    string leaseId?;
-    @jsondata:Name {value: "LeasePaymentsRemaining"}
-    int:Signed32 leasePaymentsRemaining?;
-    @jsondata:Name {value: "LeaseType"}
-    AssetLeaseType leaseType?;
-    @jsondata:Name {value: "FixedExchangeRateReporting"}
-    NoYes fixedExchangeRateReporting?;
-    @jsondata:Name {value: "County"}
-    string county?;
-    @jsondata:Name {value: "OveruseFee"}
-    decimal overuseFee?;
-    @jsondata:Name {value: "SecurityDepositRefundable"}
-    NoYes securityDepositRefundable?;
-    @jsondata:Name {value: "MileageLimit"}
-    decimal mileageLimit?;
-    @jsondata:Name {value: "FixedAssetBookId"}
-    string fixedAssetBookId?;
-    @jsondata:Name {value: "MonthsBetweenRevaluations"}
-    int:Signed32 monthsBetweenRevaluations?;
-    @jsondata:Name {value: "LocationNumber"}
-    string locationNumber?;
-    @jsondata:Name {value: "MaxCoverage"}
-    decimal maxCoverage?;
-    @jsondata:Name {value: "LeaseTermOverUsefulLife"}
-    decimal leaseTermOverUsefulLife?;
-    @jsondata:Name {value: "SecurityDeposit"}
-    decimal securityDeposit?;
-    @jsondata:Name {value: "InitialDirectCost"}
-    decimal initialDirectCost?;
-    @jsondata:Name {value: "ZipCode"}
-    string zipCode?;
-    @jsondata:Name {value: "CurrentMileage"}
-    decimal currentMileage?;
-    @jsondata:Name {value: "UnpostedLeasePayments"}
-    int:Signed32 unpostedLeasePayments?;
-    @jsondata:Name {value: "CompoundingInterval"}
-    AssetLeaseCompoundingInterval compoundingInterval?;
-    @jsondata:Name {value: "UndiscountedPaymentsRemaining"}
-    decimal undiscountedPaymentsRemaining?;
-    @jsondata:Name {value: "AccountingFramework"}
-    AssetLeaseAccountingFramework accountingFramework?;
-    @jsondata:Name {value: "AssetUsefulLife"}
-    int:Signed32 assetUsefulLife?;
-    @jsondata:Name {value: "PercentCommonAreaMaintenance"}
-    decimal percentCommonAreaMaintenance?;
-    @jsondata:Name {value: "DismantlingCosts"}
-    decimal dismantlingCosts?;
-    @jsondata:Name {value: "FinancingAmount"}
-    int:Signed32 financingAmount?;
-    @jsondata:Name {value: "IndexRate"}
-    decimal indexRate?;
-    @jsondata:Name {value: "ExchangeRateReporting"}
-    decimal exchangeRateReporting?;
-};
-
 # Represents the Headers record for the operation: deleteOpeningSheets
 public type DeleteOpeningSheetsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-public type LedgerJournalLinesCollection record {
-    *ODataCollection;
-    *LedgerJournalLinesCollectionAllOf2;
-};
-
-# Represents the Queries record for the operation: listBudgetCycles
-public type ListBudgetCyclesQueries record {
-    # OData $skip query parameter - number of records to skip
-    @http:Query {name: "$skip"}
-    int skip?;
-    # OData $top query parameter - maximum number of records to return
-    @http:Query {name: "$top"}
-    int top?;
-    # OData $filter query parameter - filter expression
-    @http:Query {name: "$filter"}
-    string filter?;
-    # OData $orderby query parameter - sort order expression
-    @http:Query {name: "$orderby"}
-    string orderby?;
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # When true, query results include records from all companies
-    @http:Query {name: "cross-company"}
-    boolean crossCompany?;
-    # When true, the response includes the total count of matching records
-    @http:Query {name: "$count"}
-    boolean count?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type FiscalCalendarsCollectionAllOf2 record {
-    FiscalCalendar[] value?;
-};
-
 # Represents the Queries record for the operation: listLedgerIntervals
 public type ListLedgerIntervalsQueries record {
     # OData $skip query parameter - number of records to skip
@@ -1290,332 +781,86 @@ public type ListLedgerIntervalsQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-public type MainAccountsCollection record {
-    *ODataCollection;
-    *MainAccountsCollectionAllOf2;
-};
-
-# Represents the Headers record for the operation: updateCostGroups
-public type UpdateCostGroupsHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 # Represents the Headers record for the operation: updateAccrualSchemes
 public type UpdateAccrualSchemesHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-# Represents the Queries record for the operation: getFiscalCalendars
-public type GetFiscalCalendarsQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type DimensionAttributesCollectionAllOf2 record {
-    DimensionAttribute[] value?;
-};
-
-# Represents the Headers record for the operation: updateBudgetPlans
-public type UpdateBudgetPlansHeaders record {
-    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
-# Represents the Queries record for the operation: getFundTypes
-public type GetFundTypesQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type LedgersCollection record {
-    *ODataCollection;
-    *LedgersCollectionAllOf2;
-};
-
-public type NoYes "No"|"Yes";
-
-# Represents the Queries record for the operation: getLeaseBooks
-public type GetLeaseBooksQueries record {
-    # OData $expand query parameter - comma-separated list of related entities to include
-    @http:Query {name: "$expand"}
-    string expand?;
-    # OData $select query parameter - comma-separated list of fields to return
-    @http:Query {name: "$select"}
-    string 'select?;
-};
-
-public type CPTablesCollection record {
-    *ODataCollection;
-    *CPTablesCollectionAllOf2;
-};
-
-public type FieldControl "Optional"|"FillIn"|"Table"|"List";
-
-public type LedgerJournalLine record {
-    @jsondata:Name {value: "ListFieldCode03"}
-    string listFieldCode03?;
-    @jsondata:Name {value: "ListFieldCode04"}
-    string listFieldCode04?;
-    @jsondata:Name {value: "ListFieldCode05"}
-    string listFieldCode05?;
-    @jsondata:Name {value: "Invoice"}
-    string invoice?;
-    @jsondata:Name {value: "ListFieldCode06"}
-    string listFieldCode06?;
-    @jsondata:Name {value: "CPDCustPostingProfile"}
-    string cPDCustPostingProfile?;
-    @jsondata:Name {value: "ListFieldCode01"}
-    string listFieldCode01?;
-    @jsondata:Name {value: "ListFieldCode02"}
-    string listFieldCode02?;
-    @jsondata:Name {value: "WithholdAccruedBaseMST"}
-    decimal withholdAccruedBaseMST?;
-    @jsondata:Name {value: "AmountMST"}
-    decimal amountMST?;
-    @jsondata:Name {value: "CreditAmount"}
-    decimal creditAmount?;
-    @jsondata:Name {value: "TaxExemptNumber"}
-    string taxExemptNumber?;
-    @jsondata:Name {value: "Document"}
-    string document?;
-    @jsondata:Name {value: "LedgerJournalType"}
-    LedgerJournalACType ledgerJournalType?;
-    @jsondata:Name {value: "CurrencyCode"}
-    string currencyCode?;
-    @jsondata:Name {value: "LineNum"}
-    decimal lineNum?;
-    @jsondata:Name {value: "WithholdingBaseMST"}
-    decimal withholdingBaseMST?;
-    @jsondata:Name {value: "BankChequeNum"}
-    string bankChequeNum?;
-    @jsondata:Name {value: "ExchRate"}
-    decimal exchRate?;
-    @jsondata:Name {value: "CPDSource"}
-    LTMCheckSource cPDSource?;
-    @jsondata:Name {value: "CAICAE"}
-    string cAICAE?;
-    @jsondata:Name {value: "ListFieldCode07"}
-    string listFieldCode07?;
-    @jsondata:Name {value: "ListFieldCode08"}
-    string listFieldCode08?;
-    @jsondata:Name {value: "ListFieldCode09"}
-    string listFieldCode09?;
-    @jsondata:Name {value: "PreserveNum"}
-    NoYes preserveNum?;
-    @jsondata:Name {value: "BussinessName"}
-    string bussinessName?;
-    @jsondata:Name {value: "IsConcept"}
-    NoYes isConcept?;
-    @jsondata:Name {value: "CashDiscountDate"}
-    string cashDiscountDate?;
-    @jsondata:Name {value: "BankAccountNum"}
-    string bankAccountNum?;
-    @jsondata:Name {value: "CashDiscountAmount"}
-    decimal cashDiscountAmount?;
-    @jsondata:Name {value: "PaymentReference"}
-    string paymentReference?;
-    @jsondata:Name {value: "StateId"}
-    string stateId?;
-    @jsondata:Name {value: "ListField09"}
-    string listField09?;
-    @jsondata:Name {value: "ListField08"}
-    string listField08?;
-    @jsondata:Name {value: "ExchRateTypeAlt"}
-    decimal exchRateTypeAlt?;
-    @jsondata:Name {value: "ListField05"}
-    string listField05?;
-    @jsondata:Name {value: "ListField04"}
-    string listField04?;
-    @jsondata:Name {value: "LineNumber"}
-    decimal lineNumber?;
-    @jsondata:Name {value: "ListField07"}
-    string listField07?;
-    @jsondata:Name {value: "ListField06"}
-    string listField06?;
-    @jsondata:Name {value: "PostingProfile"}
-    string postingProfile?;
-    @jsondata:Name {value: "AmountCUR"}
-    decimal amountCUR?;
-    @jsondata:Name {value: "ListField10"}
-    string listField10?;
-    @jsondata:Name {value: "IsWithholdingCalculationEnabled"}
-    NoYes isWithholdingCalculationEnabled?;
-    @jsondata:Name {value: "SalesPointPrefix"}
-    string salesPointPrefix?;
-    @jsondata:Name {value: "ItemWithholdingTaxGroupCode"}
-    string itemWithholdingTaxGroupCode?;
-    @jsondata:Name {value: "CAICAEDueDate"}
-    string cAICAEDueDate?;
-    @jsondata:Name {value: "CountryDocTypeId"}
-    string countryDocTypeId?;
-    @jsondata:Name {value: "ListFieldCode10"}
-    string listFieldCode10?;
-    @jsondata:Name {value: "TreasuryEnter"}
-    string treasuryEnter?;
-    @jsondata:Name {value: "AccountDisplayValue"}
-    string accountDisplayValue?;
-    @jsondata:Name {value: "OrigExchRate"}
-    decimal origExchRate?;
-    @jsondata:Name {value: "Text"}
-    string text?;
-    @jsondata:Name {value: "ListField01"}
-    string listField01?;
-    @jsondata:Name {value: "OffsetCompany"}
-    string offsetCompany?;
-    @jsondata:Name {value: "CompleteDocumentNum"}
-    string completeDocumentNum?;
-    @jsondata:Name {value: "ListField03"}
-    string listField03?;
-    @jsondata:Name {value: "StateDocNum"}
-    string stateDocNum?;
-    @jsondata:Name {value: "ListField02"}
-    string listField02?;
-    @jsondata:Name {value: "DiscountPercentage"}
-    decimal discountPercentage?;
-    @jsondata:Name {value: "TransDate"}
-    string transDate?;
-    @jsondata:Name {value: "ChineseVoucher"}
-    string chineseVoucher?;
-    @jsondata:Name {value: "OffsetText"}
-    string offsetText?;
-    @jsondata:Name {value: "JournalNum"}
-    string journalNum?;
-    @jsondata:Name {value: "LedgerJournalTransId"}
-    int ledgerJournalTransId?;
-    @jsondata:Name {value: "DocumentDate"}
-    string documentDate?;
-    @jsondata:Name {value: "Beneficiary"}
-    string beneficiary?;
-    @jsondata:Name {value: "ReverseDate"}
-    string reverseDate?;
-    @jsondata:Name {value: "Company"}
-    string company?;
-    @jsondata:Name {value: "SalesTaxCode"}
-    string salesTaxCode?;
-    @jsondata:Name {value: "SalesPointId"}
-    string salesPointId?;
-    @jsondata:Name {value: "OffsetAccountType"}
-    LedgerJournalACType offsetAccountType?;
-    @jsondata:Name {value: "LTMDocumentDate"}
-    string lTMDocumentDate?;
-    @jsondata:Name {value: "ExchRateSecond"}
-    decimal exchRateSecond?;
-    @jsondata:Name {value: "ReportingCurrencyExchRate"}
-    decimal reportingCurrencyExchRate?;
-    @jsondata:Name {value: "CPDAction"}
-    LTMCollectPaymDocAction cPDAction?;
-    string dataAreaId?;
-    @jsondata:Name {value: "FinTagDisplayValue"}
-    string finTagDisplayValue?;
-    @jsondata:Name {value: "CountryDocNum"}
-    string countryDocNum?;
-    @jsondata:Name {value: "PaymTermId"}
-    string paymTermId?;
-    @jsondata:Name {value: "TreasuryActual"}
-    string treasuryActual?;
-    @jsondata:Name {value: "SalesTaxGroup"}
-    string salesTaxGroup?;
-    @jsondata:Name {value: "WithholdingEffectiveRate"}
-    decimal withholdingEffectiveRate?;
-    @jsondata:Name {value: "ReportingCurrencyExchRateSecondary"}
-    decimal reportingCurrencyExchRateSecondary?;
-    @jsondata:Name {value: "CashDiscount"}
-    string cashDiscount?;
-    @jsondata:Name {value: "IsCollectPaymDoc"}
-    NoYes isCollectPaymDoc?;
-    @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber?;
-    @jsondata:Name {value: "CPDTRXHistoryID"}
-    int cPDTRXHistoryID?;
-    @jsondata:Name {value: "PaymentMethod"}
-    string paymentMethod?;
-    @jsondata:Name {value: "OffsetFinTagDisplayValue"}
-    string offsetFinTagDisplayValue?;
-    @jsondata:Name {value: "HolderAccountNum"}
-    string holderAccountNum?;
-    @jsondata:Name {value: "ItemSalesTaxGroup"}
-    string itemSalesTaxGroup?;
-    @jsondata:Name {value: "OffsetDefaultDimensionDisplayValue"}
-    string offsetDefaultDimensionDisplayValue?;
-    @jsondata:Name {value: "WithholdingSetID"}
-    string withholdingSetID?;
-    @jsondata:Name {value: "WithholdAccruedAmountMST"}
-    decimal withholdAccruedAmountMST?;
-    @jsondata:Name {value: "OffsetAccountDisplayValue"}
-    string offsetAccountDisplayValue?;
-    @jsondata:Name {value: "CPDTRXOpenID"}
-    int cPDTRXOpenID?;
-    @jsondata:Name {value: "AccountNum"}
-    string accountNum?;
-    @jsondata:Name {value: "ReverseEntry"}
-    NoYes reverseEntry?;
-    @jsondata:Name {value: "DocumentNum"}
-    string documentNum?;
-    @jsondata:Name {value: "DocumentClassificationId"}
-    string documentClassificationId?;
-    @jsondata:Name {value: "DueDateAW"}
-    string dueDateAW?;
-    @jsondata:Name {value: "DueDate"}
-    string dueDate?;
-    @jsondata:Name {value: "StateDocTypeId"}
-    string stateDocTypeId?;
-    @jsondata:Name {value: "PaymentId"}
-    string paymentId?;
-    @jsondata:Name {value: "Quantity"}
-    decimal quantity?;
-    @jsondata:Name {value: "ShiftID"}
-    string shiftID?;
-    @jsondata:Name {value: "OverrideSalesTax"}
-    NoYes overrideSalesTax?;
-    @jsondata:Name {value: "AccountType"}
-    LedgerJournalACType accountType?;
-    @jsondata:Name {value: "ChineseVoucherType"}
-    string chineseVoucherType?;
-    @jsondata:Name {value: "Voucher"}
-    string voucher?;
-    @jsondata:Name {value: "ControlCode"}
-    string controlCode?;
-    @jsondata:Name {value: "Concept2"}
-    string concept2?;
-    @jsondata:Name {value: "Concept3"}
-    string concept3?;
-    @jsondata:Name {value: "Concept1"}
-    string concept1?;
-    @jsondata:Name {value: "CountryRegionId"}
-    string countryRegionId?;
-    @jsondata:Name {value: "DefaultDimensionDisplayValue"}
-    string defaultDimensionDisplayValue?;
-    @jsondata:Name {value: "TaxPayerTypeId"}
-    string taxPayerTypeId?;
-    @jsondata:Name {value: "BankGroupId"}
-    string bankGroupId?;
-    @jsondata:Name {value: "DebitAmount"}
-    decimal debitAmount?;
-};
-
 # Represents the Headers record for the operation: deleteAuditTrails
 public type DeleteAuditTrailsHeaders record {
     # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
     @http:Header {name: "If-Match"}
     string ifMatch?;
 };
-
-# Represents the Queries record for the operation: getCPTables
-public type GetCPTablesQueries record {
+# Represents the Headers record for the operation: updateAccountants
+public type UpdateAccountantsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Headers record for the operation: deletePostingJournals
+public type DeletePostingJournalsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listAuditTrails
+public type ListAuditTrailsQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Queries record for the operation: listLedgerJournalDescriptions
+public type ListLedgerJournalDescriptionsQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Queries record for the operation: getPostingJournals
+public type GetPostingJournalsQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -1623,9 +868,8 @@ public type GetCPTablesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-# Represents the Queries record for the operation: getJournalNames
-public type GetJournalNamesQueries record {
+# Represents the Queries record for the operation: getLedgerJournalHeaders
+public type GetLedgerJournalHeadersQueries record {
     # OData $expand query parameter - comma-separated list of related entities to include
     @http:Query {name: "$expand"}
     string expand?;
@@ -1633,50 +877,207 @@ public type GetJournalNamesQueries record {
     @http:Query {name: "$select"}
     string 'select?;
 };
-
-public type JournalTable record {
-    @jsondata:Name {value: "Status"}
-    string status?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "SetVoucherDateTo"}
-    ProjJournalVoucherDateChange setVoucherDateTo?;
-    @jsondata:Name {value: "NumberSequenceCode"}
-    string numberSequenceCode?;
-    @jsondata:Name {value: "PostedUserId"}
-    string postedUserId?;
-    @jsondata:Name {value: "ProjectID"}
-    string projectID?;
-    @jsondata:Name {value: "JournalName"}
-    string journalName?;
-    @jsondata:Name {value: "SelectionBy"}
-    JournalVoucherDraw selectionBy?;
-    @jsondata:Name {value: "Posted"}
-    NoYes posted?;
-    @jsondata:Name {value: "JournalBatchNumber"}
-    string journalBatchNumber?;
-    @jsondata:Name {value: "ProjLineProperty"}
-    string projLineProperty?;
-    string dataAreaId?;
-    @jsondata:Name {value: "Txt"}
-    string txt?;
-    @jsondata:Name {value: "NewVoucherBy"}
-    ProjJournalVoucherChange newVoucherBy?;
-    @jsondata:Name {value: "ResourceId"}
-    string resourceId?;
-    @jsondata:Name {value: "ProjectDate"}
-    string projectDate?;
-    @jsondata:Name {value: "JournalType"}
-    ProjJournalType journalType?;
-    @jsondata:Name {value: "DeleteLinesAfterPosting"}
-    NoYes deleteLinesAfterPosting?;
-    @jsondata:Name {value: "ProjCategory"}
-    string projCategory?;
-    @jsondata:Name {value: "DetailSummary"}
-    DetailSummary detailSummary?;
-    @jsondata:Name {value: "Approve"}
-    string approve?;
-    @jsondata:Name {value: "ResourceCompanyId"}
-    string resourceCompanyId?;
+# Represents the Queries record for the operation: listPostingDefinitions
+public type ListPostingDefinitionsQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
 };
-
+# Represents the Headers record for the operation: deleteLedgerJournalDescriptions
+public type DeleteLedgerJournalDescriptionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listPostingJournals
+public type ListPostingJournalsQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateLedgerJournalHeaders
+public type UpdateLedgerJournalHeadersHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listAccrualSchemes
+public type ListAccrualSchemesQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: deleteAccountants
+public type DeleteAccountantsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getAuditTrails
+public type GetAuditTrailsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Queries record for the operation: listLedgerJournalHeaders
+public type ListLedgerJournalHeadersQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updatePostingJournals
+public type UpdatePostingJournalsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Headers record for the operation: deletePostingDefinitions
+public type DeletePostingDefinitionsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Headers record for the operation: updateOpeningSheets
+public type UpdateOpeningSheetsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: getOpeningSheets
+public type GetOpeningSheetsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Queries record for the operation: getPostingDefinitions
+public type GetPostingDefinitionsQueries record {
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};
+# Represents the Headers record for the operation: updateAuditTrails
+public type UpdateAuditTrailsHeaders record {
+    # ETag value for optimistic concurrency; prevents overwriting concurrent modifications
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+# Represents the Queries record for the operation: listOpeningSheets
+public type ListOpeningSheetsQueries record {
+    # OData $skip query parameter - number of records to skip
+    @http:Query {name: "$skip"}
+    int skip?;
+    # OData $top query parameter - maximum number of records to return
+    @http:Query {name: "$top"}
+    int top?;
+    # OData $filter query parameter - filter expression
+    @http:Query {name: "$filter"}
+    string filter?;
+    # OData $orderby query parameter - sort order expression
+    @http:Query {name: "$orderby"}
+    string orderby?;
+    # OData $expand query parameter - comma-separated list of related entities to include
+    @http:Query {name: "$expand"}
+    string expand?;
+    # When true, query results include records from all companies
+    @http:Query {name: "cross-company"}
+    boolean crossCompany?;
+    # When true, the response includes the total count of matching records
+    @http:Query {name: "$count"}
+    boolean count?;
+    # OData $select query parameter - comma-separated list of fields to return
+    @http:Query {name: "$select"}
+    string 'select?;
+};

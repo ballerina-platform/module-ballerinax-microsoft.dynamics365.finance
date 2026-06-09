@@ -2,15 +2,13 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The `microsoft.dynamics365.finance.core` connector provides APIs for core reference data in Microsoft Dynamics 365 Finance. It covers currencies, exchange rates, payment terms and methods, legal entities, global address book entries, salutation codes, denomination codes, and warehouse management.
+The `microsoft.dynamics365.finance.core` connector provides access to Microsoft Dynamics 365 Finance Core entities via the OData REST API.
 
 ### Key Features
 
-- Currency management and exchange rate configuration
-- Payment terms, payment day lines, and payment method setup
-- Legal entity and company master data access
-- Global address book — postal addresses and contact information
-- Cash discount configuration and denomination setup
+- Manage core entities in Microsoft Dynamics 365 Finance
+- Support for list, create, read, update, and delete operations
+- OAuth2 client credentials authentication
 
 ## Setup guide
 
@@ -52,7 +50,7 @@ To use the `microsoft.dynamics365.finance.core` connector in your Ballerina appl
 ### Step 1: Import the module
 
 ```ballerina
-import ballerinax/microsoft.dynamics365.finance.core as finCore;
+import ballerinax/microsoft.dynamics365.finance.core;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -63,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-finCore:Client finCoreClient = check new (
+core:Client cl = check new ({
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
@@ -79,7 +77,7 @@ finCore:Client finCoreClient = check new (
 ### Step 3: Invoke the connector operation
 
 ```ballerina
-finCore:ExchangeRatesCollection rates = check finCoreClient->listExchangeRates();
+core:AddressBooksCollection results = check cl->listAddressBooks();
 ```
 
 ### Step 4: Run the Ballerina application

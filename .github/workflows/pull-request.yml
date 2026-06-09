@@ -97,7 +97,7 @@ jobs:
 
       - name: Pack and push packages to local repository
         run: |
-          for bucket in ledger receivable payable tax asset core hr system; do
+          for bucket in budget cashmanagement core coreorg customer customeraccount customermain document expense fiscal fixedasset hr hrdev journalentry ledger mainaccount payment procurement project receivable sysconfig system tax taxregion trade users vendor vendorextended vendorpayment workflow; do
             (cd ballerina/${bucket} && bal pack)
             bal push --repository local ballerina/${bucket}/target/bala/ballerinax-microsoft.dynamics365.finance.${bucket}-any-*.bala
           done

@@ -1,0 +1,12 @@
+{
+  "description": "The microsoft.dynamics365.finance.vendorextended connector provides access to Microsoft Dynamics 365 Finance Vendor Extended entities via the OData REST API.",
+  "key-features": [
+    "Manage vendor extended entities in Microsoft Dynamics 365 Finance",
+    "Support for list, create, read, update, and delete operations",
+    "OAuth2 client credentials authentication"
+  ],
+  "communication-scenario": "Connecting to Microsoft Dynamics 365 Finance Vendor Extended API",
+  "import-statement": "import ballerinax/microsoft.dynamics365.finance.vendorextended;",
+  "client-init": "vendorextended:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);",
+  "api-invocation": "vendorextended:VendorsV2Collection results = check cl->listVendorsV2();"
+}
