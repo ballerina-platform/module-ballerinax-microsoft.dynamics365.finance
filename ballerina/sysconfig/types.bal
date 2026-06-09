@@ -17,7 +17,7 @@ public type Table record {
     @jsondata:Name {value: "Name"}
     string name?;
 };
-public type PSSerialTypeTR "Invoice"|"PackingSlip";
+public type TaxRegistrationTypesList "None"|"KPP"|"INN"|"OKDP"|"OKPO"|"OKATO"|"OGRN"|"SNILS"|"CIFTS"|"UID"|"TAXID"|"BranchId"|"CommercialRegisterCZ"|"CustomsCustomerId"|"Passport"|"OfficialIdDoc"|"ResidenceCertificate"|"OtherIdDoc"|"NotCensused"|"BusinessPremiseID"|"LotteryCode"|"SIRET"|"PersonID"|"QualifiedInvoiceIssuer"|"WithholdingTaxPayerReference"|"EAN"|"EUVatID";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -26,7 +26,65 @@ public type ODataCollection record {
     @jsondata:Name {value: "@odata.context"}
     string odataContext?;
 };
+public type OffInvRelationTypeAllTableRU "All"|"Table";
+public type ModuleCustVend "Cust"|"Vend";
+public type OffPositionRU "Director"|"Accountant"|"Cashier"|"Filler"|"Supplier"|"Acceptor"|"Taker"|"Requester"|"Manager"|"Chairman"|"Member"|"InCharge"|"Responsible"|"AccountantJ"|"Representative"|"Controller"|"TransResp"|"TransRespCust"|"TransRespVend"|"TransRespCarrier";
+public type PSSerialTypeTR "Invoice"|"PackingSlip";
+public type NoYes "No"|"Yes";
+public type RDeferralsVATRefundingMethod "Standard"|"Proportional";
 public type RTax25StdChannelType "Register"|"Deferral"|"DeferralsFactor";
+public type WebService record {
+    @jsondata:Name {value: "WebApplicationName"}
+    string webApplicationName?;
+    @jsondata:Name {value: "InternetAddress"}
+    string internetAddress?;
+    @jsondata:Name {value: "AdditionalSuccessfulResponseCodes"}
+    string additionalSuccessfulResponseCodes?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "WebService"}
+    string webService?;
+    @jsondata:Name {value: "SignXMLUriFormat"}
+    string signXMLUriFormat?;
+    @jsondata:Name {value: "SOAPPathResponse"}
+    string sOAPPathResponse?;
+    @jsondata:Name {value: "RequestTypeXML"}
+    NoYes requestTypeXML?;
+    @jsondata:Name {value: "RequestMethod"}
+    string requestMethod?;
+    @jsondata:Name {value: "SOAPPatternRequest"}
+    string sOAPPatternRequest?;
+    @jsondata:Name {value: "SignXML"}
+    NoYes signXML?;
+    @jsondata:Name {value: "SOAPEnvelope"}
+    NoYes sOAPEnvelope?;
+    @jsondata:Name {value: "SignXMLUseRSA256"}
+    NoYes signXMLUseRSA256?;
+    @jsondata:Name {value: "SignXMLUriPath"}
+    string signXMLUriPath?;
+    @jsondata:Name {value: "RequestHeadersFormatMappingGUID"}
+    string requestHeadersFormatMappingGUID?;
+    @jsondata:Name {value: "RequestAccept"}
+    string requestAccept?;
+    string dataAreaId?;
+    @jsondata:Name {value: "SignXMLPath"}
+    string signXMLPath?;
+    @jsondata:Name {value: "SOAPPathRequest"}
+    string sOAPPathRequest?;
+    @jsondata:Name {value: "UseAdvancedParameters"}
+    NoYes useAdvancedParameters?;
+    @jsondata:Name {value: "SuccessfulResponseCode"}
+    int:Signed32 successfulResponseCode?;
+    @jsondata:Name {value: "RequestContentType"}
+    string requestContentType?;
+    @jsondata:Name {value: "RequestHeaders"}
+    string requestHeaders?;
+    @jsondata:Name {value: "RequestAcceptEncoding"}
+    string requestAcceptEncoding?;
+};
+public type OffTableAllRU "Table"|"All";
+public type RTax25StdModuleType "ProfitTax"|"Deferrals"|"AccountsReceivable";
+public type OffReportTypeRU "General"|"CashSlip"|"AdvanceReport"|"CashBookPage"|"SalesInvoice"|"PurchInvoice"|"InventTORG16"|"InventTORG13"|"InventM11"|"InventINV19"|"ProdM8"|"SalesInvoice4Paym"|"CashCountStatement"|"CustFacture"|"VendFacture"|"SalesInvoiceCreditNote"|"PurchInvoiceCreditNote"|"CustFactureCreditNote"|"VendFactureCreditNote"|"EmplAdvanceReportFacture"|"PurchInvoice4Paym"|"TaxCorrectionFactureVend"|"TaxCorrectionFactureCust"|"SalesInvoiceM15"|"PurchM4M7"|"RPayTaxList"|"RTax25Inv17"|"InventINV3"|"RDeferrals"|"RAssetsINV1"|"RAssetsINV1a"|"RAssetMB8"|"InventINV5"|"TransferInvoiceM15"|"CommissionAgentReport"|"InventINV6"|"RPayCivilContract";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -77,70 +135,12 @@ public type Type record {
     @jsondata:Name {value: "Name"}
     string name?;
 };
-public type OffReportTypeRU "General"|"CashSlip"|"AdvanceReport"|"CashBookPage"|"SalesInvoice"|"PurchInvoice"|"InventTORG16"|"InventTORG13"|"InventM11"|"InventINV19"|"ProdM8"|"SalesInvoice4Paym"|"CashCountStatement"|"CustFacture"|"VendFacture"|"SalesInvoiceCreditNote"|"PurchInvoiceCreditNote"|"CustFactureCreditNote"|"VendFactureCreditNote"|"EmplAdvanceReportFacture"|"PurchInvoice4Paym"|"TaxCorrectionFactureVend"|"TaxCorrectionFactureCust"|"SalesInvoiceM15"|"PurchM4M7"|"RPayTaxList"|"RTax25Inv17"|"InventINV3"|"RDeferrals"|"RAssetsINV1"|"RAssetsINV1a"|"RAssetMB8"|"InventINV5"|"TransferInvoiceM15"|"CommissionAgentReport"|"InventINV6"|"RPayCivilContract";
-public type ModuleCustVend "Cust"|"Vend";
-public type TaxRegistrationTypesList "None"|"KPP"|"INN"|"OKDP"|"OKPO"|"OKATO"|"OGRN"|"SNILS"|"CIFTS"|"UID"|"TAXID"|"BranchId"|"CommercialRegisterCZ"|"CustomsCustomerId"|"Passport"|"OfficialIdDoc"|"ResidenceCertificate"|"OtherIdDoc"|"NotCensused"|"BusinessPremiseID"|"LotteryCode"|"SIRET"|"PersonID"|"QualifiedInvoiceIssuer"|"WithholdingTaxPayerReference"|"EAN"|"EUVatID";
-public type OffTableAllRU "Table"|"All";
-public type NoYes "No"|"Yes";
 # OAuth2 Client Credentials Grant Configs
 public type OAuth2ClientCredentialsGrantConfig record {|
     *http:OAuth2ClientCredentialsGrantConfig;
     # Token URL
     string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
 |};
-public type WebService record {
-    @jsondata:Name {value: "WebApplicationName"}
-    string webApplicationName?;
-    @jsondata:Name {value: "InternetAddress"}
-    string internetAddress?;
-    @jsondata:Name {value: "AdditionalSuccessfulResponseCodes"}
-    string additionalSuccessfulResponseCodes?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "WebService"}
-    string webService?;
-    @jsondata:Name {value: "SignXMLUriFormat"}
-    string signXMLUriFormat?;
-    @jsondata:Name {value: "SOAPPathResponse"}
-    string sOAPPathResponse?;
-    @jsondata:Name {value: "RequestTypeXML"}
-    NoYes requestTypeXML?;
-    @jsondata:Name {value: "RequestMethod"}
-    string requestMethod?;
-    @jsondata:Name {value: "SOAPPatternRequest"}
-    string sOAPPatternRequest?;
-    @jsondata:Name {value: "SignXML"}
-    NoYes signXML?;
-    @jsondata:Name {value: "SOAPEnvelope"}
-    NoYes sOAPEnvelope?;
-    @jsondata:Name {value: "SignXMLUseRSA256"}
-    NoYes signXMLUseRSA256?;
-    @jsondata:Name {value: "SignXMLUriPath"}
-    string signXMLUriPath?;
-    @jsondata:Name {value: "RequestHeadersFormatMappingGUID"}
-    string requestHeadersFormatMappingGUID?;
-    @jsondata:Name {value: "RequestAccept"}
-    string requestAccept?;
-    string dataAreaId?;
-    @jsondata:Name {value: "SignXMLPath"}
-    string signXMLPath?;
-    @jsondata:Name {value: "SOAPPathRequest"}
-    string sOAPPathRequest?;
-    @jsondata:Name {value: "UseAdvancedParameters"}
-    NoYes useAdvancedParameters?;
-    @jsondata:Name {value: "SuccessfulResponseCode"}
-    int:Signed32 successfulResponseCode?;
-    @jsondata:Name {value: "RequestContentType"}
-    string requestContentType?;
-    @jsondata:Name {value: "RequestHeaders"}
-    string requestHeaders?;
-    @jsondata:Name {value: "RequestAcceptEncoding"}
-    string requestAcceptEncoding?;
-};
-public type OffPositionRU "Director"|"Accountant"|"Cashier"|"Filler"|"Supplier"|"Acceptor"|"Taker"|"Requester"|"Manager"|"Chairman"|"Member"|"InCharge"|"Responsible"|"AccountantJ"|"Representative"|"Controller"|"TransResp"|"TransRespCust"|"TransRespVend"|"TransRespCarrier";
-public type RDeferralsVATRefundingMethod "Standard"|"Proportional";
-public type OffInvRelationTypeAllTableRU "All"|"Table";
-public type RTax25StdModuleType "ProfitTax"|"Deferrals"|"AccountsReceivable";
 public type ReasonsCollection record {
     *ODataCollection;
     *ReasonsCollectionAllOf2;

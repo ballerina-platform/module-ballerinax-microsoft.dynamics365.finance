@@ -4,22 +4,83 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type PSAProjTimeMeasure "Hour"|"Unit";
-public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
+public type TrvExpSplitLineType "NoSplit"|"SplitHeader"|"SplitLine";
+public type TrvMileageRateType "Mileage"|"Passenger";
 public type ProjExpPolicyStatus "NoPolicy"|"ExpensePassed"|"DayPassed"|"ReportPassed"|"ExpenseWarning"|"DayWarning"|"ReportWarning"|"ExpenseFailed"|"DayFailed"|"ReportFailed";
-public type PSAProjStatus "Active"|"OnHold"|"Finished";
-public type TrvAppStatus "None"|"Create"|"Submitted"|"Approved"|"Returned"|"Ready"|"Ledger"|"Cancelled"|"Pending"|"Matched";
-public type PSAPReqValidate "Amount"|"HoursQty";
-public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
-public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
-public type PSAPReqControl "None"|"Warning"|"Control";
-public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
+public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
 public type ProjType "TimeMaterial"|"FixedPrice"|"Investment"|"Cost"|"Internal"|"Time"|"None";
-public type NoYes "No"|"Yes";
-public type ProjBudgetManagement "None"|"Independent";
-public type PSAProjTask "Project"|"Task";
-public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
-public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
+public type ProjLinePropertySearch "Project"|"Category";
+public type PSAPReqControl "None"|"Warning"|"Control";
+public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type PSAProjTrackCost "Actual"|"Standard";
+public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Personal"|"Airline"|"CarRental"|"Conference"|"Entertainment"|"Hotel"|"Meals"|"Gift";
+public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
+public type ProjectGroup record {
+    @jsondata:Name {value: "LedgerPostingSearchPriority"}
+    ProjLedgerPosting ledgerPostingSearchPriority?;
+    @jsondata:Name {value: "AccrueRevenueExpense"}
+    NoYes accrueRevenueExpense?;
+    @jsondata:Name {value: "ProductionCategoryId"}
+    string productionCategoryId?;
+    @jsondata:Name {value: "PostCostsItem"}
+    ProjLedgerStatus postCostsItem?;
+    @jsondata:Name {value: "AccrueRevenueFee"}
+    NoYes accrueRevenueFee?;
+    @jsondata:Name {value: "AccrueRevenueItem"}
+    NoYes accrueRevenueItem?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+    string dataAreaId?;
+    @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
+    NoYes canVerifyCostAgainstRemainingForecast?;
+    @jsondata:Name {value: "SalesValueCategoryId"}
+    string salesValueCategoryId?;
+    @jsondata:Name {value: "PeriodCode"}
+    string periodCode?;
+    @jsondata:Name {value: "AccrueRevenueHour"}
+    NoYes accrueRevenueHour?;
+    @jsondata:Name {value: "LinePropertySearchPriority"}
+    ProjLinePropertySearch linePropertySearchPriority?;
+    @jsondata:Name {value: "PostCostsExpense"}
+    ProjLedgerStatus postCostsExpense?;
+    @jsondata:Name {value: "OnAccountInvoicing"}
+    ProjLedgerStatusOnAcc onAccountInvoicing?;
+    @jsondata:Name {value: "AccruedLossCategoryId"}
+    string accruedLossCategoryId?;
+    @jsondata:Name {value: "CalculationMethod"}
+    ProjSalesPriceMatchingPrincip calculationMethod?;
+    @jsondata:Name {value: "PostCostsHour"}
+    ProjLedgerStatus postCostsHour?;
+    @jsondata:Name {value: "ProjectType"}
+    ProjType projectType?;
+    @jsondata:Name {value: "MatchingPrinciple"}
+    ProjMatchingPrincip matchingPrinciple?;
+    @jsondata:Name {value: "AreForeseeableLosses"}
+    NoYes areForeseeableLosses?;
+    @jsondata:Name {value: "RevenueRecognitionAccountingRule"}
+    ProjCompletePrincip revenueRecognitionAccountingRule?;
+    @jsondata:Name {value: "CostTemplate"}
+    string costTemplate?;
+    @jsondata:Name {value: "ProfitCategoryId"}
+    string profitCategoryId?;
+    @jsondata:Name {value: "ProjectGroup"}
+    string projectGroup?;
+};
 public type Project record {
     @jsondata:Name {value: "TaskCompletelyScheduled"}
     NoYes taskCompletelyScheduled?;
@@ -224,72 +285,16 @@ public type Project record {
     NoYes projectTemplate?;
 };
 public type TrvEvaluateExpensePolicies "OnLineSave"|"OnSubmit";
-public type ProjectStage record {
-    @jsondata:Name {value: "Status"}
-    ProjStatus status?;
-    string dataAreaId?;
-    @jsondata:Name {value: "Language"}
-    string language?;
-    @jsondata:Name {value: "Stage"}
-    string stage?;
-};
-public type PSAProjTrackCost "Actual"|"Standard";
-public type TrvCostOwner "Company"|"Employee"|"CustomerOther";
-public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
-public type ProjLedgerStatus "None"|"BalanceSheet"|"Operations"|"Never"|"Deferred";
-public type ProjectGroup record {
-    @jsondata:Name {value: "LedgerPostingSearchPriority"}
-    ProjLedgerPosting ledgerPostingSearchPriority?;
-    @jsondata:Name {value: "AccrueRevenueExpense"}
-    NoYes accrueRevenueExpense?;
-    @jsondata:Name {value: "ProductionCategoryId"}
-    string productionCategoryId?;
-    @jsondata:Name {value: "PostCostsItem"}
-    ProjLedgerStatus postCostsItem?;
-    @jsondata:Name {value: "AccrueRevenueFee"}
-    NoYes accrueRevenueFee?;
-    @jsondata:Name {value: "AccrueRevenueItem"}
-    NoYes accrueRevenueItem?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-    string dataAreaId?;
-    @jsondata:Name {value: "CanVerifyCostAgainstRemainingForecast"}
-    NoYes canVerifyCostAgainstRemainingForecast?;
-    @jsondata:Name {value: "SalesValueCategoryId"}
-    string salesValueCategoryId?;
-    @jsondata:Name {value: "PeriodCode"}
-    string periodCode?;
-    @jsondata:Name {value: "AccrueRevenueHour"}
-    NoYes accrueRevenueHour?;
-    @jsondata:Name {value: "LinePropertySearchPriority"}
-    ProjLinePropertySearch linePropertySearchPriority?;
-    @jsondata:Name {value: "PostCostsExpense"}
-    ProjLedgerStatus postCostsExpense?;
-    @jsondata:Name {value: "OnAccountInvoicing"}
-    ProjLedgerStatusOnAcc onAccountInvoicing?;
-    @jsondata:Name {value: "AccruedLossCategoryId"}
-    string accruedLossCategoryId?;
-    @jsondata:Name {value: "CalculationMethod"}
-    ProjSalesPriceMatchingPrincip calculationMethod?;
-    @jsondata:Name {value: "PostCostsHour"}
-    ProjLedgerStatus postCostsHour?;
-    @jsondata:Name {value: "ProjectType"}
-    ProjType projectType?;
-    @jsondata:Name {value: "MatchingPrinciple"}
-    ProjMatchingPrincip matchingPrinciple?;
-    @jsondata:Name {value: "AreForeseeableLosses"}
-    NoYes areForeseeableLosses?;
-    @jsondata:Name {value: "RevenueRecognitionAccountingRule"}
-    ProjCompletePrincip revenueRecognitionAccountingRule?;
-    @jsondata:Name {value: "CostTemplate"}
-    string costTemplate?;
-    @jsondata:Name {value: "ProfitCategoryId"}
-    string profitCategoryId?;
-    @jsondata:Name {value: "ProjectGroup"}
-    string projectGroup?;
-};
-public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
-public type TrvPerDiemRounding "NormalRounding"|"RoundUp";
+public type RTax25ProfitType "Issue"|"Receipt"|"Unknown";
+public type TrvAppStatus "None"|"Create"|"Submitted"|"Approved"|"Returned"|"Ready"|"Ledger"|"Cancelled"|"Pending"|"Matched";
+public type ProjMatchingPrincip "None"|"SalesValue"|"ProductionProfit"|"NoMatching";
+public type PSAProjTask "Project"|"Task";
+public type ProjLedgerPosting "GroupId"|"Categories";
+public type DetailSummary "Detail"|"Summary";
+public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
+public type ProjStatus "Created"|"Estimated"|"Scheduled"|"InProcess"|"User1"|"User2"|"User3"|"Completed";
+public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
+public type PSAProjTimeMeasure "Hour"|"Unit";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -331,37 +336,32 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type TrvMileageRateType "Mileage"|"Passenger";
-public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
-public type BankLGDocumentType "None"|"LetterOfGuarantee";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
+public type ProjBudgetManagement "None"|"Independent";
+public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
+public type PSAPReqValidate "Amount"|"HoursQty";
+public type PSAInvoiceMethod "Progress"|"cap"|"Milestone"|"Schedule";
+public type ProjectStage record {
+    @jsondata:Name {value: "Status"}
+    ProjStatus status?;
+    string dataAreaId?;
+    @jsondata:Name {value: "Language"}
+    string language?;
+    @jsondata:Name {value: "Stage"}
+    string stage?;
+};
+public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
+public type ProjBudgetaryControlOn "RevenuesAndCosts"|"CostsOnly"|"RevenuesOnly";
+public type PSAProjStatus "Active"|"OnHold"|"Finished";
 public type TrvPerDiemCalculation "CalendarDay"|"CalendarDayNoTime"|"FullDayHourPeriod";
 public type TrvPersonalPaidBy "Employee"|"Company";
-public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
-public type PSAConstraintType "AsLateAsPossible"|"AsSoonAsPossible"|"FinishNoEarlierThan"|"FinishNoLaterThan"|"MustFinishOn"|"MustStartOn"|"StartNoEarlierThan"|"StartNoLaterThan";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type DetailSummary "Detail"|"Summary";
+public type BankLGDocumentType "None"|"LetterOfGuarantee";
 public type TrvMealReductionType "MealTypePerTrip"|"MealTypePerday"|"MealsPerDay";
-public type ProjSalesPriceMatchingPrincip "None"|"MarkupPercentTotal"|"MarkupPercentEstimateLine"|"ValueAddedMarkupPercent"|"ValueAddedHourRate";
-public type ProjBudgetInterval "ProjectToDate"|"YearToDate"|"TotalYear"|"CurrentPeriod"|"TotalBudget";
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-public type ProjLedgerPosting "GroupId"|"Categories";
-public type ProjLinePropertySearch "Project"|"Category";
-public type PSAResSchedStatus "NoRequirements"|"NotScheduled"|"PartiallyScheduled"|"FullyScheduled"|"HasConflict"|"Complete";
-public type TrvExpSplitLineType "NoSplit"|"SplitHeader"|"SplitLine";
-public type TrvExpType "Empty"|"Expense"|"Advance"|"Allowance"|"Transport"|"Personal"|"Airline"|"CarRental"|"Conference"|"Entertainment"|"Hotel"|"Meals"|"Gift";
+public type TrvExpLineType "Default"|"ItemizedHeader"|"ItemizedLine";
+public type ProjBudgetOverrunOption "DisallowOverruns"|"WarnOfOverruns"|"AllowOverruns";
+public type JmgJobPayTypeEnum "Empty"|"Hours"|"PieceRate";
+public type NoYes "No"|"Yes";
+public type ProjCompletePrincip "None"|"CompletedContract"|"CompletedPercentage"|"NoWIP";
+public type ProjLedgerStatusOnAcc "None"|"BalanceSheet"|"Operations";
 public type ExpenseParametersCollectionAllOf2 record {
     ExpenseParameters[] value?;
 };

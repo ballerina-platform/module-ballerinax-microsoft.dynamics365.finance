@@ -4,7 +4,8 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
+public type IntrastatOrderType "Order"|"Correction"|"Return";
+public type TaxRep347Presentation "Telematic"|"CD"|"Report";
 public type Intrastat record {
     @jsondata:Name {value: "Quarter"}
     QuarterOfYear quarter?;
@@ -171,13 +172,33 @@ public type Intrastat record {
     @jsondata:Name {value: "CurrentAgreement"}
     NoYes currentAgreement?;
 };
-public type TradeBLWICustVend "Customer"|"Vendor";
-public type PlSADPostingRule "Item"|"Costs";
-public type TaxRep347OperationKey "Purchase"|"Sales"|"PaymentMediation"|"PurchPublicEntity"|"Subsidy";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type NGPCode record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "NGP"}
+    int:Signed32 nGP?;
+};
+public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
+public type TaxReportSituationCodeES "Option1"|"Option2"|"Option3"|"Option4"|"None";
 public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
-public type NoYes "No"|"Yes";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
 public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
-public type TaxRep347Presentation "Telematic"|"CD"|"Report";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -219,33 +240,12 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type IntrastatItemTypeIT "Goods"|"Services";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-public type IntrastatOrderType "Order"|"Correction"|"Return";
+public type TaxRep347OperationKey "Purchase"|"Sales"|"PaymentMediation"|"PurchPublicEntity"|"Subsidy";
 public type IntrastatDirection "Import"|"Export";
-public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
-public type TaxReportSituationCodeES "Option1"|"Option2"|"Option3"|"Option4"|"None";
-public type NGPCode record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "NGP"}
-    int:Signed32 nGP?;
-};
+public type TradeBLWICustVend "Customer"|"Vendor";
+public type IntrastatItemTypeIT "Goods"|"Services";
+public type NoYes "No"|"Yes";
+public type PlSADPostingRule "Item"|"Costs";
 public type IntrastatsV2Collection record {
     *ODataCollection;
     *IntrastatsV2CollectionAllOf2;

@@ -2,7 +2,7 @@
 
 [Microsoft Dynamics 365 Finance](https://www.microsoft.com/en-us/dynamics-365/products/finance) is Microsoft's cloud ERP solution for financial management, covering general ledger, accounts receivable and payable, fixed assets, budgeting, cash and bank management, and tax.
 
-The microsoft.dynamics365.finance.project connector provides access to Microsoft Dynamics 365 Finance Project entities via the OData REST API.
+The `microsoft.dynamics365.finance.project` connector provides access to Microsoft Dynamics 365 Finance Project entities via the OData REST API.
 
 ### Key Features
 
@@ -61,7 +61,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;   // e.g. "https://<env>.operations.dynamics.com/data"
 
-project:Client cl = check new ({auth: {tokenUrl, clientId, clientSecret}}, serviceUrl);
+project:Client cl = check new ({
     config = {
         auth: {
             tokenUrl: string `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,

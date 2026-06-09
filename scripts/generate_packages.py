@@ -10,6 +10,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 BAL_DIR = BASE_DIR / "ballerina"
+VERSION = "0.8.0-SNAPSHOT"
 BUILD_CFG_DIR = BASE_DIR / "build-config" / "resources"
 
 # ---------------------------------------------------------------------------
@@ -1081,7 +1082,7 @@ def generate_all():
                            "    return [];\n}\n")
             (mock_dir / "data.bal").write_text(data_content)
             write_test_bal(pkg_dir, pkg_name, funcs)
-            write_ballerina_toml(pkg_dir, pkg_name, cfg, "0.1.0-SNAPSHOT")
+            write_ballerina_toml(pkg_dir, pkg_name, cfg, VERSION)
             write_build_gradle(pkg_dir, pkg_name, cfg)
             write_build_config_toml(pkg_name, cfg)
             write_docs_json(pkg_dir, pkg_name, cfg)
@@ -1136,12 +1137,14 @@ def update_root_build_gradle():
 def update_gradle_properties():
     props_file = BASE_DIR / "gradle.properties"
     content = props_file.read_text()
-    # Remove old per-module version lines
-    content = re.sub(r"\n# Per-module versions\n.*", "", content, flags=re.DOTALL)
-    # Add new per-package versions
+    # Strip any existing per-package/per-module version block (old and new naming)
+    content = re.sub(r"\n# Per-(?:package|module) versions\n.*", "", content, flags=re.DOTALL)
+    # Also update the top-level version line
+    content = re.sub(r"^version=.*$", f"version={VERSION}", content, flags=re.MULTILINE)
+    # Append the single canonical per-package block
     new_versions = "\n# Per-package versions\n"
     for pkg in sorted(PACKAGES.keys()):
-        new_versions += f"{pkg}Version=0.1.0-SNAPSHOT\n"
+        new_versions += f"{pkg}Version={VERSION}\n"
     content = content.rstrip() + "\n" + new_versions
     props_file.write_text(content)
 

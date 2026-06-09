@@ -1,7 +1,7 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.project"
-version = "0.1.0"
+version = "0.8.0-SNAPSHOT"
 authors = ["Ballerina"]
 keywords = ["Name/Microsoft Dynamics 365 Finance Project", "Area/Project Management", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "Project", "PSA", "ProjGrant"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"

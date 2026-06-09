@@ -4,12 +4,6 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type InventTransType "Sales"|"Production"|"Purch"|"InventTransaction"|"InventLossProfit"|"InventTransfer"|"SummedUp"|"ProdLine"|"BOMLine"|"BOMMain"|"WMSOrder"|"Project"|"InventCounting"|"WMSTransport"|"QuarantineOrder"|"Asset"|"TransferOrderShip"|"TransferOrderReceive"|"TransferOrderScrap"|"SalesQuotation"|"QualityOrder"|"Blocking"|"KanbanJobProcess"|"KanbanJobTransferReceipt"|"KanbanJobTransferIssue"|"KanbanJobPickingList"|"KanbanJobWIP"|"KanbanEmptied"|"PmfProdCoBy"|"ProdRelease_RU"|"FixedAssets_RU"|"Statement"|"Assembling_JP"|"WHSWork"|"WHSQuarantine"|"WHSContainer"|"ConsignmentReplenishmentOrder"|"InventOwnershipChange"|"WHSOrderCommittedReservation"|"InventTransArchive"|"WHSInventTransArchiveOnlyAffectsLocationAndBelow"|"ITMGIT"|"WHSOutboundShipmentOrder"|"WHSInboundShipmentOrder"|"WHSEWOutboundShipmentOrderUpdate"|"WHSWarehouseOrder"|"WHSWarehouseReceipt"|"WHSWarehouseOrderReservation"|"WHSWarehouseInventoryAdjustment"|"WHSWarehouseInventoryBlocking";
-public type TaxTypeBR "Blank"|"IPI"|"PIS"|"ICMS"|"COFINS"|"ISS"|"IRRF"|"INSS"|"ImportTax"|"OtherTax"|"INSSRetained"|"CSLL"|"ICMSST"|"ICMSDiff"|"INSSCPRB"|"CBS"|"IBSCity"|"IBSState";
-public type TaxTypeW "Other"|"VAT"|"Excise"|"VATReduced"|"VATZero"|"AssessedTax"|"TransportTax"|"LandTax"|"CustomDuty_RU"|"CustomCharge_RU"|"RPayIncomeTax"|"ProfitTax";
-public type TaxCalcMode "FullAmounts"|"Interval";
-public type ISRCreditDebitMX "Both"|"Debit"|"Credit";
-public type CountryRegionType "Domestic"|"EU"|"EFTA"|"ThirdCountryRegion"|"SpecialDomestic"|"GCC";
 public type TaxationCode record {
     string dataAreaId?;
     @jsondata:Name {value: "TaxType"}
@@ -31,6 +25,27 @@ public type TaxationCode record {
     @jsondata:Name {value: "InputCode"}
     string inputCode?;
 };
+public type TaxLimitBase "LineWithoutVAT"|"UnitWithoutVAT"|"InvoiceWithoutVAT"|"LineInclVAT"|"UnitInclVAT"|"InvoiceInclVAT";
+public type EFiscalDocVersionBR "V4"|"V31"|"V40";
+public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
+public type TaxTypeMX "Blank"|"ISR"|"IVA"|"IEPS";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type TaxCalcMode "FullAmounts"|"Interval";
+public type VATChargeSourceRU "VendorFunds"|"OwnFunds";
+public type TaxWriteSelection "PrintCode"|"TaxRate";
 public type TaxCode record {
     @jsondata:Name {value: "ReportingCodeTaxablePurchases"}
     int:Signed32 reportingCodeTaxablePurchases?;
@@ -172,13 +187,8 @@ public type TaxCode record {
     @jsondata:Name {value: "PrintCodeType"}
     TaxWriteSelection printCodeType?;
 };
-public type VATChargeSourceRU "VendorFunds"|"OwnFunds";
-public type TaxSubstitutionBaseRedCalculationModeBR "OwnOperationIpiAndMarkup"|"OwnOperationOnly";
-public type TaxBaseType "PctPerNet"|"PctPerGross"|"PctPerTax"|"AmountByUnit"|"PctGrosOnNet"|"PctPerMargin";
-public type TaxIntervatStatus "Created"|"Sent";
-public type TaxLimitBase "LineWithoutVAT"|"UnitWithoutVAT"|"InvoiceWithoutVAT"|"LineInclVAT"|"UnitInclVAT"|"InvoiceInclVAT";
-public type NoYes "No"|"Yes";
-public type TaxFiscalValueBR "Blank"|"WithCreditDebit"|"WithoutCreditDebitExempt"|"WithoutCreditDebitOther";
+public type TaxIntervatFrequency "Monthly"|"Quarterly";
+public type CountryRegionType "Domestic"|"EU"|"EFTA"|"ThirdCountryRegion"|"SpecialDomestic"|"GCC";
 public type TaxTypeSG "Standard"|"Zero"|"Exempt";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
@@ -221,30 +231,20 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type TaxTypeMX "Blank"|"ISR"|"IVA"|"IEPS";
-public type TaxTypeTH "Normal"|"AverageUnrealized"|"AverageRealized";
-public type TaxSubstitutionEnumBR "None"|"Markup"|"SimplifiedEstimate"|"MarkupConfaz_52_2017";
-public type Tax1099Type "F1099DIV"|"F1099INT"|"F1099MISC"|"F1099OID"|"F1099G"|"F1099S"|"F1099NEC";
-public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type TaxTypeJP "Standard"|"Reduced"|"Other";
 public type LvNRTransType "TaxOnDangerousItems"|"TaxOnPackingMaterials";
-public type TaxIntervatFrequency "Monthly"|"Quarterly";
-public type TaxWriteSelection "PrintCode"|"TaxRate";
-public type EFiscalDocVersionBR "V4"|"V31"|"V40";
+public type TaxBaseType "PctPerNet"|"PctPerGross"|"PctPerTax"|"AmountByUnit"|"PctGrosOnNet"|"PctPerMargin";
+public type TaxSubstitutionBaseRedCalculationModeBR "OwnOperationIpiAndMarkup"|"OwnOperationOnly";
+public type Tax1099Type "F1099DIV"|"F1099INT"|"F1099MISC"|"F1099OID"|"F1099G"|"F1099S"|"F1099NEC";
+public type TaxTypeTH "Normal"|"AverageUnrealized"|"AverageRealized";
+public type TaxTypeBR "Blank"|"IPI"|"PIS"|"ICMS"|"COFINS"|"ISS"|"IRRF"|"INSS"|"ImportTax"|"OtherTax"|"INSSRetained"|"CSLL"|"ICMSST"|"ICMSDiff"|"INSSCPRB"|"CBS"|"IBSCity"|"IBSState";
+public type InventTransType "Sales"|"Production"|"Purch"|"InventTransaction"|"InventLossProfit"|"InventTransfer"|"SummedUp"|"ProdLine"|"BOMLine"|"BOMMain"|"WMSOrder"|"Project"|"InventCounting"|"WMSTransport"|"QuarantineOrder"|"Asset"|"TransferOrderShip"|"TransferOrderReceive"|"TransferOrderScrap"|"SalesQuotation"|"QualityOrder"|"Blocking"|"KanbanJobProcess"|"KanbanJobTransferReceipt"|"KanbanJobTransferIssue"|"KanbanJobPickingList"|"KanbanJobWIP"|"KanbanEmptied"|"PmfProdCoBy"|"ProdRelease_RU"|"FixedAssets_RU"|"Statement"|"Assembling_JP"|"WHSWork"|"WHSQuarantine"|"WHSContainer"|"ConsignmentReplenishmentOrder"|"InventOwnershipChange"|"WHSOrderCommittedReservation"|"InventTransArchive"|"WHSInventTransArchiveOnlyAffectsLocationAndBelow"|"ITMGIT"|"WHSOutboundShipmentOrder"|"WHSInboundShipmentOrder"|"WHSEWOutboundShipmentOrderUpdate"|"WHSWarehouseOrder"|"WHSWarehouseReceipt"|"WHSWarehouseOrderReservation"|"WHSWarehouseInventoryAdjustment"|"WHSWarehouseInventoryBlocking";
+public type TaxTypeW "Other"|"VAT"|"Excise"|"VATReduced"|"VATZero"|"AssessedTax"|"TransportTax"|"LandTax"|"CustomDuty_RU"|"CustomCharge_RU"|"RPayIncomeTax"|"ProfitTax";
+public type ISRCreditDebitMX "Both"|"Debit"|"Credit";
+public type NoYes "No"|"Yes";
+public type TaxSubstitutionEnumBR "None"|"Markup"|"SimplifiedEstimate"|"MarkupConfaz_52_2017";
+public type TaxFiscalValueBR "Blank"|"WithCreditDebit"|"WithoutCreditDebitExempt"|"WithoutCreditDebitOther";
+public type TaxIntervatStatus "Created"|"Sent";
+public type TaxTypeJP "Standard"|"Reduced"|"Other";
 public type Tax1099FieldsCollectionAllOf2 record {
     Tax1099Field[] value?;
 };

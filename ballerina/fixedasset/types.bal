@@ -4,15 +4,84 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type RAssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Vehicle"|"Land"|"Other"|"Cloths"|"Rigging"|"LowCostAssets";
-public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
+public type RAssetVatRefundingStartDate "AcquisitionDate"|"DepreciationDate";
 public type AssetSortValue "Sorting1"|"Sorting2"|"Sorting3";
+public type RAssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Vehicle"|"Land"|"Other"|"Cloths"|"Rigging"|"LowCostAssets";
 public type RAssetAssessedTaxType "Section3"|"First"|"Second"|"Third"|"Fourth"|"Fifth"|"Sixth"|"K7"|"K8"|"K9"|"K10"|"K11"|"K12"|"K13";
-public type FBPISCOFINSFixedAssetCreditGroupBR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
-public type NoYes "No"|"Yes";
+public type AssetSpecialDepAllocationConventionJP "FollowingFiscalYear"|"FollowingFiscalPeriod";
+public type AssetDeferredTypeJP "EquallyDivided"|"OneTime";
+public type AssetClassificationJP "None"|"LowValue"|"LumpSum";
 public type RAssetVehicleEcoClass "Empty"|"Class0"|"Class1"|"Class2"|"Class3"|"Class4"|"Class5";
-public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type FBPISCOFINSFixedAssetCreditGroupBR "None"|"BuildingsAndImprovements"|"Facilities"|"Machinery"|"Equipment"|"Vehicles"|"OtherAssets";
+public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type AssetStatus "NoAcquisition"|"Open"|"Suspended"|"Closed"|"Sold"|"Scrapped"|"TransferredToLowValuePool"|"Acquired_CZ"|"Lended_RU"|"Disposed_RU"|"PurchInvoice_RU"|"OrderedForSale_RU";
+public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
 public type AssetDepreciationConvention "None"|"HalfYear"|"FullMonth"|"MidQuarter"|"MidMonth1st"|"MidMonth15"|"HalfYearStart"|"HalfYearNext";
+public type AssetLimitForAccumulatedDepTypeJP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
+public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"RegistrationDate"|"AcquisitionDate";
+public type AssetAccrualFiscal "Yearly"|"FiscalPeriod"|"Quarterly";
+public type AssetLeaseCompoundingInterval "Monthly"|"Quarterly"|"Annually"|"SemiAnnually";
+public type FBPISCOFINSFixedAssetAppropMethodBR "None"|"Depreciation"|"Acquisition"|"Amortization";
+public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Deferred_JP"|"Other"|"Vehicle_RU"|"Land_RU"|"Cloths_RU"|"Rigging_RU"|"LowCostAssets_RU"|"Vehicle_MX";
+public type AssetTypeJP "None"|"Structure"|"Machine"|"Ship"|"Airplane"|"Vehicles"|"OfficeHardware";
+public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
+public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
+public type NoYes "No"|"Yes";
 public type FixedAsset record {
     @jsondata:Name {value: "FixedAssetCreditGroup"}
     FBPISCOFINSFixedAssetCreditGroupBR fixedAssetCreditGroup?;
@@ -214,76 +283,7 @@ public type FixedAsset record {
     @jsondata:Name {value: "SourceTypeId"}
     string sourceTypeId?;
 };
-public type RAssetInitDepStartDate "AcquisitionMonth"|"NextMonth"|"NextQuarter"|"NextHalfYear"|"NextYear"|"RegistrationDate"|"AcquisitionDate";
-public type AssetSpecialDepAllocationConventionJP "FollowingFiscalYear"|"FollowingFiscalPeriod";
-public type RAssetBelonged "assetprivate"|"Control"|"Borrow"|"OutsideRussia";
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type AssetLeaseAnnuityType "AnnuityDue"|"OrdinaryAnnuity";
-public type AssetStatus "NoAcquisition"|"Open"|"Suspended"|"Closed"|"Sold"|"Scrapped"|"TransferredToLowValuePool"|"Acquired_CZ"|"Lended_RU"|"Disposed_RU"|"PurchInvoice_RU"|"OrderedForSale_RU";
-public type AssetPropertyType "FixedAsset"|"ContinuingProperty"|"Other";
 public type NoYesCombo "No"|"Yes";
-public type AssetLimitForAccumulatedDepTypeJP "AcquisitionCost95"|"AcquisitionCost"|"AcquisitionCostMinus1";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type FBPISCOFINSFixedAssetCreditPurposeBR "None"|"ProductionOfGoodsForSale"|"Services"|"ThirdPartyLease"|"Others";
-public type FBPISCOFINSFixedAssetAppropMethodBR "None"|"Depreciation"|"Acquisition"|"Amortization";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type AssetClassificationJP "None"|"LowValue"|"LumpSum";
-public type AssetDeferredTypeJP "EquallyDivided"|"OneTime";
-public type AssetType "Tangible"|"Intangible"|"Financial"|"LandBuilding"|"Goodwill"|"Deferred_JP"|"Other"|"Vehicle_RU"|"Land_RU"|"Cloths_RU"|"Rigging_RU"|"LowCostAssets_RU"|"Vehicle_MX";
-public type AssetLeaseCompoundingInterval "Monthly"|"Quarterly"|"Annually"|"SemiAnnually";
-public type RAssetVatRefundingStartDate "AcquisitionDate"|"DepreciationDate";
 public type FixedAssetV2Entity record {
     @jsondata:Name {value: "PhysicalAssetNumber"}
     string physicalAssetNumber?;

@@ -4,13 +4,37 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type TaxGSTInvoiceFormatMY "Full"|"Simplified";
-public type RestoredVATCalcMethodRU "Mixed"|"ByFactor";
-public type TaxTypeBR "Blank"|"IPI"|"PIS"|"ICMS"|"COFINS"|"ISS"|"IRRF"|"INSS"|"ImportTax"|"OtherTax"|"INSSRetained"|"CSLL"|"ICMSST"|"ICMSDiff"|"INSSCPRB"|"CBS"|"IBSCity"|"IBSState";
-public type TaxTypeW "Other"|"VAT"|"Excise"|"VATReduced"|"VATZero"|"AssessedTax"|"TransportTax"|"LandTax"|"CustomDuty_RU"|"CustomCharge_RU"|"RPayIncomeTax"|"ProfitTax";
-public type TaxCalcMode "FullAmounts"|"Interval";
-public type CountryRegionType "Domestic"|"EU"|"EFTA"|"ThirdCountryRegion"|"SpecialDomestic"|"GCC";
-public type InvoiceTypeMY "Invoice"|"GST"|"SelfBilled"|"ServiceInvoice";
+public type TaxGroup record {
+    @jsondata:Name {value: "DefaultCriteriaCountryId"}
+    string defaultCriteriaCountryId?;
+    @jsondata:Name {value: "RoundingBy"}
+    TaxGroupRounding roundingBy?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "EUTrade_W"}
+    NoYes eUTradeW?;
+    @jsondata:Name {value: "InvoicePrintDetails"}
+    TaxPrintDetail invoicePrintDetails?;
+    @jsondata:Name {value: "TaxGroupCode"}
+    string taxGroupCode?;
+    @jsondata:Name {value: "DefaultCriteriaZipCodeId"}
+    string defaultCriteriaZipCodeId?;
+    @jsondata:Name {value: "FillSalesDate_W"}
+    FillSalesDateW fillSalesDateW?;
+    string dataAreaId?;
+    @jsondata:Name {value: "TaxReverseOnCashDiscount"}
+    NoYes taxReverseOnCashDiscount?;
+    @jsondata:Name {value: "DefaultCriteriaStateId"}
+    string defaultCriteriaStateId?;
+    @jsondata:Name {value: "DefaultCriteriaCityId"}
+    string defaultCriteriaCityId?;
+    @jsondata:Name {value: "DefaultCriteriaCountyId"}
+    string defaultCriteriaCountyId?;
+    @jsondata:Name {value: "MandatorySalesDate_W"}
+    NoYes mandatorySalesDateW?;
+    @jsondata:Name {value: "DateOfVATRegisterFilling"}
+    FillVATDueDateW dateOfVATRegisterFilling?;
+};
 public type TaxationCode record {
     string dataAreaId?;
     @jsondata:Name {value: "TaxType"}
@@ -32,7 +56,32 @@ public type TaxationCode record {
     @jsondata:Name {value: "InputCode"}
     string inputCode?;
 };
+public type TaxCalcPrin "Total"|"Line";
+public type TaxLimitBase "LineWithoutVAT"|"UnitWithoutVAT"|"InvoiceWithoutVAT"|"LineInclVAT"|"UnitInclVAT"|"InvoiceInclVAT";
 public type FillVATDueDateW "Manually"|"SalesDate"|"DocumentDate"|"PostingDate"|"LastDeliveryDate"|"Customized";
+public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
+public type TaxTypeMX "Blank"|"ISR"|"IVA"|"IEPS";
+public type TaxGroupRounding "TaxCode"|"TaxCodeSet";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type CustVendExchRateDiffDocTypeRU "Invoice"|"FirstByDate";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type InvoiceTypeMY "Invoice"|"GST"|"SelfBilled"|"ServiceInvoice";
+public type TaxCalcMode "FullAmounts"|"Interval";
+public type VATChargeSourceRU "VendorFunds"|"OwnFunds";
+public type CFOPPurposeBR "None"|"Shipment"|"FiscalEstablishmentTransfer"|"Return"|"ReturnOrder";
+public type TaxWriteSelection "PrintCode"|"TaxRate";
 public type TaxCode record {
     @jsondata:Name {value: "ReportingCodeTaxablePurchases"}
     int:Signed32 reportingCodeTaxablePurchases?;
@@ -174,45 +223,8 @@ public type TaxCode record {
     @jsondata:Name {value: "PrintCodeType"}
     TaxWriteSelection printCodeType?;
 };
-public type TaxGroupRounding "TaxCode"|"TaxCodeSet";
-public type RestoredVATGainCalcMethodRU "All"|"Indirect";
-public type TaxesMatrix record {
-    @jsondata:Name {value: "SalesTaxGroup"}
-    string salesTaxGroup?;
-    string dataAreaId?;
-    @jsondata:Name {value: "Type"}
-    CustVendTypeBR 'type?;
-    @jsondata:Name {value: "ItemCode"}
-    TableGroupAll itemCode?;
-    @jsondata:Name {value: "IsUsedForServiceItems"}
-    NoYes isUsedForServiceItems?;
-    @jsondata:Name {value: "ItemSalesTaxGroup"}
-    string itemSalesTaxGroup?;
-    @jsondata:Name {value: "FiscalEstablishmentGroupId"}
-    string fiscalEstablishmentGroupId?;
-    @jsondata:Name {value: "CFOPGroupId"}
-    string cFOPGroupId?;
-    @jsondata:Name {value: "AccountCode"}
-    TableGroupAll accountCode?;
-    @jsondata:Name {value: "IsUsedForFreeTextInvoice"}
-    NoYes isUsedForFreeTextInvoice?;
-    @jsondata:Name {value: "AccountRelation"}
-    string accountRelation?;
-    @jsondata:Name {value: "ItemRelation"}
-    string itemRelation?;
-};
-public type VATChargeSourceRU "VendorFunds"|"OwnFunds";
-public type FiscalDocDirectionBR "Incoming"|"Outgoing";
-public type TaxSubstitutionBaseRedCalculationModeBR "OwnOperationIpiAndMarkup"|"OwnOperationOnly";
-public type TaxBaseType "PctPerNet"|"PctPerGross"|"PctPerTax"|"AmountByUnit"|"PctGrosOnNet"|"PctPerMargin";
-public type CustVendTypeBR "Customer"|"Vendor"|"FiscalEstablishment";
-public type TaxLimitBase "LineWithoutVAT"|"UnitWithoutVAT"|"InvoiceWithoutVAT"|"LineInclVAT"|"UnitInclVAT"|"InvoiceInclVAT";
-public type PeriodUnit "Day"|"Month"|"Year"|"All";
-public type NoYes "No"|"Yes";
-public type TaxFiscalValueBR "Blank"|"WithCreditDebit"|"WithoutCreditDebitExempt"|"WithoutCreditDebitOther";
+public type CountryRegionType "Domestic"|"EU"|"EFTA"|"ThirdCountryRegion"|"SpecialDomestic"|"GCC";
 public type TaxTypeSG "Standard"|"Zero"|"Exempt";
-public type TaxCalculationDateType "InvoiceDate"|"DeliveryDate"|"DocumentDate";
-public type CustVendLocationBR "SameState"|"OtherState"|"OutsideCountry";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -254,67 +266,55 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type TaxGroup record {
-    @jsondata:Name {value: "DefaultCriteriaCountryId"}
-    string defaultCriteriaCountryId?;
-    @jsondata:Name {value: "RoundingBy"}
-    TaxGroupRounding roundingBy?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "EUTrade_W"}
-    NoYes eUTradeW?;
-    @jsondata:Name {value: "InvoicePrintDetails"}
-    TaxPrintDetail invoicePrintDetails?;
-    @jsondata:Name {value: "TaxGroupCode"}
-    string taxGroupCode?;
-    @jsondata:Name {value: "DefaultCriteriaZipCodeId"}
-    string defaultCriteriaZipCodeId?;
-    @jsondata:Name {value: "FillSalesDate_W"}
-    FillSalesDateW fillSalesDateW?;
-    string dataAreaId?;
-    @jsondata:Name {value: "TaxReverseOnCashDiscount"}
-    NoYes taxReverseOnCashDiscount?;
-    @jsondata:Name {value: "DefaultCriteriaStateId"}
-    string defaultCriteriaStateId?;
-    @jsondata:Name {value: "DefaultCriteriaCityId"}
-    string defaultCriteriaCityId?;
-    @jsondata:Name {value: "DefaultCriteriaCountyId"}
-    string defaultCriteriaCountyId?;
-    @jsondata:Name {value: "MandatorySalesDate_W"}
-    NoYes mandatorySalesDateW?;
-    @jsondata:Name {value: "DateOfVATRegisterFilling"}
-    FillVATDueDateW dateOfVATRegisterFilling?;
-};
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type CFOPPurposeBR "None"|"Shipment"|"FiscalEstablishmentTransfer"|"Return"|"ReturnOrder";
-public type TableGroupAll "Table"|"GroupId"|"All";
-public type TaxTypeMX "Blank"|"ISR"|"IVA"|"IEPS";
-public type TaxTypeTH "Normal"|"AverageUnrealized"|"AverageRealized";
-public type FillSalesDateW "Manually"|"VATDueDate"|"DocumentDate"|"PostingDate"|"LastDeliveryDate";
-public type TaxSubstitutionEnumBR "None"|"Markup"|"SimplifiedEstimate"|"MarkupConfaz_52_2017";
-public type RoundOffType "Ordinary"|"RoundDown"|"RoundUp";
-public type RTax25TaxModule "Tax"|"RPayFund"|"Asset_RU";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type TaxObligationCompany "Destination"|"Source";
-public type TaxCalcPrin "Total"|"Line";
-public type TaxTypeJP "Standard"|"Reduced"|"Other";
 public type EUSalesListType "NotAssigned"|"Item"|"Service"|"Investment"|"GoodsP4Sect33_LV";
+public type TaxBaseType "PctPerNet"|"PctPerGross"|"PctPerTax"|"AmountByUnit"|"PctGrosOnNet"|"PctPerMargin";
+public type FillSalesDateW "Manually"|"VATDueDate"|"DocumentDate"|"PostingDate"|"LastDeliveryDate";
 public type CheckTaxGroups "None"|"Warning"|"Error";
-public type CustVendExchRateDiffDocTypeRU "Invoice"|"FirstByDate";
-public type TaxWriteSelection "PrintCode"|"TaxRate";
+public type TaxSubstitutionBaseRedCalculationModeBR "OwnOperationIpiAndMarkup"|"OwnOperationOnly";
+public type TaxesMatrix record {
+    @jsondata:Name {value: "SalesTaxGroup"}
+    string salesTaxGroup?;
+    string dataAreaId?;
+    @jsondata:Name {value: "Type"}
+    CustVendTypeBR 'type?;
+    @jsondata:Name {value: "ItemCode"}
+    TableGroupAll itemCode?;
+    @jsondata:Name {value: "IsUsedForServiceItems"}
+    NoYes isUsedForServiceItems?;
+    @jsondata:Name {value: "ItemSalesTaxGroup"}
+    string itemSalesTaxGroup?;
+    @jsondata:Name {value: "FiscalEstablishmentGroupId"}
+    string fiscalEstablishmentGroupId?;
+    @jsondata:Name {value: "CFOPGroupId"}
+    string cFOPGroupId?;
+    @jsondata:Name {value: "AccountCode"}
+    TableGroupAll accountCode?;
+    @jsondata:Name {value: "IsUsedForFreeTextInvoice"}
+    NoYes isUsedForFreeTextInvoice?;
+    @jsondata:Name {value: "AccountRelation"}
+    string accountRelation?;
+    @jsondata:Name {value: "ItemRelation"}
+    string itemRelation?;
+};
+public type TaxGSTInvoiceFormatMY "Full"|"Simplified";
+public type TaxTypeTH "Normal"|"AverageUnrealized"|"AverageRealized";
+public type CustVendLocationBR "SameState"|"OtherState"|"OutsideCountry";
+public type TaxObligationCompany "Destination"|"Source";
+public type RestoredVATCalcMethodRU "Mixed"|"ByFactor";
+public type TaxTypeBR "Blank"|"IPI"|"PIS"|"ICMS"|"COFINS"|"ISS"|"IRRF"|"INSS"|"ImportTax"|"OtherTax"|"INSSRetained"|"CSLL"|"ICMSST"|"ICMSDiff"|"INSSCPRB"|"CBS"|"IBSCity"|"IBSState";
+public type TaxTypeW "Other"|"VAT"|"Excise"|"VATReduced"|"VATZero"|"AssessedTax"|"TransportTax"|"LandTax"|"CustomDuty_RU"|"CustomCharge_RU"|"RPayIncomeTax"|"ProfitTax";
+public type TableGroupAll "Table"|"GroupId"|"All";
+public type FiscalDocDirectionBR "Incoming"|"Outgoing";
+public type RTax25TaxModule "Tax"|"RPayFund"|"Asset_RU";
+public type RestoredVATGainCalcMethodRU "All"|"Indirect";
+public type TaxSubstitutionEnumBR "None"|"Markup"|"SimplifiedEstimate"|"MarkupConfaz_52_2017";
+public type CustVendTypeBR "Customer"|"Vendor"|"FiscalEstablishment";
+public type TaxFiscalValueBR "Blank"|"WithCreditDebit"|"WithoutCreditDebitExempt"|"WithoutCreditDebitOther";
 public type TaxPrintDetail "TaxCode"|"TaxGroup"|"NoDetail";
+public type PeriodUnit "Day"|"Month"|"Year"|"All";
+public type NoYes "No"|"Yes";
+public type TaxCalculationDateType "InvoiceDate"|"DeliveryDate"|"DocumentDate";
+public type TaxTypeJP "Standard"|"Reduced"|"Other";
 public type TaxRegion record {
     @jsondata:Name {value: "CountryRegionISOCode"}
     string countryRegionISOCode?;

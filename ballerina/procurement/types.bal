@@ -4,8 +4,9 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type WMSFreightChargeTerms "Prepaid"|"Collect"|"ThirdParty"|"Nofreight"|"ConsigneeParty";
-public type CustomInventTransStatusRU "Empty"|"Purchased"|"Ordered";
+public type InvoiceRecordTypeIS "LS"|"LA";
+public type LogisticsLocationRoleType "None"|"Invoice"|"Delivery"|"SWIFT"|"Payment"|"Service"|"Home"|"Other"|"Business"|"RemitTo"|"Statement"|"FixedAsset"|"OneTime"|"Recruit"|"SMS"|"Lading_W"|"Unlading_W"|"HeadCompany_IT"|"StableOrganization_IT"|"PayrollResidencyLocation"|"PayrollWorkLocation"|"RealAddress_RU"|"Consignment_IN"|"PurchaseOrderCommunications";
+public type NoYes "No"|"Yes";
 public type ODataCollection record {
     @jsondata:Name {value: "@odata.nextLink"}
     string odataNextLink?;
@@ -55,15 +56,14 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type LogisticsLocationRoleType "None"|"Invoice"|"Delivery"|"SWIFT"|"Payment"|"Service"|"Home"|"Other"|"Business"|"RemitTo"|"Statement"|"FixedAsset"|"OneTime"|"Recruit"|"SMS"|"Lading_W"|"Unlading_W"|"HeadCompany_IT"|"StableOrganization_IT"|"PayrollResidencyLocation"|"PayrollWorkLocation"|"RealAddress_RU"|"Consignment_IN"|"PurchaseOrderCommunications";
-public type NoYes "No"|"Yes";
+public type WMSFreightChargeTerms "Prepaid"|"Collect"|"ThirdParty"|"Nofreight"|"ConsigneeParty";
 # OAuth2 Client Credentials Grant Configs
 public type OAuth2ClientCredentialsGrantConfig record {|
     *http:OAuth2ClientCredentialsGrantConfig;
     # Token URL
     string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
 |};
-public type InvoiceRecordTypeIS "LS"|"LA";
+public type CustomInventTransStatusRU "Empty"|"Purchased"|"Ordered";
 public type VendorInvoiceDeclarationsCollection record {
     *ODataCollection;
     *VendorInvoiceDeclarationsCollectionAllOf2;

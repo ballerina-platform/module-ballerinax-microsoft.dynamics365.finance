@@ -4,21 +4,110 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type SalesReturnDeliverRemainderPolicy "DeleteRemainder"|"EnforceValidate";
-public type CustTableChangeProposalDataEntityBehavior "AllowWithoutApproval"|"RejectChanges"|"CreateChangeProposal";
-public type PaymentStub "None"|"FIK"|"BBS"|"ESR_blue_PTT"|"ESR_red_bank"|"FIK762"|"ESR_orange"|"BelSMS101"|"BelSMS102"|"Finnish"|"FIK751"|"FIK752"|"QRBill";
-public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+public type UseFiscalInvoiceAccount "Never"|"Always"|"Ask";
+public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
 public type MarkupValueBase "LineAmount"|"LineAmountInclCharges";
+public type CreditCardAddressVerification "None"|"No"|"Yes";
+public type CustCollectionLetterGenerationLevel "Transaction"|"Customer";
+public type CustPostedPrinted "Posting"|"Printed";
+public type Quarter "Q1"|"Q2"|"Q3"|"Q4";
+public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
 public type CustWhtContributionTypeBR "Other"|"FederalAgencyAutarchyOrFoundation"|"OtherFederalAdministrationEntity"|"PrivateCompany"|"Cooperative"|"MachineOrVehicleManufacturer";
-public type EFDocPresenceTypeBR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
-public type CreditCardEstShippingChargeType "Fixed"|"Percent";
-public type ABC "None"|"A"|"B"|"C";
-public type ItemCust "Item"|"Cust";
-public type CustInterestAdjustmentDateToUse "InterestNoteDate"|"CurrentSystemDate";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type CustVendShowTransaction "All"|"Open"|"Closed"|"OpenAsOf";
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type CreditLineErrorType "Error"|"Warning"|"MCRReview";
 public type CustSettlementProrationType "Equal"|"Proportional";
-public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+public type WHSCustFulfillmentErrorTolerance "UseCompanyPolicy"|"Accept"|"Warning"|"Error";
+public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
+public type ABC "None"|"A"|"B"|"C";
 public type ErrorTolerance "Accept"|"Warning"|"Error";
+public type NatureOfAssesseeIN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
+public type CustSettlePrepaymentVATTypeRU "Storno"|"Reversal";
+public type TAMDeductionCustPaymSettleMethod "MatchInvoice"|"MatchOpenPayment";
+public type MarkupPeriodChargeRuleQtyThresholdMatch "InvoiceLines"|"SalesOrderLines";
+public type CustVendExchAdjRateSource "Ledger"|"Specific"|"Group";
+public type RetailReceiptOptionBase "RetailEx3"|"Email"|"Both";
+public type PaymentStub "None"|"FIK"|"BBS"|"ESR_blue_PTT"|"ESR_red_bank"|"FIK762"|"ESR_orange"|"BelSMS101"|"BelSMS102"|"Finnish"|"FIK751"|"FIK752"|"QRBill";
+public type WHSFulfillmentType "None"|"Price"|"Qty";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
+public type CustInterestAdjustmentDateToUse "InterestNoteDate"|"CurrentSystemDate";
+public type ItemCust "Item"|"Cust";
+public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    OAuth2ClientCredentialsGrantConfig auth?;
+    # The HTTP version understood by the client
+    http:HttpVersion httpVersion = http:HTTP_2_0;
+    # Configurations related to HTTP/1.x protocol
+    http:ClientHttp1Settings http1Settings = {};
+    # Configurations related to HTTP/2 protocol
+    http:ClientHttp2Settings http2Settings = {};
+    # The maximum time to wait (in seconds) for a response before closing the connection
+    decimal timeout = 30;
+    # The choice of setting `forwarded`/`x-forwarded` header
+    string forwarded = "disable";
+    # Configurations associated with Redirection
+    http:FollowRedirects followRedirects?;
+    # Configurations associated with request pooling
+    http:PoolConfiguration poolConfig?;
+    # HTTP caching related configurations
+    http:CacheConfig cache = {};
+    # Specifies the way of handling compression (`accept-encoding`) header
+    http:Compression compression = http:COMPRESSION_AUTO;
+    # Configurations associated with the behaviour of the Circuit Breaker
+    http:CircuitBreakerConfig circuitBreaker?;
+    # Configurations associated with retrying
+    http:RetryConfig retryConfig?;
+    # Configurations associated with cookies
+    http:CookieConfig cookieConfig?;
+    # Configurations associated with inbound response size limits
+    http:ResponseLimitConfigs responseLimits = {};
+    # SSL/TLS-related options
+    http:ClientSecureSocket secureSocket?;
+    # Proxy server related options
+    http:ProxyConfig proxy?;
+    # Provides settings related to client socket configuration
+    http:ClientSocketConfig socketConfig = {};
+    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
+    boolean validation = true;
+    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
+    # and absent fields are handled as `nilable` types. Enabled by default.
+    boolean laxDataBinding = true;
+|};
+public type EFDocPresenceTypeBR "DoesNotApply"|"InPerson"|"Internet"|"Telesales"|"InPersonOut"|"Others";
+public type MarkupPeriodChargeRuleSiteLocationMatch "InvoiceLine"|"SalesOrder";
+public type Timezone "GMTMINUS1200INTERNATIONALDATELINEWEST"|"GMTMINUS1100COORDINATEDUNIVERSALTIME"|"GMTMINUS1100MIDWAYISLAND_SAMOA"|"GMTMINUS1000HAWAII"|"GMTMINUS0900ALASKA"|"GMTMINUS0800PACIFICTIME"|"GMTMINUS0800TIJUANA_BAJACALIFORNIA"|"GMTMINUS0700ARIZONA"|"GMTMINUS0700MOUNTAINTIME"|"GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"|"GMTMINUS0600CENTRALAMERICA"|"GMTMINUS0600CENTRALTIME"|"GMTMINUS0600GUADALAJARA_MEXICOCITY"|"GMTMINUS0600SASKATCHEWAN"|"GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"|"GMTMINUS0500EASTERNTIME"|"GMTMINUS0500INDIANA"|"GMTMINUS0500CHETUMAL"|"GMTMINUS0400ASUNCION"|"GMTMINUS0400ATLANTICTIME"|"GMTMINUS0400LAPAZ"|"GMTMINUS0400MANAUS"|"GMTMINUS0300SANTIAGO"|"GMTMINUS0430CARACAS"|"GMTMINUS0330NEWFOUNDLAND"|"GMTMINUS0300_SALVADOR"|"GMTMINUS0300BRASILIA"|"GMTMINUS0300BUENOSAIRES"|"GMTMINUS0300BUENOSAIRES_GEORGETOWN"|"GMTMINUS0300GREENLAND"|"GMTMINUS0300MONTEVIDEO"|"GMTMINUS0200MIDATLANTIC"|"GMTMINUS0100AZORES"|"GMTMINUS0100CAPEVERDIS"|"GMT_CASABLANCA"|"GMT_CASABLANCA_MONTROVIA_REYKJAVIK"|"GMT_COORDINATEDUNIVERSALTIME"|"GMT_DUBLIN_EDINBURGH_LISBON_LONDON"|"GMT_PLUS0300KALININGRAD_MINSK"|"GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"|"GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"|"GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"|"GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"|"GMTPLUS0100TRIPOLI"|"GMTPLUS0100WESTCENTRALAFRICA"|"GMTPLUS0200_DAMASCUS"|"GMTPLUS0200AMMAN"|"GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"|"GMTPLUS0200BEIRUT"|"GMTPLUS0200MINSK"|"GMTPLUS0200CAIRO"|"GMTPLUS0200HARARE_PRETORIA"|"GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"|"GMTPLUS0300ISTANBUL"|"GMTPLUS0200JERUSALEM"|"GMTPLUS0200WINDHOEK"|"GMTPLUS0300BAGHDAD"|"GMTPLUS0300KUWAIT_RIYADH"|"GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"|"GMTPLUS0300NAIROBI"|"GMTPLUS0300TBILISI"|"GMTPLUS0330TEHRAN"|"GMTPLUS0400ABUDHABI_MUSCAT"|"GMTPLUS0400BAKU"|"GMTPLUS0400IZHEVSK_SAMARA"|"GMTPLUS0400CAUCASUSSTANDARDTIME"|"GMTPLUS0400PORTLOUIS"|"GMTPLUS0400YEREVAN"|"GMTPLUS0430KABUL"|"GMTPLUS0500EKATERINBURG"|"GMTPLUS0500ISLAMABAD_KARACHI"|"GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"|"GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"|"GMTPLUS0530SRIJAYAWARDENEPURA"|"GMTPLUS0545KATHMANDU"|"GMTPLUS0600ALMATY_NOVOSIBIRSK"|"GMTPLUS0600ASTANA_DHAKA"|"GMTPLUS0600DHAKA"|"GMTPLUS0600MAGADAN"|"GMTPLUS0630_YANGON"|"GMTPLUS0700_BANGKOK_HANOI_JAKARTA"|"GMTPLUS0700KRASNOYARSK"|"GMTPLUS0800_ULAANBAATAR"|"GMTPLUS0800BEIJING_CHONGQING_HONGKONG"|"GMTPLUS0800IRKUTSK_ULAANBATAAR"|"GMTPLUS0800KUALALUMPUR_SINGAPORE"|"GMTPLUS0800PERTH"|"GMTPLUS0800TAIPEI"|"GMTPLUS0900OSAKA_SAPPORO_TOKYO"|"GMTPLUS0900SEOUL"|"GMTPLUS0900YAKUTSK"|"GMTPLUS0930ADELAIDE"|"GMTPLUS0930DARWIN"|"GMTPLUS1000BRISBANE"|"GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"|"GMTPLUS1000GUAM_PORTMORESBY"|"GMTPLUS1000HOBART"|"GMTPLUS1000VLADIVOSTOK"|"GMTPLUS1100CHOKURDAKH"|"GMTPLUS1100MAGADAN_SOLOMONIS"|"GMTPLUS1200ANADYR_PETRO_KAMCHATSKY"|"GMTPLUS1200AUCKLAND_WELLINGTON"|"GMTPLUS1200COORDINATEDUNIVERSALTIME"|"GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"|"GMTPLUS1300NUKU_ALOFA";
+public type CreditCardCVC "None"|"No"|"Yes";
+public type CreditCardAddressVerificationLevel "Accept"|"AccountHolderName"|"BillingPostalCode"|"BillingAddress";
+public type CompanyTypeMX "Blank"|"LegalEntity"|"LegalPerson"|"ForeignCompany";
+public type MCRItemCustCatalog "ItemCustCatalog"|"ItemCatalogCust"|"CustItemCatalog"|"CustCatalogItem"|"CatalogItemCust"|"CatalogCustItem";
+public type PANStatusIN "NotAvailable"|"Received"|"Applied"|"Invalid";
+public type UnspecificSpecific "Unspecific"|"Specific";
+public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
+public type FederalNonFederalIndicatorCode "None"|"Federal"|"NonFederal"|"NonFederalException";
+public type CreditCardEstShippingChargeType "Fixed"|"Percent";
+public type TaxVATNumCountryRegionType "None"|"DomesticEU"|"EU";
+public type CustLanguageAccountType "OrderAccount"|"InvoiceAccount";
+public type SalesReturnDeliverRemainderPolicy "DeleteRemainder"|"EnforceValidate";
 public type CustAccountStatement "Always"|"Quarter"|"Biannually"|"Yearly"|"Never";
+public type UseCashDisc "Normal"|"Always"|"Never";
+public type InvoiceOrderAccount "InvoiceAccount"|"OrderAccount";
+public type CustInvoiceLinePriority "None"|"BillingCode"|"Proration";
+public type TypeOfCreditmaxCheck "None"|"Balance"|"BalanceDelivered"|"BalanceAll";
+public type NoYes "No"|"Yes";
+public type CustInterestCalc "OpenClosed"|"Open"|"Closed"|"ClosedIncludingGracePeriod"|"OpenClosedIncludingGracePeriod";
 public type Customer record {
     @jsondata:Name {value: "PersonPhoneticLastName"}
     string personPhoneticLastName?;
@@ -526,96 +615,7 @@ public type Customer record {
     @jsondata:Name {value: "AddressLatitude"}
     decimal addressLatitude?;
 };
-public type CreditCardAddressVerification "None"|"No"|"Yes";
-public type NatureOfAssesseeIN "Company"|"HUF"|"Firm"|"Individual"|"AOP"|"BOI"|"LocalAuthority"|"Others";
-public type MarkupPeriodChargeRuleQtyThresholdMatch "InvoiceLines"|"SalesOrderLines";
-public type MCRItemCustCatalog "ItemCustCatalog"|"ItemCatalogCust"|"CustItemCatalog"|"CustCatalogItem"|"CatalogItemCust"|"CatalogCustItem";
-public type CreditCardCVC "None"|"No"|"Yes";
-public type NoYes "No"|"Yes";
-public type TAMDeductionCustPaymSettleMethod "MatchInvoice"|"MatchOpenPayment";
-public type WHSCustFulfillmentErrorTolerance "UseCompanyPolicy"|"Accept"|"Warning"|"Error";
-public type CustInvoiceLinePriority "None"|"BillingCode"|"Proration";
-public type UseCashDisc "Normal"|"Always"|"Never";
-public type CustInterestCalc "OpenClosed"|"Open"|"Closed"|"ClosedIncludingGracePeriod"|"OpenClosedIncludingGracePeriod";
-public type TaxVATNumCountryRegionType "None"|"DomesticEU"|"EU";
-public type ConnectionConfig record {|
-    # Configurations related to client authentication
-    OAuth2ClientCredentialsGrantConfig auth?;
-    # The HTTP version understood by the client
-    http:HttpVersion httpVersion = http:HTTP_2_0;
-    # Configurations related to HTTP/1.x protocol
-    http:ClientHttp1Settings http1Settings = {};
-    # Configurations related to HTTP/2 protocol
-    http:ClientHttp2Settings http2Settings = {};
-    # The maximum time to wait (in seconds) for a response before closing the connection
-    decimal timeout = 30;
-    # The choice of setting `forwarded`/`x-forwarded` header
-    string forwarded = "disable";
-    # Configurations associated with Redirection
-    http:FollowRedirects followRedirects?;
-    # Configurations associated with request pooling
-    http:PoolConfiguration poolConfig?;
-    # HTTP caching related configurations
-    http:CacheConfig cache = {};
-    # Specifies the way of handling compression (`accept-encoding`) header
-    http:Compression compression = http:COMPRESSION_AUTO;
-    # Configurations associated with the behaviour of the Circuit Breaker
-    http:CircuitBreakerConfig circuitBreaker?;
-    # Configurations associated with retrying
-    http:RetryConfig retryConfig?;
-    # Configurations associated with cookies
-    http:CookieConfig cookieConfig?;
-    # Configurations associated with inbound response size limits
-    http:ResponseLimitConfigs responseLimits = {};
-    # SSL/TLS-related options
-    http:ClientSecureSocket secureSocket?;
-    # Proxy server related options
-    http:ProxyConfig proxy?;
-    # Provides settings related to client socket configuration
-    http:ClientSocketConfig socketConfig = {};
-    # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
-    boolean validation = true;
-    # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
-    boolean laxDataBinding = true;
-|};
-public type TypeOfCreditmaxCheck "None"|"Balance"|"BalanceDelivered"|"BalanceAll";
-public type CustPostedPrinted "Posting"|"Printed";
-public type CustSettlePrepaymentVATTypeRU "Storno"|"Reversal";
-public type CreditLineErrorType "Error"|"Warning"|"MCRReview";
-public type MarkupPeriodChargeRuleSiteLocationMatch "InvoiceLine"|"SalesOrder";
-public type CustVendExchAdjRateSource "Ledger"|"Specific"|"Group";
-public type UseFiscalInvoiceAccount "Never"|"Always"|"Ask";
-public type Quarter "Q1"|"Q2"|"Q3"|"Q4";
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
-public type DirPersonMaritalStatus "None"|"Single"|"Married"|"Divorced"|"Widowhood";
-public type CreditCardAddressVerificationLevel "Accept"|"AccountHolderName"|"BillingPostalCode"|"BillingAddress";
-public type Gender "Unknown"|"Male"|"Female"|"NonSpecific";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-public type CustCollectionLetterGenerationLevel "Transaction"|"Customer";
-public type UnspecificSpecific "Unspecific"|"Specific";
-public type LedgerJournalACType "Ledger"|"Cust"|"Vend"|"Project"|"FixedAssets"|"Bank"|"FixedAssets_RU"|"Employee_RU"|"RDeferrals"|"RCash";
-public type InvoiceOrderAccount "InvoiceAccount"|"OrderAccount";
-public type RetailReceiptOptionBase "RetailEx3"|"Email"|"Both";
-public type PANStatusIN "NotAvailable"|"Received"|"Applied"|"Invalid";
-public type CustVendorBlocked "No"|"Invoice"|"All"|"Payment"|"Requisition"|"Never"|"PurchOrder";
-public type CustLanguageAccountType "OrderAccount"|"InvoiceAccount";
-public type WHSFulfillmentType "None"|"Price"|"Qty";
-public type FederalNonFederalIndicatorCode "None"|"Federal"|"NonFederal"|"NonFederalException";
-public type CustVendShowTransaction "All"|"Open"|"Closed"|"OpenAsOf";
+public type CustTableChangeProposalDataEntityBehavior "AllowWithoutApproval"|"RejectChanges"|"CreateChangeProposal";
 public type CustomerParametersCollection record {
     *ODataCollection;
     *CustomerParametersCollectionAllOf2;

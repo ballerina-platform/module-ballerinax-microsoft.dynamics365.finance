@@ -4,7 +4,7 @@
 import ballerina/data.jsondata;
 import ballerina/http;
 
-public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
+public type IntrastatOrderType "Order"|"Correction"|"Return";
 public type EMCompressionType "None"|"GZIP";
 public type Intrastat record {
     @jsondata:Name {value: "Quarter"}
@@ -172,7 +172,43 @@ public type Intrastat record {
     @jsondata:Name {value: "CurrentAgreement"}
     NoYes currentAgreement?;
 };
-public type SysPolicyTypeEnum "PurchasingPolicy"|"ApprovalPolicy"|"TrvExpensePolicy"|"TrvRequisitionPolicy"|"AuditPolicy"|"VendInvoicesPolicy"|"None"|"HcmBenefitEligibilityPolicy"|"PayrollPremiumEarningGenerationPolicy"|"ExpExpensePolicy"|"TimesheetPolicy";
+public type IntrastatServicesDeliveryIT "None"|"SingleDelivery"|"MultipleDeliveries";
+public type ODataCollection record {
+    @jsondata:Name {value: "@odata.nextLink"}
+    string odataNextLink?;
+    @jsondata:Name {value: "@odata.count"}
+    int odataCount?;
+    @jsondata:Name {value: "@odata.context"}
+    string odataContext?;
+};
+public type Type record {
+    string dataAreaId?;
+    @jsondata:Name {value: "ShortName"}
+    string shortName?;
+    @jsondata:Name {value: "FlTypeId"}
+    string flTypeId?;
+    @jsondata:Name {value: "Name"}
+    string name?;
+};
+# OAuth2 Client Credentials Grant Configs
+public type OAuth2ClientCredentialsGrantConfig record {|
+    *http:OAuth2ClientCredentialsGrantConfig;
+    # Token URL
+    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
+|};
+public type WorkflowAssociationType "Company"|"Global"|"Other";
+public type BusinessProcessType "Generic"|"Onboarding"|"Offboarding"|"Transitions";
+public type BatchStatus "Hold"|"Waiting"|"Executing"|"Error"|"Finished"|"Ready"|"NotRun"|"Cancelling"|"Canceled"|"Scheduled";
+public type NGPCode record {
+    string dataAreaId?;
+    @jsondata:Name {value: "Description"}
+    string description?;
+    @jsondata:Name {value: "NGP"}
+    int:Signed32 nGP?;
+};
+public type EMActionType "GERExport"|"GERImport"|"WEBService"|"User"|"ExecutableCode"|"PopulateRecords"|"ExecutableCodeMessageItemLevel"|"ValidateSchema"|"GERExportMessage"|"UserMessageLevel"|"CreateMessage";
+public type WorkflowConfigurationType "Definition"|"InProcess";
+public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
 public type WebService record {
     @jsondata:Name {value: "WebApplicationName"}
     string webApplicationName?;
@@ -222,38 +258,9 @@ public type WebService record {
     @jsondata:Name {value: "RequestAcceptEncoding"}
     string requestAcceptEncoding?;
 };
-public type BatchLogLevel "Always"|"Error"|"Never";
-public type Workflow record {
-    @jsondata:Name {value: "Type"}
-    WorkflowConfigurationType 'type?;
-    @jsondata:Name {value: "DataArea"}
-    string dataArea?;
-    @jsondata:Name {value: "AssociationType"}
-    WorkflowAssociationType associationType?;
-    @jsondata:Name {value: "DocumentTableName"}
-    string documentTableName?;
-    @jsondata:Name {value: "SequenceNumber"}
-    string sequenceNumber?;
-    @jsondata:Name {value: "CategoryName"}
-    string categoryName?;
-    @jsondata:Name {value: "TemplateName"}
-    string templateName?;
-    @jsondata:Name {value: "DefaultConfiguration"}
-    NoYes defaultConfiguration?;
-    @jsondata:Name {value: "Module"}
-    ModuleAxapta 'module?;
-    @jsondata:Name {value: "Name"}
-    string name?;
-};
-public type ModuleAxapta "Ledger"|"Bank"|"SalesOrder"|"Customer"|"PurchaseOrder"|"Vendor"|"Inventory"|"BOM"|"Route"|"WorkCenter"|"Production"|"MasterPlanning"|"HumanResource"|"Project"|"Location"|"General"|"Costing"|"Expense"|"CRM"|"Activities"|"Contacts"|"BusinessRelations"|"Opportunities"|"Leads"|"Campaigns"|"Basic"|"TimeAndAttendance"|"Budget"|"FixedAssets"|"RetailTerminal"|"RCash"|"FleetManagement"|"TAM"|"ProcurementAndSourcing"|"NotApplicable"|"Obsolete"|"SalesAndMarketing"|"SystemAdministration"|"Tax"|"ProductInformationManagement"|"Workflow"|"Batch"|"DIXF"|"Alerts"|"WorkflowType"|"WorkflowExternalTask"|"WorkflowElement"|"WorkflowElementStarted"|"WorkflowWorkItem"|"BackgroundOperation"|"ProductionControl"|"IoTIntelligence"|"EMPAShared"|"GAB"|"Currency"|"FinancialDimensions"|"AccountingFoundation"|"FinancialReporting"|"Retail"|"ChannelManagement"|"BrickAndMortarStore"|"CallCenter"|"OnlineStore"|"Merchandising"|"CommerceCustomers"|"CommerceEmployees"|"InventoryAndAdvancedWarehouse"|"Payments"|"TransactionsAndOrders"|"WebActivity"|"CommerceMiscellaneous"|"CashManagement"|"FiscalBooksBrazil"|"AccountsReceivable"|"AccountsPayable"|"APARShared"|"ComplianceAndInternalControls"|"EGAIS"|"EInvoice"|"ElectronicMessages"|"ExportImportIndia"|"Intrastat"|"Payroll"|"ProjectManagementAndAccounting"|"PublicSector"|"RCashFlowManagement"|"RDeferrals"|"RSalesPurchBooks"|"RAsset"|"RTax25"|"ServiceManagement"|"Transportation"|"Warehouse"|"AssetLease"|"CostAccountingService"|"CredMan"|"EngineeringChangeManagement"|"AssetManagement"|"TAMRebate"|"SubscriptionBilling";
-public type BusinessProcessType "Generic"|"Onboarding"|"Offboarding"|"Transitions";
 public type IntrastatPaymentMethodIT "Other"|"BillOfExchange"|"PromissoryNote";
-public type WorkflowAssociationType "Company"|"Global"|"Other";
-public type NoYes "No"|"Yes";
+public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
 public type QuarterOfYear "None"|"Q1"|"Q2"|"Q3"|"Q4";
-public type EMActionType "GERExport"|"GERImport"|"WEBService"|"User"|"ExecutableCode"|"PopulateRecords"|"ExecutableCodeMessageItemLevel"|"ValidateSchema"|"GERExportMessage"|"UserMessageLevel"|"CreateMessage";
-public type TrvPolicyViolationLevel "None"|"Warning"|"Error"|"ApproveJustification"|"SubmitJustification"|"SubmitApproveJustification";
-public type DimensionRuleType "GeneralLedger"|"BudgetPlanning";
 public type ConnectionConfig record {|
     # Configurations related to client authentication
     OAuth2ClientCredentialsGrantConfig auth?;
@@ -295,45 +302,38 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
-public type Type record {
-    string dataAreaId?;
-    @jsondata:Name {value: "ShortName"}
-    string shortName?;
-    @jsondata:Name {value: "FlTypeId"}
-    string flTypeId?;
+public type SysPolicyTypeEnum "PurchasingPolicy"|"ApprovalPolicy"|"TrvExpensePolicy"|"TrvRequisitionPolicy"|"AuditPolicy"|"VendInvoicesPolicy"|"None"|"HcmBenefitEligibilityPolicy"|"PayrollPremiumEarningGenerationPolicy"|"ExpExpensePolicy"|"TimesheetPolicy";
+public type IntrastatDirection "Import"|"Export";
+public type TrvPolicyViolationLevel "None"|"Warning"|"Error"|"ApproveJustification"|"SubmitJustification"|"SubmitApproveJustification";
+public type Workflow record {
+    @jsondata:Name {value: "Type"}
+    WorkflowConfigurationType 'type?;
+    @jsondata:Name {value: "DataArea"}
+    string dataArea?;
+    @jsondata:Name {value: "AssociationType"}
+    WorkflowAssociationType associationType?;
+    @jsondata:Name {value: "DocumentTableName"}
+    string documentTableName?;
+    @jsondata:Name {value: "SequenceNumber"}
+    string sequenceNumber?;
+    @jsondata:Name {value: "CategoryName"}
+    string categoryName?;
+    @jsondata:Name {value: "TemplateName"}
+    string templateName?;
+    @jsondata:Name {value: "DefaultConfiguration"}
+    NoYes defaultConfiguration?;
+    @jsondata:Name {value: "Module"}
+    ModuleAxapta 'module?;
     @jsondata:Name {value: "Name"}
     string name?;
 };
-# OAuth2 Client Credentials Grant Configs
-public type OAuth2ClientCredentialsGrantConfig record {|
-    *http:OAuth2ClientCredentialsGrantConfig;
-    # Token URL
-    string tokenUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
-|};
+public type ModuleAxapta "Ledger"|"Bank"|"SalesOrder"|"Customer"|"PurchaseOrder"|"Vendor"|"Inventory"|"BOM"|"Route"|"WorkCenter"|"Production"|"MasterPlanning"|"HumanResource"|"Project"|"Location"|"General"|"Costing"|"Expense"|"CRM"|"Activities"|"Contacts"|"BusinessRelations"|"Opportunities"|"Leads"|"Campaigns"|"Basic"|"TimeAndAttendance"|"Budget"|"FixedAssets"|"RetailTerminal"|"RCash"|"FleetManagement"|"TAM"|"ProcurementAndSourcing"|"NotApplicable"|"Obsolete"|"SalesAndMarketing"|"SystemAdministration"|"Tax"|"ProductInformationManagement"|"Workflow"|"Batch"|"DIXF"|"Alerts"|"WorkflowType"|"WorkflowExternalTask"|"WorkflowElement"|"WorkflowElementStarted"|"WorkflowWorkItem"|"BackgroundOperation"|"ProductionControl"|"IoTIntelligence"|"EMPAShared"|"GAB"|"Currency"|"FinancialDimensions"|"AccountingFoundation"|"FinancialReporting"|"Retail"|"ChannelManagement"|"BrickAndMortarStore"|"CallCenter"|"OnlineStore"|"Merchandising"|"CommerceCustomers"|"CommerceEmployees"|"InventoryAndAdvancedWarehouse"|"Payments"|"TransactionsAndOrders"|"WebActivity"|"CommerceMiscellaneous"|"CashManagement"|"FiscalBooksBrazil"|"AccountsReceivable"|"AccountsPayable"|"APARShared"|"ComplianceAndInternalControls"|"EGAIS"|"EInvoice"|"ElectronicMessages"|"ExportImportIndia"|"Intrastat"|"Payroll"|"ProjectManagementAndAccounting"|"PublicSector"|"RCashFlowManagement"|"RDeferrals"|"RSalesPurchBooks"|"RAsset"|"RTax25"|"ServiceManagement"|"Transportation"|"Warehouse"|"AssetLease"|"CostAccountingService"|"CredMan"|"EngineeringChangeManagement"|"AssetManagement"|"TAMRebate"|"SubscriptionBilling";
+public type BatchLogLevel "Always"|"Error"|"Never";
+public type HierarchyPurpose "NotSet"|"PurchaseControl"|"ExpenseControl"|"OrganizationChart"|"SigningLimitControl"|"InvoiceControl"|"AuditInternalControl"|"CentralizedPayments"|"Security"|"RetailAssortment"|"RetailReplenishment"|"RetailReporting"|"BenefitEligibilityControl"|"BudgetPlanning"|"RetailPOSPosting"|"Project"|"PremiumEarningGeneration"|"MultiCompanyProcessing"|"RetailAutoCharge"|"DistributedOrderManagement";
 public type IntrastatItemTypeIT "Goods"|"Services";
 public type DimensionHierarchyConstraintStatus "Draft"|"Active"|"Activating";
-public type ODataCollection record {
-    @jsondata:Name {value: "@odata.nextLink"}
-    string odataNextLink?;
-    @jsondata:Name {value: "@odata.count"}
-    int odataCount?;
-    @jsondata:Name {value: "@odata.context"}
-    string odataContext?;
-};
-public type BatchStatus "Hold"|"Waiting"|"Executing"|"Error"|"Finished"|"Ready"|"NotRun"|"Cancelling"|"Canceled"|"Scheduled";
-public type MonthsOfYear "None"|"January"|"February"|"March"|"April"|"May"|"June"|"July"|"August"|"September"|"October"|"November"|"December";
-public type HierarchyPurpose "NotSet"|"PurchaseControl"|"ExpenseControl"|"OrganizationChart"|"SigningLimitControl"|"InvoiceControl"|"AuditInternalControl"|"CentralizedPayments"|"Security"|"RetailAssortment"|"RetailReplenishment"|"RetailReporting"|"BenefitEligibilityControl"|"BudgetPlanning"|"RetailPOSPosting"|"Project"|"PremiumEarningGeneration"|"MultiCompanyProcessing"|"RetailAutoCharge"|"DistributedOrderManagement";
-public type IntrastatOrderType "Order"|"Correction"|"Return";
-public type IntrastatDirection "Import"|"Export";
-public type WorkflowConfigurationType "Definition"|"InProcess";
-public type ModuleInventCustVend "Invent"|"Cust"|"Vend";
-public type NGPCode record {
-    string dataAreaId?;
-    @jsondata:Name {value: "Description"}
-    string description?;
-    @jsondata:Name {value: "NGP"}
-    int:Signed32 nGP?;
-};
+public type NoYes "No"|"Yes";
+public type DimensionRuleType "GeneralLedger"|"BudgetPlanning";
 public type DatabaseLogType "Insert"|"Delete"|"Update"|"RenameKey"|"EventInsert"|"EventDelete"|"EventUpdate"|"EventRenameKey";
 public type PolicyTypesCollection record {
     *ODataCollection;
