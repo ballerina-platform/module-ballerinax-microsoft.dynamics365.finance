@@ -8,14 +8,36 @@ on:
         description: Select Connector
         required: true
         options:
-          - ledger
-          - receivable
-          - payable
-          - tax
-          - asset
+          - budget
+          - cashmanagement
           - core
+          - coreorg
+          - customer
+          - customeraccount
+          - customermain
+          - document
+          - expense
+          - fiscal
+          - fixedasset
           - hr
+          - hrdev
+          - journalentry
+          - ledger
+          - mainaccount
+          - payment
+          - procurement
+          - project
+          - receivable
+          - sysconfig
           - system
+          - tax
+          - taxregion
+          - trade
+          - users
+          - vendor
+          - vendorextended
+          - vendorpayment
+          - workflow
 
 jobs:
   release:
