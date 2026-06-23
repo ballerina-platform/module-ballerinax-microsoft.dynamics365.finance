@@ -72,12 +72,9 @@ jobs:
         with:
           version: ${{ env.BAL_VERSION }}
 
-      - name: Build and run tests
-        env:
-          packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
-          packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
+      - name: Run tests on mock
         run: |
-          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build
+          bal test ballerina/${{ inputs.connector }}
 
       - name: Publish to Dev Central
         if: ${{ inputs.environment == 'DEV CENTRAL' }}

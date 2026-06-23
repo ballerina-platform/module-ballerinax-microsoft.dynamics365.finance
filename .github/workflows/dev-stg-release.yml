@@ -60,15 +60,9 @@ jobs:
         with:
           version: ${{ env.BAL_VERSION }}
 
-      - name: Build and run tests
-        env:
-          packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
-          packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
+      - name: Run tests on mock
         run: |
-          ROOT_VERSION=$(grep -w '^version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
-          MODULE_VERSION=$(grep -w '${{ matrix.directory }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
-          ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
-            -Pversion=${ROOT_VERSION} -P${{ matrix.directory }}Version=${MODULE_VERSION}
+          bal test ballerina/${{ matrix.directory }}
 
       - name: Publish to Dev Central
         if: ${{ inputs.environment == 'DEV CENTRAL' }}
