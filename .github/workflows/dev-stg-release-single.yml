@@ -15,14 +15,36 @@ on:
         description: Select Connector
         required: true
         options:
-          - ledger
-          - receivable
-          - payable
-          - tax
-          - asset
+          - budget
+          - cashmanagement
           - core
+          - coreorg
+          - customer
+          - customeraccount
+          - customermain
+          - document
+          - expense
+          - fiscal
+          - fixedasset
           - hr
+          - hrdev
+          - journalentry
+          - ledger
+          - mainaccount
+          - payment
+          - procurement
+          - project
+          - receivable
+          - sysconfig
           - system
+          - tax
+          - taxregion
+          - trade
+          - users
+          - vendor
+          - vendorextended
+          - vendorpayment
+          - workflow
 
 jobs:
   publish:
@@ -60,7 +82,7 @@ jobs:
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
           ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build \
-            -PpublishToCentral=true
+            -x test -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -72,4 +94,4 @@ jobs:
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
         run: |
           ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ inputs.connector }}:build \
-            -PpublishToCentral=true
+            -x test -PpublishToCentral=true

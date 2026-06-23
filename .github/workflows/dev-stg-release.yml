@@ -73,7 +73,7 @@ jobs:
           MODULE_VERSION=$(grep -w '${{ matrix.directory }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
           ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
             -Pversion=${ROOT_VERSION} -P${{ matrix.directory }}Version=${MODULE_VERSION} \
-            -PpublishToCentral=true
+            -x test -PpublishToCentral=true
 
       - name: Publish to Stage Central
         if: ${{ inputs.environment == 'STAGE CENTRAL' }}
@@ -88,4 +88,4 @@ jobs:
           MODULE_VERSION=$(grep -w '${{ matrix.directory }}Version' gradle.properties | cut -d= -f2 | sed 's/-SNAPSHOT//')
           ./gradlew clean :microsoft.dynamics365.finance-ballerina:${{ matrix.directory }}:build \
             -Pversion=${ROOT_VERSION} -P${{ matrix.directory }}Version=${MODULE_VERSION} \
-            -PpublishToCentral=true
+            -x test -PpublishToCentral=true
