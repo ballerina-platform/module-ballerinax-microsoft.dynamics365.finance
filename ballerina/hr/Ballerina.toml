@@ -1,7 +1,7 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.hr"
-version = "0.8.0-SNAPSHOT"
+version = "0.8.0"
 authors = ["Ballerina"]
 keywords = ["Name/Microsoft Dynamics 365 Finance Human Resources", "Area/Human Resources", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "HR", "Employee", "Worker", "Person"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
