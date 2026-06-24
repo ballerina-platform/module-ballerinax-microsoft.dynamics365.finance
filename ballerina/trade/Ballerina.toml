@@ -1,7 +1,7 @@
 [package]
 org = "ballerinax"
 name = "microsoft.dynamics365.finance.trade"
-version = "0.8.0-SNAPSHOT"
+version = "0.8.0"
 authors = ["Ballerina"]
 keywords = ["Name/Microsoft Dynamics 365 Finance Trade", "Area/Compliance", "Vendor/Microsoft", "Dynamics365", "Finance", "ERP", "Type/Connector", "Trade", "Intrastat", "Compliance", "International"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.dynamics365.finance"
