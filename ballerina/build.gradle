@@ -7,6 +7,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 description = 'Ballerina - Microsoft Dynamics 365 Finance and Operations'
 
+abstract class ExecHelper {
+    @Inject
+    abstract ExecOperations getExecOperations()
+}
+def execHelper = project.objects.newInstance(ExecHelper)
+
 def ballerinaBuckets = ['budget', 'cashmanagement', 'core', 'coreorg', 'customer', 'customeraccount', 'customermain', 'document', 'expense', 'fiscal', 'fixedasset', 'hr', 'hrdev', 'journalentry', 'ledger', 'mainaccount', 'payment', 'procurement', 'project', 'receivable', 'sysconfig', 'system', 'tax', 'taxregion', 'trade', 'users', 'vendor', 'vendorextended', 'vendorpayment', 'workflow']
 def projectName = 'microsoft.dynamics365.finance'
 
@@ -35,7 +41,7 @@ task updateDocumentationFiles {
             newReadmeMdFile = newReadmeMdFile.replace("@api-invocation@", parsedJson."api-invocation" ?: "")
             readmeMdFile.text = newReadmeMdFile
         }
-        project.exec {
+        execHelper.execOperations.exec {
             ignoreExitValue true
             if (org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)) {
                 commandLine 'cmd', '/c', "git commit -m \"[Automated] Update the documentation file\" */README.md"
@@ -46,10 +52,19 @@ task updateDocumentationFiles {
     }
 }
 
-task build {
-    dependsOn(updateDocumentationFiles)
-    ballerinaBuckets.each { bucket ->
-        dependsOn(":microsoft.dynamics365.finance-ballerina:${bucket}:build")
+if (!tasks.names.contains('build')) {
+    tasks.register('build') {
+        dependsOn(updateDocumentationFiles)
+        ballerinaBuckets.each { bucket ->
+            dependsOn(":microsoft.dynamics365.finance-ballerina:${bucket}:build")
+        }
+    }
+} else {
+    tasks.named('build') {
+        dependsOn(updateDocumentationFiles)
+        ballerinaBuckets.each { bucket ->
+            dependsOn(":microsoft.dynamics365.finance-ballerina:${bucket}:build")
+        }
     }
 }
 

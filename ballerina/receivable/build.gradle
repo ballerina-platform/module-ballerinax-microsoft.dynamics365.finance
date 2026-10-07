@@ -9,6 +9,12 @@ plugins {
     id 'io.ballerina.plugin'
 }
 
+abstract class ExecHelper {
+    @Inject
+    abstract ExecOperations getExecOperations()
+}
+def execHelper = project.objects.newInstance(ExecHelper)
+
 description = 'Ballerinax - Microsoft Dynamics 365 Finance and Operations - Receivable Module'
 
 def packageName = "microsoft.dynamics365.finance.receivable"
@@ -30,7 +36,7 @@ def stripBallerinaExtensionVersion(String extVersion) {
 ballerina {
     packageOrganization = "ballerinax"
     module = packageName
-    isConnector = true
+    connector = true
     platform = "any"
     testCoverageParam = '--code-coverage --coverage-format=xml'
 }
@@ -45,7 +51,7 @@ task updateTomlFiles {
 
 task commitTomlFiles {
     doLast {
-        project.exec {
+        execHelper.execOperations.exec {
             ignoreExitValue true
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                 commandLine 'cmd', '/c', "git commit -m '[Automated] Update the toml files' Ballerina.toml Dependencies.toml"
